@@ -12,4 +12,6 @@ chapters:
     title: Time series
   - file: chapters/structural_breaks_example
     title: Dealing with structural breaks
+  - file: bibliography
+    title: References
 
