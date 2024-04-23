@@ -3,7 +3,7 @@
 
 title: An introduction to causal Inference for electricity markets
 author: Davide Cacciarelli
-logo: logo.png
+logo: causal_logo.png
 
 
 # Force re-execution of notebooks on each build.
