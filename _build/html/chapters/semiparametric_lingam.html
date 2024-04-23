@@ -57,7 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/semiparametric_lingam';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -393,16 +394,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="linear-non-gaussian-acyclic-model-lingam">
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-non-gaussian-acyclic-model-lingam">
 <h1>Linear non-Gaussian acyclic model (LiNGAM)<a class="headerlink" href="#linear-non-gaussian-acyclic-model-lingam" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>The LiNGAM model for $p$ observed variables $x_1, x_2, \ldots, x_p$ is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-85a0b5b5-ca2c-4a24-8f1a-3be79fec36cb">
-<span class="eqno">(1)<a class="headerlink" href="#equation-85a0b5b5-ca2c-4a24-8f1a-3be79fec36cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e4e7056a-7835-40b8-8fec-da01f176964c">
+<span class="eqno">(1)<a class="headerlink" href="#equation-e4e7056a-7835-40b8-8fec-da01f176964c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
-<p>that explains how each observed variable $x_i$ is a linear sum of their parent variables $\operatorname{pa}(x_i)$ plus some noise $e_i$. If the coefficient $b_{ij}$ is zero, then there is no direct causal effect from $x_j$ to $x_i$. The error variables $e_i$ are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
+<p>that explains how each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 </section>
 <section id="estimation-methods">
 <h2>Estimation methods<a class="headerlink" href="#estimation-methods" title="Link to this heading">#</a></h2>
@@ -410,19 +411,19 @@ document.write(`
 <section id="ica">
 <h3>ICA<a class="headerlink" href="#ica" title="Link to this heading">#</a></h3>
 <p>ICA is a computational method, developed in the field of signal processing, to separate a multivariate signal into additive subcomponents assuming that these subcomponents are non-Gaussian signals and statistically independent from each other. Consider a simple ICA model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3640f1aa-afd3-4de2-b912-990b2832d60e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3640f1aa-afd3-4de2-b912-990b2832d60e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e57f1bfe-eb93-431c-9f4f-48695253efa8">
+<span class="eqno">(2)<a class="headerlink" href="#equation-e57f1bfe-eb93-431c-9f4f-48695253efa8" title="Permalink to this equation">#</a></span>\[\begin{align}
     x_1 &amp;= a_{11}s_1 + a_{12}s_2 \\
     x_2 &amp;= a_{21}s_1 + a_{22}s_2
 \end{align}\]</div>
-<p>where $x_1$ and $x_2$ are the observed variables, and $s_1$ and $s_2$ are continuous hidden variables. Assuming that $s_1$ and $s_2$ are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix $\mathbf{X}$. In matrix form, we can write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07b2cf7b-f76f-4650-856a-b2325c502108">
-<span class="eqno">(3)<a class="headerlink" href="#equation-07b2cf7b-f76f-4650-856a-b2325c502108" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>where <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the observed variables, and <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are continuous hidden variables. Assuming that <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In matrix form, we can write it as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-57a00754-6411-4934-b18c-4cf3f659226c">
+<span class="eqno">(3)<a class="headerlink" href="#equation-57a00754-6411-4934-b18c-4cf3f659226c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{A}\mathbf{s}
 \end{equation}\]</div>
 <p>In our example, it would mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5fd812f-b15f-4009-b24a-b3524dc9370f">
-<span class="eqno">(4)<a class="headerlink" href="#equation-c5fd812f-b15f-4009-b24a-b3524dc9370f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d2fc0e8-359a-4394-8b0b-fae696e2ccfe">
+<span class="eqno">(4)<a class="headerlink" href="#equation-7d2fc0e8-359a-4394-8b0b-fae696e2ccfe" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     x_1 \\ x_2
     \end{array}\right]
@@ -435,7 +436,7 @@ document.write(`
     s_2
     \end{array}\right]
 \end{equation}\]</div>
-<p>The $p \times q$ mixing matrix $\mathbf{A}$ represents how the unobserved components $\mathbf{s}$ are mixed to generate the observed variables $\mathbf{x}$. Any two columns of $\mathbf{A}$ are assumed to be linearly independent. The mixing matrix $\mathbf{A}$ is identifiable, except for the <strong>ordering</strong> and <strong>scaling</strong> of its columns.</p>
+<p>The <span class="math notranslate nohighlight">\(p \times q\)</span> mixing matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> represents how the unobserved components <span class="math notranslate nohighlight">\(\mathbf{s}\)</span> are mixed to generate the observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Any two columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> are assumed to be linearly independent. The mixing matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is identifiable, except for the <strong>ordering</strong> and <strong>scaling</strong> of its columns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">FastICA</span>
@@ -446,7 +447,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>We start by generating the original signals $s_1$ and $s_2$</p>
+<p>We start by generating the original signals <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -461,14 +462,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x149327be0&gt;,
- &lt;matplotlib.lines.Line2D at 0x149327c10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x145203be0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x145203c10&gt;]
 </pre></div>
 </div>
 <img alt="../_images/9c87116c3b6f017df1456787a24bff00c55476d5e299b6260f2c1a2e65421cfd.png" src="../_images/9c87116c3b6f017df1456787a24bff00c55476d5e299b6260f2c1a2e65421cfd.png" />
 </div>
 </div>
-<p>We now mix the signals, to generate the observed matrix $\mathbf{X}$</p>
+<p>We now mix the signals, to generate the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mix data</span>
@@ -480,8 +481,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x149525120&gt;,
- &lt;matplotlib.lines.Line2D at 0x149525150&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1454012d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x145401300&gt;]
 </pre></div>
 </div>
 <img alt="../_images/6f816104bbe096b613e7e3a40f4ad180bc4ddf1a4075dff494d0ee29bb3b2c04.png" src="../_images/6f816104bbe096b613e7e3a40f4ad180bc4ddf1a4075dff494d0ee29bb3b2c04.png" />
@@ -498,8 +499,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14959d9f0&gt;,
- &lt;matplotlib.lines.Line2D at 0x14959da20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14547d9f0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x14547da20&gt;]
 </pre></div>
 </div>
 <img alt="../_images/93930dfd187ec9b4f9b2767bc7bd63e4f431c86dfcfd43cccb50458ee1d99c75.png" src="../_images/93930dfd187ec9b4f9b2767bc7bd63e4f431c86dfcfd43cccb50458ee1d99c75.png" />
@@ -509,23 +510,23 @@ document.write(`
 <section id="ica-based-lingam">
 <h3>ICA-based LiNGAM<a class="headerlink" href="#ica-based-lingam" title="Link to this heading">#</a></h3>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e1f95391-21b5-4e06-af47-5979bd158869">
-<span class="eqno">(5)<a class="headerlink" href="#equation-e1f95391-21b5-4e06-af47-5979bd158869" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2038aad2-1ed9-4bdb-bd43-0a985bdfb7df">
+<span class="eqno">(5)<a class="headerlink" href="#equation-2038aad2-1ed9-4bdb-bd43-0a985bdfb7df" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
-<p>where $\mathbf{x}$ and $\mathbf{e}$ are $p$-dimensional vectors, and $\mathbf{B}$ is a $p\times p$ matrix that contains the $b_{ij}$ coefficients, with $i, j=1, \ldots, p$. We can solve the equation $\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}$ for the vector of observed variables $\mathbf{x}$ as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-43139237-85de-4f3c-8b20-3fddcd29e3b2">
-<span class="eqno">(6)<a class="headerlink" href="#equation-43139237-85de-4f3c-8b20-3fddcd29e3b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>. We can solve the equation <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}\)</span> for the vector of observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as in</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0c6727f0-278c-4f89-974a-df20cec27346">
+<span class="eqno">(6)<a class="headerlink" href="#equation-0c6727f0-278c-4f89-974a-df20cec27346" title="Permalink to this equation">#</a></span>\[\begin{equation}
     (\mathbf{I}- \mathbf{B})\mathbf{x} = \mathbf{e}
 \end{equation}\]</div>
-<p>Then, if we left-multiply both sides by the inverse of $\mathbf{I}- \mathbf{B}$, we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-758d9696-bdb2-470e-94a4-4b18209dd0e6">
-<span class="eqno">(7)<a class="headerlink" href="#equation-758d9696-bdb2-470e-94a4-4b18209dd0e6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<p>Then, if we left-multiply both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{I}- \mathbf{B}\)</span>, we get</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c9f963ab-a453-4280-9a8f-3bbbfec51d84">
+<span class="eqno">(7)<a class="headerlink" href="#equation-c9f963ab-a453-4280-9a8f-3bbbfec51d84" title="Permalink to this equation">#</a></span>\[\begin{align}
     (\mathbf{I}- \mathbf{B})^{-1}(\mathbf{I}- \mathbf{B})\mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= \mathbf{A}\mathbf{e} \label{eq:lingam-ica}
 \end{align}\]</div>
-<p>Now, since we assumed the errors are independent and non-Gaussian, we have that this equation corresponds to the ICA model, and the matrix $\mathbf{A} = (\mathbf{I}- \mathbf{B})^{-1}$ corresponds to the mixing matrix in ICA. This gives the hint of why we can use ICA to estimate the LiNGAM model. The cool part is that, in this case, using the <strong>acyclicity assumption</strong>, we can also find the coefficients in terms of the right <strong>ordering</strong> and <strong>scaling</strong>.</p>
+<p>Now, since we assumed the errors are independent and non-Gaussian, we have that this equation corresponds to the ICA model, and the matrix <span class="math notranslate nohighlight">\(\mathbf{A} = (\mathbf{I}- \mathbf{B})^{-1}\)</span> corresponds to the mixing matrix in ICA. This gives the hint of why we can use ICA to estimate the LiNGAM model. The cool part is that, in this case, using the <strong>acyclicity assumption</strong>, we can also find the coefficients in terms of the right <strong>ordering</strong> and <strong>scaling</strong>.</p>
 <p>Let’s start by generating data from a known causal structure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
