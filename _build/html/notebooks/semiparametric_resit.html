@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -401,11 +401,9 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In some cases, the presence of nonlinearities can be beneficial for causal discovery, as it allows the identification of more aspects of the data-generating process (similarly to the non-Gaussianity). Indeed, non-invertible functional relationships between the observed variables can provide clues to the generating causal model. In the case of nonlinear models with additive noise, almost any nonlinearities (invertible or not) will typically yield identifiable models.</p>
-<p>\bigskip</p>
-<p>\noindent
-Each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-503f3e7d-f7b4-496b-a388-ccb8f08d70f1">
-<span class="eqno">(8)<a class="headerlink" href="#equation-503f3e7d-f7b4-496b-a388-ccb8f08d70f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
+<div class="amsmath math notranslate nohighlight" id="equation-79f6f1f8-f7d6-41af-9ce7-5e8e8f5030a4">
+<span class="eqno">(8)<a class="headerlink" href="#equation-79f6f1f8-f7d6-41af-9ce7-5e8e8f5030a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. When the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
