@@ -5,9 +5,9 @@ format: jb-book
 root: intro
 chapters:
   - file: chapters/semiparametric_lingam
-    title: 1. Linear models
+    title: "1 Test Linear models"
   - file: chapters/semiparametric_resit
-    title: 2. Nonlinear models
+    title: "2. Nonlinear models"
   - file: chapters/semiparametric_varlingam
     title: 3. Time series
   - file: chapters/structural_breaks_example
