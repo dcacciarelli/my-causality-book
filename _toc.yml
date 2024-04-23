@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+  - file: chapters/semiparametric_lingam
+    title: Introduction to Concepts
+  - file: chapters/semiparametric_resit
+    title: Basic Models
+  - file: chapters/semiparametric_varlingam
+    title: Advanced Model 1
+  - file: chapters/structural_breaks_example
+    title: Advanced Model 2
+
