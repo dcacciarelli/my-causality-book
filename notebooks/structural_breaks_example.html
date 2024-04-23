@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Time series &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>Time series with structural breaks &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -57,13 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/semiparametric_varlingam';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/structural_breaks_example';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Time series with structural breaks" href="structural_breaks_example.html" />
-    <link rel="prev" title="Additive noise model (ANM): RESIT estimation" href="semiparametric_resit.html" />
+    <link rel="next" title="References" href="../bibliography.html" />
+    <link rel="prev" title="Time series" href="semiparametric_varlingam.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -179,10 +177,10 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">Introduction to LiNGAM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">RESIT</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Time series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">Dealing with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">Nonlinear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">Time series</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Structural breaks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 
@@ -255,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/semiparametric_varlingam.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/structural_breaks_example.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -285,7 +283,7 @@
       
       
       
-      <li><a href="../_sources/chapters/semiparametric_varlingam.ipynb" target="_blank"
+      <li><a href="../_sources/notebooks/structural_breaks_example.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,7 +367,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Time series</h1>
+    <h1>Time series with structural breaks</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,12 +377,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">Fitting one model to all the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">Fitting two separate models</a></li>
 </ul>
             </nav>
         </div>
@@ -396,59 +390,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="time-series">
-<h1>Time series<a class="headerlink" href="#time-series" title="Link to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>Let as assume that at each time step <span class="math notranslate nohighlight">\(t\)</span> we observe a vector <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> with <span class="math notranslate nohighlight">\(p\)</span> variables</p>
-<div class="amsmath math notranslate nohighlight" id="equation-34e1b972-501a-4626-a761-966f2cf51690">
-<span class="eqno">(9)<a class="headerlink" href="#equation-34e1b972-501a-4626-a761-966f2cf51690" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
-\end{equation}\]</div>
-<p>Then, we use the following structural causal model, which considers both the instantaneous (<span class="math notranslate nohighlight">\(\tau = 0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\tau \geq 1\)</span>) causal effects</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dba48c30-f50f-425a-9276-b283a6c517f6">
-<span class="eqno">(10)<a class="headerlink" href="#equation-dba48c30-f50f-425a-9276-b283a6c517f6" title="Permalink to this equation">#</a></span>\[\begin{equation} \label{eq:varlingam}
-    \mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
-\end{equation}\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is the coefficient matrix representing the magnitudes of the contemporaneous (<span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span>, <span class="math notranslate nohighlight">\(\tau=1, \ldots, h\)</span>) causal effects.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{e}(t)\)</span> are the non-Gaussian mutually independent (both of each other and over time) errors.</p></li>
-</ul>
-<p>A sufficient condition for the coefficient matrices <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> to be identifiable is that the contemporaneous causal relations represented by the matrix <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> is acyclic and the error variables <span class="math notranslate nohighlight">\(e_i(t)\)</span>, with <span class="math notranslate nohighlight">\(i=1, \ldots, p\)</span> and <span class="math notranslate nohighlight">\(t=1, \ldots, T\)</span>, are non-Gaussian and independent. This independence implies <strong>no hidden common cause</strong> between the observed variables at the same point in time or between the observed variables at different points in time.</p>
-</section>
-<section id="estimation">
-<h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
-<p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional AR model</strong> that only considers the lagged effects and not the contemporaneous ones (where <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>). The estimation method is based on three steps:</p>
-<ol class="arabic">
-<li><p>Obtain a least-squares estimate <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> of the AR model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-546ca706-eb7b-4087-87a3-f854b5d4282b">
-<span class="eqno">(11)<a class="headerlink" href="#equation-546ca706-eb7b-4087-87a3-f854b5d4282b" title="Permalink to this equation">#</a></span>\[\begin{equation}
-        \mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
-    \end{equation}\]</div>
-<p><span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> can be thought of as a matrix of the preliminary guesses for the lagged effects.</p>
-</li>
-<li><p>Compute the residuals of the AR model, which are an estimate of the true errors <span class="math notranslate nohighlight">\(\mathbf{n}(t)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-ead3f8f2-1e0d-42e7-bd8b-40985a667f27">
-<span class="eqno">(12)<a class="headerlink" href="#equation-ead3f8f2-1e0d-42e7-bd8b-40985a667f27" title="Permalink to this equation">#</a></span>\[\begin{equation}
-        \widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
-    \end{equation}\]</div>
-<p>These residuals are the differences between the actual observed data and the predictions from the AR model. They should contain the influences not captured by the past values (potentially the instantaneous effects we are interested in).</p>
-</li>
-<li><p>Perform a LiNGAM analysis on the residuals, which returns an <strong>estimate of the coefficient matrix for the instantaneous causal effects</strong> <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ca604c0-a4f1-453b-847d-b392074d4346">
-<span class="eqno">(13)<a class="headerlink" href="#equation-0ca604c0-a4f1-453b-847d-b392074d4346" title="Permalink to this equation">#</a></span>\[\begin{equation}
-        \widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
-    \end{equation}\]</div>
-<p>The idea is that if there are instantaneous effects, they would show up in the residuals of the AR model, because the AR model did not account for them.</p>
-</li>
-<li><p>Once <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the <strong>estimates of the coefficient matrices for the lagged causal effects</strong>, <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> for <span class="math notranslate nohighlight">\(\tau &gt;0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-73ff7ef5-bb2d-4c3a-a9d8-444f854a7e7a">
-<span class="eqno">(14)<a class="headerlink" href="#equation-73ff7ef5-bb2d-4c3a-a9d8-444f854a7e7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
-        \widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}_0) \widehat{\mathbf{M}}_{\tau}
-    \end{equation}\]</div>
-</li>
-</ol>
+  <section class="tex2jax_ignore mathjax_ignore" id="time-series-with-structural-breaks">
+<h1>Time series with structural breaks<a class="headerlink" href="#time-series-with-structural-breaks" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -466,13 +409,21 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B0</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-      <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-      <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B0_regime1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]]</span>
 
-<span class="n">B1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-      <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-      <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]]</span>
+<span class="n">B0_regime2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]]</span>
+
+<span class="n">B1_regime1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]]</span>
+
+<span class="n">B1_regime2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]]</span>
 
 <span class="n">causal_order</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 </pre></div>
@@ -482,7 +433,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contemporaneous effects</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">B0</span><span class="p">)</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">B0_regime1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -491,47 +442,46 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lagged effects</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">B1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contemporaneous effects</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">B0_regime2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/797e62c345fba744a307683271967b1c518d97392bf4035e8ae1fb3efc15daf7.svg" src="../_images/797e62c345fba744a307683271967b1c518d97392bf4035e8ae1fb3efc15daf7.svg" /></div>
+<img alt="../_images/f54f949544400b54707483bf980250a4a4776ec5482450e8cd6256543fae2775.svg" src="../_images/f54f949544400b54707483bf980250a4a4776ec5482450e8cd6256543fae2775.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combined causal graph: contemporaneous + lagged effects</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x0(t)&#39;</span><span class="p">,</span> <span class="s1">&#39;x1(t)&#39;</span><span class="p">,</span> <span class="s1">&#39;x2(t)&#39;</span><span class="p">,</span> <span class="s1">&#39;x0(t-1)&#39;</span><span class="p">,</span> <span class="s1">&#39;x1(t-1)&#39;</span><span class="p">,</span> <span class="s1">&#39;x2(t-1)&#39;</span><span class="p">]</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">B0</span><span class="p">,</span> <span class="n">B1</span><span class="p">)),</span> <span class="n">ignore_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lower_limit</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/27454fa2e53a9a918be6e5ff91dfb6ee0c48f8ca05970a0f45fc02e60ec1b81c.svg" src="../_images/27454fa2e53a9a918be6e5ff91dfb6ee0c48f8ca05970a0f45fc02e60ec1b81c.svg" /></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generating data according to this causal graph</span>
-<span class="n">B0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B0</span><span class="p">)</span>
-<span class="n">B1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Sample size</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">causal_order</span><span class="p">)</span>
-<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">switch_point</span> <span class="o">=</span> <span class="mi">250</span>  <span class="c1"># Midpoint switch</span>
+
+<span class="c1"># Coefficients for two different regimes</span>
+<span class="n">B0_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B0_regime1</span><span class="p">)</span>
+<span class="n">B0_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B0_regime2</span><span class="p">)</span>
+<span class="n">B1_regime1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B1_regime1</span><span class="p">)</span>
+<span class="n">B1_regime2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">B1_regime2</span><span class="p">)</span>
 
 <span class="c1"># Initialize the data matrix with zeros (considering t and t-1)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sample_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_features</span><span class="p">))</span>  <span class="c1"># +1 to accommodate initial values at t=-1</span>
 
-<span class="c1"># Add non-Gaussian noise for each variable and each time point</span>
-<span class="c1"># The choice of non-Gaussian distributions is arbitrary and can be adjusted</span>
+<span class="c1"># Data matrix to accommodate initial values at t=-1</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">):</span>
     <span class="n">data</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Generate data according to VARLiNGAM model</span>
+<span class="c1"># Generate data according to VARLiNGAM model with switching regimes</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">causal_order</span><span class="p">:</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B0</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="p">:])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B1</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">switch_point</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">causal_order</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B0_regime1</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="p">:])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B1_regime1</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">causal_order</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B0_regime2</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="p">:])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B1_regime2</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
 
 <span class="c1"># Drop the initial row used for t=-1 values</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span>
@@ -543,83 +493,130 @@ document.write(`
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">switch_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Switch Point&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Generated Time Series Data with Switching Regime&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10f2eb280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Generated Time Series Data with Switching Regime&#39;)
 </pre></div>
 </div>
-<img alt="../_images/190759de22d016d1df47f229a051aadcd753cab1f81fe4171354465398f3a185.png" src="../_images/190759de22d016d1df47f229a051aadcd753cab1f81fe4171354465398f3a185.png" />
+<img alt="../_images/52196f6110ff80cfb7ed998855feef5847070e5a7e83cf7563262371baaa3765.png" src="../_images/52196f6110ff80cfb7ed998855feef5847070e5a7e83cf7563262371baaa3765.png" />
 </div>
 </div>
-<section id="fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">
-<h3>Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span><a class="headerlink" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0" title="Link to this heading">#</a></h3>
+<section id="fitting-one-model-to-all-the-data">
+<h2>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.vector_ar.var_model</span> <span class="kn">import</span> <span class="n">VAR</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">VAR</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Fit VAR(1)</span>
-<span class="n">residuals</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">resid</span>
 
-<span class="c1"># Plot residuals</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">residuals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residuals</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">residuals</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Residuals x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># Fit one VAR model to each regime</span>
+<span class="n">var_model</span> <span class="o">=</span> <span class="n">VAR</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">var_results</span> <span class="o">=</span> <span class="n">var_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">var_results</span><span class="o">.</span><span class="n">resid</span>
+
+<span class="c1"># Plotting residuals</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residuals</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Residuals x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">switch_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Switch Point&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residuals with Switching Regime&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10f2e9900&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Residuals with Switching Regime&#39;)
 </pre></div>
 </div>
-<img alt="../_images/607c682c1d985b4a7140d8d8b4fc9613cc6f17b202fe3396b0f0478c851dcd32.png" src="../_images/607c682c1d985b4a7140d8d8b4fc9613cc6f17b202fe3396b0f0478c851dcd32.png" />
+<img alt="../_images/fa362f2b9bb6145edb3a6813371d72843ccacc101cf5914bb0be2651c09d09c1.png" src="../_images/fa362f2b9bb6145edb3a6813371d72843ccacc101cf5914bb0be2651c09d09c1.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply LiNGAM</span>
-<span class="n">direct_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
-<span class="n">direct_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lingam</span>
+<span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span>
+
+<span class="c1"># Apply LiNGAM to all the data</span>
+<span class="n">lingam_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
+<span class="n">lingam_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">lingam_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>  <span class="c1"># B0</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/424ed35e3872c3a43c8cea33b7f04b744b7b00987ed0502cdf89b05b955054cd.svg" src="../_images/424ed35e3872c3a43c8cea33b7f04b744b7b00987ed0502cdf89b05b955054cd.svg" /></div>
+<img alt="../_images/9057c26849368c480f3ba986192a70da8a1da21a18b377eb2d59d0aae2364962.svg" src="../_images/9057c26849368c480f3ba986192a70da8a1da21a18b377eb2d59d0aae2364962.svg" /></div>
 </div>
 </section>
-<section id="varlingam-to-estimate-b-1">
-<h3>VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span><a class="headerlink" href="#varlingam-to-estimate-b-1" title="Link to this heading">#</a></h3>
+<section id="fitting-two-separate-models">
+<h2>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">VARLiNGAM</span><span class="p">(</span><span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">adjacency_matrices_</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># B1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into two regimes</span>
+<span class="n">x_regime1</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">switch_point</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">x_regime2</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">switch_point</span><span class="p">:,</span> <span class="p">:]</span>
+
+<span class="c1"># Fit VAR model to each regime</span>
+<span class="n">var_model1</span> <span class="o">=</span> <span class="n">VAR</span><span class="p">(</span><span class="n">x_regime1</span><span class="p">)</span>
+<span class="n">var_results1</span> <span class="o">=</span> <span class="n">var_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># VAR(1) for simplicity</span>
+<span class="n">residuals_regime1</span> <span class="o">=</span> <span class="n">var_results1</span><span class="o">.</span><span class="n">resid</span>
+
+<span class="n">var_model2</span> <span class="o">=</span> <span class="n">VAR</span><span class="p">(</span><span class="n">x_regime2</span><span class="p">)</span>
+<span class="n">var_results2</span> <span class="o">=</span> <span class="n">var_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># VAR(1) for simplicity</span>
+<span class="n">residuals_regime2</span> <span class="o">=</span> <span class="n">var_results2</span><span class="o">.</span><span class="n">resid</span>
+
+<span class="c1"># Plotting residuals</span>
+<span class="n">combined_residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">residuals_regime1</span><span class="p">,</span> <span class="n">residuals_regime2</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">combined_residuals</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Residuals x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">switch_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Switch Point&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residuals with Switching Regime&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c6647744661a548dc7f4c5876b3b510543a15e6dd2e857d246e2fd0b81b21285.svg" src="../_images/c6647744661a548dc7f4c5876b3b510543a15e6dd2e857d246e2fd0b81b21285.svg" /></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Residuals with Switching Regime&#39;)
+</pre></div>
+</div>
+<img alt="../_images/a13a31a29b75a10949adf3d2de49c6a494f44361999bd09d66c390033662d935.png" src="../_images/a13a31a29b75a10949adf3d2de49c6a494f44361999bd09d66c390033662d935.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combined estimated graph</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x0(t)&#39;</span><span class="p">,</span> <span class="s1">&#39;x1(t)&#39;</span><span class="p">,</span> <span class="s1">&#39;x2(t)&#39;</span><span class="p">,</span> <span class="s1">&#39;x0(t-1)&#39;</span><span class="p">,</span> <span class="s1">&#39;x1(t-1)&#39;</span><span class="p">,</span> <span class="s1">&#39;x2(t-1)&#39;</span><span class="p">]</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">adjacency_matrices_</span><span class="p">[</span><span class="mi">1</span><span class="p">]]),</span> <span class="n">ignore_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lower_limit</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply LiNGAM for each regime</span>
+<span class="n">lingam_model1</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
+<span class="n">lingam_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">residuals_regime1</span><span class="p">)</span>
+
+<span class="n">lingam_model2</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
+<span class="n">lingam_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">residuals_regime2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e2f43900ccb618eb52178d0f9f97e38602a95626ff3eb34a32ac1ee5a49512f0.svg" src="../_images/e2f43900ccb618eb52178d0f9f97e38602a95626ff3eb34a32ac1ee5a49512f0.svg" /></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x14f206fe0&gt;
+</pre></div>
 </div>
-</section>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_dot</span><span class="p">(</span><span class="n">lingam_model1</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>  <span class="c1"># B0 regime 1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c2e474c4c0b2b08e195ec572fdf85fa1c1bed6222d8634e9edf3aa074e9674b1.svg" src="../_images/c2e474c4c0b2b08e195ec572fdf85fa1c1bed6222d8634e9edf3aa074e9674b1.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_dot</span><span class="p">(</span><span class="n">lingam_model2</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span> <span class="c1"># B0 regime 2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/be48aa7b0a7999804587ecd55ee42973a0c8d69808f14bddf49fcf048cbb9f6d.svg" src="../_images/be48aa7b0a7999804587ecd55ee42973a0c8d69808f14bddf49fcf048cbb9f6d.svg" /></div>
+</div>
 </section>
 </section>
 
@@ -636,7 +633,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./chapters"
+            path: "./notebooks"
         },
         predefinedOutput: true
     }
@@ -654,20 +651,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="semiparametric_resit.html"
+       href="semiparametric_varlingam.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Additive noise model (ANM): RESIT estimation</p>
+        <p class="prev-next-title">Time series</p>
       </div>
     </a>
     <a class="right-next"
-       href="structural_breaks_example.html"
+       href="../bibliography.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Time series with structural breaks</p>
+        <p class="prev-next-title">References</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -687,12 +684,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">Fitting one model to all the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">Fitting two separate models</a></li>
 </ul>
   </nav></div>
 
