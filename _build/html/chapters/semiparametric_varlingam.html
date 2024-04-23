@@ -57,8 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/semiparametric_varlingam';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -374,8 +373,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">Fitting a VAR model and applying LiNGAM on the residuals to estimate $B_0$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">VARLiNGAM to estimate $B_1$</a></li>
 </ul>
 </li>
 </ul>
@@ -389,48 +388,58 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="time-series">
+  <section id="time-series">
 <h1>Time series<a class="headerlink" href="#time-series" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>Let as assume that at each time step <span class="math notranslate nohighlight">\(t\)</span> we observe a vector <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> with <span class="math notranslate nohighlight">\(p\)</span> variables</p>
-<p>\begin{equation}
-\mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
-\end{equation}</p>
-<p>Then, we use the following structural causal model, which considers both the instantaneous (<span class="math notranslate nohighlight">\(\tau = 0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\tau \geq 1\)</span>) causal effects</p>
-<p>\begin{equation} \label{eq:varlingam}
-\mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
-\end{equation}</p>
+<p>Let as assume that at each time step $t$ we observe a vector $\mathbf{x}(t)$ with $p$ variables</p>
+<div class="amsmath math notranslate nohighlight" id="equation-93dc484c-9457-4b81-b20a-93a577386fd1">
+<span class="eqno">(9)<a class="headerlink" href="#equation-93dc484c-9457-4b81-b20a-93a577386fd1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
+\end{equation}\]</div>
+<p>Then, we use the following structural causal model, which considers both the instantaneous ($\tau = 0$) and lagged ($\tau \geq 1$) causal effects</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a9d34aaa-14a5-40c9-ac20-76263ab642d0">
+<span class="eqno">(10)<a class="headerlink" href="#equation-a9d34aaa-14a5-40c9-ac20-76263ab642d0" title="Permalink to this equation">#</a></span>\[\begin{equation} \label{eq:varlingam}
+    \mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
+\end{equation}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is the coefficient matrix representing the magnitudes of the contemporaneous (<span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span>, <span class="math notranslate nohighlight">\(\tau=1, \ldots, h\)</span>) causal effects.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mathbf{e}(t)\)</span> are the non-Gaussian mutually independent (both of each other and over time) errors.</p></li>
+<li><p>$\mathbf{B}$ is the coefficient matrix representing the magnitudes of the contemporaneous ($\mathbf{B}<em>0$) and lagged ($\mathbf{B}</em>{\tau}$, $\tau=1, \ldots, h$) causal effects.</p></li>
+<li><p>$\mathbf{e}(t)$ are the non-Gaussian mutually independent (both of each other and over time) errors.</p></li>
 </ul>
-<p>A sufficient condition for the coefficient matrices <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> to be identifiable is that the contemporaneous causal relations represented by the matrix <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> is acyclic and the error variables <span class="math notranslate nohighlight">\(e_i(t)\)</span>, with <span class="math notranslate nohighlight">\(i=1, \ldots, p\)</span> and <span class="math notranslate nohighlight">\(t=1, \ldots, T\)</span>, are non-Gaussian and independent. This independence implies <strong>no hidden common cause</strong> between the observed variables at the same point in time or between the observed variables at different points in time.</p>
+<p>A sufficient condition for the coefficient matrices $\mathbf{B}<em>0$ and $\mathbf{B}</em>{\tau}$ to be identifiable is that the contemporaneous causal relations represented by the matrix $\mathbf{B}_0$ is acyclic and the error variables $e_i(t)$, with $i=1, \ldots, p$ and $t=1, \ldots, T$, are non-Gaussian and independent. This independence implies <strong>no hidden common cause</strong> between the observed variables at the same point in time or between the observed variables at different points in time.</p>
 </section>
 <section id="estimation">
 <h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
-<p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional AR model</strong> that only considers the lagged effects and not the contemporaneous ones (where <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>). The estimation method is based on three steps:</p>
-<ol class="arabic simple">
-<li><p>Obtain a least-squares estimate <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> of the AR model given by
-\begin{equation}
-\mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
-\end{equation}
-<span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> can be thought of as a matrix of the preliminary guesses for the lagged effects.</p></li>
-<li><p>Compute the residuals of the AR model, which are an estimate of the true errors <span class="math notranslate nohighlight">\(\mathbf{n}(t)\)</span>
-\begin{equation}
-\widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
-\end{equation}
-These residuals are the differences between the actual observed data and the predictions from the AR model. They should contain the influences not captured by the past values (potentially the instantaneous effects we are interested in).</p></li>
-<li><p>Perform a LiNGAM analysis on the residuals, which returns an <strong>estimate of the coefficient matrix for the instantaneous causal effects</strong> <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span>
-\begin{equation}
-\widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
-\end{equation}
-The idea is that if there are instantaneous effects, they would show up in the residuals of the AR model, because the AR model did not account for them.</p></li>
-<li><p>Once <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the <strong>estimates of the coefficient matrices for the lagged causal effects</strong>, <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> for <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>
-\begin{equation}
-\widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}<em>0) \widehat{\mathbf{M}}</em>{\tau}
-\end{equation}Here, we refine the estimates for <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span>. We do this by adjusting your initial estimates <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> to account for the instantaneous effects <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> that we have just uncovered. Mathematically, this adjustment is done by multiplying <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> by <span class="math notranslate nohighlight">\(\mathbf{I} - \widehat{\mathbf{B}}_0\)</span>. This operation essentially removes the part of the lagged effects that was actually due to instantaneous effects, giving you a purer estimate of the true lagged causal influences.</p></li>
+<p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional AR model</strong> that only considers the lagged effects and not the contemporaneous ones (where $\tau &gt;0$). The estimation method is based on three steps:</p>
+<ol class="arabic">
+<li><p>Obtain a least-squares estimate $\widehat{\mathbf{M}}_{\tau}$ of the AR model given by</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5df07b9d-ce1a-403a-ada3-05d57cbc7132">
+<span class="eqno">(11)<a class="headerlink" href="#equation-5df07b9d-ce1a-403a-ada3-05d57cbc7132" title="Permalink to this equation">#</a></span>\[\begin{equation}
+        \mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
+    \end{equation}\]</div>
+<p>$\widehat{\mathbf{M}}_{\tau}$ can be thought of as a matrix of the preliminary guesses for the lagged effects.</p>
+</li>
+<li><p>Compute the residuals of the AR model, which are an estimate of the true errors $\mathbf{n}(t)$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6461fbbd-425a-4696-883f-867150d82436">
+<span class="eqno">(12)<a class="headerlink" href="#equation-6461fbbd-425a-4696-883f-867150d82436" title="Permalink to this equation">#</a></span>\[\begin{equation}
+        \widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
+    \end{equation}\]</div>
+<p>These residuals are the differences between the actual observed data and the predictions from the AR model. They should contain the influences not captured by the past values (potentially the instantaneous effects we are interested in).</p>
+</li>
+<li><p>Perform a LiNGAM analysis on the residuals, which returns an <strong>estimate of the coefficient matrix for the instantaneous causal effects</strong> $\mathbf{B}_0$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-05b28e51-de47-4515-80be-50eebb37073a">
+<span class="eqno">(13)<a class="headerlink" href="#equation-05b28e51-de47-4515-80be-50eebb37073a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+        \widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
+    \end{equation}\]</div>
+<p>The idea is that if there are instantaneous effects, they would show up in the residuals of the AR model, because the AR model did not account for them.</p>
+</li>
+<li><p>Once $\mathbf{B}<em>0$ has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the <strong>estimates of the coefficient matrices for the lagged causal effects</strong>, $\mathbf{B}</em>{\tau}$ for $\tau &gt;0$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b6222e3a-ddcb-4228-bba8-87696dc99979">
+<span class="eqno">(14)<a class="headerlink" href="#equation-b6222e3a-ddcb-4228-bba8-87696dc99979" title="Permalink to this equation">#</a></span>\[\begin{equation}
+        \widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}_0) \widehat{\mathbf{M}}_{\tau}
+    \end{equation}\]</div>
+</li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -530,14 +539,14 @@ The idea is that if there are instantaneous effects, they would show up in the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10dd6df90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1503437c0&gt;
 </pre></div>
 </div>
-<img alt="../_images/1afbbb3c42ed0a28be21c36f19d9a8c7026f1eb8002a97092d17ea135c21dba0.png" src="../_images/1afbbb3c42ed0a28be21c36f19d9a8c7026f1eb8002a97092d17ea135c21dba0.png" />
+<img alt="../_images/3a777723736d69814511cbcc13f36daf7bf6e4e66c7e969ddc10725d6d00aef1.png" src="../_images/3a777723736d69814511cbcc13f36daf7bf6e4e66c7e969ddc10725d6d00aef1.png" />
 </div>
 </div>
 <section id="fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">
-<h3>Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span><a class="headerlink" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0" title="Link to this heading">#</a></h3>
+<h3>Fitting a VAR model and applying LiNGAM on the residuals to estimate $B_0$<a class="headerlink" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.vector_ar.var_model</span> <span class="kn">import</span> <span class="n">VAR</span>
@@ -559,10 +568,10 @@ The idea is that if there are instantaneous effects, they would show up in the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10dd9ca00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x110ed96f0&gt;
 </pre></div>
 </div>
-<img alt="../_images/50010cc178b1f623652034e37b06f2d3cad8af52de267dff44237a7cc2aac50e.png" src="../_images/50010cc178b1f623652034e37b06f2d3cad8af52de267dff44237a7cc2aac50e.png" />
+<img alt="../_images/a729d2c4990bddad62d09168c9637b83969450e1562bfffce2ff155a76040adb.png" src="../_images/a729d2c4990bddad62d09168c9637b83969450e1562bfffce2ff155a76040adb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -575,11 +584,11 @@ The idea is that if there are instantaneous effects, they would show up in the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cff0f1ae19ac02f0509cb699d956e0c47df1ef6af8219aa5d35c58802c000d87.svg" src="../_images/cff0f1ae19ac02f0509cb699d956e0c47df1ef6af8219aa5d35c58802c000d87.svg" /></div>
+<img alt="../_images/a181b6fb246464799d624d77360d876697eab1385cc18f5f35ed2b7a2c42c832.svg" src="../_images/a181b6fb246464799d624d77360d876697eab1385cc18f5f35ed2b7a2c42c832.svg" /></div>
 </div>
 </section>
 <section id="varlingam-to-estimate-b-1">
-<h3>VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span><a class="headerlink" href="#varlingam-to-estimate-b-1" title="Link to this heading">#</a></h3>
+<h3>VARLiNGAM to estimate $B_1$<a class="headerlink" href="#varlingam-to-estimate-b-1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">VARLiNGAM</span><span class="p">(</span><span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -589,7 +598,7 @@ The idea is that if there are instantaneous effects, they would show up in the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e06c3557be5cbfa6479e0352263b22f0451c743475b3ba26ed9887ef8b269fc0.svg" src="../_images/e06c3557be5cbfa6479e0352263b22f0451c743475b3ba26ed9887ef8b269fc0.svg" /></div>
+<img alt="../_images/700a7bb64e6d883c15b33225c8acbac84a1ce322a7f86b6b0e8bbfeefb729428.svg" src="../_images/700a7bb64e6d883c15b33225c8acbac84a1ce322a7f86b6b0e8bbfeefb729428.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -600,7 +609,7 @@ The idea is that if there are instantaneous effects, they would show up in the r
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3774b9405c8555b09189f7c53af2e5ae09761ff68983f6e554d4234706028562.svg" src="../_images/3774b9405c8555b09189f7c53af2e5ae09761ff68983f6e554d4234706028562.svg" /></div>
+<img alt="../_images/f828997fe68956a743bb3ed88873265e70581301e51cf7045c62f2637e666533.svg" src="../_images/f828997fe68956a743bb3ed88873265e70581301e51cf7045c62f2637e666533.svg" /></div>
 </div>
 </section>
 </section>
@@ -672,8 +681,8 @@ The idea is that if there are instantaneous effects, they would show up in the r
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">Fitting a VAR model and applying LiNGAM on the residuals to estimate $B_0$</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">VARLiNGAM to estimate $B_1$</a></li>
 </ul>
 </li>
 </ul>

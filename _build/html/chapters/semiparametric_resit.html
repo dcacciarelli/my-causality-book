@@ -57,8 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/semiparametric_resit';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -389,32 +388,33 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="additive-noise-model-anm-resit-estimation">
+  <section id="additive-noise-model-anm-resit-estimation">
 <h1>Additive noise model (ANM): RESIT estimation<a class="headerlink" href="#additive-noise-model-anm-resit-estimation" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In some cases, the presence of nonlinearities can be beneficial for causal discovery, as it allows the identification of more aspects of the data-generating process (similarly to the non-Gaussianity). Indeed, non-invertible functional relationships between the observed variables can provide clues to the generating causal model. In the case of nonlinear models with additive noise, almost any nonlinearities (invertible or not) will typically yield identifiable models.</p>
 <p>\bigskip</p>
 <p>\noindent
-Each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<p>\begin{equation}
-x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
-\end{equation}</p>
-<p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. When the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
+Each observed variable $x_i$ is obtained as a function of its parent variables, plus independent additive noise</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a3d03b4c-bc1d-48e0-af76-8bb35055c779">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a3d03b4c-bc1d-48e0-af76-8bb35055c779" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
+\end{equation}\]</div>
+<p>where $f_i$ is an arbitrary function (possibly different for each $i$), and the noise variables $e_i$ are jointly independent and with arbitrary probability densities $p_{e_i}(e_i)$. When the functions $f_i$ are linear and the $p_{e_i}(e_i)$ are non-Gaussian, we are in the standard LiNGAM settings.</p>
 </section>
 <section id="estimation">
 <h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>The <strong>regression with subsequent independence test (RESIT)</strong> approach follows the intuition saw in the LiNGAM case, where we saw that the residuals in the anti-causal direction are not independent of the input variable if the noise is non-Gaussian. With nonlinear additive noise, this property will hold also in the case of Gaussian noise. The main steps are:</p>
 <ol class="arabic simple">
-<li><p>Test whether <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are statistically independent.</p></li>
-<li><p>Test whether a model <span class="math notranslate nohighlight">\(y = f(x) + e\)</span> is consistent with the data, by:</p>
+<li><p>Test whether $x$ and $y$ are statistically independent.</p></li>
+<li><p>Test whether a model $y = f(x) + e$ is consistent with the data, by:</p>
 <ol class="arabic simple">
-<li><p>Doing a nonlinear regression of <span class="math notranslate nohighlight">\(y\)</span> on <span class="math notranslate nohighlight">\(x\)</span> to get an estimate <span class="math notranslate nohighlight">\(\widehat{f}\)</span>.</p></li>
-<li><p>Computing the residuals <span class="math notranslate nohighlight">\(\widehat{e}=y-\widehat{f}(x)\)</span>.</p></li>
-<li><p>Testing whether <span class="math notranslate nohighlight">\(\widehat{e}\)</span> is independent of <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>Doing a nonlinear regression of $y$ on $x$ to get an estimate $\widehat{f}$.</p></li>
+<li><p>Computing the residuals $\widehat{e}=y-\widehat{f}(x)$.</p></li>
+<li><p>Testing whether $\widehat{e}$ is independent of $x$.</p></li>
 </ol>
 </li>
-<li><p>Test in a similar way if the reverse model <span class="math notranslate nohighlight">\(x = g(y) + e\)</span> fits the data.</p></li>
+<li><p>Test in a similar way if the reverse model $x = g(y) + e$ fits the data.</p></li>
 </ol>
 <section id="residual-analysis-nonlinearities-with-gaussian-errors">
 <h3>Residual analysis: nonlinearities with Gaussian errors<a class="headerlink" href="#residual-analysis-nonlinearities-with-gaussian-errors" title="Link to this heading">#</a></h3>
