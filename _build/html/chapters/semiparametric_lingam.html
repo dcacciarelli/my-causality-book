@@ -406,8 +406,8 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8ffdaab-62d9-4af1-ac2f-db39954fdf01">
-<span class="eqno">(1)<a class="headerlink" href="#equation-f8ffdaab-62d9-4af1-ac2f-db39954fdf01" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-25b2ab3b-0c93-4ce4-a3c6-e2988c6aa9a9">
+<span class="eqno">(1)<a class="headerlink" href="#equation-25b2ab3b-0c93-4ce4-a3c6-e2988c6aa9a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>that explains how each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
@@ -419,19 +419,19 @@ document.write(`
 <section id="ica">
 <h3>ICA<a class="headerlink" href="#ica" title="Link to this heading">#</a></h3>
 <p>ICA is a computational method, developed in the field of signal processing, to separate a multivariate signal into additive subcomponents assuming that these subcomponents are non-Gaussian signals and statistically independent from each other. Consider a simple ICA model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-872c75b2-7f13-42d0-acda-9667cdba7c82">
-<span class="eqno">(2)<a class="headerlink" href="#equation-872c75b2-7f13-42d0-acda-9667cdba7c82" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-607f8736-3bb0-4892-bda2-512b3c345bea">
+<span class="eqno">(2)<a class="headerlink" href="#equation-607f8736-3bb0-4892-bda2-512b3c345bea" title="Permalink to this equation">#</a></span>\[\begin{align}
     x_1 &amp;= a_{11}s_1 + a_{12}s_2 \\
     x_2 &amp;= a_{21}s_1 + a_{22}s_2
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the observed variables, and <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are continuous hidden variables. Assuming that <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In matrix form, we can write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e51dbe6c-c888-4b3f-b2aa-860e37241a70">
-<span class="eqno">(3)<a class="headerlink" href="#equation-e51dbe6c-c888-4b3f-b2aa-860e37241a70" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0028c083-7cf8-494f-9f26-60ad9b6b7536">
+<span class="eqno">(3)<a class="headerlink" href="#equation-0028c083-7cf8-494f-9f26-60ad9b6b7536" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{A}\mathbf{s}
 \end{equation}\]</div>
 <p>In our example, it would mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0a22331-6ae3-4491-813c-4d3f5a73dcb3">
-<span class="eqno">(4)<a class="headerlink" href="#equation-c0a22331-6ae3-4491-813c-4d3f5a73dcb3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e9d5ef17-c5e4-4923-8ba2-804decb8c78b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-e9d5ef17-c5e4-4923-8ba2-804decb8c78b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     x_1 \\ x_2
     \end{array}\right]
@@ -470,8 +470,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x146a8bbe0&gt;,
- &lt;matplotlib.lines.Line2D at 0x146a8bc10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14928bbe0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x14928bc10&gt;]
 </pre></div>
 </div>
 <img alt="../_images/9c87116c3b6f017df1456787a24bff00c55476d5e299b6260f2c1a2e65421cfd.png" src="../_images/9c87116c3b6f017df1456787a24bff00c55476d5e299b6260f2c1a2e65421cfd.png" />
@@ -489,8 +489,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x146c49060&gt;,
- &lt;matplotlib.lines.Line2D at 0x146c49090&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x149489210&gt;,
+ &lt;matplotlib.lines.Line2D at 0x111d07df0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/6f816104bbe096b613e7e3a40f4ad180bc4ddf1a4075dff494d0ee29bb3b2c04.png" src="../_images/6f816104bbe096b613e7e3a40f4ad180bc4ddf1a4075dff494d0ee29bb3b2c04.png" />
@@ -507,8 +507,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x146cc19f0&gt;,
- &lt;matplotlib.lines.Line2D at 0x146cc1a20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x149501b40&gt;,
+ &lt;matplotlib.lines.Line2D at 0x149501b70&gt;]
 </pre></div>
 </div>
 <img alt="../_images/93930dfd187ec9b4f9b2767bc7bd63e4f431c86dfcfd43cccb50458ee1d99c75.png" src="../_images/93930dfd187ec9b4f9b2767bc7bd63e4f431c86dfcfd43cccb50458ee1d99c75.png" />
@@ -518,18 +518,18 @@ document.write(`
 <section id="ica-based-lingam">
 <h3>ICA-based LiNGAM<a class="headerlink" href="#ica-based-lingam" title="Link to this heading">#</a></h3>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca0414a4-ffa0-4040-a4d6-6b3ebde8e3f5">
-<span class="eqno">(5)<a class="headerlink" href="#equation-ca0414a4-ffa0-4040-a4d6-6b3ebde8e3f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1b69a2b4-92e6-43fa-90cc-b1dcaf7a26c5">
+<span class="eqno">(5)<a class="headerlink" href="#equation-1b69a2b4-92e6-43fa-90cc-b1dcaf7a26c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>. We can solve the equation <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}\)</span> for the vector of observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-501ce4db-6b4e-4062-8e94-a998fb95f9f1">
-<span class="eqno">(6)<a class="headerlink" href="#equation-501ce4db-6b4e-4062-8e94-a998fb95f9f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0542872f-5c3a-4170-8812-c3330bce5f9f">
+<span class="eqno">(6)<a class="headerlink" href="#equation-0542872f-5c3a-4170-8812-c3330bce5f9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     (\mathbf{I}- \mathbf{B})\mathbf{x} = \mathbf{e}
 \end{equation}\]</div>
 <p>Then, if we left-multiply both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{I}- \mathbf{B}\)</span>, we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-19042bcf-96db-4013-989b-698de6523119">
-<span class="eqno">(7)<a class="headerlink" href="#equation-19042bcf-96db-4013-989b-698de6523119" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-38137843-83e4-45d1-8925-bf26a7871359">
+<span class="eqno">(7)<a class="headerlink" href="#equation-38137843-83e4-45d1-8925-bf26a7871359" title="Permalink to this equation">#</a></span>\[\begin{align}
     (\mathbf{I}- \mathbf{B})^{-1}(\mathbf{I}- \mathbf{B})\mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= \mathbf{A}\mathbf{e} \label{eq:lingam-ica}

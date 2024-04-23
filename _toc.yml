@@ -5,13 +5,13 @@ format: jb-book
 root: intro
 chapters:
   - file: chapters/semiparametric_lingam
-    title: Introduction to LiNGAM
+    title: 1. Linear models
   - file: chapters/semiparametric_resit
-    title: RESIT
+    title: 2. Nonlinear models
   - file: chapters/semiparametric_varlingam
-    title: Time series
+    title: 3. Time series
   - file: chapters/structural_breaks_example
-    title: Dealing with structural breaks
+    title: 4. Structural breaks
   - file: bibliography
     title: References
 
