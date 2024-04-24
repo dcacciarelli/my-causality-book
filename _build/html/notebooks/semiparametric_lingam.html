@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -406,8 +406,8 @@ document.write(`
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ab01cc5-952e-4e53-bcef-c2910ad83562">
-<span class="eqno">(1)<a class="headerlink" href="#equation-3ab01cc5-952e-4e53-bcef-c2910ad83562" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1d11d686-2c7d-47ba-bdac-ae2d32991a0b">
+<span class="eqno">(1)<a class="headerlink" href="#equation-1d11d686-2c7d-47ba-bdac-ae2d32991a0b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>that explains how each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
@@ -419,19 +419,19 @@ document.write(`
 <section id="ica">
 <h3>ICA<a class="headerlink" href="#ica" title="Link to this heading">#</a></h3>
 <p>ICA is a computational method, developed in the field of signal processing, to separate a multivariate signal into additive subcomponents assuming that these subcomponents are non-Gaussian signals and statistically independent from each other. Consider a simple ICA model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4522e43e-6bf6-4d9f-b608-0f7f69a64660">
-<span class="eqno">(2)<a class="headerlink" href="#equation-4522e43e-6bf6-4d9f-b608-0f7f69a64660" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-572609be-101c-45a8-85af-956d40c5c97c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-572609be-101c-45a8-85af-956d40c5c97c" title="Permalink to this equation">#</a></span>\[\begin{align}
     x_1 &amp;= a_{11}s_1 + a_{12}s_2 \\
     x_2 &amp;= a_{21}s_1 + a_{22}s_2
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the observed variables, and <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are continuous hidden variables. Assuming that <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In matrix form, we can write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-58cedf93-d21c-44f9-aba7-a46679e4655f">
-<span class="eqno">(3)<a class="headerlink" href="#equation-58cedf93-d21c-44f9-aba7-a46679e4655f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d52d240b-9053-45cb-901d-4aa938548003">
+<span class="eqno">(3)<a class="headerlink" href="#equation-d52d240b-9053-45cb-901d-4aa938548003" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{A}\mathbf{s}
 \end{equation}\]</div>
 <p>In our example, it would mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-699c76fe-5027-4eaf-931e-5e1f1a1fef85">
-<span class="eqno">(4)<a class="headerlink" href="#equation-699c76fe-5027-4eaf-931e-5e1f1a1fef85" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2a8b5f3-924f-4c33-a955-9bdb3fa3c959">
+<span class="eqno">(4)<a class="headerlink" href="#equation-e2a8b5f3-924f-4c33-a955-9bdb3fa3c959" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     x_1 \\ x_2
     \end{array}\right]
@@ -461,7 +461,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
-<span class="n">s1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span>  <span class="c1"># Signal 1: sinusoidal signal</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
 <span class="n">s2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">time</span><span class="p">))</span>  <span class="c1"># Signal 2: square signal</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -470,11 +470,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x144d2fbe0&gt;,
- &lt;matplotlib.lines.Line2D at 0x144d2fc10&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1686f0210&gt;,
+ &lt;matplotlib.lines.Line2D at 0x168d18690&gt;]
 </pre></div>
 </div>
-<img alt="../_images/9c87116c3b6f017df1456787a24bff00c55476d5e299b6260f2c1a2e65421cfd.png" src="../_images/9c87116c3b6f017df1456787a24bff00c55476d5e299b6260f2c1a2e65421cfd.png" />
+<img alt="../_images/cc650437b0963e28cf2dc486359782ddafa5e620f44c4834aada87fb09728dea.png" src="../_images/cc650437b0963e28cf2dc486359782ddafa5e620f44c4834aada87fb09728dea.png" />
 </div>
 </div>
 <p>We now mix the signals, to generate the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span></p>
@@ -489,11 +489,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x144f29420&gt;,
- &lt;matplotlib.lines.Line2D at 0x144f29450&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x168d0fa50&gt;,
+ &lt;matplotlib.lines.Line2D at 0x168ddfd10&gt;]
 </pre></div>
 </div>
-<img alt="../_images/6f816104bbe096b613e7e3a40f4ad180bc4ddf1a4075dff494d0ee29bb3b2c04.png" src="../_images/6f816104bbe096b613e7e3a40f4ad180bc4ddf1a4075dff494d0ee29bb3b2c04.png" />
+<img alt="../_images/e1f046fc4989428eb8149ad042089416b971191ce45c66d68847fb79954ee7e8.png" src="../_images/e1f046fc4989428eb8149ad042089416b971191ce45c66d68847fb79954ee7e8.png" />
 </div>
 </div>
 <p>Now, we can use ICA to recover the original signals (except for the <strong>ordering</strong> and <strong>scaling</strong>)</p>
@@ -507,29 +507,29 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x144fa9a80&gt;,
- &lt;matplotlib.lines.Line2D at 0x144fa9ab0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x168d702d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x168d25750&gt;]
 </pre></div>
 </div>
-<img alt="../_images/93930dfd187ec9b4f9b2767bc7bd63e4f431c86dfcfd43cccb50458ee1d99c75.png" src="../_images/93930dfd187ec9b4f9b2767bc7bd63e4f431c86dfcfd43cccb50458ee1d99c75.png" />
+<img alt="../_images/4a871675f797f9fcbaa4d6d670ffa4a9087dfddde0dc02309169ca71920aa3f9.png" src="../_images/4a871675f797f9fcbaa4d6d670ffa4a9087dfddde0dc02309169ca71920aa3f9.png" />
 </div>
 </div>
 </section>
 <section id="ica-based-lingam">
 <h3>ICA-based LiNGAM<a class="headerlink" href="#ica-based-lingam" title="Link to this heading">#</a></h3>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bbc28f77-cb10-49fd-9b14-c4db706d31f9">
-<span class="eqno">(5)<a class="headerlink" href="#equation-bbc28f77-cb10-49fd-9b14-c4db706d31f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5caf607-b74a-494e-9fef-6883f077290e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-b5caf607-b74a-494e-9fef-6883f077290e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>. We can solve the equation <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}\)</span> for the vector of observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a85224a4-6db8-4160-b309-d3c72ff22a26">
-<span class="eqno">(6)<a class="headerlink" href="#equation-a85224a4-6db8-4160-b309-d3c72ff22a26" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9cc90ef1-3950-4065-a9f5-e53d31264426">
+<span class="eqno">(6)<a class="headerlink" href="#equation-9cc90ef1-3950-4065-a9f5-e53d31264426" title="Permalink to this equation">#</a></span>\[\begin{equation}
     (\mathbf{I}- \mathbf{B})\mathbf{x} = \mathbf{e}
 \end{equation}\]</div>
 <p>Then, if we left-multiply both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{I}- \mathbf{B}\)</span>, we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5dccdeb3-6e73-4d71-9932-3bfb39c6f5a4">
-<span class="eqno">(7)<a class="headerlink" href="#equation-5dccdeb3-6e73-4d71-9932-3bfb39c6f5a4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3d9a03b6-b899-402b-bd0d-d49f76279a80">
+<span class="eqno">(7)<a class="headerlink" href="#equation-3d9a03b6-b899-402b-bd0d-d49f76279a80" title="Permalink to this equation">#</a></span>\[\begin{align}
     (\mathbf{I}- \mathbf{B})^{-1}(\mathbf{I}- \mathbf{B})\mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= \mathbf{A}\mathbf{e} \label{eq:lingam-ica}
@@ -579,12 +579,12 @@ document.write(`
 <span class="n">ica_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">ica_model</span><span class="o">.</span><span class="n">causal_order_</span>
 <span class="n">ica_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">ica_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">ica_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind forecast&quot;</span><span class="p">,</span> <span class="s2">&quot;congestion&quot;</span><span class="p">,</span> <span class="s2">&quot;day ahead price&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal constraints&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0a56c6fa56eaf1fbac293938e7ce405fe8f1ba461738dcf71db16fecad1deb92.svg" src="../_images/0a56c6fa56eaf1fbac293938e7ce405fe8f1ba461738dcf71db16fecad1deb92.svg" /></div>
+<img alt="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" src="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" /></div>
 </div>
 </section>
 </section>
@@ -662,7 +662,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/58827f55ef760aa3675813ff5b0d10302c3ab951c29f6335ba116ccf16abd3f2.png" src="../_images/58827f55ef760aa3675813ff5b0d10302c3ab951c29f6335ba116ccf16abd3f2.png" />
+<img alt="../_images/c79ff99710200cba7492cb53db54aab852eb32a5e2eb881be5518358ab8a0481.png" src="../_images/c79ff99710200cba7492cb53db54aab852eb32a5e2eb881be5518358ab8a0481.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -727,7 +727,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5e088e2e84395ee10305b7bc80ab3ce567b51d40d68a3a30de1c5021448e40e9.png" src="../_images/5e088e2e84395ee10305b7bc80ab3ce567b51d40d68a3a30de1c5021448e40e9.png" />
+<img alt="../_images/0c76a394708552ca0a9965a4e583ee5a8de2feff16321d0ced0860e219c6a3f8.png" src="../_images/0c76a394708552ca0a9965a4e583ee5a8de2feff16321d0ced0860e219c6a3f8.png" />
 </div>
 </div>
 </section>
@@ -739,12 +739,12 @@ document.write(`
 <span class="n">direct_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">direct_model</span><span class="o">.</span><span class="n">causal_order_</span>
 <span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind forecast&quot;</span><span class="p">,</span> <span class="s2">&quot;congestion&quot;</span><span class="p">,</span> <span class="s2">&quot;day ahead price&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal constraints&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0a56c6fa56eaf1fbac293938e7ce405fe8f1ba461738dcf71db16fecad1deb92.svg" src="../_images/0a56c6fa56eaf1fbac293938e7ce405fe8f1ba461738dcf71db16fecad1deb92.svg" /></div>
+<img alt="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" src="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" /></div>
 </div>
 </section>
 </section>
