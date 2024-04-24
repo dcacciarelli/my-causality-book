@@ -4,6 +4,8 @@
 format: jb-book
 root: intro
 chapters:
+  - file: notebooks/correlation_vs_causation
+    title: Linear BC
   - file: notebooks/semiparametric_lingam
     title: Linear models
   - file: notebooks/semiparametric_resit
