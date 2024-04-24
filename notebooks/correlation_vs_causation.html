@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/correlation_vs_causation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linear non-Gaussian acyclic model (LiNGAM)" href="semiparametric_lingam.html" />
+    <link rel="prev" title="An introduction to causal inference for electricity markets" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -121,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -176,7 +176,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Why studying causal inference?</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">Linear models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">Nonlinear models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">Time series</a></li>
@@ -384,7 +386,9 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-vs-causation">Correlation vs. Causation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-acyclic-graphs-dags">Directed Acyclic Graphs (DAGs)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-graph">Causal graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-relationships-from-observational-data">Understanding relationships from observational data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-parametric-causal-inference">Semi-parametric causal inference</a></li>
 </ul>
 </li>
 </ul>
@@ -418,12 +422,17 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="correlation-vs-causation">
 <h1>Correlation vs. Causation<a class="headerlink" href="#correlation-vs-causation" title="Link to this heading">#</a></h1>
-<p>Correlation measures the strength and direction of a relationship between two variables. However, correlation does not imply causation. For example, higher electricity usage and cold weather may be correlated (both happen in winter), but one does not cause the other.</p>
-<p>Understanding this difference is crucial in the electricity market. For instance, a correlation between high electricity prices and high usage does not mean that high prices cause high usage; other factors like temperature could be influencing both.</p>
-<section id="directed-acyclic-graphs-dags">
-<h2>Directed Acyclic Graphs (DAGs)<a class="headerlink" href="#directed-acyclic-graphs-dags" title="Link to this heading">#</a></h2>
-<p>Directed Acyclic Graphs (DAGs) are a visual representation of causal relationships. In DAGs, nodes represent variables, and edges represent causal links. These graphs help in understanding how different variables affect each other and in identifying potential confounding factors.</p>
-<p>Here’s a simple DAG representation:</p>
+<p>We have heard many times that “correlation does not imply causation”. Yet, we might be suprised of how many practitioners take business decisions based on perceived association highlighted by correlation.</p>
+<p>To provide a very simple example, and start to mention the key causal inference terminology, consider the following example.</p>
+<p>We have three variables:
+1. Temperature
+2. Electricity load
+3. Ice cream sales</p>
+<section id="causal-graph">
+<h2>Causal graph<a class="headerlink" href="#causal-graph" title="Link to this heading">#</a></h2>
+<p>In this case, we know the causal structure of the data-generating process, since temperature affect both the electricity load and the ice cream sales. A causal graph indicates ….</p>
+<p>The causal graph below tells us that the temperature is a parent of both load and ice cream sales. The causal graph is represented by a directed acyclic graph (DAG)… description</p>
+<p>nodes and edge… FOr now, we just put 1 as coefficients, let’s not consider it for now</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -431,75 +440,81 @@ document.write(`
 
 <span class="c1"># Matrix of coefficients (weights)</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
+              <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
 
 <span class="c1"># Plotting causal graph</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind forecast&quot;</span><span class="p">,</span> <span class="s2">&quot;congestion&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal constraints&quot;</span><span class="p">])</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;electricity load&quot;</span><span class="p">,</span> <span class="s2">&quot;ice cream sales&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/522103d4544436e5716fb4f2e81775229281089e4801a757b0ffe655731fc575.svg" src="../_images/522103d4544436e5716fb4f2e81775229281089e4801a757b0ffe655731fc575.svg" /></div>
+<img alt="../_images/3ae54becae1a4bc386b566f66307c904f89448c26b75346a07a54f708ad688dd.svg" src="../_images/3ae54becae1a4bc386b566f66307c904f89448c26b75346a07a54f708ad688dd.svg" /></div>
 </div>
+</section>
+<section id="understanding-relationships-from-observational-data">
+<h2>Understanding relationships from observational data<a class="headerlink" href="#understanding-relationships-from-observational-data" title="Link to this heading">#</a></h2>
+<p>Let us assume we had some observations following the causal graph shown above. Let us also assume we did not have</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-
-<span class="c1"># Create a DAG</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
-<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s1">&#39;Electricity Price&#39;</span><span class="p">,</span> <span class="s1">&#39;Electricity Usage&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Electricity Usage&#39;</span><span class="p">)])</span>
-
-<span class="c1"># Plot the DAG</span>
-<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Simple DAG for Electricity Market&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/03c5b490f2d2e9e31233d148edf7846673672e4728d12392637885061b31ed4b.png" src="../_images/03c5b490f2d2e9e31233d148edf7846673672e4728d12392637885061b31ed4b.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
-<span class="c1"># Set random seed for reproducibility</span>
+<span class="c1"># Setting a random seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># Number of days</span>
-<span class="n">days</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="c1"># Generating synthetic data</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>  <span class="c1"># number of days for a year</span>
+<span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># average temperature in Celsius</span>
+<span class="n">electricity_load</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperatures</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">70</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Quadratic relationship for U-shape</span>
+<span class="n">ice_cream_sales</span> <span class="o">=</span> <span class="n">temperatures</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># also influenced by temperature</span>
 
-<span class="c1"># Simulating data</span>
-<span class="n">wind_power</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">days</span><span class="p">)</span>  <span class="c1"># Average wind generation in MW</span>
-<span class="n">frequency_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">wind_power</span> <span class="o">-</span> <span class="mi">200</span><span class="p">)</span> <span class="o">/</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">days</span><span class="p">)</span>  <span class="c1"># Frequency deviation in Hz</span>
-<span class="n">balancing_costs</span> <span class="o">=</span> <span class="n">frequency_deviation</span> <span class="o">*</span> <span class="mi">75</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="n">days</span><span class="p">)</span>  <span class="c1"># Balancing costs in £</span>
-
-<span class="c1"># Create DataFrame</span>
+<span class="c1"># Creating a DataFrame</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Day&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">days</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
-    <span class="s1">&#39;Wind Power Generation (MW)&#39;</span><span class="p">:</span> <span class="n">wind_power</span><span class="p">,</span>
-    <span class="s1">&#39;Frequency Deviation (Hz)&#39;</span><span class="p">:</span> <span class="n">frequency_deviation</span><span class="p">,</span>
-    <span class="s1">&#39;Balancing Costs (£)&#39;</span><span class="p">:</span> <span class="n">balancing_costs</span>
+    <span class="s1">&#39;Day&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
+    <span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="n">temperatures</span><span class="p">,</span>
+    <span class="s1">&#39;Electricity Load&#39;</span><span class="p">:</span> <span class="n">electricity_load</span><span class="p">,</span>
+    <span class="s1">&#39;Ice Cream Sales&#39;</span><span class="p">:</span> <span class="n">ice_cream_sales</span>
 <span class="p">})</span>
 
-<span class="c1"># Pair plot to show relationships</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Wind Power Generation (MW)&#39;</span><span class="p">,</span> <span class="s1">&#39;Frequency Deviation (Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;Balancing Costs (£)&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Relationships Between Wind Power, Frequency Deviation, and Balancing Costs&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Setting up the plots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Temperature vs Electricity Load with hexbin plot</span>
+<span class="n">hb1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Electricity Load&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">cb1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Temperature vs Electricity Load&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Load (MW)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Temperature vs Ice Cream Sales with hexbin plot</span>
+<span class="n">hb2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Ice Cream Sales&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">cb2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Temperature vs Ice Cream Sales&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ice Cream Sales (GBP)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Electricity Load vs Ice Cream Sales with hexbin plot</span>
+<span class="n">hb3</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Electricity Load&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Ice Cream Sales&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">cb3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Electricity Load vs Ice Cream Sales&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Electricity Load (MW)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ice Cream Sales (GBP)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b29cbe219646b490b57a6d12395beacf3b8d09a06737173abcb273c678db3a8b.png" src="../_images/b29cbe219646b490b57a6d12395beacf3b8d09a06737173abcb273c678db3a8b.png" />
+<img alt="../_images/c72a51c98977314f2bf5e295a2ba805f54a5c6c935ef12102808560ec20572f4.png" src="../_images/c72a51c98977314f2bf5e295a2ba805f54a5c6c935ef12102808560ec20572f4.png" />
 </div>
 </div>
+</section>
+<section id="semi-parametric-causal-inference">
+<h2>Semi-parametric causal inference<a class="headerlink" href="#semi-parametric-causal-inference" title="Link to this heading">#</a></h2>
+<p>Making assumptions about the functional form… we will try to unveil the causal graph from observational data…</p>
 </section>
 </section>
 
@@ -533,6 +548,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">An introduction to causal inference for electricity markets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="semiparametric_lingam.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear non-Gaussian acyclic model (LiNGAM)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -556,7 +589,9 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-vs-causation">Correlation vs. Causation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directed-acyclic-graphs-dags">Directed Acyclic Graphs (DAGs)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-graph">Causal graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-relationships-from-observational-data">Understanding relationships from observational data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-parametric-causal-inference">Semi-parametric causal inference</a></li>
 </ul>
 </li>
 </ul>
