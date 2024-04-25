@@ -21,7 +21,7 @@ parts:
   - file: notebooks/semiparametric_varlingam
   - file: notebooks/structural_breaks_example
 
-- caption: References
+- caption: Other
   numbered: false 
   chapters:
   - file: bibliography
