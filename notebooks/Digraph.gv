@@ -1,0 +1,15 @@
+digraph {
+	"Wind Generation"
+	"Regulatory Impact"
+	"Electricity Prices"
+	"Carbon Emissions"
+	"Energy Demand"
+	"Wind Generation" -> "Electricity Prices" [label=-1.00]
+	"Regulatory Impact" -> "Electricity Prices" [label=0.50]
+	"Regulatory Impact" -> "Carbon Emissions" [label=0.30]
+	"Energy Demand" -> "Carbon Emissions" [label=-1.50]
+	"Electricity Prices" -> "Energy Demand" [label=-0.80]
+	{
+		rank=same
+	}
+}

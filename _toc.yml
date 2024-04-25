@@ -16,7 +16,7 @@ parts:
 - caption: Semi-parametric approaches
   numbered: true 
   chapters:
-  - file: notebooks/semiparametric_lingam
+  - file: notebooks/semiparametric_direct_lingam
   - file: notebooks/semiparametric_resit
   - file: notebooks/semiparametric_varlingam
   - file: notebooks/structural_breaks_example
