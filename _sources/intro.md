@@ -4,7 +4,7 @@
 [**Davide Cacciarelli**](https://sites.google.com/view/dcacciarelli), Imperial College London
 
 
-This is a small book containing tutorials of causal inference methodologies, explaining the key concepts in this growing research area and showcasing potential applications for the electricity markets. We will try to give an introduction to the field, but the main focus will be on semi-parametric causal discovery {cite}`shimizu2022statistical`.
+This is a small book containing tutorials of causal inference methodologies, explaining the key concepts in this growing research area and showcasing potential applications for the electricity markets.
 
 
 ```{admonition} Python

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5. Nonlinear models &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>4. Nonlinear models &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/semiparametric_resit';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Time series models" href="semiparametric_varlingam.html" />
-    <link rel="prev" title="4. Linear models" href="semiparametric_lingam.html" />
+    <link rel="next" title="5. Time series models" href="semiparametric_varlingam.html" />
+    <link rel="prev" title="3. Linear models" href="semiparametric_lingam.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,14 +182,13 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Why studying causal inference?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">3. Independence-based vs. semi-parametric discovery</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">4. Linear models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Nonlinear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">6. Time series models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">7. Time series with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">3. Linear models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Nonlinear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">5. Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">6. Time series with structural breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -389,10 +388,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">5.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">5.2.1. Residual analysis: nonlinearities with Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">5.2.2. RESIT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">4.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">4.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">4.2.1. Residual analysis: nonlinearities with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">4.2.2. RESIT</a></li>
 </ul>
 </li>
 </ul>
@@ -407,19 +406,19 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-models">
-<h1><span class="section-number">5. </span>Nonlinear models<a class="headerlink" href="#nonlinear-models" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Nonlinear models<a class="headerlink" href="#nonlinear-models" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2><span class="section-number">5.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In some cases, the presence of nonlinearities can be beneficial for causal discovery, as it allows the identification of more aspects of the data-generating process (similarly to the non-Gaussianity). Indeed, non-invertible functional relationships between the observed variables can provide clues to the generating causal model. In the case of nonlinear models with additive noise, almost any nonlinearities (invertible or not) will typically yield identifiable models.</p>
 <p>Each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
 <div class="amsmath math notranslate nohighlight" id="equation-e2ab6fac-444d-4899-9328-bce4462c152b">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-e2ab6fac-444d-4899-9328-bce4462c152b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-e2ab6fac-444d-4899-9328-bce4462c152b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. When the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
 </section>
 <section id="estimation">
-<h2><span class="section-number">5.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>The <strong>regression with subsequent independence test (RESIT)</strong> approach follows the intuition saw in the LiNGAM case, where we saw that the residuals in the anti-causal direction are not independent of the input variable if the noise is non-Gaussian. With nonlinear additive noise, this property will hold also in the case of Gaussian noise. The main steps are:</p>
 <ol class="arabic simple">
 <li><p>Test whether <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are statistically independent.</p></li>
@@ -433,7 +432,7 @@ document.write(`
 <li><p>Test in a similar way if the reverse model <span class="math notranslate nohighlight">\(x = g(y) + e\)</span> fits the data.</p></li>
 </ol>
 <section id="residual-analysis-nonlinearities-with-gaussian-errors">
-<h3><span class="section-number">5.2.1. </span>Residual analysis: nonlinearities with Gaussian errors<a class="headerlink" href="#residual-analysis-nonlinearities-with-gaussian-errors" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.2.1. </span>Residual analysis: nonlinearities with Gaussian errors<a class="headerlink" href="#residual-analysis-nonlinearities-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -497,7 +496,7 @@ document.write(`
 </div>
 </section>
 <section id="resit">
-<h3><span class="section-number">5.2.2. </span>RESIT<a class="headerlink" href="#resit" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">4.2.2. </span>RESIT<a class="headerlink" href="#resit" title="Link to this heading">#</a></h3>
 <p>We can use it with any regression model. Here, we will try it with a <strong>random forest</strong> and a <strong>gaussian process regressor</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,7 +764,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Linear models</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Linear models</p>
       </div>
     </a>
     <a class="right-next"
@@ -773,7 +772,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Time series models</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Time series models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -793,10 +792,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">5.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">5.2.1. Residual analysis: nonlinearities with Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">5.2.2. RESIT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">4.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">4.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">4.2.1. Residual analysis: nonlinearities with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">4.2.2. RESIT</a></li>
 </ul>
 </li>
 </ul>

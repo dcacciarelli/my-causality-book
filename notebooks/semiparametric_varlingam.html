@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Time series models &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>5. Time series models &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/semiparametric_varlingam';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Time series with structural breaks" href="structural_breaks_example.html" />
-    <link rel="prev" title="5. Nonlinear models" href="semiparametric_resit.html" />
+    <link rel="next" title="6. Time series with structural breaks" href="structural_breaks_example.html" />
+    <link rel="prev" title="4. Nonlinear models" href="semiparametric_resit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,14 +182,13 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Why studying causal inference?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">3. Independence-based vs. semi-parametric discovery</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">4. Linear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">5. Nonlinear models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Time series models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">7. Time series with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">3. Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">4. Nonlinear models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">6. Time series with structural breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -389,10 +388,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">6.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">6.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">6.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">5.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">5.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">5.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -407,17 +406,17 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="time-series-models">
-<h1><span class="section-number">6. </span>Time series models<a class="headerlink" href="#time-series-models" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">5. </span>Time series models<a class="headerlink" href="#time-series-models" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2><span class="section-number">6.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Let as assume that at each time step <span class="math notranslate nohighlight">\(t\)</span> we observe a vector <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> with <span class="math notranslate nohighlight">\(p\)</span> variables</p>
 <div class="amsmath math notranslate nohighlight" id="equation-2e6c65df-d865-4a89-97d6-176dd1da3e51">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-2e6c65df-d865-4a89-97d6-176dd1da3e51" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-2e6c65df-d865-4a89-97d6-176dd1da3e51" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
 \end{equation}\]</div>
 <p>Then, we use the following structural causal model, which considers both the instantaneous (<span class="math notranslate nohighlight">\(\tau = 0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\tau \geq 1\)</span>) causal effects</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4606f295-2e16-41d0-92ed-5fac0efd595b">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-4606f295-2e16-41d0-92ed-5fac0efd595b" title="Permalink to this equation">#</a></span>\[\begin{equation} \label{eq:varlingam}
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-4606f295-2e16-41d0-92ed-5fac0efd595b" title="Permalink to this equation">#</a></span>\[\begin{equation} \label{eq:varlingam}
     \mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
 \end{equation}\]</div>
 <p>where:</p>
@@ -428,33 +427,33 @@ document.write(`
 <p>A sufficient condition for the coefficient matrices <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> and <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> to be identifiable is that the contemporaneous causal relations represented by the matrix <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> is acyclic and the error variables <span class="math notranslate nohighlight">\(e_i(t)\)</span>, with <span class="math notranslate nohighlight">\(i=1, \ldots, p\)</span> and <span class="math notranslate nohighlight">\(t=1, \ldots, T\)</span>, are non-Gaussian and independent. This independence implies <strong>no hidden common cause</strong> between the observed variables at the same point in time or between the observed variables at different points in time.</p>
 </section>
 <section id="estimation">
-<h2><span class="section-number">6.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional AR model</strong> that only considers the lagged effects and not the contemporaneous ones (where <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>). The estimation method is based on three steps:</p>
 <ol class="arabic">
 <li><p>Obtain a least-squares estimate <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> of the AR model given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-afc3907c-9596-4fda-b54d-d96b3ee3da5a">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-afc3907c-9596-4fda-b54d-d96b3ee3da5a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-afc3907c-9596-4fda-b54d-d96b3ee3da5a" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
     \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> can be thought of as a matrix of the preliminary guesses for the lagged effects.</p>
 </li>
 <li><p>Compute the residuals of the AR model, which are an estimate of the true errors <span class="math notranslate nohighlight">\(\mathbf{n}(t)\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-33beec14-1e86-4141-bf73-5ee4798f7243">
-<span class="eqno">(6.4)<a class="headerlink" href="#equation-33beec14-1e86-4141-bf73-5ee4798f7243" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-33beec14-1e86-4141-bf73-5ee4798f7243" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
     \end{equation}\]</div>
 <p>These residuals are the differences between the actual observed data and the predictions from the AR model. They should contain the influences not captured by the past values (potentially the instantaneous effects we are interested in).</p>
 </li>
 <li><p>Perform a LiNGAM analysis on the residuals, which returns an <strong>estimate of the coefficient matrix for the instantaneous causal effects</strong> <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-70628cce-fe39-4af3-b8c1-d30a7e9160d6">
-<span class="eqno">(6.5)<a class="headerlink" href="#equation-70628cce-fe39-4af3-b8c1-d30a7e9160d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-70628cce-fe39-4af3-b8c1-d30a7e9160d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
     \end{equation}\]</div>
 <p>The idea is that if there are instantaneous effects, they would show up in the residuals of the AR model, because the AR model did not account for them.</p>
 </li>
 <li><p>Once <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the <strong>estimates of the coefficient matrices for the lagged causal effects</strong>, <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> for <span class="math notranslate nohighlight">\(\tau &gt;0\)</span></p>
 <div class="amsmath math notranslate nohighlight" id="equation-74cb62f9-c7b5-4625-aeed-f63fd1faa0ab">
-<span class="eqno">(6.6)<a class="headerlink" href="#equation-74cb62f9-c7b5-4625-aeed-f63fd1faa0ab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-74cb62f9-c7b5-4625-aeed-f63fd1faa0ab" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}_0) \widehat{\mathbf{M}}_{\tau}
     \end{equation}\]</div>
 </li>
@@ -564,7 +563,7 @@ document.write(`
 </div>
 </div>
 <section id="fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">
-<h3><span class="section-number">6.2.1. </span>Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span><a class="headerlink" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.1. </span>Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span><a class="headerlink" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.vector_ar.var_model</span> <span class="kn">import</span> <span class="n">VAR</span>
@@ -606,7 +605,7 @@ document.write(`
 </div>
 </section>
 <section id="varlingam-to-estimate-b-1">
-<h3><span class="section-number">6.2.2. </span>VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span><a class="headerlink" href="#varlingam-to-estimate-b-1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.2.2. </span>VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span><a class="headerlink" href="#varlingam-to-estimate-b-1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">VARLiNGAM</span><span class="p">(</span><span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -669,7 +668,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Nonlinear models</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Nonlinear models</p>
       </div>
     </a>
     <a class="right-next"
@@ -677,7 +676,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Time series with structural breaks</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Time series with structural breaks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -697,10 +696,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">6.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">6.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">6.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">5.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">5.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">5.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
 </ul>
 </li>
 </ul>
