@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/correlation_vs_causation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Basic causal structures" href="basic_dag_structures.html" />
+    <link rel="next" title="2. Basic causal structures" href="basic_dag_structures.html" />
     <link rel="prev" title="An introduction to causal inference for electricity markets" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -179,16 +179,15 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Key concepts</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Why studying causal inference?</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">3. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">4. Independence-based vs. semi-parametric discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">3. Independence-based vs. semi-parametric discovery</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">5. Linear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">6. Nonlinear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">7. Time series models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">8. Time series with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">4. Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">5. Nonlinear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">6. Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">7. Time series with structural breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -388,24 +387,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Why studying causal inference?</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-key-drivers">1.1. Understanding key drivers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-vs-observational-data">1.2. Experimental vs. observational data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-inference">1.3. Causal inference</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-vs-causation">2. Correlation vs. Causation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-graph">2.1. Causal graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-relationships-from-observational-data">2.2. Understanding relationships from observational data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-discovery-from-observational-data">2.3. Causal Discovery from observational data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-based-causal-discover">2.3.1. Independence-based causal discover</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-parametric-causal-discovery">2.3.2. Semi-parametric causal discovery</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-vs-causation">1.4. Correlation vs. Causation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-graphs">1.5. Causal graphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-relationships-from-observational-data">1.6. Understanding relationships from observational data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-discovery-from-observational-data">1.7. Causal Discovery from observational data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-based-causal-discover">1.7.1. Independence-based causal discover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-parametric-causal-discovery">1.7.2. Semi-parametric causal discovery</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -432,9 +425,8 @@ document.write(`
 <p>Causal inference bridges this gap. It is a branch of statistics focused on determining cause-and-effect relationships from data where no explicit experimentation has been conducted. Unlike a mere correlation analysis, which only measures how variables move together, causal inference aims to uncover whether and how one variable influences another. This distinction is vital for informed decision-making across various domains, including economics, healthcare, and energy markets.</p>
 <p>In the electricity market, understanding causal relationships is crucial. It enables stakeholders to predict the effects of policy changes, modify pricing strategies, and assess the impact of technological advancements on demand and supply dynamics. Causal inference provides the tools to make predictions about the consequences of potential actions, thereby supporting more strategic and effective decision-making.</p>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="correlation-vs-causation">
-<h1><span class="section-number">2. </span>Correlation vs. Causation<a class="headerlink" href="#correlation-vs-causation" title="Link to this heading">#</a></h1>
+<section id="correlation-vs-causation">
+<h2><span class="section-number">1.4. </span>Correlation vs. Causation<a class="headerlink" href="#correlation-vs-causation" title="Link to this heading">#</a></h2>
 <p>The phrase “correlation does not imply causation” is frequently cited in statistical analysis to caution against the premature conclusion that one variable causes another simply because they are associated. Despite this, it is surprising how often business decisions are made based on perceived associations highlighted by correlation metrics alone.</p>
 <p>To illustrate this point and introduce key terminology used in causal inference, consider a simple example involving three variables:</p>
 <p>We have three variables:</p>
@@ -443,8 +435,9 @@ document.write(`
 <li><p>Electricity load (MW)</p></li>
 <li><p>Ice cream sales (GBP)</p></li>
 </ol>
-<section id="causal-graph">
-<h2><span class="section-number">2.1. </span>Causal graph<a class="headerlink" href="#causal-graph" title="Link to this heading">#</a></h2>
+</section>
+<section id="causal-graphs">
+<h2><span class="section-number">1.5. </span>Causal graphs<a class="headerlink" href="#causal-graphs" title="Link to this heading">#</a></h2>
 <p>To better understand the relationships among these variables, we utilize a causal graph. In this scenario, we assume knowledge of the true causal structure of the data-generating process: temperature affects both electricity load and ice cream sales.</p>
 <p>A causal graph is typically assumed to be a directed acyclic graph (DAG), which is a graphical representation used to model and reason about the causal relationships between variables. In a DAG:</p>
 <ul class="simple">
@@ -473,7 +466,7 @@ document.write(`
 </div>
 </section>
 <section id="understanding-relationships-from-observational-data">
-<h2><span class="section-number">2.2. </span>Understanding relationships from observational data<a class="headerlink" href="#understanding-relationships-from-observational-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.6. </span>Understanding relationships from observational data<a class="headerlink" href="#understanding-relationships-from-observational-data" title="Link to this heading">#</a></h2>
 <p>Assume we have collected a dataset that follows the causal structure outlined in the previously discussed causal graph. However, let’s also assume that we are unaware of this true causal structure and need to perform exploratory analysis to uncover potential correlations among the observations.</p>
 <p>In this scenario, our goal is to explore the data, look for correlations, and attempt to infer possible causal relationships without prior knowledge of the underlying causal mechanisms. This approach mimics real-world situations where data scientists and researchers often work with complex datasets without a clear understanding of the dynamics that govern the relationships between variables.</p>
 <p>Through statistical methods and visual analysis, we will examine the interactions between temperature, electricity load, and ice cream sales, exploring how these variables may be related and considering the implications of our findings.</p>
@@ -535,14 +528,14 @@ document.write(`
 </div>
 </section>
 <section id="causal-discovery-from-observational-data">
-<h2><span class="section-number">2.3. </span>Causal Discovery from observational data<a class="headerlink" href="#causal-discovery-from-observational-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">1.7. </span>Causal Discovery from observational data<a class="headerlink" href="#causal-discovery-from-observational-data" title="Link to this heading">#</a></h2>
 <p>If our objective extends beyond merely studying correlations to understanding the underlying causal mechanisms within our data, we must delve into the field of causal discovery. Causal discovery techniques are designed to help uncover the actual causal relationships from observational data, even when the causal structure is not explicitly known. There are two main approaches to causal discovery: independence-based discovery and semi-parametric discovery.</p>
 <section id="independence-based-causal-discover">
-<h3><span class="section-number">2.3.1. </span>Independence-based causal discover<a class="headerlink" href="#independence-based-causal-discover" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.1. </span>Independence-based causal discover<a class="headerlink" href="#independence-based-causal-discover" title="Link to this heading">#</a></h3>
 <p>The process involves analyzing basic DAG structures like <strong>chains</strong> and <strong>forks</strong> (to be discussed in a specific section) to interpret how variables influence each other. However, this method often only leads to identifying the <strong>Markov equivalence class</strong> of the graph. This means that while we can identify sets of relationships that are consistent with the observed independencies, we cannot definitively determine the direction of causality between all the variables. For instance, if we have only two variables, which are independent, this method cannot specify whether one causes the other or if they are causally unrelated.</p>
 </section>
 <section id="semi-parametric-causal-discovery">
-<h3><span class="section-number">2.3.2. </span>Semi-parametric causal discovery<a class="headerlink" href="#semi-parametric-causal-discovery" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">1.7.2. </span>Semi-parametric causal discovery<a class="headerlink" href="#semi-parametric-causal-discovery" title="Link to this heading">#</a></h3>
 <p>Semi-parametric methods go a step further by making more specific <strong>assumptions about the functional forms</strong> of relationships between variables. These assumptions allow for a more detailed discovery of the causal graph, often identifying specific causal directions rather than just equivalence classes. By assuming certain <strong>non-linearities</strong> or <strong>specific distributions of errors</strong>, semi-parametric methods can exploit asymmetries in the data that reveal the direction of causal effects. This approach is more powerful in that it can often discern the actual causal structure rather than just a set of possible structures. However, the trade-off is that these methods require stronger assumptions about the nature of the data and the relationships involved, which may not always hold true.</p>
 </section>
 </section>
@@ -592,7 +585,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Basic causal structures</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Basic causal structures</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -612,24 +605,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Why studying causal inference?</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-key-drivers">1.1. Understanding key drivers</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-vs-observational-data">1.2. Experimental vs. observational data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-inference">1.3. Causal inference</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-vs-causation">2. Correlation vs. Causation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-graph">2.1. Causal graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-relationships-from-observational-data">2.2. Understanding relationships from observational data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-discovery-from-observational-data">2.3. Causal Discovery from observational data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-based-causal-discover">2.3.1. Independence-based causal discover</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-parametric-causal-discovery">2.3.2. Semi-parametric causal discovery</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-vs-causation">1.4. Correlation vs. Causation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-graphs">1.5. Causal graphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-relationships-from-observational-data">1.6. Understanding relationships from observational data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-discovery-from-observational-data">1.7. Causal Discovery from observational data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#independence-based-causal-discover">1.7.1. Independence-based causal discover</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-parametric-causal-discovery">1.7.2. Semi-parametric causal discovery</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>
