@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. Time series with structural breaks &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>7. Time series with structural breaks &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="References" href="../bibliography.html" />
-    <link rel="prev" title="7. Time series models" href="semiparametric_varlingam.html" />
+    <link rel="prev" title="6. Time series models" href="semiparametric_varlingam.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -179,16 +179,15 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Key concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Why studying causal inference?</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">3. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">4. Independence-based vs. semi-parametric discovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">3. Independence-based vs. semi-parametric discovery</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">5. Linear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">6. Nonlinear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">7. Time series models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Time series with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">4. Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">5. Nonlinear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">6. Time series models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Time series with structural breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -388,8 +387,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">8.1. Fitting one model to all the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">8.2. Fitting two separate models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">7.1. Fitting one model to all the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">7.2. Fitting two separate models</a></li>
 </ul>
             </nav>
         </div>
@@ -402,7 +401,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="time-series-with-structural-breaks">
-<h1><span class="section-number">8. </span>Time series with structural breaks<a class="headerlink" href="#time-series-with-structural-breaks" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Time series with structural breaks<a class="headerlink" href="#time-series-with-structural-breaks" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -517,7 +516,7 @@ document.write(`
 </div>
 </div>
 <section id="fitting-one-model-to-all-the-data">
-<h2><span class="section-number">8.1. </span>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.vector_ar.var_model</span> <span class="kn">import</span> <span class="n">VAR</span>
@@ -560,7 +559,7 @@ document.write(`
 </div>
 </section>
 <section id="fitting-two-separate-models">
-<h2><span class="section-number">8.2. </span>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into two regimes</span>
@@ -667,7 +666,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Time series models</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Time series models</p>
       </div>
     </a>
     <a class="right-next"
@@ -695,8 +694,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">8.1. Fitting one model to all the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">8.2. Fitting two separate models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">7.1. Fitting one model to all the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">7.2. Fitting two separate models</a></li>
 </ul>
   </nav></div>
 
