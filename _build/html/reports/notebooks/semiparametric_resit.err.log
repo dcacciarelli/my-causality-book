@@ -37,10 +37,11 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-gpr = GaussianProcessRegressor(kernel=WhiteKernel() + RBF(), random_state=0, n_restarts_optimizer=1)
-model = lingam.RESIT(regressor=gpr)
-model.fit(X)
-model.adjacency_matrix_
-make_dot(model.adjacency_matrix_)
+from lingam.utils import print_causal_directions, print_dagc
+
+replications = 10
+result = model.bootstrap(data, n_sampling=replications)
+cdc = result.get_causal_direction_counts(n_directions=8, min_causal_effect=0.01, split_by_causal_effect_sign=True)
+print_causal_directions(cdc, replications, labels=list(data.columns))
 -------------------
 

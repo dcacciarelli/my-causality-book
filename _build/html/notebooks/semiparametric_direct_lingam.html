@@ -388,17 +388,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">3.2. The LiNGAM model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">3.2.1. Strucural equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">3.2.2. Matrix notation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">3.2.3. Causal ordering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">3.1. The LiNGAM model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">3.1.1. Strucural equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">3.1.2. Matrix notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">3.1.3. Causal ordering</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">3.3. Estimation methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">3.3.1. Example with Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">3.3.2. Example with non-Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-lingam-estimation-example">3.3.3. Full LiNGAM estimation example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">3.2. Estimation methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">3.2.1. Example with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">3.2.2. Example with non-Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-lingam-estimation-example">3.2.3. Full LiNGAM estimation example</a></li>
 </ul>
 </li>
 </ul>
@@ -414,21 +413,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-models">
 <h1><span class="section-number">3. </span>Linear models<a class="headerlink" href="#linear-models" title="Link to this heading">#</a></h1>
-<section id="introduction">
-<h2><span class="section-number">3.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>If we are willing to make assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>, we can go beyond the Markov equivalence class and identify the complete causal structure of the data-generating process. In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id3" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>.</p>
-</section>
 <section id="the-lingam-model">
-<h2><span class="section-number">3.2. </span>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26158abc-a923-42b0-8491-8ddfe2c88ade">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-26158abc-a923-42b0-8491-8ddfe2c88ade" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a260570-6471-4273-bb77-11a61f56ad73">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-9a260570-6471-4273-bb77-11a61f56ad73" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-63d4c7f5-d0de-4572-8fd5-7ead2266fbb8">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-63d4c7f5-d0de-4572-8fd5-7ead2266fbb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4075cc94-0c29-4a1c-85bc-e47b2a77137f">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-4075cc94-0c29-4a1c-85bc-e47b2a77137f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -439,20 +435,20 @@ document.write(`
 <li><p><strong>Wind generation</strong> is influenced by external factors and serves as an exogenous variable in this model.</p></li>
 </ul>
 <section id="strucural-equations">
-<h3><span class="section-number">3.2.1. </span>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.1. </span>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
 <p>If we know the coefficients of those causal relations, the SCM can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78690e3d-f2fd-4429-b86b-f93648e4ef41">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-78690e3d-f2fd-4429-b86b-f93648e4ef41" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-af6a18d8-cef1-4730-93d6-fbf3b0fffb0d">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-af6a18d8-cef1-4730-93d6-fbf3b0fffb0d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \text{wind generation} &amp;= e_w \\
 \end{align}\]</div>
 </section>
 <section id="matrix-notation">
-<h3><span class="section-number">3.2.2. </span>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.2. </span>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
 <p>Then, in matrix notation, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ecca934-0040-41ba-8055-b68587dde4f8">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-7ecca934-0040-41ba-8055-b68587dde4f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-64c06c3e-4121-4859-9454-b177c249c88b">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-64c06c3e-4121-4859-9454-b177c249c88b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{electricity prices} \\
     \text{carbon emissions} \\
@@ -478,17 +474,17 @@ document.write(`
 \end{equation}\]</div>
 </section>
 <section id="causal-ordering">
-<h3><span class="section-number">3.2.3. </span>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.1.3. </span>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b43322da-a666-4622-97ce-78b79166dd76">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-b43322da-a666-4622-97ce-78b79166dd76" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-21d24654-e323-439c-833f-af8aed75fdf9">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-21d24654-e323-439c-833f-af8aed75fdf9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bdaed486-9a72-4cb5-add4-7d4cb8707dc7">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-bdaed486-9a72-4cb5-add4-7d4cb8707dc7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b02f570f-919d-4c69-8e45-35e87d2486ae">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-b02f570f-919d-4c69-8e45-35e87d2486ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind generation} \\
     \text{electricity prices} \\
@@ -513,8 +509,8 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-929559f8-8374-478c-8050-ecc9d0eddd91">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-929559f8-8374-478c-8050-ecc9d0eddd91" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47e7ecf9-a957-4f6c-89d5-fea345243187">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-47e7ecf9-a957-4f6c-89d5-fea345243187" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -539,15 +535,15 @@ document.write(`
 </section>
 </section>
 <section id="estimation-methods">
-<h2><span class="section-number">3.3. </span>Estimation methods<a class="headerlink" href="#estimation-methods" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>Estimation methods<a class="headerlink" href="#estimation-methods" title="Link to this heading">#</a></h2>
 <p>Now that we explained the basic formulation, we explain how to <strong>estimate the model from the data</strong>. There are two main approaches to estimate a LiNGAM model: a direct estimation method (<strong>DirectLiNGAM</strong>) through a series of regressions and independence tests, and a method based on independent component analysis (ICA) (<strong>ICA-based LinGAM</strong>). In the case of linear models, the key assumption is that the <strong>errors are non-Gaussians</strong>. This is the most important assumption as it allows us to identify the causal structure, both using DirectLiNGAM and ICA-based LiNGAM.</p>
 <p>Now, we will explain the intuition behing DirectLiNGAM, an iterative procedure that employs a series of regressions and independence tests to directly identify the causal order among the observed variables. It leverages the non-Gaussianity of the data and the assumption of linear causality to systematically test for independence between variables and their residuals from regressions.</p>
 <p>The key intuition is that, with non-Gaussian errors, the <strong>residuals in the anti-causal direction</strong> will not be independent of the predictor. We will see how this works with a practical example.</p>
 <section id="example-with-gaussian-errors">
-<h3><span class="section-number">3.3.1. </span>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b03e393e-dace-4c0c-8d3a-dc30e3d72a70">
-<span class="eqno">(3.8)<a class="headerlink" href="#equation-b03e393e-dace-4c0c-8d3a-dc30e3d72a70" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d534f657-0212-47ab-a8e4-bfa725557024">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-d534f657-0212-47ab-a8e4-bfa725557024" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \end{align}\]</div>
@@ -561,9 +557,9 @@ document.write(`
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="c1"># Synthetic data generation based on the given equations</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
-<span class="n">wind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
-<span class="n">price</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">wind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
+<span class="n">price</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
 
 <span class="c1"># Prepare the data for regression</span>
 <span class="n">wind_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">wind</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
@@ -603,19 +599,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2b956f11322e07171ef9a306554b8f6a307aa16447708272797892f15f9372d3.png" src="../_images/2b956f11322e07171ef9a306554b8f6a307aa16447708272797892f15f9372d3.png" />
+<img alt="../_images/9df8ade08f1d9abcd693a5da1b975a74f7c2e544590233826e6af3332bf16378.png" src="../_images/9df8ade08f1d9abcd693a5da1b975a74f7c2e544590233826e6af3332bf16378.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
 </section>
 <section id="example-with-non-gaussian-errors">
-<h3><span class="section-number">3.3.2. </span>Example with non-Gaussian errors<a class="headerlink" href="#example-with-non-gaussian-errors" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Example with non-Gaussian errors<a class="headerlink" href="#example-with-non-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Now, by simply assuming the errors are uniformly distributed, we can wee how it will be possible to detect the true causal direction by testing the independence of the residuals from the input variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Synthetic data generation based on the given equations</span>
-<span class="n">wind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
-<span class="n">price</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
+<span class="n">wind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
+<span class="n">price</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
 
 <span class="c1"># Prepare the data for regression</span>
 <span class="n">wind_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">wind</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
@@ -655,16 +651,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f73cef91917a2cf0e44c8cccdb0b4ee87dcb592c5415720d8864192995838c11.png" src="../_images/f73cef91917a2cf0e44c8cccdb0b4ee87dcb592c5415720d8864192995838c11.png" />
+<img alt="../_images/6ff61e35360e2a9392d274472fe4de830fa7ca9ef752c6a8989d0047d45287da.png" src="../_images/6ff61e35360e2a9392d274472fe4de830fa7ca9ef752c6a8989d0047d45287da.png" />
 </div>
 </div>
 </section>
 <section id="full-lingam-estimation-example">
-<h3><span class="section-number">3.3.3. </span>Full LiNGAM estimation example<a class="headerlink" href="#full-lingam-estimation-example" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>Full LiNGAM estimation example<a class="headerlink" href="#full-lingam-estimation-example" title="Link to this heading">#</a></h3>
 <p>Now, we try a full estimation example, where we have a slightly more complex causal structure, that we will need to retrieve from observational data.</p>
 <p>Assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-24adff0a-9dc3-46fc-97ed-b509eea407dc">
-<span class="eqno">(3.9)<a class="headerlink" href="#equation-24adff0a-9dc3-46fc-97ed-b509eea407dc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-83292e88-7e2a-4876-89e5-ffdd52b58443">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-83292e88-7e2a-4876-89e5-ffdd52b58443" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{regulatory impact} &amp;= e_r \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + 0.5 \times \text{regulatory impact} + e_p \\
@@ -700,7 +696,7 @@ document.write(`
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Number of samples</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># Generating synthetic data based on the specified equations with uniform errors</span>
 <span class="n">wind_generation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Wind generation (exogenous)</span>
@@ -739,7 +735,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2f2e3617b5f1fab84cd3086ce6ea27a0bbe6aa1338b1bec4aadf65876657a5cf.svg" src="../_images/2f2e3617b5f1fab84cd3086ce6ea27a0bbe6aa1338b1bec4aadf65876657a5cf.svg" /></div>
+<img alt="../_images/0c2e68b2ec1f4547959635b05ccb893f2da742029bde76df3e1a486e82cb768b.svg" src="../_images/0c2e68b2ec1f4547959635b05ccb893f2da742029bde76df3e1a486e82cb768b.svg" /></div>
 </div>
 <p>We can see how we successfully recovered the true casual structure.</p>
 </section>
@@ -810,17 +806,16 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">3.2. The LiNGAM model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">3.2.1. Strucural equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">3.2.2. Matrix notation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">3.2.3. Causal ordering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">3.1. The LiNGAM model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">3.1.1. Strucural equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">3.1.2. Matrix notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">3.1.3. Causal ordering</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">3.3. Estimation methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">3.3.1. Example with Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">3.3.2. Example with non-Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-lingam-estimation-example">3.3.3. Full LiNGAM estimation example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">3.2. Estimation methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">3.2.1. Example with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">3.2.2. Example with non-Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-lingam-estimation-example">3.2.3. Full LiNGAM estimation example</a></li>
 </ul>
 </li>
 </ul>
