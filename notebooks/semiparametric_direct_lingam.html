@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Linear models &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>3. Linear models &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -59,9 +59,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/semiparametric_lingam';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/semiparametric_direct_lingam';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Nonlinear models" href="semiparametric_resit.html" />
+    <link rel="prev" title="2. Basic causal structures" href="basic_dag_structures.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +125,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -184,8 +184,8 @@
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">3. Linear models</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Linear models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">4. Nonlinear models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">5. Time series models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">6. Time series with structural breaks</a></li>
@@ -264,7 +264,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/semiparametric_lingam.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/semiparametric_direct_lingam.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +294,7 @@
       
       
       
-      <li><a href="../_sources/notebooks/semiparametric_lingam.ipynb" target="_blank"
+      <li><a href="../_sources/notebooks/semiparametric_direct_lingam.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -388,22 +388,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">The LiNGAM model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">Strucural equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">Matrix notation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">Causal ordering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">3.2. The LiNGAM model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">3.2.1. Strucural equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">3.2.2. Matrix notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">3.2.3. Causal ordering</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">Estimation methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directlingam">DirectLiNGAM</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">Example with Gaussian errors</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">Example with non-Gaussian errors</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ica-based-lingam">ICA-based LiNGAM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">DirectLiNGAM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">ICA-based LiNGAM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">3.3. Estimation methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">3.3.1. Example with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">3.3.2. Example with non-Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-lingam-estimation-example">3.3.3. Full LiNGAM estimation example</a></li>
 </ul>
 </li>
 </ul>
@@ -418,22 +413,22 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-models">
-<h1>Linear models<a class="headerlink" href="#linear-models" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">3. </span>Linear models<a class="headerlink" href="#linear-models" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>If we are willing to make assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>, we can go beyond the Markov equivalence class and identify the complete causal structure of the data-generating process. In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id3" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>.</p>
 </section>
 <section id="the-lingam-model">
-<h2>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.2. </span>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60564f7c-4551-4c52-b977-9dc9a7059824">
-<span class="eqno">()<a class="headerlink" href="#equation-60564f7c-4551-4c52-b977-9dc9a7059824" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-26158abc-a923-42b0-8491-8ddfe2c88ade">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-26158abc-a923-42b0-8491-8ddfe2c88ade" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df006a34-cf2b-402e-8479-2818b8d90552">
-<span class="eqno">()<a class="headerlink" href="#equation-df006a34-cf2b-402e-8479-2818b8d90552" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-63d4c7f5-d0de-4572-8fd5-7ead2266fbb8">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-63d4c7f5-d0de-4572-8fd5-7ead2266fbb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -444,20 +439,20 @@ document.write(`
 <li><p><strong>Wind generation</strong> is influenced by external factors and serves as an exogenous variable in this model.</p></li>
 </ul>
 <section id="strucural-equations">
-<h3>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.1. </span>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
 <p>If we know the coefficients of those causal relations, the SCM can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c515a5a-a7db-4f76-8d09-2853d8af7d20">
-<span class="eqno">()<a class="headerlink" href="#equation-6c515a5a-a7db-4f76-8d09-2853d8af7d20" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-78690e3d-f2fd-4429-b86b-f93648e4ef41">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-78690e3d-f2fd-4429-b86b-f93648e4ef41" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \text{wind generation} &amp;= e_w \\
 \end{align}\]</div>
 </section>
 <section id="matrix-notation">
-<h3>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.2. </span>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
 <p>Then, in matrix notation, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5aa407f3-dc61-4163-bbaf-930a99ead25c">
-<span class="eqno">()<a class="headerlink" href="#equation-5aa407f3-dc61-4163-bbaf-930a99ead25c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ecca934-0040-41ba-8055-b68587dde4f8">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-7ecca934-0040-41ba-8055-b68587dde4f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{electricity prices} \\
     \text{carbon emissions} \\
@@ -483,17 +478,17 @@ document.write(`
 \end{equation}\]</div>
 </section>
 <section id="causal-ordering">
-<h3>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">3.2.3. </span>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-653138ff-e6a3-4ad2-8203-59996a8807eb">
-<span class="eqno">()<a class="headerlink" href="#equation-653138ff-e6a3-4ad2-8203-59996a8807eb" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b43322da-a666-4622-97ce-78b79166dd76">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-b43322da-a666-4622-97ce-78b79166dd76" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af8325ee-c54f-4687-8080-472bc6b45fb4">
-<span class="eqno">()<a class="headerlink" href="#equation-af8325ee-c54f-4687-8080-472bc6b45fb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bdaed486-9a72-4cb5-add4-7d4cb8707dc7">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-bdaed486-9a72-4cb5-add4-7d4cb8707dc7" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind generation} \\
     \text{electricity prices} \\
@@ -518,8 +513,8 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b9395ed-aaae-456b-b3b2-078381b3789a">
-<span class="eqno">()<a class="headerlink" href="#equation-5b9395ed-aaae-456b-b3b2-078381b3789a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-929559f8-8374-478c-8050-ecc9d0eddd91">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-929559f8-8374-478c-8050-ecc9d0eddd91" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -544,17 +539,15 @@ document.write(`
 </section>
 </section>
 <section id="estimation-methods">
-<h2>Estimation methods<a class="headerlink" href="#estimation-methods" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3. </span>Estimation methods<a class="headerlink" href="#estimation-methods" title="Link to this heading">#</a></h2>
 <p>Now that we explained the basic formulation, we explain how to <strong>estimate the model from the data</strong>. There are two main approaches to estimate a LiNGAM model: a direct estimation method (<strong>DirectLiNGAM</strong>) through a series of regressions and independence tests, and a method based on independent component analysis (ICA) (<strong>ICA-based LinGAM</strong>). In the case of linear models, the key assumption is that the <strong>errors are non-Gaussians</strong>. This is the most important assumption as it allows us to identify the causal structure, both using DirectLiNGAM and ICA-based LiNGAM.</p>
-<section id="directlingam">
-<h3>DirectLiNGAM<a class="headerlink" href="#directlingam" title="Link to this heading">#</a></h3>
-<p>DirectLiNGAM is an iterative procedure that employs a series of regressions and independence tests to directly identify the causal order among the observed variables. It leverages the non-Gaussianity of the data and the assumption of linear causality to systematically test for independence between variables and their residuals from regressions.</p>
+<p>Now, we will explain the intuition behing DirectLiNGAM, an iterative procedure that employs a series of regressions and independence tests to directly identify the causal order among the observed variables. It leverages the non-Gaussianity of the data and the assumption of linear causality to systematically test for independence between variables and their residuals from regressions.</p>
 <p>The key intuition is that, with non-Gaussian errors, the <strong>residuals in the anti-causal direction</strong> will not be independent of the predictor. We will see how this works with a practical example.</p>
 <section id="example-with-gaussian-errors">
-<h4>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h4>
+<h3><span class="section-number">3.3.1. </span>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-460d24cc-aa1e-44b9-8f1f-5df735ff5870">
-<span class="eqno">()<a class="headerlink" href="#equation-460d24cc-aa1e-44b9-8f1f-5df735ff5870" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b03e393e-dace-4c0c-8d3a-dc30e3d72a70">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-b03e393e-dace-4c0c-8d3a-dc30e3d72a70" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \end{align}\]</div>
@@ -564,6 +557,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="c1"># Synthetic data generation based on the given equations</span>
@@ -609,13 +603,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ef7b2408b300c798e3a5b4016ce457fd6e99801bf7ffee4c3ff9292c1f57af23.png" src="../_images/ef7b2408b300c798e3a5b4016ce457fd6e99801bf7ffee4c3ff9292c1f57af23.png" />
+<img alt="../_images/2b956f11322e07171ef9a306554b8f6a307aa16447708272797892f15f9372d3.png" src="../_images/2b956f11322e07171ef9a306554b8f6a307aa16447708272797892f15f9372d3.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
 </section>
 <section id="example-with-non-gaussian-errors">
-<h4>Example with non-Gaussian errors<a class="headerlink" href="#example-with-non-gaussian-errors" title="Link to this heading">#</a></h4>
+<h3><span class="section-number">3.3.2. </span>Example with non-Gaussian errors<a class="headerlink" href="#example-with-non-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Now, by simply assuming the errors are uniformly distributed, we can wee how it will be possible to detect the true causal direction by testing the independence of the residuals from the input variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -661,201 +655,93 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ac081bd544f6c6392d4cfcb8a325029a93fe125bbbc6182441beb32407acc109.png" src="../_images/ac081bd544f6c6392d4cfcb8a325029a93fe125bbbc6182441beb32407acc109.png" />
+<img alt="../_images/f73cef91917a2cf0e44c8cccdb0b4ee87dcb592c5415720d8864192995838c11.png" src="../_images/f73cef91917a2cf0e44c8cccdb0b4ee87dcb592c5415720d8864192995838c11.png" />
 </div>
 </div>
 </section>
-</section>
-<section id="ica-based-lingam">
-<h3>ICA-based LiNGAM<a class="headerlink" href="#ica-based-lingam" title="Link to this heading">#</a></h3>
-<p>ICA is a computational method, developed in the field of signal processing, to separate a multivariate signal into additive subcomponents assuming that these subcomponents are non-Gaussian signals and statistically independent from each other. Consider a simple ICA model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4cff84f3-07da-4489-a01f-7f924fefe64f">
-<span class="eqno">()<a class="headerlink" href="#equation-4cff84f3-07da-4489-a01f-7f924fefe64f" title="Permalink to this equation">#</a></span>\[\begin{align}
-    x_1 &amp;= a_{11}s_1 + a_{12}s_2 \\
-    x_2 &amp;= a_{21}s_1 + a_{22}s_2
+<section id="full-lingam-estimation-example">
+<h3><span class="section-number">3.3.3. </span>Full LiNGAM estimation example<a class="headerlink" href="#full-lingam-estimation-example" title="Link to this heading">#</a></h3>
+<p>Now, we try a full estimation example, where we have a slightly more complex causal structure, that we will need to retrieve from observational data.</p>
+<p>Assume the following <strong>structural equations</strong>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-24adff0a-9dc3-46fc-97ed-b509eea407dc">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-24adff0a-9dc3-46fc-97ed-b509eea407dc" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{wind generation} &amp;= e_w \\
+\text{regulatory impact} &amp;= e_r \\
+\text{electricity prices} &amp;= -1 \times \text{wind generation} + 0.5 \times \text{regulatory impact} + e_p \\
+\text{energy demand} &amp;= -0.8 \times \text{electricity prices} + e_d \\
+\text{carbon emissions} &amp;= -0.3 \times \text{regulatory impact} + 1.5 \times \text{energy demand} + e_c \\
 \end{align}\]</div>
-<p>where <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the observed variables, and <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are continuous hidden variables. Assuming that <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In matrix form, we can write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d48909b9-a5fd-45d9-9b8e-09e80bb4f395">
-<span class="eqno">()<a class="headerlink" href="#equation-d48909b9-a5fd-45d9-9b8e-09e80bb4f395" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \mathbf{x} = \mathbf{A}\mathbf{s}
-\end{equation}\]</div>
-<p>In our example, it would mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3cd56b8-b779-4871-bcd2-698820b19375">
-<span class="eqno">()<a class="headerlink" href="#equation-b3cd56b8-b779-4871-bcd2-698820b19375" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \left[\begin{array}{c} 
-    x_1 \\ x_2
-    \end{array}\right]
-    =\left[\begin{array}{cc}
-    a_{11} &amp; a_{12} \\
-    a_{21} &amp; a_{22}
-    \end{array}\right]
-    \left[\begin{array}{c}
-    s_1 \\
-    s_2
-    \end{array}\right]
-\end{equation}\]</div>
-<p>The <span class="math notranslate nohighlight">\(p \times q\)</span> mixing matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> represents how the unobserved components <span class="math notranslate nohighlight">\(\mathbf{s}\)</span> are mixed to generate the observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Any two columns of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> are assumed to be linearly independent. The mixing matrix <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is identifiable, except for the <strong>ordering</strong> and <strong>scaling</strong> of its columns.</p>
+<p>Then, the true <strong>causal graph</strong> is given by</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ica</span> <span class="o">=</span> <span class="n">FastICA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">recovered_signals</span> <span class="o">=</span> <span class="n">ica</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Reconstruct signals</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">recovered_signals</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ica</span> <span class="o">=</span> <span class="n">FastICA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">recovered_signals</span> <span class="o">=</span> <span class="n">ica</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Reconstruct signals</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matrix of coefficients (weights)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Wind generation</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Regulatory impact</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># Electricity prices</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># Energy demand</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>    <span class="c1"># Carbon emissions</span>
+<span class="p">])</span>
 
-<span class="ne">NameError</span>: name &#39;FastICA&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">FastICA</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
-<p>We start by generating the original signals <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
-<span class="n">s1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
-<span class="n">s2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">time</span><span class="p">))</span>  <span class="c1"># Signal 2: square signal</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+<span class="c1"># Plotting causal graph</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind generation&quot;</span><span class="p">,</span> <span class="s2">&quot;regulatory impact&quot;</span><span class="p">,</span> <span class="s2">&quot;electricity prices&quot;</span><span class="p">,</span> <span class="s2">&quot;energy demand&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon emissions&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1650e5b90&gt;,
- &lt;matplotlib.lines.Line2D at 0x1650f8890&gt;]
-</pre></div>
+<img alt="../_images/bec645698f93c45ebe761c061f292d6cb4114b9ebdef2e8146a4b3c509d4053c.svg" src="../_images/bec645698f93c45ebe761c061f292d6cb4114b9ebdef2e8146a4b3c509d4053c.svg" /></div>
 </div>
-<img alt="../_images/cc650437b0963e28cf2dc486359782ddafa5e620f44c4834aada87fb09728dea.png" src="../_images/cc650437b0963e28cf2dc486359782ddafa5e620f44c4834aada87fb09728dea.png" />
-</div>
-</div>
-<p>We now mix the signals, to generate the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mix data</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>  <span class="c1"># Mixing matrix</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># Generate observations</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x165157d10&gt;,
- &lt;matplotlib.lines.Line2D at 0x165129f50&gt;]
-</pre></div>
-</div>
-<img alt="../_images/e1f046fc4989428eb8149ad042089416b971191ce45c66d68847fb79954ee7e8.png" src="../_images/e1f046fc4989428eb8149ad042089416b971191ce45c66d68847fb79954ee7e8.png" />
-</div>
-</div>
-</section>
-<section id="id2">
-<h3>DirectLiNGAM<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">direct_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
-<span class="n">direct_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">direct_model</span><span class="o">.</span><span class="n">causal_order_</span>
-<span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind forecast&quot;</span><span class="p">,</span> <span class="s2">&quot;congestion&quot;</span><span class="p">,</span> <span class="s2">&quot;day ahead price&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal constraints&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" src="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" /></div>
-</div>
-</section>
-<section id="id3">
-<h3>ICA-based LiNGAM<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bfff6ed2-aee3-4fc8-876e-b7f8dd9a7245">
-<span class="eqno">()<a class="headerlink" href="#equation-bfff6ed2-aee3-4fc8-876e-b7f8dd9a7245" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>. We can solve the equation <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}\)</span> for the vector of observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0612c0f0-1f86-421c-bfc7-d5afb54dab8b">
-<span class="eqno">()<a class="headerlink" href="#equation-0612c0f0-1f86-421c-bfc7-d5afb54dab8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    (\mathbf{I}- \mathbf{B})\mathbf{x} = \mathbf{e}
-\end{equation}\]</div>
-<p>Then, if we left-multiply both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{I}- \mathbf{B}\)</span>, we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-82fd1187-d7c9-4360-a7a1-054a4bfd060a">
-<span class="eqno">()<a class="headerlink" href="#equation-82fd1187-d7c9-4360-a7a1-054a4bfd060a" title="Permalink to this equation">#</a></span>\[\begin{align}
-    (\mathbf{I}- \mathbf{B})^{-1}(\mathbf{I}- \mathbf{B})\mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
-    \mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
-    \mathbf{x} &amp;= \mathbf{A}\mathbf{e} \label{eq:lingam-ica}
-\end{align}\]</div>
-<p>Now, since we assumed the errors are independent and non-Gaussian, we have that this equation corresponds to the ICA model, and the matrix <span class="math notranslate nohighlight">\(\mathbf{A} = (\mathbf{I}- \mathbf{B})^{-1}\)</span> corresponds to the mixing matrix in ICA. This gives the hint of why we can use ICA to estimate the LiNGAM model. The cool part is that, in this case, using the <strong>acyclicity assumption</strong>, we can also find the coefficients in terms of the right <strong>ordering</strong> and <strong>scaling</strong>.</p>
-<p>Let’s start by generating data from a known causal structure.</p>
+<p>Let us now generate some data from this causal graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">lingam</span>
-<span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">print_causal_directions</span><span class="p">,</span> <span class="n">print_dagc</span><span class="p">,</span> <span class="n">make_dot</span>
-<span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span>
+
+<span class="c1"># Set the random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Number of samples</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># Generating synthetic data based on the specified equations with uniform errors</span>
+<span class="n">wind_generation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Wind generation (exogenous)</span>
+<span class="n">regulatory_impact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Regulatory impact (exogenous)</span>
+
+<span class="c1"># Electricity prices influenced by wind generation and regulatory impact</span>
+<span class="n">electricity_prices</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind_generation</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">regulatory_impact</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Energy demand influenced by electricity prices</span>
+<span class="n">energy_demand</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">electricity_prices</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Carbon emissions influenced by regulatory impact and energy demand</span>
+<span class="n">carbon_emissions</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">regulatory_impact</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">energy_demand</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Creating a DataFrame to hold the generated data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;wind generation&#39;</span><span class="p">:</span> <span class="n">wind_generation</span><span class="p">,</span>
+    <span class="s1">&#39;regulatory impact&#39;</span><span class="p">:</span> <span class="n">regulatory_impact</span><span class="p">,</span>
+    <span class="s1">&#39;electricity prices&#39;</span><span class="p">:</span> <span class="n">electricity_prices</span><span class="p">,</span>
+    <span class="s1">&#39;energy demand&#39;</span><span class="p">:</span> <span class="n">energy_demand</span><span class="p">,</span>
+    <span class="s1">&#39;carbon emissions&#39;</span><span class="p">:</span> <span class="n">carbon_emissions</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now, we fit the <strong>DirectLiNGAM</strong> model and plot the estimated causal structure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linear structural equations with non-Gaussian noise</span>
-<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
-<span class="n">x0</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">x3</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
-<span class="n">x2</span> <span class="o">=</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">x3</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
-<span class="n">x1</span> <span class="o">=</span> <span class="mf">3.0</span><span class="o">*</span><span class="n">x0</span> <span class="o">+</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">x2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x0&#39;</span><span class="p">,</span> <span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;x3&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lingam</span>
 
-<span class="c1"># Matrix of coefficients</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
-
-<span class="c1"># Saving graph</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind forecast&quot;</span><span class="p">,</span> <span class="s2">&quot;congestion&quot;</span><span class="p">,</span> <span class="s2">&quot;day ahead price&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal constraints&quot;</span><span class="p">])</span>
-        <span class="c1">#, path=(3, 1), path_color=&quot;red&quot;)</span>
+<span class="n">direct_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
+<span class="n">direct_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9731466969a4b2330769e9b03ab813467b76541b4ad49210e8be24a67cac0e08.svg" src="../_images/9731466969a4b2330769e9b03ab813467b76541b4ad49210e8be24a67cac0e08.svg" /></div>
+<img alt="../_images/2f2e3617b5f1fab84cd3086ce6ea27a0bbe6aa1338b1bec4aadf65876657a5cf.svg" src="../_images/2f2e3617b5f1fab84cd3086ce6ea27a0bbe6aa1338b1bec4aadf65876657a5cf.svg" /></div>
 </div>
-<p>We can now apply ICA to retrieve the independent components</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ICA-based LiNGAM</span>
-<span class="n">ica_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">ICALiNGAM</span><span class="p">()</span>
-<span class="n">ica_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">ica_model</span><span class="o">.</span><span class="n">causal_order_</span>
-<span class="n">ica_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">ica_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind forecast&quot;</span><span class="p">,</span> <span class="s2">&quot;congestion&quot;</span><span class="p">,</span> <span class="s2">&quot;day ahead price&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal constraints&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" src="../_images/3bda9eaa28b87d7210c0d1094f8452a6df8ddaec30195c386b3df4daa76ca089.svg" /></div>
-</div>
+<p>We can see how we successfully recovered the true casual structure.</p>
 </section>
 </section>
 </section>
@@ -890,6 +776,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="basic_dag_structures.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Basic causal structures</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="semiparametric_resit.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Nonlinear models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -906,22 +810,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">The LiNGAM model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">Strucural equations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">Matrix notation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">Causal ordering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lingam-model">3.2. The LiNGAM model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strucural-equations">3.2.1. Strucural equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-notation">3.2.2. Matrix notation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-ordering">3.2.3. Causal ordering</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">Estimation methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#directlingam">DirectLiNGAM</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">Example with Gaussian errors</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">Example with non-Gaussian errors</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ica-based-lingam">ICA-based LiNGAM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">DirectLiNGAM</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">ICA-based LiNGAM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-methods">3.3. Estimation methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-gaussian-errors">3.3.1. Example with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-non-gaussian-errors">3.3.2. Example with non-Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-lingam-estimation-example">3.3.3. Full LiNGAM estimation example</a></li>
 </ul>
 </li>
 </ul>

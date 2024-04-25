@@ -57,10 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/basic_dag_structures';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Independence-based vs. semi-parametric discovery" href="independence_semiparametric.html" />
+    <link rel="next" title="3. Linear models" href="semiparametric_direct_lingam.html" />
     <link rel="prev" title="1. Why studying causal inference?" href="correlation_vs_causation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,14 +182,13 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Why studying causal inference?</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">3. Independence-based vs. semi-parametric discovery</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">4. Linear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">5. Nonlinear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">6. Time series models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">7. Time series with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">3. Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">4. Nonlinear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">5. Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">6. Time series with structural breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -389,7 +390,10 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chains">2.1. Chains</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">2.2. Forks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities">2.3. Immoralities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities">2.3. Immoralities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-causal-model-scm">2.3.1. Structural causal model (SCM)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -522,6 +526,17 @@ document.write(`
 </div>
 <p>We can observe how conditioning on a collider introduces spurious correlations in the data. This underscores the importance of being cautious when attempting to draw causal conclusions from observational data.</p>
 <p><strong>In practice</strong>, this means that merely including the collider as a predictor in a <strong>regression model</strong> can lead to misleading results, where the estimated coefficients deviate significantly from the true causal effects. This potential misstep highlights the necessity of carefully selecting variables for inclusion in regression models, especially when the goal is to uncover causal relationships rather than mere associations.</p>
+<section id="structural-causal-model-scm">
+<h3><span class="section-number">2.3.1. </span>Structural causal model (SCM)<a class="headerlink" href="#structural-causal-model-scm" title="Link to this heading">#</a></h3>
+<p>In the above example, we generated data from the causal graph representing the immorality. However, to generate observations, we assumed knowledge about the <strong>structural equations</strong> governing the system. Which, in that case, were given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3af68183-d4b2-4e38-87a0-5edd8bc92cfe">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-3af68183-d4b2-4e38-87a0-5edd8bc92cfe" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \text{wind energy} &amp;= \mathcal{N}(0,1) \\
+    \text{outdated grid} &amp;= \mathcal{N}(0,1) \\
+    \text{balancing costs} &amp;= 2 \text{wind energy} + 1.5 \text{outdated grid} + \mathcal{N}(0, 0.1) \\
+\end{align}\]</div>
+<p>This is the <strong>structural causal model (SCM)</strong>, from which we can see how wind energy and outdated grid are not causally related.</p>
+</section>
 </section>
 </section>
 
@@ -565,11 +580,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="independence_semiparametric.html"
+       href="semiparametric_direct_lingam.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Independence-based vs. semi-parametric discovery</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Linear models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -591,7 +606,10 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chains">2.1. Chains</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">2.2. Forks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities">2.3. Immoralities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities">2.3. Immoralities</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-causal-model-scm">2.3.1. Structural causal model (SCM)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
