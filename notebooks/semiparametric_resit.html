@@ -453,8 +453,8 @@ document.write(`
 <section id="additive-noise-models-anms">
 <h2><span class="section-number">4.1. </span>Additive noise models (ANMs)<a class="headerlink" href="#additive-noise-models-anms" title="Link to this heading">#</a></h2>
 <p>One of the most popular approaches to causal discovery with nonlinear models is to use additive noise models (ANMs) <span id="id1">[<a class="reference internal" href="../bibliography.html#id4">PMJScholkopf14</a>]</span>. In the case of an ANM, each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2a72533b-de69-4e7a-807f-e73ae5895cc0">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-2a72533b-de69-4e7a-807f-e73ae5895cc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-49ce78e4-e515-47e9-8d76-156b8a8e9086">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-49ce78e4-e515-47e9-8d76-156b8a8e9086" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. We can easily see that when the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
@@ -476,8 +476,8 @@ document.write(`
 <section id="example-with-nonlinear-functions">
 <h3><span class="section-number">4.2.1. </span>Example with nonlinear functions<a class="headerlink" href="#example-with-nonlinear-functions" title="Link to this heading">#</a></h3>
 <p>Let us consider the simple example with two variables of temperature and electricity load, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d5e8ce3-9584-438d-bdef-4a6ddc7f2bcc">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-6d5e8ce3-9584-438d-bdef-4a6ddc7f2bcc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1f7bf29c-0684-4844-89d2-a57aeec4decf">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-1f7bf29c-0684-4844-89d2-a57aeec4decf" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \end{align}\]</div>
@@ -530,8 +530,8 @@ document.write(`
 <h3><span class="section-number">4.2.2. </span>Full RESIT example<a class="headerlink" href="#full-resit-example" title="Link to this heading">#</a></h3>
 <p>We now try to apply the RESIT approach to a slightly more complex example, where some of the relationships are <strong>nonlinear</strong>.</p>
 <p>Let us assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-457f1c02-8865-4c20-bcfc-e9334b768086">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-457f1c02-8865-4c20-bcfc-e9334b768086" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-44e09936-9872-4752-9e21-e4f364a4fc20">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-44e09936-9872-4752-9e21-e4f364a4fc20" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \text{carbon emissions} &amp;= 1.5 \times \text{electricity load} + \sin{\text{temperature}} + e_c \\
@@ -565,7 +565,7 @@ document.write(`
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Generating synthetic data</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># average temperature in Celsius</span>
 <span class="n">electricity_load</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperatures</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">70</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Quadratic relationship for U-shape</span>
 <span class="n">carbon_emissions</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span> <span class="n">electricity_load</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">temperatures</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
@@ -587,7 +587,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lingam</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
 
-<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">RESIT</span><span class="p">(</span><span class="n">regressor</span><span class="o">=</span><span class="n">rf</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">make_dot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
@@ -595,7 +595,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/efb9307f26be3eb7c25f064d575c70803c952534ad47c218ffae2c9b6cd223ab.svg" src="../_images/efb9307f26be3eb7c25f064d575c70803c952534ad47c218ffae2c9b6cd223ab.svg" /></div>
+<img alt="../_images/7ad5fb46a68bae00e11f9c9d3c8ce93222935580d008d866facfc8ea3300d158.svg" src="../_images/7ad5fb46a68bae00e11f9c9d3c8ce93222935580d008d866facfc8ea3300d158.svg" /></div>
 </div>
 <section id="bootstrapping">
 <h4><span class="section-number">4.2.2.1. </span>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h4>
@@ -608,75 +608,16 @@ document.write(`
 
 <span class="n">replications</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_sampling</span><span class="o">=</span><span class="n">replications</span><span class="p">)</span>
-<span class="n">cdc</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_causal_direction_counts</span><span class="p">(</span><span class="n">n_directions</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">min_causal_effect</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">split_by_causal_effect_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cdc</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_causal_direction_counts</span><span class="p">(</span><span class="n">n_directions</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">min_causal_effect</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">split_by_causal_effect_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">print_causal_directions</span><span class="p">(</span><span class="n">cdc</span><span class="p">,</span> <span class="n">replications</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">print_causal_directions</span><span class="p">,</span> <span class="n">print_dagc</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">replications</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bootstrap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_sampling</span><span class="o">=</span><span class="n">replications</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">cdc</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_causal_direction_counts</span><span class="p">(</span><span class="n">n_directions</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">min_causal_effect</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">split_by_causal_effect_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">print_causal_directions</span><span class="p">(</span><span class="n">cdc</span><span class="p">,</span> <span class="n">replications</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/lingam/bootstrap.py:49,</span> in <span class="ni">BootstrapMixin.bootstrap</span><span class="nt">(self, X, n_sampling)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sampling</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span>     <span class="n">resampled_X</span><span class="p">,</span> <span class="n">resampled_index</span> <span class="o">=</span> <span class="n">resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">49</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">resampled_X</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="n">adjacency_matrices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_adjacency_matrix</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>     <span class="c1"># Calculate total effects</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/lingam/resit.py:75,</span> in <span class="ni">RESIT.fit</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="c1"># Determine topological order</span>
-<span class="ne">---&gt; </span><span class="mi">75</span> <span class="n">pa</span><span class="p">,</span> <span class="n">pi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_order</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="c1"># Remove superfluous edges</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="n">pa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_edges</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pa</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/lingam/resit.py:109,</span> in <span class="ni">RESIT._estimate_order</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="n">residual</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">predictors</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="c1"># Measure dependence between residuals and {Xi}</span>
-<span class="ne">--&gt; </span><span class="mi">109</span>     <span class="n">hsic_stat</span><span class="p">,</span> <span class="n">hsic_p</span> <span class="o">=</span> <span class="n">hsic_test_gamma</span><span class="p">(</span><span class="n">residual</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">predictors</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="n">hsic_stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hsic_stat</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="n">k</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">hsic_stats</span><span class="p">)]</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/lingam/hsic.py:145,</span> in <span class="ni">hsic_test_gamma</span><span class="nt">(X, Y, bw_method)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="c1"># test statistic m*HSICb under H1</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">145</span> <span class="n">test_stat</span> <span class="o">=</span> <span class="n">hsic_teststat</span><span class="p">(</span><span class="n">Kc</span><span class="p">,</span> <span class="n">Lc</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span> <span class="n">var</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="n">Lc</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span> <span class="c1"># second subtracted term is bias correction</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/lingam/hsic.py:98,</span> in <span class="ni">hsic_teststat</span><span class="nt">(Kc, Lc, n)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;get the HSIC statistic.</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span><span class="sd"> Parameters</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span><span class="sd">     the HSIC statistic.</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="c1"># test statistic m*HSICb under H1</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Kc</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">Lc</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/numpy/core/fromnumeric.py:2172,</span> in <span class="ni">_sum_dispatcher</span><span class="nt">(a, axis, dtype, out, keepdims, initial, where)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2102</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">2103</span><span class="sd">     Clip (limit) the values in an array.</span>
-<span class="g g-Whitespace">   </span><span class="mi">2104</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2167</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">2168</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">2169</span>     <span class="k">return</span> <span class="n">_wrapfunc</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;clip&#39;</span><span class="p">,</span> <span class="n">a_min</span><span class="p">,</span> <span class="n">a_max</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2172</span> <span class="k">def</span> <span class="nf">_sum_dispatcher</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2173</span>                     <span class="n">initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">2174</span>     <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2177</span> <span class="nd">@array_function_dispatch</span><span class="p">(</span><span class="n">_sum_dispatcher</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2178</span> <span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">_NoValue</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2179</span>         <span class="n">initial</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">_NoValue</span><span class="p">):</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>electricity load &lt;--- temperatures (b&gt;0) (100.0%)
+carbon emissions &lt;--- temperatures (b&gt;0) (100.0%)
+electricity load &lt;--- carbon emissions (b&gt;0) (50.0%)
+carbon emissions &lt;--- electricity load (b&gt;0) (50.0%)
 </pre></div>
 </div>
 </div>
@@ -689,14 +630,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DAG[0]: 60.0%
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DAG[0]: 50.0%
 	electricity load &lt;--- temperatures (b&gt;0)
 	carbon emissions &lt;--- temperatures (b&gt;0)
 	carbon emissions &lt;--- electricity load (b&gt;0)
-DAG[1]: 20.0%
-	electricity load &lt;--- temperatures (b&gt;0)
-	carbon emissions &lt;--- temperatures (b&gt;0)
-DAG[2]: 20.0%
+DAG[1]: 50.0%
 	electricity load &lt;--- temperatures (b&gt;0)
 	electricity load &lt;--- carbon emissions (b&gt;0)
 	carbon emissions &lt;--- temperatures (b&gt;0)
