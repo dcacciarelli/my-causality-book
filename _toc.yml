@@ -11,7 +11,6 @@ parts:
   chapters:
   - file: notebooks/correlation_vs_causation
   - file: notebooks/basic_dag_structures
-  # - file: notebooks/independence_semiparametric
   
 - caption: Semi-parametric approaches
   numbered: true 
