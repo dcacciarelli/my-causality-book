@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Additive noise model (ANM): RESIT estimation &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>6. Nonlinear models &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/semiparametric_resit';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Time series" href="semiparametric_varlingam.html" />
-    <link rel="prev" title="Linear non-Gaussian acyclic model (LiNGAM)" href="semiparametric_lingam.html" />
+    <link rel="next" title="7. Time series models" href="semiparametric_varlingam.html" />
+    <link rel="prev" title="5. Linear models" href="semiparametric_lingam.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,11 +178,22 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">Linear models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Nonlinear models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">Time series</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">Structural breaks</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Key concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Why studying causal inference?</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">3. Basic causal structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="independence_semiparametric.html">4. Independence-based vs. semi-parametric discovery</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">5. Linear models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Nonlinear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">7. Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">8. Time series with structural breaks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 
@@ -369,7 +380,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Additive noise model (ANM): RESIT estimation</h1>
+    <h1>Nonlinear models</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -379,10 +390,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">Residual analysis: nonlinearities with Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">RESIT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">6.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">6.2.1. Residual analysis: nonlinearities with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">6.2.2. RESIT</a></li>
 </ul>
 </li>
 </ul>
@@ -396,20 +407,20 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="additive-noise-model-anm-resit-estimation">
-<h1>Additive noise model (ANM): RESIT estimation<a class="headerlink" href="#additive-noise-model-anm-resit-estimation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-models">
+<h1><span class="section-number">6. </span>Nonlinear models<a class="headerlink" href="#nonlinear-models" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>In some cases, the presence of nonlinearities can be beneficial for causal discovery, as it allows the identification of more aspects of the data-generating process (similarly to the non-Gaussianity). Indeed, non-invertible functional relationships between the observed variables can provide clues to the generating causal model. In the case of nonlinear models with additive noise, almost any nonlinearities (invertible or not) will typically yield identifiable models.</p>
 <p>Each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b92cf6cb-092c-4c95-abf0-231009e33592">
-<span class="eqno">(8)<a class="headerlink" href="#equation-b92cf6cb-092c-4c95-abf0-231009e33592" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cc85152f-c15d-4973-8c1f-0d33f9b79d4d">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-cc85152f-c15d-4973-8c1f-0d33f9b79d4d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. When the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
 </section>
 <section id="estimation">
-<h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>The <strong>regression with subsequent independence test (RESIT)</strong> approach follows the intuition saw in the LiNGAM case, where we saw that the residuals in the anti-causal direction are not independent of the input variable if the noise is non-Gaussian. With nonlinear additive noise, this property will hold also in the case of Gaussian noise. The main steps are:</p>
 <ol class="arabic simple">
 <li><p>Test whether <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are statistically independent.</p></li>
@@ -423,7 +434,7 @@ document.write(`
 <li><p>Test in a similar way if the reverse model <span class="math notranslate nohighlight">\(x = g(y) + e\)</span> fits the data.</p></li>
 </ol>
 <section id="residual-analysis-nonlinearities-with-gaussian-errors">
-<h3>Residual analysis: nonlinearities with Gaussian errors<a class="headerlink" href="#residual-analysis-nonlinearities-with-gaussian-errors" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Residual analysis: nonlinearities with Gaussian errors<a class="headerlink" href="#residual-analysis-nonlinearities-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -487,7 +498,7 @@ document.write(`
 </div>
 </section>
 <section id="resit">
-<h3>RESIT<a class="headerlink" href="#resit" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span>RESIT<a class="headerlink" href="#resit" title="Link to this heading">#</a></h3>
 <p>We can use it with any regression model. Here, we will try it with a <strong>random forest</strong> and a <strong>gaussian process regressor</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -557,7 +568,163 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/837e3af158b499415ce7798b9f19413ba245a64a4bac1ecbe9d7b38e53a7669c.svg" src="../_images/837e3af158b499415ce7798b9f19413ba245a64a4bac1ecbe9d7b38e53a7669c.svg" /></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">gpr</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">WhiteKernel</span><span class="p">()</span> <span class="o">+</span> <span class="n">RBF</span><span class="p">(),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_restarts_optimizer</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">RESIT</span><span class="p">(</span><span class="n">regressor</span><span class="o">=</span><span class="n">gpr</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">model</span><span class="o">.</span><span class="n">adjacency_matrix_</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">make_dot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/lingam/resit.py:75,</span> in <span class="ni">RESIT.fit</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="c1"># Determine topological order</span>
+<span class="ne">---&gt; </span><span class="mi">75</span> <span class="n">pa</span><span class="p">,</span> <span class="n">pi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_order</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="c1"># Remove superfluous edges</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="n">pa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_edges</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pa</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/lingam/resit.py:106,</span> in <span class="ni">RESIT._estimate_order</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>     <span class="c1"># Regress Xk on {Xi}</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="n">predictors</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">S</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">k</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">106</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">predictors</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="n">residual</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">predictors</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span>     <span class="c1"># Measure dependence between residuals and {Xi}</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/sklearn/base.py:1474,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1467</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1469</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1470</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1471</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1472</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1473</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1474</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/sklearn/gaussian_process/_gpr.py:325,</span> in <span class="ni">GaussianProcessRegressor.fit</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_restarts_optimizer</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>         <span class="n">theta_initial</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">bounds</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>         <span class="n">optima</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">325</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_constrained_optimization</span><span class="p">(</span><span class="n">obj_func</span><span class="p">,</span> <span class="n">theta_initial</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span> <span class="c1"># Select result from run with minimal (negative) log-marginal</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span> <span class="c1"># likelihood</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span> <span class="n">lml_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">optima</span><span class="p">))</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/sklearn/gaussian_process/_gpr.py:656,</span> in <span class="ni">GaussianProcessRegressor._constrained_optimization</span><span class="nt">(self, obj_func, initial_theta, bounds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span> <span class="k">def</span> <span class="nf">_constrained_optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_func</span><span class="p">,</span> <span class="n">initial_theta</span><span class="p">,</span> <span class="n">bounds</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">==</span> <span class="s2">&quot;fmin_l_bfgs_b&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">656</span>         <span class="n">opt_res</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span>             <span class="n">obj_func</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span>             <span class="n">initial_theta</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span>             <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">660</span>             <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">661</span>             <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>         <span class="n">_check_optimize_result</span><span class="p">(</span><span class="s2">&quot;lbfgs&quot;</span><span class="p">,</span> <span class="n">opt_res</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">664</span>         <span class="n">theta_opt</span><span class="p">,</span> <span class="n">func_min</span> <span class="o">=</span> <span class="n">opt_res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">opt_res</span><span class="o">.</span><span class="n">fun</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_minimize.py:710,</span> in <span class="ni">minimize</span><span class="nt">(fun, x0, args, method, jac, hess, hessp, bounds, constraints, tol, callback, options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">_minimize_newtoncg</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">hess</span><span class="p">,</span> <span class="n">hessp</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>                              <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="k">elif</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;l-bfgs-b&#39;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">710</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">_minimize_lbfgsb</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span>                            <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span> <span class="k">elif</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;tnc&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">_minimize_tnc</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>                         <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_lbfgsb_py.py:365,</span> in <span class="ni">_minimize_lbfgsb</span><span class="nt">(fun, x0, args, jac, bounds, disp, maxcor, ftol, gtol, eps, maxfun, maxiter, iprint, callback, maxls, finite_diff_rel_step, **unknown_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span> <span class="n">task_str</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span> <span class="k">if</span> <span class="n">task_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;FG&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="c1"># The minimization routine wants f and g at the current x.</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>     <span class="c1"># Note that interruptions due to maxfun are postponed</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span>     <span class="c1"># until the completion of the current minimization iteration.</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span>     <span class="c1"># Overwrite f and g:</span>
+<span class="ne">--&gt; </span><span class="mi">365</span>     <span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">func_and_grad</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span> <span class="k">elif</span> <span class="n">task_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;NEW_X&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">367</span>     <span class="c1"># new iteration</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span>     <span class="n">n_iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:285,</span> in <span class="ni">ScalarFunction.fun_and_grad</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_update_x_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">285</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_grad</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:251,</span> in <span class="ni">ScalarFunction._update_fun</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span> <span class="k">def</span> <span class="nf">_update_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">251</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun_impl</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>         <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:155,</span> in <span class="ni">ScalarFunction.__init__.&lt;locals&gt;.update_fun</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="k">def</span> <span class="nf">update_fun</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">155</span>     <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">fun_wrapped</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_differentiable_functions.py:137,</span> in <span class="ni">ScalarFunction.__init__.&lt;locals&gt;.fun_wrapped</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="bp">self</span><span class="o">.</span><span class="n">nfev</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="c1"># Send a copy because the user may overwrite it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="c1"># Overwriting results in undefined behaviour because</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="c1"># fun(self.x) will change self.x, with the two no longer linked.</span>
+<span class="ne">--&gt; </span><span class="mi">137</span> <span class="n">fx</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="c1"># Make sure the function returns a true scalar</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">fx</span><span class="p">):</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_optimize.py:77,</span> in <span class="ni">MemoizeJac.__call__</span><span class="nt">(self, x, *args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span><span class="w">     </span><span class="sd">&quot;&quot;&quot; returns the function value &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">77</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_compute_if_needed</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/optimize/_optimize.py:71,</span> in <span class="ni">MemoizeJac._compute_if_needed</span><span class="nt">(self, x, *args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">jac</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">71</span>     <span class="n">fg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="bp">self</span><span class="o">.</span><span class="n">jac</span> <span class="o">=</span> <span class="n">fg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">fg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/sklearn/gaussian_process/_gpr.py:297,</span> in <span class="ni">GaussianProcessRegressor.fit.&lt;locals&gt;.obj_func</span><span class="nt">(theta, eval_gradient)</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span> <span class="k">def</span> <span class="nf">obj_func</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">eval_gradient</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="k">if</span> <span class="n">eval_gradient</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">297</span>         <span class="n">lml</span><span class="p">,</span> <span class="n">grad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_marginal_likelihood</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span>             <span class="n">theta</span><span class="p">,</span> <span class="n">eval_gradient</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">clone_kernel</span><span class="o">=</span><span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="k">return</span> <span class="o">-</span><span class="n">lml</span><span class="p">,</span> <span class="o">-</span><span class="n">grad</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/sklearn/gaussian_process/_gpr.py:587,</span> in <span class="ni">GaussianProcessRegressor.log_marginal_likelihood</span><span class="nt">(self, theta, eval_gradient, clone_kernel)</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> <span class="n">K</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">diag_indices_from</span><span class="p">(</span><span class="n">K</span><span class="p">)]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span>
+<span class="g g-Whitespace">    </span><span class="mi">586</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">587</span>     <span class="n">L</span> <span class="o">=</span> <span class="n">cholesky</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="n">GPR_CHOLESKY_LOWER</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span> <span class="k">except</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">LinAlgError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span>     <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="k">if</span> <span class="n">eval_gradient</span> <span class="k">else</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/linalg/_decomp_cholesky.py:89,</span> in <span class="ni">cholesky</span><span class="nt">(a, lower, overwrite_a, check_finite)</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="k">def</span> <span class="nf">cholesky</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span><span class="sd">     Compute the Cholesky decomposition of a matrix.</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">89</span>     <span class="n">c</span><span class="p">,</span> <span class="n">lower</span> <span class="o">=</span> <span class="n">_cholesky</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="n">lower</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="n">overwrite_a</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span>                          <span class="n">check_finite</span><span class="o">=</span><span class="n">check_finite</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="k">return</span> <span class="n">c</span>
+
+<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/linalg/_decomp_cholesky.py:35,</span> in <span class="ni">_cholesky</span><span class="nt">(a, lower, overwrite_a, clean, check_finite)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">overwrite_a</span> <span class="o">=</span> <span class="n">overwrite_a</span> <span class="ow">or</span> <span class="n">_datacopied</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">potrf</span><span class="p">,</span> <span class="o">=</span> <span class="n">get_lapack_funcs</span><span class="p">((</span><span class="s1">&#39;potrf&#39;</span><span class="p">,),</span> <span class="p">(</span><span class="n">a1</span><span class="p">,))</span>
+<span class="ne">---&gt; </span><span class="mi">35</span> <span class="n">c</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">potrf</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="n">lower</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="n">overwrite_a</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="n">clean</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">if</span> <span class="n">info</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-th leading minor of the array is not positive &quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>                       <span class="s2">&quot;definite&quot;</span> <span class="o">%</span> <span class="n">info</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -599,7 +766,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Linear non-Gaussian acyclic model (LiNGAM)</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Linear models</p>
       </div>
     </a>
     <a class="right-next"
@@ -607,7 +774,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Time series</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Time series models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -627,10 +794,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">Residual analysis: nonlinearities with Gaussian errors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">RESIT</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">6.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residual-analysis-nonlinearities-with-gaussian-errors">6.2.1. Residual analysis: nonlinearities with Gaussian errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resit">6.2.2. RESIT</a></li>
 </ul>
 </li>
 </ul>
