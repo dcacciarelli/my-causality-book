@@ -529,11 +529,11 @@ document.write(`
 <section id="structural-causal-model-scm">
 <h3><span class="section-number">2.3.1. </span>Structural causal model (SCM)<a class="headerlink" href="#structural-causal-model-scm" title="Link to this heading">#</a></h3>
 <p>In the above example, we generated data from the causal graph representing the immorality. However, to generate observations, we assumed knowledge about the <strong>structural equations</strong> governing the system. Which, in that case, were given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-efd54677-be65-412d-ae89-c56ed75cfae8">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-efd54677-be65-412d-ae89-c56ed75cfae8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-111ab8cd-2fe0-46f7-9434-caccece8af0d">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-111ab8cd-2fe0-46f7-9434-caccece8af0d" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{wind energy} &amp;= \mathcal{N}(0,1) \\
     \text{outdated grid} &amp;= \mathcal{N}(0,1) \\
-    \text{balancing costs} &amp;= 2 \text{wind energy} + 1.5 \text{outdated grid} + \mathcal{N}(0, 0.1) \\
+    \text{balancing costs} &amp;= 2 \times \text{wind energy} + 1.5 \times \text{outdated grid} + \mathcal{N}(0, 0.1) \\
 \end{align}\]</div>
 <p>This is the <strong>structural causal model (SCM)</strong>, from which we can see how wind energy and outdated grid are not causally related.</p>
 </section>
