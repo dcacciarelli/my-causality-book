@@ -21,7 +21,7 @@ This is a very applied book, for more theoretical and technical explanations, we
 - [Statistical Causal Discovery: LiNGAM Approach](https://link.springer.com/book/10.1007/978-4-431-55784-5)
 - [Introduction to Causal Inference from a Machine Learning Perspective](https://www.bradyneal.com/causal-inference-course)
 - [Causality: Models, Reasoning and Inference](https://dl.acm.org/doi/book/10.5555/1642718)
-- [Causal ML Book](https://www.causalml-book.org)
+- [Elements of Causal Inference](https://mitpress.mit.edu/9780262037310/elements-of-causal-inference/)
 
 ```
 
