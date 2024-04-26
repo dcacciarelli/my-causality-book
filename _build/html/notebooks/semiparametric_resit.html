@@ -435,7 +435,6 @@ document.write(`
 
 <span class="c1"># Temperature vs Electricity Load with hexbin plot</span>
 <span class="n">hb1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Electricity Load&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">cb1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Temperature vs Electricity Load&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Load (MW)&#39;</span><span class="p">)</span>
@@ -446,15 +445,15 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Electricity Load (MW)&#39;)
 </pre></div>
 </div>
-<img alt="../_images/a7eb598a99b82b59a5952ecd2d3df356994262b042bec68405eacb4deff43fad.png" src="../_images/a7eb598a99b82b59a5952ecd2d3df356994262b042bec68405eacb4deff43fad.png" />
+<img alt="../_images/8465beff073ed934c20ad043b5b194311ac49c30f1ac5852877b63cb07d03df1.png" src="../_images/8465beff073ed934c20ad043b5b194311ac49c30f1ac5852877b63cb07d03df1.png" />
 </div>
 </div>
 <p>It turns out that <strong>the presence of nonlinearities is beneficial for the causal discovery</strong>. Just like non-Gaussian error distributions, nonlinear functional relations introduce asymmetries in the data distributions that can be exploited to infer the causal structure. Indeed, non-invertible functional relationships between the observed variables can provide clues to the generating causal model.</p>
 <section id="additive-noise-models-anms">
 <h2><span class="section-number">4.1. </span>Additive noise models (ANMs)<a class="headerlink" href="#additive-noise-models-anms" title="Link to this heading">#</a></h2>
 <p>One of the most popular approaches to causal discovery with nonlinear models is to use additive noise models (ANMs) <span id="id1">[<a class="reference internal" href="../bibliography.html#id4">PMJScholkopf14</a>]</span>. In the case of an ANM, each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0df53d4-4fba-42db-b8d5-c21ac2df8df1">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-a0df53d4-4fba-42db-b8d5-c21ac2df8df1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b206c074-e613-4366-855e-a801b60746e3">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-b206c074-e613-4366-855e-a801b60746e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. We can easily see that when the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
@@ -476,8 +475,8 @@ document.write(`
 <section id="example-with-nonlinear-functions">
 <h3><span class="section-number">4.2.1. </span>Example with nonlinear functions<a class="headerlink" href="#example-with-nonlinear-functions" title="Link to this heading">#</a></h3>
 <p>Let us consider the simple example with two variables of temperature and electricity load, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2866d8cb-6e15-4981-8a7b-dc3c41c5867d">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-2866d8cb-6e15-4981-8a7b-dc3c41c5867d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-73deca99-54b4-4864-9076-f1072f0d9966">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-73deca99-54b4-4864-9076-f1072f0d9966" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \end{align}\]</div>
@@ -530,8 +529,8 @@ document.write(`
 <h3><span class="section-number">4.2.2. </span>Full RESIT example<a class="headerlink" href="#full-resit-example" title="Link to this heading">#</a></h3>
 <p>We now try to apply the RESIT approach to a slightly more complex example, where some of the relationships are <strong>nonlinear</strong>.</p>
 <p>Let us assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3a907a45-e32d-47ba-a399-eb8929b52a16">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-3a907a45-e32d-47ba-a399-eb8929b52a16" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d8d8a971-66e6-4468-a93f-cfdf1fdadc95">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-d8d8a971-66e6-4468-a93f-cfdf1fdadc95" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \text{thermal constraints} &amp;= 1.5 \times \text{electricity load} + \sin{(\text{temperature})} + e_c \\
