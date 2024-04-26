@@ -427,8 +427,8 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9e6822c-de54-45fa-b878-9d9b33e1ced2">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-d9e6822c-de54-45fa-b878-9d9b33e1ced2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-86ddeba7-19b7-4cc9-8be1-34f5cb0e1d2e">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-86ddeba7-19b7-4cc9-8be1-34f5cb0e1d2e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -456,8 +456,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec0d328a-480c-4aee-9157-f9ea7395c4b0">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-ec0d328a-480c-4aee-9157-f9ea7395c4b0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-919c6141-0d79-4df4-9489-38c491015f1c">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-919c6141-0d79-4df4-9489-38c491015f1c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -533,8 +533,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65b8a82b-7181-4cf1-9504-820f927fb533">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-65b8a82b-7181-4cf1-9504-820f927fb533" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5a9f54ff-7b22-4145-8fba-496d2cdc2395">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-5a9f54ff-7b22-4145-8fba-496d2cdc2395" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
@@ -565,7 +565,7 @@ document.write(`
 <span class="c1"># All the data</span>
 <span class="n">hb1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data_immorality</span><span class="p">[</span><span class="s1">&#39;forecast errors&#39;</span><span class="p">],</span> <span class="n">data_immorality</span><span class="p">[</span><span class="s1">&#39;outages&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="c1"># cb1 = fig.colorbar(hb1, ax=axes[0])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Forecast errors vs outages </span><span class="se">\n</span><span class="s1">(Immorality, not conditioned)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Forecast errors vs outages </span><span class="se">\n</span><span class="s1">(not conditioned)&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Forecast errors&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Outages&#39;</span><span class="p">)</span>
 
@@ -573,7 +573,7 @@ document.write(`
 <span class="n">data_immorality_conditioned</span> <span class="o">=</span> <span class="n">data_immorality</span><span class="p">[</span><span class="n">data_immorality</span><span class="p">[</span><span class="s1">&#39;balancing costs&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">hb2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data_immorality_conditioned</span><span class="p">[</span><span class="s1">&#39;forecast errors&#39;</span><span class="p">],</span> <span class="n">data_immorality_conditioned</span><span class="p">[</span><span class="s1">&#39;outages&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
 <span class="c1"># cb2 = fig.colorbar(hb2, ax=axes[1])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Forecast errors vs outages </span><span class="se">\n</span><span class="s1">(Immorality, conditioned on balancing costs greater than 5)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Forecast errors vs outages </span><span class="se">\n</span><span class="s1">(conditioning on balancing costs &gt; 5)&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Forecast errors&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Outages&#39;</span><span class="p">)</span>
 
@@ -585,7 +585,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Outages&#39;)
 </pre></div>
 </div>
-<img alt="../_images/e3c820e3d9b668dec2043dfde8d6c68558cda375cb7162c536bcddf7fec84b1c.png" src="../_images/e3c820e3d9b668dec2043dfde8d6c68558cda375cb7162c536bcddf7fec84b1c.png" />
+<img alt="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" src="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" />
 </div>
 </div>
 <p>We can observe how conditioning on a collider introduces spurious correlations in the data. Outages and forecast errors are <strong>not causally related</strong> but, when conditioning on the balancing costs, they <strong>appear to be correlated</strong>.</p>

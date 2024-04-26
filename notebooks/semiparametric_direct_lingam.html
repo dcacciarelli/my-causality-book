@@ -417,58 +417,58 @@ document.write(`
 <section id="the-lingam-model">
 <h2><span class="section-number">3.1. </span>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3e0c21b-38c5-46b5-8c96-2a9459152eed">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-b3e0c21b-38c5-46b5-8c96-2a9459152eed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4f0aedc8-2db3-45ee-ae14-f6912711a442">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-4f0aedc8-2db3-45ee-ae14-f6912711a442" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4738b2a6-498e-4ca5-92a8-d16805789710">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-4738b2a6-498e-4ca5-92a8-d16805789710" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ece0ab7-4dce-4750-82b4-2d0625885652">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-7ece0ab7-4dce-4750-82b4-2d0625885652" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
-<p>Let us consider a simple <strong>example</strong> with three variables:</p>
+<p>Let us consider a simple <strong>example</strong> with three variables. To ease the introduction of the LiNGAM model, we will use the variables from the chain example of the previous chapters, where:</p>
 <ul class="simple">
-<li><p><strong>Electricity prices</strong> are directly influences by wind generation.</p></li>
-<li><p><strong>Carbon emissions</strong> are influenced by electricity prices, assuming that changes in pricing can affect energy consumption patterns and emissions.</p></li>
-<li><p><strong>Wind generation</strong> is influenced by external factors and serves as an exogenous variable in this model.</p></li>
+<li><p><strong>Wind forecast errors</strong> are directly influences by sudden changes in the weather.</p></li>
+<li><p><strong>Balancing costs</strong> are influenced by wind forecast errors. For example, if the system is short because it was expecting a larger production from wind farms, it might incur balancing costs to procure electricity from alternative sources.</p></li>
+<li><p><strong>Weather fluctuarions</strong> are influenced by external factors and serve as an exogenous variable in this model.</p></li>
 </ul>
 <section id="strucural-equations">
 <h3><span class="section-number">3.1.1. </span>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
-<p>If we know the coefficients of those causal relations, the SCM can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7e11527-3527-4d1f-bf95-8b7abc92d5c4">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-b7e11527-3527-4d1f-bf95-8b7abc92d5c4" title="Permalink to this equation">#</a></span>\[\begin{align}
-\text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
-\text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
-\text{wind generation} &amp;= e_w \\
+<p>If we know the coefficients of those causal relations, the <strong>SCM</strong> can be written as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9ca81db6-6665-42c0-935e-1e29116d8faf">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-9ca81db6-6665-42c0-935e-1e29116d8faf" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
+\text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
+\text{weather fluctuations} &amp;= e_w \\
 \end{align}\]</div>
 </section>
 <section id="matrix-notation">
 <h3><span class="section-number">3.1.2. </span>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
 <p>Then, in matrix notation, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4c87397-1592-48fd-97c0-bebdb3469824">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-b4c87397-1592-48fd-97c0-bebdb3469824" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-95b2c34f-08f7-4620-bbfa-61bc0f1cc610">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-95b2c34f-08f7-4620-bbfa-61bc0f1cc610" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
-    \text{electricity prices} \\
-    \text{carbon emissions} \\
-    \text{wind generation}
+    \text{wind forecast errors} \\
+    \text{balancing costs} \\
+    \text{weather fluctuations}
     \end{array}\right]
     =
     \left[\begin{array}{ccc}
-    0 &amp; 0 &amp; -1 \\
-    -1.5 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 1.5 \\
+    1.2 &amp; 0 &amp; 0 \\
     0 &amp; 0 &amp; 0
     \end{array}\right]
     \left[\begin{array}{c} 
-    \text{electricity prices} \\
-    \text{carbon emissions} \\
-    \text{wind generation}
+    \text{wind forecast errors} \\
+    \text{balancing costs} \\
+    \text{weather fluctuations}
     \end{array}\right]
     +
     \left[\begin{array}{c}
-    e_p \\
-    e_c \\
+    e_f \\
+    e_b \\
     e_w
     \end{array}\right]
 \end{equation}\]</div>
@@ -476,41 +476,41 @@ document.write(`
 <section id="causal-ordering">
 <h3><span class="section-number">3.1.3. </span>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8238abe-bd77-4087-86f6-31ea8aaf992c">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-a8238abe-bd77-4087-86f6-31ea8aaf992c" title="Permalink to this equation">#</a></span>\[\begin{align}
-\text{wind generation} &amp;= e_w \\
-\text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
-\text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
+<div class="amsmath math notranslate nohighlight" id="equation-2d4f5d89-32e3-423d-8acb-a479daddc277">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-2d4f5d89-32e3-423d-8acb-a479daddc277" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{weather fluctuations} &amp;= e_w \\
+\text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
+\text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-587b3da5-a110-43f7-8fe9-f83cdfe43c73">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-587b3da5-a110-43f7-8fe9-f83cdfe43c73" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-659fa700-0b77-4666-a710-585c7f4c84ee">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-659fa700-0b77-4666-a710-585c7f4c84ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
-    \text{wind generation} \\
-    \text{electricity prices} \\
-    \text{carbon emissions}
+    \text{weather fluctuations} \\
+    \text{wind forecast errors} \\
+    \text{balancing costs}
     \end{array}\right]
     =
     \left[\begin{array}{ccc}
     0 &amp; 0 &amp; 0 \\
-    -1 &amp; 0 &amp; 0 \\
-    0 &amp; -1.5 &amp; 0
+    1.5 &amp; 0 &amp; 0 \\
+    0 &amp; 1.2 &amp; 0
     \end{array}\right]
     \left[\begin{array}{c} 
-    \text{wind generation} \\
-    \text{electricity prices} \\
-    \text{carbon emissions}
+    \text{weather fluctuations} \\
+    \text{wind forecast errors} \\
+    \text{balancing costs}
     \end{array}\right]
     +
     \left[\begin{array}{c}
     e_w \\
-    e_p \\
-    e_c
+    e_f \\
+    e_b
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83fae966-969f-40f3-8574-16df6c2a0fd9">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-83fae966-969f-40f3-8574-16df6c2a0fd9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ffb5e34-5a2b-4a56-b09b-aa14ebd9dfba">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-9ffb5e34-5a2b-4a56-b09b-aa14ebd9dfba" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -520,17 +520,17 @@ document.write(`
 <span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span>
 
 <span class="c1"># Matrix of coefficients (weights)</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-              <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
-              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
 
 <span class="c1"># Plotting causal graph</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind generation&quot;</span><span class="p">,</span> <span class="s2">&quot;electricity prices&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon emissions&quot;</span><span class="p">])</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;weather </span><span class="se">\n</span><span class="s2">fluctuations&quot;</span><span class="p">,</span> <span class="s2">&quot;wind forecast </span><span class="se">\n</span><span class="s2">errors&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7b1f89b19f00cc1a59fbf5a0511dd68408e39e563770fa92b5f7dc8fc865cd0f.svg" src="../_images/7b1f89b19f00cc1a59fbf5a0511dd68408e39e563770fa92b5f7dc8fc865cd0f.svg" /></div>
+<img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 </section>
 </section>
@@ -541,13 +541,13 @@ document.write(`
 <p>The key intuition is that, with non-Gaussian errors, the <strong>residuals in the anti-causal direction</strong> will not be independent of the predictor. We will see how this works with a practical example.</p>
 <section id="example-with-gaussian-errors">
 <h3><span class="section-number">3.2.1. </span>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h3>
-<p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6c0c600-622f-42a3-9150-a75105fde9c3">
-<span class="eqno">(3.8)<a class="headerlink" href="#equation-b6c0c600-622f-42a3-9150-a75105fde9c3" title="Permalink to this equation">#</a></span>\[\begin{align}
-\text{wind generation} &amp;= e_w \\
-\text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
+<p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-17854f82-f7b8-4b51-8f76-0100afe958f8">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-17854f82-f7b8-4b51-8f76-0100afe958f8" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{weather fluctuations} &amp;= e_w \\
+\text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \end{align}\]</div>
-<p>We now assume Gaussian errors, so we have that <span class="math notranslate nohighlight">\(e_w, e_p  \sim \mathcal{N}(0, 1)\)</span>.</p>
+<p>We now assume Gaussian errors, so we have that <span class="math notranslate nohighlight">\(e_w, e_f  \sim \mathcal{N}(0, 1)\)</span>.</p>
 <p>We will show that, in this case, by analysing the residuals we cannot understand the true causal direction, because we can both predict the wind from the prices and the prices from the wind.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -558,48 +558,47 @@ document.write(`
 
 <span class="c1"># Synthetic data generation based on the given equations</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">wind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
-<span class="n">price</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
+<span class="n">weather_fluctuations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
+<span class="n">forecast_errors</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">weather_fluctuations</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
 
 <span class="c1"># Prepare the data for regression</span>
-<span class="n">wind_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">wind</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
-<span class="n">price_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
+<span class="n">weather_fluctuations_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">weather_fluctuations</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
+<span class="n">forecast_errors_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">forecast_errors</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
 
 <span class="c1"># Linear regression in the true causal direction (wind -&gt; price)</span>
-<span class="n">true_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">price</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">wind_with_const</span><span class="p">)</span>
+<span class="n">true_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">forecast_errors</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">weather_fluctuations_with_const</span><span class="p">)</span>
 <span class="n">true_model_results</span> <span class="o">=</span> <span class="n">true_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">price_pred</span> <span class="o">=</span> <span class="n">true_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">wind_with_const</span><span class="p">)</span>
-<span class="n">price_residuals</span> <span class="o">=</span> <span class="n">price</span> <span class="o">-</span> <span class="n">price_pred</span>
+<span class="n">forecast_errors_pred</span> <span class="o">=</span> <span class="n">true_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">weather_fluctuations_with_const</span><span class="p">)</span>
+<span class="n">forecast_errors_residuals</span> <span class="o">=</span> <span class="n">forecast_errors</span> <span class="o">-</span> <span class="n">forecast_errors_pred</span>
 
 <span class="c1"># Linear regression in the anti-causal direction (price -&gt; wind)</span>
-<span class="n">anti_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">wind</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">price_with_const</span><span class="p">)</span>
+<span class="n">anti_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">weather_fluctuations</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">forecast_errors_with_const</span><span class="p">)</span>
 <span class="n">anti_model_results</span> <span class="o">=</span> <span class="n">anti_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">wind_pred</span> <span class="o">=</span> <span class="n">anti_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">price_with_const</span><span class="p">)</span>
-<span class="n">wind_residuals</span> <span class="o">=</span> <span class="n">wind</span> <span class="o">-</span> <span class="n">wind_pred</span>
+<span class="n">weather_fluctuations_pred</span> <span class="o">=</span> <span class="n">anti_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">forecast_errors_with_const</span><span class="p">)</span>
+<span class="n">weather_fluctuations_residuals</span> <span class="o">=</span> <span class="n">weather_fluctuations</span> <span class="o">-</span> <span class="n">weather_fluctuations_pred</span>
 
 <span class="c1"># Setting up the plots</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># All the data</span>
-<span class="n">hb1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">wind</span><span class="p">,</span> <span class="n">price_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">cb1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the true causal direction</span><span class="se">\n</span><span class="s1">(Wind -&gt; Price)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wind&#39;</span><span class="p">)</span>
+<span class="n">hb1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">weather_fluctuations</span><span class="p">,</span> <span class="n">forecast_errors_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the true causal direction</span><span class="se">\n</span><span class="s1">(weather fluctuations -&gt; forecast errors)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Weather&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
 
 <span class="c1"># After conditioning</span>
-<span class="n">hb2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">wind_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">cb2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the anti-causal direction</span><span class="se">\n</span><span class="s1">(Price -&gt; Wind)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
+<span class="n">hb2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">forecast_errors</span><span class="p">,</span> <span class="n">weather_fluctuations_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the anti-causal direction</span><span class="se">\n</span><span class="s1">(forecast errors -&gt; weather fluctuations)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Forecast errors&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ace14b9dde692ce984bba175c3c4f0e09cc01b0827b1ebe3f2dd2a91473aa337.png" src="../_images/ace14b9dde692ce984bba175c3c4f0e09cc01b0827b1ebe3f2dd2a91473aa337.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
+</pre></div>
+</div>
+<img alt="../_images/2ff70d97e8aeb316823de2e4f3c5d49baf0ee68b3222dfa10266f2c7655878e8.png" src="../_images/2ff70d97e8aeb316823de2e4f3c5d49baf0ee68b3222dfa10266f2c7655878e8.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
@@ -610,63 +609,68 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Synthetic data generation based on the given equations</span>
-<span class="n">wind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
-<span class="n">price</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">weather_fluctuations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Predictor variable</span>
+<span class="n">forecast_errors</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">weather_fluctuations</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Response variable with non-Gaussian noise (uniform)</span>
 
 <span class="c1"># Prepare the data for regression</span>
-<span class="n">wind_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">wind</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
-<span class="n">price_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">price</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
+<span class="n">weather_fluctuations_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">weather_fluctuations</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
+<span class="n">forecast_errors_with_const</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">forecast_errors</span><span class="p">)</span>  <span class="c1"># Add a constant term for the intercept</span>
 
 <span class="c1"># Linear regression in the true causal direction (wind -&gt; price)</span>
-<span class="n">true_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">price</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">wind_with_const</span><span class="p">)</span>
+<span class="n">true_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">forecast_errors</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">weather_fluctuations_with_const</span><span class="p">)</span>
 <span class="n">true_model_results</span> <span class="o">=</span> <span class="n">true_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">price_pred</span> <span class="o">=</span> <span class="n">true_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">wind_with_const</span><span class="p">)</span>
-<span class="n">price_residuals</span> <span class="o">=</span> <span class="n">price</span> <span class="o">-</span> <span class="n">price_pred</span>
+<span class="n">forecast_errors_pred</span> <span class="o">=</span> <span class="n">true_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">weather_fluctuations_with_const</span><span class="p">)</span>
+<span class="n">forecast_errors_residuals</span> <span class="o">=</span> <span class="n">forecast_errors</span> <span class="o">-</span> <span class="n">forecast_errors_pred</span>
 
 <span class="c1"># Linear regression in the anti-causal direction (price -&gt; wind)</span>
-<span class="n">anti_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">wind</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">price_with_const</span><span class="p">)</span>
+<span class="n">anti_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">endog</span><span class="o">=</span><span class="n">weather_fluctuations</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">forecast_errors_with_const</span><span class="p">)</span>
 <span class="n">anti_model_results</span> <span class="o">=</span> <span class="n">anti_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">wind_pred</span> <span class="o">=</span> <span class="n">anti_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">price_with_const</span><span class="p">)</span>
-<span class="n">wind_residuals</span> <span class="o">=</span> <span class="n">wind</span> <span class="o">-</span> <span class="n">wind_pred</span>
+<span class="n">weather_fluctuations_pred</span> <span class="o">=</span> <span class="n">anti_model_results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">forecast_errors_with_const</span><span class="p">)</span>
+<span class="n">weather_fluctuations_residuals</span> <span class="o">=</span> <span class="n">weather_fluctuations</span> <span class="o">-</span> <span class="n">weather_fluctuations_pred</span>
 
 <span class="c1"># Setting up the plots</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># All the data</span>
-<span class="n">hb1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">wind</span><span class="p">,</span> <span class="n">price_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">cb1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the true causal direction</span><span class="se">\n</span><span class="s1">(Wind -&gt; Price)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Wind&#39;</span><span class="p">)</span>
+<span class="n">hb1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">weather_fluctuations</span><span class="p">,</span> <span class="n">forecast_errors_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the true causal direction</span><span class="se">\n</span><span class="s1">(weather fluctuations -&gt; forecast errors)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Weather&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
 
 <span class="c1"># After conditioning</span>
-<span class="n">hb2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">wind_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">cb2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">hb2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the anti-causal direction</span><span class="se">\n</span><span class="s1">(Price -&gt; Wind)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
+<span class="n">hb2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">forecast_errors</span><span class="p">,</span> <span class="n">weather_fluctuations_residuals</span><span class="p">,</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals in the anti-causal direction</span><span class="se">\n</span><span class="s1">(forecast errors -&gt; weather fluctuations)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Forecast errors&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f30630824f0d1edb201a0b95784c80bf8dc667a21516a1bcf3ebfd0568ca6316.png" src="../_images/f30630824f0d1edb201a0b95784c80bf8dc667a21516a1bcf3ebfd0568ca6316.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
+</pre></div>
+</div>
+<img alt="../_images/73b806211c74a0f402533beeb35b56bdadadd65abb0b7abc811d2e4d088981c4.png" src="../_images/73b806211c74a0f402533beeb35b56bdadadd65abb0b7abc811d2e4d088981c4.png" />
 </div>
 </div>
 </section>
 <section id="full-lingam-estimation-example">
 <h3><span class="section-number">3.2.3. </span>Full LiNGAM estimation example<a class="headerlink" href="#full-lingam-estimation-example" title="Link to this heading">#</a></h3>
-<p>Now, we try a full estimation example, where we have a slightly more complex causal structure, that we will need to retrieve from observational data.</p>
+<p>Now, we try a full estimation example, where we have a slightly more complex causal structure, that we will need to retrieve from observational data. We now add to the model:</p>
+<ul class="simple">
+<li><p><strong>Outages</strong>: an exogenous variable affecting the balancing costs.</p></li>
+<li><p><strong>heating demand</strong>: a variable affected by changes in the weather, which affects the balancing costs.</p></li>
+</ul>
 <p>Assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41fc2222-055c-4f92-bd4f-11b323d3e650">
-<span class="eqno">(3.9)<a class="headerlink" href="#equation-41fc2222-055c-4f92-bd4f-11b323d3e650" title="Permalink to this equation">#</a></span>\[\begin{align}
-\text{wind generation} &amp;= e_w \\
-\text{regulatory impact} &amp;= e_r \\
-\text{electricity prices} &amp;= -1 \times \text{wind generation} + 0.5 \times \text{regulatory impact} + e_p \\
-\text{energy demand} &amp;= -0.8 \times \text{electricity prices} + e_d \\
-\text{carbon emissions} &amp;= -0.3 \times \text{regulatory impact} + 1.5 \times \text{energy demand} + e_c \\
+<div class="amsmath math notranslate nohighlight" id="equation-3075bed2-ffc0-4cfc-ba23-644841bd18f4">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-3075bed2-ffc0-4cfc-ba23-644841bd18f4" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{weather fluctuations} &amp;= e_w \\
+\text{outages} &amp;= e_o \\
+\text{heating demand} &amp;= 0.3 \times \text{weather flucturations} + e_h \\
+\text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
+\text{balancing costs} &amp;= 1.5 \times \text{outages} + 0.7 \times \text{heating demand} + 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}\]</div>
+<p>where the errors are now assumed to be <strong>uniformly distributed</strong>.</p>
 <p>Then, the true <strong>causal graph</strong> is given by</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -675,8 +679,8 @@ document.write(`
     <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Weather fluctuations</span>
     <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Outages</span>
     <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Heating demand</span>
-    <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Wind forecast errors</span>
-    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>    <span class="c1"># Balancing costs</span>
+    <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Wind forecast errors</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>    <span class="c1"># Balancing costs</span>
 <span class="p">])</span>
 
 <span class="c1"># Plotting causal graph</span>
@@ -686,7 +690,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a32e74fb09c0471e8ac6bd2f7e09de5fbb360141f348dabd1a07e84a53b37b6e.svg" src="../_images/a32e74fb09c0471e8ac6bd2f7e09de5fbb360141f348dabd1a07e84a53b37b6e.svg" /></div>
+<img alt="../_images/09dce491da59bfb8e5ac3eb7f78d7b6bead63bd28d1e8f2ddf843c5810dfacb8.svg" src="../_images/09dce491da59bfb8e5ac3eb7f78d7b6bead63bd28d1e8f2ddf843c5810dfacb8.svg" /></div>
 </div>
 <p>Let us now generate some data from this causal graph.</p>
 <div class="cell docutils container">
@@ -697,29 +701,18 @@ document.write(`
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Number of samples</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
 
 <span class="c1"># Generating synthetic data based on the specified equations with uniform errors</span>
-<span class="n">wind_generation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Wind generation (exogenous)</span>
-<span class="n">regulatory_impact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Regulatory impact (exogenous)</span>
-
-<span class="c1"># Electricity prices influenced by wind generation and regulatory impact</span>
-<span class="n">electricity_prices</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">wind_generation</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">regulatory_impact</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># Energy demand influenced by electricity prices</span>
-<span class="n">energy_demand</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">electricity_prices</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-
-<span class="c1"># Carbon emissions influenced by regulatory impact and energy demand</span>
-<span class="n">carbon_emissions</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">regulatory_impact</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">energy_demand</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">weather_fluctuations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span> 
+<span class="n">outages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">forecast_errors</span> <span class="o">=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">weather_fluctuations</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">heating</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">weather_fluctuations</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">balancing_costs</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">heating</span> <span class="o">+</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">forecast_errors</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">outages</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># Creating a DataFrame to hold the generated data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;wind generation&#39;</span><span class="p">:</span> <span class="n">wind_generation</span><span class="p">,</span>
-    <span class="s1">&#39;regulatory impact&#39;</span><span class="p">:</span> <span class="n">regulatory_impact</span><span class="p">,</span>
-    <span class="s1">&#39;electricity prices&#39;</span><span class="p">:</span> <span class="n">electricity_prices</span><span class="p">,</span>
-    <span class="s1">&#39;energy demand&#39;</span><span class="p">:</span> <span class="n">energy_demand</span><span class="p">,</span>
-    <span class="s1">&#39;carbon emissions&#39;</span><span class="p">:</span> <span class="n">carbon_emissions</span>
-<span class="p">})</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;weather fluctuations&#39;</span><span class="p">:</span> <span class="n">weather_fluctuations</span><span class="p">,</span> <span class="s1">&#39;outages&#39;</span><span class="p">:</span> <span class="n">outages</span><span class="p">,</span> <span class="s1">&#39;wind forecast errors&#39;</span><span class="p">:</span> <span class="n">forecast_errors</span><span class="p">,</span>
+                     <span class="s1">&#39;heating demand&#39;</span><span class="p">:</span> <span class="n">heating</span><span class="p">,</span> <span class="s1">&#39;balancing costs&#39;</span><span class="p">:</span> <span class="n">balancing_costs</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -731,14 +724,14 @@ document.write(`
 
 <span class="n">direct_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
 <span class="n">direct_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0c2e68b2ec1f4547959635b05ccb893f2da742029bde76df3e1a486e82cb768b.svg" src="../_images/0c2e68b2ec1f4547959635b05ccb893f2da742029bde76df3e1a486e82cb768b.svg" /></div>
+<img alt="../_images/2841a14c06717bb8c9daf3f21720453269cbc83feb5df8cceeb55e7ff2c2b9d4.svg" src="../_images/2841a14c06717bb8c9daf3f21720453269cbc83feb5df8cceeb55e7ff2c2b9d4.svg" /></div>
 </div>
-<p>We can see how we successfully recovered the true casual structure.</p>
+<p>We can see how we successfully recovered the true casual structure, even though the model did not find the exact coefficients for the wind forecast errors and heating demand.</p>
 </section>
 </section>
 </section>
