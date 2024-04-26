@@ -388,7 +388,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">5.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-model">5.1. VARLiNGAM model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">5.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">5.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
@@ -407,16 +407,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="time-series-models">
 <h1><span class="section-number">5. </span>Time series models<a class="headerlink" href="#time-series-models" title="Link to this heading">#</a></h1>
-<section id="introduction">
-<h2><span class="section-number">5.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>Let as assume that at each time step <span class="math notranslate nohighlight">\(t\)</span> we observe a vector <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> with <span class="math notranslate nohighlight">\(p\)</span> variables</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe4bf450-5e66-46e0-a1b9-68bfd9197a7c">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-fe4bf450-5e66-46e0-a1b9-68bfd9197a7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>In many cases, the <strong>temporal dimension</strong> introduces complexities that traditional causal models may not adequately address. Particularly in fields like economics, environmental science, and engineering, understanding how variables influence each other both <strong>instantaneously and across time lags</strong> is crucial for predicting future states and designing effective interventions.</p>
+<p>To capture both the immediate and delayed interactions among multiple time-dependent variables, it is important to employ models that can account for these dynamics. We will now introduce an extension of the LiNGAM model, based on <strong>vector autoregression (VAR)</strong> models.</p>
+<section id="varlingam-model">
+<h2><span class="section-number">5.1. </span>VARLiNGAM model<a class="headerlink" href="#varlingam-model" title="Link to this heading">#</a></h2>
+<p>Assume that at each time step <span class="math notranslate nohighlight">\(t\)</span> we observe a vector <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> with <span class="math notranslate nohighlight">\(p\)</span> variables</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5471b8aa-25c0-4cd8-831f-e176a996b772">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-5471b8aa-25c0-4cd8-831f-e176a996b772" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
 \end{equation}\]</div>
 <p>Then, we use the following structural causal model, which considers both the instantaneous (<span class="math notranslate nohighlight">\(\tau = 0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\tau \geq 1\)</span>) causal effects</p>
-<div class="amsmath math notranslate nohighlight" id="equation-61b825af-e1bb-4b17-a8a5-79d9984e8058">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-61b825af-e1bb-4b17-a8a5-79d9984e8058" title="Permalink to this equation">#</a></span>\[\begin{equation} \label{eq:varlingam}
+<div class="amsmath math notranslate nohighlight" id="equation-5cd948d2-dfa4-42fa-84f2-f816808f7c1d">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-5cd948d2-dfa4-42fa-84f2-f816808f7c1d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
 \end{equation}\]</div>
 <p>where:</p>
@@ -431,29 +433,29 @@ document.write(`
 <p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional AR model</strong> that only considers the lagged effects and not the contemporaneous ones (where <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>). The estimation method is based on three steps:</p>
 <ol class="arabic">
 <li><p>Obtain a least-squares estimate <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> of the AR model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73eb19b8-6eef-45ab-b4a2-c07c6ce32970">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-73eb19b8-6eef-45ab-b4a2-c07c6ce32970" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cd01a143-f36c-4698-a6c5-5fef85047fbf">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-cd01a143-f36c-4698-a6c5-5fef85047fbf" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
     \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> can be thought of as a matrix of the preliminary guesses for the lagged effects.</p>
 </li>
 <li><p>Compute the residuals of the AR model, which are an estimate of the true errors <span class="math notranslate nohighlight">\(\mathbf{n}(t)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-2117bc4a-c760-4b7d-8070-5c1930bd1449">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-2117bc4a-c760-4b7d-8070-5c1930bd1449" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a331ebc-81ce-47c5-be7a-b625f5fed73d">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-2a331ebc-81ce-47c5-be7a-b625f5fed73d" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
     \end{equation}\]</div>
 <p>These residuals are the differences between the actual observed data and the predictions from the AR model. They should contain the influences not captured by the past values (potentially the instantaneous effects we are interested in).</p>
 </li>
 <li><p>Perform a LiNGAM analysis on the residuals, which returns an <strong>estimate of the coefficient matrix for the instantaneous causal effects</strong> <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2421766-77b3-465b-b565-c448be86ea4c">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-c2421766-77b3-465b-b565-c448be86ea4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-00e1cb4a-228e-4cd1-a4e5-641c87a25722">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-00e1cb4a-228e-4cd1-a4e5-641c87a25722" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
     \end{equation}\]</div>
 <p>The idea is that if there are instantaneous effects, they would show up in the residuals of the AR model, because the AR model did not account for them.</p>
 </li>
 <li><p>Once <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the <strong>estimates of the coefficient matrices for the lagged causal effects</strong>, <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> for <span class="math notranslate nohighlight">\(\tau &gt;0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-216dd697-d40b-4542-8ba9-5c8dd406410c">
-<span class="eqno">(5.6)<a class="headerlink" href="#equation-216dd697-d40b-4542-8ba9-5c8dd406410c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e87b291a-35d3-46c0-9926-268bc828131d">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-e87b291a-35d3-46c0-9926-268bc828131d" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}_0) \widehat{\mathbf{M}}_{\tau}
     \end{equation}\]</div>
 </li>
@@ -556,10 +558,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x30116c490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x173a34690&gt;
 </pre></div>
 </div>
-<img alt="../_images/baacb9f3d4eb3b8667e92ad00f359fd9eaeb90c480a6e4454aa0823cda17d75e.png" src="../_images/baacb9f3d4eb3b8667e92ad00f359fd9eaeb90c480a6e4454aa0823cda17d75e.png" />
+<img alt="../_images/3374a0b64d0a7654747456a05c503e6dbaa6e0d4628293c460952f3942e46690.png" src="../_images/3374a0b64d0a7654747456a05c503e6dbaa6e0d4628293c460952f3942e46690.png" />
 </div>
 </div>
 <section id="fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">
@@ -585,10 +587,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x301a46910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x173a559d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/86310b5b47a01c424df25946b8779d9014df418b94f03511e845159026f1907b.png" src="../_images/86310b5b47a01c424df25946b8779d9014df418b94f03511e845159026f1907b.png" />
+<img alt="../_images/dd8d00fa780b2956b036bcd921d619e0cc13d0828e6585656ebfe77869c4aedb.png" src="../_images/dd8d00fa780b2956b036bcd921d619e0cc13d0828e6585656ebfe77869c4aedb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -601,7 +603,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ab4b443ce5103ac9f3264a1aa5a063c779321ad35d6bc2615b19144027c34565.svg" src="../_images/ab4b443ce5103ac9f3264a1aa5a063c779321ad35d6bc2615b19144027c34565.svg" /></div>
+<img alt="../_images/580d407405cff7b727d5fb02492fd20f195244c2dc34f44e66336541270bc98f.svg" src="../_images/580d407405cff7b727d5fb02492fd20f195244c2dc34f44e66336541270bc98f.svg" /></div>
 </div>
 </section>
 <section id="varlingam-to-estimate-b-1">
@@ -615,7 +617,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/da18d2a473807fbf45233d991e54affe29cc8caf08db1e0482302613c00a4fc7.svg" src="../_images/da18d2a473807fbf45233d991e54affe29cc8caf08db1e0482302613c00a4fc7.svg" /></div>
+<img alt="../_images/926ad449f2189347553d10a145325e3226103ae81f370dcd5418428c6eb68d52.svg" src="../_images/926ad449f2189347553d10a145325e3226103ae81f370dcd5418428c6eb68d52.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -626,7 +628,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9ace2722365ba86de12f5ba49ce2fd536999da39e31f210f5abd6338074acbb3.svg" src="../_images/9ace2722365ba86de12f5ba49ce2fd536999da39e31f210f5abd6338074acbb3.svg" /></div>
+<img alt="../_images/34a636f46b75e9c614f33cb1845509e209993f2824f5cd313c92c5a1655b7abf.svg" src="../_images/34a636f46b75e9c614f33cb1845509e209993f2824f5cd313c92c5a1655b7abf.svg" /></div>
 </div>
 </section>
 </section>
@@ -696,7 +698,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">5.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-model">5.1. VARLiNGAM model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">5.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">5.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
