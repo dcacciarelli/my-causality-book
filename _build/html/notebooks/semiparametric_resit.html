@@ -453,8 +453,8 @@ document.write(`
 <section id="additive-noise-models-anms">
 <h2><span class="section-number">4.1. </span>Additive noise models (ANMs)<a class="headerlink" href="#additive-noise-models-anms" title="Link to this heading">#</a></h2>
 <p>One of the most popular approaches to causal discovery with nonlinear models is to use additive noise models (ANMs) <span id="id1">[<a class="reference internal" href="../bibliography.html#id4">PMJScholkopf14</a>]</span>. In the case of an ANM, each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49ce78e4-e515-47e9-8d76-156b8a8e9086">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-49ce78e4-e515-47e9-8d76-156b8a8e9086" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a0df53d4-4fba-42db-b8d5-c21ac2df8df1">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-a0df53d4-4fba-42db-b8d5-c21ac2df8df1" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. We can easily see that when the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
@@ -476,8 +476,8 @@ document.write(`
 <section id="example-with-nonlinear-functions">
 <h3><span class="section-number">4.2.1. </span>Example with nonlinear functions<a class="headerlink" href="#example-with-nonlinear-functions" title="Link to this heading">#</a></h3>
 <p>Let us consider the simple example with two variables of temperature and electricity load, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1f7bf29c-0684-4844-89d2-a57aeec4decf">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-1f7bf29c-0684-4844-89d2-a57aeec4decf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2866d8cb-6e15-4981-8a7b-dc3c41c5867d">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-2866d8cb-6e15-4981-8a7b-dc3c41c5867d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \end{align}\]</div>
@@ -530,11 +530,11 @@ document.write(`
 <h3><span class="section-number">4.2.2. </span>Full RESIT example<a class="headerlink" href="#full-resit-example" title="Link to this heading">#</a></h3>
 <p>We now try to apply the RESIT approach to a slightly more complex example, where some of the relationships are <strong>nonlinear</strong>.</p>
 <p>Let us assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-44e09936-9872-4752-9e21-e4f364a4fc20">
-<span class="eqno">(4.3)<a class="headerlink" href="#equation-44e09936-9872-4752-9e21-e4f364a4fc20" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3a907a45-e32d-47ba-a399-eb8929b52a16">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-3a907a45-e32d-47ba-a399-eb8929b52a16" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
-\text{carbon emissions} &amp;= 1.5 \times \text{electricity load} + \sin{\text{temperature}} + e_c \\
+\text{thermal constraints} &amp;= 1.5 \times \text{electricity load} + \sin{(\text{temperature})} + e_c \\
 \end{align}\]</div>
 <p>where the errors <span class="math notranslate nohighlight">\(e_i\)</span> are now assumed to <strong>Gaussian</strong>.</p>
 <p>The <strong>causal graph</strong> is then given by</p>
@@ -546,16 +546,16 @@ document.write(`
 <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Temperatures</span>
     <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Electricity load</span>
-    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>   <span class="c1"># Emissions</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>    <span class="c1"># Thermal constraints</span>
 <span class="p">])</span>
 
 <span class="c1"># Plotting causal graph</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;temperatures&quot;</span><span class="p">,</span> <span class="s2">&quot;electricity load&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon emissions&quot;</span><span class="p">])</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;temperatures&quot;</span><span class="p">,</span> <span class="s2">&quot;electricity load&quot;</span><span class="p">,</span> <span class="s2">&quot;thermal constraints&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7ad5fb46a68bae00e11f9c9d3c8ce93222935580d008d866facfc8ea3300d158.svg" src="../_images/7ad5fb46a68bae00e11f9c9d3c8ce93222935580d008d866facfc8ea3300d158.svg" /></div>
+<img alt="../_images/4854e447f59d51dc694bb7e538ce56bb672d92f710e0089fb81b1cd4a8df18c6.svg" src="../_images/4854e447f59d51dc694bb7e538ce56bb672d92f710e0089fb81b1cd4a8df18c6.svg" /></div>
 </div>
 <p>where the coefficient of 1 is only an indication of causal relation (and its direction) between two variables</p>
 <p>Let us now generate some observations according to that causal graph.</p>
@@ -568,13 +568,13 @@ document.write(`
 <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># average temperature in Celsius</span>
 <span class="n">electricity_load</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperatures</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">70</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Quadratic relationship for U-shape</span>
-<span class="n">carbon_emissions</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span> <span class="n">electricity_load</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">temperatures</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">thermal_constraints</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span> <span class="n">electricity_load</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">temperatures</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># Creating DataFrame</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">&#39;temperatures&#39;</span><span class="p">:</span> <span class="n">temperatures</span><span class="p">,</span>
     <span class="s1">&#39;electricity load&#39;</span><span class="p">:</span> <span class="n">electricity_load</span><span class="p">,</span>
-    <span class="s1">&#39;carbon emissions&#39;</span><span class="p">:</span> <span class="n">carbon_emissions</span>
+    <span class="s1">&#39;thermal constraints&#39;</span><span class="p">:</span> <span class="n">thermal_constraints</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -595,7 +595,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7ad5fb46a68bae00e11f9c9d3c8ce93222935580d008d866facfc8ea3300d158.svg" src="../_images/7ad5fb46a68bae00e11f9c9d3c8ce93222935580d008d866facfc8ea3300d158.svg" /></div>
+<img alt="../_images/4854e447f59d51dc694bb7e538ce56bb672d92f710e0089fb81b1cd4a8df18c6.svg" src="../_images/4854e447f59d51dc694bb7e538ce56bb672d92f710e0089fb81b1cd4a8df18c6.svg" /></div>
 </div>
 <section id="bootstrapping">
 <h4><span class="section-number">4.2.2.1. </span>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h4>
@@ -615,9 +615,9 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>electricity load &lt;--- temperatures (b&gt;0) (100.0%)
-carbon emissions &lt;--- temperatures (b&gt;0) (100.0%)
-electricity load &lt;--- carbon emissions (b&gt;0) (50.0%)
-carbon emissions &lt;--- electricity load (b&gt;0) (50.0%)
+thermal constraints &lt;--- temperatures (b&gt;0) (100.0%)
+electricity load &lt;--- thermal constraints (b&gt;0) (50.0%)
+thermal constraints &lt;--- electricity load (b&gt;0) (50.0%)
 </pre></div>
 </div>
 </div>
@@ -632,12 +632,12 @@ carbon emissions &lt;--- electricity load (b&gt;0) (50.0%)
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DAG[0]: 50.0%
 	electricity load &lt;--- temperatures (b&gt;0)
-	carbon emissions &lt;--- temperatures (b&gt;0)
-	carbon emissions &lt;--- electricity load (b&gt;0)
+	thermal constraints &lt;--- temperatures (b&gt;0)
+	thermal constraints &lt;--- electricity load (b&gt;0)
 DAG[1]: 50.0%
 	electricity load &lt;--- temperatures (b&gt;0)
-	electricity load &lt;--- carbon emissions (b&gt;0)
-	carbon emissions &lt;--- temperatures (b&gt;0)
+	electricity load &lt;--- thermal constraints (b&gt;0)
+	thermal constraints &lt;--- temperatures (b&gt;0)
 </pre></div>
 </div>
 </div>

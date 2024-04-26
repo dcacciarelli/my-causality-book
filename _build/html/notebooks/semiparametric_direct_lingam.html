@@ -417,14 +417,14 @@ document.write(`
 <section id="the-lingam-model">
 <h2><span class="section-number">3.1. </span>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a260570-6471-4273-bb77-11a61f56ad73">
-<span class="eqno">(3.1)<a class="headerlink" href="#equation-9a260570-6471-4273-bb77-11a61f56ad73" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b3e0c21b-38c5-46b5-8c96-2a9459152eed">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-b3e0c21b-38c5-46b5-8c96-2a9459152eed" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4075cc94-0c29-4a1c-85bc-e47b2a77137f">
-<span class="eqno">(3.2)<a class="headerlink" href="#equation-4075cc94-0c29-4a1c-85bc-e47b2a77137f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4738b2a6-498e-4ca5-92a8-d16805789710">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-4738b2a6-498e-4ca5-92a8-d16805789710" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -437,8 +437,8 @@ document.write(`
 <section id="strucural-equations">
 <h3><span class="section-number">3.1.1. </span>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
 <p>If we know the coefficients of those causal relations, the SCM can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af6a18d8-cef1-4730-93d6-fbf3b0fffb0d">
-<span class="eqno">(3.3)<a class="headerlink" href="#equation-af6a18d8-cef1-4730-93d6-fbf3b0fffb0d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b7e11527-3527-4d1f-bf95-8b7abc92d5c4">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-b7e11527-3527-4d1f-bf95-8b7abc92d5c4" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \text{wind generation} &amp;= e_w \\
@@ -447,8 +447,8 @@ document.write(`
 <section id="matrix-notation">
 <h3><span class="section-number">3.1.2. </span>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
 <p>Then, in matrix notation, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-64c06c3e-4121-4859-9454-b177c249c88b">
-<span class="eqno">(3.4)<a class="headerlink" href="#equation-64c06c3e-4121-4859-9454-b177c249c88b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b4c87397-1592-48fd-97c0-bebdb3469824">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-b4c87397-1592-48fd-97c0-bebdb3469824" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{electricity prices} \\
     \text{carbon emissions} \\
@@ -476,15 +476,15 @@ document.write(`
 <section id="causal-ordering">
 <h3><span class="section-number">3.1.3. </span>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21d24654-e323-439c-833f-af8aed75fdf9">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-21d24654-e323-439c-833f-af8aed75fdf9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a8238abe-bd77-4087-86f6-31ea8aaf992c">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-a8238abe-bd77-4087-86f6-31ea8aaf992c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b02f570f-919d-4c69-8e45-35e87d2486ae">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-b02f570f-919d-4c69-8e45-35e87d2486ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-587b3da5-a110-43f7-8fe9-f83cdfe43c73">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-587b3da5-a110-43f7-8fe9-f83cdfe43c73" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind generation} \\
     \text{electricity prices} \\
@@ -509,8 +509,8 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-47e7ecf9-a957-4f6c-89d5-fea345243187">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-47e7ecf9-a957-4f6c-89d5-fea345243187" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-83fae966-969f-40f3-8574-16df6c2a0fd9">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-83fae966-969f-40f3-8574-16df6c2a0fd9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -542,8 +542,8 @@ document.write(`
 <section id="example-with-gaussian-errors">
 <h3><span class="section-number">3.2.1. </span>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d534f657-0212-47ab-a8e4-bfa725557024">
-<span class="eqno">(3.8)<a class="headerlink" href="#equation-d534f657-0212-47ab-a8e4-bfa725557024" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b6c0c600-622f-42a3-9150-a75105fde9c3">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-b6c0c600-622f-42a3-9150-a75105fde9c3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \end{align}\]</div>
@@ -599,7 +599,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9df8ade08f1d9abcd693a5da1b975a74f7c2e544590233826e6af3332bf16378.png" src="../_images/9df8ade08f1d9abcd693a5da1b975a74f7c2e544590233826e6af3332bf16378.png" />
+<img alt="../_images/ace14b9dde692ce984bba175c3c4f0e09cc01b0827b1ebe3f2dd2a91473aa337.png" src="../_images/ace14b9dde692ce984bba175c3c4f0e09cc01b0827b1ebe3f2dd2a91473aa337.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
@@ -651,7 +651,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6ff61e35360e2a9392d274472fe4de830fa7ca9ef752c6a8989d0047d45287da.png" src="../_images/6ff61e35360e2a9392d274472fe4de830fa7ca9ef752c6a8989d0047d45287da.png" />
+<img alt="../_images/f30630824f0d1edb201a0b95784c80bf8dc667a21516a1bcf3ebfd0568ca6316.png" src="../_images/f30630824f0d1edb201a0b95784c80bf8dc667a21516a1bcf3ebfd0568ca6316.png" />
 </div>
 </div>
 </section>
@@ -659,8 +659,8 @@ document.write(`
 <h3><span class="section-number">3.2.3. </span>Full LiNGAM estimation example<a class="headerlink" href="#full-lingam-estimation-example" title="Link to this heading">#</a></h3>
 <p>Now, we try a full estimation example, where we have a slightly more complex causal structure, that we will need to retrieve from observational data.</p>
 <p>Assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83292e88-7e2a-4876-89e5-ffdd52b58443">
-<span class="eqno">(3.9)<a class="headerlink" href="#equation-83292e88-7e2a-4876-89e5-ffdd52b58443" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-41fc2222-055c-4f92-bd4f-11b323d3e650">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-41fc2222-055c-4f92-bd4f-11b323d3e650" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{regulatory impact} &amp;= e_r \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + 0.5 \times \text{regulatory impact} + e_p \\
@@ -672,20 +672,21 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matrix of coefficients (weights)</span>
 <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Wind generation</span>
-    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Regulatory impact</span>
-    <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># Electricity prices</span>
-    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># Energy demand</span>
-    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>    <span class="c1"># Carbon emissions</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Weather fluctuations</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Outages</span>
+    <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Heating demand</span>
+    <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>   <span class="c1"># Wind forecast errors</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>    <span class="c1"># Balancing costs</span>
 <span class="p">])</span>
 
 <span class="c1"># Plotting causal graph</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;wind generation&quot;</span><span class="p">,</span> <span class="s2">&quot;regulatory impact&quot;</span><span class="p">,</span> <span class="s2">&quot;electricity prices&quot;</span><span class="p">,</span> <span class="s2">&quot;energy demand&quot;</span><span class="p">,</span> <span class="s2">&quot;carbon emissions&quot;</span><span class="p">])</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;weather </span><span class="se">\n</span><span class="s2">fluctuations&quot;</span><span class="p">,</span> <span class="s2">&quot;outages&quot;</span><span class="p">,</span> <span class="s2">&quot;heating </span><span class="se">\n</span><span class="s2">demand&quot;</span><span class="p">,</span> <span class="s2">&quot;wind forecast </span><span class="se">\n</span><span class="s2">errors&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs&quot;</span><span class="p">]</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bec645698f93c45ebe761c061f292d6cb4114b9ebdef2e8146a4b3c509d4053c.svg" src="../_images/bec645698f93c45ebe761c061f292d6cb4114b9ebdef2e8146a4b3c509d4053c.svg" /></div>
+<img alt="../_images/a32e74fb09c0471e8ac6bd2f7e09de5fbb360141f348dabd1a07e84a53b37b6e.svg" src="../_images/a32e74fb09c0471e8ac6bd2f7e09de5fbb360141f348dabd1a07e84a53b37b6e.svg" /></div>
 </div>
 <p>Let us now generate some data from this causal graph.</p>
 <div class="cell docutils container">
