@@ -7,10 +7,10 @@
 This is a small book containing tutorials of causal inference methodologies, explaining the key concepts in this growing research area and showcasing potential applications for the electricity markets.
 
 
-```{admonition} Python
+```{admonition} Note
 :class: note
 
-The examples are written in Python, each chapter can be downloaded as a **Jupyter Notebook** so that you can run the examples to reproduce the results.
+The examples are written in **Python**, each chapter can be downloaded as a **Jupyter Notebook** so that you can run the examples to reproduce the results.
 ```
 
 

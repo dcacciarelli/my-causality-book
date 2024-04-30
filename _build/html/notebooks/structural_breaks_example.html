@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/structural_breaks_example';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -183,7 +185,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_lingam.html">3. Linear models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">3. Linear models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">4. Nonlinear models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">5. Time series models</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Time series with structural breaks</a></li>
@@ -386,8 +388,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.1. Fitting one model to all the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2. Fitting two separate models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-with-two-regimes">6.1. Scenario with two regimes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-subsidy-structural-model">6.1.1. Pre-subsidy structural model:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-subsidy-structural-model">6.1.2. Post-subsidy structural model:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contemporaneous-effects">6.1.3. Contemporaneous effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">6.1.4. Lagged effects</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.2.1. 1) Fitting one model to all the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2.2. 2) Fitting two separate models</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -401,32 +413,99 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="time-series-with-structural-breaks">
 <h1><span class="section-number">6. </span>Time series with structural breaks<a class="headerlink" href="#time-series-with-structural-breaks" title="Link to this heading">#</a></h1>
+<p>Another challenges related to time series analysis and causal inference, besides the presence of lagged effects, is the possibility of the system to be in <strong>multiple states or regimes</strong>. This is a problem well known to economists, since financial data often exhibits distinct behaviour depending on the specific state of the system (e.g., growth or recession).</p>
+<p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id7" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
+<ul class="simple">
+<li><p><strong>Short</strong>, when there is a shortage of energy.</p></li>
+<li><p><strong>Long</strong>, when there is an excess of energy.</p></li>
+</ul>
+<p>Here, we will just provide an example of the challenges of trying to infer the causal structure of the system, if there is a <strong>concept drift</strong> affecting the system. In this case, we refer to concept drift as an alteration of the data-generating process, where the coefficients relating different variables change over time. For example:</p>
+<ul class="simple">
+<li><p>A <strong>market policy</strong> might significantly affect the behaviour or market partecipants.</p></li>
+<li><p>Newly introduced <strong>subsidies</strong> might alter the cost structures of energy generators.</p></li>
+<li><p>Advances in <strong>battery technology</strong> might introduce new variables.</p></li>
+</ul>
+<section id="scenario-with-two-regimes">
+<h2><span class="section-number">6.1. </span>Scenario with two regimes<a class="headerlink" href="#scenario-with-two-regimes" title="Link to this heading">#</a></h2>
+<p>Let’s consider a scenario in the electricity market where three variables are impacted by a significant <strong>policy change</strong>, such as the introduction of a new subsidy for renewable energy. This policy change affects the relationships among these variables, illustrating how concept drift can occur in response to external changes.</p>
+<section id="pre-subsidy-structural-model">
+<h3><span class="section-number">6.1.1. </span>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
+<p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-107fa77e-085c-42b3-8c9d-6ba878b9e0cb">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-107fa77e-085c-42b3-8c9d-6ba878b9e0cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c77120cf-7eaa-4721-8b7e-8d55050ec218">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-c77120cf-7eaa-4721-8b7e-8d55050ec218" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \mathbf{B}_{\text{pre}} = 
+    \begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    2 &amp; 0 &amp; 0 \\
+    -1 &amp; 0.05 &amp; 0
+    \end{bmatrix}
+\end{equation}\]</div>
+</section>
+<section id="post-subsidy-structural-model">
+<h3><span class="section-number">6.1.2. </span>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
+<p>After the introduction of subsidies, the relationships change as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4d531444-927a-4e5b-9fa8-8f03192dd3fa">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-4d531444-927a-4e5b-9fa8-8f03192dd3fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c229b4bd-4e9b-4c6a-8b08-c72ef8b560c9">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-c229b4bd-4e9b-4c6a-8b08-c72ef8b560c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \mathbf{B}_{\text{post}} = 
+    \begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    -1 &amp; 0 &amp; 0 \\
+    5 &amp; 0 &amp; 0
+    \end{bmatrix}
+\end{equation}\]</div>
+<p>This change in coefficients represents a concept drift, where the underlying data-generating process has altered due to external policy intervention. The challenge in causal inference here is to accurately detect and adapt to these changes, ensuring that models remain valid over time despite the evolving relationships. Failure to account for such drifts can lead to inaccurate predictions and misguided policy or business decisions.</p>
+</section>
+<section id="contemporaneous-effects">
+<h3><span class="section-number">6.1.3. </span>Contemporaneous effects<a class="headerlink" href="#contemporaneous-effects" title="Link to this heading">#</a></h3>
+<p>In <strong>regime 1</strong> the causal graph is represnted by</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">graphviz</span>
-<span class="kn">import</span> <span class="nn">lingam</span>
-<span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span><span class="p">,</span> <span class="n">print_causal_directions</span><span class="p">,</span> <span class="n">print_dagc</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B0_regime1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span>
+
+<span class="n">B0_regime1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
               <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
               <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]]</span>
 
-<span class="n">B0_regime2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">B0_regime1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c323df720d448796939868178ea103cfff08fb695e264cab9e0fb7fb3334d671.svg" src="../_images/c323df720d448796939868178ea103cfff08fb695e264cab9e0fb7fb3334d671.svg" /></div>
+</div>
+<p>Instead, in <strong>regime 2</strong> we have</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B0_regime2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
               <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
               <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]]</span>
 
-<span class="n">B1_regime1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">B0_regime2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f54f949544400b54707483bf980250a4a4776ec5482450e8cd6256543fae2775.svg" src="../_images/f54f949544400b54707483bf980250a4a4776ec5482450e8cd6256543fae2775.svg" /></div>
+</div>
+<p>(You might have now recognised this as a simple <strong>fork</strong>)</p>
+</section>
+<section id="lagged-effects">
+<h3><span class="section-number">6.1.4. </span>Lagged effects<a class="headerlink" href="#lagged-effects" title="Link to this heading">#</a></h3>
+<p>To slightly render the causal discovery problem more difficult, we also introduced some autocorrelation, just like in the <strong>VARLiNGAM</strong> example we saw in the previous chapter.</p>
+<p>This simply means we now also have two <span class="math notranslate nohighlight">\(\mathbf{B}_1\)</span> matrices, one for each regime.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B1_regime1</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
               <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
               <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]]</span>
 
@@ -439,30 +518,12 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contemporaneous effects</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">B0_regime1</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/c323df720d448796939868178ea103cfff08fb695e264cab9e0fb7fb3334d671.svg" src="../_images/c323df720d448796939868178ea103cfff08fb695e264cab9e0fb7fb3334d671.svg" /></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contemporaneous effects</span>
-<span class="n">make_dot</span><span class="p">(</span><span class="n">B0_regime2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/f54f949544400b54707483bf980250a4a4776ec5482450e8cd6256543fae2775.svg" src="../_images/f54f949544400b54707483bf980250a4a4776ec5482450e8cd6256543fae2775.svg" /></div>
-</div>
+<p>We now <strong>generate some observations</strong> using this four matrices</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="c1"># Sample size</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -497,56 +558,51 @@ document.write(`
 
 <span class="c1"># Convert to DataFrame for easier handling</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">)])</span>
-
-<span class="c1"># Plotting</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now plot the data to see what is happening</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">switch_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;New policy&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">switch_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Switch Point&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Generated Time Series Data with Switching Regime&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Generated Time Series Data with Switching Regime&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1079013d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/27362a38d74c0defc78255df9f26b7e63ce16ac8c80833c4e0540c4056f1e3ce.png" src="../_images/27362a38d74c0defc78255df9f26b7e63ce16ac8c80833c4e0540c4056f1e3ce.png" />
+<img alt="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" src="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" />
 </div>
 </div>
+<p>We can clearly see how the introduction of the new policy altered the time series.</p>
+</section>
+</section>
+<section id="estimation">
+<h2><span class="section-number">6.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
+<p>To show the difficulty of doing causal discovery using data collected from drifting data streams, we will show what happens in two cases:</p>
+<ol class="arabic simple">
+<li><p>We fit just one model to the whole dataset.</p></li>
+<li><p>We fit two separate models, one for each regime.</p></li>
+</ol>
 <section id="fitting-one-model-to-all-the-data">
-<h2><span class="section-number">6.1. </span>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h2>
+<h3><span class="section-number">6.2.1. </span>1) Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h3>
+<p>As we did before, we fit a VAR model, compute the residuals, and apply LiNGAM to its residuals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.vector_ar.var_model</span> <span class="kn">import</span> <span class="n">VAR</span>
+<span class="kn">import</span> <span class="nn">lingam</span>
 
-<span class="c1"># Fit one VAR model to each regime</span>
+<span class="c1"># Fit one VAR model</span>
 <span class="n">var_model</span> <span class="o">=</span> <span class="n">VAR</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">var_results</span> <span class="o">=</span> <span class="n">var_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">residuals</span> <span class="o">=</span> <span class="n">var_results</span><span class="o">.</span><span class="n">resid</span>
 
-<span class="c1"># Plotting residuals</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residuals</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Residuals x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">switch_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Switch Point&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residuals with Switching Regime&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Residuals with Switching Regime&#39;)
-</pre></div>
-</div>
-<img alt="../_images/12e8cd4c93045f4d9bdfb9b085ef51e650cd59005a898edc966e3711d97e47f1.png" src="../_images/12e8cd4c93045f4d9bdfb9b085ef51e650cd59005a898edc966e3711d97e47f1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lingam</span>
-<span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span>
-
-<span class="c1"># Apply LiNGAM to all the data</span>
+<span class="c1"># Apply LiNGAM to the residuals</span>
 <span class="n">lingam_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
 <span class="n">lingam_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
 <span class="n">make_dot</span><span class="p">(</span><span class="n">lingam_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>  <span class="c1"># B0</span>
@@ -556,9 +612,11 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/9057c26849368c480f3ba986192a70da8a1da21a18b377eb2d59d0aae2364962.svg" src="../_images/9057c26849368c480f3ba986192a70da8a1da21a18b377eb2d59d0aae2364962.svg" /></div>
 </div>
+<p>We can see how we got a <strong>wrong estimation</strong>. The causal structure is like the first regime, but the coefficients are wrong.</p>
 </section>
 <section id="fitting-two-separate-models">
-<h2><span class="section-number">6.2. </span>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h2>
+<h3><span class="section-number">6.2.2. </span>2) Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h3>
+<p>We now show the ideal situation, where we assume we were able to <strong>discern the two regimes</strong> and fit distinct models.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into two regimes</span>
@@ -574,26 +632,7 @@ document.write(`
 <span class="n">var_results2</span> <span class="o">=</span> <span class="n">var_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># VAR(1) for simplicity</span>
 <span class="n">residuals_regime2</span> <span class="o">=</span> <span class="n">var_results2</span><span class="o">.</span><span class="n">resid</span>
 
-<span class="c1"># Plotting residuals</span>
-<span class="n">combined_residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">residuals_regime1</span><span class="p">,</span> <span class="n">residuals_regime2</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">combined_residuals</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Residuals x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">switch_point</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Switch Point&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Residuals with Switching Regime&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Residuals with Switching Regime&#39;)
-</pre></div>
-</div>
-<img alt="../_images/249191af42acdd0687d950f29d6565ed8a13acd227b56824e84c8c8988e3297d.png" src="../_images/249191af42acdd0687d950f29d6565ed8a13acd227b56824e84c8c8988e3297d.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply LiNGAM for each regime</span>
+<span class="c1"># Apply LiNGAM for each regime</span>
 <span class="n">lingam_model1</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
 <span class="n">lingam_model1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">residuals_regime1</span><span class="p">)</span>
 
@@ -603,11 +642,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x169e16410&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x300fd6710&gt;
 </pre></div>
 </div>
 </div>
 </div>
+<p>For the first regime, we now have</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_dot</span><span class="p">(</span><span class="n">lingam_model1</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span>  <span class="c1"># B0 regime 1</span>
@@ -617,6 +657,7 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/c2e474c4c0b2b08e195ec572fdf85fa1c1bed6222d8634e9edf3aa074e9674b1.svg" src="../_images/c2e474c4c0b2b08e195ec572fdf85fa1c1bed6222d8634e9edf3aa074e9674b1.svg" /></div>
 </div>
+<p>and for the second regime</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_dot</span><span class="p">(</span><span class="n">lingam_model2</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">)</span> <span class="c1"># B0 regime 2</span>
@@ -626,6 +667,8 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/be48aa7b0a7999804587ecd55ee42973a0c8d69808f14bddf49fcf048cbb9f6d.svg" src="../_images/be48aa7b0a7999804587ecd55ee42973a0c8d69808f14bddf49fcf048cbb9f6d.svg" /></div>
 </div>
+<p>We can clearly see how, taking into account the <strong>policy change</strong> we have been able to identify the <strong>true causal structures</strong>.</p>
+</section>
 </section>
 </section>
 
@@ -693,8 +736,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.1. Fitting one model to all the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2. Fitting two separate models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-with-two-regimes">6.1. Scenario with two regimes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-subsidy-structural-model">6.1.1. Pre-subsidy structural model:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-subsidy-structural-model">6.1.2. Post-subsidy structural model:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contemporaneous-effects">6.1.3. Contemporaneous effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">6.1.4. Lagged effects</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.2.1. 1) Fitting one model to all the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2.2. 2) Fitting two separate models</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
