@@ -389,9 +389,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-model">5.1. VARLiNGAM model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">5.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">5.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-varlingam-example">5.3. Full VARLiNGAM example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contemporaneous-effects">5.3.1. Contemporaneous effects</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">5.4. Lagged effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-all-together">5.5. Putting all together</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-contemporaneous-effects">5.5.1. Estimating contemporaneous effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-lagged-effects">5.5.2. Estimating lagged effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-causal-graph">5.5.3. Complete causal graph</a></li>
 </ul>
 </li>
 </ul>
@@ -408,17 +415,17 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="time-series-models">
 <h1><span class="section-number">5. </span>Time series models<a class="headerlink" href="#time-series-models" title="Link to this heading">#</a></h1>
 <p>In many cases, the <strong>temporal dimension</strong> introduces complexities that traditional causal models may not adequately address. Particularly in fields like economics, environmental science, and engineering, understanding how variables influence each other both <strong>instantaneously and across time lags</strong> is crucial for predicting future states and designing effective interventions.</p>
-<p>To capture both the immediate and delayed interactions among multiple time-dependent variables, it is important to employ models that can account for these dynamics. We will now introduce an extension of the LiNGAM model, based on <strong>vector autoregression (VAR)</strong> models.</p>
+<p>To capture both the immediate and delayed interactions among multiple time-dependent variables, it is important to employ models that can account for these dynamics. We will now introduce an extension of the LiNGAM model, based on <strong>vector autoregression (VAR)</strong> models, which has been introduced in <span id="id1">[<a class="reference internal" href="../bibliography.html#id5" title="Aapo Hyvärinen, Shohei Shimizu, and Patrik O Hoyer. Causal modelling combining instantaneous and lagged effects: an identifiable model based on non-gaussianity. In Proceedings of the 25th international conference on Machine learning, 424–431. 2008.">HyvarinenSH08</a>]</span> and <span id="id2">[<a class="reference internal" href="../bibliography.html#id6" title="Aapo Hyvärinen, Kun Zhang, Shohei Shimizu, and Patrik O Hoyer. Estimation of a structural vector autoregression model using non-gaussianity. Journal of Machine Learning Research, 2010.">HyvarinenZSH10</a>]</span>.</p>
 <section id="varlingam-model">
 <h2><span class="section-number">5.1. </span>VARLiNGAM model<a class="headerlink" href="#varlingam-model" title="Link to this heading">#</a></h2>
 <p>Assume that at each time step <span class="math notranslate nohighlight">\(t\)</span> we observe a vector <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> with <span class="math notranslate nohighlight">\(p\)</span> variables</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cad53ca4-cf9b-43f4-aa50-4e1e5762daf0">
-<span class="eqno">(5.1)<a class="headerlink" href="#equation-cad53ca4-cf9b-43f4-aa50-4e1e5762daf0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b091f012-58c4-4adb-8b5f-c78b56368c24">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-b091f012-58c4-4adb-8b5f-c78b56368c24" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
 \end{equation}\]</div>
 <p>Then, we use the following structural causal model, which considers both the instantaneous (<span class="math notranslate nohighlight">\(\tau = 0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\tau \geq 1\)</span>) causal effects</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5de1a40e-ea9a-4241-b0a3-848c3ae35402">
-<span class="eqno">(5.2)<a class="headerlink" href="#equation-5de1a40e-ea9a-4241-b0a3-848c3ae35402" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-729bdcf9-f809-4ac3-aba4-6f208ca49ea0">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-729bdcf9-f809-4ac3-aba4-6f208ca49ea0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
 \end{equation}\]</div>
 <p>where:</p>
@@ -434,8 +441,8 @@ document.write(`
 <li><p><strong>Balancing costs</strong> (<span class="math notranslate nohighlight">\(x_3(t)\)</span>): costs incurred to ensure grid stability and balance the electricity supply with demand at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
 </ul>
 <p>At time <span class="math notranslate nohighlight">\(t\)</span>, we will observe the vector given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-897c1137-064a-487e-9e59-698e31835e59">
-<span class="eqno">(5.3)<a class="headerlink" href="#equation-897c1137-064a-487e-9e59-698e31835e59" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ddcaf59-cda3-49b4-8535-3a970af4eabf">
+<span class="eqno">(5.3)<a class="headerlink" href="#equation-2ddcaf59-cda3-49b4-8535-3a970af4eabf" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t)=\left[\begin{array}{c} 
     \text{solar generation}(t) \\
     \text{transmission capacity usage}(t) \\
@@ -443,27 +450,27 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>and we can then model the time series data with the following relationships</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21e64046-4391-4a87-a867-4492ea6df1c7">
-<span class="eqno">(5.4)<a class="headerlink" href="#equation-21e64046-4391-4a87-a867-4492ea6df1c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-44b5942b-fce0-4b23-90b8-6aa06eddfd4d">
+<span class="eqno">(5.4)<a class="headerlink" href="#equation-44b5942b-fce0-4b23-90b8-6aa06eddfd4d" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x}(t) = \mathbf{B}_0 \mathbf{x}(t) + \mathbf{B}_1 \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> is the matrix of the <strong>contemporaneous effects</strong>, given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ef6dcfe-2c6f-4940-8a67-6d5ad512dc60">
-<span class="eqno">(5.5)<a class="headerlink" href="#equation-2ef6dcfe-2c6f-4940-8a67-6d5ad512dc60" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c74ec66-314f-4c6f-89d0-39dd92d0e2ea">
+<span class="eqno">(5.5)<a class="headerlink" href="#equation-0c74ec66-314f-4c6f-89d0-39dd92d0e2ea" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{ccc}
     0 &amp; 0 &amp; 0 \\
-    -0.1 &amp; 0 &amp; 0 \\
-    0.5 &amp; 0.2 &amp; 0
+    -1.0 &amp; 0 &amp; 0 \\
+    1.5 &amp; 0.2 &amp; 0
     \end{array}\right]
 \end{equation}\]</div>
 <p>implying that current solar generation negatively affects the transmission capacity usage due to intermittency issues. Increased solar output at the same time increases the need for grid balancing due to the variable nature of solar power, which can affect grid stability.</p>
 <p>Instead, <span class="math notranslate nohighlight">\(\mathbf{B}_1\)</span> is the matrix of the <strong>lagged effects</strong>, given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de8c722f-4a68-47cd-b4a2-bd3ebaac4d7c">
-<span class="eqno">(5.6)<a class="headerlink" href="#equation-de8c722f-4a68-47cd-b4a2-bd3ebaac4d7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab834b31-94f3-4fb9-a7a8-aa9e64555263">
+<span class="eqno">(5.6)<a class="headerlink" href="#equation-ab834b31-94f3-4fb9-a7a8-aa9e64555263" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{ccc}
     0 &amp; 0 &amp; 0 \\
     0.0 &amp; 0 &amp; 0 \\
-    0.1 &amp; 0.15 &amp; 0
+    0.5 &amp; 1.5 &amp; 0
     \end{array}\right]
 \end{equation}\]</div>
 <p>capturing how solar generation and transmission capacity usage from the previous time step (<span class="math notranslate nohighlight">\(t−1\)</span>) influence current balancing costs. It suggests that previous fluctuations in solar output and transmission constraints can lead to increased current balancing costs.</p>
@@ -471,36 +478,40 @@ document.write(`
 </section>
 <section id="estimation">
 <h2><span class="section-number">5.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
-<p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional AR model</strong> that only considers the lagged effects and not the contemporaneous ones (where <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>). The estimation method is based on three steps:</p>
+<p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional VAR model</strong> that only considers the lagged effects and not the contemporaneous ones (where <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>). The estimation method is based on three steps:</p>
 <ol class="arabic">
 <li><p>Obtain a least-squares estimate <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> of the AR model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8022996d-d25b-4cb3-9bb5-3c016523db54">
-<span class="eqno">(5.7)<a class="headerlink" href="#equation-8022996d-d25b-4cb3-9bb5-3c016523db54" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8c16f313-4592-4c26-956e-c21dad13f5c1">
+<span class="eqno">(5.7)<a class="headerlink" href="#equation-8c16f313-4592-4c26-956e-c21dad13f5c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
     \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> can be thought of as a matrix of the preliminary guesses for the lagged effects.</p>
 </li>
 <li><p>Compute the residuals of the AR model, which are an estimate of the true errors <span class="math notranslate nohighlight">\(\mathbf{n}(t)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-de48297d-2d5b-4c03-bbbf-9e0e2c1c3054">
-<span class="eqno">(5.8)<a class="headerlink" href="#equation-de48297d-2d5b-4c03-bbbf-9e0e2c1c3054" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-103bf6f3-eea8-4245-a821-83302f7a8dee">
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-103bf6f3-eea8-4245-a821-83302f7a8dee" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
     \end{equation}\]</div>
 <p>These residuals are the differences between the actual observed data and the predictions from the AR model. They should contain the influences not captured by the past values (potentially the instantaneous effects we are interested in).</p>
 </li>
 <li><p>Perform a LiNGAM analysis on the residuals, which returns an <strong>estimate of the coefficient matrix for the instantaneous causal effects</strong> <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-7eed512d-c918-481b-979d-6767646fb4a2">
-<span class="eqno">(5.9)<a class="headerlink" href="#equation-7eed512d-c918-481b-979d-6767646fb4a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa5266c6-d77f-411e-80b0-ffa68b378c2f">
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-fa5266c6-d77f-411e-80b0-ffa68b378c2f" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
     \end{equation}\]</div>
 <p>The idea is that if there are instantaneous effects, they would show up in the residuals of the AR model, because the AR model did not account for them.</p>
 </li>
 <li><p>Once <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the <strong>estimates of the coefficient matrices for the lagged causal effects</strong>, <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> for <span class="math notranslate nohighlight">\(\tau &gt;0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-643c76e3-d93a-462e-8a1e-5bdf12f46104">
-<span class="eqno">(5.10)<a class="headerlink" href="#equation-643c76e3-d93a-462e-8a1e-5bdf12f46104" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4c037e9c-8088-4450-b43e-6e28c3c4a025">
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-4c037e9c-8088-4450-b43e-6e28c3c4a025" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}_0) \widehat{\mathbf{M}}_{\tau}
     \end{equation}\]</div>
 </li>
 </ol>
+</section>
+<section id="full-varlingam-example">
+<h2><span class="section-number">5.3. </span>Full VARLiNGAM example<a class="headerlink" href="#full-varlingam-example" title="Link to this heading">#</a></h2>
+<p>We will no generate observations of the variables introduced before: <strong>solar generation</strong>, <strong>transmission capacity usage</strong>, and <strong>balancing costs</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -516,6 +527,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>The matrices explaining the contemporaneous and lagged effects are given by</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B0</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
@@ -531,10 +543,12 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="contemporaneous-effects">
+<h3><span class="section-number">5.3.1. </span>Contemporaneous effects<a class="headerlink" href="#contemporaneous-effects" title="Link to this heading">#</a></h3>
+<p>As we can see, at time <span class="math notranslate nohighlight">\(t\)</span> balancing costs are influenced by the current usage of the transmission capacity, and by the current solar generation. We can also see how the transmission capacity is negatively impacted by the solar power generation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contemporaneous effects</span>
-<span class="n">labels_0</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;solar power </span><span class="se">\n</span><span class="s2">generation (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity </span><span class="se">\n</span><span class="s2">usage (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs (t)&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_0</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;solar power </span><span class="se">\n</span><span class="s2">generation (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity </span><span class="se">\n</span><span class="s2">usage (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs (t)&quot;</span><span class="p">]</span>
 <span class="n">make_dot</span><span class="p">(</span><span class="n">B0</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels_0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -542,10 +556,14 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/03fef262c1396662c3714cc7b4af5c07dbef9da4801c01b702608fba7065fd2c.svg" src="../_images/03fef262c1396662c3714cc7b4af5c07dbef9da4801c01b702608fba7065fd2c.svg" /></div>
 </div>
+</section>
+</section>
+<section id="lagged-effects">
+<h2><span class="section-number">5.4. </span>Lagged effects<a class="headerlink" href="#lagged-effects" title="Link to this heading">#</a></h2>
+<p>Given the time-dependent nature of the data, balancing costs at time <span class="math notranslate nohighlight">\(t\)</span> are also dependent upon the solar generation and spare capacity observed at the previous time step. However, there are no lagged causal associations between solar generation and transmission capacity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lagged effects</span>
-<span class="n">labels_1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;solar power </span><span class="se">\n</span><span class="s2">generation (t-1)&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity </span><span class="se">\n</span><span class="s2">usage (t-1)&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs (t)&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels_1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;solar power </span><span class="se">\n</span><span class="s2">generation (t-1)&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity </span><span class="se">\n</span><span class="s2">usage (t-1)&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs (t)&quot;</span><span class="p">]</span>
 <span class="n">make_dot</span><span class="p">(</span><span class="n">B1</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels_1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -553,10 +571,13 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/814029da62f49d7c31d6d804cddee67f0706ca3784a3a53376d509d18b31f721.svg" src="../_images/814029da62f49d7c31d6d804cddee67f0706ca3784a3a53376d509d18b31f721.svg" /></div>
 </div>
+</section>
+<section id="putting-all-together">
+<h2><span class="section-number">5.5. </span>Putting all together<a class="headerlink" href="#putting-all-together" title="Link to this heading">#</a></h2>
+<p>We can now see the complete causal structure of the data-generating process, including both contemporaneous and lagged effects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combined causal graph: contemporaneous + lagged effects</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;solar power </span><span class="se">\n</span><span class="s2">generation (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity </span><span class="se">\n</span><span class="s2">usage (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs (t)&quot;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;solar power </span><span class="se">\n</span><span class="s2">generation (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity </span><span class="se">\n</span><span class="s2">usage (t)&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs (t)&quot;</span><span class="p">,</span>
          <span class="s2">&quot;solar power </span><span class="se">\n</span><span class="s2">generation (t-1)&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity </span><span class="se">\n</span><span class="s2">usage (t-1)&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs (t-1)&quot;</span><span class="p">]</span>
 <span class="n">make_dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">B0</span><span class="p">,</span> <span class="n">B1</span><span class="p">)),</span> <span class="n">ignore_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lower_limit</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
 </pre></div>
@@ -565,6 +586,7 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/11c1e87a3b780b30d553b59df8723c22ee29ac23cbb0680b05552e211bfcffaf.svg" src="../_images/11c1e87a3b780b30d553b59df8723c22ee29ac23cbb0680b05552e211bfcffaf.svg" /></div>
 </div>
+<p>We will now <strong>generate some observations</strong> using the previous causal graph, and then try to retrieve the true causal structure using <strong>VARLiNGAM</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generating data according to this causal graph</span>
@@ -579,11 +601,10 @@ document.write(`
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sample_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_features</span><span class="p">))</span>  <span class="c1"># +1 to accommodate initial values at t=-1</span>
 
 <span class="c1"># Add non-Gaussian noise for each variable and each time point</span>
-<span class="c1"># The choice of non-Gaussian distributions is arbitrary and can be adjusted</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">):</span>
     <span class="n">data</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">sample_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Generate data according to VARLiNGAM model</span>
+<span class="c1"># Generate data according to true causal graph</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sample_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">causal_order</span><span class="p">:</span>
         <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">var</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B0</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="p">:])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">B1</span><span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="p">:],</span> <span class="n">data</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
@@ -594,23 +615,35 @@ document.write(`
 <span class="c1"># Convert to DataFrame for easier handling</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;solar power generation&quot;</span><span class="p">,</span> <span class="s2">&quot;transmission capacity usage&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing costs&quot;</span><span class="p">]</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
-
-<span class="c1"># Plotting</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now plot the generated time series</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x173e2f710&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x300df7650&gt;
 </pre></div>
 </div>
-<img alt="../_images/0f4d1d74ebe1679d707aca5a22c8b77c5bd2371d79acb2917d84cc2118892cf9.png" src="../_images/0f4d1d74ebe1679d707aca5a22c8b77c5bd2371d79acb2917d84cc2118892cf9.png" />
+<img alt="../_images/0182d75a1f94faf734ba5babc0d583b92a20ef70011098b03d7e08545552ad7b.png" src="../_images/0182d75a1f94faf734ba5babc0d583b92a20ef70011098b03d7e08545552ad7b.png" />
 </div>
 </div>
-<section id="fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">
-<h3><span class="section-number">5.2.1. </span>Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span><a class="headerlink" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0" title="Link to this heading">#</a></h3>
+<section id="estimating-contemporaneous-effects">
+<h3><span class="section-number">5.5.1. </span>Estimating contemporaneous effects<a class="headerlink" href="#estimating-contemporaneous-effects" title="Link to this heading">#</a></h3>
+<p>This process is relatively simple, and includes:</p>
+<ol class="arabic simple">
+<li><p><strong>Fitting a VAR model</strong> to the time series, to get rid of autocorrelation and lagged effects.</p></li>
+<li><p>Applying traditional <strong>LiNGAM model to the residuals</strong>.</p></li>
+</ol>
+<p>This allows us to estimate the matrix of contemporaneous effects, <span class="math notranslate nohighlight">\(B_0\)</span>.</p>
+<p>Here we fit a VAR model</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.vector_ar.var_model</span> <span class="kn">import</span> <span class="n">VAR</span>
@@ -618,36 +651,43 @@ document.write(`
 <span class="n">model</span> <span class="o">=</span> <span class="n">VAR</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Fit VAR(1)</span>
 <span class="n">residuals</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">resid</span>
-
-<span class="c1"># Plot residuals</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">residuals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>let’s plot the residuals</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">residuals</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">residuals</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">residuals</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Residuals </span><span class="si">{</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x301548790&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x300e4cb10&gt;
 </pre></div>
 </div>
-<img alt="../_images/fc2b615f58e42f43a2a64a33aed616dc88a6ca65183f71358d4bf5bad58ee16e.png" src="../_images/fc2b615f58e42f43a2a64a33aed616dc88a6ca65183f71358d4bf5bad58ee16e.png" />
+<img alt="../_images/8ae5d343ebc42a0fb9d612cf2b00c818d2de41b9a3d0340cfb3e4d4f4d9aa2cb.png" src="../_images/8ae5d343ebc42a0fb9d612cf2b00c818d2de41b9a3d0340cfb3e4d4f4d9aa2cb.png" />
 </div>
 </div>
+<p>Now, we can simply apply LiNGAM (as we did in the initial chapter) to the extracted residuals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply LiNGAM</span>
-<span class="n">direct_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">direct_model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">DirectLiNGAM</span><span class="p">()</span>
 <span class="n">direct_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
 <span class="n">make_dot</span><span class="p">(</span><span class="n">direct_model</span><span class="o">.</span><span class="n">adjacency_matrix_</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels_0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fe2059d19fff7b70d7bb958ee57001af1eb20e902bc7290ed2018d5c9bf739b8.svg" src="../_images/fe2059d19fff7b70d7bb958ee57001af1eb20e902bc7290ed2018d5c9bf739b8.svg" /></div>
+<img alt="../_images/e11351a93a9978724b3946a13894f6c8c8c9a290883686aba31e6221280048a9.svg" src="../_images/e11351a93a9978724b3946a13894f6c8c8c9a290883686aba31e6221280048a9.svg" /></div>
 </div>
+<p>We can see how we got extremely close to the true contemporaneous effects.</p>
 </section>
-<section id="varlingam-to-estimate-b-1">
-<h3><span class="section-number">5.2.2. </span>VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span><a class="headerlink" href="#varlingam-to-estimate-b-1" title="Link to this heading">#</a></h3>
+<section id="estimating-lagged-effects">
+<h3><span class="section-number">5.5.2. </span>Estimating lagged effects<a class="headerlink" href="#estimating-lagged-effects" title="Link to this heading">#</a></h3>
+<p>We can now estimate the matrix of lagged effects, <span class="math notranslate nohighlight">\(B_1\)</span>. The process (included in the VARLiNGAM method) involves correcting the matrix estimated by the VAR model to take into account the effects already considered in <span class="math notranslate nohighlight">\(B_0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">lingam</span><span class="o">.</span><span class="n">VARLiNGAM</span><span class="p">(</span><span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -657,8 +697,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/603cab5c90b21af8195802bd70a2104a840e14e540bf1edc5b351677a912efaf.svg" src="../_images/603cab5c90b21af8195802bd70a2104a840e14e540bf1edc5b351677a912efaf.svg" /></div>
+<img alt="../_images/cedb5814bda8e29bd5288dac29c7d4ce704a226fb45ebcaaea1ad9e51ae8ae40.svg" src="../_images/cedb5814bda8e29bd5288dac29c7d4ce704a226fb45ebcaaea1ad9e51ae8ae40.svg" /></div>
 </div>
+<p>Unfortunately, this time the causal graph is not precisely equal to the true one for the lagged effects. However, the largest lagged effects (transmission capacity and solar generation on balancing costs) have been properly identified, with the correct magnitude and sign.</p>
+</section>
+<section id="complete-causal-graph">
+<h3><span class="section-number">5.5.3. </span>Complete causal graph<a class="headerlink" href="#complete-causal-graph" title="Link to this heading">#</a></h3>
+<p>We can now create the complete causal structure by simply stacking the two coefficient matrices <span class="math notranslate nohighlight">\(B_0\)</span> and <span class="math notranslate nohighlight">\(B_1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combined estimated graph</span>
@@ -667,7 +712,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8559a19e4236e50a060d11a503932b675e417b7d138327047f7644dc15bfd997.svg" src="../_images/8559a19e4236e50a060d11a503932b675e417b7d138327047f7644dc15bfd997.svg" /></div>
+<img alt="../_images/a8bad177933965aa60b91499e69427e5aaa6ec8d79e87b2b586a9e53df451843.svg" src="../_images/a8bad177933965aa60b91499e69427e5aaa6ec8d79e87b2b586a9e53df451843.svg" /></div>
 </div>
 </section>
 </section>
@@ -738,9 +783,16 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-model">5.1. VARLiNGAM model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-var-model-and-applying-lingam-on-the-residuals-to-estimate-b-0">5.2.1. Fitting a VAR model and applying LiNGAM on the residuals to estimate <span class="math notranslate nohighlight">\(B_0\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varlingam-to-estimate-b-1">5.2.2. VARLiNGAM to estimate <span class="math notranslate nohighlight">\(B_1\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">5.2. Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#full-varlingam-example">5.3. Full VARLiNGAM example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contemporaneous-effects">5.3.1. Contemporaneous effects</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">5.4. Lagged effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-all-together">5.5. Putting all together</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-contemporaneous-effects">5.5.1. Estimating contemporaneous effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-lagged-effects">5.5.2. Estimating lagged effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-causal-graph">5.5.3. Complete causal graph</a></li>
 </ul>
 </li>
 </ul>
