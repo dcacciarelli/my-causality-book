@@ -1,8 +1,6 @@
 # An introduction to causal inference for electricity markets
 
 
-[**Davide Cacciarelli**](https://sites.google.com/view/dcacciarelli), Imperial College London
-
 This book contains tutorials on causal inference methodologies, explaining key concepts in this rapidly growing research area and showcasing potential applications within the electricity markets.
 
 
