@@ -30,4 +30,4 @@ Built with [Jupyter Book
 [ExecutableBookProject](https://ebp.jupyterbook.org/en/latest/).  
 ```
 
-If you have any inquiries, please reach out to me at [d.cacciarelli@imperial.ac.uk](d.cacciarelli@imperial.ac.uk).
+If you have any inquiries, please contact [d.cacciarelli@imperial.ac.uk](mailto:d.cacciarelli@imperial.ac.uk).
