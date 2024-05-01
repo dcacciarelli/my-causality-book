@@ -180,7 +180,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Key concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Why studying causal inference?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric approaches</span></p>
@@ -396,8 +396,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.2.1. 1) Fitting one model to all the data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2.2. 2) Fitting two separate models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.2.1. Fitting one model to all the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2.2. Fitting two separate models</a></li>
 </ul>
 </li>
 </ul>
@@ -414,7 +414,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="time-series-with-structural-breaks">
 <h1><span class="section-number">6. </span>Time series with structural breaks<a class="headerlink" href="#time-series-with-structural-breaks" title="Link to this heading">#</a></h1>
 <p>Another challenges related to time series analysis and causal inference, besides the presence of lagged effects, is the possibility of the system to be in <strong>multiple states or regimes</strong>. This is a problem well known to economists, since financial data often exhibits distinct behaviour depending on the specific state of the system (e.g., growth or recession).</p>
-<p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id7" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
+<p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id8" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
 <ul class="simple">
 <li><p><strong>Short</strong>, when there is a shortage of energy.</p></li>
 <li><p><strong>Long</strong>, when there is an excess of energy.</p></li>
@@ -431,13 +431,13 @@ document.write(`
 <section id="pre-subsidy-structural-model">
 <h3><span class="section-number">6.1.1. </span>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-107fa77e-085c-42b3-8c9d-6ba878b9e0cb">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-107fa77e-085c-42b3-8c9d-6ba878b9e0cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1e161597-d578-4db2-9fe5-8d7386665f99">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-1e161597-d578-4db2-9fe5-8d7386665f99" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c77120cf-7eaa-4721-8b7e-8d55050ec218">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-c77120cf-7eaa-4721-8b7e-8d55050ec218" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4d1b962e-72dc-4de4-9139-c092b1b42b42">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-4d1b962e-72dc-4de4-9139-c092b1b42b42" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -449,13 +449,13 @@ document.write(`
 <section id="post-subsidy-structural-model">
 <h3><span class="section-number">6.1.2. </span>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>After the introduction of subsidies, the relationships change as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d531444-927a-4e5b-9fa8-8f03192dd3fa">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-4d531444-927a-4e5b-9fa8-8f03192dd3fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4c92e435-a616-4b4a-90df-ed3170f083c6">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-4c92e435-a616-4b4a-90df-ed3170f083c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c229b4bd-4e9b-4c6a-8b08-c72ef8b560c9">
-<span class="eqno">(6.4)<a class="headerlink" href="#equation-c229b4bd-4e9b-4c6a-8b08-c72ef8b560c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7aa4d6ac-96af-44aa-8d73-be60c3baeb56">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-7aa4d6ac-96af-44aa-8d73-be60c3baeb56" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -573,7 +573,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1079013d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x17ed14e50&gt;
 </pre></div>
 </div>
 <img alt="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" src="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" />
@@ -590,7 +590,7 @@ document.write(`
 <li><p>We fit two separate models, one for each regime.</p></li>
 </ol>
 <section id="fitting-one-model-to-all-the-data">
-<h3><span class="section-number">6.2.1. </span>1) Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.1. </span>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h3>
 <p>As we did before, we fit a VAR model, compute the residuals, and apply LiNGAM to its residuals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,7 +615,7 @@ document.write(`
 <p>We can see how we got a <strong>wrong estimation</strong>. The causal structure is like the first regime, but the coefficients are wrong.</p>
 </section>
 <section id="fitting-two-separate-models">
-<h3><span class="section-number">6.2.2. </span>2) Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">6.2.2. </span>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h3>
 <p>We now show the ideal situation, where we assume we were able to <strong>discern the two regimes</strong> and fit distinct models.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -642,7 +642,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x300fd6710&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x30136c490&gt;
 </pre></div>
 </div>
 </div>
@@ -744,8 +744,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">6.2. Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.2.1. 1) Fitting one model to all the data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2.2. 2) Fitting two separate models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">6.2.1. Fitting one model to all the data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">6.2.2. Fitting two separate models</a></li>
 </ul>
 </li>
 </ul>
