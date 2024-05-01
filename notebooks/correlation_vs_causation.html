@@ -438,12 +438,12 @@ document.write(`
 <section id="causal-graphs">
 <h2><span class="section-number">1.5. </span>Causal graphs<a class="headerlink" href="#causal-graphs" title="Link to this heading">#</a></h2>
 <p>To better understand the relationships among these variables, we utilize a causal graph. In this scenario, we assume knowledge of the true causal structure of the data-generating process: temperature affects both electricity load and ice cream sales.</p>
-<p>A causal graph is typically assumed to be a directed acyclic graph (DAG), which is a graphical representation used to model and reason about the causal relationships between variables. In a DAG:</p>
+<p>A causal graph is typically assumed to be a <strong>directed acyclic graph (DAG)</strong>, which is a graphical representation used to model and reason about the causal relationships between variables. In a DAG:</p>
 <ul class="simple">
 <li><p><strong>Nodes</strong> represent variables or events.</p></li>
 <li><p><strong>Edges</strong> (arrows) indicate causal influences from one variable to another.</p></li>
-<li><p>The graph is <strong>acyclic</strong>, meaning it does not contain any loops, ensuring that causality flows in one direction and does not circle back on itself.</p></li>
 </ul>
+<p>When we say that the graph is <strong>acyclic</strong>, it means that it does not contain any loops, ensuring that causality flows in one direction and does not circle back on itself.</p>
 <p>In the causal graph below, <strong>temperature</strong> is depicted as a parent node influencing two child nodes: <strong>electricity load</strong> and <strong>ice cream sales</strong>. This structure helps us visualize and understand that fluctuations in temperature are the underlying drivers for changes in electricity consumption and ice cream sales. Typically, we are also interested in understanding the <strong>strength</strong> of these causal connections. However, for now, let’s not consider the specific impacts of these weights.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
