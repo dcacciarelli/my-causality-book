@@ -2,9 +2,9 @@
 
 This **work in progress** book contains tutorials on causal inference methodologies, explaining key concepts in this rapidly growing research area and showcasing potential applications within the electricity markets. It is currently divided into four parts:
 
-1. **Causal Discovery**: the process of identifying causal relationships from data. This involves uncovering the underlying causal structure without assuming prior knowledge of the direction or nature of causality. It typically uses statistical and computational methods to determine which variables influence which other variables.
+1. **Causal discovery**: the process of identifying causal relationships from data. This involves uncovering the underlying causal structure without assuming prior knowledge of the direction or nature of causality. It typically uses statistical and computational methods to determine which variables influence which other variables.
    
-2. **Causal Inference**: the process of estimating the strength and nature of causal relationships that have been identified. It involves using statistical techniques to quantify the effect of one variable on another, given the causal structure is known or assumed.
+2. **Causal inference**: the process of estimating the strength and nature of causal relationships that have been identified. It involves using statistical techniques to quantify the effect of one variable on another, given the causal structure is known or assumed.
    
 3. **Interpretability**: the ability to understand and explain how a model makes its predictions or decisions. It involves techniques that provide insights into the importance of different features, the effect of individual variables, and the overall behaviour of the model.
    

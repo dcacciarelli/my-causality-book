@@ -28,6 +28,7 @@ parts:
   chapters:
   - file: notebooks/partial_dependency_plots
   - file: notebooks/accumulated_local_effects
+  - file: notebooks/impulse_response_functions
 
 - caption: Designs
   numbered: true
