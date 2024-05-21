@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/partial_dependency_plots';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11. Accumulated local effects (ALE)" href="accumulated_local_effects.html" />
+    <link rel="next" title="11. Accumulated Local Effects (ALE)" href="accumulated_local_effects.html" />
     <link rel="prev" title="9. Double machine learning (DML)" href="double_machine_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -196,7 +196,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Partial dependence plots (PDP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated local effects (ALE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated Local Effects (ALE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">12. Impulse Response Functions (IRF)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
@@ -513,21 +513,21 @@ document.write(`
 </div>
 <p>Using the <strong>semi-parametric causal discovery methods</strong> we discussed in the previous chapters, we might now be able to discover the true causal structure of the data-generating process. However, we will still not be able to see the <strong>specific shape of the relationship</strong> between a feature (or a set of features) and the predicted outcome. Now, we assume we already have some knowledge on the true causal structure, and want to use some approaches to further characterise the dependency patterns.</p>
 <p>Imagine we fitted a model <span class="math notranslate nohighlight">\(\hat{f}\)</span> that predicts the electricity price using the remaining three features as input variables. Let <span class="math notranslate nohighlight">\(h\)</span> represent the hour variable. The partial dependence function <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-804b076b-7c2b-47fc-969d-6fe6d9c74135">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-804b076b-7c2b-47fc-969d-6fe6d9c74135" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \hat{f}(h) = E_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
+<div class="amsmath math notranslate nohighlight" id="equation-d7d1865f-501f-4730-966a-1f11710ceafd">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-d7d1865f-501f-4730-966a-1f11710ceafd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \hat{f}(h) = \mathbb{E}_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(h\)</span> is the feature of interest (e.g., the hour of the day). It can also be computed for a set of features instead of a single one.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is the vector of all other features in the dataset except <span class="math notranslate nohighlight">\(h\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{f}\)</span> is the model, and <span class="math notranslate nohighlight">\(\hat{f}(h, \mathbf{x})\)</span> is the prediction made by the model for given <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> values.</p></li>
-<li><p><span class="math notranslate nohighlight">\(E_{\mathbf{x}}\)</span> denotes the expectation over the marginal distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{E}_{\mathbf{x}}\)</span> denotes the expectation over the marginal distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>.</p></li>
 </ul>
 <p>The <strong>partial dependence function</strong> shows how the model’s prediction changes when <span class="math notranslate nohighlight">\(h\)</span> changes, keeping the other features constant. Taking the expected value of the model’s prediction over the distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> effectively averages out the effects of all other features. Indeed, the The integral indicates that we are integrating (or averaging) the model’s predictions over the probability distribution of the features in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This integration helps in isolating the effect of <span class="math notranslate nohighlight">\(h\)</span> on the predicted outcome.</p>
 <p>In practice, we estimate <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> using the average prediction over the dataset:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-601551af-7970-4139-be74-33ee8c9f360d">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-601551af-7970-4139-be74-33ee8c9f360d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3d393a6a-9b96-41a1-a03f-0de42bf97bb8">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-3d393a6a-9b96-41a1-a03f-0de42bf97bb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of instances in the dataset, and <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the covariates. This sum basically calculates the average prediction of the model when <span class="math notranslate nohighlight">\(h\)</span> is fixed at a specific value, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> iterates through all the observed values in the dataset. Here is what we would do in practice:</p>
@@ -779,7 +779,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Accumulated local effects (ALE)</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Accumulated Local Effects (ALE)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
