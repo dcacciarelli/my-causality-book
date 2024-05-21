@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Linear models (Direct LiNGAM)" href="semiparametric_direct_lingam.html" />
-    <link rel="prev" title="1. Introduction" href="correlation_vs_causation.html" />
+    <link rel="prev" title="1. Introduction to causality and DAGs" href="correlation_vs_causation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,7 +180,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Key concepts in causal inference</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Introduction to causality and DAGs</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Basic causal structures</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric causal discovery</span></p>
@@ -190,14 +190,20 @@
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">5. Time series models (VARLiNGAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">6. Time series with structural breaks</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">7. Instrumental variables (IV)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">8. Difference in differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">9. Double machine learning (DML)</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">7. Partial dependency plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">8. Accumulated local effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">10. Partial dependency plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated local effects</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">9. Design of experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">Design of experiments (DoE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">10. A/B testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
@@ -437,8 +443,8 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86ddeba7-19b7-4cc9-8be1-34f5cb0e1d2e">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-86ddeba7-19b7-4cc9-8be1-34f5cb0e1d2e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-16beb15b-a04b-43ba-80fa-aef153e7a69d">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-16beb15b-a04b-43ba-80fa-aef153e7a69d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -466,8 +472,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-919c6141-0d79-4df4-9489-38c491015f1c">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-919c6141-0d79-4df4-9489-38c491015f1c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f53413ea-45bf-4859-9153-c82e439dfabe">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-f53413ea-45bf-4859-9153-c82e439dfabe" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -543,8 +549,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5a9f54ff-7b22-4145-8fba-496d2cdc2395">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-5a9f54ff-7b22-4145-8fba-496d2cdc2395" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-17c2bb25-2557-4b92-b527-fb08a335c807">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-17c2bb25-2557-4b92-b527-fb08a335c807" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
@@ -640,7 +646,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introduction to causality and DAGs</p>
       </div>
     </a>
     <a class="right-next"

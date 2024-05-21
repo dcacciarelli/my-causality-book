@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Introduction &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>1. Introduction to causality and DAGs &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -178,7 +178,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Key concepts in causal inference</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introduction to causality and DAGs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric causal discovery</span></p>
@@ -188,14 +188,20 @@
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">5. Time series models (VARLiNGAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">6. Time series with structural breaks</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">7. Instrumental variables (IV)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">8. Difference in differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">9. Double machine learning (DML)</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">7. Partial dependency plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">8. Accumulated local effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">10. Partial dependency plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated local effects</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">9. Design of experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">Design of experiments (DoE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">10. A/B testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
@@ -386,7 +392,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction</h1>
+    <h1>Introduction to causality and DAGs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -415,8 +421,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-causality-and-dags">
+<h1><span class="section-number">1. </span>Introduction to causality and DAGs<a class="headerlink" href="#introduction-to-causality-and-dags" title="Link to this heading">#</a></h1>
 <section id="understanding-key-drivers">
 <h2><span class="section-number">1.1. </span>Understanding key drivers<a class="headerlink" href="#understanding-key-drivers" title="Link to this heading">#</a></h2>
 <p>When tackling real-world engineering problems, a fundamental goal is to understand the underlying mechanisms that govern a system and the <strong>key drivers</strong> affecting its performance. This understanding often comes from conducting experiments, which are foundational to scientific research. For instance, if we aim to determine the effect of a new solar panel design on energy conversion efficiency, systematic experimentation might be the first approach. Through controlled manipulation and observation, experiments help us establish clear cause-and-effect relationships.</p>
