@@ -513,8 +513,8 @@ document.write(`
 </div>
 <p>Using the <strong>semi-parametric causal discovery methods</strong> we discussed in the previous chapters, we might now be able to discover the true causal structure of the data-generating process. However, we will still not be able to see the <strong>specific shape of the relationship</strong> between a feature (or a set of features) and the predicted outcome. Now, we assume we already have some knowledge on the true causal structure, and want to use some approaches to further characterise the dependency patterns.</p>
 <p>Imagine we fitted a model <span class="math notranslate nohighlight">\(\hat{f}\)</span> that predicts the electricity price using the remaining three features as input variables. Let <span class="math notranslate nohighlight">\(h\)</span> represent the hour variable. The partial dependence function <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-09158567-0777-4958-add9-5e6de8a9f9d8">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-09158567-0777-4958-add9-5e6de8a9f9d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a77ac4bb-084d-41c6-b9b2-a85f80753d96">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-a77ac4bb-084d-41c6-b9b2-a85f80753d96" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) = E_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}\]</div>
 <p>where:</p>
@@ -526,8 +526,8 @@ document.write(`
 </ul>
 <p>The <strong>partial dependence function</strong> shows how the model’s prediction changes when <span class="math notranslate nohighlight">\(h\)</span> changes, keeping the other features constant. Taking the expected value of the model’s prediction over the distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> effectively averages out the effects of all other features. Indeed, the The integral indicates that we are integrating (or averaging) the model’s predictions over the probability distribution of the features in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This integration helps in isolating the effect of <span class="math notranslate nohighlight">\(h\)</span> on the predicted outcome.</p>
 <p>In practice, we estimate <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> using the average prediction over the dataset:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41f8d79b-6493-49c4-a141-58d6e14181b6">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-41f8d79b-6493-49c4-a141-58d6e14181b6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a99fda38-8a07-45e2-84d6-ba06bfcb69b6">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-a99fda38-8a07-45e2-84d6-ba06bfcb69b6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of instances in the dataset, and <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the covariates. This sum basically calculates the average prediction of the model when <span class="math notranslate nohighlight">\(h\)</span> is fixed at a specific value, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> iterates through all the observed values in the dataset. Here is what we would do in practice:</p>
@@ -567,7 +567,7 @@ document.write(`
 <span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="c1"># Calculate PDP for the &quot;Hour&quot; feature</span>
-<span class="n">hour_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>  <span class="c1"># Range of hour values to evaluate</span>
+<span class="n">hour_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>  <span class="c1"># Range of hour values to evaluate</span>
 <span class="n">pdp_hour</span> <span class="o">=</span> <span class="n">calculate_pdp</span><span class="p">(</span><span class="n">feature_name</span><span class="o">=</span><span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="n">feature_values</span><span class="o">=</span><span class="n">hour_values</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">rf</span><span class="p">)</span>
 
 <span class="c1"># Plot the manually calculated PDP</span>
@@ -581,19 +581,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7fe25d0659054ada60f9b9b79dd30261890d33d2f2e0cebf57efbee2d85269f3.png" src="../_images/7fe25d0659054ada60f9b9b79dd30261890d33d2f2e0cebf57efbee2d85269f3.png" />
+<img alt="../_images/27b44b5eca6384ecabeaf918ecc3bde9cdbfc387fa919eaecc232836d4b9f31c.png" src="../_images/27b44b5eca6384ecabeaf918ecc3bde9cdbfc387fa919eaecc232836d4b9f31c.png" />
 </div>
 </div>
 <p>We can see how the PDP shows the pattern we expected, as the time of the day affects the price through the peak morning and evening hours. Now, we can apply the function we implemented to the remaining features too. To obtain more reliable estimates, we can <strong>repeat the procedure many times</strong>, and plot the mean dependence lines, along with some <strong>Bootstrap confidence intervals</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the range of values for each feature</span>
-<span class="n">temperature_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
-<span class="n">hour_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+<span class="n">temperature_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">hour_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>
 <span class="n">day_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 
 <span class="c1"># Calculate PDPs with bootstrapping</span>
-<span class="n">n_bootstraps</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">n_bootstraps</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">pdp_temperature_bootstraps</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">pdp_hour_bootstraps</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">pdp_day_bootstraps</span> <span class="o">=</span> <span class="p">[]</span>
@@ -619,69 +619,26 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">16</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">x_bootstrap</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="n">y_bootstrap</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="c1"># Train model on bootstrap sample</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">model_bootstrap</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</div>
+<p>We basically repeated the estimation procedure 100 times. Now, we can use a basic approach and simply take the empirical 2.5% and 97.5% percentiles to obtain a 95% confidence interval for the partial dependence functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pdp_temperature_bootstraps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdp_temperature_bootstraps</span><span class="p">)</span>
+<span class="n">pdp_hour_bootstraps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdp_hour_bootstraps</span><span class="p">)</span>
+<span class="n">pdp_day_bootstraps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pdp_day_bootstraps</span><span class="p">)</span>
 
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pandas/core/indexing.py:1191,</span> in <span class="ni">_LocationIndexer.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1189</span> <span class="n">maybe_callable</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">apply_if_callable</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1190</span> <span class="n">maybe_callable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_deprecated_callable_usage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">maybe_callable</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1191</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_axis</span><span class="p">(</span><span class="n">maybe_callable</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pandas/core/indexing.py:1743,</span> in <span class="ni">_iLocIndexer._getitem_axis</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1741</span> <span class="c1"># a list of integers</span>
-<span class="g g-Whitespace">   </span><span class="mi">1742</span> <span class="k">elif</span> <span class="n">is_list_like_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1743</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_list_axis</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1745</span> <span class="c1"># a single integer</span>
-<span class="g g-Whitespace">   </span><span class="mi">1746</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1747</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">item_from_zerodim</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pandas/core/indexing.py:1714,</span> in <span class="ni">_iLocIndexer._get_list_axis</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1697</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1698</span><span class="sd"> Return Series values by list or array of integers.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1699</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1711</span><span class="sd"> `axis` can only be zero.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1712</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1713</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1714</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_take_with_is_copy</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1716</span>     <span class="c1"># re-raise with different error message, e.g. test_getitem_ndarray_3d</span>
-<span class="g g-Whitespace">   </span><span class="mi">1717</span>     <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;positional indexers are out-of-bounds&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pandas/core/generic.py:4155,</span> in <span class="ni">NDFrame._take_with_is_copy</span><span class="nt">(self, indices, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4153</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4154</span> <span class="c1"># Maybe set copy if we didn&#39;t actually change the index.</span>
-<span class="ne">-&gt; </span><span class="mi">4155</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_axis</span><span class="p">(</span><span class="n">axis</span><span class="p">)):</span>
-<span class="g g-Whitespace">   </span><span class="mi">4156</span>     <span class="n">result</span><span class="o">.</span><span class="n">_set_is_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4157</span> <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pandas/core/base.py:363,</span> in <span class="ni">IndexOpsMixin.ndim</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span> <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span>     <span class="c1"># We need this defined here for mypy</span>
-<span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="k">raise</span> <span class="n">AbstractMethodError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">363</span> <span class="nd">@property</span>
-<span class="g g-Whitespace">    </span><span class="mi">364</span> <span class="k">def</span> <span class="nf">ndim</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">365</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">366</span><span class="sd">     Number of dimensions of the underlying data, by definition 1.</span>
-<span class="g g-Whitespace">    </span><span class="mi">367</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span><span class="sd">     1</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">387</span>     <span class="k">return</span> <span class="mi">1</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<span class="c1"># Compute mean and confidence intervals</span>
+<span class="n">mean_pdp_temperature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pdp_temperature_bootstraps</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mean_pdp_hour</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pdp_hour_bootstraps</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mean_pdp_day</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pdp_day_bootstraps</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ci_temperature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">pdp_temperature_bootstraps</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ci_hour</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">pdp_hour_bootstraps</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ci_day</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">pdp_day_bootstraps</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We basically repeated the estimation procedure 100 times. Now, we can use a basic approach and simply take the empirical 2.5% and 97.5% percentiles to obtain a 95% confidence interval for the partial dependence functions.</p>
+<p>Let’s now plot the result!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot PDPs with confidence intervals</span>
@@ -719,7 +676,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/503ad859ee6ec2a0e616606fc734d0ccde0c235744bb5b1928353750ec9d8861.png" src="../_images/503ad859ee6ec2a0e616606fc734d0ccde0c235744bb5b1928353750ec9d8861.png" />
+<img alt="../_images/2bceda81cc296851507ccb1abdd1be116525b6e155102fb052de7ebb02148df8.png" src="../_images/2bceda81cc296851507ccb1abdd1be116525b6e155102fb052de7ebb02148df8.png" />
 </div>
 </div>
 </section>
