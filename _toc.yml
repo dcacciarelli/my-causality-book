@@ -6,13 +6,13 @@ format: jb-book
 root: intro
 
 parts:
-- caption: Key concepts
+- caption: Key concepts in causal inference
   numbered: true
   chapters:
   - file: notebooks/correlation_vs_causation
   - file: notebooks/basic_dag_structures
   
-- caption: Semi-parametric approaches
+- caption: Semi-parametric causal discovery
   numbered: true 
   chapters:
   - file: notebooks/semiparametric_direct_lingam
@@ -20,8 +20,19 @@ parts:
   - file: notebooks/semiparametric_varlingam
   - file: notebooks/structural_breaks_example
 
+- caption: Interpretability
+  numbered: true
+  chapters:
+  - file: notebooks/partial_dependency_plots
+  - file: notebooks/accumulated_local_effects
+
+- caption: Designs
+  numbered: false
+  chapters:
+  - file: notebooks/design_of_experiments
+  - file: notebooks/AB_testing
+
 - caption: Other
   numbered: false 
   chapters:
   - file: bibliography
-
