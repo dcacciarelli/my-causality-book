@@ -30,7 +30,7 @@ parts:
   - file: notebooks/accumulated_local_effects
 
 - caption: Designs
-  numbered: false
+  numbered: true
   chapters:
   - file: notebooks/design_of_experiments
   - file: notebooks/AB_testing
