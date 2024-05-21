@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: An introduction to causal Inference for electricity markets
+title: Applied causal inference for electricity markets
 author: Davide Cacciarelli
 logo: logo_applied_causal_inference.png
 
