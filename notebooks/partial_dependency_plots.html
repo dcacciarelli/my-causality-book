@@ -197,11 +197,12 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Partial dependence plots (PDP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated local effects (ALE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">12. Impulse Response Functions (IRF)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">12. Design of experiments (DoE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">13. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">13. Design of experiments (DoE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">14. A/B testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -424,7 +425,7 @@ document.write(`
 <span class="n">time_of_day</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>  <span class="c1"># Time of day in hours</span>
 <span class="n">day_of_week</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>  <span class="c1"># Day of the week (0=Sunday, 6=Saturday)</span>
 
-<span class="n">price</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.2</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperature</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>  <span class="c1"># Quadratic effect of temperature</span>
+<span class="n">price</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperature</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>  <span class="c1"># Quadratic effect of temperature</span>
          <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">time_of_day</span> <span class="o">-</span> <span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time_of_day</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time_of_day</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span>  <span class="c1"># Smooth peak between 7 AM and 10 AM</span>
          <span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">time_of_day</span> <span class="o">-</span> <span class="mi">18</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time_of_day</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time_of_day</span> <span class="o">&lt;=</span> <span class="mi">22</span><span class="p">)</span> <span class="o">+</span>  <span class="c1"># Smooth peak between 6 PM and 10 PM</span>
          <span class="o">-</span><span class="mi">5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">time_of_day</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time_of_day</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">time_of_day</span> <span class="o">&lt;=</span> <span class="mi">17</span><span class="p">)</span> <span class="o">+</span>  <span class="c1"># Smooth trough between 10 AM and 5 PM</span>
@@ -476,35 +477,35 @@ document.write(`
       <td>21.952540</td>
       <td>14.229126</td>
       <td>3</td>
-      <td>-2.181208</td>
+      <td>-2.562450</td>
     </tr>
     <tr>
       <th>1</th>
       <td>28.607575</td>
       <td>0.241529</td>
       <td>3</td>
-      <td>14.646904</td>
+      <td>7.237870</td>
     </tr>
     <tr>
       <th>2</th>
       <td>24.110535</td>
       <td>11.419829</td>
       <td>3</td>
-      <td>7.310915</td>
+      <td>5.621266</td>
     </tr>
     <tr>
       <th>3</th>
       <td>21.795327</td>
       <td>17.010489</td>
       <td>5</td>
-      <td>6.542792</td>
+      <td>6.220472</td>
     </tr>
     <tr>
       <th>4</th>
       <td>16.946192</td>
       <td>1.055410</td>
       <td>4</td>
-      <td>-1.502707</td>
+      <td>-2.435281</td>
     </tr>
   </tbody>
 </table>
@@ -512,8 +513,8 @@ document.write(`
 </div>
 <p>Using the <strong>semi-parametric causal discovery methods</strong> we discussed in the previous chapters, we might now be able to discover the true causal structure of the data-generating process. However, we will still not be able to see the <strong>specific shape of the relationship</strong> between a feature (or a set of features) and the predicted outcome. Now, we assume we already have some knowledge on the true causal structure, and want to use some approaches to further characterise the dependency patterns.</p>
 <p>Imagine we fitted a model <span class="math notranslate nohighlight">\(\hat{f}\)</span> that predicts the electricity price using the remaining three features as input variables. Let <span class="math notranslate nohighlight">\(h\)</span> represent the hour variable. The partial dependence function <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e0ea7aaa-5842-4c99-9aed-e089ba407919">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-e0ea7aaa-5842-4c99-9aed-e089ba407919" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-804b076b-7c2b-47fc-969d-6fe6d9c74135">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-804b076b-7c2b-47fc-969d-6fe6d9c74135" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) = E_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}\]</div>
 <p>where:</p>
@@ -525,8 +526,8 @@ document.write(`
 </ul>
 <p>The <strong>partial dependence function</strong> shows how the model’s prediction changes when <span class="math notranslate nohighlight">\(h\)</span> changes, keeping the other features constant. Taking the expected value of the model’s prediction over the distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> effectively averages out the effects of all other features. Indeed, the The integral indicates that we are integrating (or averaging) the model’s predictions over the probability distribution of the features in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This integration helps in isolating the effect of <span class="math notranslate nohighlight">\(h\)</span> on the predicted outcome.</p>
 <p>In practice, we estimate <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> using the average prediction over the dataset:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b8b0459-ab90-483a-95e8-b96d926f69fd">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-0b8b0459-ab90-483a-95e8-b96d926f69fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-601551af-7970-4139-be74-33ee8c9f360d">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-601551af-7970-4139-be74-33ee8c9f360d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of instances in the dataset, and <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the covariates. This sum basically calculates the average prediction of the model when <span class="math notranslate nohighlight">\(h\)</span> is fixed at a specific value, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> iterates through all the observed values in the dataset. Here is what we would do in practice:</p>
@@ -573,7 +574,6 @@ document.write(`
 <span class="c1"># Plot the manually calculated PDP</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hour_values</span><span class="p">,</span> <span class="n">pdp_hour</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PDP&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hour&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted price&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -581,7 +581,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/27b44b5eca6384ecabeaf918ecc3bde9cdbfc387fa919eaecc232836d4b9f31c.png" src="../_images/27b44b5eca6384ecabeaf918ecc3bde9cdbfc387fa919eaecc232836d4b9f31c.png" />
+<img alt="../_images/1eae08131a7fdad3862d394fd8661822b5f614fa1ed64eb6c75a0dc5b25e5207.png" src="../_images/1eae08131a7fdad3862d394fd8661822b5f614fa1ed64eb6c75a0dc5b25e5207.png" />
 </div>
 </div>
 <p>We can see how the PDP shows the pattern we expected, as the time of the day affects the price through the peak morning and evening hours. Now, we can apply the function we implemented to the remaining features too. To obtain more reliable estimates, we can <strong>repeat the procedure many times</strong>, and plot the mean dependence lines, along with some <strong>Bootstrap confidence intervals</strong>.</p>
@@ -649,7 +649,6 @@ document.write(`
 <span class="c1"># Temperature</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">temperature_values</span><span class="p">,</span> <span class="n">mean_pdp_temperature</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Partial Dependence&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">temperature_values</span><span class="p">,</span> <span class="n">ci_temperature</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ci_temperature</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Partial Dependence Plot for Temperature&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Price&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
@@ -657,7 +656,6 @@ document.write(`
 <span class="c1"># Hour</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hour_values</span><span class="p">,</span> <span class="n">mean_pdp_hour</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Partial Dependence&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">hour_values</span><span class="p">,</span> <span class="n">ci_hour</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ci_hour</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Partial Dependence Plot for Hour&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Price&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
@@ -665,7 +663,6 @@ document.write(`
 <span class="c1"># Day</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">day_values</span><span class="p">,</span> <span class="n">mean_pdp_day</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Partial Dependence&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">day_values</span><span class="p">,</span> <span class="n">ci_day</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ci_day</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Partial Dependence Plot for Day&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Day of Week&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Price&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
@@ -676,7 +673,64 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2bceda81cc296851507ccb1abdd1be116525b6e155102fb052de7ebb02148df8.png" src="../_images/2bceda81cc296851507ccb1abdd1be116525b6e155102fb052de7ebb02148df8.png" />
+<img alt="../_images/602292fc9a3a8b58ca0dba6ed93dc4b0630fd36bdcc8a4ec0fe5b996a2e0aa66.png" src="../_images/602292fc9a3a8b58ca0dba6ed93dc4b0630fd36bdcc8a4ec0fe5b996a2e0aa66.png" />
+</div>
+</div>
+<p>Finally, we can also fix the level of <strong>two variables</strong>, and average over the remaining ones, to see the combined effect on the predicted response. In this case, we can see the results in the form of <strong>contour plots</strong>. Here is a simple extension of the previous function, to compute PDP for two variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_pdp_two_features</span><span class="p">(</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">feature_values1</span><span class="p">,</span> <span class="n">feature_values2</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="n">pdp_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_values1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_values2</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">value1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_values1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">value2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_values2</span><span class="p">):</span>
+            <span class="n">X_temp</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">X_temp</span><span class="p">[</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value1</span>
+            <span class="n">X_temp</span><span class="p">[</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value2</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_temp</span><span class="p">)</span>
+            <span class="n">pdp_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pdp_values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate PDPs for the feature combinations</span>
+<span class="n">pdp_temperature_hour</span> <span class="o">=</span> <span class="n">calculate_pdp_two_features</span><span class="p">([</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Hour&#39;</span><span class="p">],</span> <span class="n">temperature_values</span><span class="p">,</span> <span class="n">hour_values</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+<span class="n">pdp_temperature_day</span> <span class="o">=</span> <span class="n">calculate_pdp_two_features</span><span class="p">([</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Day&#39;</span><span class="p">],</span> <span class="n">temperature_values</span><span class="p">,</span> <span class="n">day_values</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+<span class="n">pdp_hour_day</span> <span class="o">=</span> <span class="n">calculate_pdp_two_features</span><span class="p">([</span><span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="s1">&#39;Day&#39;</span><span class="p">],</span> <span class="n">hour_values</span><span class="p">,</span> <span class="n">day_values</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">rf</span><span class="p">)</span>
+
+<span class="c1"># Plot the PDPs as contour plots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Temperature and Hour</span>
+<span class="n">contour1</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">temperature_values</span><span class="p">,</span> <span class="n">hour_values</span><span class="p">,</span> <span class="n">pdp_temperature_hour</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">contour1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+
+<span class="c1"># Temperature and Day</span>
+<span class="n">contour2</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">temperature_values</span><span class="p">,</span> <span class="n">day_values</span><span class="p">,</span> <span class="n">pdp_temperature_day</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">contour2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+
+<span class="c1"># Hour and Day</span>
+<span class="n">contour3</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">hour_values</span><span class="p">,</span> <span class="n">day_values</span><span class="p">,</span> <span class="n">pdp_hour_day</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">contour3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Hour&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Day&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0fe45051e6570bc98a8e9f9b2dd47e5fe06deb8834ddfcfac183f21c25e49c4c.png" src="../_images/0fe45051e6570bc98a8e9f9b2dd47e5fe06deb8834ddfcfac183f21c25e49c4c.png" />
 </div>
 </div>
 </section>
