@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7. Partial dependency plots &#8212; An introduction to causal Inference for electricity markets</title>
+    <title>10. Partial dependency plots &#8212; An introduction to causal Inference for electricity markets</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/partial_dependency_plots';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Accumulated local effects" href="accumulated_local_effects.html" />
-    <link rel="prev" title="6. Time series with structural breaks" href="structural_breaks_example.html" />
+    <link rel="next" title="11. Accumulated local effects" href="accumulated_local_effects.html" />
+    <link rel="prev" title="9. Double machine learning (DML)" href="double_machine_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,7 +178,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Key concepts in causal inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Introduction to causality and DAGs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">2. Basic causal structures</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Semi-parametric causal discovery</span></p>
@@ -188,14 +188,20 @@
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">5. Time series models (VARLiNGAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">6. Time series with structural breaks</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference approaches</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">7. Instrumental variables (IV)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">8. Difference in differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">9. Double machine learning (DML)</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Partial dependency plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">8. Accumulated local effects</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Partial dependency plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated local effects</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">9. Design of experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">Design of experiments (DoE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">10. A/B testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
@@ -399,7 +405,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="partial-dependency-plots">
-<h1><span class="section-number">7. </span>Partial dependency plots<a class="headerlink" href="#partial-dependency-plots" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">10. </span>Partial dependency plots<a class="headerlink" href="#partial-dependency-plots" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -433,12 +439,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="structural_breaks_example.html"
+       href="double_machine_learning.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Time series with structural breaks</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Double machine learning (DML)</p>
       </div>
     </a>
     <a class="right-next"
@@ -446,7 +452,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Accumulated local effects</p>
+        <p class="prev-next-title"><span class="section-number">11. </span>Accumulated local effects</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

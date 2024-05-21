@@ -20,6 +20,13 @@ parts:
   - file: notebooks/semiparametric_varlingam
   - file: notebooks/structural_breaks_example
 
+- caption: Causal inference approaches
+  numbered: true 
+  chapters:
+  - file: notebooks/instrumental_variables
+  - file: notebooks/diff_in_diff
+  - file: notebooks/double_machine_learning
+
 - caption: Interpretability
   numbered: true
   chapters:
