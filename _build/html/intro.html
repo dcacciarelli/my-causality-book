@@ -406,14 +406,20 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-causal-inference-for-electricity-markets">
 <h1>An introduction to causal inference for electricity markets<a class="headerlink" href="#an-introduction-to-causal-inference-for-electricity-markets" title="Link to this heading">#</a></h1>
-<p>This book contains tutorials on causal inference methodologies, explaining key concepts in this rapidly growing research area and showcasing potential applications within the electricity markets.</p>
+<p>This <strong>work in progress</strong> book contains tutorials on causal inference methodologies, explaining key concepts in this rapidly growing research area and showcasing potential applications within the electricity markets. It is currently divided into four parts:</p>
+<ol class="arabic simple">
+<li><p><strong>Causal Discovery</strong>: the process of identifying causal relationships from data. This involves uncovering the underlying causal structure without assuming prior knowledge of the direction or nature of causality. It typically uses statistical and computational methods to determine which variables influence which other variables.</p></li>
+<li><p><strong>Causal Inference</strong>: the process of estimating the strength and nature of causal relationships that have been identified. It involves using statistical techniques to quantify the effect of one variable on another, given the causal structure is known or assumed.</p></li>
+<li><p><strong>Interpretability</strong>: the ability to understand and explain how a model makes its predictions or decisions. It involves techniques that provide insights into the importance of different features, the effect of individual variables, and the overall behaviour of the model.</p></li>
+<li><p><strong>Designs</strong>: the structured and methodical approach to planning, conducting, analysing, and interpreting controlled experiments. It involves techniques for setting up experiments to ensure that the results are valid, reliable, and can be used to draw causal conclusions.</p></li>
+</ol>
 <div class="note admonition">
 <p class="admonition-title">Note</p>
 <p>The examples are provided in <strong>Python</strong>. Each chapter can be downloaded as a <strong>Jupyter Notebook</strong>, allowing you to run the examples and reproduce the results.</p>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">References</p>
-<p>This book is highly applied, aimed at providing essential intuitions and practical examples on applying causal inference methods to real-world problems. We currently focus primarily on semi-parametric approaches, inspired by the methodologies presented in <a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a>. The examples are implemented using the LiNGAM Python package <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
+<p>This book is highly applied, aimed at providing essential intuitions and practical examples on applying causal inference methods to real-world problems. We currently focus primarily on semi-parametric approaches, inspired by the methodologies presented in <a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a>. Many examples are implemented using the LiNGAM Python package <span id="id1">[<a class="reference internal" href="bibliography.html#id3" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
 <p>For additional theoretical and technical explanations, we suggest:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://dl.acm.org/doi/book/10.5555/1642718">Causality: Models, Reasoning and Inference</a></p></li>
