@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/double_machine_learning';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -404,6 +406,29 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="double-machine-learning-dml">
 <h1><span class="section-number">8. </span>Double machine learning (DML)<a class="headerlink" href="#double-machine-learning-dml" title="Link to this heading">#</a></h1>
+<p>Double machine learning (DML) is a powerful framework used to estimate causal effects in the presence of many confounding variables. It combines machine learning techniques with econometric methods to control for confounding variables and obtain unbiased estimates of treatment effects. Let’s consider a practical example where we want to estimate the effect of wind power production (<span class="math notranslate nohighlight">\(w\)</span>) on electricity prices (<span class="math notranslate nohighlight">\(y\)</span>), while <strong>accounting for other influencing factors</strong> such as weather conditions, demand, and other market variables (<span class="math notranslate nohighlight">\(x\)</span>).</p>
+<p>We can model the relationship between these variables as follows. First, we know that there is an unknown function <span class="math notranslate nohighlight">\(g\)</span> relating the response variable <span class="math notranslate nohighlight">\(y\)</span> to both the endogenous explanatory variable of interest, <span class="math notranslate nohighlight">\(w\)</span>, and other variables <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0eebd028-ede3-4f45-8741-dc4a7848ae73">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-0eebd028-ede3-4f45-8741-dc4a7848ae73" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y = g(w, x) + \epsilon
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is an error term. This equation simply corresponds to saying:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-62658fc9-a5e3-431e-8c1d-a666e55e0f7f">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-62658fc9-a5e3-431e-8c1d-a666e55e0f7f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \text{Electricity price} = g(\text{wind power production}, \text{weather conditions}, \text{demand}, \text{market variables}) + \epsilon
+\end{equation}\]</div>
+<p>Then, we also know that the explanatory variable of interest <span class="math notranslate nohighlight">\(w\)</span> can be expressed as a function of other known variables (e.g., weather conditions).</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9e35b00c-9e66-4c05-bf69-9f335f72ae5c">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-9e35b00c-9e66-4c05-bf69-9f335f72ae5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    w = m(x) + \nu
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nu\)</span> is an error variable.</p>
+<p>The DML framework involves two main stages:</p>
+<ul class="simple">
+<li><p><strong>Nuisance parameter estimation</strong>: use a machine learning model to estimate the functions <span class="math notranslate nohighlight">\( \hat{g}(w, x)\)</span> and <span class="math notranslate nohighlight">\( \hat{m}(x)\)</span>.</p></li>
+<li><p><strong>Orthogonalization and estimation</strong>: use the estimated functions to adjust the variables and then estimate the causal effect using a second-stage regression.</p></li>
+</ul>
+<p><strong>Difference with IV and 2SLS</strong>: while this approach might appear very similar to IVs and 2SLS, there is a fundamental difference. IVs are used in the presence of unknown or unobserved confounders. Here, we have at our disposal a (potentially very large) set of variables that affect the explanatory variable of interest.</p>
 </section>
 
     <script type="text/x-thebe-config">
