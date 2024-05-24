@@ -1,0 +1,14 @@
+digraph {
+	Z [label="Wind Speed
+Forecasts (Z)"]
+	X [label="Wind Energy
+Generation (X)"]
+	Y [label="Electricity
+Prices (Y)"]
+	U [label="Unobserved
+Confounder (U)"]
+	Z -> X
+	X -> Y
+	U -> X
+	U -> Y
+}

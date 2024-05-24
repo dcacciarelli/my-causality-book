@@ -20,8 +20,8 @@ parts:
   numbered: true 
   chapters:
   - file: notebooks/instrumental_variables
-  - file: notebooks/diff_in_diff
   - file: notebooks/double_machine_learning
+  - file: notebooks/diff_in_diff
 
 - caption: Interpretability
   numbered: true
