@@ -477,9 +477,11 @@ document.write(`
 <p>Assume we have collected a dataset that follows the causal structure outlined in the previously discussed causal graph. However, let’s also assume that we are unaware of this true causal structure and need to perform exploratory analysis to uncover potential correlations among the observations.</p>
 <p>In this scenario, our goal is to explore the data, look for correlations, and attempt to infer possible causal relationships without prior knowledge of the underlying causal mechanisms. This approach mimics real-world situations where data scientists and researchers often work with complex datasets without a clear understanding of the dynamics that govern the relationships between variables.</p>
 <p>Through statistical methods and visual analysis, we will examine the interactions between temperature, electricity load, and ice cream sales, exploring how these variables may be related and considering the implications of our findings.</p>
+<p>First, let’s generate some data according to the DAG shown above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -496,7 +498,73 @@ document.write(`
 <span class="c1"># Creating a DataFrame</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="n">temperatures</span><span class="p">,</span> <span class="s1">&#39;Electricity Load&#39;</span><span class="p">:</span> <span class="n">electricity_load</span><span class="p">,</span> <span class="s1">&#39;Ice Cream Sales&#39;</span><span class="p">:</span> <span class="n">ice_cream_sales</span><span class="p">})</span>
 
-<span class="c1"># Setting up the plots</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Temperature</th>
+      <th>Electricity Load</th>
+      <th>Ice Cream Sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22.483571</td>
+      <td>76.386598</td>
+      <td>143.654668</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>19.308678</td>
+      <td>64.318811</td>
+      <td>94.658826</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>23.238443</td>
+      <td>74.974688</td>
+      <td>89.601501</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>27.615149</td>
+      <td>78.501907</td>
+      <td>110.302984</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>18.829233</td>
+      <td>68.637125</td>
+      <td>87.293150</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, let’s plot the pairwise correlation plots to explore the dependencies.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting up the plots</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># Temperature vs Electricity Load with hexbin plot</span>
@@ -520,20 +588,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Setting a random seed for reproducibility</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Generating synthetic data</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
-
-<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Ice Cream Sales (GBP)&#39;)
 </pre></div>
 </div>
+<img alt="../_images/8e1a86021a1604d04066d84f4b3d5fefd2264bbe00bafcdc25bee828a7d975d7.png" src="../_images/8e1a86021a1604d04066d84f4b3d5fefd2264bbe00bafcdc25bee828a7d975d7.png" />
 </div>
 </div>
+<p>By examining these plots, we might find ourselves tempted to conclude a correlation between electricity load and ice cream sales, especially in a more complex scenario where the causal structure is not known to us. This observation highlights a common challenge in data analysis: distinguishing between mere correlation and actual causation without prior knowledge of the underlying causal mechanisms.</p>
 </section>
 <section id="causal-discovery-from-observational-data">
 <h2><span class="section-number">1.4. </span>Causal discovery from observational data<a class="headerlink" href="#causal-discovery-from-observational-data" title="Link to this heading">#</a></h2>
