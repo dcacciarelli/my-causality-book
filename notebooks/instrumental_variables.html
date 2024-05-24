@@ -402,10 +402,10 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endogeneity">7.1. Endogeneity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-2sls">7.2. Two-stage least squares (2SLS)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">7.2.1. Mathematical Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-confounders">7.2.1. Ignoring confounders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sls">7.2.2. 2SLS</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-iv-in-electricity-markets">7.3. Example: IV in Electricity Markets</a></li>
 </ul>
             </nav>
         </div>
@@ -463,7 +463,41 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/c6c5d9356bead890319dd53191bc3292fb99b8b3d4c2e39ebcc136f671de4ae0.svg" src="../_images/c6c5d9356bead890319dd53191bc3292fb99b8b3d4c2e39ebcc136f671de4ae0.svg" /></div>
 </div>
-<p>Let’s now generate some data for this example</p>
+</section>
+<section id="two-stage-least-squares-2sls">
+<h2><span class="section-number">7.2. </span>Two-stage least squares (2SLS)<a class="headerlink" href="#two-stage-least-squares-2sls" title="Link to this heading">#</a></h2>
+<p>Two-stage least squares (2SLS) is an econometric approach used to address endogeneity using IVs. It is performed in two steps:</p>
+<ol class="arabic simple">
+<li><p>Regress the endogenous explanatory variable on the IV to obtain predicted values.</p></li>
+<li><p>Regress the dependent variable on the predicted values obtained from the first stage.</p></li>
+</ol>
+<p>The key idea is that if we use the IV (wind speed forecast) to predict the endogenous explanatory variable (wind power production), and then use these predicted values to estimate its effect on the response variable (price), we essentially use only the part of the variation in the explanatori variable that is “clean” of the confounding effects of the unobserved confounders (e.g., solar generation, macroeconomic trends). This allows us to estimate a causal effect that is not biased.</p>
+<p>If we want to visualize this effect, this corresponds to removing the edge from the unobserved confounders to the endogenous explaantory variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new graph</span>
+<span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Wind speed</span><span class="se">\n</span><span class="s1">forecasts&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Predicted wind </span><span class="se">\n</span><span class="s1">power production </span><span class="se">\n</span><span class="s1">using the IV&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Electricity </span><span class="se">\n</span><span class="s1">prices&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="s1">&#39;Unobserved</span><span class="se">\n</span><span class="s1">confounders&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add edges</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the graph in the notebook</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e52d29a30cd5a4ee7d6156742800cdeca802240eeac07b84e71f38af3f7532c1.svg" src="../_images/e52d29a30cd5a4ee7d6156742800cdeca802240eeac07b84e71f38af3f7532c1.svg" /></div>
+</div>
+<p>Let’s now generate some data to show how this works in practice. Since the confounders are, by definition, <strong>unobserved</strong>, we assume to only have at our disposal the wind speed forecast, the wind power production, and the electricity prices.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -552,9 +586,9 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="two-stage-least-squares-2sls">
-<h2><span class="section-number">7.2. </span>Two-stage least squares (2SLS)<a class="headerlink" href="#two-stage-least-squares-2sls" title="Link to this heading">#</a></h2>
+<section id="ignoring-confounders">
+<h3><span class="section-number">7.2.1. </span>Ignoring confounders<a class="headerlink" href="#ignoring-confounders" title="Link to this heading">#</a></h3>
+<p>If we simply ignore the problem of having unobserved confounders, we might be tempted to simply fit a model on the available data. Let’s try that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform OLS regression</span>
@@ -562,8 +596,47 @@ document.write(`
 <span class="n">ols_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">X_ols</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OLS Regression Results:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ols_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OLS Regression Results:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:      ElectricityPrices   R-squared:                       0.925
+Model:                            OLS   Adj. R-squared:                  0.925
+Method:                 Least Squares   F-statistic:                 1.225e+04
+Date:                Fri, 24 May 2024   Prob (F-statistic):               0.00
+Time:                        18:07:02   Log-Likelihood:                -2886.7
+No. Observations:                1000   AIC:                             5777.
+Df Residuals:                     998   BIC:                             5787.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+const                  -2.5490      0.251    -10.149      0.000      -3.042      -2.056
+WindPowerProduction     2.2967      0.021    110.677      0.000       2.256       2.337
+==============================================================================
+Omnibus:                        0.663   Durbin-Watson:                   1.919
+Prob(Omnibus):                  0.718   Jarque-Bera (JB):                0.609
+Skew:                          -0.059   Prob(JB):                        0.737
+Kurtosis:                       3.022   Cond. No.                         22.2
+==============================================================================
 
-<span class="c1"># First stage of 2SLS: Regress WindPowerProduction on WindSpeedForecasts</span>
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sls">
+<h3><span class="section-number">7.2.2. </span>2SLS<a class="headerlink" href="#sls" title="Link to this heading">#</a></h3>
+<p>Now, we use the 2SLS approach and fit two models, the first one to predit the explanatory variable and the second one using the predicted variable to predict the response.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First stage of 2SLS: Regress WindPowerProduction on WindSpeedForecasts</span>
 <span class="n">X_first_stage</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindSpeedForecasts&#39;</span><span class="p">])</span>
 <span class="n">first_stage_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindPowerProduction&#39;</span><span class="p">],</span> <span class="n">X_first_stage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;FittedWindPowerProduction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_stage_model</span><span class="o">.</span><span class="n">fittedvalues</span>
@@ -573,27 +646,57 @@ document.write(`
 <span class="n">second_stage_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">X_second_stage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">2SLS Regression Results:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">second_stage_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2SLS Regression Results:
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:      ElectricityPrices   R-squared:                       0.509
+Model:                            OLS   Adj. R-squared:                  0.508
+Method:                 Least Squares   F-statistic:                     1034.
+Date:                Fri, 24 May 2024   Prob (F-statistic):          3.21e-156
+Time:                        18:07:02   Log-Likelihood:                -3824.2
+No. Observations:                1000   AIC:                             7652.
+Df Residuals:                     998   BIC:                             7662.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=============================================================================================
+                                coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------------
+const                         0.9002      0.709      1.269      0.205      -0.492       2.292
+FittedWindPowerProduction     1.9563      0.061     32.149      0.000       1.837       2.076
+==============================================================================
+Omnibus:                        0.082   Durbin-Watson:                   2.015
+Prob(Omnibus):                  0.960   Jarque-Bera (JB):                0.119
+Skew:                          -0.020   Prob(JB):                        0.942
+Kurtosis:                       2.964   Cond. No.                         23.7
+==============================================================================
 
-<span class="c1"># Extract coefficients and standard errors</span>
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now <strong>compare the results</strong> obtained with the naive approach, ignoring the presence of confounders, and the 2SLS modelling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract coefficients and standard errors</span>
 <span class="n">ols_coef</span> <span class="o">=</span> <span class="n">ols_model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">ols_se</span> <span class="o">=</span> <span class="n">ols_model</span><span class="o">.</span><span class="n">bse</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
 <span class="n">second_stage_coef</span> <span class="o">=</span> <span class="n">second_stage_model</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">second_stage_se</span> <span class="o">=</span> <span class="n">second_stage_model</span><span class="o">.</span><span class="n">bse</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Print the comparison</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Comparison of Coefficients and Standard Errors:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OLS Coefficient: </span><span class="si">{</span><span class="n">ols_coef</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Standard Error: </span><span class="si">{</span><span class="n">ols_se</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2SLS Coefficient: </span><span class="si">{</span><span class="n">second_stage_coef</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Standard Error: </span><span class="si">{</span><span class="n">second_stage_se</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot the comparison</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;OLS&#39;</span><span class="p">,</span> <span class="s1">&#39;2SLS&#39;</span><span class="p">]</span>
 <span class="n">coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="n">ols_coef</span><span class="p">,</span> <span class="n">second_stage_coef</span><span class="p">]</span>
 <span class="n">errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">ols_se</span><span class="p">,</span> <span class="n">second_stage_se</span><span class="p">]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">true_effect</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Effect&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">true_effect</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True effect&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Coefficient of Wind Power Production&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparison of OLS and 2SLS Estimates&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -602,425 +705,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OLS Regression Results:
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:      ElectricityPrices   R-squared:                       0.925
-Model:                            OLS   Adj. R-squared:                  0.925
-Method:                 Least Squares   F-statistic:                 1.225e+04
-Date:                Fri, 24 May 2024   Prob (F-statistic):               0.00
-Time:                        17:33:04   Log-Likelihood:                -2886.7
-No. Observations:                1000   AIC:                             5777.
-Df Residuals:                     998   BIC:                             5787.
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-=======================================================================================
-                          coef    std err          t      P&gt;|t|      [0.025      0.975]
----------------------------------------------------------------------------------------
-const                  -2.5490      0.251    -10.149      0.000      -3.042      -2.056
-WindPowerProduction     2.2967      0.021    110.677      0.000       2.256       2.337
-==============================================================================
-Omnibus:                        0.663   Durbin-Watson:                   1.919
-Prob(Omnibus):                  0.718   Jarque-Bera (JB):                0.609
-Skew:                          -0.059   Prob(JB):                        0.737
-Kurtosis:                       3.022   Cond. No.                         22.2
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-2SLS Regression Results:
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:      ElectricityPrices   R-squared:                       0.509
-Model:                            OLS   Adj. R-squared:                  0.508
-Method:                 Least Squares   F-statistic:                     1034.
-Date:                Fri, 24 May 2024   Prob (F-statistic):          3.21e-156
-Time:                        17:33:04   Log-Likelihood:                -3824.2
-No. Observations:                1000   AIC:                             7652.
-Df Residuals:                     998   BIC:                             7662.
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-=============================================================================================
-                                coef    std err          t      P&gt;|t|      [0.025      0.975]
----------------------------------------------------------------------------------------------
-const                         0.9002      0.709      1.269      0.205      -0.492       2.292
-FittedWindPowerProduction     1.9563      0.061     32.149      0.000       1.837       2.076
-==============================================================================
-Omnibus:                        0.082   Durbin-Watson:                   2.015
-Prob(Omnibus):                  0.960   Jarque-Bera (JB):                0.119
-Skew:                          -0.020   Prob(JB):                        0.942
-Kurtosis:                       2.964   Cond. No.                         23.7
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-Comparison of Coefficients and Standard Errors:
-OLS Coefficient: 2.297, Standard Error: 0.021
-2SLS Coefficient: 1.956, Standard Error: 0.061
-</pre></div>
-</div>
-<img alt="../_images/b0f5177c5a4f5ab99516aebc1e4adc93bd513290017a0414cd3d8872e5f2694c.png" src="../_images/b0f5177c5a4f5ab99516aebc1e4adc93bd513290017a0414cd3d8872e5f2694c.png" />
+<img alt="../_images/570bd8b176dcd75b03484874379faa241fe04de035b99aa3b1e3908f1f60b3e7.png" src="../_images/570bd8b176dcd75b03484874379faa241fe04de035b99aa3b1e3908f1f60b3e7.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform OLS regression</span>
-<span class="n">X_ols</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindPowerProduction&#39;</span><span class="p">])</span>
-<span class="n">ols_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">X_ols</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OLS Regression Results:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ols_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-
-<span class="c1"># First stage of 2SLS: Regress WindPowerProduction on WindSpeedForecasts</span>
-<span class="n">X_first_stage</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindSpeedForecasts&#39;</span><span class="p">])</span>
-<span class="n">first_stage_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindPowerProduction&#39;</span><span class="p">],</span> <span class="n">X_first_stage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;FittedWindPowerProduction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_stage_model</span><span class="o">.</span><span class="n">fittedvalues</span>
-
-<span class="c1"># Second stage of 2SLS: Regress ElectricityPrices on the fitted values from the first stage</span>
-<span class="n">X_second_stage</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FittedWindPowerProduction&#39;</span><span class="p">])</span>
-<span class="n">second_stage_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">X_second_stage</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">2SLS Regression Results:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">second_stage_model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-
-<span class="c1"># Plot the results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-<span class="c1"># OLS plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindPowerProduction&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindPowerProduction&#39;</span><span class="p">],</span> <span class="n">ols_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;OLS Fit&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wind Power Production&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Prices&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;OLS Regression&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="c1"># 2SLS plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FittedWindPowerProduction&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FittedWindPowerProduction&#39;</span><span class="p">],</span> <span class="n">second_stage_model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2SLS Fit&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fitted Wind Power Production&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Prices&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;2SLS Regression&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OLS Regression Results:
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:      ElectricityPrices   R-squared:                       0.925
-Model:                            OLS   Adj. R-squared:                  0.925
-Method:                 Least Squares   F-statistic:                 1.225e+04
-Date:                Fri, 24 May 2024   Prob (F-statistic):               0.00
-Time:                        17:33:04   Log-Likelihood:                -2886.7
-No. Observations:                1000   AIC:                             5777.
-Df Residuals:                     998   BIC:                             5787.
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-=======================================================================================
-                          coef    std err          t      P&gt;|t|      [0.025      0.975]
----------------------------------------------------------------------------------------
-const                  -2.5490      0.251    -10.149      0.000      -3.042      -2.056
-WindPowerProduction     2.2967      0.021    110.677      0.000       2.256       2.337
-==============================================================================
-Omnibus:                        0.663   Durbin-Watson:                   1.919
-Prob(Omnibus):                  0.718   Jarque-Bera (JB):                0.609
-Skew:                          -0.059   Prob(JB):                        0.737
-Kurtosis:                       3.022   Cond. No.                         22.2
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-2SLS Regression Results:
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:      ElectricityPrices   R-squared:                       0.509
-Model:                            OLS   Adj. R-squared:                  0.508
-Method:                 Least Squares   F-statistic:                     1034.
-Date:                Fri, 24 May 2024   Prob (F-statistic):          3.21e-156
-Time:                        17:33:04   Log-Likelihood:                -3824.2
-No. Observations:                1000   AIC:                             7652.
-Df Residuals:                     998   BIC:                             7662.
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-=============================================================================================
-                                coef    std err          t      P&gt;|t|      [0.025      0.975]
----------------------------------------------------------------------------------------------
-const                         0.9002      0.709      1.269      0.205      -0.492       2.292
-FittedWindPowerProduction     1.9563      0.061     32.149      0.000       1.837       2.076
-==============================================================================
-Omnibus:                        0.082   Durbin-Watson:                   2.015
-Prob(Omnibus):                  0.960   Jarque-Bera (JB):                0.119
-Skew:                          -0.020   Prob(JB):                        0.942
-Kurtosis:                       2.964   Cond. No.                         23.7
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-</pre></div>
-</div>
-<img alt="../_images/d4e7154c808ecb21ed8170e6481cbea2a2a69bc02ea3e6d2df923bdec57cd75d.png" src="../_images/d4e7154c808ecb21ed8170e6481cbea2a2a69bc02ea3e6d2df923bdec57cd75d.png" />
-</div>
-</div>
-<p>Formally, consider the following structural model:</p>
-<p>[
-Y = \beta_0 + \beta_1 X + u
-]</p>
-<p>where ( X ) is endogenous. We need an instrument ( Z ) such that:</p>
-<ol class="arabic simple">
-<li><p>( \text{Cov}(Z, X) \neq 0 )</p></li>
-<li><p>( \text{Cov}(Z, u) = 0 )</p></li>
-</ol>
-<p>The IV estimator involves two stages:</p>
-<ol class="arabic simple">
-<li><p><strong>First Stage</strong>: Regress ( X ) on ( Z ) to get the predicted values of ( X ), denoted by ( \hat{X} ).</p></li>
-<li><p><strong>Second Stage</strong>: Regress ( Y ) on ( \hat{X} ) to obtain the IV estimate of ( \beta_1 ).</p></li>
-</ol>
-<section id="mathematical-formulation">
-<h3><span class="section-number">7.2.1. </span>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>First Stage</strong>:
-[
-X = \pi_0 + \pi_1 Z + v
-]
-Estimate ( \pi_0 ) and ( \pi_1 ) using OLS, and obtain ( \hat{X} = \pi_0 + \pi_1 Z ).</p></li>
-<li><p><strong>Second Stage</strong>:
-[
-Y = \alpha_0 + \alpha_1 \hat{X} + \epsilon
-]
-Estimate ( \alpha_0 ) and ( \alpha_1 ) using OLS. The coefficient ( \alpha_1 ) is the IV estimate of ( \beta_1 ).</p></li>
-</ol>
+<p>We can now see tha simply using a model on all the observed variables leads us to a <strong>biased estimate</strong>. Instead, using 2SLS we can get much closer to the real effect.</p>
 </section>
-</section>
-<section id="example-iv-in-electricity-markets">
-<h2><span class="section-number">7.3. </span>Example: IV in Electricity Markets<a class="headerlink" href="#example-iv-in-electricity-markets" title="Link to this heading">#</a></h2>
-<p>We aim to estimate the impact of high wind days on electricity prices, addressing potential endogeneity between wind and electricity prices. We use an instrumental variable that affects wind generation but not directly electricity prices.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># Simulate data</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">temperature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-<span class="n">demand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-<span class="n">wind_speed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-<span class="n">elevation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-
-<span class="c1"># Endogenous variable: wind generation</span>
-<span class="n">wind_generation</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">wind_speed</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">temperature</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-
-<span class="c1"># Electricity price</span>
-<span class="n">price</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">temperature</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">demand</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">wind_generation</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
-
-<span class="c1"># Create DataFrame</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
-    <span class="s1">&#39;Demand&#39;</span><span class="p">:</span> <span class="n">demand</span><span class="p">,</span>
-    <span class="s1">&#39;WindSpeed&#39;</span><span class="p">:</span> <span class="n">wind_speed</span><span class="p">,</span>
-    <span class="s1">&#39;Elevation&#39;</span><span class="p">:</span> <span class="n">elevation</span><span class="p">,</span>
-    <span class="s1">&#39;WindGeneration&#39;</span><span class="p">:</span> <span class="n">wind_generation</span><span class="p">,</span>
-    <span class="s1">&#39;Price&#39;</span><span class="p">:</span> <span class="n">price</span>
-<span class="p">})</span>
-
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Temperature</th>
-      <th>Demand</th>
-      <th>WindSpeed</th>
-      <th>Elevation</th>
-      <th>WindGeneration</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>21.952540</td>
-      <td>3371.521083</td>
-      <td>16.230369</td>
-      <td>413.962496</td>
-      <td>84.461038</td>
-      <td>726.818339</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>28.607575</td>
-      <td>1040.254783</td>
-      <td>9.521680</td>
-      <td>629.618303</td>
-      <td>46.996672</td>
-      <td>266.142911</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>24.110535</td>
-      <td>2903.304783</td>
-      <td>10.463120</td>
-      <td>778.584264</td>
-      <td>53.973084</td>
-      <td>633.621911</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>21.795327</td>
-      <td>3835.081564</td>
-      <td>5.010412</td>
-      <td>851.557794</td>
-      <td>25.413527</td>
-      <td>822.808563</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>16.946192</td>
-      <td>1175.901728</td>
-      <td>12.100860</td>
-      <td>816.412714</td>
-      <td>61.908580</td>
-      <td>292.288841</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First Stage: WindGeneration ~ Elevation + Temperature + Demand</span>
-<span class="n">first_stage</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindGeneration&#39;</span><span class="p">],</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Elevation&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Demand&#39;</span><span class="p">]]))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;PredictedWindGeneration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_stage</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Elevation&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Demand&#39;</span><span class="p">]]))</span>
-
-<span class="c1"># Second Stage: Price ~ PredictedWindGeneration + Temperature + Demand</span>
-<span class="n">second_stage</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;PredictedWindGeneration&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Demand&#39;</span><span class="p">]]))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-
-<span class="c1"># Output the results</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First Stage Results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">first_stage</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Second Stage Results:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">second_stage</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First Stage Results:
-                             OLS Regression Results                            
-==============================================================================
-Dep. Variable:         WindGeneration   R-squared:                       0.002
-Model:                            OLS   Adj. R-squared:                 -0.001
-Method:                 Least Squares   F-statistic:                    0.8096
-Date:                Fri, 24 May 2024   Prob (F-statistic):              0.489
-Time:                        17:33:04   Log-Likelihood:                -4773.3
-No. Observations:                1000   AIC:                             9555.
-Df Residuals:                     996   BIC:                             9574.
-Df Model:                           3                                         
-Covariance Type:            nonrobust                                         
-===============================================================================
-                  coef    std err          t      P&gt;|t|      [0.025      0.975]
--------------------------------------------------------------------------------
-const          48.5141      3.344     14.507      0.000      41.952      55.076
-Elevation       0.0046      0.003      1.441      0.150      -0.002       0.011
-Temperature     0.0353      0.078      0.452      0.651      -0.118       0.189
-Demand          0.0003      0.001      0.459      0.646      -0.001       0.002
-==============================================================================
-Omnibus:                      508.120   Durbin-Watson:                   2.063
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               55.085
-Skew:                           0.013   Prob(JB):                     1.09e-12
-Kurtosis:                       1.850   Cond. No.                     1.22e+04
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.22e+04. This might indicate that there are
-strong multicollinearity or other numerical problems.
-
-Second Stage Results:
-                             OLS Regression Results                            
-==============================================================================
-Dep. Variable:                  Price   R-squared:                       0.999
-Model:                            OLS   Adj. R-squared:                  0.999
-Method:                 Least Squares   F-statistic:                 5.763e+05
-Date:                Fri, 24 May 2024   Prob (F-statistic):               0.00
-Time:                        17:33:04   Log-Likelihood:                -3167.4
-No. Observations:                1000   AIC:                             6343.
-Df Residuals:                     996   BIC:                             6363.
-Df Model:                           3                                         
-Covariance Type:            nonrobust                                         
-===========================================================================================
-                              coef    std err          t      P&gt;|t|      [0.025      0.975]
--------------------------------------------------------------------------------------------
-const                      54.5766      7.109      7.677      0.000      40.626      68.528
-PredictedWindGeneration    -0.1921      0.139     -1.379      0.168      -0.465       0.081
-Temperature                 0.4956      0.016     30.418      0.000       0.464       0.528
-Demand                      0.2002      0.000   1261.215      0.000       0.200       0.200
-==============================================================================
-Omnibus:                        2.329   Durbin-Watson:                   2.094
-Prob(Omnibus):                  0.312   Jarque-Bera (JB):                2.106
-Skew:                           0.024   Prob(JB):                        0.349
-Kurtosis:                       2.780   Cond. No.                     1.28e+05
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 1.28e+05. This might indicate that there are
-strong multicollinearity or other numerical problems.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the actual vs predicted wind generation</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindGeneration&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;PredictedWindGeneration&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindGeneration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindGeneration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> 
-         <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindGeneration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;WindGeneration&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual Wind Generation&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Wind Generation&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Actual vs Predicted Wind Generation (First Stage)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Plot the effect of predicted wind generation on price</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;PredictedWindGeneration&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted Wind Generation&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Price&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Effect of Predicted Wind Generation on Electricity Price (Second Stage)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/7b6add903cc4a4603e5afa47239f16d5c8325c3f91519a84877a85511f4600eb.png" src="../_images/7b6add903cc4a4603e5afa47239f16d5c8325c3f91519a84877a85511f4600eb.png" />
-<img alt="../_images/9bd10a14c0b12bff2041a9b6ee87f26a38c1c24b26a2cde6b8d686e14e689b61.png" src="../_images/9bd10a14c0b12bff2041a9b6ee87f26a38c1c24b26a2cde6b8d686e14e689b61.png" />
-</div>
-</div>
 </section>
 </section>
 
@@ -1090,10 +779,10 @@ strong multicollinearity or other numerical problems.
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endogeneity">7.1. Endogeneity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-2sls">7.2. Two-stage least squares (2SLS)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">7.2.1. Mathematical Formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-confounders">7.2.1. Ignoring confounders</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sls">7.2.2. 2SLS</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-iv-in-electricity-markets">7.3. Example: IV in Electricity Markets</a></li>
 </ul>
   </nav></div>
 
