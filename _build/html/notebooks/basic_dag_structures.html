@@ -441,8 +441,8 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26352c89-c2c1-4ff2-b8d9-105ea31cee68">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-26352c89-c2c1-4ff2-b8d9-105ea31cee68" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-adb2e538-3dd5-4c87-af9b-795094fce5c0">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-adb2e538-3dd5-4c87-af9b-795094fce5c0" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -470,13 +470,14 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72806e44-7107-4df3-91da-ad2f623de889">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-72806e44-7107-4df3-91da-ad2f623de889" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4372b0e1-75d6-4a0d-b3c6-23eff27c433f">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-4372b0e1-75d6-4a0d-b3c6-23eff27c433f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(e_w, e_f, e_h \sim \mathcal{N}(0,1)\)</span>.</p>
+<p>First, let’s generate some data from this DAG.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -496,7 +497,73 @@ document.write(`
 <span class="c1"># Creating a DataFrame</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;weather&#39;</span><span class="p">:</span> <span class="n">weather_fluctuations</span><span class="p">,</span> <span class="s1">&#39;forecast errors&#39;</span><span class="p">:</span> <span class="n">forecast_errors</span><span class="p">,</span> <span class="s1">&#39;heating demand&#39;</span><span class="p">:</span> <span class="n">heating</span><span class="p">})</span>
 
-<span class="c1"># Setting up the plots</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>weather</th>
+      <th>forecast errors</th>
+      <th>heating demand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.496714</td>
+      <td>1.775666</td>
+      <td>1.909541</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.138264</td>
+      <td>-1.362751</td>
+      <td>-0.191013</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.647689</td>
+      <td>1.546970</td>
+      <td>-0.876154</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.523030</td>
+      <td>1.665306</td>
+      <td>-0.322517</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.234153</td>
+      <td>-0.678633</td>
+      <td>-0.506558</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, let’s plot the pairwise correlation plots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting up the plots</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># Temperature vs Electricity Load with hexbin plot</span>
@@ -516,13 +583,12 @@ document.write(`
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Wind forecast errors vs heating demand&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Forecast error (MW)&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Heating demand (MW)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Heating demand (MW)&#39;)
-</pre></div>
-</div>
 <img alt="../_images/0cfa9fdbd9881ebbb6918bd8f3a9063dec3b3dceb6bb63f77a6749edae311ea9.png" src="../_images/0cfa9fdbd9881ebbb6918bd8f3a9063dec3b3dceb6bb63f77a6749edae311ea9.png" />
 </div>
 </div>
@@ -547,14 +613,15 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4a54b476-e80f-4cca-9ef3-19f30bfb0f7c">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-4a54b476-e80f-4cca-9ef3-19f30bfb0f7c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-80aae96c-4df5-416e-8137-b10d091d994b">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-80aae96c-4df5-416e-8137-b10d091d994b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(e_f, e_o, e_b \sim \mathcal{N}(0,1)\)</span>.</p>
 <p>We will now see the effect of the <strong>Berkson’s paradox</strong>, which is the spurious correlation observed in the two parent variables, after conditioning on the collider.</p>
+<p>First, let’s generate some data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -573,7 +640,73 @@ document.write(`
 
 <span class="n">data_immorality</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;forecast errors&#39;</span><span class="p">:</span> <span class="n">forecast_errors</span><span class="p">,</span> <span class="s1">&#39;outages&#39;</span><span class="p">:</span> <span class="n">outages</span><span class="p">,</span> <span class="s1">&#39;balancing costs&#39;</span><span class="p">:</span> <span class="n">balancing_costs</span><span class="p">})</span>
 
-<span class="c1"># Setting up the plots</span>
+<span class="n">data_immorality</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>forecast errors</th>
+      <th>outages</th>
+      <th>balancing costs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.496714</td>
+      <td>1.030595</td>
+      <td>2.695504</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.138264</td>
+      <td>-1.155355</td>
+      <td>-2.018984</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.647689</td>
+      <td>0.575437</td>
+      <td>2.025579</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.523030</td>
+      <td>-0.619238</td>
+      <td>1.978338</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.234153</td>
+      <td>-0.327403</td>
+      <td>-0.993676</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, let’s take a look at the correlations, after conditioning on the child variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting up the plots</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># All the data</span>
@@ -591,14 +724,11 @@ document.write(`
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Forecast errors&#39;</span><span class="p">)</span>
 <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Outages&#39;</span><span class="p">)</span>
 
-<span class="c1"># plt.tight_layout()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Outages&#39;)
-</pre></div>
-</div>
 <img alt="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" src="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" />
 </div>
 </div>
