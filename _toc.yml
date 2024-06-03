@@ -22,6 +22,7 @@ parts:
   - file: notebooks/instrumental_variables
   - file: notebooks/double_machine_learning
   - file: notebooks/diff_in_diff
+  - file: notebooks/interrupted_time_series
 
 - caption: Interpretability
   numbered: true

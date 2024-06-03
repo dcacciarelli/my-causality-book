@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/double_machine_learning';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Difference in differences (DiD)" href="diff_in_diff.html" />
+    <link rel="next" title="9. Difference-in-differences (DiD)" href="diff_in_diff.html" />
     <link rel="prev" title="7. Instrumental variables (IV)" href="instrumental_variables.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -191,18 +191,19 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">7. Instrumental variables (IV)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Double machine learning (DML)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">9. Difference in differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">9. Difference-in-differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">10. Interrupted time series (ITS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">10. Partial dependence plots (PDP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated Local Effects (ALE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">12. Impulse Response Functions (IRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">11. Partial dependence plots (PDP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">12. Accumulated Local Effects (ALE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">13. Impulse Response Functions (IRF)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">13. Design of experiments (DoE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">14. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">14. Design of experiments (DoE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">15. A/B testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -379,7 +380,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -395,6 +398,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-in-progress">8.1. Work in progress…</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -406,20 +417,22 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="double-machine-learning-dml">
 <h1><span class="section-number">8. </span>Double machine learning (DML)<a class="headerlink" href="#double-machine-learning-dml" title="Link to this heading">#</a></h1>
+<section id="work-in-progress">
+<h2><span class="section-number">8.1. </span>Work in progress…<a class="headerlink" href="#work-in-progress" title="Link to this heading">#</a></h2>
 <p>Double machine learning (DML) is a powerful framework used to estimate causal effects in the presence of many confounding variables. It combines machine learning techniques with econometric methods to control for confounding variables and obtain unbiased estimates of treatment effects. Let’s consider a practical example where we want to estimate the effect of wind power production (<span class="math notranslate nohighlight">\(w\)</span>) on electricity prices (<span class="math notranslate nohighlight">\(y\)</span>), while <strong>accounting for other influencing factors</strong> such as weather conditions, demand, and other market variables (<span class="math notranslate nohighlight">\(x\)</span>).</p>
 <p>We can model the relationship between these variables as follows. First, we know that there is an unknown function <span class="math notranslate nohighlight">\(g\)</span> relating the response variable <span class="math notranslate nohighlight">\(y\)</span> to both the endogenous explanatory variable of interest, <span class="math notranslate nohighlight">\(w\)</span>, and other variables <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0eebd028-ede3-4f45-8741-dc4a7848ae73">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-0eebd028-ede3-4f45-8741-dc4a7848ae73" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-79d79ce5-b45b-4411-9309-9f0b264f6831">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-79d79ce5-b45b-4411-9309-9f0b264f6831" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is an error term. This equation simply corresponds to saying:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-62658fc9-a5e3-431e-8c1d-a666e55e0f7f">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-62658fc9-a5e3-431e-8c1d-a666e55e0f7f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1fcea6a4-fbc4-4897-b27c-416df48a7d32">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-1fcea6a4-fbc4-4897-b27c-416df48a7d32" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Electricity price} = g(\text{wind power production}, \text{weather conditions}, \text{demand}, \text{market variables}) + \epsilon
 \end{equation}\]</div>
 <p>Then, we also know that the explanatory variable of interest <span class="math notranslate nohighlight">\(w\)</span> can be expressed as a function of other known variables (e.g., weather conditions).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e35b00c-9e66-4c05-bf69-9f335f72ae5c">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-9e35b00c-9e66-4c05-bf69-9f335f72ae5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-369f5f85-9b0e-40fe-98a1-7c5b05743849">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-369f5f85-9b0e-40fe-98a1-7c5b05743849" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\nu\)</span> is an error variable.</p>
@@ -429,6 +442,7 @@ document.write(`
 <li><p><strong>Orthogonalization and estimation</strong>: use the estimated functions to adjust the variables and then estimate the causal effect using a second-stage regression.</p></li>
 </ul>
 <p><strong>Difference with IV and 2SLS</strong>: while this approach might appear very similar to IVs and 2SLS, there is a fundamental difference. IVs are used in the presence of unknown or unobserved confounders. Here, we have at our disposal a (potentially very large) set of variables that affect the explanatory variable of interest.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -475,7 +489,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Difference in differences (DiD)</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Difference-in-differences (DiD)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -486,7 +500,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-in-progress">8.1. Work in progress…</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
