@@ -380,7 +380,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -396,6 +398,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">10.1. Fitting an ITS on the residuals of a time series models</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -408,8 +418,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="interrupted-time-series-its">
 <h1><span class="section-number">10. </span>Interrupted time series (ITS)<a class="headerlink" href="#interrupted-time-series-its" title="Link to this heading">#</a></h1>
 <p>Interrupted Time Series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a323cc33-cefd-4a95-8017-e3e204ceeb05">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-a323cc33-cefd-4a95-8017-e3e204ceeb05" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-20102ee7-51b3-4d30-8d64-32c472c3dfda">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-20102ee7-51b3-4d30-8d64-32c472c3dfda" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
 \end{equation}\]</div>
 <p>where the regression coefficients are used to capture:</p>
@@ -487,7 +497,7 @@ Dep. Variable:                  price   R-squared:                       0.993
 Model:                            OLS   Adj. R-squared:                  0.993
 Method:                 Least Squares   F-statistic:                     4425.
 Date:                Mon, 03 Jun 2024   Prob (F-statistic):          9.73e-103
-Time:                        15:52:55   Log-Likelihood:                -129.67
+Time:                        17:01:44   Log-Likelihood:                -129.67
 No. Observations:                 100   AIC:                             267.3
 Df Residuals:                      96   BIC:                             277.8
 Df Model:                           3                                         
@@ -519,6 +529,284 @@ Notes:
 <li><p>There was an immediate reduction of 9.3 units (fairly close to 10) in the price level after the policy (<span class="math notranslate nohighlight">\(\beta_2\)</span> = period).</p></li>
 <li><p>The trend (slope) of prices did not significantly change after the policy (<span class="math notranslate nohighlight">\(\beta_3\)</span> = time_after_policy).</p></li>
 </ul>
+<section id="fitting-an-its-on-the-residuals-of-a-time-series-models">
+<h2><span class="section-number">10.1. </span>Fitting an ITS on the residuals of a time series models<a class="headerlink" href="#fitting-an-its-on-the-residuals-of-a-time-series-models" title="Link to this heading">#</a></h2>
+<p>Many real-world data might be characterised by high autocorrelation or more complex dynamics. In that case, it might be useful to firts fit a model and then examine the behaviour of the residuals to estimate the effect of the policy. For example, using a time series model (e.g., SARIMA) followed by ITS analysis on the residuals might have several advantages, such as:</p>
+<ul class="simple">
+<li><p>Handling autocorrelation and seasonality: time series data often exhibit autocorrelation and seasonality, where current values are correlated with past values. Ignoring this aspect can lead to incorrect inferences and underestimated standard errors. By fitting a SARIMA model, we explicitly account for this, leading to more accurate residuals that reflect the underlying stochastic process.</p></li>
+<li><p>Isolating the intervention effect: by first modeling the time-dependent structure of the data (i.e., the autocorrelation), we can better isolate the effect of the intervention. The residuals from the SARIMA model represent the portion of the time series that is not explained by its own past values, thus providing a clearer signal of any intervention effects.</p></li>
+</ul>
+<p>Let’s try and generate some data, where we fit a SARIMA model on the pre-policy data, and use it to whiten the whole time series observed. Also in this case, we assume the <strong>policy effect</strong> is to reduce prices by 10 units.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Generate time series data with seasonality, trend, and some noise</span>
+<span class="n">n_periods</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="n">n_periods</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">seasonal_period</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">policy_start</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Time index when the policy starts</span>
+
+<span class="c1"># Generate seasonal component</span>
+<span class="n">seasonal_effect</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">seasonal_period</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_periods</span><span class="p">))</span>
+
+<span class="c1"># Generate trend component</span>
+<span class="n">trend_effect</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_periods</span><span class="p">)</span>
+
+<span class="c1"># Generate noise component</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_periods</span><span class="p">)</span>
+
+<span class="c1"># Combine components</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">seasonal_effect</span> <span class="o">+</span> <span class="n">trend_effect</span> <span class="o">+</span> <span class="n">noise</span>
+
+<span class="c1"># Introduce a policy effect (e.g., a reduction in prices)</span>
+<span class="n">prices</span><span class="p">[</span><span class="n">policy_start</span><span class="p">:]</span> <span class="o">-=</span> <span class="mi">10</span>
+
+<span class="c1"># Create a DataFrame</span>
+<span class="n">its_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">prices</span>
+<span class="p">})</span>
+
+<span class="c1"># Set the index to the datetime</span>
+<span class="n">its_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">its_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">policy_start</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Policy Start&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8e0e41eef5a991e51c3b72f5e4bb6cdb4dc163d12659163edf1e8ee34cb8dfc1.png" src="../_images/8e0e41eef5a991e51c3b72f5e4bb6cdb4dc163d12659163edf1e8ee34cb8dfc1.png" />
+</div>
+</div>
+<p>Since the policy has been introduced at the 100th observation, we can fint a SARIMA model on the first 100 observations, and then perform and ITS analysis on the reisudals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tsa.statespace.sarimax</span> <span class="kn">import</span> <span class="n">SARIMAX</span>
+
+<span class="c1"># Fit a SARIMA model to the pre-intervention period</span>
+<span class="n">pre_policy_data</span> <span class="o">=</span> <span class="n">its_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="n">policy_start</span><span class="p">]</span>
+<span class="n">sarima_model</span> <span class="o">=</span> <span class="n">SARIMAX</span><span class="p">(</span><span class="n">pre_policy_data</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">seasonal_order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">seasonal_period</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Get the residuals for the entire time series</span>
+<span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;residuals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">sarima_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">n_periods</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">8</span><span class="p">:],</span> <span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;residuals&#39;</span><span class="p">][</span><span class="mi">8</span><span class="p">:],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">policy_start</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Policy Start&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/06153e8ba885f1d2844e1721bc0bc164a3c367b5c241e5162eb8c89c444f46cd.png" src="../_images/06153e8ba885f1d2844e1721bc0bc164a3c367b5c241e5162eb8c89c444f46cd.png" />
+</div>
+</div>
+<p>As expected, given the change due to the new policy, the residuals before the policy (where we fitted the model) are quite low, while they are much higher after the policy was introduced.</p>
+<p>We can now add the necessary dummy variables to perform the ITS analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the time after policy variable</span>
+<span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;time_after_policy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">policy_start</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">its_data</span><span class="p">))</span> <span class="o">-</span> <span class="n">policy_start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;policy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">policy_start</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">its_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>price</th>
+      <th>residuals</th>
+      <th>time_after_policy</th>
+      <th>policy</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-01-01</th>
+      <td>50.496714</td>
+      <td>50.496714</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2024-01-02</th>
+      <td>57.780051</td>
+      <td>7.283374</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2024-01-03</th>
+      <td>60.596968</td>
+      <td>2.816929</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2024-01-04</th>
+      <td>56.161867</td>
+      <td>-4.435096</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2024-01-05</th>
+      <td>45.827009</td>
+      <td>-10.334864</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-07-14</th>
+      <td>52.067003</td>
+      <td>-9.606204</td>
+      <td>95</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2024-07-15</th>
+      <td>58.716143</td>
+      <td>-10.573304</td>
+      <td>96</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2024-07-16</th>
+      <td>67.672040</td>
+      <td>-9.758888</td>
+      <td>97</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2024-07-17</th>
+      <td>69.607488</td>
+      <td>-9.616576</td>
+      <td>98</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2024-07-18</th>
+      <td>63.095867</td>
+      <td>-11.235863</td>
+      <td>99</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Now, let’s fit an segmented regression model, using OLS, as we did in the first part of the chapter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the independent variables for the ITS model</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">its_data</span><span class="p">[[</span><span class="s1">&#39;time_after_policy&#39;</span><span class="p">,</span> <span class="s1">&#39;policy&#39;</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;residuals&#39;</span><span class="p">]</span>
+
+<span class="c1"># Fit the OLS model on the residuals</span>
+<span class="n">its_model_on_residuals</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">its_model_on_residuals</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              residuals   R-squared:                       0.616
+Model:                            OLS   Adj. R-squared:                  0.613
+Method:                 Least Squares   F-statistic:                     158.3
+Date:                Mon, 03 Jun 2024   Prob (F-statistic):           1.02e-41
+Time:                        17:01:45   Log-Likelihood:                -563.84
+No. Observations:                 200   AIC:                             1134.
+Df Residuals:                     197   BIC:                             1144.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+const                 0.3999      0.409      0.979      0.329      -0.406       1.206
+time_after_policy     0.0006      0.014      0.041      0.967      -0.027       0.029
+policy              -10.3130      0.908    -11.352      0.000     -12.105      -8.522
+==============================================================================
+Omnibus:                      353.785   Durbin-Watson:                   0.997
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           114456.803
+Skew:                           8.849   Prob(JB):                         0.00
+Kurtosis:                     118.852   Cond. No.                         130.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see how we were able to estimate the <strong>effect of the policy</strong> quite well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the residuals and the ITS fit</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">8</span><span class="p">:],</span> <span class="n">its_data</span><span class="p">[</span><span class="s1">&#39;residuals&#39;</span><span class="p">][</span><span class="mi">8</span><span class="p">:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Residuals&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">policy_start</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Policy Start&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">its_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">8</span><span class="p">:],</span> <span class="n">its_model_on_residuals</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">8</span><span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ITS Fit on Residuals&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ITS Analysis on Residuals&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/54134b8b86a031ea0dc1cd8c5b765433ec150def92d419bfa7f1c8ce8426d131.png" src="../_images/54134b8b86a031ea0dc1cd8c5b765433ec150def92d419bfa7f1c8ce8426d131.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -576,7 +864,20 @@ Notes:
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">10.1. Fitting an ITS on the residuals of a time series models</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
