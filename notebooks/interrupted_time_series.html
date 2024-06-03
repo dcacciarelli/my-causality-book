@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/interrupted_time_series';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -405,6 +407,118 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="interrupted-time-series-its">
 <h1><span class="section-number">10. </span>Interrupted time series (ITS)<a class="headerlink" href="#interrupted-time-series-its" title="Link to this heading">#</a></h1>
+<p>Interrupted Time Series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a323cc33-cefd-4a95-8017-e3e204ceeb05">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-a323cc33-cefd-4a95-8017-e3e204ceeb05" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
+\end{equation}\]</div>
+<p>where the regression coefficients are used to capture:</p>
+<ul class="simple">
+<li><p>The baseline intercept (<span class="math notranslate nohighlight">\(\beta_0\)</span>).</p></li>
+<li><p>The pre-policy slope (<span class="math notranslate nohighlight">\(\beta_1\)</span>).</p></li>
+<li><p>The change in level at the introduction of the new policy (<span class="math notranslate nohighlight">\(\beta_2\)</span>). It should be noted that “period” is a dummy variable (0 or 1) that indicates whether the observation is from the period before the policy implementation (0) or after (1).</p></li>
+<li><p>The change in slope after the introduction of the new policy (<span class="math notranslate nohighlight">\(\beta_3\)</span>).</p></li>
+</ul>
+<p>Let’s now try to generate some data to try and apply this methodology in a practical <strong>example</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Generate time series data</span>
+<span class="n">n_periods</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_periods</span><span class="p">)</span>
+<span class="n">policy_start</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Time when the policy starts</span>
+
+<span class="c1"># Generate prices with a trend and some noise</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">time</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_periods</span><span class="p">)</span>
+
+<span class="c1"># Introduce a policy effect (e.g., a reduction in prices)</span>
+<span class="n">prices</span><span class="p">[</span><span class="n">policy_start</span><span class="p">:]</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">10</span>
+
+<span class="c1"># Create a DataFrame</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">prices</span>
+<span class="p">})</span>
+
+<span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">policy_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Policy Start&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/46c973ea979627693c857c2af3b88004cb39baf6de0b5859ff587a5b446c1f53.png" src="../_images/46c973ea979627693c857c2af3b88004cb39baf6de0b5859ff587a5b446c1f53.png" />
+</div>
+</div>
+<p>Here, we introduced a policy at time step 50, which causes a price reduction of 10 units. Let’s now create the dummy variables and fit a segmented regression model to show if we are able to estimate the effect of the policy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the time after policy variable</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;time_after_policy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">policy_start</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">policy_start</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">policy_start</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="c1"># Define the independent variables</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;period&#39;</span><span class="p">,</span> <span class="s1">&#39;time_after_policy&#39;</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+
+<span class="c1"># Fit the OLS model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  price   R-squared:                       0.993
+Model:                            OLS   Adj. R-squared:                  0.993
+Method:                 Least Squares   F-statistic:                     4425.
+Date:                Mon, 03 Jun 2024   Prob (F-statistic):          9.73e-103
+Time:                        15:52:55   Log-Likelihood:                -129.67
+No. Observations:                 100   AIC:                             267.3
+Df Residuals:                      96   BIC:                             277.8
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+const                50.0644      0.252    198.924      0.000      49.565      50.564
+time                  0.4882      0.009     55.153      0.000       0.471       0.506
+period               -9.3026      0.361    -25.742      0.000     -10.020      -8.585
+time_after_policy     0.0056      0.013      0.448      0.655      -0.019       0.030
+==============================================================================
+Omnibus:                        0.634   Durbin-Watson:                   2.094
+Prob(Omnibus):                  0.728   Jarque-Bera (JB):                0.440
+Skew:                          -0.162   Prob(JB):                        0.802
+Kurtosis:                       3.027   Cond. No.                         252.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see, the results show:</p>
+<ul class="simple">
+<li><p>The baseline price before the policy was 50 (<span class="math notranslate nohighlight">\(\beta_0\)</span> = const).</p></li>
+<li><p>The prices were increasing by approximately 0.5 units per time period before the policy (<span class="math notranslate nohighlight">\(\beta_1\)</span> = time).</p></li>
+<li><p>There was an immediate reduction of 9.3 units (fairly close to 10) in the price level after the policy (<span class="math notranslate nohighlight">\(\beta_2\)</span> = period).</p></li>
+<li><p>The trend (slope) of prices did not significantly change after the policy (<span class="math notranslate nohighlight">\(\beta_3\)</span> = time_after_policy).</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">

@@ -419,20 +419,20 @@ document.write(`
 <li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7624d9c7-22b2-43cf-9fb6-11809925a95f">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-7624d9c7-22b2-43cf-9fb6-11809925a95f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b29786de-2e47-4879-b8af-05e521f16838">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-b29786de-2e47-4879-b8af-05e521f16838" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cacd9dfb-2ba4-479a-b0e3-dd8abc566335">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-cacd9dfb-2ba4-479a-b0e3-dd8abc566335" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    y = \alpha + \beta \, \text{group} + \gamma \, \text{period} + \delta \, (\text{group} \times \text{period}) + \varepsilon
+<div class="amsmath math notranslate nohighlight" id="equation-5a23d49d-b395-497a-89c7-882728eb2dac">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-5a23d49d-b395-497a-89c7-882728eb2dac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\gamma\)</span>, and <span class="math notranslate nohighlight">\(\delta\)</span> are the regression coefficients.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span>, <span class="math notranslate nohighlight">\(\beta_2\)</span>, and <span class="math notranslate nohighlight">\(\beta_3\)</span> are the regression coefficients.</p></li>
 <li><p>“group” is a dummy variable (0 or 1) that indicates whether the observation is from the control group (0) or the treatment group (1).</p></li>
 <li><p>“period” is a dummy variable (0 or 1) that indicates whether the observation is from the period before the policy implementation (0) or after (1).</p></li>
 <li><p>“<span class="math notranslate nohighlight">\(\text{group} \times \text{period}\)</span>” is an interaction term to count for the <strong>DiD causal effect</strong>. This variable captures the combined effect of being in the treatment group and being in the post-policy period.</p></li>
@@ -592,13 +592,12 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Price&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Electricity Prices Over Time&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c94064fdb3ab0f833f49bdc968f3f56d2cd2473b59cedc2196b3087e19748c37.png" src="../_images/c94064fdb3ab0f833f49bdc968f3f56d2cd2473b59cedc2196b3087e19748c37.png" />
+<img alt="../_images/84feae0987e374140a6fa635386f7cab5f08e821456e5fbda9f727c9fac02ae0.png" src="../_images/84feae0987e374140a6fa635386f7cab5f08e821456e5fbda9f727c9fac02ae0.png" />
 </div>
 </div>
 <p>As we can see, the prices in the treatment group appears to have slightly changed after the policy. Using the <strong>parallel trends assumption</strong>, we check for the difference in the prices, assuming the price in the treatment group would have followed the same trend of the control group.</p>
@@ -633,7 +632,7 @@ Dep. Variable:                  price   R-squared:                       0.923
 Model:                            OLS   Adj. R-squared:                  0.921
 Method:                 Least Squares   F-statistic:                     778.6
 Date:                Mon, 03 Jun 2024   Prob (F-statistic):          1.37e-108
-Time:                        15:18:04   Log-Likelihood:                -679.31
+Time:                        15:52:52   Log-Likelihood:                -679.31
 No. Observations:                 200   AIC:                             1367.
 Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         
