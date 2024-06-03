@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>9. Difference in differences (DiD) &#8212; Applied Causal Inference for Electricity Markets</title>
+    <title>9. Difference-in-differences (DiD) &#8212; Applied Causal Inference for Electricity Markets</title>
   
   
   
@@ -57,10 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/diff_in_diff';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Partial dependence plots (PDP)" href="partial_dependency_plots.html" />
+    <link rel="next" title="10. Interrupted time series (ITS)" href="interrupted_time_series.html" />
     <link rel="prev" title="8. Double machine learning (DML)" href="double_machine_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,18 +191,19 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">7. Instrumental variables (IV)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">8. Double machine learning (DML)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Difference in differences (DiD)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Difference-in-differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">10. Interrupted time series (ITS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">10. Partial dependence plots (PDP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">11. Accumulated Local Effects (ALE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">12. Impulse Response Functions (IRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">11. Partial dependence plots (PDP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">12. Accumulated Local Effects (ALE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">13. Impulse Response Functions (IRF)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">13. Design of experiments (DoE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">14. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">14. Design of experiments (DoE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">15. A/B testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -388,7 +391,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Difference in differences (DiD)</h1>
+    <h1>Difference-in-differences (DiD)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -403,7 +406,231 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="difference-in-differences-did">
-<h1><span class="section-number">9. </span>Difference in differences (DiD)<a class="headerlink" href="#difference-in-differences-did" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">9. </span>Difference-in-differences (DiD)<a class="headerlink" href="#difference-in-differences-did" title="Link to this heading">#</a></h1>
+<p>Difference-in-differences (DiD) is a statistical technique used in econometrics to estimate the causal effect of a treatment on a time series. For example, it might be used to <strong>evaluate the effect of a new policy</strong> on the electricity prices, in a specific region.</p>
+<p>Let us suppose we collected some data from electricity prices over time, and we know that at a certain point in time a new policy was introduced. Let us also suppose that we observed a change in the trend, and we would like to attribute that change to the newly introduced policy. To be sure that the change in price time series is indeed due to the new policy, we would need to know the <strong>counterfactual</strong>. The counterfactual represents what would have happened to the prices had the new policy not been introduced. Then, by comparing the prices observed under the new policy with what the prices would have been without the policy, we would finally be able to say that the prices changed because of the policy. Without the counterfactual, we might not be able to accurately determine the true effect of the policy because of:</p>
+<ul class="simple">
+<li><p>Other influencing factors: in the real world, multiple factors can influence electricity prices simultaneously. These could include changes in fuel prices, demand fluctuations, economic conditions, and other regulatory changes. Without a counterfactual, it is difficult to isolate the impact of the specific policy from these other variables.</p></li>
+<li><p>Temporal trends: electricity prices may follow certain trends over time regardless of the policy intervention. For instance, prices might be declining due to improvements in technology or increasing due to rising demand. The counterfactual helps to control for these underlying trends, providing a clearer picture of what the prices would have looked like in the absence of the policy.</p></li>
+</ul>
+<p>Unfortunately, in observational data, we cannot observe the counterfactual, since we only have access to what has happened under the new policy. DiD tries to tackle this problem by comparing the changes in the prices over time before a treatment group and a control group, where:</p>
+<ul class="simple">
+<li><p>The <strong>treatment group</strong> is, for example, the data collected from a region where the new policy was introduced.</p></li>
+<li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
+</ul>
+<p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-163b17db-abb5-4c3c-ba2e-88e6dd2c76b6">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-163b17db-abb5-4c3c-ba2e-88e6dd2c76b6" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
+    &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
+\end{align}\]</div>
+<p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
+<p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7143db5d-6b49-47a3-837e-8ccdb962dc0a">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-7143db5d-6b49-47a3-837e-8ccdb962dc0a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y = \alpha + \beta \, \text{group} + \gamma \, \text{policy} + \delta \, (\text{group} \times \text{policy}) + \varepsilon
+\end{equation}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\gamma\)</span>, and <span class="math notranslate nohighlight">\(\delta\)</span> are the regression coefficients.</p></li>
+<li><p>group is a dummy variable that indicates whether the observation refers to the treatment group (1) or control group (0).</p></li>
+<li><p>policy is a control variable that indicates if we are in the period post policy (1) or before policy (0).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{group} \times \text{policy}\)</span> is an interaction term to count for the DiD causal effect.</p></li>
+</ul>
+<p>The model can be estimated with traditional methods such as ordinary least squares (OLS). DiD can also be extended to nonlinear or semi-parametric settings.</p>
+<p>Difference in Differences (DiD) is a quasi-experimental design used in causal inference to estimate the treatment effect of a policy or intervention by comparing the changes in outcomes over time. DiD is particularly useful when randomized control trials are not feasible and is widely used in social sciences and economics to study the impact of policy changes, regulations, and other interventions.</p>
+<p><strong>Parallel trends sssumption</strong>: for DiD to provide a valid estimate of the treatment effect, the \textbf{parallel trends assumption} must hold. This assumption states that in the absence of the treatment, the trend in the outcome for the treatment group would have remained the same over time. Mathematically, if <span class="math notranslate nohighlight">\(Y_t\)</span> denotes the outcome at time <span class="math notranslate nohighlight">\(t\)</span>, and <span class="math notranslate nohighlight">\(\tau\)</span> is a binary indicator for the post-treatment period, the parallel trends assumption can be written as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f7dafcdb-9130-4081-8b8b-c010c4b6a985">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-f7dafcdb-9130-4081-8b8b-c010c4b6a985" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\mathbb{E}[Y_t(0) - Y_{t-1}(0)] = \mathbb{E}[Y_t(1) - Y_{t-1}(1)]
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(Y_t(0)\)</span> is the potential outcome without treatment and <span class="math notranslate nohighlight">\(Y_t(1)\)</span> is the potential outcome with treatment.</p>
+<p>\subsubsection{Estimation}</p>
+<p>The DiD estimator can be represented as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b628e870-5cde-4520-bcd4-d140ad82aa95">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-b628e870-5cde-4520-bcd4-d140ad82aa95" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\text{DiD} = \mathbb{E}[Y_t | \tau = 1] - \mathbb{E}[Y_{t-1} | \tau = 1]
+\end{equation}\]</div>
+<p>This can be implemented using a regression model:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7075d421-a4f5-402c-aa70-561fd492ad67">
+<span class="eqno">(9.5)<a class="headerlink" href="#equation-7075d421-a4f5-402c-aa70-561fd492ad67" title="Permalink to this equation">#</a></span>\[\begin{equation}
+Y_t = \alpha + \beta \tau + \epsilon_t
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\beta\)</span> represents the DiD estimate of the treatment effect.</p>
+<p><strong>Applicability without a control group</strong>: without a control group, the DiD approach relies on the assumption that any changes in the outcome variable are due to the treatment and not due to other external factors. This assumption is more stringent because we lack a comparative baseline to control for external trends and shocks. Thus, the validity of the results heavily depends on the robustness of the parallel trends assumption.</p>
+<p><strong>Example: balancing costs and policy implementation</strong>. Let’s consider an <strong>example</strong> where we have data on balancing costs for electricity markets over time, and at a certain point, a policy is implemented to reduce these costs. We will use the DiD method to determine whether the policy had an impact on balancing costs.</p>
+<p>First, we simulate the data to demonstrate the approach.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Simulate data</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># number of observations</span>
+<span class="n">regions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;Region_A&#39;</span><span class="p">,</span> <span class="s1">&#39;Region_B&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># two regions</span>
+<span class="n">policy</span> <span class="o">=</span> <span class="p">(</span><span class="n">regions</span> <span class="o">==</span> <span class="s1">&#39;Region_A&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># policy implemented in Region_A</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;Before&#39;</span><span class="p">,</span> <span class="s1">&#39;After&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># two time periods</span>
+<span class="n">post</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">==</span> <span class="s1">&#39;After&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># after policy implementation</span>
+
+<span class="c1"># Simulate electricity prices</span>
+<span class="n">true_effect</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>  <span class="c1"># policy reduces prices by 5 units</span>
+<span class="n">base_price</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">price_change</span> <span class="o">=</span> <span class="n">post</span> <span class="o">*</span> <span class="p">(</span><span class="n">policy</span> <span class="o">*</span> <span class="n">true_effect</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+<span class="n">electricity_prices</span> <span class="o">=</span> <span class="n">base_price</span> <span class="o">+</span> <span class="n">price_change</span>
+
+<span class="c1"># Create DataFrame</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="n">regions</span><span class="p">,</span>
+    <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+    <span class="s1">&#39;Post&#39;</span><span class="p">:</span> <span class="n">post</span><span class="p">,</span>
+    <span class="s1">&#39;Policy&#39;</span><span class="p">:</span> <span class="n">policy</span><span class="p">,</span>
+    <span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">:</span> <span class="n">electricity_prices</span>
+<span class="p">})</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Region</th>
+      <th>Time</th>
+      <th>Post</th>
+      <th>Policy</th>
+      <th>ElectricityPrices</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Region_A</td>
+      <td>After</td>
+      <td>1</td>
+      <td>1</td>
+      <td>43.075870</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Region_B</td>
+      <td>Before</td>
+      <td>0</td>
+      <td>0</td>
+      <td>43.323278</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Region_A</td>
+      <td>Before</td>
+      <td>0</td>
+      <td>1</td>
+      <td>51.900989</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Region_A</td>
+      <td>Before</td>
+      <td>0</td>
+      <td>1</td>
+      <td>53.052929</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Region_A</td>
+      <td>Before</td>
+      <td>0</td>
+      <td>1</td>
+      <td>52.798952</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interaction term for DiD</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;DiD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Post&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Policy&#39;</span><span class="p">]</span>
+
+<span class="c1"># Fit the DiD model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Post&#39;</span><span class="p">,</span> <span class="s1">&#39;Policy&#39;</span><span class="p">,</span> <span class="s1">&#39;DiD&#39;</span><span class="p">]]))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:      ElectricityPrices   R-squared:                       0.170
+Model:                            OLS   Adj. R-squared:                  0.168
+Method:                 Least Squares   F-statistic:                     68.00
+Date:                Mon, 03 Jun 2024   Prob (F-statistic):           5.24e-40
+Time:                        14:31:01   Log-Likelihood:                -3053.0
+No. Observations:                1000   AIC:                             6114.
+Df Residuals:                     996   BIC:                             6134.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         50.5899      0.314    160.980      0.000      49.973      51.207
+Post           0.1087      0.455      0.239      0.811      -0.785       1.002
+Policy        -0.0042      0.448     -0.009      0.992      -0.883       0.875
+DiD           -5.5734      0.651     -8.567      0.000      -6.850      -4.297
+==============================================================================
+Omnibus:                        0.218   Durbin-Watson:                   2.035
+Prob(Omnibus):                  0.897   Jarque-Bera (JB):                0.245
+Skew:                          -0.035   Prob(JB):                        0.885
+Kurtosis:                       2.970   Cond. No.                         6.65
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract coefficients</span>
+<span class="n">coef</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;DiD&#39;</span><span class="p">]</span>
+<span class="n">se</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bse</span><span class="p">[</span><span class="s1">&#39;DiD&#39;</span><span class="p">]</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;DiD Estimate&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">coef</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">se</span><span class="p">],</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">true_effect</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Effect&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Estimate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Difference-in-Differences Estimate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d3fc39fc9efef4179dd67967bec804ce9ab73910de749d297ddad1c2c9757bfb.png" src="../_images/d3fc39fc9efef4179dd67967bec804ce9ab73910de749d297ddad1c2c9757bfb.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -446,11 +673,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="partial_dependency_plots.html"
+       href="interrupted_time_series.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Partial dependence plots (PDP)</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Interrupted time series (ITS)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
