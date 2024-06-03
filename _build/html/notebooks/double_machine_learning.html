@@ -421,18 +421,18 @@ document.write(`
 <h2><span class="section-number">8.1. </span>Work in progress…<a class="headerlink" href="#work-in-progress" title="Link to this heading">#</a></h2>
 <p>Double machine learning (DML) is a powerful framework used to estimate causal effects in the presence of many confounding variables. It combines machine learning techniques with econometric methods to control for confounding variables and obtain unbiased estimates of treatment effects. Let’s consider a practical example where we want to estimate the effect of wind power production (<span class="math notranslate nohighlight">\(w\)</span>) on electricity prices (<span class="math notranslate nohighlight">\(y\)</span>), while <strong>accounting for other influencing factors</strong> such as weather conditions, demand, and other market variables (<span class="math notranslate nohighlight">\(x\)</span>).</p>
 <p>We can model the relationship between these variables as follows. First, we know that there is an unknown function <span class="math notranslate nohighlight">\(g\)</span> relating the response variable <span class="math notranslate nohighlight">\(y\)</span> to both the endogenous explanatory variable of interest, <span class="math notranslate nohighlight">\(w\)</span>, and other variables <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79d79ce5-b45b-4411-9309-9f0b264f6831">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-79d79ce5-b45b-4411-9309-9f0b264f6831" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8ff3996e-2329-4ec7-8d47-2606aa9f8941">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-8ff3996e-2329-4ec7-8d47-2606aa9f8941" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is an error term. This equation simply corresponds to saying:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1fcea6a4-fbc4-4897-b27c-416df48a7d32">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-1fcea6a4-fbc4-4897-b27c-416df48a7d32" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9092b5c7-67a1-4139-9dd3-6779454f7ea0">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-9092b5c7-67a1-4139-9dd3-6779454f7ea0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Electricity price} = g(\text{wind power production}, \text{weather conditions}, \text{demand}, \text{market variables}) + \epsilon
 \end{equation}\]</div>
 <p>Then, we also know that the explanatory variable of interest <span class="math notranslate nohighlight">\(w\)</span> can be expressed as a function of other known variables (e.g., weather conditions).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-369f5f85-9b0e-40fe-98a1-7c5b05743849">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-369f5f85-9b0e-40fe-98a1-7c5b05743849" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1cbac866-c2a1-4da6-8e25-bdff07f36bb1">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-1cbac866-c2a1-4da6-8e25-bdff07f36bb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\nu\)</span> is an error variable.</p>

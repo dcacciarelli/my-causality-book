@@ -419,80 +419,55 @@ document.write(`
 <li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-163b17db-abb5-4c3c-ba2e-88e6dd2c76b6">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-163b17db-abb5-4c3c-ba2e-88e6dd2c76b6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7624d9c7-22b2-43cf-9fb6-11809925a95f">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-7624d9c7-22b2-43cf-9fb6-11809925a95f" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7143db5d-6b49-47a3-837e-8ccdb962dc0a">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-7143db5d-6b49-47a3-837e-8ccdb962dc0a" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    y = \alpha + \beta \, \text{group} + \gamma \, \text{policy} + \delta \, (\text{group} \times \text{policy}) + \varepsilon
+<div class="amsmath math notranslate nohighlight" id="equation-cacd9dfb-2ba4-479a-b0e3-dd8abc566335">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-cacd9dfb-2ba4-479a-b0e3-dd8abc566335" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y = \alpha + \beta \, \text{group} + \gamma \, \text{period} + \delta \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\gamma\)</span>, and <span class="math notranslate nohighlight">\(\delta\)</span> are the regression coefficients.</p></li>
-<li><p>group is a dummy variable that indicates whether the observation refers to the treatment group (1) or control group (0).</p></li>
-<li><p>policy is a control variable that indicates if we are in the period post policy (1) or before policy (0).</p></li>
-<li><p><span class="math notranslate nohighlight">\(\text{group} \times \text{policy}\)</span> is an interaction term to count for the DiD causal effect.</p></li>
+<li><p>“group” is a dummy variable (0 or 1) that indicates whether the observation is from the control group (0) or the treatment group (1).</p></li>
+<li><p>“period” is a dummy variable (0 or 1) that indicates whether the observation is from the period before the policy implementation (0) or after (1).</p></li>
+<li><p>“<span class="math notranslate nohighlight">\(\text{group} \times \text{period}\)</span>” is an interaction term to count for the <strong>DiD causal effect</strong>. This variable captures the combined effect of being in the treatment group and being in the post-policy period.</p></li>
 </ul>
 <p>The model can be estimated with traditional methods such as ordinary least squares (OLS). DiD can also be extended to nonlinear or semi-parametric settings.</p>
-<p>Difference in Differences (DiD) is a quasi-experimental design used in causal inference to estimate the treatment effect of a policy or intervention by comparing the changes in outcomes over time. DiD is particularly useful when randomized control trials are not feasible and is widely used in social sciences and economics to study the impact of policy changes, regulations, and other interventions.</p>
-<p><strong>Parallel trends sssumption</strong>: for DiD to provide a valid estimate of the treatment effect, the \textbf{parallel trends assumption} must hold. This assumption states that in the absence of the treatment, the trend in the outcome for the treatment group would have remained the same over time. Mathematically, if <span class="math notranslate nohighlight">\(Y_t\)</span> denotes the outcome at time <span class="math notranslate nohighlight">\(t\)</span>, and <span class="math notranslate nohighlight">\(\tau\)</span> is a binary indicator for the post-treatment period, the parallel trends assumption can be written as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f7dafcdb-9130-4081-8b8b-c010c4b6a985">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-f7dafcdb-9130-4081-8b8b-c010c4b6a985" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\mathbb{E}[Y_t(0) - Y_{t-1}(0)] = \mathbb{E}[Y_t(1) - Y_{t-1}(1)]
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(Y_t(0)\)</span> is the potential outcome without treatment and <span class="math notranslate nohighlight">\(Y_t(1)\)</span> is the potential outcome with treatment.</p>
-<p>\subsubsection{Estimation}</p>
-<p>The DiD estimator can be represented as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b628e870-5cde-4520-bcd4-d140ad82aa95">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-b628e870-5cde-4520-bcd4-d140ad82aa95" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\text{DiD} = \mathbb{E}[Y_t | \tau = 1] - \mathbb{E}[Y_{t-1} | \tau = 1]
-\end{equation}\]</div>
-<p>This can be implemented using a regression model:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7075d421-a4f5-402c-aa70-561fd492ad67">
-<span class="eqno">(9.5)<a class="headerlink" href="#equation-7075d421-a4f5-402c-aa70-561fd492ad67" title="Permalink to this equation">#</a></span>\[\begin{equation}
-Y_t = \alpha + \beta \tau + \epsilon_t
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\beta\)</span> represents the DiD estimate of the treatment effect.</p>
-<p><strong>Applicability without a control group</strong>: without a control group, the DiD approach relies on the assumption that any changes in the outcome variable are due to the treatment and not due to other external factors. This assumption is more stringent because we lack a comparative baseline to control for external trends and shocks. Thus, the validity of the results heavily depends on the robustness of the parallel trends assumption.</p>
-<p><strong>Example: balancing costs and policy implementation</strong>. Let’s consider an <strong>example</strong> where we have data on balancing costs for electricity markets over time, and at a certain point, a policy is implemented to reduce these costs. We will use the DiD method to determine whether the policy had an impact on balancing costs.</p>
-<p>First, we simulate the data to demonstrate the approach.</p>
+<p>To provide a practical <strong>example</strong>, we will now generate some data for electricity prices over time for two regions: one where the policy was implemented (treatment group) and one where it was not (control group). We will include a change in the prices of the treatment gorup by adding a <strong>policy effect</strong> that reduces the prices of 10 units after the policy has been introduced.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1"># Set seed for reproducibility</span>
+<span class="c1"># Set random seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># Simulate data</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># number of observations</span>
-<span class="n">regions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;Region_A&#39;</span><span class="p">,</span> <span class="s1">&#39;Region_B&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># two regions</span>
-<span class="n">policy</span> <span class="o">=</span> <span class="p">(</span><span class="n">regions</span> <span class="o">==</span> <span class="s1">&#39;Region_A&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># policy implemented in Region_A</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;Before&#39;</span><span class="p">,</span> <span class="s1">&#39;After&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># two time periods</span>
-<span class="n">post</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">==</span> <span class="s1">&#39;After&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="c1"># after policy implementation</span>
+<span class="c1"># Generate time series data</span>
+<span class="n">n_periods</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_periods</span><span class="p">)</span>
+<span class="n">policy_start</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Time when the policy starts</span>
 
-<span class="c1"># Simulate electricity prices</span>
-<span class="n">true_effect</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>  <span class="c1"># policy reduces prices by 5 units</span>
-<span class="n">base_price</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">price_change</span> <span class="o">=</span> <span class="n">post</span> <span class="o">*</span> <span class="p">(</span><span class="n">policy</span> <span class="o">*</span> <span class="n">true_effect</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-<span class="n">electricity_prices</span> <span class="o">=</span> <span class="n">base_price</span> <span class="o">+</span> <span class="n">price_change</span>
+<span class="c1"># Generate prices for control group</span>
+<span class="n">control_prices</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">time</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_periods</span><span class="p">)</span>
 
-<span class="c1"># Create DataFrame</span>
+<span class="c1"># Generate prices for treatment group with a policy effect</span>
+<span class="n">treatment_prices</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">time</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_periods</span><span class="p">)</span>
+<span class="n">treatment_prices</span><span class="p">[</span><span class="n">policy_start</span><span class="p">:]</span> <span class="o">+=</span> <span class="o">-</span><span class="mi">10</span>  <span class="c1"># Policy effect</span>
+
+<span class="c1"># Create a DataFrame</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;Region&#39;</span><span class="p">:</span> <span class="n">regions</span><span class="p">,</span>
-    <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
-    <span class="s1">&#39;Post&#39;</span><span class="p">:</span> <span class="n">post</span><span class="p">,</span>
-    <span class="s1">&#39;Policy&#39;</span><span class="p">:</span> <span class="n">policy</span><span class="p">,</span>
-    <span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">:</span> <span class="n">electricity_prices</span>
+    <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">control_prices</span><span class="p">,</span> <span class="n">treatment_prices</span><span class="p">]),</span>
+    <span class="s1">&#39;group&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="s1">&#39;control&#39;</span><span class="p">,</span> <span class="s1">&#39;treatment&#39;</span><span class="p">],</span> <span class="n">n_periods</span><span class="p">),</span>
+    <span class="s1">&#39;period&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">policy_start</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_periods</span> <span class="o">-</span> <span class="n">policy_start</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">policy_start</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_periods</span> <span class="o">-</span> <span class="n">policy_start</span><span class="p">)])</span>
 <span class="p">})</span>
 
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">data</span>
 </pre></div>
 </div>
 </div>
@@ -515,65 +490,138 @@ Y_t = \alpha + \beta \tau + \epsilon_t
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Region</th>
-      <th>Time</th>
-      <th>Post</th>
-      <th>Policy</th>
-      <th>ElectricityPrices</th>
+      <th>time</th>
+      <th>price</th>
+      <th>group</th>
+      <th>period</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Region_A</td>
-      <td>After</td>
-      <td>1</td>
-      <td>1</td>
-      <td>43.075870</td>
+      <td>0</td>
+      <td>0.993428</td>
+      <td>control</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Region_B</td>
-      <td>Before</td>
-      <td>0</td>
-      <td>0</td>
-      <td>43.323278</td>
+      <td>1</td>
+      <td>0.223471</td>
+      <td>control</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Region_A</td>
-      <td>Before</td>
-      <td>0</td>
-      <td>1</td>
-      <td>51.900989</td>
+      <td>2</td>
+      <td>2.295377</td>
+      <td>control</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Region_A</td>
-      <td>Before</td>
-      <td>0</td>
-      <td>1</td>
-      <td>53.052929</td>
+      <td>3</td>
+      <td>4.546060</td>
+      <td>control</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Region_A</td>
-      <td>Before</td>
-      <td>0</td>
-      <td>1</td>
-      <td>52.798952</td>
+      <td>4</td>
+      <td>1.531693</td>
+      <td>control</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>95</td>
+      <td>88.270635</td>
+      <td>treatment</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>96</td>
+      <td>86.232285</td>
+      <td>treatment</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>97</td>
+      <td>88.807450</td>
+      <td>treatment</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>98</td>
+      <td>89.116417</td>
+      <td>treatment</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>99</td>
+      <td>87.214059</td>
+      <td>treatment</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
+<p>200 rows × 4 columns</p>
 </div></div></div>
 </div>
+<p>Let’s now plot the time series corresponding to the treatment and control groups to visually explore potential effects.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create interaction term for DiD</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;DiD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Post&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Policy&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="c1"># Fit the DiD model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;ElectricityPrices&#39;</span><span class="p">],</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Post&#39;</span><span class="p">,</span> <span class="s1">&#39;Policy&#39;</span><span class="p">,</span> <span class="s1">&#39;DiD&#39;</span><span class="p">]]))</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">policy_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Policy start&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Electricity Prices Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c94064fdb3ab0f833f49bdc968f3f56d2cd2473b59cedc2196b3087e19748c37.png" src="../_images/c94064fdb3ab0f833f49bdc968f3f56d2cd2473b59cedc2196b3087e19748c37.png" />
+</div>
+</div>
+<p>As we can see, the prices in the treatment group appears to have slightly changed after the policy. Using the <strong>parallel trends assumption</strong>, we check for the difference in the prices, assuming the price in the treatment group would have followed the same trend of the control group.</p>
+<p>Before fitting a DiD model, we need to create the dummy variables related to the group and the interaction between the group and the policy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a dummy variable for the group</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Add an interaction term for DiD</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;interaction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now fit a simple OLS model on the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;period&#39;</span><span class="p">,</span> <span class="s1">&#39;interaction&#39;</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -581,27 +629,27 @@ Y_t = \alpha + \beta \tau + \epsilon_t
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
 ==============================================================================
-Dep. Variable:      ElectricityPrices   R-squared:                       0.170
-Model:                            OLS   Adj. R-squared:                  0.168
-Method:                 Least Squares   F-statistic:                     68.00
-Date:                Mon, 03 Jun 2024   Prob (F-statistic):           5.24e-40
-Time:                        14:31:01   Log-Likelihood:                -3053.0
-No. Observations:                1000   AIC:                             6114.
-Df Residuals:                     996   BIC:                             6134.
+Dep. Variable:                  price   R-squared:                       0.923
+Model:                            OLS   Adj. R-squared:                  0.921
+Method:                 Least Squares   F-statistic:                     778.6
+Date:                Mon, 03 Jun 2024   Prob (F-statistic):          1.37e-108
+Time:                        15:18:04   Log-Likelihood:                -679.31
+No. Observations:                 200   AIC:                             1367.
+Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         
 Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------
+const          11.7991      1.032     11.431      0.000       9.763      13.835
+group          50.3724      1.460     34.507      0.000      47.493      53.251
+period         25.4865      1.460     17.459      0.000      22.608      28.365
+interaction   -10.2401      2.064     -4.960      0.000     -14.312      -6.169
 ==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const         50.5899      0.314    160.980      0.000      49.973      51.207
-Post           0.1087      0.455      0.239      0.811      -0.785       1.002
-Policy        -0.0042      0.448     -0.009      0.992      -0.883       0.875
-DiD           -5.5734      0.651     -8.567      0.000      -6.850      -4.297
-==============================================================================
-Omnibus:                        0.218   Durbin-Watson:                   2.035
-Prob(Omnibus):                  0.897   Jarque-Bera (JB):                0.245
-Skew:                          -0.035   Prob(JB):                        0.885
-Kurtosis:                       2.970   Cond. No.                         6.65
+Omnibus:                       58.622   Durbin-Watson:                   0.309
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               10.369
+Skew:                          -0.027   Prob(JB):                      0.00560
+Kurtosis:                       1.886   Cond. No.                         6.85
 ==============================================================================
 
 Notes:
@@ -610,27 +658,12 @@ Notes:
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract coefficients</span>
-<span class="n">coef</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;DiD&#39;</span><span class="p">]</span>
-<span class="n">se</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bse</span><span class="p">[</span><span class="s1">&#39;DiD&#39;</span><span class="p">]</span>
-
-<span class="c1"># Plot the results</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">([</span><span class="s1">&#39;DiD Estimate&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">coef</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">se</span><span class="p">],</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">true_effect</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Effect&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Estimate&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Difference-in-Differences Estimate&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/d3fc39fc9efef4179dd67967bec804ce9ab73910de749d297ddad1c2c9757bfb.png" src="../_images/d3fc39fc9efef4179dd67967bec804ce9ab73910de749d297ddad1c2c9757bfb.png" />
-</div>
-</div>
+<p>We can see that the <strong>interaction coefficients captures the causal effect of the policy</strong>, accurately showing that the policy caused an increase of 10 units in the prices of the treatment group. This interaction term captures the differential effect of the policy on the treatment group relative to the control group, accounting for time trends common to both groups. A significant negative coefficient suggests that the policy led to a <strong>reduction in prices for the treatment group compared to the control group</strong>.</p>
+<p>The <strong>interaction term</strong> effectively isolates the impact of the policy on the treatment group by controlling for:</p>
+<ul class="simple">
+<li><p>Any pre-existing differences between the treatment and control groups (coefficient “group”).</p></li>
+<li><p>Any changes over time that would affect both groups equally (coefficient “period”).</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
