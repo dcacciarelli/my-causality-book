@@ -6,12 +6,23 @@ format: jb-book
 root: intro
 
 parts:
+- caption: Introduction
+  numbered: true
+  chapters:
+  - file: notebooks/motivation
+  - file: notebooks/guide
+
+- caption: Basic concepts
+  numbered: true
+  chapters:
+  - file: notebooks/correlation_vs_causation
+  - file: notebooks/basic_dag_structures
+  - file: notebooks/glossary
+
 - caption: Causal discovery
   numbered: true
   chapters:
   - file: notebooks/preface_causal_discovery
-  - file: notebooks/correlation_vs_causation
-  - file: notebooks/basic_dag_structures
   - file: notebooks/semiparametric_direct_lingam
   - file: notebooks/semiparametric_resit
   - file: notebooks/semiparametric_varlingam
