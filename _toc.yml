@@ -9,6 +9,7 @@ parts:
 - caption: Causal discovery
   numbered: true
   chapters:
+  - file: notebooks/preface_causal_discovery
   - file: notebooks/correlation_vs_causation
   - file: notebooks/basic_dag_structures
   - file: notebooks/semiparametric_direct_lingam
@@ -19,6 +20,7 @@ parts:
 - caption: Causal inference
   numbered: true 
   chapters:
+  - file: notebooks/preface_causal_inference
   - file: notebooks/instrumental_variables
   - file: notebooks/double_machine_learning
   - file: notebooks/diff_in_diff
@@ -27,6 +29,7 @@ parts:
 - caption: Interpretability
   numbered: true
   chapters:
+  - file: notebooks/preface_interpretability
   - file: notebooks/partial_dependency_plots
   - file: notebooks/accumulated_local_effects
   - file: notebooks/impulse_response_functions
@@ -34,6 +37,7 @@ parts:
 - caption: Designs
   numbered: true
   chapters:
+  - file: notebooks/preface_designs
   - file: notebooks/design_of_experiments
   - file: notebooks/AB_testing
 
