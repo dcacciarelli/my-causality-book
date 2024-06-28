@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Introduction to causality and DAGs &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>3. Correlation vs. causation &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/correlation_vs_causation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Basic causal structures" href="basic_dag_structures.html" />
+    <link rel="next" title="4. What is a causal graph" href="DAG.html" />
     <link rel="prev" title="2. How to navigate this book" href="guide.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,7 +172,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Applied Causal Inference for Electricity Markets
+                    Applied Causal Inference with Examples from Electricity Markets
                 </a>
             </li>
         </ul>
@@ -183,38 +183,39 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Introduction to causality and DAGs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">4. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">5. Glossary: basic definitions and terminology</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Correlation vs. causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">4. What is a causal graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic causal structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Glossary: basic definitions and terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">6. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">7. Linear models (Direct LiNGAM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">8. Nonlinear models (additive noise models and RESIT)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">9. Time series models (VARLiNGAM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">10. Time series with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">7. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear models (Direct LiNGAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">9. Nonlinear models (additive noise models and RESIT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time series models (VARLiNGAM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Time series with structural breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">11. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">12. Instrumental variables (IV)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">13. Double Machine Learning (DML)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">14. Difference-in-differences (DiD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">15. Interrupted time series (ITS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">13. Instrumental variables (IV)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">14. Double Machine Learning (DML)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">15. Difference-in-differences (DiD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">16. Interrupted time series (ITS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">16. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">17. Partial dependence plots (PDP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">18. Accumulated Local Effects (ALE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">19. Impulse Response Functions (IRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">17. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">18. Partial dependence plots (PDP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">19. Accumulated Local Effects (ALE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">20. Impulse Response Functions (IRF)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">20. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">21. Design of experiments (DoE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">22. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">21. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">22. Design of experiments (DoE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">23. A/B testing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -404,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to causality and DAGs</h1>
+    <h1>Correlation vs. causation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -433,8 +434,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-causality-and-dags">
-<h1><span class="section-number">3. </span>Introduction to causality and DAGs<a class="headerlink" href="#introduction-to-causality-and-dags" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="correlation-vs-causation">
+<h1><span class="section-number">3. </span>Correlation vs. causation<a class="headerlink" href="#correlation-vs-causation" title="Link to this heading">#</a></h1>
 <section id="understanding-key-drivers">
 <h2><span class="section-number">3.1. </span>Understanding key drivers<a class="headerlink" href="#understanding-key-drivers" title="Link to this heading">#</a></h2>
 <p>When tackling real-world engineering problems, a fundamental goal is to understand the underlying mechanisms that govern a system and the <strong>key drivers</strong> affecting its performance. This understanding often comes from conducting experiments, which are foundational to scientific research. For instance, if we aim to determine the effect of a new solar panel design on energy conversion efficiency, systematic experimentation might be the first approach. Through controlled manipulation and observation, experiments help us establish clear cause-and-effect relationships.</p>
@@ -664,11 +665,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="basic_dag_structures.html"
+       href="DAG.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Basic causal structures</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>What is a causal graph</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
