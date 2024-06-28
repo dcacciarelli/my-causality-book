@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>10. Double machine learning (DML) &#8212; Applied Causal Inference for Electricity Markets</title>
+    <title>10. Double Machine Learning (DML) &#8212; Applied Causal Inference for Electricity Markets</title>
   
   
   
@@ -180,7 +180,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">1. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">1. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">2. Introduction to causality and DAGs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">3. Basic causal structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">4. Linear models (Direct LiNGAM)</a></li>
@@ -190,22 +190,22 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">8. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">8. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">9. Instrumental variables (IV)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Double machine learning (DML)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Double Machine Learning (DML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">11. Difference-in-differences (DiD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">12. Interrupted time series (ITS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">13. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">13. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">14. Partial dependence plots (PDP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">15. Accumulated Local Effects (ALE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">16. Impulse Response Functions (IRF)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">17. Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">17. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">18. Design of experiments (DoE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">19. A/B testing</a></li>
 </ul>
@@ -397,7 +397,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Double machine learning (DML)</h1>
+    <h1>Double Machine Learning (DML)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -407,7 +407,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-in-progress">10.1. Work in progress…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-partially-linear-case">10.1. The Partially Linear Case</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#electricity-example">10.2. Electricity example</a></li>
 </ul>
             </nav>
         </div>
@@ -420,32 +421,104 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="double-machine-learning-dml">
-<h1><span class="section-number">10. </span>Double machine learning (DML)<a class="headerlink" href="#double-machine-learning-dml" title="Link to this heading">#</a></h1>
-<section id="work-in-progress">
-<h2><span class="section-number">10.1. </span>Work in progress…<a class="headerlink" href="#work-in-progress" title="Link to this heading">#</a></h2>
-<p>Double machine learning (DML) is a powerful framework used to estimate causal effects in the presence of many confounding variables. It combines machine learning techniques with econometric methods to control for confounding variables and obtain unbiased estimates of treatment effects. Let’s consider a practical example where we want to estimate the effect of wind power production (<span class="math notranslate nohighlight">\(w\)</span>) on electricity prices (<span class="math notranslate nohighlight">\(y\)</span>), while <strong>accounting for other influencing factors</strong> such as weather conditions, demand, and other market variables (<span class="math notranslate nohighlight">\(x\)</span>).</p>
-<p>We can model the relationship between these variables as follows. First, we know that there is an unknown function <span class="math notranslate nohighlight">\(g\)</span> relating the response variable <span class="math notranslate nohighlight">\(y\)</span> to both the endogenous explanatory variable of interest, <span class="math notranslate nohighlight">\(w\)</span>, and other variables <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ff3996e-2329-4ec7-8d47-2606aa9f8941">
-<span class="eqno">(10.1)<a class="headerlink" href="#equation-8ff3996e-2329-4ec7-8d47-2606aa9f8941" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h1><span class="section-number">10. </span>Double Machine Learning (DML)<a class="headerlink" href="#double-machine-learning-dml" title="Link to this heading">#</a></h1>
+<p>Double Machine Learning (DML) is a framework, initially proposed by Chernozhukov et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id9" title="Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, and James Robins. Double/debiased machine learning for treatment and structural parameters. The Econometrics Journal, 21(1):C1–C68, 2018.">CCD+18</a>]</span>, for estimating causal effects when many confounding variables are present. It combines machine learning techniques with econometric methods to control for these confounders and obtain unbiased estimates of treatment effects. For example, let’s assume we are interested in unveiling the effect of wind power (WP) production or solar power (SP) production on electricity prices. In this case, WP and SP production would be our <strong>treatment variables</strong>, while the electricity price would be our <strong>response</strong>. We know that these factors have an effect in reducing prices due to their low marginal costs. However, we also know that there are many other factors affecting electricity prices (e.g., demand, gas prices, macroeconomic trends). These are the <strong>confounders</strong>. We can also assume that some these confounders have an effect both on our treatment and our response variable. For example, the season we are in or the specific hour of the day will certainly affect the generation of SP, but will also have an effect on the demand (hence, the prices) because of the well-known daily and season consumption profiles. Ignoring the effect of these confounders might lead to biased estimates.</p>
+<p>With DML, we are trying to isolate the effect of the treatment variables on the response. This framework assumes that the response <span class="math notranslate nohighlight">\(y\)</span> (e.g., the prices) is a function of the treatment <span class="math notranslate nohighlight">\(w\)</span> and other confounding variables <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b26104d9-ca0a-4255-b9cd-ab1184f4a332">
+<span class="eqno">(10.1)<a class="headerlink" href="#equation-b26104d9-ca0a-4255-b9cd-ab1184f4a332" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\epsilon\)</span> is an error term. This equation simply corresponds to saying:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9092b5c7-67a1-4139-9dd3-6779454f7ea0">
-<span class="eqno">(10.2)<a class="headerlink" href="#equation-9092b5c7-67a1-4139-9dd3-6779454f7ea0" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \text{Electricity price} = g(\text{wind power production}, \text{weather conditions}, \text{demand}, \text{market variables}) + \epsilon
-\end{equation}\]</div>
-<p>Then, we also know that the explanatory variable of interest <span class="math notranslate nohighlight">\(w\)</span> can be expressed as a function of other known variables (e.g., weather conditions).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1cbac866-c2a1-4da6-8e25-bdff07f36bb1">
-<span class="eqno">(10.3)<a class="headerlink" href="#equation-1cbac866-c2a1-4da6-8e25-bdff07f36bb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>
+<p>Similarly, since we assumed that the treatment is also affected by other confounding variables, we have that <span class="math notranslate nohighlight">\(w\)</span> can be modeled as a function of <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-df4b2fe6-a8d2-4b18-b771-ae95d0741be2">
+<span class="eqno">(10.2)<a class="headerlink" href="#equation-df4b2fe6-a8d2-4b18-b771-ae95d0741be2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\nu\)</span> is an error variable.</p>
-<p>The DML framework involves two main stages:</p>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\nu\)</span> is the error term.</p>
+<p>Now, the DML framework involves two main stages:</p>
+<ol class="arabic simple">
+<li><p><strong>Nuisance parameter estimation</strong>: use a machine learning model to estimate the functions <span class="math notranslate nohighlight">\(\hat{g}(w, x)\)</span> and <span class="math notranslate nohighlight">\(\hat{m}(x)\)</span>.</p></li>
+<li><p><strong>Orthogonalization and estimation</strong>: use the estimated functions to “remove” the effect of the confounding variables from both <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. Then, we estimate the causal effects by regressing the residuals of the response on the residuals of the treatment.</p></li>
+</ol>
+<p>The <strong>key intuition</strong> is that if we remove the effect of other confounders from the tratment and the response, the variation that remains in the residuals is only due to the treatment itself. It should be noted that this approach assumes we already know the causal graph, and that there are no omitted variables.</p>
+<section id="the-partially-linear-case">
+<h2><span class="section-number">10.1. </span>The Partially Linear Case<a class="headerlink" href="#the-partially-linear-case" title="Link to this heading">#</a></h2>
+<p>For simplicity, we now consider a partially linear case where the relationship between the outcome <span class="math notranslate nohighlight">\(y\)</span> and the treatment <span class="math notranslate nohighlight">\(w\)</span> can be expressed linearly, while allowing for a potentially complex, nonlinear relationship between the confounders <span class="math notranslate nohighlight">\(x\)</span> and both the treatment and outcome.</p>
+<p>In this case, the model is specified as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a0246b7e-b787-4c44-9b70-f9fd698632ee">
+<span class="eqno">(10.3)<a class="headerlink" href="#equation-a0246b7e-b787-4c44-9b70-f9fd698632ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    y = \beta w + g(x) + \epsilon
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-55494bd4-ed09-4944-9dfc-0afa5a931dcd">
+<span class="eqno">(10.4)<a class="headerlink" href="#equation-55494bd4-ed09-4944-9dfc-0afa5a931dcd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    w = m(x) + \nu
+\end{equation}\]</div>
+<p>Here:</p>
 <ul class="simple">
-<li><p><strong>Nuisance parameter estimation</strong>: use a machine learning model to estimate the functions <span class="math notranslate nohighlight">\( \hat{g}(w, x)\)</span> and <span class="math notranslate nohighlight">\( \hat{m}(x)\)</span>.</p></li>
-<li><p><strong>Orthogonalization and estimation</strong>: use the estimated functions to adjust the variables and then estimate the causal effect using a second-stage regression.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is the coefficient capturing the causal effect of the treatment <span class="math notranslate nohighlight">\(w\)</span> on the outcome <span class="math notranslate nohighlight">\(y\)</span>. This is what we are trying to estimate!</p></li>
+<li><p><span class="math notranslate nohighlight">\(g(x)\)</span> is an unknown function capturing the effect of the confounders <span class="math notranslate nohighlight">\(x\)</span> on the outcome.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m(x)\)</span> is an unknown function capturing the effect of the confounders <span class="math notranslate nohighlight">\(x\)</span> on the treatment.</p></li>
 </ul>
-<p><strong>Difference with IV and 2SLS</strong>: while this approach might appear very similar to IVs and 2SLS, there is a fundamental difference. IVs are used in the presence of unknown or unobserved confounders. Here, we have at our disposal a (potentially very large) set of variables that affect the explanatory variable of interest.</p>
+<p>The <strong>key steps</strong> to implement the DML  in the partially linear case are:</p>
+<ol class="arabic">
+<li><p><strong>Split the Data</strong>: Randomly split the data into <span class="math notranslate nohighlight">\(K\)</span> folds.</p></li>
+<li><p><strong>Train Predictive Models</strong>:</p>
+<ul class="simple">
+<li><p>For each fold <span class="math notranslate nohighlight">\(k\)</span> (where <span class="math notranslate nohighlight">\(k \in \{1, 2, ..., K\}\)</span>):</p>
+<ol class="arabic simple">
+<li><p><strong>Treatment Model</strong>: Train a machine learning model <span class="math notranslate nohighlight">\(\hat{m}_{-k}(x)\)</span> using <span class="math notranslate nohighlight">\(K-1\)</span> folds to predict <span class="math notranslate nohighlight">\(w\)</span> from <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p><strong>Outcome Model</strong>: Train a machine learning model <span class="math notranslate nohighlight">\(\hat{g}_{-k}(x)\)</span> using <span class="math notranslate nohighlight">\(K-1\)</span> folds to predict <span class="math notranslate nohighlight">\(y\)</span> from <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>Generate Residuals</strong>:</p>
+<ul>
+<li><p>Use the models trained on <span class="math notranslate nohighlight">\(K-1\)</span> folds to predict the held-out fold <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+<li><p>Compute the residuals for the treatment and outcome models:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a8fb3208-cabd-45d6-96de-008a47c7d06e">
+<span class="eqno">(10.5)<a class="headerlink" href="#equation-a8fb3208-cabd-45d6-96de-008a47c7d06e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+            \hat{V}_W = W - \hat{W}, \quad \hat{V}_Y = Y - \hat{Y}
+        \end{equation}\]</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Regress Residuals</strong>:</p>
+<ul>
+<li><p>Regress the residualized outcome <span class="math notranslate nohighlight">\(\hat{V}_Y\)</span> on the residualized treatment <span class="math notranslate nohighlight">\(\hat{V}_W\)</span> to estimate the causal effect <span class="math notranslate nohighlight">\(\beta\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-07d8afc0-d265-402d-b3a0-b3b84c2d94c6">
+<span class="eqno">(10.6)<a class="headerlink" href="#equation-07d8afc0-d265-402d-b3a0-b3b84c2d94c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+        \hat{\beta}_k = \text{coef}\left( \hat{V}_Y \sim \hat{V}_W \right)
+        \end{equation}\]</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Average Estimates</strong>:</p>
+<ul>
+<li><p>Repeat steps 2-4 for each fold and average the resulting <span class="math notranslate nohighlight">\(K\)</span> estimates to obtain the final causal estimate:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-abc1bb6b-9b2f-4f2c-ae1a-81dc40fbc4fa">
+<span class="eqno">(10.7)<a class="headerlink" href="#equation-abc1bb6b-9b2f-4f2c-ae1a-81dc40fbc4fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+            \hat{\beta} = \frac{1}{K} \sum_{k=1}^{K} \hat{\beta}_k
+        \end{equation}\]</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Robustness</strong>:</p>
+<ul class="simple">
+<li><p>For more robustness with respect to random partitioning in finite samples, repeat the algorithm multiple times (e.g., 100 times) with different random splits and report the median estimate.</p></li>
+</ul>
+</li>
+</ol>
+<p>This algorithm ensures that the estimation of the treatment effect is orthogonal to the nuisance parameters (the confounders), thereby removing bias due to overfitting and ensuring that the estimated treatment effect is unbiased.</p>
+<p>The <strong>key advantages</strong> of DML in the partially linear case are:</p>
+<ol class="arabic simple">
+<li><p><strong>Flexibility</strong>: allows the use of flexible machine learning models to estimate complex, nonlinear relationships between confounders and the treatment/outcome.</p></li>
+<li><p><strong>Bias Reduction</strong>: the orthogonalization step ensures that the estimation of the causal effect is unbiased by the confounders.</p></li>
+<li><p><strong>Robustness</strong>: cross-fitting and multiple repetitions provide robustness against overfitting and ensure stable estimates.</p></li>
+</ol>
+</section>
+<section id="electricity-example">
+<h2><span class="section-number">10.2. </span>Electricity example<a class="headerlink" href="#electricity-example" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -513,7 +586,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#work-in-progress">10.1. Work in progress…</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-partially-linear-case">10.1. The Partially Linear Case</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#electricity-example">10.2. Electricity example</a></li>
 </ul>
   </nav></div>
 
