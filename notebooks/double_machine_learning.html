@@ -180,17 +180,17 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Why do you want to study causality?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Why do you want to study causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">2. How to navigate this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">3. Correlation vs. causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">4. What is a causal graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic causal structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Glossary: basic definitions and terminology</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal discovery</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">7. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear models (Direct LiNGAM)</a></li>
@@ -198,7 +198,7 @@
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time series models (VARLiNGAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Time series with structural breaks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Inference</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">13. Instrumental variables (IV)</a></li>
@@ -213,11 +213,13 @@
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">19. Accumulated Local Effects (ALE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">20. Impulse Response Functions (IRF)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">21. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">22. Design of experiments (DoE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">23. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">23. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">24. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">25. Multi-Armed Bandit (MAB)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -434,14 +436,14 @@ document.write(`
 <h1><span class="section-number">14. </span>Double Machine Learning (DML)<a class="headerlink" href="#double-machine-learning-dml" title="Link to this heading">#</a></h1>
 <p>Double Machine Learning (DML) is a framework, initially proposed by Chernozhukov et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id9" title="Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, and James Robins. Double/debiased machine learning for treatment and structural parameters. The Econometrics Journal, 21(1):C1–C68, 2018.">CCD+18</a>]</span>, for estimating causal effects when many confounding variables are present. It combines machine learning techniques with econometric methods to control for these confounders and obtain unbiased estimates of treatment effects. For example, let’s assume we are interested in unveiling the effect of wind power (WP) production or solar power (SP) production on electricity prices. In this case, WP and SP production would be our <strong>treatment variables</strong>, while the electricity price would be our <strong>response</strong>. We know that these factors have an effect in reducing prices due to their low marginal costs. However, we also know that there are many other factors affecting electricity prices (e.g., demand, gas prices, macroeconomic trends). These are the <strong>confounders</strong>. We can also assume that some these confounders have an effect both on our treatment and our response variable. For example, the season we are in or the specific hour of the day will certainly affect the generation of SP, but will also have an effect on the demand (hence, the prices) because of the well-known daily and season consumption profiles. Ignoring the effect of these confounders might lead to biased estimates.</p>
 <p>With DML, we are trying to isolate the effect of the treatment variables on the response. This framework assumes that the response <span class="math notranslate nohighlight">\(y\)</span> (e.g., the prices) is a function of the treatment <span class="math notranslate nohighlight">\(w\)</span> and other confounding variables <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b26104d9-ca0a-4255-b9cd-ab1184f4a332">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-b26104d9-ca0a-4255-b9cd-ab1184f4a332" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa6e1cf4-8417-4d4b-bee6-3505fa0a18b6">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-fa6e1cf4-8417-4d4b-bee6-3505fa0a18b6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>
 <p>Similarly, since we assumed that the treatment is also affected by other confounding variables, we have that <span class="math notranslate nohighlight">\(w\)</span> can be modeled as a function of <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df4b2fe6-a8d2-4b18-b771-ae95d0741be2">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-df4b2fe6-a8d2-4b18-b771-ae95d0741be2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8382f869-a84d-4e68-a491-8e6c819190dc">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-8382f869-a84d-4e68-a491-8e6c819190dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\nu\)</span> is the error term.</p>
@@ -455,12 +457,12 @@ document.write(`
 <h2><span class="section-number">14.1. </span>The Partially Linear Case<a class="headerlink" href="#the-partially-linear-case" title="Link to this heading">#</a></h2>
 <p>For simplicity, we now consider a partially linear case where the relationship between the outcome <span class="math notranslate nohighlight">\(y\)</span> and the treatment <span class="math notranslate nohighlight">\(w\)</span> can be expressed linearly, while allowing for a potentially complex, nonlinear relationship between the confounders <span class="math notranslate nohighlight">\(x\)</span> and both the treatment and outcome.</p>
 <p>In this case, the model is specified as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0246b7e-b787-4c44-9b70-f9fd698632ee">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-a0246b7e-b787-4c44-9b70-f9fd698632ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1da6a956-9487-457b-987a-838ea90336a4">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-1da6a956-9487-457b-987a-838ea90336a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta w + g(x) + \epsilon
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-55494bd4-ed09-4944-9dfc-0afa5a931dcd">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-55494bd4-ed09-4944-9dfc-0afa5a931dcd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53cc9fb7-ce13-4eaf-981e-4cf11cd5b28f">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-53cc9fb7-ce13-4eaf-981e-4cf11cd5b28f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>Here:</p>
@@ -486,8 +488,8 @@ document.write(`
 <ul>
 <li><p>Use the models trained on <span class="math notranslate nohighlight">\(K-1\)</span> folds to predict the held-out fold <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 <li><p>Compute the residuals for the treatment and outcome models:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8fb3208-cabd-45d6-96de-008a47c7d06e">
-<span class="eqno">(14.5)<a class="headerlink" href="#equation-a8fb3208-cabd-45d6-96de-008a47c7d06e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d09d0dd4-165a-4704-b5aa-f6b38cb920a7">
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-d09d0dd4-165a-4704-b5aa-f6b38cb920a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
             \hat{V}_W = W - \hat{W}, \quad \hat{V}_Y = Y - \hat{Y}
         \end{equation}\]</div>
 </li>
@@ -496,8 +498,8 @@ document.write(`
 <li><p><strong>Regress Residuals</strong>:</p>
 <ul>
 <li><p>Regress the residualized outcome <span class="math notranslate nohighlight">\(\hat{V}_Y\)</span> on the residualized treatment <span class="math notranslate nohighlight">\(\hat{V}_W\)</span> to estimate the causal effect <span class="math notranslate nohighlight">\(\beta\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07d8afc0-d265-402d-b3a0-b3b84c2d94c6">
-<span class="eqno">(14.6)<a class="headerlink" href="#equation-07d8afc0-d265-402d-b3a0-b3b84c2d94c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-289f8321-d1c6-4aa7-9cc4-b6145d61f8fc">
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-289f8321-d1c6-4aa7-9cc4-b6145d61f8fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \hat{\beta}_k = \text{coef}\left( \hat{V}_Y \sim \hat{V}_W \right)
         \end{equation}\]</div>
 </li>
@@ -506,8 +508,8 @@ document.write(`
 <li><p><strong>Average Estimates</strong>:</p>
 <ul>
 <li><p>Repeat steps 2-4 for each fold and average the resulting <span class="math notranslate nohighlight">\(K\)</span> estimates to obtain the final causal estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abc1bb6b-9b2f-4f2c-ae1a-81dc40fbc4fa">
-<span class="eqno">(14.7)<a class="headerlink" href="#equation-abc1bb6b-9b2f-4f2c-ae1a-81dc40fbc4fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-41219489-024a-40d1-9262-199f7960dd89">
+<span class="eqno">(14.7)<a class="headerlink" href="#equation-41219489-024a-40d1-9262-199f7960dd89" title="Permalink to this equation">#</a></span>\[\begin{equation}
             \hat{\beta} = \frac{1}{K} \sum_{k=1}^{K} \hat{\beta}_k
         \end{equation}\]</div>
 </li>
