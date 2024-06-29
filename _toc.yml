@@ -12,7 +12,7 @@ parts:
   - file: notebooks/motivation
   - file: notebooks/guide
 
-- caption: Basic concepts
+- caption: Basic Concepts
   numbered: true
   chapters:
   - file: notebooks/correlation_vs_causation
@@ -20,7 +20,7 @@ parts:
   - file: notebooks/basic_dag_structures
   - file: notebooks/glossary
 
-- caption: Causal discovery
+- caption: Causal Discovery
   numbered: true
   chapters:
   - file: notebooks/preface_causal_discovery
@@ -29,7 +29,7 @@ parts:
   - file: notebooks/semiparametric_varlingam
   - file: notebooks/structural_breaks_example
 
-- caption: Causal inference
+- caption: Causal Inference
   numbered: true 
   chapters:
   - file: notebooks/preface_causal_inference
@@ -46,12 +46,14 @@ parts:
   - file: notebooks/accumulated_local_effects
   - file: notebooks/impulse_response_functions
 
-- caption: Designs
+- caption: Data Collection
   numbered: true
   chapters:
   - file: notebooks/preface_designs
   - file: notebooks/design_of_experiments
+  - file: notebooks/active_learning
   - file: notebooks/AB_testing
+  - file: notebooks/bandits
 
 - caption: Other
   numbered: false 
