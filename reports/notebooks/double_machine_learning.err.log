@@ -37,8 +37,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['n_iterations = 10', 'coefficients = {', "    'wp_sp': [],", "    'all': [],", "    'DML': []"]
+['n_iterations = 30', 'coefficients = {', "    'wp_sp': [],", "    'all': [],", "    'DML': []"]
 ...
-["ax.set_ylabel('Coefficient value')", "ax.grid(axis='x')", "ax.legend(handles=handles, loc='lower right')", 'plt.tight_layout()', 'plt.show()']
+["    'All the features_wp': coefficients_df['all'][:, 0],", "    'All the features_sp': coefficients_df['all'][:, 1],", "    'DML_wp': coefficients_df['DML'][:, 0],", "    'DML_sp': coefficients_df['DML'][:, 1]", '})']
 -------------------
 
