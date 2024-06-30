@@ -35,6 +35,7 @@ parts:
   - file: notebooks/preface_causal_inference
   - file: notebooks/instrumental_variables
   - file: notebooks/double_machine_learning
+  - file: notebooks/propensity_scores
   - file: notebooks/diff_in_diff
   - file: notebooks/interrupted_time_series
 
