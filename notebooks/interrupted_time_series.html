@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>16. Interrupted time series (ITS) &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>17. Interrupted time series (ITS) &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/interrupted_time_series';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="17. Overview" href="preface_interpretability.html" />
-    <link rel="prev" title="15. Difference-in-differences (DiD)" href="diff_in_diff.html" />
+    <link rel="next" title="18. Overview" href="preface_interpretability.html" />
+    <link rel="prev" title="16. Difference-in-differences (DiD)" href="diff_in_diff.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,17 +180,17 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Why do you want to study causality?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Why do you want to study causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">2. How to navigate this book</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">3. Correlation vs. causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">4. What is a causal graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic causal structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Glossary: basic definitions and terminology</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal discovery</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">7. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear models (Direct LiNGAM)</a></li>
@@ -198,26 +198,29 @@
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time series models (VARLiNGAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Time series with structural breaks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Inference</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">13. Instrumental variables (IV)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">14. Double Machine Learning (DML)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">15. Difference-in-differences (DiD)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Interrupted time series (ITS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">15. Propensity scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">16. Difference-in-differences (DiD)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Interrupted time series (ITS)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">17. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">18. Partial dependence plots (PDP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">19. Accumulated Local Effects (ALE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">20. Impulse Response Functions (IRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">18. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial dependence plots (PDP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects (ALE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions (IRF)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Collection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">21. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">22. Design of experiments (DoE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">23. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">22. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">23. Design of experiments (DoE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">24. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">25. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">26. Multi-Armed Bandit (MAB)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -417,7 +420,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">16.1. Fitting an ITS on the residuals of a time series models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">17.1. Fitting an ITS on the residuals of a time series models</a></li>
 </ul>
             </nav>
         </div>
@@ -430,10 +433,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="interrupted-time-series-its">
-<h1><span class="section-number">16. </span>Interrupted time series (ITS)<a class="headerlink" href="#interrupted-time-series-its" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">17. </span>Interrupted time series (ITS)<a class="headerlink" href="#interrupted-time-series-its" title="Link to this heading">#</a></h1>
 <p>Interrupted Time Series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-a3b6f879-a422-4a29-8371-0214632b6f92">
-<span class="eqno">(16.1)<a class="headerlink" href="#equation-a3b6f879-a422-4a29-8371-0214632b6f92" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(17.1)<a class="headerlink" href="#equation-a3b6f879-a422-4a29-8371-0214632b6f92" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
 \end{equation}\]</div>
 <p>where the regression coefficients are used to capture:</p>
@@ -544,7 +547,7 @@ Notes:
 <li><p>The trend (slope) of prices did not significantly change after the policy (<span class="math notranslate nohighlight">\(\beta_3\)</span> = time_after_policy).</p></li>
 </ul>
 <section id="fitting-an-its-on-the-residuals-of-a-time-series-models">
-<h2><span class="section-number">16.1. </span>Fitting an ITS on the residuals of a time series models<a class="headerlink" href="#fitting-an-its-on-the-residuals-of-a-time-series-models" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.1. </span>Fitting an ITS on the residuals of a time series models<a class="headerlink" href="#fitting-an-its-on-the-residuals-of-a-time-series-models" title="Link to this heading">#</a></h2>
 <p>Many real-world data might be characterised by high autocorrelation or more complex dynamics. In that case, it might be useful to firts fit a model and then examine the behaviour of the residuals to estimate the effect of the policy. For example, using a time series model (e.g., SARIMA) followed by ITS analysis on the residuals might have several advantages, such as:</p>
 <ul class="simple">
 <li><p>Handling autocorrelation and seasonality: time series data often exhibit autocorrelation and seasonality, where current values are correlated with past values. Ignoring this aspect can lead to incorrect inferences and underestimated standard errors. By fitting a SARIMA model, we explicitly account for this, leading to more accurate residuals that reflect the underlying stochastic process.</p></li>
@@ -859,7 +862,7 @@ Notes:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Difference-in-differences (DiD)</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Difference-in-differences (DiD)</p>
       </div>
     </a>
     <a class="right-next"
@@ -867,7 +870,7 @@ Notes:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Overview</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Overview</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -887,7 +890,7 @@ Notes:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">16.1. Fitting an ITS on the residuals of a time series models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">17.1. Fitting an ITS on the residuals of a time series models</a></li>
 </ul>
   </nav></div>
 
