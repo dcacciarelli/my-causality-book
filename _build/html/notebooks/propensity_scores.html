@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>15. Propensity scores &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>15. Propensity Score Matching (PSM) &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/propensity_scores';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -201,7 +203,7 @@
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">13. Instrumental variables (IV)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">14. Double Machine Learning (DML)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Propensity scores</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Propensity Score Matching (PSM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">16. Difference-in-differences (DiD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">17. Interrupted time series (ITS)</a></li>
 </ul>
@@ -395,7 +397,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -406,11 +410,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Propensity scores</h1>
+    <h1>Propensity Score Matching (PSM)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">15.1. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">15.1.1. Data generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">15.1.2. Propensity scores estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">15.1.3. Nearest-neighbor matching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">15.1.4. Treatment effect estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">15.1.5. Visualising results</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -420,8 +439,378 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="propensity-scores">
-<h1><span class="section-number">15. </span>Propensity scores<a class="headerlink" href="#propensity-scores" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="propensity-score-matching-psm">
+<h1><span class="section-number">15. </span>Propensity Score Matching (PSM)<a class="headerlink" href="#propensity-score-matching-psm" title="Link to this heading">#</a></h1>
+<p>In many cases, we are interested in assessing the effectiveness of a campaign or other types of treatments. For example, let’s assume we are interested in evaluating the impact of a <strong>demand-response programme</strong> on the electricity consumption of a set of households. Suppose that households can join the demand-response programme by filling out a specific form. For those who join, the programme offers reduced pricing during off-peak hours. Our goal is to assess the effectiveness of this programme by comparing the electricity consumption of people who joined the programme (our <strong>treatment group</strong>) to those who did not (our <strong>control group</strong>).</p>
+<p>In an ideal scenario, if we were able to conduct a completely randomised experiment, we would have a balanced and diverse set of customers in both groups. In such a situation, if the possibility of joining the programme was as random as flipping a coin, any significant differences in consumption patterns between the two groups could be attributed to the special pricing offered by the programme.</p>
+<p>However, in real life, things are more complicated. Because people are not randomly assigned to the two groups, there may be characteristics of the people who voluntarily joined the programme that are the true causes of changes in consumption. For example, if a majority of the people who agreed to join the programme are retired, it is likely that they will use electricity during off-peak hours due to their lifestyle and not solely because of the reduced pricing. This is an example of <strong>selection bias</strong>.</p>
+<p>Whenever the treatment and control assignment is not random, there may be demographic or personal factors that affect the outcome of the experiment. These factors are referred to as <strong>confounders</strong>. This problem is particularly prevalent in observational data (see <span id="id1">[<a class="reference internal" href="../bibliography.html#id12" title="Paul R Rosenbaum and Donald B Rubin. The central role of the propensity score in observational studies for causal effects. Biometrika, 70(1):41–55, 1983.">RR83</a>]</span>).</p>
+<p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
+<p>In mathematical terms, we can define the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span> as the probability of a unit (e.g., customer) joining the demand-response programme given a set of covariates <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-44452829-fc04-415f-a705-8631ef847b30">
+<span class="eqno">(15.1)<a class="headerlink" href="#equation-44452829-fc04-415f-a705-8631ef847b30" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   e(x) = P(T = 1 \mid X = x)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is a binary indicator of treatment assignment (1 if joined the programme, 0 if not).</p>
+<p>Propensity scores are typically estimated using <strong>logistic regression</strong>, although other classification methods can be used. For example:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-72103acc-356b-4ab5-b4eb-21f30fc6eb94">
+<span class="eqno">(15.2)<a class="headerlink" href="#equation-72103acc-356b-4ab5-b4eb-21f30fc6eb94" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
+\end{equation}\]</div>
+<p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching, such as:</p>
+<ol class="arabic simple">
+<li><p><strong>Nearest-neighbor matching</strong>: each treated unit is matched with the control unit that has the closest propensity score.</p></li>
+<li><p><strong>Caliper matching</strong>: similar to nearest-neighbor matching but with a tolerance level (caliper) for how close the propensity scores must be.</p></li>
+<li><p><strong>Stratification (or interval matching)</strong>: units are divided into strata based on their propensity scores, and comparisons are made within each stratum.</p></li>
+<li><p><strong>Kernel matching</strong>: Weights all control units according to their distance from the treated unit’s propensity score.</p></li>
+</ol>
+<section id="example">
+<h2><span class="section-number">15.1. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>Let’s walk through an example using Python to illustrate how to implement propensity score matching, estimate the treatment effect, and visualize the results.</p>
+<section id="data-generation">
+<h3><span class="section-number">15.1.1. </span>Data generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h3>
+<p>We will use a synthetic dataset to simulate our scenario. Suppose our dataset includes the following columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">joined_program</span></code>: A binary indicator (1 if joined the program, 0 if not).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peak_consumption</span></code>: The electricity consumption of the household during peak hours.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code>: Age of the household head.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">income</span></code>: Income level of the household.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">household_size</span></code>: Number of members in the household.</p></li>
+</ul>
+<p>We also introduce some <strong>bias in the treatment assignment</strong> to simulate a real-world scenario where older people are more likely to join the programmw and lower-income households are less likely to join.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50000</span><span class="p">,</span> <span class="mi">15000</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">household_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Bias in treatment assignment</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">prob_join</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">age</span> <span class="o">-</span> <span class="mf">0.0001</span> <span class="o">*</span> <span class="n">income</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">household_size</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">noise</span><span class="p">)))</span>
+<span class="n">joined_program</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">prob_join</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">peak_consumption</span> <span class="o">=</span> <span class="p">(</span><span class="mi">200</span> <span class="o">-</span> <span class="mf">0.001</span> <span class="o">*</span> <span class="n">income</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">household_size</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">joined_program</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;joined_program&#39;</span><span class="p">:</span> <span class="n">joined_program</span><span class="p">,</span>
+    <span class="s1">&#39;peak_consumption&#39;</span><span class="p">:</span> <span class="n">peak_consumption</span><span class="p">,</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">age</span><span class="p">,</span>
+    <span class="s1">&#39;income&#39;</span><span class="p">:</span> <span class="n">income</span><span class="p">,</span>
+    <span class="s1">&#39;household_size&#39;</span><span class="p">:</span> <span class="n">household_size</span>
+<span class="p">})</span>
+
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>joined_program</th>
+      <th>peak_consumption</th>
+      <th>age</th>
+      <th>income</th>
+      <th>household_size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>140.595562</td>
+      <td>71</td>
+      <td>58339</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>134.926546</td>
+      <td>54</td>
+      <td>63387</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>154.885678</td>
+      <td>61</td>
+      <td>43665</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>147.252513</td>
+      <td>76</td>
+      <td>51570</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>146.337150</td>
+      <td>72</td>
+      <td>53420</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="propensity-scores-estimation">
+<h3><span class="section-number">15.1.2. </span>Propensity scores estimation<a class="headerlink" href="#propensity-scores-estimation" title="Link to this heading">#</a></h3>
+<p>In this step, we use logistic regression to estimate the propensity scores, which represent the probability of joining the programme given the covariates (age, income, and household size).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">covariates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;household_size&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">covariates</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;joined_program&#39;</span><span class="p">]</span>
+
+<span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">log_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>joined_program</th>
+      <th>peak_consumption</th>
+      <th>age</th>
+      <th>income</th>
+      <th>household_size</th>
+      <th>propensity_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>140.595562</td>
+      <td>71</td>
+      <td>58339</td>
+      <td>3</td>
+      <td>0.994963</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>134.926546</td>
+      <td>54</td>
+      <td>63387</td>
+      <td>2</td>
+      <td>0.959616</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>154.885678</td>
+      <td>61</td>
+      <td>43665</td>
+      <td>4</td>
+      <td>0.988158</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>147.252513</td>
+      <td>76</td>
+      <td>51570</td>
+      <td>1</td>
+      <td>0.997573</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>146.337150</td>
+      <td>72</td>
+      <td>53420</td>
+      <td>1</td>
+      <td>0.995956</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">][</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;joined_program&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Treated&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">][</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;joined_program&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Control&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Propensity Scores&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Propensity Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/70ee292f4689c317c326387335cf89744dbab17339be49f7702fce6f013cdb4e.png" src="../_images/70ee292f4689c317c326387335cf89744dbab17339be49f7702fce6f013cdb4e.png" />
+</div>
+</div>
+<p>In this plot, the extent to which the treated and control <strong>propensity score distributions overlap</strong> is crucial:</p>
+<ul class="simple">
+<li><p>Significant overlap indicates that for many households, there are comparable counterparts in both groups, which is good for matching.</p></li>
+<li><p>Minimal overlap suggests that there are many treated households with no comparable controls (or vice versa), which can be problematic for matching.</p></li>
+</ul>
+<p>Before matching, it is common to see differences in the distributions, especially if certain covariates strongly influence whether households join the program. The initial (pre-matching) plot might show that the treated group has higher propensity scores on average, indicating that those who joined the program had characteristics that made them more likely to join. This bias is what matching aims to adjust for by finding control units with similar propensity scores.</p>
+</section>
+<section id="nearest-neighbor-matching">
+<h3><span class="section-number">15.1.3. </span>Nearest-neighbor matching<a class="headerlink" href="#nearest-neighbor-matching" title="Link to this heading">#</a></h3>
+<p>We separate the treated (joined the program) and control (did not join the program) groups. Using the nearest-neighbor matching technique, we match each treated unit with the control unit that has the closest propensity score. The goal here is to match each treated unit (household that joined the programme) with one or more control units (households that did not join the programme) that have similar propensity scores. Here’s a detailed explanation of how we can do it:</p>
+<ul class="simple">
+<li><p>We separate the treated and control groups based on whether they joined the program or not.</p></li>
+<li><p>We find the closest control units for each treated unit based on their propensity scores.</p></li>
+<li><p>We combine the treated units and their matched control units into a single dataset for further analysis.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3: Perform Matching</span>
+<span class="n">treated</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;joined_program&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">control</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;joined_program&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">nbrs</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;ball_tree&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">control</span><span class="p">[[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]])</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">nbrs</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">treated</span><span class="p">[[</span><span class="s1">&#39;propensity_score&#39;</span><span class="p">]])</span>
+
+<span class="c1"># Get the matched control units</span>
+<span class="n">matched_control_indices</span> <span class="o">=</span> <span class="n">indices</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">matched_control</span> <span class="o">=</span> <span class="n">control</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">matched_control_indices</span><span class="p">]</span>
+
+<span class="n">matched_pairs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">treated</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">matched_control</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">matched_pairs</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;t_&#39;</span> <span class="o">+</span> <span class="n">col</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">treated</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;c_&#39;</span> <span class="o">+</span> <span class="n">col</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">matched_pairs</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Distribution of propensity scores after matching</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">matched_pairs</span><span class="p">[</span><span class="s1">&#39;t_propensity_score&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Treated&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">matched_pairs</span><span class="p">[</span><span class="s1">&#39;c_propensity_score&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Control&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Propensity Scores After Matching&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Propensity Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7b74fc02afddd9fb548968c2b6099171c55d21c5f7c4013c7e8163d2b469dae5.png" src="../_images/7b74fc02afddd9fb548968c2b6099171c55d21c5f7c4013c7e8163d2b469dae5.png" />
+</div>
+</div>
+<p>As we see here, after matching, we ideally want the distributions to overlap substantially, indicating that the treated and control groups are similar with respect to the covariates used to estimate the propensity scores.</p>
+</section>
+<section id="treatment-effect-estimation">
+<h3><span class="section-number">15.1.4. </span>Treatment effect estimation<a class="headerlink" href="#treatment-effect-estimation" title="Link to this heading">#</a></h3>
+<p>We calculate the Average Treatment Effect on the Treated (ATT) by comparing the average electricity consumption of the treated group to that of the matched control group.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">treatment_effect</span> <span class="o">=</span> <span class="n">matched_pairs</span><span class="p">[</span><span class="s1">&#39;t_peak_consumption&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">matched_pairs</span><span class="p">[</span><span class="s1">&#39;c_peak_consumption&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Estimated Treatment Effect: </span><span class="si">{</span><span class="n">treatment_effect</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> KWh&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estimated Treatment Effect: -2.583 KWh
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualising-results">
+<h3><span class="section-number">15.1.5. </span>Visualising results<a class="headerlink" href="#visualising-results" title="Link to this heading">#</a></h3>
+<p>We can create some visualisations to compare the distributions of propensity scores and electricity consumption before and after matching.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Electricity consumption before and after matching</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;joined_program&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;peak_consumption&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Set3&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;joined_program&#39;</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Peak Consumption for Program vs Non-Program (Original Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Joined Program&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Consumption (kWh)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e299b57075027bf1f9f9912428307fe88f501f4a40cb2c0bf59f92fbea0d3eee.png" src="../_images/e299b57075027bf1f9f9912428307fe88f501f4a40cb2c0bf59f92fbea0d3eee.png" />
+</div>
+</div>
+<p>We can see how, looking at the original data, we would get the impression that people who joined the programme consume more lectricity during peak hours. The situation is much different when we look at the consumptions for the matched groups, where we see that joining the programme actually has a positive effect in reducing electricity consumption during peak hours.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Violin plot of consumption for matched data</span>
+<span class="c1"># Boxplot of consumption for matched data</span>
+<span class="n">matched_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;joined_program&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matched_pairs</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matched_pairs</span><span class="p">))]),</span>
+    <span class="s1">&#39;peak_consumption&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">matched_pairs</span><span class="p">[</span><span class="s1">&#39;t_peak_consumption&#39;</span><span class="p">],</span> <span class="n">matched_pairs</span><span class="p">[</span><span class="s1">&#39;c_peak_consumption&#39;</span><span class="p">]])</span>
+<span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;joined_program&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;peak_consumption&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">matched_data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Set3&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;joined_program&#39;</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Peak Consumption for Program vs Non-Program (Matched Data)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Non-Program&#39;</span><span class="p">,</span> <span class="s1">&#39;Program&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b7390f66687a907dc2562ca2700dea622431d21cb14e6a6c218a06990be1a56d.png" src="../_images/b7390f66687a907dc2562ca2700dea622431d21cb14e6a6c218a06990be1a56d.png" />
+</div>
+</div>
+<p>This example demonstrates the basic steps of performing propensity score matching and evaluating the treatment effect. By matching treated and control units with similar propensity scores, we reduce the bias due to confounding variables and can make a more accurate assessment of the treatment’s impact.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -479,7 +868,27 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">15.1. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">15.1.1. Data generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">15.1.2. Propensity scores estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">15.1.3. Nearest-neighbor matching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">15.1.4. Treatment effect estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">15.1.5. Visualising results</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
