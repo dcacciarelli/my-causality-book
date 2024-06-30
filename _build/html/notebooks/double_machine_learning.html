@@ -441,14 +441,14 @@ document.write(`
 <h1><span class="section-number">14. </span>Double Machine Learning (DML)<a class="headerlink" href="#double-machine-learning-dml" title="Link to this heading">#</a></h1>
 <p>Double Machine Learning (DML) is a framework, initially proposed by Chernozhukov et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id9" title="Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, and James Robins. Double/debiased machine learning for treatment and structural parameters. The Econometrics Journal, 21(1):C1–C68, 2018.">CCD+18</a>]</span>, for estimating causal effects when many confounding variables are present. It combines machine learning techniques with econometric methods to control for these confounders and obtain unbiased estimates of treatment effects. For example, let’s assume we are interested in unveiling the effect of wind power (WP) production or solar power (SP) production on electricity prices. In this case, WP and SP production would be our <strong>treatment variables</strong>, while the electricity price would be our <strong>response</strong>. We know that these factors have an effect in reducing prices due to their low marginal costs. However, we also know that there are many other factors affecting electricity prices (e.g., demand, gas prices, macroeconomic trends). These are the <strong>confounders</strong>. We can also assume that some these confounders have an effect both on our treatment and our response variable. For example, the season we are in or the specific hour of the day will certainly affect the generation of SP, but will also have an effect on the demand (hence, the prices) because of the well-known daily and season consumption profiles. Ignoring the effect of these confounders might lead to biased estimates.</p>
 <p>With DML, we are trying to isolate the effect of the treatment variables on the response. This framework assumes that the response <span class="math notranslate nohighlight">\(y\)</span> (e.g., the prices) is a function of the treatment <span class="math notranslate nohighlight">\(w\)</span> and other confounding variables <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa131327-f4f9-455b-b843-bee5926a9fba">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-aa131327-f4f9-455b-b843-bee5926a9fba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fba1498e-b67a-47ad-8366-ca9e6113d119">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-fba1498e-b67a-47ad-8366-ca9e6113d119" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>
 <p>Similarly, since we assumed that the treatment is also affected by other confounding variables, we have that <span class="math notranslate nohighlight">\(w\)</span> can be modeled as a function of <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-36d0effd-e3ae-40c4-8df6-87497414a7ec">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-36d0effd-e3ae-40c4-8df6-87497414a7ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2583eb20-9efe-428f-9a97-50162ddf0c0f">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-2583eb20-9efe-428f-9a97-50162ddf0c0f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\nu\)</span> is the error term.</p>
@@ -462,12 +462,12 @@ document.write(`
 <h2><span class="section-number">14.1. </span>The Partially Linear Case<a class="headerlink" href="#the-partially-linear-case" title="Link to this heading">#</a></h2>
 <p>For simplicity, we now consider a partially linear case where the relationship between the outcome <span class="math notranslate nohighlight">\(y\)</span> and the treatment <span class="math notranslate nohighlight">\(w\)</span> can be expressed linearly, while allowing for a potentially complex, nonlinear relationship between the confounders <span class="math notranslate nohighlight">\(x\)</span> and both the treatment and outcome.</p>
 <p>In this case, the model is specified as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-41c2bbe7-a226-4301-87f7-1a5876a20bee">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-41c2bbe7-a226-4301-87f7-1a5876a20bee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a7bd0cae-21c3-435d-aa79-08b3637b4c03">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-a7bd0cae-21c3-435d-aa79-08b3637b4c03" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta w + g(x) + \epsilon
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f7ae5a2c-ee3b-4588-947d-14a05b4fa3cf">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-f7ae5a2c-ee3b-4588-947d-14a05b4fa3cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-80b3f831-5efd-4da4-8c19-76d24b8b80b7">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-80b3f831-5efd-4da4-8c19-76d24b8b80b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>Here:</p>
@@ -489,8 +489,8 @@ document.write(`
 <ul>
 <li><p>Use the models trained on <span class="math notranslate nohighlight">\(K-1\)</span> folds to predict the held-out fold <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 <li><p>Compute the residuals for the treatment and outcome models:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db36723b-f619-4e85-aa1f-37663eeb76ac">
-<span class="eqno">(14.5)<a class="headerlink" href="#equation-db36723b-f619-4e85-aa1f-37663eeb76ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0e944131-2c40-4df7-a8ec-f4b4adde2d01">
+<span class="eqno">(14.5)<a class="headerlink" href="#equation-0e944131-2c40-4df7-a8ec-f4b4adde2d01" title="Permalink to this equation">#</a></span>\[\begin{equation}
             \hat{V}_W = W - \hat{W}, \quad \hat{V}_Y = Y - \hat{Y}
         \end{equation}\]</div>
 </li>
@@ -511,8 +511,8 @@ document.write(`
 <section id="electricity-example">
 <h2><span class="section-number">14.2. </span>Electricity example<a class="headerlink" href="#electricity-example" title="Link to this heading">#</a></h2>
 <p>Let’s now consider a practical case where we want to estimate the effect of day-ahead wind power and solar power forecasts on spot prices. We know that the forecasts available before gate closure <span id="id2">[<a class="reference internal" href="../bibliography.html#id11" title="Tryggvi Jónsson, Pierre Pinson, and Henrik Madsen. On the market impact of wind energy forecasts. Energy Economics, 32(2):313–320, 2010.">JonssonPM10</a>]</span> are crucial to determine the equilibrium price. Because of the merit-order effect, the low marginal costs of renewable energy sources acts like a shifter in reducing the equilibrium price. We now assume to be in a simplified setting where we want to quantify this effect. We consider a simple <strong>causal graph</strong> where the spot prices are linearly affected by the forecasted WP and SP production levels, and nonlinearly affected by other endogenous factors and market conditions. In particular, we assume to be in the following <strong>partially linear case</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5eb595bb-6845-46b1-a247-3b55f886d7c3">
-<span class="eqno">(14.6)<a class="headerlink" href="#equation-5eb595bb-6845-46b1-a247-3b55f886d7c3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9773101b-165f-4bf1-9f8c-5fe103b1c25a">
+<span class="eqno">(14.6)<a class="headerlink" href="#equation-9773101b-165f-4bf1-9f8c-5fe103b1c25a" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{spot price} = -0.3 * \text{WP} - 0,3 * \text{SP} + f_L(\text{load}) + f_G(\text{gas}) + f_C(\text{coal}) + f_{CO2} (\text{carbon pricing}) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_L, \ldots, f_{CO2}\)</span> are arbitrary nonlinear functions, and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>
@@ -649,7 +649,7 @@ document.write(`
 <p>Here is the code for implementing DML:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dml_algorithm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dml_algorithm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
 
@@ -714,7 +714,7 @@ document.write(`
 <p>Let’s now run replicate the data generation and parameter estimation experiment using the three approaches (DML and the two benchmarks):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_iterations</span> <span class="o">=</span> <span class="mi">30</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_iterations</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">coefficients</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;wp_sp&#39;</span><span class="p">:</span> <span class="p">[],</span>
     <span class="s1">&#39;all&#39;</span><span class="p">:</span> <span class="p">[],</span>
@@ -743,80 +743,6 @@ document.write(`
     <span class="s1">&#39;DML_wp&#39;</span><span class="p">:</span> <span class="n">coefficients_df</span><span class="p">[</span><span class="s1">&#39;DML&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span>
     <span class="s1">&#39;DML_sp&#39;</span><span class="p">:</span> <span class="n">coefficients_df</span><span class="p">[</span><span class="s1">&#39;DML&#39;</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">})</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">14</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">df_residualized</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">res1</span> <span class="o">=</span> <span class="n">fit_models</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">res2</span> <span class="o">=</span> <span class="n">dml_algorithm</span><span class="p">(</span><span class="n">df_residualized</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">res1</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">coefficients</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res1</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
-
-<span class="nn">Cell In[3], line 15,</span> in <span class="ni">dml_algorithm</span><span class="nt">(data, n_splits, n_repeats, seed)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">gam_wp</span> <span class="o">=</span> <span class="n">LinearGAM</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s1">&#39;daylight_hours&#39;</span><span class="p">]],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;wind_production&#39;</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">gam_sp</span> <span class="o">=</span> <span class="n">LinearGAM</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[[</span><span class="s1">&#39;daylight_hours&#39;</span><span class="p">]],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;solar_production&#39;</span><span class="p">])</span>
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">gam_spot_price</span> <span class="o">=</span> <span class="n">LinearGAM</span><span class="p">(</span><span class="n">s</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">confounders</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;spot_price&#39;</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">test_wp_residuals</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;wind_production&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">gam_wp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="s1">&#39;daylight_hours&#39;</span><span class="p">]])</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">test_sp_residuals</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;solar_production&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">gam_sp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">[[</span><span class="s1">&#39;daylight_hours&#39;</span><span class="p">]])</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pygam/pygam.py:913,</span> in <span class="ni">GAM.fit</span><span class="nt">(self, X, y, weights)</span>
-<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="bp">self</span><span class="o">.</span><span class="n">statistics_</span><span class="p">[</span><span class="s1">&#39;m_features&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">912</span> <span class="c1"># optimize</span>
-<span class="ne">--&gt; </span><span class="mi">913</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pirls</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">914</span> <span class="c1"># if self._opt == 0:</span>
-<span class="g g-Whitespace">    </span><span class="mi">915</span> <span class="c1">#     self._pirls(X, y, weights)</span>
-<span class="g g-Whitespace">    </span><span class="mi">916</span> <span class="c1"># if self._opt == 1:</span>
-<span class="g g-Whitespace">    </span><span class="mi">917</span> <span class="c1">#     self._pirls_naive(X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">918</span> <span class="k">return</span> <span class="bp">self</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pygam/pygam.py:751,</span> in <span class="ni">GAM._pirls</span><span class="nt">(self, X, Y, weights)</span>
-<span class="g g-Whitespace">    </span><span class="mi">747</span> <span class="c1"># S += self._H # add any user-chosen minumum penalty to the diagonal</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span> 
-<span class="g g-Whitespace">    </span><span class="mi">749</span> <span class="c1"># if we dont have any constraints, then do cholesky now</span>
-<span class="g g-Whitespace">    </span><span class="mi">750</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">terms</span><span class="o">.</span><span class="n">hasconstraint</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">751</span>     <span class="n">E</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cholesky</span><span class="p">(</span><span class="n">S</span> <span class="o">+</span> <span class="n">P</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span> <span class="n">min_n_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">754</span> <span class="n">Dinv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">min_n_m</span> <span class="o">+</span> <span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pygam/pygam.py:518,</span> in <span class="ni">GAM._cholesky</span><span class="nt">(self, A, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">516</span> <span class="k">while</span> <span class="n">constraint_l2</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constraint_l2_max</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">517</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">518</span>         <span class="n">L</span> <span class="o">=</span> <span class="n">cholesky</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_constraint_l2</span> <span class="o">=</span> <span class="n">constraint_l2</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>         <span class="k">return</span> <span class="n">L</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/pygam/utils.py:84,</span> in <span class="ni">cholesky</span><span class="nt">(A, sparse, verbose)</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span>     <span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">A</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">84</span>     <span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cholesky</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="k">except</span> <span class="n">LinAlgError</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span>     <span class="k">raise</span> <span class="n">NotPositiveDefiniteError</span><span class="p">(</span><span class="s1">&#39;Matrix is not positive definite&#39;</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/linalg/_decomp_cholesky.py:89,</span> in <span class="ni">cholesky</span><span class="nt">(a, lower, overwrite_a, check_finite)</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span> <span class="k">def</span> <span class="nf">cholesky</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span><span class="sd">     Compute the Cholesky decomposition of a matrix.</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">89</span>     <span class="n">c</span><span class="p">,</span> <span class="n">lower</span> <span class="o">=</span> <span class="n">_cholesky</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="n">lower</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="n">overwrite_a</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">90</span>                          <span class="n">check_finite</span><span class="o">=</span><span class="n">check_finite</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>     <span class="k">return</span> <span class="n">c</span>
-
-<span class="nn">File /opt/anaconda3/envs/causal-inference-book/lib/python3.11/site-packages/scipy/linalg/_decomp_cholesky.py:35,</span> in <span class="ni">_cholesky</span><span class="nt">(a, lower, overwrite_a, clean, check_finite)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="n">overwrite_a</span> <span class="o">=</span> <span class="n">overwrite_a</span> <span class="ow">or</span> <span class="n">_datacopied</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">potrf</span><span class="p">,</span> <span class="o">=</span> <span class="n">get_lapack_funcs</span><span class="p">((</span><span class="s1">&#39;potrf&#39;</span><span class="p">,),</span> <span class="p">(</span><span class="n">a1</span><span class="p">,))</span>
-<span class="ne">---&gt; </span><span class="mi">35</span> <span class="n">c</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">potrf</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="n">lower</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="n">overwrite_a</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="n">clean</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">if</span> <span class="n">info</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-th leading minor of the array is not positive &quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span>                       <span class="s2">&quot;definite&quot;</span> <span class="o">%</span> <span class="n">info</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -880,7 +806,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e19188172bb3748e67dee5a2bb2f55e73206fca2bf51a56b9839d3a4be486bca.png" src="../_images/e19188172bb3748e67dee5a2bb2f55e73206fca2bf51a56b9839d3a4be486bca.png" />
+<img alt="../_images/5e50a93d8ee4d536e87aa13cb6fdb23cfc63a09c7c630fc102e82b5a0eae4ae3.png" src="../_images/5e50a93d8ee4d536e87aa13cb6fdb23cfc63a09c7c630fc102e82b5a0eae4ae3.png" />
 </div>
 </div>
 <p>We can see how the DML framework proves very effective in reducing the effect of the confounders on the estimation process. We can also see how the two-feature approach performs poorly, suffering from the <strong>omitted variable bias</strong>. Also, the all-inclusive approach, widely used in econometrics, has a much higher estimation variance. This is also due to the fact the specified model is linear while some of the effects were actually nonlinear.</p>
