@@ -179,16 +179,16 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. How to navigate this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">3. Correlation vs. causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">4. What is a causal graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic causal structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Glossary: Key Definitions and Terminology</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Discovery</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear models (Direct LiNGAM)</a></li>
@@ -196,7 +196,7 @@
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time series models (VARLiNGAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Time series with structural breaks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Inference</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">13. Instrumental variables (IV)</a></li>
@@ -205,14 +205,14 @@
 <li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">16. Difference-in-differences (DiD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">17. Interrupted time series (ITS)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">18. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial dependence plots (PDP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects (ALE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions (IRF)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Collection</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">22. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">23. Design of experiments (DoE)</a></li>
@@ -422,6 +422,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="overview">
 <h1><span class="section-number">7. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
+<p>Causal discovery involves identifying causal relationships from data. This process uncovers the underlying causal structure without assuming prior knowledge of the direction or nature of causality. It typically employs statistical and computational methods to determine which variables influence others, providing a foundation for further causal analysis.</p>
 <p>In this chapter, we assume to already onow the causal graph describing the data-generating process. This can be available because of:</p>
 <ul class="simple">
 <li><p>Domain knowledge: in some cases, there are well-known principles and mechanisms governing the processes under investigation. In this case, we might be able to draw causal graphs relying on the expertise of practitioners or on the findings reported in previous studies.</p></li>
