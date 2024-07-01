@@ -46,6 +46,7 @@ parts:
   - file: notebooks/partial_dependency_plots
   - file: notebooks/accumulated_local_effects
   - file: notebooks/impulse_response_functions
+  - file: notebooks/shapley
 
 - caption: V. Data Collection
   numbered: true

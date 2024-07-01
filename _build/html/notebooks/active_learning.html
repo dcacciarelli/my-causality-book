@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>24. Active Learning &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>25. Active Learning &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/active_learning';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="25. A/B Testing" href="AB_testing.html" />
-    <link rel="prev" title="23. Design of Experiments" href="design_of_experiments.html" />
+    <link rel="next" title="26. A/B Testing" href="AB_testing.html" />
+    <link rel="prev" title="24. Design of Experiments" href="design_of_experiments.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -213,14 +213,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">22. Shapley Values</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">22. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">23. Design of Experiments</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">25. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">26. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">23. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">24. Design of Experiments</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">26. A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">27. Multi-Armed Bandits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -423,7 +424,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="active-learning">
-<h1><span class="section-number">24. </span>Active Learning<a class="headerlink" href="#active-learning" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">25. </span>Active Learning<a class="headerlink" href="#active-learning" title="Link to this heading">#</a></h1>
 <p>Active learning is a machine learning technique that aims to select the most informative data points for training a model. In the context of causal inference, active learning can be particularly useful for efficiently estimating parameters when data collection is limited or expensive. By selectively choosing the most informative samples, we can improve the estimation accuracy of causal effects with fewer data points.</p>
 <p>Active learning involves iteratively selecting the most informative data points to be labeled and added to the training set. The main scenarios of active learning include:</p>
 <ol class="arabic simple">
@@ -433,7 +434,7 @@ document.write(`
 </ol>
 <p>Consider the case where we want to estimate the effect of a variable using a linear model of the kind:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-9b313e85-65d6-4186-84a1-90458b9a15d0">
-<span class="eqno">(24.1)<a class="headerlink" href="#equation-9b313e85-65d6-4186-84a1-90458b9a15d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(25.1)<a class="headerlink" href="#equation-9b313e85-65d6-4186-84a1-90458b9a15d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = X \beta + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -445,7 +446,7 @@ document.write(`
 </ul>
 <p>The goal is to estimate the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> using the observed data. The variance of the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> can be computed as:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-fb607168-a1ab-44b1-af47-fe98c82aae36">
-<span class="eqno">(24.2)<a class="headerlink" href="#equation-fb607168-a1ab-44b1-af47-fe98c82aae36" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(25.2)<a class="headerlink" href="#equation-fb607168-a1ab-44b1-af47-fe98c82aae36" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance of the residuals, and <span class="math notranslate nohighlight">\((X^T X)^{-1}\)</span> is the inverse of the information matrix.</p>
@@ -653,7 +654,7 @@ In active learning, we can use the prediction variance to identify the most info
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">23. </span>Design of Experiments</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Design of Experiments</p>
       </div>
     </a>
     <a class="right-next"
@@ -661,7 +662,7 @@ In active learning, we can use the prediction variance to identify the most info
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">25. </span>A/B Testing</p>
+        <p class="prev-next-title"><span class="section-number">26. </span>A/B Testing</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

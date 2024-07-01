@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>23. Design of Experiments &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>24. Design of Experiments &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/design_of_experiments';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="24. Active Learning" href="active_learning.html" />
-    <link rel="prev" title="22. Overview" href="preface_designs.html" />
+    <link rel="next" title="25. Active Learning" href="active_learning.html" />
+    <link rel="prev" title="23. Overview" href="preface_designs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -213,14 +213,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">22. Shapley Values</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">22. Overview</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">24. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">25. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">26. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">23. Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">25. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">26. A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">27. Multi-Armed Bandits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -420,17 +421,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-designs">23.1. Some important designs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">23.1.1. Factorial Designs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-composite-designs">23.1.2. Central composite designs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#space-filling-designs">23.1.3. Space-filling designs</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sobol-sequences">23.1.3.1. Sobol sequences</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercubes">23.1.3.2. Latin hypercubes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-designs">24.1. Some important designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">24.1.1. Factorial Designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-composite-designs">24.1.2. Central composite designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#space-filling-designs">24.1.3. Space-filling designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sobol-sequences">24.1.3.1. Sobol sequences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercubes">24.1.3.2. Latin hypercubes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-optimality">23.2. Design optimality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-optimality">24.2. Design optimality</a></li>
 </ul>
             </nav>
         </div>
@@ -443,7 +444,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="design-of-experiments">
-<h1><span class="section-number">23. </span>Design of Experiments<a class="headerlink" href="#design-of-experiments" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">24. </span>Design of Experiments<a class="headerlink" href="#design-of-experiments" title="Link to this heading">#</a></h1>
 <p>Design of experiments (DoE) is a systematic approach to planning, conducting, analysing, and interpreting controlled experiments <span id="id1">[<a class="reference internal" href="../bibliography.html#id16" title="Douglas C Montgomery. Design and analysis of experiments. John wiley &amp; sons, 2017.">Mon17</a>]</span>. It aims to ensure that the results are valid, reliable, and can be used to draw causal conclusions. DoE is essential in various fields, including engineering, medicine, agriculture, and computer science.</p>
 <p>The <strong>key concepts</strong> of DoE include:</p>
 <ul class="simple">
@@ -457,10 +458,10 @@ document.write(`
 <li><p><strong>Randomise what you cannot</strong>: randomisation is used to control for unknown or uncontrollable sources of variability. By randomly assigning experimental units to different treatment groups, we ensure that these sources of variability are evenly distributed across all groups, reducing the risk of bias. For example, if we are conducting an experiment to test different charging rates and temperatures on battery efficiency, and we cannot control the environmental conditions precisely, we can randomly assign the charging rates and temperatures to different batteries. This way, any unknown or uncontrollable factors (like slight variations in ambient temperature) are equally likely to affect all treatment groups, minimising their impact on the results. Randomisation helps ensure that the treatment groups are comparable and that the observed effects are due to the treatments themselves rather than other extraneous factors.</p></li>
 </ol>
 <section id="some-important-designs">
-<h2><span class="section-number">23.1. </span>Some important designs<a class="headerlink" href="#some-important-designs" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.1. </span>Some important designs<a class="headerlink" href="#some-important-designs" title="Link to this heading">#</a></h2>
 <p>In most cases, DoE is used to analyse the relationship between the input and output factors of a process. Various tests are performed to see the effect of varying levels of input factors on the response. For example, in the context of electricity markets, we might be interested in designing an experiment to understand the effect of charge rate and temperature on the efficiency of a battery storage system. By systematically varying these factors, researchers can identify optimal operating conditions and interactions between variables. The critical aspect of DoE is the way the factor levels are varied throughout the experiment.</p>
 <section id="factorial-designs">
-<h3><span class="section-number">23.1.1. </span>Factorial Designs<a class="headerlink" href="#factorial-designs" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">24.1.1. </span>Factorial Designs<a class="headerlink" href="#factorial-designs" title="Link to this heading">#</a></h3>
 <p>One of the most common types of design is the factorial design, where in each complete trial or replicate of the experiment all possible combinations of the levels of the factors are investigated. A <strong><span class="math notranslate nohighlight">\(2^K\)</span> factorial design</strong> is a special case of factorial design where each of the <span class="math notranslate nohighlight">\(K\)</span> factors is studied at two levels, often referred to as low (-1) and high (1). This design is highly efficient for exploring the main effects and interactions among factors. In the context of a battery storage system, suppose we are interested in the effects of two factors: charge rate and temperature. Each factor can be set at two levels: low (-1) and high (1). This is the data that would be collected using a <span class="math notranslate nohighlight">\(2^2\)</span> factorial design, without replications:</p>
 <table class="table">
 <thead>
@@ -563,7 +564,7 @@ document.write(`
 <p>Overall, the interaction plot provides a clear and intuitive way to understand complex relationships between multiple factors, helping researchers and practitioners to make informed decisions about optimising the system’s performance.</p>
 </section>
 <section id="central-composite-designs">
-<h3><span class="section-number">23.1.2. </span>Central composite designs<a class="headerlink" href="#central-composite-designs" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">24.1.2. </span>Central composite designs<a class="headerlink" href="#central-composite-designs" title="Link to this heading">#</a></h3>
 <p>The central composite design (CCD) is an extension of factorial design used for building a second-order (quadratic) model without needing to perform a complete three-level factorial experiment. It includes:</p>
 <ul class="simple">
 <li><p><strong>Factorial points</strong>: these are points from a standard <span class="math notranslate nohighlight">\(2^k\)</span> factorial design, where <span class="math notranslate nohighlight">\(k\)</span> is the number of factors. The factorial points allow for the estimation of the main effects and interaction effects.</p></li>
@@ -728,10 +729,10 @@ document.write(`
 <p>This is a simple example of response surface methodology (RSM) <span id="id2">[<a class="reference internal" href="../bibliography.html#id17" title="Raymond H Myers, Douglas C Montgomery, and Christine M Anderson-Cook. Response surface methodology: process and product optimization using designed experiments. John Wiley &amp; Sons, 2016.">MMAC16</a>]</span>, which is a collection of statistical and mathematical techniques useful for developing, improving, and optimizing processes . It uses quantitative data from appropriate experiments to determine regression models and identify the optimal conditions. The goal is to optimize this response by finding the best settings of the input variables.</p>
 </section>
 <section id="space-filling-designs">
-<h3><span class="section-number">23.1.3. </span>Space-filling designs<a class="headerlink" href="#space-filling-designs" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">24.1.3. </span>Space-filling designs<a class="headerlink" href="#space-filling-designs" title="Link to this heading">#</a></h3>
 <p>Space-filling designs aim to cover the experimental space uniformly. This is particularly important for <strong>computer experiments</strong> <span id="id3">[<a class="reference internal" href="../bibliography.html#id18" title="Thomas J Santner, Brian J Williams, William I Notz, and Brain J Williams. The design and analysis of computer experiments. Volume 1. Springer, 2003.">SWNW03</a>]</span> where the objective is to explore the entire input space efficiently. Unlike physical experiments where replication helps estimate variability and improve reliability, computer experiments often use deterministic simulators, making replication less useful. Instead, the focus is on spreading out the points as much as possible to gain comprehensive insights across the entire input space.</p>
 <section id="sobol-sequences">
-<h4><span class="section-number">23.1.3.1. </span>Sobol sequences<a class="headerlink" href="#sobol-sequences" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">24.1.3.1. </span>Sobol sequences<a class="headerlink" href="#sobol-sequences" title="Link to this heading">#</a></h4>
 <p>One example of designs for computer experiments are Sobol sequences. Sobol sequences are a type of low-discrepancy sequence used to generate space-filling designs. They provide a quasi-random sequence that covers the input space uniformly. Sobol sequences are particularly useful in high-dimensional spaces and are known for their good uniformity properties, making them ideal for numerical integration and simulation tasks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,7 +766,7 @@ document.write(`
 </div>
 </section>
 <section id="latin-hypercubes">
-<h4><span class="section-number">23.1.3.2. </span>Latin hypercubes<a class="headerlink" href="#latin-hypercubes" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">24.1.3.2. </span>Latin hypercubes<a class="headerlink" href="#latin-hypercubes" title="Link to this heading">#</a></h4>
 <p>Latin Hypercube Sampling (LHS) is another method used to create space-filling designs. It divides the range of each input variable into equal intervals and ensures that each interval is sampled exactly once. This approach ensures a more uniform coverage of the input space compared to simple random sampling. LHS is particularly effective in reducing variance and ensuring that the sample points are well-distributed across the entire range of each input variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -802,7 +803,7 @@ document.write(`
 </section>
 </section>
 <section id="design-optimality">
-<h2><span class="section-number">23.2. </span>Design optimality<a class="headerlink" href="#design-optimality" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">24.2. </span>Design optimality<a class="headerlink" href="#design-optimality" title="Link to this heading">#</a></h2>
 <p>Design optimality involves selecting an experimental design that provides the most information about the parameters of interest with the least experimental effort. Optimal designs are tailored to achieve specific statistical goals, ensuring that experiments are both efficient and informative. Here are some common criteria used to achieve design optimality:</p>
 <ul class="simple">
 <li><p><strong>D-optimality</strong>: This criterion maximizes the determinant of the information matrix. A D-optimal design provides the most precise parameter estimates by ensuring that the volume of the confidence ellipsoid for the estimated parameters is minimized. In essence, it spreads the experimental points in such a way that they collectively capture as much information as possible about the parameters.</p></li>
@@ -848,7 +849,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Overview</p>
+        <p class="prev-next-title"><span class="section-number">23. </span>Overview</p>
       </div>
     </a>
     <a class="right-next"
@@ -856,7 +857,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">24. </span>Active Learning</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Active Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -876,17 +877,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-designs">23.1. Some important designs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">23.1.1. Factorial Designs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-composite-designs">23.1.2. Central composite designs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#space-filling-designs">23.1.3. Space-filling designs</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sobol-sequences">23.1.3.1. Sobol sequences</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercubes">23.1.3.2. Latin hypercubes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-designs">24.1. Some important designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">24.1.1. Factorial Designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-composite-designs">24.1.2. Central composite designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#space-filling-designs">24.1.3. Space-filling designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sobol-sequences">24.1.3.1. Sobol sequences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercubes">24.1.3.2. Latin hypercubes</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-optimality">23.2. Design optimality</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-optimality">24.2. Design optimality</a></li>
 </ul>
   </nav></div>
 
