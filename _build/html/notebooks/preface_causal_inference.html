@@ -395,7 +395,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -411,6 +413,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-of-causal-inference-chapters">12.1. Content of causal inference chapters</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -423,6 +433,39 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="overview">
 <h1><span class="section-number">12. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
 <p>Causal inference focuses on estimating the strength and nature of identified causal relationships. This part uses statistical techniques to quantify the effect of one variable on another, given that the causal structure is known or assumed. It aims to provide precise and reliable estimates of causal effects, essential for making informed decisions and predictions.</p>
+<section id="content-of-causal-inference-chapters">
+<h2><span class="section-number">12.1. </span>Content of causal inference chapters<a class="headerlink" href="#content-of-causal-inference-chapters" title="Link to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chapter</p></th>
+<th class="head"><p>Title</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Instrumental variables (IV)</p></td>
+<td><p>Explains the use of instrumental variables to estimate causal effects when controlled experiments are not feasible.</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>Propensity Score Matching (PSM)</p></td>
+<td><p>Discusses how to use propensity score matching to control for confounding variables in observational studies.</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Double Machine Learning (DML)</p></td>
+<td><p>Describes the application of machine learning methods to causal inference, allowing for flexible and robust estimation of treatment effects.</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>Difference-in-differences (DiD)</p></td>
+<td><p>Covers the difference-in-differences approach to estimate causal effects by comparing changes in outcomes over time between treated and control groups.</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>Interrupted time series (ITS)</p></td>
+<td><p>Examines the interrupted time series design, which uses time series data to evaluate the effect of interventions.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,7 +523,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-of-causal-inference-chapters">12.1. Content of causal inference chapters</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
