@@ -6,7 +6,11 @@ Welcome to "Applied Causal Inference for Electricity Markets", a work-in-progres
 ```{admonition} Note
 :class: note
 
-The examples are provided in **Python**. Each chapter can be downloaded as a **Jupyter Notebook**, allowing you to run the examples and reproduce the results.
+The examples are provided in **Python**:
+- Each chapter is designed to be as self-contained as possible, enabling you to focus on specific topics without needing prior chapters.
+- Chapters can be run independently, allowing you to generate data and apply statistical methods on their own.
+- Each chapter is available for download as a **Jupyter Notebook**, facilitating hands-on learning and enabling you to reproduce the results effortlessly.
+
 ```
 
 
