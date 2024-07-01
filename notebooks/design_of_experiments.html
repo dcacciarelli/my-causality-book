@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>23. Design of experiments &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>23. Design of Experiments &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/design_of_experiments';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -215,9 +217,9 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">22. Overview</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Design of experiments</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. Design of Experiments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="active_learning.html">24. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">25. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">25. A/B Testing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bandits.html">26. Multi-Armed Bandits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
@@ -395,7 +397,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -406,11 +410,29 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Design of experiments</h1>
+    <h1>Design of Experiments</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-designs">23.1. Some important designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">23.1.1. Factorial Designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-composite-designs">23.1.2. Central composite designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#space-filling-designs">23.1.3. Space-filling designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sobol-sequences">23.1.3.1. Sobol sequences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercubes">23.1.3.2. Latin hypercubes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-optimality">23.2. Design optimality</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -421,8 +443,373 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="design-of-experiments">
-<h1><span class="section-number">23. </span>Design of experiments<a class="headerlink" href="#design-of-experiments" title="Link to this heading">#</a></h1>
-<p>Block what you can, randomise what you cannot</p>
+<h1><span class="section-number">23. </span>Design of Experiments<a class="headerlink" href="#design-of-experiments" title="Link to this heading">#</a></h1>
+<p>Design of experiments (DoE) is a systematic approach to planning, conducting, analysing, and interpreting controlled experiments <span id="id1">[<a class="reference internal" href="../bibliography.html#id16" title="Douglas C Montgomery. Design and analysis of experiments. John wiley &amp; sons, 2017.">Mon17</a>]</span>. It aims to ensure that the results are valid, reliable, and can be used to draw causal conclusions. DoE is essential in various fields, including engineering, medicine, agriculture, and computer science.</p>
+<p>The <strong>key concepts</strong> of DoE include:</p>
+<ul class="simple">
+<li><p><strong>Randomisation</strong>: Randomly assigning subjects to different treatment groups to eliminate bias.</p></li>
+<li><p><strong>Replication</strong>: Repeating the experiment to estimate variability and ensure reliability.</p></li>
+<li><p><strong>Blocking</strong>: Grouping similar experimental units and randomising within these blocks to reduce variability.</p></li>
+</ul>
+<p>A good mantra for dealing with the presence of confounders is <strong>block what you can, randomise what you cannot</strong>. What do we mean by this? In experimental design, controlling for confounders is crucial to ensure that the results are valid and reliable. Confounders are variables that can affect both the independent variable and the dependent variable, potentially leading to biased or incorrect conclusions about the relationship between these variables. The mantra “block what you can, randomise what you cannot” provides a practical approach to managing confounding variables.</p>
+<ol class="arabic simple">
+<li><p><strong>Block what you can</strong>: blocking is a technique used to control for known sources of variability that are not of primary interest but could influence the outcome of the experiment. By grouping similar experimental units into blocks, we can account for these sources of variability and reduce their impact on the results. For example, in an experiment to test the efficiency of different battery storage systems, we might block by the type of battery used. Each block would contain all types of batteries, ensuring that the variation due to the battery type is controlled for and does not confound the results. Blocking helps isolate the effect of the primary factors being studied by accounting for the variability due to other known factors.</p></li>
+<li><p><strong>Randomise what you cannot</strong>: randomisation is used to control for unknown or uncontrollable sources of variability. By randomly assigning experimental units to different treatment groups, we ensure that these sources of variability are evenly distributed across all groups, reducing the risk of bias. For example, if we are conducting an experiment to test different charging rates and temperatures on battery efficiency, and we cannot control the environmental conditions precisely, we can randomly assign the charging rates and temperatures to different batteries. This way, any unknown or uncontrollable factors (like slight variations in ambient temperature) are equally likely to affect all treatment groups, minimising their impact on the results. Randomisation helps ensure that the treatment groups are comparable and that the observed effects are due to the treatments themselves rather than other extraneous factors.</p></li>
+</ol>
+<section id="some-important-designs">
+<h2><span class="section-number">23.1. </span>Some important designs<a class="headerlink" href="#some-important-designs" title="Link to this heading">#</a></h2>
+<p>In most cases, DoE is used to analyse the relationship between the input and output factors of a process. Various tests are performed to see the effect of varying levels of input factors on the response. For example, in the context of electricity markets, we might be interested in designing an experiment to understand the effect of charge rate and temperature on the efficiency of a battery storage system. By systematically varying these factors, researchers can identify optimal operating conditions and interactions between variables. The critical aspect of DoE is the way the factor levels are varied throughout the experiment.</p>
+<section id="factorial-designs">
+<h3><span class="section-number">23.1.1. </span>Factorial Designs<a class="headerlink" href="#factorial-designs" title="Link to this heading">#</a></h3>
+<p>One of the most common types of design is the factorial design, where in each complete trial or replicate of the experiment all possible combinations of the levels of the factors are investigated. A <strong><span class="math notranslate nohighlight">\(2^K\)</span> factorial design</strong> is a special case of factorial design where each of the <span class="math notranslate nohighlight">\(K\)</span> factors is studied at two levels, often referred to as low (-1) and high (1). This design is highly efficient for exploring the main effects and interactions among factors. In the context of a battery storage system, suppose we are interested in the effects of two factors: charge rate and temperature. Each factor can be set at two levels: low (-1) and high (1). This is the data that would be collected using a <span class="math notranslate nohighlight">\(2^2\)</span> factorial design, without replications:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Run</p></th>
+<th class="head"><p>Charge Rate (C)</p></th>
+<th class="head"><p>Temperature (°C)</p></th>
+<th class="head"><p>Efficiency (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>-1</p></td>
+<td><p>-1</p></td>
+<td><p>85</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>-1</p></td>
+<td><p>1</p></td>
+<td><p>80</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>-1</p></td>
+<td><p>90</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>75</p></td>
+</tr>
+</tbody>
+</table>
+<p>The figure below shows a factorial experiment where both charge rate and temperature can be set at two levels. The black dots represent the points where the tests are performed, namely where the response is measured.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Data for factorial design</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Charge_Rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;Efficiency&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">75</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Generate grid for plotting</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+
+<span class="c1"># Plotting the factorial design points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Charge_Rate&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Charge Rate (coded)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (coded)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Factorial Design Points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Annotating the points with their efficiency values</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Efficiency&#39;</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Charge_Rate&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1.1</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f7e784e52a2c904c1b464f513b32b207ffab397905596e6438b07eb112dca708.png" src="../_images/f7e784e52a2c904c1b464f513b32b207ffab397905596e6438b07eb112dca708.png" />
+</div>
+</div>
+<p>The effect of a factor is defined as the change in response produced by a change in the level of the factor. Assuming linearity in the factor effects within the design space, an ordinary least squares (OLS) regression model is usually fit on the experimental data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Fit the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s1">&#39;Efficiency ~ Charge_Rate * Temperature&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="c1"># print(model.summary())</span>
+
+<span class="c1"># Plotting the interaction</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Charge_Rate&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Efficiency&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">],</span> <span class="n">ci</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;muted&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Interaction Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/992a06447076d83762a3fc38fc13057d043b479a1aa37adba99b6afac0b5dba7.png" src="../_images/992a06447076d83762a3fc38fc13057d043b479a1aa37adba99b6afac0b5dba7.png" />
+</div>
+</div>
+<p>The interaction plot visualises the relationship between the charge rate and the efficiency of the battery storage system, with temperature as the moderating variable. Each line in the plot represents the effect of charge rate on efficiency at a specific temperature level, indicated by different colors and markers. The x-axis shows the coded values for charge rate (with -1 representing a low charge rate and 1 representing a high charge rate), while the y-axis displays the battery efficiency in percentage.</p>
+<p>From this plot, readers can observe how the efficiency changes with varying charge rates and how this relationship is influenced by temperature.</p>
+<ul class="simple">
+<li><p>If the lines for different temperatures are <strong>parallel</strong>, it indicates that there is no interaction between charge rate and temperature—each factor independently affects efficiency.</p></li>
+<li><p>If the lines are <strong>not parallel</strong>, this suggests an interaction effect, meaning the impact of charge rate on efficiency depends on the temperature level. For instance, one might notice that increasing the charge rate significantly boosts efficiency at a lower temperature but not at a higher temperature. This insight is crucial for optimising the battery storage system, as it highlights the importance of considering both factors together rather than in isolation.</p></li>
+</ul>
+<p>Overall, the interaction plot provides a clear and intuitive way to understand complex relationships between multiple factors, helping researchers and practitioners to make informed decisions about optimising the system’s performance.</p>
+</section>
+<section id="central-composite-designs">
+<h3><span class="section-number">23.1.2. </span>Central composite designs<a class="headerlink" href="#central-composite-designs" title="Link to this heading">#</a></h3>
+<p>The central composite design (CCD) is an extension of factorial design used for building a second-order (quadratic) model without needing to perform a complete three-level factorial experiment. It includes:</p>
+<ul class="simple">
+<li><p><strong>Factorial points</strong>: these are points from a standard <span class="math notranslate nohighlight">\(2^k\)</span> factorial design, where <span class="math notranslate nohighlight">\(k\)</span> is the number of factors. The factorial points allow for the estimation of the main effects and interaction effects.</p></li>
+<li><p><strong>Centre points</strong>: these are the midpoints of all factor levels and are replicated to provide an estimate of the experimental error. Centre points help detect curvature in the response surface.</p></li>
+<li><p><strong>Axial points</strong>: these points are added at a distance <span class="math notranslate nohighlight">\(\alpha\)</span> from the centre along each axis of the factor space. Axial points enable the estimation of the quadratic terms, providing the necessary information to fit a second-order model.</p></li>
+</ul>
+<p>The CCD is highly efficient for exploring the quadratic response surface and identifying the optimal settings of the input factors. By combining these points, CCDs provide a balanced and comprehensive design for understanding the effects of factors and their interactions. Here you can see an example of how to obtain a CCD by adding centre points and axial points to a regular <span class="math notranslate nohighlight">\(2^k\)</span> factorial design.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyDOE2</span> <span class="kn">import</span> <span class="n">ccdesign</span>
+
+<span class="c1"># Create a CCD design</span>
+<span class="n">ccd</span> <span class="o">=</span> <span class="n">ccdesign</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Plot the CCD design</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ccd</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">ccd</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Factor 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Factor 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Central Composite Design&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/28a0e41480029dcd8e94e35e276265aedb8392f162a39de168c3771df57e9e2b.png" src="../_images/28a0e41480029dcd8e94e35e276265aedb8392f162a39de168c3771df57e9e2b.png" />
+</div>
+</div>
+<p>Let’s now consider an example where we want to use a CCD to build a model for optimising the output of a solar power plant based on two controllable variables: cleaning frequency (<span class="math notranslate nohighlight">\(x_1\)</span>) and tilt angle (<span class="math notranslate nohighlight">\(x_2\)</span>). Using a CCD and measuring the value of the response (<span class="math notranslate nohighlight">\(y\)</span>) at the design locations, we would collect this dataset:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Run</p></th>
+<th class="head"><p>Cleaning Frequency (times/month)</p></th>
+<th class="head"><p>Tilt Angle (degrees)</p></th>
+<th class="head"><p>Output (kWh)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>-1</p></td>
+<td><p>-1</p></td>
+<td><p>500</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>-1</p></td>
+<td><p>1</p></td>
+<td><p>520</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>1</p></td>
+<td><p>-1</p></td>
+<td><p>540</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>560</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>550</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>570</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>-1.414</p></td>
+<td><p>0</p></td>
+<td><p>530</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>1.414</p></td>
+<td><p>0</p></td>
+<td><p>580</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>0</p></td>
+<td><p>-1.414</p></td>
+<td><p>540</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>0</p></td>
+<td><p>1.414</p></td>
+<td><p>580</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.tools</span> <span class="kn">import</span> <span class="n">add_constant</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+
+<span class="c1"># Data for CCD</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Cleaning_Frequency&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.414</span><span class="p">,</span> <span class="mf">1.414</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="s1">&#39;Tilt_Angle&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.414</span><span class="p">,</span> <span class="mf">1.414</span><span class="p">],</span>
+    <span class="s1">&#39;Output&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">520</span><span class="p">,</span> <span class="mi">540</span><span class="p">,</span> <span class="mi">560</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">570</span><span class="p">,</span> <span class="mi">530</span><span class="p">,</span> <span class="mi">580</span><span class="p">,</span> <span class="mi">540</span><span class="p">,</span> <span class="mi">580</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># Define the design matrix for the quadratic model</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cleaning_Frequency&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Tilt_Angle&#39;</span><span class="p">],</span>
+                     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cleaning_Frequency&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Tilt_Angle&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                     <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cleaning_Frequency&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Tilt_Angle&#39;</span><span class="p">]))</span>
+
+<span class="c1"># Add constant (intercept)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Fit the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Output&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># Prepare data for 3D surface plot</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">X1_flat</span> <span class="o">=</span> <span class="n">X1</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">X2_flat</span> <span class="o">=</span> <span class="n">X2</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Create design matrix for predictions</span>
+<span class="n">X_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">X1_flat</span><span class="p">),</span> <span class="n">X1_flat</span><span class="p">,</span> <span class="n">X2_flat</span><span class="p">,</span>
+                          <span class="n">X1_flat</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">X2_flat</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">X1_flat</span><span class="o">*</span><span class="n">X2_flat</span><span class="p">))</span>
+
+<span class="c1"># Predict the response</span>
+<span class="n">Y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_pred</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot the response surface</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Cleaning Frequency (times/month)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Tilt Angle (degrees)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Output (kWh)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response Surface using CCD&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">20</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">X</span> <span class="o">=</span> <span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># Fit the model</span>
+<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">model</span> <span class="o">=</span> <span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Output&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="c1"># Prepare data for 3D surface plot</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;OLS&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see:</p>
+<ul class="simple">
+<li><p><strong>Quadratic effects</strong>: the CCD allows for the estimation of both linear and quadratic effects, providing a more accurate representation of the response surface.</p></li>
+<li><p><strong>Optimisation</strong>: by examining the response surface plot, we can identify the optimal settings for cleaning frequency and tilt angle to maximise the solar power plant’s output.</p></li>
+<li><p><strong>Balanced design</strong>: the inclusion of centre and axial points ensures that the design is balanced and provides sufficient information to detect curvature in the response surface.</p></li>
+</ul>
+<p>This is a simple example of response surface methodology (RSM) <span id="id2">[<a class="reference internal" href="../bibliography.html#id17" title="Raymond H Myers, Douglas C Montgomery, and Christine M Anderson-Cook. Response surface methodology: process and product optimization using designed experiments. John Wiley &amp; Sons, 2016.">MMAC16</a>]</span>, which is a collection of statistical and mathematical techniques useful for developing, improving, and optimizing processes . It uses quantitative data from appropriate experiments to determine regression models and identify the optimal conditions. The goal is to optimize this response by finding the best settings of the input variables.</p>
+</section>
+<section id="space-filling-designs">
+<h3><span class="section-number">23.1.3. </span>Space-filling designs<a class="headerlink" href="#space-filling-designs" title="Link to this heading">#</a></h3>
+<p>Space-filling designs aim to cover the experimental space uniformly. This is particularly important for <strong>computer experiments</strong> <span id="id3">[<a class="reference internal" href="../bibliography.html#id18" title="Thomas J Santner, Brian J Williams, William I Notz, and Brain J Williams. The design and analysis of computer experiments. Volume 1. Springer, 2003.">SWNW03</a>]</span> where the objective is to explore the entire input space efficiently. Unlike physical experiments where replication helps estimate variability and improve reliability, computer experiments often use deterministic simulators, making replication less useful. Instead, the focus is on spreading out the points as much as possible to gain comprehensive insights across the entire input space.</p>
+<section id="sobol-sequences">
+<h4><span class="section-number">23.1.3.1. </span>Sobol sequences<a class="headerlink" href="#sobol-sequences" title="Link to this heading">#</a></h4>
+<p>One example of designs for computer experiments are Sobol sequences. Sobol sequences are a type of low-discrepancy sequence used to generate space-filling designs. They provide a quasi-random sequence that covers the input space uniformly. Sobol sequences are particularly useful in high-dimensional spaces and are known for their good uniformity properties, making them ideal for numerical integration and simulation tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">qmc</span>
+
+<span class="c1"># Define the number of points and dimensions (2 in this case: Cleaning Frequency and Tilt Angle)</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">dimensions</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Generate Sobol sequence</span>
+<span class="n">sobol</span> <span class="o">=</span> <span class="n">qmc</span><span class="o">.</span><span class="n">Sobol</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">scramble</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">sobol</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_points</span><span class="p">)</span>
+
+<span class="c1"># Scale points to the desired range (e.g., Cleaning Frequency: 0-4 times/month, Tilt Angle: 0-35 degrees)</span>
+<span class="n">cleaning_frequency</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>  <span class="c1"># Scale to 0-4</span>
+<span class="n">tilt_angle</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">35</span>         <span class="c1"># Scale to 0-35</span>
+
+<span class="c1"># Plot the space-filling design</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cleaning_frequency</span><span class="p">,</span> <span class="n">tilt_angle</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cleaning Frequency (times/month)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tilt Angle (degrees)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/74e6543d68671a54d679aeda8d9c29b1ae88ffd92b75ec010496eafff07d6fb4.png" src="../_images/74e6543d68671a54d679aeda8d9c29b1ae88ffd92b75ec010496eafff07d6fb4.png" />
+</div>
+</div>
+</section>
+<section id="latin-hypercubes">
+<h4><span class="section-number">23.1.3.2. </span>Latin hypercubes<a class="headerlink" href="#latin-hypercubes" title="Link to this heading">#</a></h4>
+<p>Latin Hypercube Sampling (LHS) is another method used to create space-filling designs. It divides the range of each input variable into equal intervals and ensures that each interval is sampled exactly once. This approach ensures a more uniform coverage of the input space compared to simple random sampling. LHS is particularly effective in reducing variance and ensuring that the sample points are well-distributed across the entire range of each input variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">qmc</span>
+
+<span class="c1"># Define the number of points and dimensions (2 in this case: Cleaning Frequency and Tilt Angle)</span>
+<span class="n">n_points</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">dimensions</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Generate Latin Hypercube Sampling points</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">qmc</span><span class="o">.</span><span class="n">LatinHypercube</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="n">dimensions</span><span class="p">)</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_points</span><span class="p">)</span>
+
+<span class="c1"># Scale points to the desired range (e.g., Cleaning Frequency: 0-4 times/month, Tilt Angle: 0-35 degrees)</span>
+<span class="n">cleaning_frequency</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>  <span class="c1"># Scale to 0-4</span>
+<span class="n">tilt_angle</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">35</span>         <span class="c1"># Scale to 0-35</span>
+
+<span class="c1"># Plot the space-filling design</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cleaning_frequency</span><span class="p">,</span> <span class="n">tilt_angle</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cleaning Frequency (times/month)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tilt Angle (degrees)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fa2688114cf4e2c6ab47018d6c713a17bf37d56422f0d1655a245cdb341450e8.png" src="../_images/fa2688114cf4e2c6ab47018d6c713a17bf37d56422f0d1655a245cdb341450e8.png" />
+</div>
+</div>
+<p>Space-filling designs are essential for computer experiments where the goal is to explore the entire input space efficiently. By ensuring uniform coverage, these designs provide comprehensive insights into the system’s behaviour, improving the accuracy and robustness of predictive models. Both Sobol sequences and Latin Hypercube Sampling are effective methods for generating space-filling designs, each with its unique advantages in providing uniform and well-distributed sample points across the input space.</p>
+</section>
+</section>
+</section>
+<section id="design-optimality">
+<h2><span class="section-number">23.2. </span>Design optimality<a class="headerlink" href="#design-optimality" title="Link to this heading">#</a></h2>
+<p>Design optimality involves selecting an experimental design that provides the most information about the parameters of interest with the least experimental effort. Optimal designs are tailored to achieve specific statistical goals, ensuring that experiments are both efficient and informative. Here are some common criteria used to achieve design optimality:</p>
+<ul class="simple">
+<li><p><strong>D-optimality</strong>: This criterion maximizes the determinant of the information matrix. A D-optimal design provides the most precise parameter estimates by ensuring that the volume of the confidence ellipsoid for the estimated parameters is minimized. In essence, it spreads the experimental points in such a way that they collectively capture as much information as possible about the parameters.</p></li>
+<li><p><strong>A-optimality</strong>: This criterion minimizes the trace of the inverse information matrix. By focusing on reducing the average variance of the parameter estimates, A-optimal designs aim to make the overall estimation process more efficient. This means that the parameters can be estimated with lower average uncertainty.</p></li>
+<li><p><strong>G-optimality</strong>: This criterion minimizes the maximum prediction variance within the design space. G-optimal designs are concerned with ensuring that the model’s predictions are as accurate as possible across the entire experimental region. This approach is particularly useful when the goal is to have a model that performs well uniformly across the design space.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,7 +867,30 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-important-designs">23.1. Some important designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorial-designs">23.1.1. Factorial Designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#central-composite-designs">23.1.2. Central composite designs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#space-filling-designs">23.1.3. Space-filling designs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sobol-sequences">23.1.3.1. Sobol sequences</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#latin-hypercubes">23.1.3.2. Latin hypercubes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-optimality">23.2. Design optimality</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
