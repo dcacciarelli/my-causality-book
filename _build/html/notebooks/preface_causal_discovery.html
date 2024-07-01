@@ -423,23 +423,23 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="overview">
 <h1><span class="section-number">7. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
 <p>Causal discovery involves identifying causal relationships from data. This process uncovers the underlying causal structure without assuming prior knowledge of the direction or nature of causality. It typically employs statistical and computational methods to determine which variables influence others, providing a foundation for further causal analysis.</p>
-<p>In this chapter, we assume to already onow the causal graph describing the data-generating process. This can be available because of:</p>
+<p>The key objective of causal discovery is often to retrieve and visualize a <strong>causal graph from observational data</strong>. In general, the causal graph for a specific problem can be retrieved relying on:</p>
 <ul class="simple">
-<li><p>Domain knowledge: in some cases, there are well-known principles and mechanisms governing the processes under investigation. In this case, we might be able to draw causal graphs relying on the expertise of practitioners or on the findings reported in previous studies.</p></li>
-<li><p>Data-driven methods: when we cannot assume prior knowledge about the process, we can obtain a causal graph using causal discovery algorithms such as the ones discussed in the first chapter.</p></li>
-<li><p>Hybrid approaches: in many cases, the two aforementioned approaches will be complementary. For example, we can consider two cases:</p>
+<li><p><strong>Domain knowledge</strong>: in some cases, there are well-known principles and mechanisms governing the processes under investigation. We might be able to draw causal graphs relying on the expertise of practitioners or on the findings reported in previous studies.</p></li>
+<li><p><strong>Data-driven methods</strong>: when we cannot assume prior knowledge about the process, we can obtain a causal graph using causal discovery algorithms such as the ones discussed in this chapter.</p></li>
+<li><p><strong>Hybrid approaches</strong>: in many cases, the two aforementioned approaches are complementary. For example, we could:</p>
 <ul>
-<li><p>Start with domain knowledge: if experts can only get to know an incomplete causal graph, we can try to include this knowledge into the causal discovery algorithm in order to try and discover only the missing relationships.</p></li>
-<li><p>Start with the data: we might get a tentative causal graph from a causal discovery algorithm such as LiNGAM and then validate it and refine it iteratively upon consultation of engineers or practitioners.</p></li>
+<li><p><strong>Start with domain knowledge</strong>: If experts can only outline an incomplete causal graph, we can include this knowledge in the causal discovery algorithm to discover the missing relationships.</p></li>
+<li><p><strong>Start with the data</strong>: we might derive a tentative causal graph from a causal discovery algorithm such as LiNGAM and then iteratively validate and refine it through consultation with engineers or practitioners.</p></li>
 </ul>
 </li>
 </ul>
-<p>Two main approaches:</p>
+<p>With regard to data-driven methods, there are two main approaches:</p>
 <ul class="simple">
-<li><p>Independence-based causal discovery</p></li>
-<li><p>Semi-parametric causal discovery</p></li>
+<li><p><strong>Independence-based causal discovery</strong>: this approach relies on statistical tests to identify conditional independencies among variables, which can then be used to infer the structure of the causal graph. Methods such as the PC algorithm <span id="id1">[<a class="reference internal" href="../bibliography.html#id13" title="Peter Spirtes, Clark Glymour, and Richard Scheines. Causation, prediction, and search. MIT press, 2001.">SGS01</a>]</span>, the Fast Causal Inference (FCI) algorithm <span id="id2">[<a class="reference internal" href="../bibliography.html#id14" title="Peter Spirtes. An anytime algorithm for causal inference. In International Workshop on Artificial Intelligence and Statistics, 278–285. PMLR, 2001.">Spi01</a>]</span>, or the PCMCI algorithm <span id="id3">[<a class="reference internal" href="../bibliography.html#id15" title="Jakob Runge, Peer Nowack, Marlene Kretschmer, Seth Flaxman, and Dino Sejdinovic. Detecting and quantifying causal associations in large nonlinear time series datasets. Science advances, 5(11):eaau4996, 2019.">RNK+19</a>]</span> fall into this category.</p></li>
+<li><p><strong>Semi-parametric causal discovery</strong>: this approach involves making some assumptions about the functional form of the relationships between variables but remains flexible by not fully specifying a parametric model. Methods like the Linear Non-Gaussian Acyclic Model (LiNGAM) <span id="id4">[<a class="reference internal" href="../bibliography.html#id4" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span> are examples of this approach.</p></li>
 </ul>
-<p>We currently focus primarily on semi-parametric approaches, inspired by the methodologies presented in <a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a>. Many examples are implemented using the LiNGAM Python package <span id="id1">[<a class="reference internal" href="../bibliography.html#id3" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
+<p>In the upcoming Chapters, we focus primarily on semi-parametric approaches, inspired by the methodologies presented in <a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a>. Most of the examples hereby presented have been implemented using the LiNGAM Python package <span id="id5">[<a class="reference internal" href="../bibliography.html#id3" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
 </section>
 
     <script type="text/x-thebe-config">

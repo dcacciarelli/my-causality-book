@@ -171,23 +171,23 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Applied Causal Inference with Examples from Electricity Markets
+                    Applied Causal Inference for Electricity Markets
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/motivation.html">1. Why do you want to study causality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/guide.html">2. How to navigate this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/motivation.html">1. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/guide.html">2. What to expect from each chapter</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic Concepts</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/correlation_vs_causation.html">3. Correlation vs. causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/DAG.html">4. What is a causal graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/basic_dag_structures.html">5. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/glossary.html">6. Glossary: basic definitions and terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/glossary.html">6. Glossary: Key Definitions and Terminology</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Discovery</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_discovery.html">7. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_direct_lingam.html">8. Linear models (Direct LiNGAM)</a></li>
@@ -195,23 +195,23 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_varlingam.html">10. Time series models (VARLiNGAM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/structural_breaks_example.html">11. Time series with structural breaks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal Inference</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_inference.html">12. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/instrumental_variables.html">13. Instrumental variables (IV)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/double_machine_learning.html">14. Double Machine Learning (DML)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/propensity_scores.html">15. Propensity Score Matching (PSM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/propensity_scores.html">14. Propensity Score Matching (PSM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/double_machine_learning.html">15. Double Machine Learning (DML)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/diff_in_diff.html">16. Difference-in-differences (DiD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/interrupted_time_series.html">17. Interrupted time series (ITS)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/preface_interpretability.html">18. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/partial_dependency_plots.html">19. Partial dependence plots (PDP)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/accumulated_local_effects.html">20. Accumulated Local Effects (ALE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/impulse_response_functions.html">21. Impulse Response Functions (IRF)</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Collection</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notebooks/preface_designs.html">22. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/design_of_experiments.html">23. Design of experiments (DoE)</a></li>
@@ -455,6 +455,10 @@ document.write(`
 <span class="label"><span class="fn-bracket">[</span>RR83<span class="fn-bracket">]</span></span>
 <p>Paul R Rosenbaum and Donald B Rubin. The central role of the propensity score in observational studies for causal effects. <em>Biometrika</em>, 70(1):41–55, 1983.</p>
 </div>
+<div class="citation" id="id15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>RNK+19<span class="fn-bracket">]</span></span>
+<p>Jakob Runge, Peer Nowack, Marlene Kretschmer, Seth Flaxman, and Dino Sejdinovic. Detecting and quantifying causal associations in large nonlinear time series datasets. <em>Science advances</em>, 5(11):eaau4996, 2019.</p>
+</div>
 <div class="citation" id="id4" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>SHHyvarinen+06<span class="fn-bracket">]</span></span>
 <p>Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. <em>Journal of Machine Learning Research</em>, 2006.</p>
@@ -462,6 +466,14 @@ document.write(`
 <div class="citation" id="id2" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>Shi22<span class="fn-bracket">]</span></span>
 <p>Shōhei Shimizu. <em>Statistical causal discovery: LiNGAM approach</em>. Springer, 2022.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Spi01<span class="fn-bracket">]</span></span>
+<p>Peter Spirtes. An anytime algorithm for causal inference. In <em>International Workshop on Artificial Intelligence and Statistics</em>, 278–285. PMLR, 2001.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>SGS01<span class="fn-bracket">]</span></span>
+<p>Peter Spirtes, Clark Glymour, and Richard Scheines. <em>Causation, prediction, and search</em>. MIT press, 2001.</p>
 </div>
 </div>
 </div>
