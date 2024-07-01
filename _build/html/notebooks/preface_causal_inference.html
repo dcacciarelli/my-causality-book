@@ -432,7 +432,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="overview">
 <h1><span class="section-number">12. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
-<p>Causal inference focuses on estimating the strength and nature of identified causal relationships. This part uses statistical techniques to quantify the effect of one variable on another, given that the causal structure is known or assumed. It aims to provide precise and reliable estimates of causal effects, essential for making informed decisions and predictions.</p>
+<p>Causal inference focuses on estimating the strength and nature of identified causal relationships. This part uses statistical techniques to quantify the effect of one variable on another, given that the causal structure is known or assumed. If you do not know the causal graph, you can take a look at Part II about Causal Discovery to see methods to unveil the causal graph from observational data.</p>
+<p>Knowing the causal graph is crucial because it helps identify the relationships and dependencies between variables. This knowledge allows for accurate estimation of causal effects, essential for making informed decisions and predictions. Here are some key reasons why understanding the causal graph is important:</p>
+<ul class="simple">
+<li><p><strong>Correct identification of relationships</strong>: the causal graph helps in correctly identifying which variables directly affect the outcome of interest. This is important for estimating the true causal effect of a treatment variable.</p></li>
+<li><p><strong>Avoiding Bias</strong>: without a proper causal graph, estimates of causal effects can be biased due to confounding variables. For instance, failing to account for confounders can lead to incorrect conclusions about the relationship between variables.</p></li>
+<li><p><strong>Understanding mediators and colliders</strong>: the causal graph helps in identifying mediators (variables that lie on the causal path between the treatment and outcome) and colliders (variables influenced by two or more other variables). Misunderstanding these roles can lead to incorrect model specifications and biased estimates.</p></li>
+</ul>
+<p>The following Chapters will try to present some key techniques to obtain precise and reliable estimates of causal effects by accounting for the presence of confounders and exogenous factors.</p>
 <section id="content-of-causal-inference-chapters">
 <h2><span class="section-number">12.1. </span>Content of causal inference chapters<a class="headerlink" href="#content-of-causal-inference-chapters" title="Link to this heading">#</a></h2>
 <table class="table">
@@ -445,23 +452,23 @@ document.write(`
 <tbody>
 <tr class="row-even"><td><p>13</p></td>
 <td><p>Instrumental variables (IV)</p></td>
-<td><p>Explains the use of instrumental variables to estimate causal effects when controlled experiments are not feasible.</p></td>
+<td><p>How to estimate causal effects when we might suffer from omitted variable bias, or when the explanatory variable and response variable influence each other.</p></td>
 </tr>
 <tr class="row-odd"><td><p>14</p></td>
 <td><p>Propensity Score Matching (PSM)</p></td>
-<td><p>Discusses how to use propensity score matching to control for confounding variables in observational studies.</p></td>
+<td><p>How to control for confounders and avoid the selection bias.</p></td>
 </tr>
 <tr class="row-even"><td><p>15</p></td>
 <td><p>Double Machine Learning (DML)</p></td>
-<td><p>Describes the application of machine learning methods to causal inference, allowing for flexible and robust estimation of treatment effects.</p></td>
+<td><p>How to estimate causal inference using machine learnign models and adjusting for the presence of a high-dimensional set of confounders.</p></td>
 </tr>
 <tr class="row-odd"><td><p>16</p></td>
 <td><p>Difference-in-differences (DiD)</p></td>
-<td><p>Covers the difference-in-differences approach to estimate causal effects by comparing changes in outcomes over time between treated and control groups.</p></td>
+<td><p>How to estimate the effect of a treatment on time series data by comparing changes in outcomes over time between treated and control groups.</p></td>
 </tr>
 <tr class="row-even"><td><p>17</p></td>
 <td><p>Interrupted time series (ITS)</p></td>
-<td><p>Examines the interrupted time series design, which uses time series data to evaluate the effect of interventions.</p></td>
+<td><p>How to estimate treatment effects in time series without the presence of a control group.</p></td>
 </tr>
 </tbody>
 </table>
