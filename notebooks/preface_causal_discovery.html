@@ -395,7 +395,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -411,6 +413,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-of-causal-discovery-chapters">7.1. Content of causal discovery chapters</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -429,8 +439,8 @@ document.write(`
 <li><p><strong>Data-driven methods</strong>: when we cannot assume prior knowledge about the process, we can obtain a causal graph using causal discovery algorithms such as the ones discussed in this chapter.</p></li>
 <li><p><strong>Hybrid approaches</strong>: in many cases, the two aforementioned approaches are complementary. For example, we could:</p>
 <ul>
-<li><p><strong>Start with domain knowledge</strong>: If experts can only outline an incomplete causal graph, we can include this knowledge in the causal discovery algorithm to discover the missing relationships.</p></li>
-<li><p><strong>Start with the data</strong>: we might derive a tentative causal graph from a causal discovery algorithm such as LiNGAM and then iteratively validate and refine it through consultation with engineers or practitioners.</p></li>
+<li><p><strong>Start with domain knowledge</strong>: if experts can only outline an incomplete causal graph, we can include this knowledge in the causal discovery algorithm to discover the missing relationships.</p></li>
+<li><p><strong>Start with the data</strong>: we might derive a tentative causal graph from a causal discovery algorithm and then iteratively validate and refine it through consultation with engineers or practitioners.</p></li>
 </ul>
 </li>
 </ul>
@@ -440,6 +450,35 @@ document.write(`
 <li><p><strong>Semi-parametric causal discovery</strong>: this approach involves making some assumptions about the functional form of the relationships between variables but remains flexible by not fully specifying a parametric model. Methods like the Linear Non-Gaussian Acyclic Model (LiNGAM) <span id="id4">[<a class="reference internal" href="../bibliography.html#id4" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span> are examples of this approach.</p></li>
 </ul>
 <p>In the upcoming Chapters, we focus primarily on semi-parametric approaches, inspired by the methodologies presented in <a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a>. Most of the examples hereby presented have been implemented using the LiNGAM Python package <span id="id5">[<a class="reference internal" href="../bibliography.html#id3" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
+<section id="content-of-causal-discovery-chapters">
+<h2><span class="section-number">7.1. </span>Content of causal discovery chapters<a class="headerlink" href="#content-of-causal-discovery-chapters" title="Link to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chapter</p></th>
+<th class="head"><p>Title</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Linear models (Direct LiNGAM)</p></td>
+<td><p>How to retrieve the causal graph from the data, if we can assume a linear model with non-Gaussian noise for the data-generating process.</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>Nonlinear models (additive noise models and RESIT)</p></td>
+<td><p>Extends the LiNGAM approach by considering nonlinear functional forms, and accomodating for Gaussian noise.</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Time series models (VARLiNGAM)</p></td>
+<td><p>Extends the LiNGAM approach by providing a method for detecting contemporaneous and lagged effects in time series data.</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Time series with structural breaks</p></td>
+<td><p>Highilight the challenges of trying to identifying causal graphs in dynamic and evolving environments.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -497,7 +536,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-of-causal-discovery-chapters">7.1. Content of causal discovery chapters</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
