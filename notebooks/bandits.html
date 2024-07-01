@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>26. Multi-Armed Bandits &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>27. Multi-Armed Bandits &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="References" href="../bibliography.html" />
-    <link rel="prev" title="25. A/B testing" href="AB_testing.html" />
+    <link rel="prev" title="26. A/B Testing" href="AB_testing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,14 +211,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">22. Shapley Values</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">22. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">23. Design of experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">24. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">25. A/B testing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">23. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">24. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">25. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">26. A/B Testing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">27. Multi-Armed Bandits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -421,7 +422,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multi-armed-bandits">
-<h1><span class="section-number">26. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">27. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -537,7 +538,7 @@ Priors (Beta): [148. 681.  32.]
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">25. </span>A/B testing</p>
+        <p class="prev-next-title"><span class="section-number">26. </span>A/B Testing</p>
       </div>
     </a>
     <a class="right-next"
