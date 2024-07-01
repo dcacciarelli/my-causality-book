@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>13. Instrumental variables (IV) &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>13. Instrumental Variables &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/instrumental_variables';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="14. Double Machine Learning (DML)" href="double_machine_learning.html" />
+    <link rel="next" title="14. Propensity Score Matching" href="propensity_scores.html" />
     <link rel="prev" title="12. Overview" href="preface_causal_inference.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,50 +172,53 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Applied Causal Inference with Examples from Electricity Markets
+                    Applied Causal Inference for Electricity Markets
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Why do you want to study causality?</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. How to navigate this book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">3. Correlation vs. causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">4. What is a causal graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic causal structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Glossary: basic definitions and terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">3. Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">4. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Glossary: Key Definitions and Terminology</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal discovery</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">7. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear models (Direct LiNGAM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">9. Nonlinear models (additive noise models and RESIT)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time series models (VARLiNGAM)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Time series with structural breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">9. Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Structural Breaks</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Causal inference</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Instrumental variables (IV)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">14. Double Machine Learning (DML)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">15. Difference-in-differences (DiD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">16. Interrupted time series (ITS)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">14. Propensity Score Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">15. Double Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">16. Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">17. Interrupted Time Series</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Interpretability</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">17. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">18. Partial dependence plots (PDP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">19. Accumulated Local Effects (ALE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">20. Impulse Response Functions (IRF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">18. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Designs</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">21. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">22. Design of experiments (DoE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">23. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">22. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">23. Design of experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">24. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">25. A/B testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">26. Multi-Armed Bandits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -405,7 +408,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Instrumental variables (IV)</h1>
+    <h1>Instrumental Variables</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -432,8 +435,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="instrumental-variables-iv">
-<h1><span class="section-number">13. </span>Instrumental variables (IV)<a class="headerlink" href="#instrumental-variables-iv" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="instrumental-variables">
+<h1><span class="section-number">13. </span>Instrumental Variables<a class="headerlink" href="#instrumental-variables" title="Link to this heading">#</a></h1>
 <p>Instrumental variables (IV) refer to a method used in econometrics to estimate causal relationships when controlled experiments are not feasible and an explanatory variable is correlated with the error term, leading to <strong>endogeneity issues</strong>. Saying that a variable is correlated with the error term means that the variable and the error term share some common influence or that the variable captures some part of the variability in the dependent variable that should be attributed to the error term. When we say a variable is correlated with the error term, it means that both the variable and the error term are influenced by some common external factors. In other words, the variable captures some variability in the outcome that should be attributed to these external influences, which introduces bias in our estimates. This happens because the variable not only shows its direct effect on the outcome but also the effect of those omitted external factors.</p>
 <section id="endogeneity">
 <h2><span class="section-number">13.1. </span>Endogeneity<a class="headerlink" href="#endogeneity" title="Link to this heading">#</a></h2>
@@ -621,8 +624,8 @@ document.write(`
 Dep. Variable:      ElectricityPrices   R-squared:                       0.925
 Model:                            OLS   Adj. R-squared:                  0.925
 Method:                 Least Squares   F-statistic:                 1.225e+04
-Date:                Fri, 24 May 2024   Prob (F-statistic):               0.00
-Time:                        18:44:32   Log-Likelihood:                -2886.7
+Date:                Mon, 01 Jul 2024   Prob (F-statistic):               0.00
+Time:                        15:20:12   Log-Likelihood:                -2886.7
 No. Observations:                1000   AIC:                             5777.
 Df Residuals:                     998   BIC:                             5787.
 Df Model:                           1                                         
@@ -671,8 +674,8 @@ Notes:
 Dep. Variable:      ElectricityPrices   R-squared:                       0.509
 Model:                            OLS   Adj. R-squared:                  0.508
 Method:                 Least Squares   F-statistic:                     1034.
-Date:                Fri, 24 May 2024   Prob (F-statistic):          3.21e-156
-Time:                        18:44:32   Log-Likelihood:                -3824.2
+Date:                Mon, 01 Jul 2024   Prob (F-statistic):          3.21e-156
+Time:                        15:20:12   Log-Likelihood:                -3824.2
 No. Observations:                1000   AIC:                             7652.
 Df Residuals:                     998   BIC:                             7662.
 Df Model:                           1                                         
@@ -768,11 +771,11 @@ Notes:
       </div>
     </a>
     <a class="right-next"
-       href="double_machine_learning.html"
+       href="propensity_scores.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Double Machine Learning (DML)</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Propensity Score Matching</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
