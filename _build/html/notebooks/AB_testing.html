@@ -422,8 +422,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">24.1. A simple example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">24.2. Statistical considerations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effect">24.3. Network effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">24.2. Statistical considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis">24.2.1. Power analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-testing">24.2.2. Multiple testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-treatment-effects">24.2.3. Heterogeneous treatment effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effects">24.2.4. Network effects</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -437,21 +442,21 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="a-b-testing">
 <h1><span class="section-number">24. </span>A/B Testing<a class="headerlink" href="#a-b-testing" title="Link to this heading">#</a></h1>
-<p>A/B testing, also known as split testing or bucket testing, is a powerful method for comparing two versions of a variable to determine which one performs better in terms of a given metric. This technique is widely used in various fields, including marketing, product development, and website optimization, to make data-driven decisions. In this tutorial, we’ll explore the basics of A/B testing, illustrate a simple example, and delve into more advanced topics, such as network effects and complex statistical considerations.</p>
+<p>A/B testing is one of the most commonly employed experimental framework. It is a powerful method for comparing two versions of a variable to determine which one performs better in terms of a given metric. This technique is widely used in various fields, including marketing, product development, and website optimization, to make data-driven decisions. In this tutorial, we’ll explore the basics of A/B testing, illustrate a simple example, and delve into more advanced topics, such as network effects and complex statistical considerations.</p>
 <section id="a-simple-example">
 <h2><span class="section-number">24.1. </span>A simple example<a class="headerlink" href="#a-simple-example" title="Link to this heading">#</a></h2>
-<p>Consider a scenario in the electricity market where we want to compare the effectiveness of two different marketing campaigns aimed at encouraging customers to use more renewable energy. We’ll define two groups:</p>
+<p>Consider a scenario where we want to compare the effectiveness of two different marketing campaigns aimed at encouraging customers to use more energy during off-peak hours. We’ll define two groups:</p>
 <ul class="simple">
-<li><p><strong>Group A (Control Group)</strong>: Receives the standard marketing message.</p></li>
-<li><p><strong>Group B (Treatment Group)</strong>: Receives a new, enhanced marketing message.</p></li>
+<li><p><strong>Group A (control group)</strong>: receives the standard marketing message.</p></li>
+<li><p><strong>Group B (treatment group)</strong>: receives a new, enhanced marketing message.</p></li>
 </ul>
-<p>The goal is to determine which marketing message results in higher usage of renewable energy.</p>
-<p><strong>Step-by-Step Procedure:</strong></p>
+<p>The goal is to determine which marketing message results in higher usage of energy during off-peak hours.</p>
+<p><strong>Step-by-step procedure:</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Random assignment</strong>: randomly assign customers to either Group A or Group B to ensure that each group is representative of the overall population.</p></li>
 <li><p><strong>Implementation</strong>: send the standard marketing message to Group A, and the enhanced marketing message to Group B.</p></li>
-<li><p><strong>Measurement</strong>: after a predetermined period, measure the amount of renewable energy used by customers in both groups.</p></li>
-<li><p><strong>Analysis</strong>: compare the average renewable energy usage between the two groups using statistical tests, such as a t-test, to determine if the difference is statistically significant.</p></li>
+<li><p><strong>Measurement</strong>: after a predetermined period, measure the amount of energy used by customers in both groups during off-peak hours.</p></li>
+<li><p><strong>Analysis</strong>: compare the average energy usage between the two groups using statistical tests, such as a <strong>t-test</strong>, to determine if the difference is statistically significant.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -467,21 +472,21 @@ document.write(`
 <span class="c1"># Perform t-test</span>
 <span class="n">t_stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span> <span class="n">group_a</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;T-statistic: </span><span class="si">{</span><span class="n">t_stat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;T-statistic: </span><span class="si">{</span><span class="n">t_stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Interpretation</span>
 <span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The enhanced marketing message significantly increases renewable energy usage.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The enhanced marketing message significantly increases energy usage during off-peak hours.&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no significant difference between the two marketing messages.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T-statistic: 4.7546959435052765
-P-value: 3.8191352626795345e-06
-The enhanced marketing message significantly increases renewable energy usage.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T-statistic: 4.755
+P-value: 0.000
+The enhanced marketing message significantly increases energy usage during off-peak hours.
 </pre></div>
 </div>
 </div>
@@ -489,13 +494,22 @@ The enhanced marketing message significantly increases renewable energy usage.
 </section>
 <section id="statistical-considerations">
 <h2><span class="section-number">24.2. </span>Statistical considerations<a class="headerlink" href="#statistical-considerations" title="Link to this heading">#</a></h2>
-<p>A/B testing involves several statistical concepts to ensure valid and reliable results:</p>
+<p>A/B testing involves several statistical concepts that needs to be taken into account to ensure valid and reliable results. These includes:</p>
 <ol class="arabic simple">
-<li><p><strong>Power analysis</strong>: determine the sample size needed to detect a significant effect.</p></li>
-<li><p><strong>Multiple testing</strong>: adjust for the increased likelihood of Type I errors when conducting multiple comparisons (e.g., using Bonferroni correction).</p></li>
-<li><p><strong>Heterogeneous treatment effects</strong>: explore how treatment effects vary across different subgroups.</p></li>
+<li><p><strong>Power analysis</strong>: to determine the sample size needed to detect a significant effect.</p></li>
+<li><p><strong>Multiple testing</strong>: to adjust for the increased likelihood of Type I errors when conducting multiple comparisons (e.g., using Bonferroni correction).</p></li>
+<li><p><strong>Heterogeneous treatment effects</strong>: to explore how treatment effects vary across different subgroups.</p></li>
+<li><p><strong>Network effects</strong>: to eestimate treatment effects in networks where there is interference between users or consumers.</p></li>
 </ol>
-<p>For example, power analysis helps in calculating the sample size required to achieve a desired power level, given an effect size and significance level (alpha).</p>
+<section id="power-analysis">
+<h3><span class="section-number">24.2.1. </span>Power analysis<a class="headerlink" href="#power-analysis" title="Link to this heading">#</a></h3>
+<p>Here we demonstrate how to determine the minimum number of participants needed in each group of an A/B test to ensure reliable results. This process, called power analysis, helps us calculate the sample size required to detect a meaningful difference between two groups with a high probability. Power analysis is a technique used to figure out the smallest sample size that can reliably detect an effect in an experiment. It balances the need to find real differences with the desire to avoid wasting resources on excessively large samples. Essentially, it helps ensure that our A/B test is both effective and efficient.</p>
+<p><strong>Key parameters:</strong></p>
+<ul class="simple">
+<li><p><strong>Effect size</strong>: this measures the expected difference between the groups. It is a standardized value that reflects how large an effect we expect the treatment to have. A common way to select the effect size is to use previous research or pilot studies to estimate the likely impact. In our example, we chose an effect size of 0.5, indicating a moderate difference that we want to detect. The effect size is a measure of the magnitude of the difference between two groups. It is not just the raw difference between the means of the two groups, but rather a standardised measure that accounts for the variability within the data. This allows for a more meaningful comparison across different contexts and studies.</p></li>
+<li><p><strong>Significance level (alpha)</strong>: this is the threshold for determining statistical significance, often set at 0.05. It represents the probability of rejecting the null hypothesis (concluding there is an effect) when it is actually true (a false positive). We selected an alpha of 0.05, which is standard in many fields, meaning we are willing to accept a 5% chance of a false positive.</p></li>
+<li><p><strong>Power</strong>: this represents the probability of correctly rejecting the null hypothesis when it is false, i.e., detecting a true effect. A common target for power is 0.8, or 80%, meaning we want an 80% chance of detecting the effect if it truly exists. This balance ensures that we have a high likelihood of finding true effects without requiring excessively large sample sizes.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.power</span> <span class="kn">import</span> <span class="n">TTestIndPower</span>
@@ -518,77 +532,287 @@ The enhanced marketing message significantly increases renewable energy usage.
 </div>
 </div>
 </div>
-<p>The code performs a power analysis to determine the minimum sample size required for each group in an A/B test, given an expected effect size, significance level, and desired power. This ensures that the test is adequately powered to detect a meaningful effect, reducing the risk of Type I and Type II errors.</p>
-<p>By conducting power analysis before running an experiment, researchers can ensure that they collect enough data to make reliable and valid conclusions, optimizing resource use and improving the quality of the results.</p>
+<p>After running the power analysis with these parameters, the output tells us the required sample size per group. For instance, if the result is 63, it means we need at least 63 participants in both the treatment and control groups. This ensures that our A/B test has enough power to detect a moderate effect with an 80% chance, while keeping the probability of a false positive at 5%. This helps in making sure our experiment is well-designed and our conclusions are reliable.</p>
 </section>
-<section id="network-effect">
-<h2><span class="section-number">24.3. </span>Network effect<a class="headerlink" href="#network-effect" title="Link to this heading">#</a></h2>
-<p>While the basic A/B testing framework is useful, it often needs to be adapted for more complex scenarios. One such scenario involves network effects, where the treatment effect on one individual may spill over to others through social connections. This is particularly relevant in social networks and interconnected systems. In traditional A/B testing, relying on the stable unit treatment value assumption (SUTVA), we assume that each individual’s response is independent of others. However, in many cases, this assumption does not hold due to network effects. For instance, in a social network, a user’s engagement with a new feature may influence their friends’ engagement, leading to biased estimates of the treatment effect. To address this, Gui et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id19" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span> proposed a method for network A/B testing, considering these spillover effects.</p>
-<p>The key aspects are:</p>
+<section id="multiple-testing">
+<h3><span class="section-number">24.2.2. </span>Multiple testing<a class="headerlink" href="#multiple-testing" title="Link to this heading">#</a></h3>
+<p>When conducting multiple tests, the probability of making at least one type I error (false positive) increases. To address this, we use the Bonferroni correction, which adjusts the significance level to control the family-wise error rate (FWER). The adjusted significance level is given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-80d5f506-9a76-4fd0-b22f-845d96042f1d">
+<span class="eqno">(24.1)<a class="headerlink" href="#equation-80d5f506-9a76-4fd0-b22f-845d96042f1d" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the original significance level, and <span class="math notranslate nohighlight">\(m\)</span> is the number of tests.</p>
+<p>Let’s consider an example where a utility company is testing five different marketing campaigns to see if they significantly increase the adoption of a new energy-saving device.</p>
+<p><strong>Scenario</strong>:</p>
+<ul class="simple">
+<li><p>The company runs five separate A/B tests, one for each marketing campaign.</p></li>
+<li><p>The null hypothesis for each test is that the campaign has no effect on adoption rates.</p></li>
+<li><p>The significance level for the tests is initially set at 0.05.</p></li>
+</ul>
+<p><strong>Step-by-step procedure:</strong></p>
 <ol class="arabic simple">
-<li><p><strong>Network effects</strong>: the influence of one user’s treatment on their neighbors.</p></li>
-<li><p><strong>Cluster randomized sampling</strong>: partition the network into clusters and randomize at the cluster level to minimize information flow between treatment and control groups.</p></li>
-</ol>
-<p>Mathematically, the average treatment effect (ATE) under network effects is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a844549a-9ac8-468e-b9eb-74cb0dba991c">
-<span class="eqno">(24.1)<a class="headerlink" href="#equation-a844549a-9ac8-468e-b9eb-74cb0dba991c" title="Permalink to this equation">#</a></span>\[\begin{equation}
-  \delta(1, 0) = \frac{1}{N} \sum_{i=1}^{N} E[Y_i(Z = 1) - Y_i(Z = 0)]
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(Y_i(Z = z)\)</span> is the response of user (i) given treatment assignment <span class="math notranslate nohighlight">\(Z = z\)</span>.</p>
-<p>In the following example, we explore how to conduct A/B testing in the presence of network effects. Network effects occur when the treatment assigned to one individual affects not only their own outcome but also the outcomes of others they are connected to. This violates the no interference assumption of SUTVA and requires special methods to account for these effects.</p>
-<p>We will use a random graph to simulate a social network, where each node represents an individual, and edges represent connections between individuals. We’ll randomly assign treatments and simulate outcomes based on these assignments and the network structure. Finally, we’ll fit a linear regression model to estimate the Average Treatment Effect (ATE), considering network effects.</p>
-<ol class="arabic simple">
-<li><p><strong>Generate a random graph</strong>: we use the Erdős-Rényi model to generate a random graph with 1000 nodes, where each edge is included with a probability of 0.05. The adjacency matrix <span class="math notranslate nohighlight">\(A\)</span> represents the connections between individuals.</p></li>
-<li><p><strong>Simulate data</strong>: randomly assign each individual to the treatment (1) or control (0) group. Simulate the outcome <span class="math notranslate nohighlight">\(Y\)</span> for each individual based on their own treatment and the treatments of their neighbors. The outcome also includes some random noise.</p></li>
-<li><p><strong>Fit a linear regression model</strong>: use a linear regression model to account for the network effects. The model includes both the individual’s treatment and the sum of their neighbors’ treatments as predictors. Estimate the coefficients, which include the ATE considering network effects.</p></li>
-<li><p><strong>Visualize the Network</strong>: plot the network to visualize the structure and treatment assignments.</p></li>
+<li><p><strong>Set parameters</strong>: original significance level ((\alpha)) and number of tests.</p></li>
+<li><p><strong>Simulate p-values</strong>: generate p-values from the five tests. In a realistic scenario, these p-values would come from actual data analysis.</p></li>
+<li><p><strong>Apply Bonferroni correction</strong>: adjust the significance level using the Bonferroni method, and determine which hypotheses to reject based on the corrected p-values.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statsmodels.stats.multitest</span> <span class="kn">import</span> <span class="n">multipletests</span>
 
-<span class="c1"># Generate a random graph</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="c1"># Parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Original significance level</span>
+<span class="n">num_tests</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Number of tests</span>
+
+<span class="c1"># Adjusted significance level using Bonferroni correction</span>
+<span class="n">alpha_adj</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">num_tests</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Adjusted significance level: </span><span class="si">{</span><span class="n">alpha_adj</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simulate p-values from 5 tests</span>
+<span class="c1"># Realistically, these p-values would be the result of statistical tests on actual data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">p_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>  <span class="c1"># Simulated p-values for illustration</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original p-values: </span><span class="si">{</span><span class="n">p_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Apply Bonferroni correction</span>
+<span class="n">reject</span><span class="p">,</span> <span class="n">pvals_corrected</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">multipletests</span><span class="p">(</span><span class="n">p_values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bonferroni&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Corrected p-values: </span><span class="si">{</span><span class="n">pvals_corrected</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reject null hypothesis: </span><span class="si">{</span><span class="n">reject</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Interpretation of results</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">pval</span><span class="p">,</span> <span class="n">corr_pval</span><span class="p">,</span> <span class="n">rej</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">p_values</span><span class="p">,</span> <span class="n">pvals_corrected</span><span class="p">,</span> <span class="n">reject</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: Original p-value = </span><span class="si">{</span><span class="n">pval</span><span class="si">}</span><span class="s2">, Corrected p-value = </span><span class="si">{</span><span class="n">corr_pval</span><span class="si">}</span><span class="s2">, Reject null hypothesis = </span><span class="si">{</span><span class="n">rej</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adjusted significance level: 0.01
+Original p-values: [0.02 0.04 0.2  0.01 0.03]
+Corrected p-values: [0.1  0.2  1.   0.05 0.15]
+Reject null hypothesis: [False False False  True False]
+Test 1: Original p-value = 0.02, Corrected p-value = 0.1, Reject null hypothesis = False
+Test 2: Original p-value = 0.04, Corrected p-value = 0.2, Reject null hypothesis = False
+Test 3: Original p-value = 0.2, Corrected p-value = 1.0, Reject null hypothesis = False
+Test 4: Original p-value = 0.01, Corrected p-value = 0.05, Reject null hypothesis = True
+Test 5: Original p-value = 0.03, Corrected p-value = 0.15, Reject null hypothesis = False
+</pre></div>
+</div>
+</div>
+</div>
+<p>This correction ensures that we control the family-wise error rate, reducing the risk of false positives when conducting multiple tests. Here we used fictional p-values: <code class="docutils literal notranslate"><span class="pre">[0.02,</span> <span class="pre">0.04,</span> <span class="pre">0.20,</span> <span class="pre">0.01,</span> <span class="pre">0.03]</span></code>. In practice, these would be obtained from statistical tests on actual experimental data.</p>
+</section>
+<section id="heterogeneous-treatment-effects">
+<h3><span class="section-number">24.2.3. </span>Heterogeneous treatment effects<a class="headerlink" href="#heterogeneous-treatment-effects" title="Link to this heading">#</a></h3>
+<p>Heterogeneous treatment effects occur when the effect of a treatment varies across different subgroups of the population. Identifying these differences is crucial for understanding how different groups respond to the treatment and for making targeted decisions.</p>
+<p>Suppose an electricity company is testing a new marketing campaign to encourage customers to switch to a green energy plan. The company wants to understand if the campaign’s effectiveness varies by customer age. Let’s simulate this case with a simple example, where:</p>
+<ul class="simple">
+<li><p>We generate data for 1000 customers with ages between 18 and 70.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">treatment</span></code> variable indicates whether the customer received the marketing campaign (1) or not (0).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">response</span></code> variable represents whether the customer switched to the green energy plan, influenced by their age, the treatment, and the interaction between age and treatment.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Simulate data</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>  <span class="c1"># Random assignment</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Network effects</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">treatment</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">age_treatment</span> <span class="o">=</span> <span class="n">age</span> <span class="o">*</span> <span class="n">treatment</span>
+<span class="n">response</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">treatment</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">age</span> <span class="o">+</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">age_treatment</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 
-<span class="c1"># Fit a linear regression model to account for network effects</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">Z</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Z</span><span class="p">)])</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficients:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="c1"># Create DataFrame</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">age</span><span class="p">,</span> <span class="s1">&#39;treatment&#39;</span><span class="p">:</span> <span class="n">treatment</span><span class="p">,</span> <span class="s1">&#39;response&#39;</span><span class="p">:</span> <span class="n">response</span><span class="p">,</span> <span class="s1">&#39;age_treatment&#39;</span><span class="p">:</span> <span class="n">age_treatment</span><span class="p">})</span>
 
-<span class="c1"># Calculate ATE considering network effects</span>
-<span class="n">ATE</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ATE considering network effects:&quot;</span><span class="p">,</span> <span class="n">ATE</span><span class="p">)</span>
+<span class="c1"># Fit the model</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;treatment&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;age_treatment&#39;</span><span class="p">]])</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 
-<span class="c1"># Visualize the network with treatment assignments</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
-<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">node_color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span> <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;blue&#39;</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Z</span><span class="p">]</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_color</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Network Visualization with Treatment Assignments (Red: Treatment, Blue: Control)&quot;</span><span class="p">)</span>
+<span class="c1"># Plot interaction</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;treatment&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Response&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Response by Age and Treatment&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Treatment&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficients: [-0.03368653  0.99760116]
-ATE considering network effects: -0.033686529505670026
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               response   R-squared:                       0.912
+Model:                            OLS   Adj. R-squared:                  0.912
+Method:                 Least Squares   F-statistic:                     3446.
+Date:                Tue, 02 Jul 2024   Prob (F-statistic):               0.00
+Time:                        14:31:48   Log-Likelihood:                -1409.1
+No. Observations:                1000   AIC:                             2826.
+Df Residuals:                     996   BIC:                             2846.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------
+const             5.2533      0.135     38.770      0.000       4.987       5.519
+treatment         2.5726      0.194     13.260      0.000       2.192       2.953
+age               0.0967      0.003     33.110      0.000       0.091       0.102
+age_treatment     0.0584      0.004     13.948      0.000       0.050       0.067
+==============================================================================
+Omnibus:                        1.105   Durbin-Watson:                   2.009
+Prob(Omnibus):                  0.576   Jarque-Bera (JB):                1.138
+Skew:                          -0.080   Prob(JB):                        0.566
+Kurtosis:                       2.959   Cond. No.                         369.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div>
 </div>
-<img alt="../_images/79ab5c2c4ad9bf06e2f459d9b95afabc00c9922515ba2584e2aa34a77e0ef3d8.png" src="../_images/79ab5c2c4ad9bf06e2f459d9b95afabc00c9922515ba2584e2aa34a77e0ef3d8.png" />
+<img alt="../_images/4dff86fe7059baa7563ae0a1a8f5f6d231185499cebc00b757b307dea6337937.png" src="../_images/4dff86fe7059baa7563ae0a1a8f5f6d231185499cebc00b757b307dea6337937.png" />
 </div>
 </div>
-<p>This example demonstrates how to account for network effects in A/B testing. By including the treatment status of an individual’s neighbors as a predictor in the regression model, we can obtain a more accurate estimate of the treatment effect. This approach is particularly useful in settings where interactions between individuals play a significant role, such as social networks, epidemiology, and interconnected markets.</p>
+<p>In the results:</p>
+<ul class="simple">
+<li><p>The coefficient for <code class="docutils literal notranslate"><span class="pre">treatment</span></code> indicates the average effect of the marketing campaign.</p></li>
+<li><p>The coefficient for <code class="docutils literal notranslate"><span class="pre">age</span></code> shows the effect of age on the response.</p></li>
+<li><p>The coefficient for <code class="docutils literal notranslate"><span class="pre">age_treatment</span></code> reveals how the treatment effect changes with age. A significant coefficient suggests that the treatment effect varies across different age groups.</p></li>
+</ul>
+<p>This example demonstrates how to estimate heterogeneous treatment effects in an A/B testing context. By including interaction terms in the regression model, we can identify how the treatment effect varies across different subgroups, providing valuable insights for tailoring strategies to specific segments. This approach helps maximize the effectiveness of interventions by understanding and leveraging the heterogeneity in treatment effects.</p>
+</section>
+<section id="network-effects">
+<h3><span class="section-number">24.2.4. </span>Network effects<a class="headerlink" href="#network-effects" title="Link to this heading">#</a></h3>
+<p>Traditional A/B testing methods, relying on the stable unit treatment value assumption (SUTVA), assume that each individual’s response to a treatment is independent of others. However, in many real-world scenarios, especially in social networks and interconnected systems, this assumption does not hold. Users’ behaviors and outcomes can be influenced by their peers, leading to network effects. Network A/B testing is an advanced technique that takes into account the influence of social connections and interactions when evaluating the effectiveness of treatments or interventions <span id="id1">[<a class="reference internal" href="../bibliography.html#id19" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span>.</p>
+<p><strong>Relevance of network A/B testing:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Capturing spillover effects</strong>: in social networks, the effect of a treatment on one individual can spill over to their connected peers. For instance, in marketing campaigns, a customer’s decision to adopt a new product might influence their friends to do the same.</p></li>
+<li><p><strong>Accurate estimation of treatment effects</strong>: by considering network effects, we can obtain more accurate estimates of the Average Treatment Effect (ATE). Ignoring these effects can lead to biased results and incorrect conclusions.</p></li>
+<li><p><strong>Optimizing interventions</strong>: understanding how treatments propagate through networks can help in designing more effective interventions. For example, targeting influential nodes in a network can amplify the overall impact of a campaign.</p></li>
+</ol>
+<p>In network A/B testing, we need to account for two main factors:</p>
+<ul class="simple">
+<li><p><strong>Direct treatment effect</strong>: The impact of the treatment on the individual who receives it.</p></li>
+<li><p><strong>Indirect treatment effect</strong>: The impact of the treatment on individuals connected to those who receive it.</p></li>
+</ul>
+<p>To estimate these effects, we use a model that includes both the treatment status of the individual and the treatment status of their neighbors.</p>
+<p>Consider a scenario where an electricity company wants to test a new marketing campaign to encourage customers to switch to a green energy plan. The company knows that customers are likely to influence each other’s decisions through social interactions. Therefore, they want to account for these network effects in their A/B testing. We will simulate a network of customers, randomly assign them to treatment or control groups, and then estimate the treatment effects considering the influence of their connected peers.</p>
+<p><strong>Step-by-step procedure:</strong></p>
+<p><strong>Generating the network:</strong> we use an Erdős-Rényi model to create a random network. In this model, each pair of nodes (customers) has a fixed probability of being connected.</p>
+<p><strong>Simulating treatment assignment:</strong> we randomly assign each node (customer) to either the treatment group (Z=1) or the control group (Z=0) with equal probability. This represents whether a customer receives the new marketing campaign or not.</p>
+<p><strong>Simulating the response variable:</strong> The response variable <span class="math notranslate nohighlight">\(Y\)</span> represents the outcome we are interested in measuring, such as whether a customer switched to the green energy plan. The outcome for each customer is influenced by their own treatment status <span class="math notranslate nohighlight">\(Z\)</span> and the treatment statuses of their connected neighbors, which we account for using the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>The formula used for simulating the response is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8094365b-2ff5-4ae5-af3e-5278a212a4d9">
+<span class="eqno">(24.2)<a class="headerlink" href="#equation-8094365b-2ff5-4ae5-af3e-5278a212a4d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    Y = \beta_0 + \beta_1 Z + \beta_2 (A \cdot Z) + \epsilon
+\end{equation}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_1\)</span> is the direct effect of the treatment.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta_2\)</span> captures the network effects (i.e., how the treatment status of neighbors influences the outcome).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is random noise.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="c1"># Generate a random graph</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Simulate data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>  <span class="c1"># Random assignment to treatment or control</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">Z</span> <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>  <span class="c1"># Network effects</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The response <span class="math notranslate nohighlight">\(Y\)</span> is simulated by combining the direct effect of the treatment (<span class="math notranslate nohighlight">\(Z\)</span>) and the indirect network effect (<span class="math notranslate nohighlight">\(A \cdot Z\)</span>). The term <span class="math notranslate nohighlight">\(\beta_2 (A \cdot Z)\)</span> captures the influence of the treatment status of neighboring nodes on the outcome.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the network</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">node_color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">z</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s1">&#39;b&#39;</span> <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">Z</span><span class="p">]</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_color</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Network Visualization with Treatment Assignments (Red: Treatment, Blue: Control)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02afdca8b6093be64e40425e9d571b4ff0a65ff7455d51fa3c1998315a3f029d.png" src="../_images/02afdca8b6093be64e40425e9d571b4ff0a65ff7455d51fa3c1998315a3f029d.png" />
+</div>
+</div>
+<p>We now prepare the aata for fitting a linear regression model. In particular, we create the feature matrix <span class="math notranslate nohighlight">\(X\)</span>, which includes:</p>
+<ul class="simple">
+<li><p>The treatment status <span class="math notranslate nohighlight">\(Z\)</span> of each customer.</p></li>
+<li><p>The sum of the treatment statuses of their neighbors, calculated as <span class="math notranslate nohighlight">\(A \cdot Z\)</span>.</p></li>
+</ul>
+<p>Then, we can fit a linear regression model to estimate the coefficients <span class="math notranslate nohighlight">\(\beta_1\)</span> and <span class="math notranslate nohighlight">\(\beta_2\)</span>, which correspond to the direct treatment effect and the network effect, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the data for regression</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">Z</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Z</span><span class="p">)])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Add intercept</span>
+
+<span class="c1"># Fit the model using statsmodels</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.746
+Model:                            OLS   Adj. R-squared:                  0.744
+Method:                 Least Squares   F-statistic:                     290.0
+Date:                Tue, 02 Jul 2024   Prob (F-statistic):           1.98e-59
+Time:                        14:31:49   Log-Likelihood:                -276.44
+No. Observations:                 200   AIC:                             558.9
+Df Residuals:                     197   BIC:                             568.8
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          2.1994      0.191     11.502      0.000       1.822       2.577
+x1             1.5484      0.138     11.249      0.000       1.277       1.820
+x2             0.7663      0.035     21.954      0.000       0.697       0.835
+==============================================================================
+Omnibus:                        9.767   Durbin-Watson:                   2.140
+Prob(Omnibus):                  0.008   Jarque-Bera (JB):               13.614
+Skew:                           0.315   Prob(JB):                      0.00111
+Kurtosis:                       4.112   Cond. No.                         15.3
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The model summary provides the estimates for <span class="math notranslate nohighlight">\(\beta_1\)</span> (direct treatment effect) and <span class="math notranslate nohighlight">\(\beta_2\)</span> (network effect).
+The estimated Average Treatment Effect (ATE) considering network effects is extracted from the coefficient <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate ATE considering network effects</span>
+<span class="n">ATE</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Coefficient for treatment</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ATE considering network effects: </span><span class="si">{</span><span class="n">ATE</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ATE considering network effects: 1.548
+</pre></div>
+</div>
+</div>
+</div>
+<p>By simulating the response variable to include both direct and network effects, and then using regression analysis to estimate these effects, we can accurately measure the influence of treatments in interconnected systems. This approach helps account for the spillover effects that are common in social networks and other interconnected environments.</p>
+</section>
 </section>
 </section>
 
@@ -657,8 +881,13 @@ ATE considering network effects: -0.033686529505670026
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">24.1. A simple example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">24.2. Statistical considerations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effect">24.3. Network effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">24.2. Statistical considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis">24.2.1. Power analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-testing">24.2.2. Multiple testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-treatment-effects">24.2.3. Heterogeneous treatment effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effects">24.2.4. Network effects</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
