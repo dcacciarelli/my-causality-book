@@ -51,8 +51,8 @@ parts:
 - caption: V. Data Collection
   numbered: true
   chapters:
-  - file: notebooks/AB_testing
   - file: notebooks/preface_designs
+  - file: notebooks/AB_testing
   - file: notebooks/design_of_experiments
   - file: notebooks/active_learning
   - file: notebooks/bandits
