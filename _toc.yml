@@ -48,7 +48,7 @@ parts:
   - file: notebooks/impulse_response_functions
   - file: notebooks/shapley
 
-- caption: V. Data Collection
+- caption: V. Experiments and Data Collection
   numbered: true
   chapters:
   - file: notebooks/preface_designs
