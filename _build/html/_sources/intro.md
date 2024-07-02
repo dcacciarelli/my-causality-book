@@ -3,11 +3,22 @@
 Welcome to "Applied Causal Inference for Electricity Markets", a work-in-progress book designed to provide comprehensive tutorials on causal inference methodologies. This book explains key concepts in this rapidly growing research area and showcases potential applications within electricity markets. 
 
 
-**Prerequisites**:
+**Prerequisites**
 
-**Learning objectives**:
+To get the most out of this book, it is recommended that readers have a basic understanding of:
+- **Statistics and probability**: familiarity with basic statistical concepts and probability theory.
+- **Python programming**: basic knowledge of Python and possibly experience with libraries such as NumPy, pandas, statsmodels, and scikit-learn.
+- **Machine learning**: an understanding of linear regression models, and an overview of machine learning concepts.
 
+**Learning objectives**
 
+By the end of this book, readers will be able to:
+- Understand and apply causal inference techniques to analyse relationships between variables.
+- Use directed acyclic graphs (DAGs) to represent and reason about causal structures.
+- Implement and interpret various causal discovery algorithms.
+- Estimate causal effects using methods like instrumental variables, double machine learning, and difference-in-differences.
+- Interpret results from complex machine learning models.
+- Design experiments to gather data that supports causal analysis.
 
 
 ```{admonition} Note
