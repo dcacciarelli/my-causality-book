@@ -12,6 +12,12 @@ parts:
   - file: notebooks/motivation
   - file: notebooks/guide
 
+- caption: Review of Stats and ML
+  numbered: true
+  chapters:
+  - file: notebooks/review_stats
+  - file: notebooks/review_linear_models
+
 - caption: I. Basic Concepts
   numbered: true
   chapters:

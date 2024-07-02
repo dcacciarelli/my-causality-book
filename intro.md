@@ -10,6 +10,10 @@ To get the most out of this book, it is recommended that readers have a basic un
 - **Python programming**: basic knowledge of Python and possibly experience with libraries such as NumPy, pandas, statsmodels, and scikit-learn.
 - **Machine learning**: an understanding of linear regression models, and an overview of machine learning concepts.
 
+If you feel like you need a refresher, you can find some introductory chapters that review these essential concepts. These chapters are designed to help you brush up on the foundational knowledge required to fully engage with the material in this book. However, if you are already familiar with these concepts or prefer to go directly to the applied causal inference part, feel free to skip those chapters.
+
+
+
 **Learning objectives**
 
 By the end of this book, readers will be able to:
