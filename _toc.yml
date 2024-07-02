@@ -6,18 +6,19 @@ format: jb-book
 root: intro
 
 parts:
-- caption: Introduction
-  numbered: true
-  chapters:
-  - file: notebooks/motivation
-  - file: notebooks/guide
 
-- caption: Review of Stats and ML
+- caption: Crash course on Stats and ML
   numbered: true
   chapters:
   - file: notebooks/review_stats
   - file: notebooks/review_linear_models
   - file: notebooks/review_ML
+
+- caption: Introduction
+  numbered: true
+  chapters:
+  - file: notebooks/motivation
+  - file: notebooks/guide
 
 - caption: I. Basic Concepts
   numbered: true
