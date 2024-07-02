@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>16. Propensity Score Matching &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>17. Propensity Score Matching &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/propensity_scores';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="17. Double Machine Learning" href="double_machine_learning.html" />
-    <link rel="prev" title="15. Instrumental Variables" href="instrumental_variables.html" />
+    <link rel="next" title="18. Double Machine Learning" href="double_machine_learning.html" />
+    <link rel="prev" title="16. Instrumental Variables" href="instrumental_variables.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -187,46 +187,47 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">5. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">6. What is a Causal Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">7. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">8. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">9. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">10. Linear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">11. Nonlinear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">12. Time Series Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">13. Structural Breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">10. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">11. Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">12. Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">13. Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">14. Structural Breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">14. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">15. Instrumental Variables</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Propensity Score Matching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">17. Double Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">18. Difference-in-Differences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">19. Interrupted Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">15. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">16. Instrumental Variables</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Propensity Score Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">18. Double Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">19. Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">20. Interrupted Time Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">20. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">21. Partial Dependence Plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">22. Accumulated Local Effects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">23. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">24. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">21. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">25. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">26. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">27. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">28. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">29. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">30. Multi-Armed Bandits</a></li>
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
@@ -427,12 +428,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">16.1. Example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">16.1.1. Data generation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">16.1.2. Propensity scores estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">16.1.3. Nearest-neighbor matching</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">16.1.4. Treatment effect estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">16.1.5. Visualising results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">17.1. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">17.1.1. Data generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">17.1.2. Propensity scores estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">17.1.3. Nearest-neighbor matching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">17.1.4. Treatment effect estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">17.1.5. Visualising results</a></li>
 </ul>
 </li>
 </ul>
@@ -447,7 +448,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="propensity-score-matching">
-<h1><span class="section-number">16. </span>Propensity Score Matching<a class="headerlink" href="#propensity-score-matching" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">17. </span>Propensity Score Matching<a class="headerlink" href="#propensity-score-matching" title="Link to this heading">#</a></h1>
 <p>In many cases, we are interested in assessing the effectiveness of a campaign or other types of treatments. For example, let’s assume we are interested in evaluating the impact of a <strong>demand-response programme</strong> on the electricity consumption of a set of households. Suppose that households can join the demand-response programme by filling out a specific form. For those who join, the programme offers reduced pricing during off-peak hours. Our goal is to assess the effectiveness of this programme by comparing the electricity consumption of people who joined the programme (our <strong>treatment group</strong>) to those who did not (our <strong>control group</strong>).</p>
 <p>In an ideal scenario, if we were able to conduct a completely randomised experiment, we would have a balanced and diverse set of customers in both groups. In such a situation, if the possibility of joining the programme was as random as flipping a coin, any significant differences in consumption patterns between the two groups could be attributed to the special pricing offered by the programme.</p>
 <p>However, in real life, things are more complicated. Because people are not randomly assigned to the two groups, there may be characteristics of the people who voluntarily joined the programme that are the true causes of changes in consumption. For example, if a majority of the people who agreed to join the programme are retired, it is likely that they will use electricity during off-peak hours due to their lifestyle and not solely because of the reduced pricing. This is an example of <strong>selection bias</strong>.</p>
@@ -455,13 +456,13 @@ document.write(`
 <p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
 <p>In mathematical terms, we can define the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span> as the probability of a unit (e.g., customer) joining the demand-response programme given a set of covariates <span class="math notranslate nohighlight">\(x\)</span>:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-370df1bc-6473-4f7a-873e-a02396ec42b8">
-<span class="eqno">(16.1)<a class="headerlink" href="#equation-370df1bc-6473-4f7a-873e-a02396ec42b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(17.1)<a class="headerlink" href="#equation-370df1bc-6473-4f7a-873e-a02396ec42b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
    e(x) = P(T = 1 \mid X = x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is a binary indicator of treatment assignment (1 if joined the programme, 0 if not).</p>
 <p>Propensity scores are typically estimated using <strong>logistic regression</strong>, although other classification methods can be used. For example:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-a9d745f6-62d6-476f-af56-7949e905860c">
-<span class="eqno">(16.2)<a class="headerlink" href="#equation-a9d745f6-62d6-476f-af56-7949e905860c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(17.2)<a class="headerlink" href="#equation-a9d745f6-62d6-476f-af56-7949e905860c" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
 \end{equation}\]</div>
 <p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching, such as:</p>
@@ -472,10 +473,10 @@ document.write(`
 <li><p><strong>Kernel matching</strong>: Weights all control units according to their distance from the treated unit’s propensity score.</p></li>
 </ol>
 <section id="example">
-<h2><span class="section-number">16.1. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.1. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
 <p>Let’s walk through an example using Python to illustrate how to implement propensity score matching, estimate the treatment effect, and visualize the results.</p>
 <section id="data-generation">
-<h3><span class="section-number">16.1.1. </span>Data generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.1. </span>Data generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h3>
 <p>We will use a synthetic dataset to simulate our scenario. Suppose our dataset includes the following columns:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">joined_program</span></code>: A binary indicator (1 if joined the program, 0 if not).</p></li>
@@ -593,7 +594,7 @@ document.write(`
 </div>
 </section>
 <section id="propensity-scores-estimation">
-<h3><span class="section-number">16.1.2. </span>Propensity scores estimation<a class="headerlink" href="#propensity-scores-estimation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.2. </span>Propensity scores estimation<a class="headerlink" href="#propensity-scores-estimation" title="Link to this heading">#</a></h3>
 <p>In this step, we use logistic regression to estimate the propensity scores, which represent the probability of joining the programme given the covariates (age, income, and household size).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -711,7 +712,7 @@ document.write(`
 <p>Before matching, it is common to see differences in the distributions, especially if certain covariates strongly influence whether households join the program. The initial (pre-matching) plot might show that the treated group has higher propensity scores on average, indicating that those who joined the program had characteristics that made them more likely to join. This bias is what matching aims to adjust for by finding control units with similar propensity scores.</p>
 </section>
 <section id="nearest-neighbor-matching">
-<h3><span class="section-number">16.1.3. </span>Nearest-neighbor matching<a class="headerlink" href="#nearest-neighbor-matching" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.3. </span>Nearest-neighbor matching<a class="headerlink" href="#nearest-neighbor-matching" title="Link to this heading">#</a></h3>
 <p>We separate the treated (joined the program) and control (did not join the program) groups. Using the nearest-neighbor matching technique, we match each treated unit with the control unit that has the closest propensity score. The goal here is to match each treated unit (household that joined the programme) with one or more control units (households that did not join the programme) that have similar propensity scores. Here’s a detailed explanation of how we can do it:</p>
 <ul class="simple">
 <li><p>We separate the treated and control groups based on whether they joined the program or not.</p></li>
@@ -758,7 +759,7 @@ document.write(`
 <p>As we see here, after matching, we ideally want the distributions to overlap substantially, indicating that the treated and control groups are similar with respect to the covariates used to estimate the propensity scores.</p>
 </section>
 <section id="treatment-effect-estimation">
-<h3><span class="section-number">16.1.4. </span>Treatment effect estimation<a class="headerlink" href="#treatment-effect-estimation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.4. </span>Treatment effect estimation<a class="headerlink" href="#treatment-effect-estimation" title="Link to this heading">#</a></h3>
 <p>We calculate the Average Treatment Effect on the Treated (ATT) by comparing the average electricity consumption of the treated group to that of the matched control group.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -775,7 +776,7 @@ document.write(`
 </div>
 </section>
 <section id="visualising-results">
-<h3><span class="section-number">16.1.5. </span>Visualising results<a class="headerlink" href="#visualising-results" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.5. </span>Visualising results<a class="headerlink" href="#visualising-results" title="Link to this heading">#</a></h3>
 <p>We can create some visualisations to compare the distributions of propensity scores and electricity consumption before and after matching.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -856,7 +857,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Instrumental Variables</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Instrumental Variables</p>
       </div>
     </a>
     <a class="right-next"
@@ -864,7 +865,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Double Machine Learning</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Double Machine Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -884,12 +885,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">16.1. Example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">16.1.1. Data generation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">16.1.2. Propensity scores estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">16.1.3. Nearest-neighbor matching</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">16.1.4. Treatment effect estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">16.1.5. Visualising results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">17.1. Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">17.1.1. Data generation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">17.1.2. Propensity scores estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">17.1.3. Nearest-neighbor matching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">17.1.4. Treatment effect estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">17.1.5. Visualising results</a></li>
 </ul>
 </li>
 </ul>
