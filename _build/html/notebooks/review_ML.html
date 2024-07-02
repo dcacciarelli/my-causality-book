@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>10. Overview &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>5. Machine Learning &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -57,11 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/preface_causal_discovery';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/review_ML';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11. Linear Models" href="semiparametric_direct_lingam.html" />
-    <link rel="prev" title="9. Glossary: Key Definitions and Terminology" href="glossary.html" />
+    <link rel="next" title="6. Correlation vs. Causation" href="correlation_vs_causation.html" />
+    <link rel="prev" title="4. Linear Regression" href="review_linear_models.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,10 +182,10 @@
 <li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Machine Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -195,8 +195,8 @@
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">10. Overview</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">10. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">11. Linear Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">12. Nonlinear Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">13. Time Series Models</a></li>
@@ -302,7 +302,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/preface_causal_discovery.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/review_ML.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +332,7 @@
       
       
       
-      <li><a href="../_sources/notebooks/preface_causal_discovery.ipynb" target="_blank"
+      <li><a href="../_sources/notebooks/review_ML.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -403,9 +403,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -416,19 +414,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Overview</h1>
+    <h1>Machine Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-of-causal-discovery-chapters">10.1. Content of Causal Discovery chapters</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -438,50 +428,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="overview">
-<h1><span class="section-number">10. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h1>
-<p>Causal discovery involves identifying causal relationships from data. This process uncovers the underlying causal structure without assuming prior knowledge of the direction or nature of causality. It typically employs statistical and computational methods to determine which variables influence others, providing a foundation for further causal analysis.</p>
-<p>The key objective of causal discovery is often to retrieve and visualize a <strong>causal graph from observational data</strong>. In general, the causal graph for a specific problem can be retrieved relying on:</p>
-<ul class="simple">
-<li><p><strong>Domain knowledge</strong>: in some cases, there are well-known principles and mechanisms governing the processes under investigation. We might be able to draw causal graphs relying on the expertise of practitioners or on the findings reported in previous studies.</p></li>
-<li><p><strong>Data-driven methods</strong>: when we cannot assume prior knowledge about the process, we can obtain a causal graph using causal discovery algorithms such as the ones discussed in this chapter.</p></li>
-<li><p><strong>Hybrid approaches</strong>: in many cases, the two aforementioned approaches are complementary. For example, we could:</p>
-<ul>
-<li><p><strong>Start with domain knowledge</strong>: if experts can only outline an incomplete causal graph, we can include this knowledge in the causal discovery algorithm to discover the missing relationships.</p></li>
-<li><p><strong>Start with the data</strong>: we might derive a tentative causal graph from a causal discovery algorithm and then iteratively validate and refine it through consultation with engineers or practitioners.</p></li>
-</ul>
-</li>
-</ul>
-<p>With regard to data-driven methods, there are two main approaches:</p>
-<ul class="simple">
-<li><p><strong>Independence-based causal discovery</strong>: this approach relies on statistical tests to identify conditional independencies among variables, which can then be used to infer the structure of the causal graph. Methods such as the PC algorithm <span id="id1">[<a class="reference internal" href="../bibliography.html#id13" title="Peter Spirtes, Clark Glymour, and Richard Scheines. Causation, prediction, and search. MIT press, 2001.">SGS01</a>]</span>, the Fast Causal Inference (FCI) algorithm <span id="id2">[<a class="reference internal" href="../bibliography.html#id14" title="Peter Spirtes. An anytime algorithm for causal inference. In International Workshop on Artificial Intelligence and Statistics, 278–285. PMLR, 2001.">Spi01</a>]</span>, or the PCMCI algorithm <span id="id3">[<a class="reference internal" href="../bibliography.html#id15" title="Jakob Runge, Peer Nowack, Marlene Kretschmer, Seth Flaxman, and Dino Sejdinovic. Detecting and quantifying causal associations in large nonlinear time series datasets. Science advances, 5(11):eaau4996, 2019.">RNK+19</a>]</span> fall into this category.</p></li>
-<li><p><strong>Semi-parametric causal discovery</strong>: this approach involves making some assumptions about the functional form of the relationships between variables but remains flexible by not fully specifying a parametric model. Methods like the Linear Non-Gaussian Acyclic Model (LiNGAM) <span id="id4">[<a class="reference internal" href="../bibliography.html#id4" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span> are examples of this approach.</p></li>
-</ul>
-<p>In the upcoming Chapters, we focus primarily on semi-parametric approaches, inspired by the methodologies presented in <a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a>. Most of the examples hereby presented have been implemented using the LiNGAM Python package <span id="id5">[<a class="reference internal" href="../bibliography.html#id3" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
-<section id="content-of-causal-discovery-chapters">
-<h2><span class="section-number">10.1. </span>Content of Causal Discovery chapters<a class="headerlink" href="#content-of-causal-discovery-chapters" title="Link to this heading">#</a></h2>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Chapter</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Linear Models</p></td>
-<td><p>How to retrieve the causal graph from the data, if we can assume a linear model with non-Gaussian noise for the data-generating process.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Nonlinear Models</p></td>
-<td><p>Extends the LiNGAM approach by considering nonlinear functional forms, and accomodating for Gaussian noise.</p></td>
-</tr>
-<tr class="row-even"><td><p>Time Series Models</p></td>
-<td><p>Extends the LiNGAM approach by providing a method for detecting contemporaneous and lagged effects in time series data.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Structural Breaks</p></td>
-<td><p>Highilight the challenges of trying to identifying causal graphs in dynamic and evolving environments.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning">
+<h1><span class="section-number">5. </span>Machine Learning<a class="headerlink" href="#machine-learning" title="Link to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -515,20 +463,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="glossary.html"
+       href="review_linear_models.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Glossary: Key Definitions and Terminology</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Linear Regression</p>
       </div>
     </a>
     <a class="right-next"
-       href="semiparametric_direct_lingam.html"
+       href="correlation_vs_causation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Linear Models</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Correlation vs. Causation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -539,20 +487,7 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content-of-causal-discovery-chapters">10.1. Content of Causal Discovery chapters</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>

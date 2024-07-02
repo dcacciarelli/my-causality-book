@@ -17,6 +17,7 @@ parts:
   chapters:
   - file: notebooks/review_stats
   - file: notebooks/review_linear_models
+  - file: notebooks/review_ML
 
 - caption: I. Basic Concepts
   numbered: true
