@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/bandits';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -176,16 +178,16 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Statistics and Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -226,6 +228,7 @@
 <li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">30. Multi-Armed Bandits</a></li>
+
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
@@ -426,19 +429,90 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">30. Multi-Armed Bandits</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">31. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">31.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">31.2. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">31.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">31.3.1. Key Concepts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">31.3.2. Algorithms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">30. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-exploitation">30.1. Code Example: Exploitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">30.2. Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">30.3. Plotting the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">30.4. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">30.5. Multi-Armed Bandits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">30.6. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">30.7. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">30.8. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">30.8.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">30.8.2. Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">30.8.3. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-intuition">30.8.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-details">30.8.3.2. Mathematical Details</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">31.4. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">31.4.1. Step-by-Step Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">31.4.2. Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">31.4.3. Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">30.8.4. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">30.8.4.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">30.8.4.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">30.8.5. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">30.8.5.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">30.8.5.2. Mathematical Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">30.9. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">30.9.1. Step-by-Step Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">31. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">31.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">31.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration-vs-exploitation">31.3. Exploration vs. Exploitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">31.3.1. High-Level Intuition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">31.3.2. Practical Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-example">31.3.3. Simulating the Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">31.3.4. Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-regret">31.3.5. Understanding Regret</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">31.3.6. Mathematical Formulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">31.4. Algorithms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">31.4.1. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">31.4.1.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">31.4.1.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">31.4.2. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">31.4.2.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">31.4.2.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">31.4.3. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">31.4.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">31.4.3.2. Mathematical Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">31.5. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">31.5.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">31.5.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">31.5.3. Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">32. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">32.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">32.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">32.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">32.3.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">32.3.2. Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">32.4. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">32.4.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">32.4.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">32.4.3. Conclusion</a></li>
 </ul>
 </li>
 </ul>
@@ -457,17 +531,389 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multi-armed-bandits">
 <h1><span class="section-number">30. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
-<p>Sure! Let’s create a comprehensive chapter on multi-armed bandits.</p>
+<p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls.</p>
+<p>In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns. In many cases, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
+<ul class="simple">
+<li><p><strong>Dynamic pricing</strong>: adjusting prices based on consumer behaviour to maximise revenue.</p></li>
+<li><p><strong>Demand response</strong>: determining the most effective incentives to reduce peak demand.</p></li>
+<li><p><strong>Marketing campaigns</strong>: identifying the most effective promotional strategies to increase customer engagement.</p></li>
+</ul>
+<p>The MAB problem can be formalized as follows:</p>
+<ul class="simple">
+<li><p><strong>Arms</strong>: let <span class="math notranslate nohighlight">\(K\)</span> be the number of arms (choices or actions) available.</p></li>
+<li><p><strong>Rewards</strong>: each arm <span class="math notranslate nohighlight">\(k \in \{1, 2, \ldots, K\}\)</span> provides a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p><strong>Objective</strong>: the objective is to maximize the cumulative reward over <span class="math notranslate nohighlight">\(T\)</span> rounds, <span class="math notranslate nohighlight">\(\sum_{t=1}^{T} r_k(t)\)</span>.</p></li>
+</ul>
+<p>The two key conepts in MAB problems are:</p>
+<ol class="arabic simple">
+<li><p><strong>Exploration vs. exploitation</strong>: where <strong>exploration</strong> means trying out different arms to gather more information about their rewards, and <strong>exploitation</strong> refers to choosing the arm that is currently believed to provide the highest reward.</p></li>
+<li><p><strong>Regret</strong>: the difference between the reward obtained by the optimal arm and the reward obtained by the algorithm. The goal is to minimize regret over time.</p></li>
+</ol>
+<p>Let’s break down the MAB problem step by step, focusing on the concepts of exploration, reward, and how they are computed.</p>
+<p><strong>Step-by-step illustration</strong></p>
+<p><strong>Setup</strong></p>
+<p>Imagine you have three slot machines (arms) in a casino, each with an unknown probability of payout (reward). Initially, you do not know which machine is the best, so you need to <strong>explore</strong> by trying out each machine. Over time, as you gather more information, you start to get an idea about the different machines and can <strong>exploit</strong> the available information by choosing the machine that seems to give the highest reward based on your observations.</p>
+<p><strong>True reward probabilities</strong>:</p>
+<ul class="simple">
+<li><p>Slot Machine 1: 0.3</p></li>
+<li><p>Slot Machine 2: 0.5</p></li>
+<li><p>Slot Machine 3: 0.7</p></li>
+</ul>
+<p>These probabilities are unknown to you. Your goal is to find out which machine has the highest probability of giving a payout by trying them out.</p>
+<p><strong>Step 1: initial exploration</strong></p>
+<p>To start, you need to try each machine a few times to get an idea of their payouts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># True reward probabilities</span>
+<span class="n">true_means</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>
+
+<span class="c1"># Number of times to pull each machine initially</span>
+<span class="n">initial_pulls</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Simulate initial exploration</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">initial_rewards</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">true_means</span><span class="p">)):</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">initial_pulls</span><span class="p">):</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+    <span class="n">initial_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+
+<span class="c1"># Print initial rewards</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">rewards</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">initial_rewards</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rewards for Machine </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">rewards</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rewards for Machine 1: [0, 0, 0, 0, 1, 1, 1, 0, 0, 0]
+Rewards for Machine 2: [1, 0, 0, 1, 1, 1, 1, 0, 1, 1]
+Rewards for Machine 3: [1, 1, 1, 1, 1, 0, 1, 1, 1, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Step 2: compute average rewards</strong></p>
+<p>After the initial exploration, compute the average reward for each machine to get an estimate of their payout probabilities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate average rewards</span>
+<span class="n">average_rewards</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span> <span class="k">for</span> <span class="n">rewards</span> <span class="ow">in</span> <span class="n">initial_rewards</span><span class="p">]</span>
+
+<span class="c1"># Print average rewards</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">avg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">average_rewards</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average reward for Machine </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">avg</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average reward for Machine 1: 0.30
+Average reward for Machine 2: 0.70
+Average reward for Machine 3: 0.90
+</pre></div>
+</div>
+</div>
+</div>
+<p>The mean of the rewards obtained from the initial pulls for each machine. This gives an estimate of the payout probability for each machine.</p>
+<p><strong>Step 3: exploitation</strong></p>
+<p>Based on the average rewards, you start choosing the machine that seems to give the highest reward more often.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of additional rounds</span>
+<span class="n">additional_rounds</span> <span class="o">=</span> <span class="mi">90</span>
+
+<span class="c1"># Continue simulation</span>
+<span class="n">total_rewards</span> <span class="o">=</span> <span class="n">initial_rewards</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cumulative_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">additional_rounds</span><span class="p">)</span>
+<span class="n">cumulative_rewards</span><span class="p">[:</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span> <span class="k">for</span> <span class="n">rewards</span> <span class="ow">in</span> <span class="n">initial_rewards</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">initial_pulls</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">additional_rounds</span><span class="p">):</span>
+    <span class="c1"># Choose the machine with the highest average reward</span>
+    <span class="n">best_machine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">average_rewards</span><span class="p">)</span>
+    
+    <span class="c1"># Simulate pulling the best machine</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">best_machine</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="n">best_machine</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+    
+    <span class="c1"># Update average rewards</span>
+    <span class="n">average_rewards</span><span class="p">[</span><span class="n">best_machine</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="n">best_machine</span><span class="p">])</span>
+    
+    <span class="c1"># Update cumulative rewards</span>
+    <span class="n">cumulative_rewards</span><span class="p">[</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">cumulative_rewards</span><span class="p">[</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">reward</span>
+
+<span class="c1"># Print final average rewards</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">avg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">average_rewards</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final average reward for Machine </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">avg</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final average reward for Machine 1: 0.30
+Final average reward for Machine 2: 0.64
+Final average reward for Machine 3: 0.70
+</pre></div>
+</div>
+</div>
+</div>
+<p>At each step, we define as <strong>best machine</strong> the machine with the highest average reward so far, and we continue pulling the best machine and update the average rewards based on the new observations.</p>
+<p><strong>Step 4: regret calculation</strong></p>
+<p>Regret is a measure of how much worse our algorithm performs compared to if we had always chosen the best possible machine (the one with the highest true mean reward). If we knew in advance which machine had the highest probability of giving us a prize, we would always choose that machine. However, since we do not know this in advance, we have to try out all the machines to gather information. While we are trying out all the machines (exploring), we might choose the less optimal machines sometimes, which gives us less reward compared to the best machine.
+Regret is the difference between the total reward we would have gotten by always choosing the best machine and the total reward we actually got by following our algorithm.</p>
+<p>We have:</p>
+<ul class="simple">
+<li><p>Optimal reward: this is the reward we would have gotten if we had always chosen the best machine. It is calculated as the cumulative sum of the highest true mean reward over all rounds.</p></li>
+<li><p>Algorithm reward: this is the reward we actually got by following our algorithm, which includes exploration and exploitation steps.</p></li>
+<li><p>Regret: the difference between the optimal reward and the algorithm reward,</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># True means and optimal reward</span>
+<span class="n">optimal_mean</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">true_means</span><span class="p">)</span>
+<span class="n">optimal_cumulative_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="n">optimal_mean</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">additional_rounds</span><span class="p">))</span>
+
+<span class="c1"># Calculate regret</span>
+<span class="n">regret</span> <span class="o">=</span> <span class="n">optimal_cumulative_rewards</span> <span class="o">-</span> <span class="n">cumulative_rewards</span>
+
+<span class="c1"># Plot cumulative rewards and regret</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cumulative_rewards</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Algorithm Reward&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">optimal_cumulative_rewards</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal Reward&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">regret</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regret&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Regret&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Regret Over Time&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/17360ca7493663169c893c9b68486a20102d7624efa7f39eb0dc21d7ccfa2176.png" src="../_images/17360ca7493663169c893c9b68486a20102d7624efa7f39eb0dc21d7ccfa2176.png" />
+</div>
+</div>
+<p><strong>How to read these graphs</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Cumulative reward</strong>:</p>
+<ul class="simple">
+<li><p>This graph shows the total reward accumulated over time by the algorithm.</p></li>
+<li><p>The x-axis represents the number of rounds (time), and the y-axis represents the cumulative reward.</p></li>
+<li><p>Initially, during the exploration phase, the rewards might increase slowly because the algorithm is trying out different arms to gather information.</p></li>
+<li><p>As the algorithm gathers more information and starts to exploit the best-performing arm, the slope of the cumulative reward graph should increase, indicating a faster accumulation of rewards.</p></li>
+<li><p>The optimal cumulative reward line represents the reward we would have accumulated if we had always chosen the best arm from the beginning. This line has a constant, steep slope, indicating the highest possible reward accumulation rate.</p></li>
+</ul>
+</li>
+<li><p><strong>Regret</strong>:</p>
+<ul class="simple">
+<li><p>This graph shows the difference between the optimal cumulative reward and the cumulative reward obtained by the algorithm.</p></li>
+<li><p>The x-axis represents the number of rounds (time), and the y-axis represents the regret.</p></li>
+<li><p>At the beginning, the regret might increase rapidly because the algorithm is exploring and might be choosing suboptimal arms, leading to lower rewards compared to the optimal arm.</p></li>
+<li><p>As the algorithm starts to exploit the best-performing arm more frequently, the rate at which regret increases should slow down. Ideally, the regret graph will start to flatten out, indicating that the algorithm is performing close to optimally.</p></li>
+<li><p>The ideal scenario is to have a regret graph that flattens out as early as possible, showing that the algorithm quickly learned to choose the best arm.</p></li>
+</ul>
+</li>
+</ol>
+<section id="code-example-exploitation">
+<h2><span class="section-number">30.1. </span>Code Example: Exploitation<a class="headerlink" href="#code-example-exploitation" title="Link to this heading">#</a></h2>
+<p>Let’s simulate pulling the machines for an additional 90 rounds, primarily exploiting the machine with the highest average reward so far.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </section>
+<section id="explanation">
+<h2><span class="section-number">30.2. </span>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h2>
+</section>
+<section id="plotting-the-results">
+<h2><span class="section-number">30.3. </span>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Link to this heading">#</a></h2>
+<p>Visualize the cumulative rewards over time to see the effect of exploration and exploitation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="summary">
+<h2><span class="section-number">30.4. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Exploration</strong>: Trying out different machines to gather information about their payout probabilities.</p></li>
+<li><p><strong>Reward</strong>: The payout received from each pull of the machine, determined by comparing a random number to the machine’s true probability.</p></li>
+<li><p><strong>Exploitation</strong>: Using the gathered information to choose the machine with the highest estimated payout probability more often.</p></li>
+<li><p><strong>Cumulative Rewards</strong>: Tracking the total rewards over time to see the benefits of balancing exploration and exploitation.</p></li>
+</ol>
+<p>By understanding these steps and concepts, you can grasp the fundamental idea behind the multi-armed bandit problem and how to balance exploration and exploitation to maximize rewards.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># True reward probabilities</span>
+<span class="n">true_means</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>
+
+<span class="c1"># Number of times to pull each machine initially</span>
+<span class="n">initial_pulls</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Simulate initial exploration</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">initial_rewards</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">true_means</span><span class="p">)):</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">initial_pulls</span><span class="p">):</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+    <span class="n">initial_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+
+<span class="c1"># Calculate average rewards</span>
+<span class="n">average_rewards</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span> <span class="k">for</span> <span class="n">rewards</span> <span class="ow">in</span> <span class="n">initial_rewards</span><span class="p">]</span>
+
+<span class="c1"># Number of additional rounds</span>
+<span class="n">additional_rounds</span> <span class="o">=</span> <span class="mi">90</span>
+
+<span class="c1"># Continue simulation</span>
+<span class="n">total_rewards</span> <span class="o">=</span> <span class="n">initial_rewards</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">cumulative_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">additional_rounds</span><span class="p">)</span>
+<span class="n">cumulative_rewards</span><span class="p">[:</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span> <span class="k">for</span> <span class="n">rewards</span> <span class="ow">in</span> <span class="n">initial_rewards</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">initial_pulls</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">additional_rounds</span><span class="p">):</span>
+    <span class="c1"># Choose the machine with the highest average reward</span>
+    <span class="n">best_machine</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">average_rewards</span><span class="p">)</span>
+    
+    <span class="c1"># Simulate pulling the best machine</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">best_machine</span><span class="p">]</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="n">best_machine</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+    
+    <span class="c1"># Update average rewards</span>
+    <span class="n">average_rewards</span><span class="p">[</span><span class="n">best_machine</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="n">best_machine</span><span class="p">])</span>
+    
+    <span class="c1"># Update cumulative rewards</span>
+    <span class="n">cumulative_rewards</span><span class="p">[</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">cumulative_rewards</span><span class="p">[</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">reward</span>
+
+<span class="c1"># True means and optimal reward</span>
+<span class="n">optimal_mean</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">true_means</span><span class="p">)</span>
+<span class="n">optimal_cumulative_rewards</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="n">optimal_mean</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">initial_pulls</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">additional_rounds</span><span class="p">))</span>
+
+<span class="c1"># Calculate regret</span>
+<span class="n">regret</span> <span class="o">=</span> <span class="n">optimal_cumulative_rewards</span> <span class="o">-</span> <span class="n">cumulative_rewards</span>
+
+<span class="c1"># Plot cumulative rewards and regret</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cumulative_rewards</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Algorithm Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">optimal_cumulative_rewards</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal Cumulative Reward&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">regret</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regret&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Regret&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Regret Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4a12ae23434f8e68450a8744f03aae1e461edfcfd6a9389d3588c552e57bac7b.png" src="../_images/4a12ae23434f8e68450a8744f03aae1e461edfcfd6a9389d3588c552e57bac7b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the environment</span>
+<span class="n">n_arms</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">true_means</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>  <span class="c1"># True reward probabilities for each arm</span>
+<span class="n">n_rounds</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Initialize parameters</span>
+<span class="n">estimated_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">total_reward</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">selected_arms</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Epsilon-Greedy parameters</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># Epsilon-Greedy algorithm</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rounds</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="c1"># Exploration: choose a random arm</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Exploitation: choose the best arm so far</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">estimated_means</span><span class="p">)</span>
+    
+    <span class="c1"># Simulate pulling the arm</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    
+    <span class="c1"># Update estimates and counts</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    
+    <span class="c1"># Accumulate rewards</span>
+    <span class="n">total_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_reward</span><span class="p">)</span>
+    <span class="n">selected_arms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arm</span><span class="p">)</span>
+
+<span class="c1"># Plot cumulative rewards</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rewards</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Epsilon-Greedy: Cumulative Reward Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot the number of times each arm was selected</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_arms</span><span class="p">),</span> <span class="n">counts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Arm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Times Selected&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Epsilon-Greedy: Number of Times Each Arm Was Selected&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c8d7fb8ef7b7bda9200db3c8fcd1538b69934d4a7a9961bb5f06e4d0493c2abc.png" src="../_images/c8d7fb8ef7b7bda9200db3c8fcd1538b69934d4a7a9961bb5f06e4d0493c2abc.png" />
+<img alt="../_images/256770cb161dd8c61ee9502e48d8cd5b41c6b03e82745e05320376a014b0ad0b.png" src="../_images/256770cb161dd8c61ee9502e48d8cd5b41c6b03e82745e05320376a014b0ad0b.png" />
+</div>
+</div>
+<p>Sure! Let’s provide a high-level intuition followed by the mathematical details for each of the three algorithms: Epsilon-Greedy, Upper Confidence Bound (UCB), and Thompson Sampling.</p>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1><span class="section-number">31. </span>Multi-Armed Bandits<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+</section>
+<section id="id1">
+<h2><span class="section-number">30.5. </span>Multi-Armed Bandits<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+</section>
 <section id="introduction">
-<h2><span class="section-number">31.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">30.6. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls. In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns.</p>
 </section>
 <section id="relevance-in-electricity-markets">
-<h2><span class="section-number">31.2. </span>Relevance in Electricity Markets<a class="headerlink" href="#relevance-in-electricity-markets" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">30.7. </span>Relevance in Electricity Markets<a class="headerlink" href="#relevance-in-electricity-markets" title="Link to this heading">#</a></h2>
 <p>In electricity markets, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
 <ul class="simple">
 <li><p><strong>Dynamic Pricing</strong>: Adjusting prices based on consumer behavior to maximize revenue.</p></li>
@@ -476,15 +922,15 @@ document.write(`
 </ul>
 </section>
 <section id="mathematical-formulation">
-<h2><span class="section-number">31.3. </span>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">30.8. </span>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h2>
 <p>The MAB problem can be formalized as follows:</p>
 <ul class="simple">
-<li><p><strong>Arms</strong>: Let ( K ) be the number of arms (choices or actions) available.</p></li>
-<li><p><strong>Rewards</strong>: Each arm ( k \in {1, 2, \ldots, K} ) provides a reward ( r_k(t) ) at time ( t ).</p></li>
-<li><p><strong>Objective</strong>: The objective is to maximize the cumulative reward over ( T ) rounds, (\sum_{t=1}^{T} r_k(t) ).</p></li>
+<li><p><strong>Arms</strong>: Let <span class="math notranslate nohighlight">\(K\)</span> be the number of arms (choices or actions) available.</p></li>
+<li><p><strong>Rewards</strong>: Each arm <span class="math notranslate nohighlight">\(k \in \{1, 2, \ldots, K\}\)</span> provides a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p><strong>Objective</strong>: The objective is to maximize the cumulative reward over <span class="math notranslate nohighlight">\(T\)</span> rounds, (\sum_{t=1}^{T} r_k(t)$.</p></li>
 </ul>
 <section id="key-concepts">
-<h3><span class="section-number">31.3.1. </span>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">30.8.1. </span>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Exploration vs. Exploitation</strong>:</p>
 <ul class="simple">
@@ -501,20 +947,741 @@ document.write(`
 </ol>
 </section>
 <section id="algorithms">
-<h3><span class="section-number">31.3.2. </span>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">30.8.2. </span>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">#</a></h3>
+<p>Several popular algorithms have been proposed to solve MAB problems, including:</p>
+</section>
+<section id="epsilon-greedy">
+<h3><span class="section-number">30.8.3. </span>Epsilon-Greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
+<section id="high-level-intuition">
+<h4><span class="section-number">30.8.3.1. </span>High-Level Intuition<a class="headerlink" href="#high-level-intuition" title="Link to this heading">#</a></h4>
+<p>Epsilon-Greedy is a simple yet effective algorithm that balances exploration and exploitation. The basic idea is to explore a random arm with a small probability (epsilon) and exploit the best-known arm with the remaining probability.</p>
+</section>
+<section id="mathematical-details">
+<h4><span class="section-number">30.8.3.2. </span>Mathematical Details<a class="headerlink" href="#mathematical-details" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Mechanism</strong>:</p>
+<ul class="simple">
+<li><p>With probability <span class="math notranslate nohighlight">\(\epsilon\)</span>, choose a random arm (exploration).</p></li>
+<li><p>With probability <span class="math notranslate nohighlight">\(1 - \epsilon\)</span>, choose the arm with the highest estimated reward (exploitation).</p></li>
+</ul>
+</li>
+<li><p><strong>Formulation</strong>:</p>
+<ul>
+<li><p>Let <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span> be the estimated mean reward of arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p>Update rule for the estimate:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bda80b5e-d8d7-496e-bbaf-38014039ed21">
+<span class="eqno">(30.1)<a class="headerlink" href="#equation-bda80b5e-d8d7-496e-bbaf-38014039ed21" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
+    \end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r_k(t)\)</span> is the observed reward and <span class="math notranslate nohighlight">\(n_k(t)\)</span> is the number of times arm <span class="math notranslate nohighlight">\(k\)</span> has been selected up to time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="upper-confidence-bound-ucb">
+<h3><span class="section-number">30.8.4. </span>Upper Confidence Bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h4><span class="section-number">30.8.4.1. </span>High-Level Intuition<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>The UCB algorithm selects arms based on the principle of optimism in the face of uncertainty. It balances exploration and exploitation by choosing the arm with the highest upper confidence bound, which accounts for both the estimated reward and the uncertainty in the estimate.</p>
+</section>
+<section id="id3">
+<h4><span class="section-number">30.8.4.2. </span>Mathematical Details<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Mechanism</strong>:</p>
+<ul class="simple">
+<li><p>Select the arm <span class="math notranslate nohighlight">\(k\)</span> that maximizes the upper confidence bound <span class="math notranslate nohighlight">\(UCB_k(t)\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Formulation</strong>:</p>
+<ul>
+<li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c2454e2b-ce8e-464c-9baa-fd122b9ea21a">
+<span class="eqno">(30.2)<a class="headerlink" href="#equation-c2454e2b-ce8e-464c-9baa-fd122b9ea21a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
+    \end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span> is the estimated mean reward, <span class="math notranslate nohighlight">\(n_k(t)\)</span> is the number of times arm <span class="math notranslate nohighlight">\(k\)</span> has been selected, and <span class="math notranslate nohighlight">\(c\)</span> is a confidence parameter.</p>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="thompson-sampling">
+<h3><span class="section-number">30.8.5. </span>Thompson Sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h4><span class="section-number">30.8.5.1. </span>High-Level Intuition<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>Thompson Sampling is a Bayesian approach that balances exploration and exploitation by sampling from the posterior distribution of the reward probabilities for each arm. It chooses the arm with the highest sampled value, which inherently balances the trade-off.</p>
+</section>
+<section id="id5">
+<h4><span class="section-number">30.8.5.2. </span>Mathematical Details<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<ul>
+<li><p><strong>Mechanism</strong>:</p>
+<ul class="simple">
+<li><p>Maintain a probability distribution (posterior) for the expected reward of each arm.</p></li>
+<li><p>Sample a value from the posterior distribution for each arm and select the arm with the highest sampled value.</p></li>
+</ul>
+</li>
+<li><p><strong>Formulation</strong>:</p>
+<ul>
+<li><p>Assume a Beta distribution for the reward probabilities:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-59608968-bc12-4491-b0dd-2dbe64c4bd44">
+<span class="eqno">(30.3)<a class="headerlink" href="#equation-59608968-bc12-4491-b0dd-2dbe64c4bd44" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \theta_k \sim \text{Beta}(\alpha_k, \beta_k)
+    \end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_k\)</span> and <span class="math notranslate nohighlight">\(\beta_k\)</span> are the parameters of the Beta distribution.</p>
+</li>
+<li><p>Update the parameters based on observed rewards:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c17984f2-5f3c-44c5-969d-d1b628f6b8c0">
+<span class="eqno">(30.4)<a class="headerlink" href="#equation-c17984f2-5f3c-44c5-969d-d1b628f6b8c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \alpha_k = \alpha_k + r_k(t)
+    \end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-693d241f-2a9e-46ad-815e-14f005080c52">
+<span class="eqno">(30.5)<a class="headerlink" href="#equation-693d241f-2a9e-46ad-815e-14f005080c52" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \beta_k = \beta_k + 1 - r_k(t)
+    \end{equation}\]</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="example-in-python">
+<h2><span class="section-number">30.9. </span>Example in Python<a class="headerlink" href="#example-in-python" title="Link to this heading">#</a></h2>
+<p>Let’s implement a simple multi-armed bandit problem using the Epsilon-Greedy, UCB, Thompson Sampling, and Random strategies.</p>
+<section id="step-by-step-implementation">
+<h3><span class="section-number">30.9.1. </span>Step-by-Step Implementation<a class="headerlink" href="#step-by-step-implementation" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Define the Environment</strong>:</p>
+<ul class="simple">
+<li><p>Simulate the reward probabilities for each arm.</p></li>
+</ul>
+</li>
+<li><p><strong>Implement the Algorithms</strong>:</p>
+<ul class="simple">
+<li><p>Initialize the estimates and counts for each arm.</p></li>
+<li><p>Iterate through multiple rounds, selecting arms based on each strategy.</p></li>
+</ul>
+</li>
+<li><p><strong>Plot the Results</strong>:</p>
+<ul class="simple">
+<li><p>Visualize the cumulative rewards and the number of times each arm is selected.</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the environment</span>
+<span class="n">n_arms</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">true_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>  <span class="c1"># True reward probabilities for each arm</span>
+<span class="n">n_rounds</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Initialize parameters for all algorithms</span>
+<span class="n">estimated_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">total_rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ucb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;random&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;ucb&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;thompson&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;random&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+
+<span class="c1"># Epsilon-Greedy parameters</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># Upper Confidence Bound (UCB) parameters</span>
+<span class="n">ucb_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">ucb_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+
+<span class="c1"># Thompson Sampling parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+
+<span class="c1"># Simulation</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rounds</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Epsilon-Greedy</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">estimated_means</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">])</span>
+
+    <span class="c1"># UCB</span>
+    <span class="n">ucb_values</span> <span class="o">=</span> <span class="n">ucb_means</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ucb_counts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ucb_values</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">ucb_counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">ucb_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">ucb_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">ucb_counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Thompson Sampling</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">alpha</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">beta</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">reward</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Random Sampling</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">])</span>
+
+<span class="c1"># Plot cumulative rewards</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">rewards</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rewards</span><span class="p">[</span><span class="n">strategy</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">strategy</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Multi-Armed Bandit: Cumulative Reward Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot the number of times each arm was selected for each strategy</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Number of Times Each Arm Was Selected&#39;</span><span class="p">)</span>
+
+<span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">,</span> <span class="s1">&#39;ucb&#39;</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">,</span> <span class="s1">&#39;random&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">strategies</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_arms</span><span class="p">),</span> <span class="n">counts</span><span class="p">)</span>
+    <span class="n">ax</span>
+</pre></div>
+</div>
+<p>Several popular algorithms have been proposed to solve MAB problems, including:</p>
+<ul class="simple">
+<li><p><strong>Epsilon-Greedy</strong>: with probability <span class="math notranslate nohighlight">\(\epsilon\)</span>, choose a random arm (exploration), and with probability <span class="math notranslate nohighlight">\(1 - \epsilon\)</span>, choose the arm with the highest estimated reward (exploitation).</p></li>
+<li><p><strong>Upper Confidence Bound (UCB)</strong>: selects arms based on the upper confidence bounds of their estimated rewards.</p></li>
+<li><p><strong>Thompson Sampling</strong>: uses Bayesian methods to update beliefs about the reward distributions and selects arms based on the posterior probabilities.</p></li>
+</ul>
+<p>Sure, let’s enhance the tutorial to provide a more pedagogic introduction to the concept of exploration vs. exploitation. We’ll use a practical example to demonstrate the trade-off, and show how it impacts the decision-making process and regret.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="id6">
+<h1><span class="section-number">31. </span>Multi-Armed Bandits<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<section id="id7">
+<h2><span class="section-number">31.1. </span>Introduction<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls. In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns.</p>
+</section>
+<section id="id8">
+<h2><span class="section-number">31.2. </span>Relevance in Electricity Markets<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>In electricity markets, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
+<ul class="simple">
+<li><p><strong>Dynamic Pricing</strong>: Adjusting prices based on consumer behavior to maximize revenue.</p></li>
+<li><p><strong>Demand Response</strong>: Determining the most effective incentives to reduce peak demand.</p></li>
+<li><p><strong>Marketing Campaigns</strong>: Identifying the most effective promotional strategies to increase customer engagement.</p></li>
+</ul>
+</section>
+<section id="exploration-vs-exploitation">
+<h2><span class="section-number">31.3. </span>Exploration vs. Exploitation<a class="headerlink" href="#exploration-vs-exploitation" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h3><span class="section-number">31.3.1. </span>High-Level Intuition<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>Exploration vs. exploitation is the core trade-off in multi-armed bandit problems:</p>
+<ul class="simple">
+<li><p><strong>Exploration</strong>: Trying out different arms (choices or actions) to gather more information about their rewards.</p></li>
+<li><p><strong>Exploitation</strong>: Choosing the arm that is currently believed to provide the highest reward based on the gathered information.</p></li>
+</ul>
+</section>
+<section id="practical-example">
+<h3><span class="section-number">31.3.2. </span>Practical Example<a class="headerlink" href="#practical-example" title="Link to this heading">#</a></h3>
+<p>Let’s illustrate this with a simple example involving three slot machines (arms), each with a different but unknown probability of payout (reward). Initially, we don’t know which machine is the best, so we need to explore by trying out each machine. Over time, as we gather more information, we start to exploit by choosing the machine that seems to give the highest reward based on our observations.</p>
+</section>
+<section id="simulating-the-example">
+<h3><span class="section-number">31.3.3. </span>Simulating the Example<a class="headerlink" href="#simulating-the-example" title="Link to this heading">#</a></h3>
+<p>We’ll simulate a scenario with three arms, each with a different probability of payout. We’ll track how often we choose each arm and the cumulative reward over time.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the environment</span>
+<span class="n">n_arms</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">true_means</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]</span>  <span class="c1"># True reward probabilities for each arm</span>
+<span class="n">n_rounds</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Initialize parameters</span>
+<span class="n">estimated_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">total_reward</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">selected_arms</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Epsilon-Greedy parameters</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># Epsilon-Greedy algorithm</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rounds</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="c1"># Exploration: choose a random arm</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Exploitation: choose the best arm so far</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">estimated_means</span><span class="p">)</span>
+    
+    <span class="c1"># Simulate pulling the arm</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    
+    <span class="c1"># Update estimates and counts</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    
+    <span class="c1"># Accumulate rewards</span>
+    <span class="n">total_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_reward</span><span class="p">)</span>
+    <span class="n">selected_arms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arm</span><span class="p">)</span>
+
+<span class="c1"># Plot cumulative rewards</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rewards</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Epsilon-Greedy: Cumulative Reward Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot the number of times each arm was selected</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_arms</span><span class="p">),</span> <span class="n">counts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Arm&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Times Selected&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Epsilon-Greedy: Number of Times Each Arm Was Selected&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="analysis">
+<h3><span class="section-number">31.3.4. </span>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Cumulative Rewards</strong>:</p>
+<ul class="simple">
+<li><p>The plot shows how the total reward accumulates over time. Initially, exploration leads to variability in the cumulative reward, but over time, the algorithm converges towards the best arm, leading to more consistent rewards.</p></li>
+</ul>
+</li>
+<li><p><strong>Number of Times Each Arm Was Selected</strong>:</p>
+<ul class="simple">
+<li><p>This plot illustrates the balance between exploration and exploitation. The arm with the highest estimated reward gets selected more frequently, but the other arms are also tried occasionally due to the exploration factor.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="understanding-regret">
+<h3><span class="section-number">31.3.5. </span>Understanding Regret<a class="headerlink" href="#understanding-regret" title="Link to this heading">#</a></h3>
+<p><strong>Regret</strong> is the difference between the reward obtained by always choosing the best arm and the reward obtained by the algorithm. In practical terms, regret measures the opportunity cost of not always exploiting the best option due to exploration. Minimizing regret over time is a key objective in MAB problems.</p>
+</section>
+<section id="id10">
+<h3><span class="section-number">31.3.6. </span>Mathematical Formulation<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>The MAB problem can be formalized as follows:</p>
+<ul class="simple">
+<li><p><strong>Arms</strong>: Let ( K ) be the number of arms (choices or actions) available.</p></li>
+<li><p><strong>Rewards</strong>: Each arm ( k \in {1, 2, \ldots, K} ) provides a reward ( r_k(t) ) at time ( t ).</p></li>
+<li><p><strong>Objective</strong>: The objective is to maximize the cumulative reward over ( T ) rounds, (\sum_{t=1}^{T} r_k(t) ).</p></li>
+</ul>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">31.4. </span>Algorithms<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>Several popular algorithms have been proposed to solve MAB problems, including:</p>
+<section id="id12">
+<h3><span class="section-number">31.4.1. </span>Epsilon-Greedy<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h4><span class="section-number">31.4.1.1. </span>High-Level Intuition<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<p>Epsilon-Greedy is a simple yet effective algorithm that balances exploration and exploitation. The basic idea is to explore a random arm with a small probability (epsilon) and exploit the best-known arm with the remaining probability.</p>
+</section>
+<section id="id14">
+<h4><span class="section-number">31.4.1.2. </span>Mathematical Details<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Mechanism</strong>:</p>
+<ul>
+<li><p>With probability ( \epsilon ), choose a random arm (exploration).</p></li>
+<li><p>With probability ( 1 - \epsilon ), choose the arm with the highest estimated reward (exploitation).</p></li>
+</ul>
+</li>
+<li><p><strong>Formulation</strong>:</p>
+<ul>
+<li><p>Let ( \hat{\mu}_k(t) ) be the estimated mean reward of arm ( k ) at time ( t ).</p></li>
+<li><p>Update rule for the estimate:
+[
+\hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
+]
+where ( r_k(t) ) is the observed reward and ( n_k(t) ) is the number of times arm ( k ) has been selected up to time ( t ).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id15">
+<h3><span class="section-number">31.4.2. </span>Upper Confidence Bound (UCB)<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h4><span class="section-number">31.4.2.1. </span>High-Level Intuition<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<p>The UCB algorithm selects arms based on the principle of optimism in the face of uncertainty. It balances exploration and exploitation by choosing the arm with the highest upper confidence bound, which accounts for both the estimated reward and the uncertainty in the estimate.</p>
+</section>
+<section id="id17">
+<h4><span class="section-number">31.4.2.2. </span>Mathematical Details<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Mechanism</strong>:</p>
+<ul>
+<li><p>Select the arm ( k ) that maximizes the upper confidence bound ( UCB_k(t) ).</p></li>
+</ul>
+</li>
+<li><p><strong>Formulation</strong>:</p>
+<ul>
+<li><p>The upper confidence bound for arm ( k ) at time ( t ) is given by:
+[
+UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
+]
+where ( \hat{\mu}_k(t) ) is the estimated mean reward, ( n_k(t) ) is the number of times arm ( k ) has been selected, and ( c ) is a confidence parameter.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id18">
+<h3><span class="section-number">31.4.3. </span>Thompson Sampling<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<section id="id19">
+<h4><span class="section-number">31.4.3.1. </span>High-Level Intuition<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<p>Thompson Sampling is a Bayesian approach that balances exploration and exploitation by sampling from the posterior distribution of the reward probabilities for each arm. It chooses the arm with the highest sampled value, which inherently balances the trade-off.</p>
+</section>
+<section id="id20">
+<h4><span class="section-number">31.4.3.2. </span>Mathematical Details<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Mechanism</strong>:</p>
+<ul>
+<li><p>Maintain a probability distribution (posterior) for the expected reward of each arm.</p></li>
+<li><p>Sample a value from the posterior distribution for each arm and select the arm with the highest sampled value.</p></li>
+</ul>
+</li>
+<li><p><strong>Formulation</strong>:</p>
+<ul>
+<li><p>Assume a Beta distribution for the reward probabilities:
+[
+\theta_k \sim \text{Beta}(\alpha_k, \beta_k)
+]
+where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.</p></li>
+<li><p>Update the parameters based on observed rewards:
+[
+\alpha_k = \alpha_k + r_k(t)
+]
+[
+\beta_k = \beta_k + 1 - r_k(t)
+]</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id21">
+<h2><span class="section-number">31.5. </span>Example in Python<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<p>Let’s implement a simple multi-armed bandit problem using the Epsilon-Greedy, UCB, Thompson Sampling, and Random strategies.</p>
+<section id="id22">
+<h3><span class="section-number">31.5.1. </span>Step-by-Step Implementation<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Define the Environment</strong>:</p>
+<ul class="simple">
+<li><p>Simulate the reward probabilities for each arm.</p></li>
+</ul>
+</li>
+<li><p><strong>Implement the Algorithms</strong>:</p>
+<ul class="simple">
+<li><p>Initialize the estimates and counts for each arm.</p></li>
+<li><p>Iterate through multiple rounds, selecting arms based on each strategy.</p></li>
+</ul>
+</li>
+<li><p><strong>Plot the Results</strong>:</p>
+<ul class="simple">
+<li><p>Visualize the cumulative rewards and the number of times each arm is selected.</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the environment</span>
+<span class="n">n_arms</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">true_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>  <span class="c1"># True reward probabilities for each arm</span>
+<span class="n">n_rounds</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Initialize parameters for all algorithms</span>
+<span class="n">estimated_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span>
+
+<span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">total_rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ucb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;random&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;ucb&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;thompson&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;random&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+
+<span class="c1"># Epsilon-Greedy parameters</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># Upper Confidence Bound (UCB) parameters</span>
+<span class="n">ucb_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">ucb_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+
+<span class="c1"># Thompson Sampling parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+
+<span class="c1"># Simulation</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rounds</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Epsilon-Greedy</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>  <span class="c1"># Exploration</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">estimated_means</span><span class="p">)</span>  <span class="c1"># Exploitation</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">])</span>
+
+    <span class="c1"># UCB</span>
+    <span class="n">ucb_values</span> <span class="o">=</span> <span class="n">ucb_means</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ucb_counts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ucb_values</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">ucb_counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">ucb_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">ucb_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">ucb_counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Thompson Sampling</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">alpha</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">beta</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">reward</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Random Sampling</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">])</span>
+
+<span class="c1"># Plot cumulative rewards</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">rewards</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rewards</span><span class="p">[</span><span class="n">strategy</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">strategy</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Multi-Armed Bandit: Cumulative Reward Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot the number of times each arm was selected for each strategy</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Number of Times Each Arm Was Selected&#39;</span><span class="p">)</span>
+
+<span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">,</span> <span class="s1">&#39;ucb&#39;</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">,</span> <span class="s1">&#39;random&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">strategies</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_arms</span><span class="p">),</span> <span class="n">counts</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">strategy</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Arm&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Times Selected&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h3><span class="section-number">31.5.2. </span>Explanation<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Environment Setup</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">true_means</span></code> defines the true reward probabilities for each arm.</p></li>
+</ul>
+</li>
+<li><p><strong>Algorithm Implementation</strong>:</p>
+<ul class="simple">
+<li><p><strong>Epsilon-Greedy</strong>: Balances exploration and exploitation by choosing random arms with probability ( \epsilon ) and the best-known arm with probability ( 1 - \epsilon ).</p></li>
+<li><p><strong>UCB</strong>: Selects arms based on the upper confidence bounds of their estimated rewards, balancing exploration and exploitation by considering the uncertainty in the estimates.</p></li>
+<li><p><strong>Thompson Sampling</strong>: Uses Bayesian methods to update beliefs about the reward distributions and selects arms based on the posterior probabilities.</p></li>
+<li><p><strong>Random Sampling</strong>: Chooses arms randomly without any learning, serving as a baseline for comparison.</p></li>
+</ul>
+</li>
+<li><p><strong>Visualization</strong>:</p>
+<ul class="simple">
+<li><p>The cumulative reward plot shows how the total reward accumulates over time for each strategy.</p></li>
+<li><p>The bar plots show the number of times each arm was selected by each strategy, indicating how exploration and exploitation were balanced.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="conclusion">
+<h3><span class="section-number">31.5.3. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>Multi-armed bandit algorithms are powerful tools for making sequential decisions under uncertainty. By balancing exploration and exploitation, these algorithms can optimize decisions in various contexts, including dynamic pricing, demand response, and marketing campaigns in electricity markets. This tutorial demonstrated the basic principles and implementation of Epsilon-Greedy, UCB, and Thompson Sampling algorithms, providing a foundation for more advanced techniques and applications.</p>
+<hr class="docutils" />
+<p>This comprehensive tutorial introduces the key concepts and algorithms for solving MAB problems, using practical examples and visualizations to aid understanding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Define the environment</span>
+<span class="n">n_arms</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">true_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>  <span class="c1"># True reward probabilities for each arm</span>
+<span class="n">n_rounds</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Initialize parameters for all algorithms</span>
+<span class="n">estimated_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">total_rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ucb&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;random&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="n">rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;ucb&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;thompson&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;random&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+
+<span class="c1"># Epsilon-Greedy parameters</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># Upper Confidence Bound (UCB) parameters</span>
+<span class="n">ucb_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">ucb_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+
+<span class="c1"># Thompson Sampling parameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+
+<span class="c1"># Simulation</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_rounds</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Epsilon-Greedy</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">estimated_means</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">estimated_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">])</span>
+
+    <span class="c1"># UCB</span>
+    <span class="n">ucb_values</span> <span class="o">=</span> <span class="n">ucb_means</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">ucb_counts</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ucb_values</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">ucb_counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">ucb_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">reward</span> <span class="o">-</span> <span class="n">ucb_means</span><span class="p">[</span><span class="n">arm</span><span class="p">])</span> <span class="o">/</span> <span class="n">ucb_counts</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;ucb&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Thompson Sampling</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">alpha</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">beta</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">reward</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;thompson&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Random Sampling</span>
+    <span class="n">arm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">n_arms</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">true_means</span><span class="p">[</span><span class="n">arm</span><span class="p">]</span>
+    <span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">reward</span>
+    <span class="n">rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_rewards</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">])</span>
+
+<span class="c1"># Plot cumulative rewards</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">rewards</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rewards</span><span class="p">[</span><span class="n">strategy</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">strategy</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Reward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Multi-Armed Bandit: Cumulative Reward Over Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Plot the number of times each arm was selected for each strategy</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Number of Times Each Arm Was Selected&#39;</span><span class="p">)</span>
+
+<span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;epsilon_greedy&#39;</span><span class="p">,</span> <span class="s1">&#39;ucb&#39;</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">,</span> <span class="s1">&#39;random&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">strategies</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>]
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_arms</span><span class="p">),</span> <span class="n">counts</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Arm&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Times Selected&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">strategy</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">rect</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0a857e22361849b9c723c54588e02125374caf0f24d3b74671aa6b9067f75f95.png" src="../_images/0a857e22361849b9c723c54588e02125374caf0f24d3b74671aa6b9067f75f95.png" />
+<img alt="../_images/45e215f1c295deaf0173c26ca5b7a27a56ad57be8f92e789d36fa99774768ba0.png" src="../_images/45e215f1c295deaf0173c26ca5b7a27a56ad57be8f92e789d36fa99774768ba0.png" />
+</div>
+</div>
+<p>Sure! Let’s create a comprehensive chapter on multi-armed bandits.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="id24">
+<h1><span class="section-number">32. </span>Multi-Armed Bandits<a class="headerlink" href="#id24" title="Link to this heading">#</a></h1>
+<section id="id25">
+<h2><span class="section-number">32.1. </span>Introduction<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
+<p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls. In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns.</p>
+</section>
+<section id="id26">
+<h2><span class="section-number">32.2. </span>Relevance in Electricity Markets<a class="headerlink" href="#id26" title="Link to this heading">#</a></h2>
+<p>In electricity markets, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
+<ul class="simple">
+<li><p><strong>Dynamic Pricing</strong>: Adjusting prices based on consumer behavior to maximize revenue.</p></li>
+<li><p><strong>Demand Response</strong>: Determining the most effective incentives to reduce peak demand.</p></li>
+<li><p><strong>Marketing Campaigns</strong>: Identifying the most effective promotional strategies to increase customer engagement.</p></li>
+</ul>
+</section>
+<section id="id27">
+<h2><span class="section-number">32.3. </span>Mathematical Formulation<a class="headerlink" href="#id27" title="Link to this heading">#</a></h2>
+<p>The MAB problem can be formalized as follows:</p>
+<ul class="simple">
+<li><p><strong>Arms</strong>: Let <span class="math notranslate nohighlight">\(K\)</span> be the number of arms (choices or actions) available.</p></li>
+<li><p><strong>Rewards</strong>: Each arm <span class="math notranslate nohighlight">\(k \in \{1, 2, \ldots, K\}\)</span> provides a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p><strong>Objective</strong>: The objective is to maximize the cumulative reward over <span class="math notranslate nohighlight">\(T\)</span> rounds, (\sum_{t=1}^{T} r_k(t)$.</p></li>
+</ul>
+<section id="id28">
+<h3><span class="section-number">32.3.1. </span>Key Concepts<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Exploration vs. Exploitation</strong>:</p>
+<ul class="simple">
+<li><p><strong>Exploration</strong>: Trying out different arms to gather more information about their rewards.</p></li>
+<li><p><strong>Exploitation</strong>: Choosing the arm that is currently believed to provide the highest reward.</p></li>
+</ul>
+</li>
+<li><p><strong>Regret</strong>:</p>
+<ul class="simple">
+<li><p><strong>Regret</strong> is the difference between the reward obtained by the optimal arm and the reward obtained by the algorithm.</p></li>
+<li><p>The goal is to minimize regret over time.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id29">
+<h3><span class="section-number">32.3.2. </span>Algorithms<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
 <p>Several algorithms can solve MAB problems, including:</p>
 <ul class="simple">
-<li><p><strong>Epsilon-Greedy</strong>: With probability ( \epsilon ), choose a random arm (exploration), and with probability ( 1 - \epsilon ), choose the arm with the highest estimated reward (exploitation).</p></li>
+<li><p><strong>Epsilon-Greedy</strong>: With probability <span class="math notranslate nohighlight">\(\epsilon\)</span>, choose a random arm (exploration), and with probability <span class="math notranslate nohighlight">\(1 - \epsilon\)</span>, choose the arm with the highest estimated reward (exploitation).</p></li>
 <li><p><strong>Upper Confidence Bound (UCB)</strong>: Selects arms based on the upper confidence bounds of their estimated rewards.</p></li>
 <li><p><strong>Thompson Sampling</strong>: Uses Bayesian methods to update beliefs about the reward distributions and selects arms based on the posterior probabilities.</p></li>
 </ul>
 </section>
 </section>
-<section id="example-in-python">
-<h2><span class="section-number">31.4. </span>Example in Python<a class="headerlink" href="#example-in-python" title="Link to this heading">#</a></h2>
+<section id="id30">
+<h2><span class="section-number">32.4. </span>Example in Python<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
 <p>Let’s implement a simple multi-armed bandit problem using the Epsilon-Greedy algorithm.</p>
-<section id="step-by-step-implementation">
-<h3><span class="section-number">31.4.1. </span>Step-by-Step Implementation<a class="headerlink" href="#step-by-step-implementation" title="Link to this heading">#</a></h3>
+<section id="id31">
+<h3><span class="section-number">32.4.1. </span>Step-by-Step Implementation<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Define the Environment</strong>:</p>
 <ul class="simple">
@@ -590,8 +1757,8 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="explanation">
-<h3><span class="section-number">31.4.2. </span>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h3>
+<section id="id32">
+<h3><span class="section-number">32.4.2. </span>Explanation<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Environment Setup</strong>:</p>
 <ul class="simple">
@@ -600,8 +1767,8 @@ document.write(`
 </li>
 <li><p><strong>Epsilon-Greedy Algorithm</strong>:</p>
 <ul class="simple">
-<li><p>With probability ( \epsilon ), the algorithm explores by choosing a random arm.</p></li>
-<li><p>With probability ( 1 - \epsilon ), the algorithm exploits by choosing the arm with the highest estimated reward.</p></li>
+<li><p>With probability <span class="math notranslate nohighlight">\(\epsilon\)</span>, the algorithm explores by choosing a random arm.</p></li>
+<li><p>With probability <span class="math notranslate nohighlight">\(1 - \epsilon\)</span>, the algorithm exploits by choosing the arm with the highest estimated reward.</p></li>
 <li><p>The algorithm updates the reward estimates and keeps track of the total reward and the number of times each arm is selected.</p></li>
 </ul>
 </li>
@@ -613,8 +1780,8 @@ document.write(`
 </li>
 </ol>
 </section>
-<section id="conclusion">
-<h3><span class="section-number">31.4.3. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<section id="id33">
+<h3><span class="section-number">32.4.3. </span>Conclusion<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
 <p>Multi-armed bandit algorithms are powerful tools for making sequential decisions under uncertainty. By balancing exploration and exploitation, these algorithms can optimize decisions in various contexts, including dynamic pricing, demand response, and marketing campaigns in electricity markets. This tutorial demonstrated the basic principles and implementation of the Epsilon-Greedy algorithm, providing a foundation for more advanced techniques and applications.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -676,8 +1843,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/175b0ce7b70e2037e2528e2d4146e1462b6d25d68ce12ef14a9fc01183b7e4a2.png" src="../_images/175b0ce7b70e2037e2528e2d4146e1462b6d25d68ce12ef14a9fc01183b7e4a2.png" />
-<img alt="../_images/7d52df04b28dff29eecf1d5e20c738270dd255024eb3b053060ce8e111150258.png" src="../_images/7d52df04b28dff29eecf1d5e20c738270dd255024eb3b053060ce8e111150258.png" />
+<img alt="../_images/bbe831ba5aa60661e50b20d02590af30204ff4f97a7e447b15ae27fba88ca6b2.png" src="../_images/bbe831ba5aa60661e50b20d02590af30204ff4f97a7e447b15ae27fba88ca6b2.png" />
+<img alt="../_images/688f5a3c1a1135b63d5a59b05fd94553bf31cebd1fde9efe6835fbaca0c208af.png" src="../_images/688f5a3c1a1135b63d5a59b05fd94553bf31cebd1fde9efe6835fbaca0c208af.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -748,11 +1915,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0f9103edec425ba1717b9ebd2981b9472ef980538475d6222899ab10aea235c3.png" src="../_images/0f9103edec425ba1717b9ebd2981b9472ef980538475d6222899ab10aea235c3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Rewards Per Arm: {&#39;Product A&#39;: 0.0945273631840796, &#39;Product B&#39;: 0.15364583333333334, &#39;Product C&#39;: 0.0}
-Total Rewards: [ 19. 118.   0.]
-Priors (Alpha): [ 20. 119.   1.]
-Priors (Beta): [183. 651.  32.]
+<img alt="../_images/43f10788f2b5f38852df27b9f5ec28508dca5fad04332997964f691b34cef85c.png" src="../_images/43f10788f2b5f38852df27b9f5ec28508dca5fad04332997964f691b34cef85c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Rewards Per Arm: {&#39;Product A&#39;: 0.12333736396614269, &#39;Product B&#39;: 0.047619047619047616, &#39;Product C&#39;: 0.07633587786259542}
+Total Rewards: [102.   2.  10.]
+Priors (Alpha): [103.   3.  11.]
+Priors (Beta): [726.  41. 122.]
 </pre></div>
 </div>
 </div>
@@ -825,19 +1992,90 @@ Priors (Beta): [183. 651.  32.]
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">30. Multi-Armed Bandits</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">31. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">31.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">31.2. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">31.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">31.3.1. Key Concepts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">31.3.2. Algorithms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">30. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-exploitation">30.1. Code Example: Exploitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">30.2. Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">30.3. Plotting the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">30.4. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">30.5. Multi-Armed Bandits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">30.6. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">30.7. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">30.8. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">30.8.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">30.8.2. Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">30.8.3. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-intuition">30.8.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-details">30.8.3.2. Mathematical Details</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">31.4. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">31.4.1. Step-by-Step Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">31.4.2. Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">31.4.3. Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">30.8.4. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">30.8.4.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">30.8.4.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">30.8.5. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">30.8.5.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">30.8.5.2. Mathematical Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">30.9. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">30.9.1. Step-by-Step Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">31. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">31.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">31.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration-vs-exploitation">31.3. Exploration vs. Exploitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">31.3.1. High-Level Intuition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">31.3.2. Practical Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-example">31.3.3. Simulating the Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">31.3.4. Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-regret">31.3.5. Understanding Regret</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">31.3.6. Mathematical Formulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">31.4. Algorithms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">31.4.1. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">31.4.1.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">31.4.1.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">31.4.2. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">31.4.2.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">31.4.2.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">31.4.3. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">31.4.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">31.4.3.2. Mathematical Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">31.5. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">31.5.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">31.5.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">31.5.3. Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">32. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">32.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">32.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">32.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">32.3.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">32.3.2. Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">32.4. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">32.4.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">32.4.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">32.4.3. Conclusion</a></li>
 </ul>
 </li>
 </ul>
