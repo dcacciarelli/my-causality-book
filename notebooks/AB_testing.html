@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>26. A/B Testing &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>23. A/B Testing &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/AB_testing';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="27. Multi-Armed Bandits" href="bandits.html" />
-    <link rel="prev" title="25. Active Learning" href="active_learning.html" />
+    <link rel="next" title="24. Overview" href="preface_designs.html" />
+    <link rel="prev" title="22. Shapley Values" href="shapley.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -217,10 +217,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">23. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">24. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">25. Active Learning</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">26. A/B Testing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">23. A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">24. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">25. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">26. Active Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bandits.html">27. Multi-Armed Bandits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
@@ -421,9 +421,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">26.1. A simple example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">26.2. Statistical considerations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effect">26.3. Network effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">23.1. A simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">23.2. Statistical considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effect">23.3. Network effect</a></li>
 </ul>
             </nav>
         </div>
@@ -436,10 +436,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="a-b-testing">
-<h1><span class="section-number">26. </span>A/B Testing<a class="headerlink" href="#a-b-testing" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">23. </span>A/B Testing<a class="headerlink" href="#a-b-testing" title="Link to this heading">#</a></h1>
 <p>A/B testing, also known as split testing or bucket testing, is a powerful method for comparing two versions of a variable to determine which one performs better in terms of a given metric. This technique is widely used in various fields, including marketing, product development, and website optimization, to make data-driven decisions. In this tutorial, we’ll explore the basics of A/B testing, illustrate a simple example, and delve into more advanced topics, such as network effects and complex statistical considerations.</p>
 <section id="a-simple-example">
-<h2><span class="section-number">26.1. </span>A simple example<a class="headerlink" href="#a-simple-example" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">23.1. </span>A simple example<a class="headerlink" href="#a-simple-example" title="Link to this heading">#</a></h2>
 <p>Consider a scenario in the electricity market where we want to compare the effectiveness of two different marketing campaigns aimed at encouraging customers to use more renewable energy. We’ll define two groups:</p>
 <ul class="simple">
 <li><p><strong>Group A (Control Group)</strong>: Receives the standard marketing message.</p></li>
@@ -488,7 +488,7 @@ The enhanced marketing message significantly increases renewable energy usage.
 </div>
 </section>
 <section id="statistical-considerations">
-<h2><span class="section-number">26.2. </span>Statistical considerations<a class="headerlink" href="#statistical-considerations" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">23.2. </span>Statistical considerations<a class="headerlink" href="#statistical-considerations" title="Link to this heading">#</a></h2>
 <p>A/B testing involves several statistical concepts to ensure valid and reliable results:</p>
 <ol class="arabic simple">
 <li><p><strong>Power analysis</strong>: determine the sample size needed to detect a significant effect.</p></li>
@@ -522,7 +522,7 @@ The enhanced marketing message significantly increases renewable energy usage.
 <p>By conducting power analysis before running an experiment, researchers can ensure that they collect enough data to make reliable and valid conclusions, optimizing resource use and improving the quality of the results.</p>
 </section>
 <section id="network-effect">
-<h2><span class="section-number">26.3. </span>Network effect<a class="headerlink" href="#network-effect" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">23.3. </span>Network effect<a class="headerlink" href="#network-effect" title="Link to this heading">#</a></h2>
 <p>While the basic A/B testing framework is useful, it often needs to be adapted for more complex scenarios. One such scenario involves network effects, where the treatment effect on one individual may spill over to others through social connections. This is particularly relevant in social networks and interconnected systems. In traditional A/B testing, relying on the stable unit treatment value assumption (SUTVA), we assume that each individual’s response is independent of others. However, in many cases, this assumption does not hold due to network effects. For instance, in a social network, a user’s engagement with a new feature may influence their friends’ engagement, leading to biased estimates of the treatment effect. To address this, Gui et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id19" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span> proposed a method for network A/B testing, considering these spillover effects.</p>
 <p>The key aspects are:</p>
 <ol class="arabic simple">
@@ -530,8 +530,8 @@ The enhanced marketing message significantly increases renewable energy usage.
 <li><p><strong>Cluster randomized sampling</strong>: partition the network into clusters and randomize at the cluster level to minimize information flow between treatment and control groups.</p></li>
 </ol>
 <p>Mathematically, the average treatment effect (ATE) under network effects is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77ed6f74-2e60-473d-b7cf-045861eaceae">
-<span class="eqno">(26.1)<a class="headerlink" href="#equation-77ed6f74-2e60-473d-b7cf-045861eaceae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a844549a-9ac8-468e-b9eb-74cb0dba991c">
+<span class="eqno">(23.1)<a class="headerlink" href="#equation-a844549a-9ac8-468e-b9eb-74cb0dba991c" title="Permalink to this equation">#</a></span>\[\begin{equation}
   \delta(1, 0) = \frac{1}{N} \sum_{i=1}^{N} E[Y_i(Z = 1) - Y_i(Z = 0)]
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Y_i(Z = z)\)</span> is the response of user (i) given treatment assignment <span class="math notranslate nohighlight">\(Z = z\)</span>.</p>
@@ -623,20 +623,20 @@ ATE considering network effects: -0.033686529505670026
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="active_learning.html"
+       href="shapley.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">25. </span>Active Learning</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Shapley Values</p>
       </div>
     </a>
     <a class="right-next"
-       href="bandits.html"
+       href="preface_designs.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">27. </span>Multi-Armed Bandits</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>Overview</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -656,9 +656,9 @@ ATE considering network effects: -0.033686529505670026
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">26.1. A simple example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">26.2. Statistical considerations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effect">26.3. Network effect</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">23.1. A simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">23.2. Statistical considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effect">23.3. Network effect</a></li>
 </ul>
   </nav></div>
 
