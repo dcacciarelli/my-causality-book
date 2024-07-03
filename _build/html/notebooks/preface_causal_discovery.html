@@ -176,21 +176,21 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Statistics and Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
 </ul>
@@ -217,16 +217,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">30. Multi-Armed Bandits</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">28. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -454,8 +453,8 @@ document.write(`
 </ul>
 <p>With regard to data-driven methods, there are two main approaches:</p>
 <ul class="simple">
-<li><p><strong>Independence-based causal discovery</strong>: this approach relies on statistical tests to identify conditional independencies among variables, which can then be used to infer the structure of the causal graph. Methods such as the PC algorithm <span id="id1">[<a class="reference internal" href="../bibliography.html#id13" title="Peter Spirtes, Clark Glymour, and Richard Scheines. Causation, prediction, and search. MIT press, 2001.">SGS01</a>]</span>, the Fast Causal Inference (FCI) algorithm <span id="id2">[<a class="reference internal" href="../bibliography.html#id14" title="Peter Spirtes. An anytime algorithm for causal inference. In International Workshop on Artificial Intelligence and Statistics, 278–285. PMLR, 2001.">Spi01</a>]</span>, or the PCMCI algorithm <span id="id3">[<a class="reference internal" href="../bibliography.html#id15" title="Jakob Runge, Peer Nowack, Marlene Kretschmer, Seth Flaxman, and Dino Sejdinovic. Detecting and quantifying causal associations in large nonlinear time series datasets. Science advances, 5(11):eaau4996, 2019.">RNK+19</a>]</span> fall into this category.</p></li>
-<li><p><strong>Semi-parametric causal discovery</strong>: this approach involves making some assumptions about the functional form of the relationships between variables but remains flexible by not fully specifying a parametric model. Methods like the Linear Non-Gaussian Acyclic Model (LiNGAM) <span id="id4">[<a class="reference internal" href="../bibliography.html#id4" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span> are examples of this approach.</p></li>
+<li><p><strong>Independence-based causal discovery</strong>: this class of methods involves analyzing basic DAG structures like <strong>chains</strong> and <strong>forks</strong> to interpret how variables influence each other. This approach relies on statistical tests to identify conditional independencies among variables, which can then be used to infer the structure of the causal graph. Methods such as the PC algorithm <span id="id1">[<a class="reference internal" href="../bibliography.html#id13" title="Peter Spirtes, Clark Glymour, and Richard Scheines. Causation, prediction, and search. MIT press, 2001.">SGS01</a>]</span>, the Fast Causal Inference (FCI) algorithm <span id="id2">[<a class="reference internal" href="../bibliography.html#id14" title="Peter Spirtes. An anytime algorithm for causal inference. In International Workshop on Artificial Intelligence and Statistics, 278–285. PMLR, 2001.">Spi01</a>]</span>, or the PCMCI algorithm <span id="id3">[<a class="reference internal" href="../bibliography.html#id15" title="Jakob Runge, Peer Nowack, Marlene Kretschmer, Seth Flaxman, and Dino Sejdinovic. Detecting and quantifying causal associations in large nonlinear time series datasets. Science advances, 5(11):eaau4996, 2019.">RNK+19</a>]</span> fall into this category. One of the main drawbacks of these methods is that, in many cases, they can only identify the <strong>Markov equivalence class</strong> of the graph. This means that while we can identify sets of relationships that are consistent with the observed independencies, we cannot definitively determine the direction of causality between all the variables. For instance, if we have only two variables, which are independent, this method cannot specify whether one causes the other or if they are causally unrelated.</p></li>
+<li><p><strong>Semi-parametric causal discovery</strong>: this approach involves making some assumptions about the functional form of the relationships between variables but remains flexible by not fully specifying a parametric model. Methods like the Linear Non-Gaussian Acyclic Model (LiNGAM) <span id="id4">[<a class="reference internal" href="../bibliography.html#id4" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span> are examples of this approach. Going beyond the Markov equivalence class comes at the expenses of making more specific <strong>assumptions about the functional forms</strong> of relationships between variables. These assumptions allow for a more detailed discovery of the causal graph, often identifying specific causal directions rather than just equivalence classes. By assuming certain <strong>non-linearities</strong> or <strong>specific distributions of errors</strong>, semi-parametric methods can exploit asymmetries in the data that reveal the direction of causal effects. This approach is more powerful in that it can often discern the actual causal structure rather than just a set of possible structures. However, the trade-off is that these methods require stronger assumptions about the nature of the data and the relationships involved, which may not always hold true.</p></li>
 </ul>
 <p>In the upcoming Chapters, we focus primarily on semi-parametric approaches, inspired by the methodologies presented in <a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a>. Most of the examples hereby presented have been implemented using the LiNGAM Python package <span id="id5">[<a class="reference internal" href="../bibliography.html#id3" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
 <section id="content-of-causal-discovery-chapters">

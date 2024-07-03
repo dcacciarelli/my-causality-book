@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7. What is a Causal Graph &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>7. Causal Representations &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -176,21 +176,21 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Statistics and Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. What is a Causal Graph</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
 </ul>
@@ -217,16 +217,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">30. Multi-Armed Bandits</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">28. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -414,7 +413,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>What is a Causal Graph</h1>
+    <h1>Causal Representations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -428,8 +427,68 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="what-is-a-causal-graph">
-<h1><span class="section-number">7. </span>What is a Causal Graph<a class="headerlink" href="#what-is-a-causal-graph" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="causal-representations">
+<h1><span class="section-number">7. </span>Causal Representations<a class="headerlink" href="#causal-representations" title="Link to this heading">#</a></h1>
+<p>Directed acyclic graphs (DAGs) are essential tools for understanding causal relationships between variables. They are widely used in statistics, machine learning, and causal inference.</p>
+<p>The <strong>key elements</strong> of a DAG are:</p>
+<ol class="arabic simple">
+<li><p><strong>Node</strong>: represents a variable or an event in the graph.</p></li>
+<li><p><strong>Edge</strong>: a directed arrow indicating a causal influence from one node (variable) to another.</p></li>
+<li><p><strong>Parent node</strong>: a node that has outgoing edges to one or more child nodes.</p></li>
+<li><p><strong>Child node</strong>: a node that has incoming edges from one or more parent nodes.</p></li>
+</ol>
+<p>The <strong>key properties</strong> of a DAG are:</p>
+<ol class="arabic simple">
+<li><p><strong>Directed</strong>: each edge in the graph has a direction, from one vertex to another.</p></li>
+<li><p><strong>Acyclic</strong>: there are no cycles; you cannot start at one vertex, follow a sequence of directed edges, and return to the starting vertex.</p></li>
+<li><p><strong>Topological ordering</strong>: the nodes of a DAG can be ordered in such a way that for every directed edge u → v, node u comes before node v in the ordering.</p></li>
+</ol>
+<p>A DAG is a graph that is directed and has no cycles, meaning there is no way to start at one node and follow a consistent direction that leads back to the starting node.</p>
+<blockquote>
+<div><p>In a DAG, every parent is a direct cause of all its children.</p>
+</div></blockquote>
+<p>To better understand DAGs, let’s consider a simple example with the following variables:</p>
+<ol class="arabic simple">
+<li><p><strong>Temperature</strong></p></li>
+<li><p><strong>Electricity load</strong></p></li>
+<li><p><strong>Renewable energy production</strong></p></li>
+<li><p><strong>Electricity price</strong></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># Create a new graph</span>
+<span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+
+<span class="c1"># Add nodes</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;Electricity</span><span class="se">\n</span><span class="s1">load&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;Renewable</span><span class="se">\n</span><span class="s1">energy production&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;P&#39;</span><span class="p">,</span> <span class="s1">&#39;Electricity</span><span class="se">\n</span><span class="s1">price&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add edges</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the graph in the notebook</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3b1bb164373ae4dc103ce67c67e3d1bcac4061fa8d1cbc5d7447b70a30f2b0d3.svg" src="../_images/3b1bb164373ae4dc103ce67c67e3d1bcac4061fa8d1cbc5d7447b70a30f2b0d3.svg" /></div>
+</div>
+<p>A DAG is used to visually represent the causal relationships between the key variables in the analysis. The key variables are represented as nodes, and the arrows represent the direction of influence. By examining the graph, we can understand how changes in one variable may impact others, forming a network of dependencies that govern market dynamics. In the example above, we have:</p>
+<ol class="arabic simple">
+<li><p><strong>Temperature → electricity load</strong>: as temperature increases or decreases, it directly affects the electricity load. With warmer temperatures, the demand for electricity increases due to air conditioning usage. Similarly, colder temperatures can increase electricity demand for heating purposes.</p></li>
+<li><p><strong>Temperature → renewable energy production</strong>: temperature can affect the efficiency and output of renewable energy sources. For example, solar panels may produce more energy on sunny, warm days but less on extremely hot days when efficiency drops. Wind patterns, affected by temperature changes, can also impact wind energy production.</p></li>
+<li><p><strong>Renewable energy production → electricity price</strong>: the amount of renewable energy produced affects electricity prices. When renewable energy production is high, it can lead to lower electricity prices due to the abundance of cheaper energy sources. Conversely, low renewable energy production can increase reliance on more expensive, non-renewable energy sources, driving up prices.</p></li>
+<li><p><strong>Electricity load → electricity price</strong>: the demand for electricity (load) influences electricity prices. High electricity demand usually leads to higher prices because the supply must meet the increased load, often requiring more expensive or less efficient energy sources. Lower demand can result in lower prices due to decreased strain on the electricity grid and reliance on cheaper energy sources.</p></li>
+</ol>
 </section>
 
     <script type="text/x-thebe-config">
