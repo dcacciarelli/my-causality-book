@@ -59,6 +59,9 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"1998142f0b40409b9d6916945442f67e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4cdda9ed393840cab8687bfb186c6481": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_1998142f0b40409b9d6916945442f67e", "msg_id": "", "outputs": [{"output_type": "display_data", "metadata": {}, "data": {"text/plain": "Sampling 4 chains, 0 divergences \u001b[32m\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u001b[0m \u001b[35m100%\u001b[0m \u001b[36m0:00:00\u001b[0m / \u001b[33m0:00:00\u001b[0m\n", "text/html": "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\">Sampling 4 chains, 0 divergences <span style=\"color: #008000; text-decoration-color: #008000\">\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501</span> <span style=\"color: #800080; text-decoration-color: #800080\">100%</span> <span style=\"color: #008080; text-decoration-color: #008080\">0:00:00</span> / <span style=\"color: #808000; text-decoration-color: #808000\">0:00:00</span>\n</pre>\n"}}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/review_stats';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -429,12 +432,20 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">1.1. Basic concepts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-variance-and-covariance">1.2. Expectation, variance, and covariance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence-and-estimation">1.3. Convergence and estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-prediction">1.4. Statistical prediction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-probability-distributions">1.5. Main probability distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-framework">1.6. Hypothesis testing framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">1.3. Convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-bias-and-variance">1.4. Estimation: bias and variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-probability-distributions">1.4.1. Main Probability Distributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-framework">1.5. Hypothesis testing framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-means">1.5.1. Comparing Means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-variances">1.5.2. Comparing Variances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-analysis">1.5.3. Regression Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit-and-independence-tests">1.5.4. Goodness of Fit and Independence Tests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-learning">1.6. Bayesian Learning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-monte-carlo-mcmc">1.6.1. Markov chain Monte Carlo (MCMC)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-a-posterior-estimation-map">1.6.2. Maximum a posterior estimation (MAP)</a></li>
 </ul>
 </li>
 </ul>
@@ -452,362 +463,816 @@ document.write(`
 <h1><span class="section-number">1. </span>Probability Theory and Statistics<a class="headerlink" href="#probability-theory-and-statistics" title="Link to this heading">#</a></h1>
 <section id="basic-concepts">
 <h2><span class="section-number">1.1. </span>Basic concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading">#</a></h2>
-<p>A <strong>random variable</strong> is a fundamental concept in probability and statistics. It represents a variable whose values are determined by the outcomes of a random phenomenon. A <strong>discrete random variable</strong> takes on a countable number of distinct values, while a <strong>continuous random variable</strong> can take any value within an interval on the real number line. Random variables are characterized by their probability distribution, which specifies the probabilities that the variable takes on each of its possible values. The key characteristics of a probability distribution are their expected value (mean) and variance.</p>
-<p>A <strong>random process</strong> (or stochastic process) is a collection of random variables indexed by time or another variable, used to model systems that evolve randomly over time or space. A random process is a function that assigns a random variable to each point in a time or space domain (examples include stock market prices, weather patterns, and noise signals in electrical engineering). We can distinguish between discrete-time processes (whose indices are countable), and continuous-time processes (whose indices are an interval). We can also distinguish between stationary processes (whose statistical properties are constant over time), and nonstationary processes. A Markov process is a special type of stochastic process where the future state depends only on the current state.</p>
+<p>A <strong>random variable</strong> is a fundamental concept in probability and statistics. It represents a variable whose values are determined by the outcomes of a random phenomenon. A <strong>discrete random variable</strong> can take on a finite or countable number of distinct values. For example, the roll of a fair six-sided die is a discrete random variable, as it can result in one of six possible outcomes (1 through 6). The probability distribution of this random variable is uniform, meaning each outcome has an equal probability of occurring.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Simulate rolling a die 10000 times</span>
+<span class="n">rolls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">rolls</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Die Face&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Die Rolls&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bad10a0ad79882d49390ef514b34b013c32e4cfd8fea9ff83f5fa6870c094290.png" src="../_images/bad10a0ad79882d49390ef514b34b013c32e4cfd8fea9ff83f5fa6870c094290.png" />
+</div>
+</div>
+<p>A <strong>continuous random variable</strong> can take any value within a given range. The normal distribution (or Gaussian distribution) is a common continuous distribution characterized by its bell-shaped curve. It is defined by its mean (expected value) and standard deviation (a measure of variability).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="c1"># Generate data from a normal distribution</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">std_dev</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Plot the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the normal distribution</span>
+<span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std_dev</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Normal Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7d90a001d6af0ed4d29ae1f39f1077aa14c744728f5a76558f910ff4fa48a6d5.png" src="../_images/7d90a001d6af0ed4d29ae1f39f1077aa14c744728f5a76558f910ff4fa48a6d5.png" />
+</div>
+</div>
+<p>A <strong>random process</strong> (or stochastic process) is a collection of random variables indexed by time or another variable, used to model systems that evolve randomly over time or space. A random process is a function that assigns a random variable to each point in a time or space domain (examples include stock market prices, weather patterns, and noise signals in electrical engineering). We can distinguish between discrete-time processes (whose indices are countable), and continuous-time processes (whose indices are an interval). We can also distinguish between stationary processes (whose statistical properties are constant over time), and nonstationary processes.</p>
+<p>A random walk is a simple example of a discrete-time random process, where each step is determined randomly, leading to a path that evolves over time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a random walk</span>
+<span class="n">n_steps</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n_steps</span><span class="p">)</span>
+<span class="n">random_walk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span>
+
+<span class="c1"># Plot the random walk</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">random_walk</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time Step&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Walk&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b20302c5f6aacd505975fe9522de954b93889d5ed8340fa6cce53cc9502f1f22.png" src="../_images/b20302c5f6aacd505975fe9522de954b93889d5ed8340fa6cce53cc9502f1f22.png" />
+</div>
+</div>
 <p><strong>Statistical indepencence</strong> refers to the lack of a relationship between two or more random variables. More formally, we can distinguish between two types of statistical independence:</p>
 <ol class="arabic simple">
 <li><p><strong>Marginal independence</strong> refers to the lack of a relationship between two random variables, without considering the effect of any other variables. Mathematically, two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are marginally independent (<span class="math notranslate nohighlight">\(X \perp Y\)</span>) if their joint probability distribution can be expressed as the product of their marginal probability
 distributions, as in</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-356b1b89-f202-4e37-93d5-6f3a453d3e14">
-<span class="eqno">(1.1)<a class="headerlink" href="#equation-356b1b89-f202-4e37-93d5-6f3a453d3e14" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-16600fda-bf4e-4aa9-b2fb-8e74ad780b3b">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-16600fda-bf4e-4aa9-b2fb-8e74ad780b3b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(X, Y) = P(X)P(Y)
 \end{equation}\]</div>
+<p>To illustrate this concept, let’s generate two independent random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> from a normal distribution with mean 0 and standard deviation 1. We then plot their joint distribution using a scatter plot. If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are truly independent, the scatter plot will show no discernible pattern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Generate two independent random variables</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Plot their joint distribution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot of Marginally Independent Variables X and Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dea2eec3a354a137414653fd3096bbf843a509ac5956346e821a1adbdbf5716f.png" src="../_images/dea2eec3a354a137414653fd3096bbf843a509ac5956346e821a1adbdbf5716f.png" />
+</div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p><strong>Conditional independence</strong> refers to the lack of a relationship between two random variables, given the value of one or more other variables. Mathematically, two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are conditionally independent given a variable (<span class="math notranslate nohighlight">\(X \perp Y | Z\)</span>) if their conditional probability distribution satisfies</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-b9f52f72-d5ed-411d-8baa-a4be99158025">
-<span class="eqno">(1.2)<a class="headerlink" href="#equation-b9f52f72-d5ed-411d-8baa-a4be99158025" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-597da0ee-6f14-4d15-afce-8e95a82c080d">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-597da0ee-6f14-4d15-afce-8e95a82c080d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(X, Y | Z) = P(X | Z)P(Y | Z)
 \end{equation}\]</div>
+<p>To illustrate this, let’s generate three random variables <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span> such that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are dependent on <span class="math notranslate nohighlight">\(Z\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are conditionally independent given <span class="math notranslate nohighlight">\(Z\)</span></p></li>
+</ul>
+<p>This is done by adding noise to <span class="math notranslate nohighlight">\(Z\)</span> to generate <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>We first plot the scatter plot of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> without considering <span class="math notranslate nohighlight">\(Z\)</span>, which may show some correlation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate three random variables such that X and Y are independent given Z</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">Z</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">Z</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+
+<span class="c1"># Plot X and Y</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot of Variables X and Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/866c9665918f0b3a7f7f2df895f1d1982e45d8928af56234b850af302c59f3cc.png" src="../_images/866c9665918f0b3a7f7f2df895f1d1982e45d8928af56234b850af302c59f3cc.png" />
+</div>
+</div>
+<p>Then, we plot <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> for different ranges of <span class="math notranslate nohighlight">\(Z\)</span>. If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are conditionally independent given <span class="math notranslate nohighlight">\(Z\)</span>, the scatter plots for different values of <span class="math notranslate nohighlight">\(Z\)</span> should show no pattern, demonstrating that knowing <span class="math notranslate nohighlight">\(Z\)</span> removes the dependence between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now, plot X and Y given Z</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">z_value</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">Z</span> <span class="o">&gt;=</span> <span class="n">z_value</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">Z</span> <span class="o">&lt;=</span> <span class="n">z_value</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">Y</span><span class="p">[</span><span class="n">mask</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Z ~ </span><span class="si">{</span><span class="n">z_value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot of X and Y given different values of Z&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/22d5936a93b05b3688b216a78244f7e304d36c25001ea7ad63e1b05c7470799b.png" src="../_images/22d5936a93b05b3688b216a78244f7e304d36c25001ea7ad63e1b05c7470799b.png" />
+</div>
+</div>
 </section>
 <section id="expectation-variance-and-covariance">
 <h2><span class="section-number">1.2. </span>Expectation, variance, and covariance<a class="headerlink" href="#expectation-variance-and-covariance" title="Link to this heading">#</a></h2>
 <p>The expectation (or expected value) of a continuous random variable <span class="math notranslate nohighlight">\(X\)</span> with probability density function <span class="math notranslate nohighlight">\(p(x)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f49eb87-f0ed-40a5-bd3b-cac18ec70f6a">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-0f49eb87-f0ed-40a5-bd3b-cac18ec70f6a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ffccdab9-d48e-40a3-8034-d6ab67b81e03">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-ffccdab9-d48e-40a3-8034-d6ab67b81e03" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbb{E}[X] = \int xp(x)dx
 \end{equation}\]</div>
 <p>while the expectation of a discrete random variable with probability mass function <span class="math notranslate nohighlight">\(p(x)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e48641db-2cd4-44fc-b2bd-831dba61576a">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-e48641db-2cd4-44fc-b2bd-831dba61576a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4aedf378-20ce-4369-8742-a127098d8ff5">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-4aedf378-20ce-4369-8742-a127098d8ff5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbb{E}[X] = \sum_{x} xp(x)
 \end{equation}\]</div>
 <p>The expectation of any function of a random variable, <span class="math notranslate nohighlight">\(f(X)\)</span>, is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de3e0cd5-b9e1-4b74-8850-e4ab322aecc1">
-<span class="eqno">(1.5)<a class="headerlink" href="#equation-de3e0cd5-b9e1-4b74-8850-e4ab322aecc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-892310bf-4fb2-45de-8b9c-15eeb16ba690">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-892310bf-4fb2-45de-8b9c-15eeb16ba690" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbb{E}[X] = \int f(x)p(x)dx
 \end{equation}\]</div>
 <p>The deviation or fluctuation of <span class="math notranslate nohighlight">\(X\)</span> from its expected value is <span class="math notranslate nohighlight">\(X - \mathbb{E}[X]\)</span>. The variance of a random variable <span class="math notranslate nohighlight">\(X\)</span> measures the dispersion around its mean, and it is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6298d202-0515-4186-b674-b248fff1c6ca">
-<span class="eqno">(1.6)<a class="headerlink" href="#equation-6298d202-0515-4186-b674-b248fff1c6ca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2903a096-0524-4d07-976c-5d0070c35825">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-2903a096-0524-4d07-976c-5d0070c35825" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Var}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2]
 \end{equation}\]</div>
 <p>The covariance of two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> measures the degree to which two random variables change together. If the variables tend to show similar behavior (they tend to be above or below their expected values together), the covariance is positive. If one variable tends to increase when the other decreases, the covariance is negative. It is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04b8d645-cbcd-4b24-bf31-500c3908a9f4">
-<span class="eqno">(1.7)<a class="headerlink" href="#equation-04b8d645-cbcd-4b24-bf31-500c3908a9f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd0465f1-e134-475a-adde-ab22c84cd07d">
+<span class="eqno">(1.7)<a class="headerlink" href="#equation-fd0465f1-e134-475a-adde-ab22c84cd07d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Cov}[X,Y] = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])]
 \end{equation}\]</div>
 <p>Some <strong>algebraic properties</strong> of expectation, variance, and covariance will be extremely useful in manipulating and deriving statistical quantities of interest:</p>
 <ul>
 <li><p><strong>Linearity of expectations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8fba0d73-02a8-418a-93c5-faffcfbd16aa">
-<span class="eqno">(1.8)<a class="headerlink" href="#equation-8fba0d73-02a8-418a-93c5-faffcfbd16aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9155e26e-410d-476b-8e3a-24dfe2ca9adf">
+<span class="eqno">(1.8)<a class="headerlink" href="#equation-9155e26e-410d-476b-8e3a-24dfe2ca9adf" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbb{E}[aX+bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]
     \end{equation}\]</div>
 <p>Expectation is a linear operator. The expectation of a sum of random variables is the sum of their expectations, and the expectation of a scaled random variable is the scale factor times the expectation of the variable.</p>
 </li>
 <li><p><strong>Variance identity</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe96b81f-e229-446d-afea-b1fc05ea764a">
-<span class="eqno">(1.9)<a class="headerlink" href="#equation-fe96b81f-e229-446d-afea-b1fc05ea764a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9190150f-5ec1-4b8f-b5e9-e3bdaf0a0ddf">
+<span class="eqno">(1.9)<a class="headerlink" href="#equation-9190150f-5ec1-4b8f-b5e9-e3bdaf0a0ddf" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[X] = \mathbb{E}[(X-\mathbb{E}[X])^2] = \mathbb{E}[X^2]-(\mathbb{E}[X])^2
     \end{equation}\]</div>
 <p>Expanding <span class="math notranslate nohighlight">\(\mathbb{E}[(X-\mathbb{E}[X])^2]\)</span> we get <span class="math notranslate nohighlight">\(\mathbb{E}[X^2 -2X \mathbb{E}[X] + (\mathbb{E}[X])^2]\)</span>, which is equal to <span class="math notranslate nohighlight">\(\mathbb{E}[X^2] -2\mathbb{E}[X \mathbb{E}[X]] + \mathbb{E}[(\mathbb{E}[X])^2]\)</span>. However, <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span> is a constant (because it is the expected value of a random variable, it is not random anymore), so <span class="math notranslate nohighlight">\(\mathbb{E}[\mathbb{E}[X]]\)</span> is just <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span>. So that becomes <span class="math notranslate nohighlight">\(\mathbb{E}[X^2] -2\mathbb{E}[X] \mathbb{E}[X] + (\mathbb{E}[X])^2 = \mathbb{E}[X^2] -2(\mathbb{E}[X])^2 + (\mathbb{E}[X])^2\)</span>.</p>
 </li>
 <li><p><strong>Covariance identity</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d60c8c1-5f25-4514-8267-d472738f412c">
-<span class="eqno">(1.10)<a class="headerlink" href="#equation-7d60c8c1-5f25-4514-8267-d472738f412c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-508a1338-dd5a-40d9-a4d4-b34c63071e9d">
+<span class="eqno">(1.10)<a class="headerlink" href="#equation-508a1338-dd5a-40d9-a4d4-b34c63071e9d" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[X,Y] = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
     \end{equation}\]</div>
 <p>Expanding the product <span class="math notranslate nohighlight">\((X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\)</span> we get <span class="math notranslate nohighlight">\(X - X\mathbb{E}[Y] - Y\mathbb{E}[X] + \mathbb{E}[X]\mathbb{E}[Y]\)</span>. Taking the expectation  we get <span class="math notranslate nohighlight">\(\mathbb{E}[XY] - \mathbb{E}[X\mathbb{E}[Y]] - \mathbb{E}[Y\mathbb{E}[X]] + \mathbb{E}[\mathbb{E}[X]\mathbb{E}[Y]]\)</span>. Because the expectation is constant, we get to <span class="math notranslate nohighlight">\(\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] - \mathbb{E}[Y]\mathbb{E}[X] + \mathbb{E}[X]\mathbb{E}[Y]\)</span>.</p>
 </li>
 <li><p><strong>Covariance is symmetric</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ae4d9cf-f663-4a85-8b7b-cb29b166c66b">
-<span class="eqno">(1.11)<a class="headerlink" href="#equation-4ae4d9cf-f663-4a85-8b7b-cb29b166c66b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a6443d46-6713-4dff-94dd-21e011698e5b">
+<span class="eqno">(1.11)<a class="headerlink" href="#equation-a6443d46-6713-4dff-94dd-21e011698e5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[X,Y] = \operatorname{Cov}[Y,X]
     \end{equation}\]</div>
 <p>The direction of comparison does not matter for covariance, whether you measure how <span class="math notranslate nohighlight">\(X\)</span> varies with <span class="math notranslate nohighlight">\(Y\)</span> or <span class="math notranslate nohighlight">\(Y\)</span> with <span class="math notranslate nohighlight">\(X\)</span>, the result is the same.</p>
 </li>
 <li><p><strong>Variance is covariance with itself</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cbb24825-964e-417b-b821-3c9cbd03453b">
-<span class="eqno">(1.12)<a class="headerlink" href="#equation-cbb24825-964e-417b-b821-3c9cbd03453b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-beedc6ad-31ba-4f21-8c58-641d5761280d">
+<span class="eqno">(1.12)<a class="headerlink" href="#equation-beedc6ad-31ba-4f21-8c58-641d5761280d" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[X,X] = \operatorname{Var}[X]
     \end{equation}\]</div>
 <p>Covariance measures how two variables vary together, and variance is a special case where these two variables are the same.</p>
 </li>
 <li><p><strong>Variance is not linear</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-35c23235-7016-4733-9fbb-6fd4dbcab08b">
-<span class="eqno">(1.13)<a class="headerlink" href="#equation-35c23235-7016-4733-9fbb-6fd4dbcab08b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b361a227-ba1f-4fab-b4b0-83a91f31f52e">
+<span class="eqno">(1.13)<a class="headerlink" href="#equation-b361a227-ba1f-4fab-b4b0-83a91f31f52e" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[aX + b] = a^2\operatorname{Var}[X]
     \end{equation}\]</div>
 <p>The square in the variance formula leads to a squared scale factor when a random variable is scaled. The addition of a constant <span class="math notranslate nohighlight">\(b\)</span> does not affect variance, as variance measures dispersion around the mean, which is unaffected by constant shifts. To show why <span class="math notranslate nohighlight">\(a\)</span> becomes <span class="math notranslate nohighlight">\(a^2\)</span>, we have <span class="math notranslate nohighlight">\(\operatorname{Var}[aX] = \mathbb{E}[(aX-\mathbb{E}(aX)^2]\)</span>, which is equal to <span class="math notranslate nohighlight">\(\mathbb{E}[a^2(X-\mathbb{E}(X)^2] = a^2\mathbb{E}[(X-\mathbb{E}(X)^2]\)</span>.</p>
 </li>
 <li><p><strong>Covariance is not linear</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bed2c189-c93f-49f1-97a3-cddf23ed5399">
-<span class="eqno">(1.14)<a class="headerlink" href="#equation-bed2c189-c93f-49f1-97a3-cddf23ed5399" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8ac45ce7-04b6-4371-baf1-8bed8751c7c9">
+<span class="eqno">(1.14)<a class="headerlink" href="#equation-8ac45ce7-04b6-4371-baf1-8bed8751c7c9" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[aX + b,Y] = a\operatorname{Cov}[X,Y]
     \end{equation}\]</div>
 <p>Scaling one variable in a covariance relationship scales the covariance itself but does not affect the relationship’s direction or absence (signified by zero covariance). The addition of a constant does not affect covariance, as it does not change how one variable varies with another.</p>
 </li>
 <li><p><strong>Variance of a sum</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3bb54a0a-81a2-4758-a866-c5a5c1ea706f">
-<span class="eqno">(1.15)<a class="headerlink" href="#equation-3bb54a0a-81a2-4758-a866-c5a5c1ea706f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ccc85ace-acba-43ab-8d88-f4e2e72fb906">
+<span class="eqno">(1.15)<a class="headerlink" href="#equation-ccc85ace-acba-43ab-8d88-f4e2e72fb906" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[X+Y] = \operatorname{Var}[X] + \operatorname{Var}[Y] + 2\operatorname{Cov}[X,Y]
     \end{equation}\]</div>
 <p>The variance of a sum includes the individual variances and an additional term to account for how the variables co-vary. This comes from expanding <span class="math notranslate nohighlight">\(\mathbb{E}[(X + Y - \mathbb{E}[X+Y])^2]\)</span> and using the linearity of expectations.</p>
 </li>
 <li><p><strong>Variance of a large sum</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0a23a6c-c916-424d-8858-b81a93909366">
-<span class="eqno">(1.16)<a class="headerlink" href="#equation-a0a23a6c-c916-424d-8858-b81a93909366" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-458c9423-9f28-4f87-9843-5769f0dc3603">
+<span class="eqno">(1.16)<a class="headerlink" href="#equation-458c9423-9f28-4f87-9843-5769f0dc3603" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}\left[ \sum_{i=1}^{n}X_i \right] = \sum_{i=1}^{n}\sum_{j=1}^{n}\operatorname{Cov}[X_i,X_j] = \sum_{i=1}^{n}\operatorname{Var}[X_i] + 2\sum_{i=1}^{n-1}\sum_{j&gt;i}\operatorname{Cov}[X_i,X_j]
     \end{equation}\]</div>
 <p>The variance of a sum of multiple random variables includes both their individual variances and the covariance terms for every pair.</p>
 </li>
 <li><p><strong>Law of total expectations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-555999a0-4a82-4d21-81fc-2b8af6f87275">
-<span class="eqno">(1.17)<a class="headerlink" href="#equation-555999a0-4a82-4d21-81fc-2b8af6f87275" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1ad066c4-48e4-4798-8669-6c5ed83f6e34">
+<span class="eqno">(1.17)<a class="headerlink" href="#equation-1ad066c4-48e4-4798-8669-6c5ed83f6e34" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X|Y]]
     \end{equation}\]</div>
 <p>Suppose we have two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. We want to express the expectation of <span class="math notranslate nohighlight">\(X\)</span> (a marginal expectation) in terms of its conditional expectation given <span class="math notranslate nohighlight">\(Y\)</span>. his law states that the overall expectation of <span class="math notranslate nohighlight">\(X\)</span> can be found by taking the expectation of the conditional expectation of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y\)</span>. In practice, what we are doing is splitting the entire probability space into parts based on the values of <span class="math notranslate nohighlight">\(Y\)</span>, calculating the expected value of <span class="math notranslate nohighlight">\(X\)</span> (this is <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y]\)</span>), and then taking the expectation of these conditional expectations over the distribution of <span class="math notranslate nohighlight">\(Y\)</span>. Imagine <span class="math notranslate nohighlight">\(Y\)</span> as categorizing or segmenting the probability space into different scenarios or groups. Within each group, you calculate the average value of <span class="math notranslate nohighlight">\(X\)</span> (this gives you <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y=y]\)</span> for each <span class="math notranslate nohighlight">\(y\)</span>). Then, you average these averages over all possible groups (weighted by the probability of each group <span class="math notranslate nohighlight">\(Y=y\)</span>, leading back to the overall average of <span class="math notranslate nohighlight">\(X\)</span>. This law is particularly useful in scenarios where direct calculation of <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span> is complex but where conditional expectations <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y]\)</span> are simpler to compute.
 This is the expected value (or mean) of <span class="math notranslate nohighlight">\(X\)</span> given a particular value of <span class="math notranslate nohighlight">\(Y\)</span>. In many statistical models, especially in predictive modeling, this conditional mean can be thought of as a ``prediction’’ of  <span class="math notranslate nohighlight">\(X\)</span> based on the knowledge of <span class="math notranslate nohighlight">\(Y\)</span>. For example, if <span class="math notranslate nohighlight">\(Y\)</span> represents a set of features or conditions, then <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y]\)</span> is our best guess or prediction of <span class="math notranslate nohighlight">\(X\)</span> under those conditions.</p>
 </li>
 <li><p><strong>Law of total variance</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e5afe4b-166b-414f-b070-95f69d7217ec">
-<span class="eqno">(1.18)<a class="headerlink" href="#equation-3e5afe4b-166b-414f-b070-95f69d7217ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-56db9e44-cea4-46da-a9c5-abc59b6db35e">
+<span class="eqno">(1.18)<a class="headerlink" href="#equation-56db9e44-cea4-46da-a9c5-abc59b6db35e" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[X] = \operatorname{Var}[\mathbb{E}[X|Y]] + \mathbb{E}[\operatorname{Var}[X|Y]]
     \end{equation}\]</div>
 <p>This law decomposes the total variance into two parts. The first part can be thought of as between-group variability and measures how much the conditional means vary as <span class="math notranslate nohighlight">\(Y\)</span> changes. The second term is the within-group variability and represents the average of the variances within each group defined by <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </li>
 <li><p><strong>Independence implies zero covariance</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db01a0d4-a121-4dc8-90d5-07d2fd9da35b">
-<span class="eqno">(1.19)<a class="headerlink" href="#equation-db01a0d4-a121-4dc8-90d5-07d2fd9da35b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2da8508f-d393-44b6-9c5d-3b9d2d20f86f">
+<span class="eqno">(1.19)<a class="headerlink" href="#equation-2da8508f-d393-44b6-9c5d-3b9d2d20f86f" title="Permalink to this equation">#</a></span>\[\begin{equation}
         X \perp Y \rightarrow \operatorname{Cov}[X,Y] = 0
     \end{equation}\]</div>
 <p>Independence between two variables means the occurrence of one does not affect the probability distribution of the other. This lack of influence translates mathematically to zero covariance. However, the converse is not necessarily true as zero covariance does not capture nonlinear dependencies.</p>
 </li>
 </ul>
 </section>
-<section id="convergence-and-estimation">
-<h2><span class="section-number">1.3. </span>Convergence and estimation<a class="headerlink" href="#convergence-and-estimation" title="Link to this heading">#</a></h2>
+<section id="convergence">
+<h2><span class="section-number">1.3. </span>Convergence<a class="headerlink" href="#convergence" title="Link to this heading">#</a></h2>
 <p>The <strong>law of large numbers (LLN)</strong> states that, for a sequence of independent and identically distributed (i.i.d.) random variables <span class="math notranslate nohighlight">\(X_1, X_2 \ldots, X_n\)</span> each with expected value <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span>, the sample mean converges to the expected value as <span class="math notranslate nohighlight">\(n\)</span> approaches infinity</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a23f91d7-7c9e-4b4e-821f-88198735e70b">
-<span class="eqno">(1.20)<a class="headerlink" href="#equation-a23f91d7-7c9e-4b4e-821f-88198735e70b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-652892a8-dae7-41eb-ab77-755c226b804e">
+<span class="eqno">(1.20)<a class="headerlink" href="#equation-652892a8-dae7-41eb-ab77-755c226b804e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \frac{1}{n}\sum_{i=1}^{n}X_i \rightarrow \mathbb{E}[X] \quad \text{ as } n \rightarrow \infty
 \end{equation}\]</div>
 <p>The <strong>i.i.d. assumption</strong> is a fundamental concept in probability theory and statistics, with significant implications. Independence implies that the occurrence of one event or the value of one variable does not influence the occurrence of another. In the context of random variables, <span class="math notranslate nohighlight">\(X_1, X_2 \ldots, X_n\)</span> being independent means the outcome of <span class="math notranslate nohighlight">\(X_i\)</span> provides no information about the outcome of <span class="math notranslate nohighlight">\(X_j\)</span>, <span class="math notranslate nohighlight">\(i\neq j\)</span>. Identically distributed means that each of the random variables has the same probability distribution. They do not need to take on the same value, but the rules governing their behavior (i.e., the likelihood of each outcome) are identical. In the context of supervised learning, the i.i.d. assumption assumes that the training and test data are independently drawn from the same underlying probability distribution. This enables the use of statistical tools and techniques, such as maximum likelihood estimation and hypothesis testing, which are based on the assumption of independent and identically distributed data. In real-world data, this assumption is often violated as data may be dependent and non-identically distributed due to distribution shifts across geography or time, sampling practices, or the presence of confounding variables and selection bias.</p>
+<p>To illustrate the LLN, we can generate a sequence of independent and identically distributed (i.i.d.) random variables and observe how their sample mean converges to the expected value as the number of samples increases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a sequence of i.i.d. random variables</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Compute the cumulative mean</span>
+<span class="n">cumulative_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot the cumulative mean</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cumulative_mean</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sample Mean&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Expected Value (0)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Samples&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cumulative Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Law of Large Numbers&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cbe81718c45ca5836d9420e9005d081b9bfabab3968d74812d1c8a709b43e5ee.png" src="../_images/cbe81718c45ca5836d9420e9005d081b9bfabab3968d74812d1c8a709b43e5ee.png" />
+</div>
+</div>
 <p>The <strong>central limit theorem (CLT)</strong> states that if <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> are i.i.d. random variables with an expected value <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span> and a finite variance <span class="math notranslate nohighlight">\(\operatorname{Var}[X]\)</span>, the distribution of the sample mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b1eae67-2ec5-4c1f-840d-4e35b5582868">
-<span class="eqno">(1.21)<a class="headerlink" href="#equation-7b1eae67-2ec5-4c1f-840d-4e35b5582868" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a50117f5-efa3-4546-9181-8b06fd90bb6b">
+<span class="eqno">(1.21)<a class="headerlink" href="#equation-a50117f5-efa3-4546-9181-8b06fd90bb6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
 \end{equation}\]</div>
 <p>approaches a normal distribution as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>. Specifically, the standardized form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e2690839-c034-47b0-a749-383db0c54c11">
-<span class="eqno">(1.22)<a class="headerlink" href="#equation-e2690839-c034-47b0-a749-383db0c54c11" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ac8f095-30e9-4dad-ba2f-2944fd357ebb">
+<span class="eqno">(1.22)<a class="headerlink" href="#equation-7ac8f095-30e9-4dad-ba2f-2944fd357ebb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \frac{\bar{X}_n - \mathbb{E}[X]}{\sqrt{\operatorname{Var}[X]/n}}
 \end{equation}\]</div>
 <p>approaches the standard normal distribution <span class="math notranslate nohighlight">\(N(0, 1)\)</span>.</p>
 <p>The motivation behind the CLT lies in its ability to provide a predictable and well-understood behavior (the normal distribution) for averages of random variables, regardless of the original distribution of these variables. This is particularly useful in practical scenarios such as statistical sampling and hypothesis testing, where it is often necessary to make inferences about population parameters. The intuition of the CLT is that as we increase the number of random variables in our sample, the peculiarities and individual randomness of each variable tend to cancel out. This leads to the emergence of the normal distribution, which is symmetric and centered around the mean. The CLT is powerful because it applies to a wide range of distributions, whether they are symmetric, skewed, or even arbitrary, as long as the variables are i.i.d. with a finite variance.</p>
-<p><strong>Estimation</strong></p>
-<p>When observing values <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> from a distribution, the true nature of this distribution is often unknown. It is usually characterized by a function with one or more unknown parameters, denoted as <span class="math notranslate nohighlight">\(f(x; \theta)\)</span>. Some key terminology in statistics and estimation are:</p>
+</section>
+<section id="estimation-bias-and-variance">
+<h2><span class="section-number">1.4. </span>Estimation: bias and variance<a class="headerlink" href="#estimation-bias-and-variance" title="Link to this heading">#</a></h2>
+<p>When observing values <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> from a distribution, the true nature of this distribution is often unknown. In many cases, we are interested in estimating a parameter <span class="math notranslate nohighlight">\(\theta\)</span> of this distribution, such as the mean or variance. This process involves several key concepts:</p>
 <ul class="simple">
 <li><p><strong>Statistic</strong>: a function of the observed data, or the data alone.</p></li>
 <li><p><strong>Estimator</strong>: a rule or a function that tells you how to infer or guess the value of a parameter <span class="math notranslate nohighlight">\(\theta\)</span>, or some function of it, denoted as <span class="math notranslate nohighlight">\(h(\theta)\)</span>. Suppose you want to estimate the population mean. The sample mean (denoted usually as <span class="math notranslate nohighlight">\(\bar{X}\)</span>) is an estimator. It is a function that calculates the mean of your sample data.</p></li>
 <li><p><strong>Estimand</strong>: the quantity that we want to estimate.</p></li>
 <li><p><strong>Estimate</strong>: the actual numerical value obtained by applying the estimator to your data. It is an approximation of some estimand, which we get using data.</p></li>
 </ul>
-<p>We typically denote an estimator of <span class="math notranslate nohighlight">\(\theta\)</span> as <span class="math notranslate nohighlight">\(\widehat{\theta}_n\)</span>, where the hat symbol signifies that it is an estimate of the true parameter, and the subscript <span class="math notranslate nohighlight">\(n\)</span> indicates its dependence on the sample size. An estimator is itself a random variable because it is a function of random data. Its distribution, known as the sampling distribution, depends on the distribution of the data <span class="math notranslate nohighlight">\(X_i\)</span>. A key property of an estimator is consistency, which means that <span class="math notranslate nohighlight">\(\hat{\theta}_n\)</span> converges to <span class="math notranslate nohighlight">\(\theta\)</span> as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>. An estimator that fails to be consistent is generally not desirable. Another important aspect is the bias of an estimator, defined as <span class="math notranslate nohighlight">\(\mathbb{E}[\hat{\theta}_n - \theta]\)</span>. An estimator is unbiased if its bias is zero for all <span class="math notranslate nohighlight">\(\theta\)</span>. The estimator also has a variance, denoted as <span class="math notranslate nohighlight">\(\operatorname{Var}[\hat{\theta}]\)</span>. The square root of this variance is called the standard error, which provides a measure of how precise our estimate is.</p>
-</section>
-<section id="statistical-prediction">
-<h2><span class="section-number">1.4. </span>Statistical prediction<a class="headerlink" href="#statistical-prediction" title="Link to this heading">#</a></h2>
-<p><strong>Predicting one random variable from its distribution</strong></p>
-<p>Suppose we want to guess the value of a random variable <span class="math notranslate nohighlight">\(Y\)</span>. If we have a prediction that the value is going to be <span class="math notranslate nohighlight">\(m\)</span>, how do we assess the quality of our prediction? Ideally, we would like the difference between <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(m\)</span> to be as small as possible. Since we do not care if the difference is positive or negative, a common way to assess the quality of the prediction is to look at the squared error <span class="math notranslate nohighlight">\((Y-m)^2\)</span>. Now, because <span class="math notranslate nohighlight">\(Y\)</span> is a random value, it will fluctuate. So, we look at the mean square error (MSE) of <span class="math notranslate nohighlight">\(m\)</span>, which is the expected value of the squared differences, as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3f23d089-1b63-44a2-80e8-d88225d898a9">
-<span class="eqno">(1.23)<a class="headerlink" href="#equation-3f23d089-1b63-44a2-80e8-d88225d898a9" title="Permalink to this equation">#</a></span>\[\begin{align}
-    \text{MSE}(m) &amp;= \mathbb{E}[(Y-m)^2] \\
-    &amp;= \mathbb{E}[Y^2] - 2m \mathbb{E}[Y] + m^2
-\end{align}\]</div>
-<p>Where we considered that <span class="math notranslate nohighlight">\(m\)</span> is a constant and not a random variable (<span class="math notranslate nohighlight">\(\mathbb{E}[m]=m\)</span>). Now, recall from the variance identity that <span class="math notranslate nohighlight">\(\operatorname{Var}[X] = \mathbb{E}[(X-\mathbb{E}[X])^2] = \mathbb{E}[X^2]-(\mathbb{E}[X])^2\)</span>. If we replace <span class="math notranslate nohighlight">\(X\)</span> with <span class="math notranslate nohighlight">\(Y-m\)</span>, we have that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da790284-2408-4a0e-9c81-61442b99ff33">
-<span class="eqno">(1.24)<a class="headerlink" href="#equation-da790284-2408-4a0e-9c81-61442b99ff33" title="Permalink to this equation">#</a></span>\[\begin{align}
-    \operatorname{Var}[Y-m] &amp;= \mathbb{E}[(Y-m)^2]-(\mathbb{E}[Y-m])^2 \\
-    &amp;= \mathbb{E}[Y^2] - 2m \mathbb{E}[Y] + m^2 -(\mathbb{E}[Y-m])^2 \\
-    &amp;= \text{MSE}(m) -(\mathbb{E}[Y-m])^2
-\end{align}\]</div>
-<p>Thus, remembering that <span class="math notranslate nohighlight">\(\operatorname{Var}[Y-m] = \operatorname{Var}[Y]\)</span> and that <span class="math notranslate nohighlight">\(\mathbb{E}[m]=m\)</span> we can express the MSE of <span class="math notranslate nohighlight">\(m\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-39a5ca4f-6013-44b6-a9ed-898a89531eb0">
-<span class="eqno">(1.25)<a class="headerlink" href="#equation-39a5ca4f-6013-44b6-a9ed-898a89531eb0" title="Permalink to this equation">#</a></span>\[\begin{align}
-    \text{MSE}(m) &amp;= (\mathbb{E}[Y-m])^2 + \operatorname{Var}[Y] \\
-    &amp;= (\mathbb{E}[Y]-m)^2 + \operatorname{Var}[Y]
-\end{align}\]</div>
-<p>This is the simplest form of bias-variance decomposition: the first term is the squared bias of estimating <span class="math notranslate nohighlight">\(Y\)</span> with <span class="math notranslate nohighlight">\(m\)</span>; the second term is the variance of <span class="math notranslate nohighlight">\(Y-m\)</span>. To find the best prediction <span class="math notranslate nohighlight">\(m\)</span> for <span class="math notranslate nohighlight">\(Y\)</span>, we now aim to minimize the MSE. However, we can ignore the second component of the MSE, as the variance term <span class="math notranslate nohighlight">\(\text{Var}[Y]\)</span> does not depend on the prediction <span class="math notranslate nohighlight">\(m\)</span>, as it is a characteristic of the distribution of <span class="math notranslate nohighlight">\(Y\)</span>. Hence, it does not affect the minimization process with respect to <span class="math notranslate nohighlight">\(m\)</span>.To minimize <span class="math notranslate nohighlight">\(MSE(m)\)</span>, we take its derivative with respect to <span class="math notranslate nohighlight">\(m\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-f79a23a2-5c7d-4cdf-9e1e-c1109961b473">
-<span class="eqno">(1.26)<a class="headerlink" href="#equation-f79a23a2-5c7d-4cdf-9e1e-c1109961b473" title="Permalink to this equation">#</a></span>\[\begin{align}
-    \frac{d\text{MSE}(m)}{dm} &amp;= \frac{d}{dm} \left[(\mathbb{E}[Y] - m)^2 + \text{Var}[Y] \right] \\
-    &amp;= 2(\mathbb{E}[Y] - m)\left(\frac{d\mathbb{E}[Y]}{dm}- \frac{dm}{dm} \right) + \frac{d\text{Var}[Y]}{dm} 
-\end{align}\]</div>
-<p>Since <span class="math notranslate nohighlight">\(\text{Var}[Y]\)</span> and <span class="math notranslate nohighlight">\(\mathbb{E}[Y]\)</span> are constant with respect to <span class="math notranslate nohighlight">\(m\)</span>, their derivative is zero (changing <span class="math notranslate nohighlight">\(m\)</span> does not affect the distribution of <span class="math notranslate nohighlight">\(Y\)</span>). So we can simplify the overall derivative to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e17ee56-fb19-4162-9931-9b8f3454cc54">
-<span class="eqno">(1.27)<a class="headerlink" href="#equation-2e17ee56-fb19-4162-9931-9b8f3454cc54" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \frac{d\text{MSE}(m)}{dm} = -2(\mathbb{E}[Y] - m)
-\end{equation}\]</div>
-<p>Setting this derivative to zero for minimization we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15b1b553-b8e8-45e4-923f-95ae003b0bd8">
-<span class="eqno">(1.28)<a class="headerlink" href="#equation-15b1b553-b8e8-45e4-923f-95ae003b0bd8" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    -2(\mathbb{E}[Y] - m) = 0 \quad \longrightarrow \quad m = \mathbb{E}[Y]
-\end{equation}\]</div>
-<p>Thus, the best single-number prediction for minimizing the MSE, or the optimal guess for <span class="math notranslate nohighlight">\(Y\)</span>, is its expected value <span class="math notranslate nohighlight">\(\mathbb{E}[Y]\)</span>.</p>
-<p><strong>Predicting one random variable from another</strong></p>
-<p>Let us now suppose we want to predict the value of <span class="math notranslate nohighlight">\(Y\)</span>, but we can use the knowledge about another random variable <span class="math notranslate nohighlight">\(X\)</span>. Now, our guess is <span class="math notranslate nohighlight">\(m(X)\)</span>, a function of <span class="math notranslate nohighlight">\(X\)</span>. The error that we would now like to minimize is represented by <span class="math notranslate nohighlight">\(\mathbb{E}[(Y-m(x))^2]\)</span>. From the law of total expectations, we know that <span class="math notranslate nohighlight">\(\mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X|Y]]\)</span>. Replacing <span class="math notranslate nohighlight">\(X\)</span> with <span class="math notranslate nohighlight">\((Y-m(x))^2\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> with <span class="math notranslate nohighlight">\(X\)</span> we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3107e648-d491-401f-b182-13b12517e971">
-<span class="eqno">(1.29)<a class="headerlink" href="#equation-3107e648-d491-401f-b182-13b12517e971" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \mathbb{E}[(Y-m(x))^2] = \mathbb{E}[\mathbb{E}[(Y-m(x))^2|X]]
-\end{equation}\]</div>
-<p>where we express the MSE as an expectation of conditional expectations. For each value of <span class="math notranslate nohighlight">\(X=x\)</span>, the best prediction for <span class="math notranslate nohighlight">\(Y\)</span> (in terms of minimizing the MSE) is the conditional mean <span class="math notranslate nohighlight">\(\mathbb{E}[Y|X=x]\)</span>. Thus, the optimal prediction function is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a96507c6-75a0-4395-a238-d377a4805540">
-<span class="eqno">(1.30)<a class="headerlink" href="#equation-a96507c6-75a0-4395-a238-d377a4805540" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    m^*(X) = \mathbb{E}[Y|X=x]
-\end{equation}\]</div>
-<p>which is known as the regression function of <span class="math notranslate nohighlight">\(Y\)</span> on <span class="math notranslate nohighlight">\(X\)</span>, and describes how the expected value of <span class="math notranslate nohighlight">\(Y\)</span> changes with <span class="math notranslate nohighlight">\(X\)</span>. In general, the true regression function can be quite complex and may not have a simple mathematical expression. Due to this complexity, simpler models (like linear regression) are often used as approximations.</p>
-</section>
+<p>We typically denote an estimator of <span class="math notranslate nohighlight">\(\theta\)</span> as <span class="math notranslate nohighlight">\(\widehat{\theta}_n\)</span>, where the hat symbol signifies that it approximates the true parameter, and the subscript <span class="math notranslate nohighlight">\(n\)</span> indicates its dependence on the sample size. An estimator is itself a random variable because it is a function of random data. Its distribution, known as the sampling distribution, depends on the distribution of the data <span class="math notranslate nohighlight">\(X_i\)</span>. A desirable property of an estimator is consistency, which means that <span class="math notranslate nohighlight">\(\hat{\theta}_n\)</span> converges to <span class="math notranslate nohighlight">\(\theta\)</span> as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>. An estimator that fails to be consistent is generally not desirable. Two important properties of estimators are:</p>
+<ol class="arabic simple">
+<li><p><strong>Bias</strong>: the difference between the expected value of the estimator and the true parameter value. An estimator is unbiased if <span class="math notranslate nohighlight">\(\mathbb{E}[\widehat{\theta}_n] = \theta\)</span> for all <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p><strong>Variance</strong>: a measure of the spread of the estimator’s sampling distribution. The variance of an estimator indicates how much the estimator varies from sample to sample. The square root of this variance is called the standard error, which provides a measure of how precise our estimate is.</p></li>
+</ol>
+<p>Let’s now provide an example to illustrate the concepts of bias and variance in the context of estimating the mean of a normal distribution. We assume a true mean (<span class="math notranslate nohighlight">\(\mu\)</span>) of 5 and generate 100 samples, each consisting of 30 observations drawn from a normal distribution with this true mean and a standard deviation of 2. For each sample, we compute the <strong>sample mean</strong>, which serves as our estimator for the population mean.</p>
+<p>The sample means are then used to evaluate the bias and variance of the estimator:</p>
+<ul class="simple">
+<li><p>The bias is calculated as the difference between the average of the sample means (the expected value of the estimator) and the true mean. A low bias indicates that the estimator is accurate on average</p></li>
+<li><p>The variance is a measure of the spread of the sample means around their average. A low variance indicates that the estimator is reliable and produces similar estimates across different samples.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># True parameter</span>
+<span class="n">true_mean</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Generate multiple samples</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sample_size</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_mean</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">sample_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)]</span>
+
+<span class="c1"># Calculate sample means</span>
+<span class="n">sample_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">])</span>
+
+<span class="c1"># Calculate bias and variance</span>
+<span class="n">estimated_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_means</span><span class="p">)</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">estimated_mean</span> <span class="o">-</span> <span class="n">true_mean</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">sample_means</span><span class="p">)</span>
+
+<span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;True Mean: </span><span class="si">{</span><span class="n">true_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated Mean: </span><span class="si">{</span><span class="n">estimated_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bias: </span><span class="si">{</span><span class="n">bias</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance: </span><span class="si">{</span><span class="n">variance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot the distribution of sample means</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample_means</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">true_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">estimated_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Estimated Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Sample Means&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True Mean: 5
+Estimated Mean: 5.06400167175167
+Bias: 0.0640016717516696
+Variance: 0.12043348413823464
+</pre></div>
+</div>
+<img alt="../_images/00a99f51267443bbc0ddb6564b9d22fe41c4a2906f93da00ad95f11ce77bd388.png" src="../_images/00a99f51267443bbc0ddb6564b9d22fe41c4a2906f93da00ad95f11ce77bd388.png" />
+</div>
+</div>
+<p>The histogram of the sample means provides a visual representation of the estimator’s sampling distribution. The true mean is marked by a red dashed line, and the average of the sample means (the estimated mean) is shown with a solid blue line. This visualization helps to see how the sample means are distributed around the true mean, illustrating the concepts of bias (how far the average estimate is from the true value) and variance (how spread out the estimates are).</p>
 <section id="main-probability-distributions">
-<h2><span class="section-number">1.5. </span>Main probability distributions<a class="headerlink" href="#main-probability-distributions" title="Link to this heading">#</a></h2>
-<p><strong>Normal distribution</strong></p>
+<h3><span class="section-number">1.4.1. </span>Main Probability Distributions<a class="headerlink" href="#main-probability-distributions" title="Link to this heading">#</a></h3>
+<p><strong>Normal Distribution</strong></p>
 <p>The normal distribution, also known as the Gaussian distribution, is central in statistics due to its symmetric, bell-shaped curve. It is characterized by its mean <span class="math notranslate nohighlight">\( \mu \)</span> and standard deviation <span class="math notranslate nohighlight">\( \sigma \)</span>, with the probability density function (PDF) given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-11c037b9-d2cf-475b-8ab7-267dc64e3eb3">
-<span class="eqno">(1.31)<a class="headerlink" href="#equation-11c037b9-d2cf-475b-8ab7-267dc64e3eb3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12877bc5-e44b-42f8-9294-146822bf91f3">
+<span class="eqno">(1.23)<a class="headerlink" href="#equation-12877bc5-e44b-42f8-9294-146822bf91f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \end{equation}\]</div>
-<p>The significance of the normal distribution arises from the CLT, which states that sums of independent random variables converge to a normal distribution, regardless of the original distribution of these variables, making it applicable in a wide array of scenarios. This property underscores the normal distribution’s role in approximating the behavior of various real-world random processes.</p>
-<p><strong>Chi-Squared distribution</strong></p>
+<p>The significance of the normal distribution arises from the Central Limit Theorem (CLT), which states that sums of independent random variables converge to a normal distribution, regardless of the original distribution of these variables, making it applicable in a wide array of scenarios. This property underscores the normal distribution’s role in approximating the behavior of various real-world random processes.</p>
+<p><strong>Chi-Squared Distribution</strong></p>
 <p>The chi-squared distribution is another key distribution in statistics, especially in hypothesis testing and confidence interval estimation. It arises as the sum of the squares of independent standard normal variables. Specifically, if <span class="math notranslate nohighlight">\( Z_1, Z_2, ..., Z_k \)</span> are independent standard normal random variables, then <span class="math notranslate nohighlight">\( \sum_{i=1}^{k} Z_i^2 \)</span> follows a chi-squared distribution with <span class="math notranslate nohighlight">\( k \)</span> degrees of freedom. Its PDF for <span class="math notranslate nohighlight">\( x &gt; 0 \)</span> and <span class="math notranslate nohighlight">\( k \)</span> degrees of freedom is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1bd6eef8-8305-411e-8c6d-a54e40052444">
-<span class="eqno">(1.32)<a class="headerlink" href="#equation-1bd6eef8-8305-411e-8c6d-a54e40052444" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdb6c008-ed9d-4cb5-a88f-4e9b3aaf3ee2">
+<span class="eqno">(1.24)<a class="headerlink" href="#equation-cdb6c008-ed9d-4cb5-a88f-4e9b3aaf3ee2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x;k) = \frac{x^{k/2-1}e^{-x/2}}{2^{k/2}\Gamma(k/2)}
 \end{equation}\]</div>
 <p>This distribution is asymmetric and skewed to the right, with its shape and spread depending on the degrees of freedom <span class="math notranslate nohighlight">\( k \)</span>. It is primarily used in the chi-squared test for independence and goodness of fit, and in estimating variances of normal distributions.</p>
-<p><strong>F-distribution</strong></p>
+<p><strong>F-Distribution</strong></p>
 <p>The F-distribution is crucial in the context of variance analysis and hypothesis testing. It is the ratio of two scaled chi-squared distributions: if <span class="math notranslate nohighlight">\( U \)</span> follows a chi-squared distribution with <span class="math notranslate nohighlight">\( d_1 \)</span> degrees of freedom and <span class="math notranslate nohighlight">\( V \)</span> follows an independent chi-squared distribution with <span class="math notranslate nohighlight">\( d_2 \)</span> degrees of freedom, then the ratio <span class="math notranslate nohighlight">\( \frac{U/d_1}{V/d_2} \)</span> follows an F-distribution. Its PDF is described by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65311b5b-cda9-4bb2-bf04-47517d72a0a4">
-<span class="eqno">(1.33)<a class="headerlink" href="#equation-65311b5b-cda9-4bb2-bf04-47517d72a0a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-92db44df-2022-4b9d-bab5-ea74c1ffb391">
+<span class="eqno">(1.25)<a class="headerlink" href="#equation-92db44df-2022-4b9d-bab5-ea74c1ffb391" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x; d_1, d_2) = \frac{\sqrt{\frac{(d_1x)^{d_1}d_2^{d_2}}{(d_1x+d_2)^{d_1+d_2}}}}{x\text{B}\left(\frac{d_1}{2},\frac{d_2}{2}\right)}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( d_1 \)</span> and <span class="math notranslate nohighlight">\( d_2 \)</span> are the degrees of freedom. The distribution is non-symmetric, bounded at the left by 0, and its shape varies with the degrees of freedom. It is particularly useful in comparing variances between two samples, as in ANOVA and regression analysis.</p>
-<p><strong>Student’s t-distribution</strong></p>
+<p><strong>Student’s t-Distribution</strong></p>
 <p>The Student’s t-distribution arises when estimating the mean of a normally distributed population in situations where the sample size is small and the population standard deviation is unknown. It is defined by the PDF</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3d44d2e-3ea9-49c1-903e-3673aeaa0569">
-<span class="eqno">(1.34)<a class="headerlink" href="#equation-c3d44d2e-3ea9-49c1-903e-3673aeaa0569" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cab44ebf-1194-4e44-a8b6-4e1086d5073f">
+<span class="eqno">(1.26)<a class="headerlink" href="#equation-cab44ebf-1194-4e44-a8b6-4e1086d5073f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(t) = \frac{\Gamma\left(\frac{\nu + 1}{2}\right)}{\sqrt{\nu\pi}\Gamma\left(\frac{\nu}{2}\right)}\left(1+\frac{t^2}{\nu}\right)^{-\frac{\nu+1}{2}}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( \nu \)</span> denotes degrees of freedom. The t-distribution resembles the normal distribution but has heavier tails, meaning it is more prone to producing values that fall far from its mean. This property makes it particularly useful in hypothesis testing and constructing confidence intervals when the sample size is small. As the sample size increases, the t-distribution approaches the normal distribution, illustrating the connection between them.</p>
 <p>The Student’s t-distribution is particularly useful when dealing with small sample sizes or when the population variance is unknown. It is defined as the distribution of the ratio of a standard normal random variable <span class="math notranslate nohighlight">\(Z\)</span> (with mean 0 and variance 1) and the square root of a chi-square random variable <span class="math notranslate nohighlight">\(X\)</span> divided by its degrees of freedom <span class="math notranslate nohighlight">\(v\)</span>, i.e.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d7ddd33-7347-430b-87ff-f84a58f9993e">
-<span class="eqno">(1.35)<a class="headerlink" href="#equation-5d7ddd33-7347-430b-87ff-f84a58f9993e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e1b45f9f-671e-4845-b1dc-72d2d7e0ac7c">
+<span class="eqno">(1.27)<a class="headerlink" href="#equation-e1b45f9f-671e-4845-b1dc-72d2d7e0ac7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T = \frac{Z}{\sqrt{X/v}}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Z\)</span> follows a standard normal distribution and <span class="math notranslate nohighlight">\(X\)</span> follows a chi-square distribution with <span class="math notranslate nohighlight">\(v\)</span> degrees of freedom. The resulting <span class="math notranslate nohighlight">\(T\)</span> follows a Student’s t-distribution with <span class="math notranslate nohighlight">\(v\)</span> degrees of freedom.</p>
 <p>This distribution is symmetric and bell-shaped like the normal distribution but has heavier tails, meaning it is more prone to producing values that fall far from its mean. This property makes the t-distribution particularly suitable for small sample sizes, as it accounts for the increased uncertainty that comes with fewer observations.</p>
 <p>The t-distribution is central to many statistical tests, including the t-test for assessing the statistical significance of the difference between two sample means, the construction of confidence intervals for the mean of a normally distributed population when the standard deviation is unknown, and in linear regression analysis.</p>
 <p>The relationship between the normal distribution, the chi-square distribution, and the t-distribution highlights the importance of understanding how distributions can be related and transformed into each other, providing a powerful framework for statistical inference.</p>
-<p><strong>Exponential distribution</strong></p>
+<p><strong>Exponential Distribution</strong></p>
 <p>The exponential distribution models the time between events in processes with a constant rate of occurrence and is pivotal in reliability analysis and queuing theory. Its memoryless property implies that the probability of an event occurring in the next instant is independent of how much time has already elapsed. The PDF is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49a57b6c-93a3-4267-b8e7-f14a89650af6">
-<span class="eqno">(1.36)<a class="headerlink" href="#equation-49a57b6c-93a3-4267-b8e7-f14a89650af6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8025e654-4a8d-4a9f-b432-79fa65143d8e">
+<span class="eqno">(1.28)<a class="headerlink" href="#equation-8025e654-4a8d-4a9f-b432-79fa65143d8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x;\lambda) = \lambda e^{-\lambda x}
 \end{equation}\]</div>
 <p>for <span class="math notranslate nohighlight">\( x \geq 0 \)</span>. This distribution describes the time until an event like failure or arrival occurs and is widely used in survival analysis and reliability engineering.</p>
-<p><strong>Binomial distribution</strong></p>
+<p><strong>Binomial Distribution</strong></p>
 <p>The binomial distribution is fundamental in modeling binary outcomes and represents the number of successes in a fixed number of independent Bernoulli trials. The PDF is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cf7812c4-2e7b-48cb-bd31-51e1481a7e00">
-<span class="eqno">(1.37)<a class="headerlink" href="#equation-cf7812c4-2e7b-48cb-bd31-51e1481a7e00" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-73036b0f-598e-4e73-ba5b-62f709efa219">
+<span class="eqno">(1.29)<a class="headerlink" href="#equation-73036b0f-598e-4e73-ba5b-62f709efa219" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(k;n,p) = \binom{n}{k}p^k(1-p)^{n-k}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( k \)</span> is the number of successes, <span class="math notranslate nohighlight">\( n \)</span> the number of trials, and <span class="math notranslate nohighlight">\( p \)</span> the probability of success. The shape of the binomial distribution can be symmetric or skewed depending on the values of <span class="math notranslate nohighlight">\( n \)</span> and <span class="math notranslate nohighlight">\( p \)</span>. It is extensively used in scenarios like quality control, survey analysis, and clinical trials, providing a model for situations where outcomes are binary and probabilistically independent.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="c1"># Set up the figure</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="c1"># Normal Distribution</span>
+<span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;N(</span><span class="si">{</span><span class="n">mu</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Normal Distribution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Chi-Squared Distribution</span>
+<span class="n">df</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Chi2(</span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Chi-Squared Distribution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># F-Distribution</span>
+<span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;F(</span><span class="si">{</span><span class="n">d1</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">d2</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;F-Distribution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Student&#39;s t-Distribution</span>
+<span class="n">df</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;t(</span><span class="si">{</span><span class="n">df</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Student</span><span class="se">\&#39;</span><span class="s1">s t-Distribution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Exponential Distribution</span>
+<span class="n">lambda_</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">expon</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">lambda_</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Exp(</span><span class="si">{</span><span class="n">lambda_</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Exponential Distribution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Binomial Distribution</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.5</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">basefmt</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Binom(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">linefmt</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Binomial Distribution&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/36cad6439ce78357a00c9e7fe3424def4185512696afe25d7759b2a0eafea23a.png" src="../_images/36cad6439ce78357a00c9e7fe3424def4185512696afe25d7759b2a0eafea23a.png" />
+</div>
+</div>
+<p><strong>Explanation of plots:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Normal distribution:</strong> the plot shows the symmetric bell-shaped curve of the normal distribution with mean 0 and standard deviation 1.</p></li>
+<li><p><strong>Chi-Squared distribution:</strong> the plot illustrates the chi-squared distribution with 2 degrees of freedom, showing its right-skewed nature.</p></li>
+<li><p><strong>F-distribution:</strong> the plot shows the F-distribution with degrees of freedom 5 and 2, highlighting its right-skewed shape.</p></li>
+<li><p><strong>Student’s t-distribution:</strong> the plot depicts the t-distribution with 5 degrees of freedom, showing its similarity to the normal distribution but with heavier tails.</p></li>
+<li><p><strong>Exponential distribution:</strong> the plot displays the exponential distribution with a rate parameter of 1, showing its memoryless property and right-skewed shape.</p></li>
+<li><p><strong>Binomial distribution:</strong> the plot illustrates the binomial distribution with 10 trials and a success probability of 0.5, showing the discrete probability mass function.</p></li>
+</ol>
+<p>These visualizations help in understanding the different probability distributions and their properties, which are fundamental in various statistical analyses and applications.</p>
+</section>
 </section>
 <section id="hypothesis-testing-framework">
-<h2><span class="section-number">1.6. </span>Hypothesis testing framework<a class="headerlink" href="#hypothesis-testing-framework" title="Link to this heading">#</a></h2>
-<p>Hypothesis testing is a fundamental framework in statistics used to determine whether there is enough evidence in a sample of data to infer that a certain condition holds for the entire population. In hypothesis testing, two contradictory hypotheses about a population parameter are considered: the null hypothesis (<span class="math notranslate nohighlight">\(H_0\)</span>) and the alternative hypothesis (<span class="math notranslate nohighlight">\(H_1\)</span>). The null hypothesis represents a default position or a statement of no effect or no difference. The alternative hypothesis represents what we want to prove or establish. A test statistic is calculated from the sample data and is used to assess the truth of the null hypothesis. The choice of test statistic depends on the nature of the data and the hypothesis being tested. The P-value is the probability of observing a test statistic as extreme as, or more extreme than, the observed value under the assumption that the null hypothesis is true. A smaller P-value indicates that the observed data is less likely under the null hypothesis. Based on the P-value and a predetermined significance level (usually denoted as <span class="math notranslate nohighlight">\(\alpha\)</span>, commonly set at 0.05), a decision is made: if the P-value is less than <span class="math notranslate nohighlight">\(\alpha\)</span>, the null hypothesis is rejected in favor of the alternative hypothesis; if the P-value is greater than <span class="math notranslate nohighlight">\(\alpha\)</span>, there is not enough evidence to reject the null hypothesis. In hypothesis testing, two types of errors can occur. Type I error corresponds to ejecting the null hypothesis when it is actually true (false positive). The probability of making a Type I error is <span class="math notranslate nohighlight">\(\alpha\)</span>. Type II error is failing to reject the null hypothesis when the alternative hypothesis is true (false negative). Hypothesis testing is a critical tool in statistics for making inferences about populations based on sample data. It allows researchers to test assumptions and make decisions based on statistical evidence. The goal of hypothesis testing is not to prove the null hypothesis but to assess the strength of evidence against it.</p>
-<p><strong>Using distributions for hypothesis tests</strong></p>
-<p>Hypothesis testing is a foundational concept in statistics used to infer the properties of a population based on sample data. The choice of distribution for conducting a hypothesis test depends on the nature of the data, the size of the sample, and the assumptions that can be made about the population. Below, we explore various hypothesis tests, the distributions used, and the rationale for their use.</p>
-<p><strong>Comparing means</strong></p>
+<h2><span class="section-number">1.5. </span>Hypothesis testing framework<a class="headerlink" href="#hypothesis-testing-framework" title="Link to this heading">#</a></h2>
+<p>Hypothesis testing is a fundamental framework in statistics used to determine whether there is enough evidence in a sample of data to infer that a certain condition holds for the entire population. In hypothesis testing, two contradictory hypotheses about a population parameter are considered: the null hypothesis (<span class="math notranslate nohighlight">\(H_0\)</span>) and the alternative hypothesis (<span class="math notranslate nohighlight">\(H_1\)</span>). The null hypothesis represents a default position or a statement of no effect or no difference. The alternative hypothesis represents what we want to prove or establish.</p>
+<p>A test statistic is calculated from the sample data and is used to assess the truth of the null hypothesis. The choice of test statistic depends on the nature of the data and the hypothesis being tested. The P-value is the probability of observing a test statistic as extreme as, or more extreme than, the observed value under the assumption that the null hypothesis is true. A smaller P-value indicates that the observed data is less likely under the null hypothesis. Based on the P-value and a predetermined significance level (usually denoted as <span class="math notranslate nohighlight">\(\alpha\)</span>, commonly set at 0.05), a decision is made: if the P-value is less than <span class="math notranslate nohighlight">\(\alpha\)</span>, the null hypothesis is rejected in favor of the alternative hypothesis; if the P-value is greater than <span class="math notranslate nohighlight">\(\alpha\)</span>, there is not enough evidence to reject the null hypothesis.</p>
+<p>In hypothesis testing, two types of errors can occur. Type I error corresponds to rejecting the null hypothesis when it is actually true (false positive). The probability of making a Type I error is <span class="math notranslate nohighlight">\(\alpha\)</span>. Type II error is failing to reject the null hypothesis when the alternative hypothesis is true (false negative).</p>
+<p>Hypothesis testing is a critical tool in statistics for making inferences about populations based on sample data. It allows researchers to test assumptions and make decisions based on statistical evidence. The goal of hypothesis testing is not to prove the null hypothesis but to assess the strength of evidence against it. Hypothesis testing is a foundational concept in statistics used to infer the properties of a population based on sample data. The choice of distribution for conducting a hypothesis test depends on the nature of the data, the size of the sample, and the assumptions that can be made about the population. Below, we explore various hypothesis tests, the distributions used, and the rationale for their use.</p>
+<section id="comparing-means">
+<h3><span class="section-number">1.5.1. </span>Comparing Means<a class="headerlink" href="#comparing-means" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>The <strong>Z-test</strong> is used when comparing the mean of a sample to a known population mean, or comparing the means of two large independent samples. The Z-test is applicable when the population variance is known and the sample size is large (typically <span class="math notranslate nohighlight">\(n &gt; 30\)</span>). The normal distribution is used due to the CLT, which states that the sampling distribution of the sample mean will approximate a normal distribution as the sample size becomes large, regardless of the population’s distribution.</p></li>
-<li><p>The <strong>T-test</strong> is used when the population variance is unknown and the sample size is small, the t-distribution is used. The t-test is more accommodating of the uncertainty in the sample estimate of the variance, providing more accurate confidence intervals and p-values. The t-distribution converges to the normal distribution as the sample size increases.</p>
+<li><p><strong>Z-test:</strong> Used when comparing the mean of a sample to a known population mean, or comparing the means of two large independent samples. The Z-test is applicable when the population variance is known and the sample size is large (typically <span class="math notranslate nohighlight">\(n &gt; 30\)</span>). The normal distribution is used due to the Central Limit Theorem (CLT), which states that the sampling distribution of the sample mean will approximate a normal distribution as the sample size becomes large, regardless of the population’s distribution.</p></li>
+<li><p><strong>T-test:</strong> Used when the population variance is unknown and the sample size is small, the t-distribution is used. The t-test is more accommodating of the uncertainty in the sample estimate of the variance, providing more accurate confidence intervals and P-values. The t-distribution converges to the normal distribution as the sample size increases.</p>
 <ul>
-<li><p><strong>One-sample t-test</strong> compares the mean of a single sample to a known mean.</p></li>
-<li><p><strong>Two-sample t-test</strong> compares the means of two independent samples.</p></li>
-<li><p><strong>Paired t-test</strong> compares means from the same group at different times or under different conditions.</p></li>
+<li><p><strong>One-sample t-test:</strong> Compares the mean of a single sample to a known mean.</p></li>
+<li><p><strong>Two-sample t-test:</strong> Compares the means of two independent samples.</p></li>
+<li><p><strong>Paired t-test:</strong> Compares means from the same group at different times or under different conditions.</p></li>
 </ul>
 </li>
 </ul>
-<p><strong>Comparing variances</strong>: the <strong>F-test</strong> is used in the analysis of variance (ANOVA) and for comparing the variances of two samples. The F-distribution arises naturally when comparing the ratio of two variances, each of which follows a chi-squared distribution when the underlying population is normally distributed. The F-test assesses whether the groups have the same variance, an assumption often required in ANOVA and regression analysis. ANOVA is used to compare the means of three or more samples. The F-distribution is used in ANOVA to compare the ratio of the variance explained by the model to the variance within the groups. This test helps to determine if there are significant differences between the means of the groups.</p>
-<p>In <strong>Regression analysis</strong>, the goal is to model the relationship between one or more independent variables and a dependent variable. Several tests can be employed:</p>
+<p>Let’see an example of a one-sample t-test to check if the mean height of a sample of people is different from a known population mean of 170 cm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">sample_heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">172</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Perform one-sample t-test</span>
+<span class="n">population_mean</span> <span class="o">=</span> <span class="mi">170</span>
+<span class="n">t_statistic</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">sample_heights</span><span class="p">,</span> <span class="n">population_mean</span><span class="p">)</span>
+
+<span class="c1"># Significance level</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Output the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;T-statistic: </span><span class="si">{</span><span class="n">t_statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Significance level (alpha): </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Automated conclusion based on P-value</span>
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="n">conclusion</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reject the null hypothesis. There is sufficient evidence to conclude that the mean height of the &quot;</span>
+                  <span class="sa">f</span><span class="s2">&quot;sample is significantly different from the population mean of 170 cm at the </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2"> significance level.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">conclusion</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fail to reject the null hypothesis. There is not sufficient evidence to conclude that the mean height &quot;</span>
+                  <span class="sa">f</span><span class="s2">&quot;of the sample is significantly different from the population mean of 170 cm at the </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2"> significance level.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">conclusion</span><span class="p">)</span>
+
+<span class="c1"># Plotting the distribution of sample means</span>
+<span class="n">sample_means</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sample_heights</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample_means</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample_heights</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sample Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">population_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Population Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;One-Sample t-Test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T-statistic: 1.289, P-value: 0.207
+Significance level (alpha): 0.05
+Fail to reject the null hypothesis. There is not sufficient evidence to conclude that the mean height of the sample is significantly different from the population mean of 170 cm at the 0.05 significance level.
+</pre></div>
+</div>
+<img alt="../_images/ee04420a0645267bc2ef9dc640945f5ee120d044f8a9d9519dedae036e8f8e71.png" src="../_images/ee04420a0645267bc2ef9dc640945f5ee120d044f8a9d9519dedae036e8f8e71.png" />
+</div>
+</div>
+<p>Let’s also see an example of the two-sample t-test to compare the mean heights of two independent samples and determine if there is a statistically significant difference between the two population means. Using a significance level of 0.05, the two-sample t-test calculates the t-statistic and P-value to assess the null hypothesis that the means of the two samples are equal. If the P-value is less than 0.05, the null hypothesis is rejected, indicating a significant difference between the sample means.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">172</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">169</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Perform two-sample t-test</span>
+<span class="n">t_statistic</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">)</span>
+
+<span class="c1"># Significance level</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+<span class="c1"># Output the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;T-statistic: </span><span class="si">{</span><span class="n">t_statistic</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, P-value: </span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Significance level (alpha): </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Automated conclusion based on P-value</span>
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha</span><span class="p">:</span>
+    <span class="n">conclusion</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reject the null hypothesis. There is sufficient evidence to conclude that the mean heights of the &quot;</span>
+                  <span class="sa">f</span><span class="s2">&quot;two samples are significantly different at the </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2"> significance level.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">conclusion</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fail to reject the null hypothesis. There is not sufficient evidence to conclude that the mean heights &quot;</span>
+                  <span class="sa">f</span><span class="s2">&quot;of the two samples are significantly different at the </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2"> significance level.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">conclusion</span><span class="p">)</span>
+
+<span class="c1"># Plotting the distribution of sample means</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sample 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample2</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sample 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sample 1 Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sample2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Sample 2 Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sample Mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Two-Sample t-Test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T-statistic: 3.598, P-value: 0.000
+Significance level (alpha): 0.05
+Reject the null hypothesis. There is sufficient evidence to conclude that the mean heights of the two samples are significantly different at the 0.05 significance level.
+</pre></div>
+</div>
+<img alt="../_images/f8e26f90475f7f1e2bd9b88693050d72799650b6a71f58ac96a9448c2bed01f4.png" src="../_images/f8e26f90475f7f1e2bd9b88693050d72799650b6a71f58ac96a9448c2bed01f4.png" />
+</div>
+</div>
+</section>
+<section id="comparing-variances">
+<h3><span class="section-number">1.5.2. </span>Comparing Variances<a class="headerlink" href="#comparing-variances" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>\textit{t-tests for regression coefficients:} To determine if individual predictors are significantly related to the dependent variable, t-tests are used, leveraging the t-distribution. This is because the estimates of the coefficients have distributions that are best modeled by the t-distribution, especially with small sample sizes.</p></li>
-<li><p>\textit{F-test for Overall Model Significance:} The F-test is used to assess whether at least one predictor variable has a non-zero coefficient, indicating that the model provides a better fit to the data than a model with no predictors. This test uses the F-distribution, comparing the model’s explained variance to the unexplained variance.</p></li>
+<li><p><strong>F-test:</strong> Used in the analysis of variance (ANOVA) and for comparing the variances of two samples. The F-distribution arises naturally when comparing the ratio of two variances, each of which follows a chi-squared distribution when the underlying population is normally distributed. The F-test assesses whether the groups have the same variance, an assumption often required in ANOVA and regression analysis. ANOVA is used to compare the means of three or more samples. The F-distribution is used in ANOVA to compare the ratio of the variance explained by the model to the variance within the groups. This test helps to determine if there are significant differences between the means of the groups.</p></li>
 </ul>
-<p><strong>Goodness of fit and independence tests</strong></p>
+</section>
+<section id="regression-analysis">
+<h3><span class="section-number">1.5.3. </span>Regression Analysis<a class="headerlink" href="#regression-analysis" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>The <strong>chi-squared test</strong> is used for categorical data to assess how likely it is that an observed distribution is due to chance. It is used in goodness-of-fit tests to compare the observed distribution to an expected distribution, and in tests of independence to evaluate the relationship between two categorical variables in a contingency table. The chi-squared distribution is used because the test statistic follows this distribution under the null hypothesis.</p></li>
-<li><p><strong>Non-parametric tests</strong> can be used when the assumptions about the population distribution are not met. These tests do not rely on the normality assumption and often use ranking methods or resampling techniques. Examples include the Mann-Whitney U test, Wilcoxon signed-rank test, and Kruskal-Wallis H test.</p></li>
+<li><p><strong>T-tests for regression coefficients:</strong> To determine if individual predictors are significantly related to the dependent variable, t-tests are used, leveraging the t-distribution. This is because the estimates of the coefficients have distributions that are best modeled by the t-distribution, especially with small sample sizes.</p></li>
+<li><p><strong>F-test for overall model significance:</strong> The F-test is used to assess whether at least one predictor variable has a non-zero coefficient, indicating that the model provides a better fit to the data than a model with no predictors. This test uses the F-distribution, comparing the model’s explained variance to the unexplained variance.</p></li>
 </ul>
-<p>## Bayesian learning</p>
-<p>Statistical methods can be broadly divided into two macro-categories: frequentist and Bayesian. The frequentist approach views parameters as fixed but unknown quantities; uses data to estimate these parameters; and makes point estimates (i.e., a single best guess) for these parameters. The Bayesian approach views parameters as random variables; uses data and prior beliefs (prior distributions) to update our beliefs about these parameters; and results in a probability distribution over the parameters, capturing the uncertainty. Another difference is that Bayesian statistics treats probability as a measure of belief or certainty rather than frequency. This means probabilities are subjective and can be updated as new information becomes available. In frequentist statistics, probability is interpreted as the long-run frequency of events. It relies on the concept of an infinite sequence of repeated trials. Bayesian methods incorporate prior knowledge or beliefs through the use of prior probability distributions, while in frequentist methods all inferences are made solely from the data at hand.</p>
-<p>The Bayesian approach is formalized using Bayes’ theorem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2b409f3d-277c-41b5-9895-6a40060c8390">
-<span class="eqno">(1.38)<a class="headerlink" href="#equation-2b409f3d-277c-41b5-9895-6a40060c8390" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    P(\theta | X) = \frac{P(X | \theta)P(\theta)}{P(X)}
-\end{equation}\]</div>
+</section>
+<section id="goodness-of-fit-and-independence-tests">
+<h3><span class="section-number">1.5.4. </span>Goodness of Fit and Independence Tests<a class="headerlink" href="#goodness-of-fit-and-independence-tests" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Chi-squared test:</strong> Used for categorical data to assess how likely it is that an observed distribution is due to chance. It is used in goodness-of-fit tests to compare the observed distribution to an expected distribution, and in tests of independence to evaluate the relationship between two categorical variables in a contingency table. The chi-squared distribution is used because the test statistic follows this distribution under the null hypothesis.</p></li>
+<li><p><strong>Non-parametric tests:</strong> Used when the assumptions about the population distribution are not met. These tests do not rely on the normality assumption and often use ranking methods or resampling techniques. Examples include the Mann-Whitney U test, Wilcoxon signed-rank test, and Kruskal-Wallis H test.</p></li>
+</ul>
+</section>
+</section>
+<section id="bayesian-learning">
+<h2><span class="section-number">1.6. </span>Bayesian Learning<a class="headerlink" href="#bayesian-learning" title="Link to this heading">#</a></h2>
+<p>Statistical methods can be broadly divided into two macro-categories: frequentist and Bayesian. The frequentist approach views parameters as fixed but unknown quantities, uses data to estimate these parameters, and makes point estimates (i.e., a single best guess) for these parameters. In contrast, the Bayesian approach views parameters as random variables, uses data and prior beliefs (prior distributions) to update our beliefs about these parameters, and results in a probability distribution over the parameters, capturing the uncertainty.</p>
+<p>One key difference is that Bayesian statistics treats probability as a measure of belief or certainty rather than frequency. This means probabilities are subjective and can be updated as new information becomes available. In frequentist statistics, probability is interpreted as the long-run frequency of events, relying on the concept of an infinite sequence of repeated trials. Bayesian methods incorporate prior knowledge or beliefs through the use of prior probability distributions, while frequentist methods make inferences solely from the data at hand.</p>
+<p>Bayesian learning is formalized using <strong>Bayes’ theorem</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+P(\theta | X) = \frac{P(X | \theta)P(\theta)}{P(X)}
+\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P(\theta | X)\)</span> is the posterior distribution of the parameters given the data.</p></li>
 <li><p><span class="math notranslate nohighlight">\(P(X | \theta)\)</span> is the likelihood of the data given the parameters. It represents the probability of observing the data <span class="math notranslate nohighlight">\(X\)</span> given a particular set of parameters <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(P(\theta)\)</span> is the prior distribution of the parameters (our beliefs before seeing the data).</p></li>
-<li><p><span class="math notranslate nohighlight">\(P(X)\)</span> is the evidence or marginal likelihood. It is the probability of the data over all possible parameter values, which acts as a normalizing constant to ensure the posterior distribution sums (or integrates) to 1.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(X)\)</span> is the evidence or marginal likelihood. It is the probability of the data over all possible parameter values, acting as a normalizing constant to ensure the posterior distribution sums (or integrates) to 1.</p></li>
 </ul>
-<p>Bayes’ Theorem allows us to update our initial beliefs or probabilities <span class="math notranslate nohighlight">\(P(\theta)\)</span> in light of new evidence (<span class="math notranslate nohighlight">\(X\)</span>). In other words, it provides a way to revise existing predictions or hypotheses given new or additional information. Computing the posterior distribution means determining the probability distribution of the parameters of a model given the observed data. In a Bayesian context, this means updating our beliefs about possible parameter values based on the evidence provided by the data. When we say ``computing the posterior distribution’’, we are essentially trying to determine <span class="math notranslate nohighlight">\(P(\theta | X)\)</span> for all possible values of <span class="math notranslate nohighlight">\(\theta\)</span>. The main challenge in Bayesian learning is computing the posterior distribution, especially for complex models. This is where methods like Markov chain Monte Carlo (MCMC) come into play. Because of these challenges, we often resort to methods like sampling (e.g., MCMC) or approximations to estimate the posterior distribution, rather than computing it exactly. The goal is to get a representation of the distribution that lets us make informed decisions about the likely values of the parameters given the data.</p>
-<p>Estimating the posterior distribution is the core of Bayesian inference. After observing data, we combine our prior beliefs with the likelihood of the observed data to compute the posterior distribution. The shape of this distribution reflects our updated beliefs about the parameters given the data. Once we have the posterior distribution, we can draw samples from it. Each sample represents a plausible value of the parameter(s) given our prior beliefs and the observed data. By looking at the spread and distribution of these samples, we can understand the uncertainty associated with our estimates. In many situations, especially with complex models, the posterior distribution might not have a simple analytical form. In these cases, we cannot just ``look’’ at the posterior directly. Instead, we use sampling techniques (like MCMC methods) to draw samples from the posterior, even if we cannot describe the posterior in a simple equation. These samples then serve multiple purposes:</p>
+<p>Bayes’ Theorem allows us to update our initial beliefs or probabilities <span class="math notranslate nohighlight">\(P(\theta)\)</span> in light of new evidence (<span class="math notranslate nohighlight">\(X\)</span>). In other words, it provides a way to revise existing predictions or hypotheses given new or additional information.</p>
+<p><strong>Estimating the posterior distribution</strong></p>
+<p>Computing the posterior distribution means determining the probability distribution of the parameters of a model given the observed data. This involves updating our beliefs about possible parameter values based on the evidence provided by the data. The main challenge in Bayesian learning is computing the posterior distribution, especially for complex models. This is where methods like Markov chain Monte Carlo (MCMC) come into play. Because of these challenges, we often resort to methods like sampling (e.g., MCMC) or approximations to estimate the posterior distribution, rather than computing it exactly. The goal is to get a representation of the distribution that lets us make informed decisions about the likely values of the parameters given the data.</p>
+<p>Estimating the posterior distribution is the core of Bayesian inference. After observing data, we combine our prior beliefs with the likelihood of the observed data to compute the posterior distribution. The shape of this distribution reflects our updated beliefs about the parameters given the data. Once we have the posterior distribution, we can draw samples from it. Each sample represents a plausible value of the parameter(s) given our prior beliefs and the observed data. By looking at the spread and distribution of these samples, we can understand the uncertainty associated with our estimates.</p>
+<p>In many situations, especially with complex models, the posterior distribution might not have a simple analytical form. In these cases, we cannot just “look” at the posterior directly. Instead, we use sampling techniques (like MCMC methods) to draw samples from the posterior, even if we cannot describe the posterior in a simple equation. These samples then serve multiple purposes:</p>
 <ul class="simple">
-<li><p>Uncertainty estimation: The spread and distribution of the samples give a sense of how uncertain we are about our parameter estimates.</p></li>
-<li><p>Predictive modeling: We can use the samples to make predictions for new data and to get a sense of uncertainty in those predictions.</p></li>
-<li><p>Model checking: We can compare the predictions of our model (using the posterior samples) to the actual observed data to see if our model is a good fit.</p></li>
-<li><p>Decision making: In practical scenarios, decisions might be based on the posterior samples, especially when we need to consider the uncertainty in our estimates.</p></li>
+<li><p><strong>Uncertainty estimation:</strong> the spread and distribution of the samples give a sense of how uncertain we are about our parameter estimates.</p></li>
+<li><p><strong>Predictive modeling:</strong> we can use the samples to make predictions for new data and to get a sense of uncertainty in those predictions.</p></li>
+<li><p><strong>Model checking:</strong> we can compare the predictions of our model (using the posterior samples) to the actual observed data to see if our model is a good fit.</p></li>
+<li><p><strong>Decision making:</strong> in practical scenarios, decisions might be based on the posterior samples, especially when we need to consider the uncertainty in our estimates.</p></li>
 </ul>
-<p>So, in summary, while the posterior distribution encapsulates our updated beliefs after seeing data, sampling from the posterior allows us to quantify, explore, and make decisions based on the uncertainty in those beliefs.</p>
+<p>In summary, while the posterior distribution encapsulates our updated beliefs after seeing data, sampling from the posterior allows us to quantify, explore, and make decisions based on the uncertainty in those beliefs.</p>
 <section id="markov-chain-monte-carlo-mcmc">
 <h3><span class="section-number">1.6.1. </span>Markov chain Monte Carlo (MCMC)<a class="headerlink" href="#markov-chain-monte-carlo-mcmc" title="Link to this heading">#</a></h3>
-<p>MCMC algorithms are used to approximate complex probability distributions. They are especially useful in Bayesian statistics when direct computation of the posterior distribution is challenging. The basic idea is that we want to understand a complex distribution, which is too intricate to tackle directly. Instead of trying to compute it exactly, we generate samples that come from that distribution. Over time, the distribution of these samples will closely match your target distribution. The key concepts of MCMC are two. A Markov chain is a sequence of random samples where each sample depends only on the one before it. It is like a random walk where each step is influenced only by the current position. Monte Carlo is a technique where we use random sampling to get numerical results for problems that might be deterministic in principle. The name originates from the Monte Carlo Casino, as it relies on randomness. The main steps of MCMC algorithms are:</p>
+<p>MCMC algorithms are used to approximate complex probability distributions. They are especially useful in Bayesian statistics when direct computation of the posterior distribution is challenging. The basic idea is to generate samples from a complex distribution, which is too intricate to tackle directly. Instead of computing it exactly, we generate samples that come from that distribution. Over time, the distribution of these samples will closely match the target distribution.</p>
+<p>The key concepts of MCMC are two-fold:</p>
 <ul class="simple">
-<li><p>Initialization: Start at a random position (a random parameter value).</p></li>
-<li><p>Proposal: At each step, propose a new position based on the current one. This can be a random jump, but it is typically a small move.</p></li>
-<li><p>Acceptance: Decide whether to move to the proposed position. If the new position is a better fit to the data (higher posterior probability*), we will likely accept it. If it is worse, you might still accept it but with a lower probability. This decision process ensures you explore the whole space but spend more time in high-probability areas.</p></li>
-<li><p>Iteration: Repeat the proposal and acceptance steps many times. The more steps, the better your approximation will be.</p></li>
-<li><p>Burn-In: The initial samples might not be representative because the chain might start far from a high-probability area. So, we will discard an initial set of samples, a process called ``burn-in’’.</p></li>
+<li><p><strong>Markov chain:</strong> a sequence of random samples where each sample depends only on the one before it. It is like a random walk where each step is influenced only by the current position.</p></li>
+<li><p><strong>Monte Carlo:</strong> a technique where random sampling is used to get numerical results for problems that might be deterministic in principle. The name originates from the Monte Carlo Casino, as it relies on randomness.</p></li>
 </ul>
-<p>How do we determine if the posterior distribution is higher if we do not have an analytical form? This is the key idea behind MCMC methods (like the Metropolis-Hastings algorithm). We do not need to know the exact value of the posterior distribution; we only need to know it up to a constant of proportionality. In many cases, while the full posterior is hard to compute (due to the difficulty in calculating the normalization constant), its unnormalized version is computable. Remember the basic Bayes’ formula</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f32d24a-e739-49b6-b7b7-72ab22ef281f">
-<span class="eqno">(1.39)<a class="headerlink" href="#equation-0f32d24a-e739-49b6-b7b7-72ab22ef281f" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \text{posterior} \propto \text{likelihood} \times \text{prior}
-\end{equation}\]</div>
-<p>In many applications, we can compute the product of the likelihood and the prior for any given set of parameters, but we might not be able to easily normalize it to get a true probability distribution. So, when deciding whether to accept a new proposed position in MCMC, we first compute the unnormalized posterior at the current position (which is the product of the likelihood and the prior). Then we compute the unnormalized posterior at the proposed new position. Finally, we compare these values. If the unnormalized posterior is higher at the new position, then it means the true posterior is also higher there.
-Even if we cannot say exactly what the posterior value is at that position, we can still determine if it is higher or lower than at the current position. This relative comparison, rather than an absolute value, is what drives the decision to accept or reject the new proposed position. For the case where the proposed position has a lower unnormalized posterior value, the Metropolis-Hastings algorithm provides a rule to accept it with a probability proportional to the ratio of the unnormalized posteriors (proposed to current). This ensures exploration of the entire parameter space, preventing the algorithm from getting stuck in local modes. In essence, MCMC is a systematic way to ``wander around’’ in a parameter space to understand a probability distribution, especially when direct computation is difficult or impossible. Why MCMC methods are useful:</p>
+<p>The main steps of MCMC algorithms are:</p>
 <ul class="simple">
-<li><p>Complex models: Many models (especially in Bayesian settings) result in posterior distributions that are hard to describe and compute. MCMC provides an approach to explore these distributions without needing an analytical solution.</p></li>
-<li><p>Flexibility: MCMC can be applied to a wide range of problems. Different MCMC algorithms (like Metropolis-Hastings, Gibbs Sampling, Hamiltonian Monte Carlo) are suited to different types of problems.</p></li>
-<li><p>Uncertainty: By generating samples from the posterior, MCMC gives a way to understand and quantify uncertainty in parameter estimates.</p></li>
+<li><p><strong>Initialization:</strong> start at a random position (a random parameter value).</p></li>
+<li><p><strong>Proposal:</strong> at each step, propose a new position based on the current one. This can be a random jump, but it is typically a small move.</p></li>
+<li><p><strong>Acceptance:</strong> decide whether to move to the proposed position. If the new position is a better fit to the data (higher posterior probability), we will likely accept it. If it is worse, we might still accept it but with a lower probability. This decision process ensures we explore the whole space but spend more time in high-probability areas.</p></li>
+<li><p><strong>Iteration:</strong> repeat the proposal and acceptance steps many times. The more steps, the better the approximation will be.</p></li>
+<li><p><strong>Burn-in:</strong> the initial samples might not be representative because the chain might start far from a high-probability area. So, we discard an initial set of samples, a process called “burn-in”.</p></li>
 </ul>
-</section>
-<section id="maximum-a-posterior-estimation-map">
-<h3><span class="section-number">1.6.2. </span>Maximum a posterior estimation (MAP)<a class="headerlink" href="#maximum-a-posterior-estimation-map" title="Link to this heading">#</a></h3>
-<p>When training a model using <span class="math notranslate nohighlight">\(n\)</span> examples, we have a parameter vector <span class="math notranslate nohighlight">\(\theta\)</span> (e.g., all the weights and biases of a neural network); a prior distribution <span class="math notranslate nohighlight">\(p(\boldsymbol{\theta})\)</span> (e.g., we might assume the weights in a neural network are normally distributed around zero); the likelihood <span class="math notranslate nohighlight">\(p(\mathbf{x}|\boldsymbol{\theta})\)</span> (i.e., the probability of data item <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> given our model parameterized by <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>. It tells us how well our model with parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> explains the observed data). We can define the (unnormalized) posterior as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f78970f5-57d1-4035-9599-f7e7370557e2">
-<span class="eqno">(1.40)<a class="headerlink" href="#equation-f78970f5-57d1-4035-9599-f7e7370557e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    p(\boldsymbol{\theta}|\mathbf{X}) \propto p(\boldsymbol{\theta}) \prod_{i=1}^{n} p(\mathbf{x}_i|\boldsymbol{\theta})
-\end{equation}\]</div>
-<p>The objective in optimization is often to find the MAP estimate of the parameters, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}*\)</span>. The MAP estimate is the value of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> that maximizes the posterior distribution. In machine learning, the MAP estimate is often used in the context of Bayesian models, where the goal is to find the most probable parameter setting (or hypothesis) given the observed data and prior beliefs. The MAP estimate can be thought of as a compromise between the maximum likelihood estimate (MLE), which only considers the likelihood, and the full Bayesian approach, which considers the entire posterior distribution. In the optimization context, we have that</p>
+<p>How do we determine if the posterior distribution is higher if we do not have an analytical form? This is the key idea behind MCMC methods (like the Metropolis-Hastings algorithm). We do not need to know the exact value of the posterior distribution; we only need to know it up to a constant of proportionality. In many cases, while the full posterior is hard to compute (due to the difficulty in calculating the normalization constant), its unnormalized version is computable.</p>
+<p>Remember the basic Bayes’ formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{posterior} \propto \text{likelihood} \times \text{prior}
+\]</div>
+<p>In many applications, we can compute the product of the likelihood and the prior for any given set of parameters, but we might not be able to easily normalize it to get a true probability distribution. So, when deciding whether to accept a new proposed position in MCMC, we first compute the unnormalized posterior at the current position (which is the product of the likelihood and the prior). Then we compute the unnormalized posterior at the proposed new position. Finally, we compare these values. If the unnormalized posterior is higher at the new position, then it means the true posterior is also higher there. Even if we cannot say exactly what the posterior value is at that position, we can still determine if it is higher or lower than at the current position. This relative comparison, rather than an absolute value, is what drives the decision to accept or reject the new proposed position. For the case where the proposed position has a lower unnormalized posterior value, the Metropolis-Hastings algorithm provides a rule to accept it with a probability proportional to the ratio of the unnormalized posteriors (proposed to current). This ensures exploration of the entire parameter space, preventing the algorithm from getting stuck in local modes.</p>
+<p>In essence, MCMC is a systematic way to “wander around” in a parameter space to understand a probability distribution, especially when direct computation is difficult or impossible.</p>
+<p>Let’s use a simple example to illustrate Bayesian inference. We will use MCMC to estimate the posterior distribution of the mean of a normally distributed data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pymc</span> <span class="k">as</span> <span class="nn">pm</span>
+
+<span class="c1"># Generate some data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histogram of Generated Data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Define the Bayesian model</span>
+<span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
+    <span class="c1"># Prior for the mean (μ)</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># Prior for the standard deviation (σ)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># Likelihood (sampling distribution) of the data</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;likelihood&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    
+    <span class="c1"># Perform MCMC sampling</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot the posterior distributions</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Summary of the posterior distributions</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e78004dcf0d59724742cd03ad7f6074f6c2ac80218b63064c7b645628911eb84.png" src="../_images/e78004dcf0d59724742cd03ad7f6074f6c2ac80218b63064c7b645628911eb84.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-assigning NUTS sampler...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Initializing NUTS using jitter+adapt_diag...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiprocess sampling (4 chains in 4 jobs)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NUTS: [mu, sigma]
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4cdda9ed393840cab8687bfb186c6481"}</script><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"></pre>
+</div><div class="output text_html"><pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">
+</pre>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 1 seconds.
+</pre></div>
+</div>
+<img alt="../_images/d72e4a5fbd9b33c51e59da7805ed6f6e05e02411e9ade4747bfc0240c340e588.png" src="../_images/d72e4a5fbd9b33c51e59da7805ed6f6e05e02411e9ade4747bfc0240c340e588.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        mean     sd  hdi_3%  hdi_97%  mcse_mean  mcse_sd  ess_bulk  ess_tail  \
+mu     5.039  0.063   4.924    5.156      0.001    0.001    4129.0    2879.0   
+sigma  1.961  0.044   1.880    2.045      0.001    0.000    4356.0    3207.0   
+
+       r_hat  
+mu       1.0  
+sigma    1.0  
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Generate data:</strong> we generate 100 data points from a normal distribution with a mean of 5 and a standard deviation of 2.</p></li>
+<li><p><strong>Plot data:</strong> a histogram is plotted to visualize the generated data.</p></li>
+<li><p><strong>Define the Bayesian model:</strong> ee define a Bayesian model using the PyMC library.</p>
 <ul class="simple">
-<li><p>The prior acts as a regularizer. A regularizer is a term added to a cost or loss function to discourage certain parameter values or configurations. For instance, a prior that prefers smaller values of <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> would act like an L2 regularization.</p></li>
-<li><p>The likelihood terms <span class="math notranslate nohighlight">\(p(\mathbf{x}_i|\boldsymbol{\theta})\)</span> make up the cost function. The goal is to adjust <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> so that the model explains the observed data well, i.e., maximizes the likelihood.</p></li>
+<li><p>The prior distribution for the mean (<span class="math notranslate nohighlight">\(\mu\)</span>) is set to a normal distribution with mean 0 and standard deviation 10.</p></li>
+<li><p>The prior distribution for the standard deviation (<span class="math notranslate nohighlight">\(\sigma\)</span>) is set to a half-normal distribution with a standard deviation of 10.</p></li>
+<li><p>The likelihood of the data is modeled as a normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
 </ul>
+</li>
+<li><p><strong>Perform MCMC sampling:</strong> e perform MCMC sampling to estimate the posterior distributions of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
+<li><p><strong>Plot posterior distributions:</strong> the posterior distributions of the parameters are plotted.</p></li>
+<li><p><strong>Summary of posterior distributions:</strong> a summary of the posterior distributions is printed, showing the estimated parameters and their uncertainties.</p></li>
+</ol>
+<p>Bayesian learning provides a powerful framework for updating beliefs about parameters in light of new data. By combining prior knowledge with observed data through Bayes’ theorem, we can obtain a posterior distribution that captures our updated beliefs and uncertainties. Methods like MCMC enable us to estimate the posterior distribution even for complex models, allowing for informed decision-making based on the uncertainty in our estimates.</p>
 </section>
 </section>
 </section>
@@ -878,12 +1343,20 @@ Even if we cannot say exactly what the posterior value is at that position, we c
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">1.1. Basic concepts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-variance-and-covariance">1.2. Expectation, variance, and covariance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence-and-estimation">1.3. Convergence and estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-prediction">1.4. Statistical prediction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-probability-distributions">1.5. Main probability distributions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-framework">1.6. Hypothesis testing framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convergence">1.3. Convergence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-bias-and-variance">1.4. Estimation: bias and variance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#main-probability-distributions">1.4.1. Main Probability Distributions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hypothesis-testing-framework">1.5. Hypothesis testing framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-means">1.5.1. Comparing Means</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-variances">1.5.2. Comparing Variances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-analysis">1.5.3. Regression Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goodness-of-fit-and-independence-tests">1.5.4. Goodness of Fit and Independence Tests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-learning">1.6. Bayesian Learning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-chain-monte-carlo-mcmc">1.6.1. Markov chain Monte Carlo (MCMC)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-a-posterior-estimation-map">1.6.2. Maximum a posterior estimation (MAP)</a></li>
 </ul>
 </li>
 </ul>
