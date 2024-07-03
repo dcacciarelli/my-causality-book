@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>30. Multi-Armed Bandits &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>28. Multi-Armed Bandits &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/bandits';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="References" href="../bibliography.html" />
-    <link rel="prev" title="29. Active Learning" href="active_learning.html" />
+    <link rel="next" title="31. Design of Experiments" href="design_of_experiments.html" />
+    <link rel="prev" title="27. A/B Testing" href="AB_testing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -225,11 +225,11 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">30. Multi-Armed Bandits</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">28. Multi-Armed Bandits</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">31. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">32. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -429,90 +429,90 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">30. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-exploitation">30.1. Code Example: Exploitation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">30.2. Explanation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">30.3. Plotting the Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">30.4. Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">30.5. Multi-Armed Bandits</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">30.6. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">30.7. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">30.8. Mathematical Formulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">30.8.1. Key Concepts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">30.8.2. Algorithms</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">30.8.3. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-intuition">30.8.3.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-details">30.8.3.2. Mathematical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">28. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-exploitation">28.1. Code Example: Exploitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">28.2. Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">28.3. Plotting the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">28.4. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">28.5. Multi-Armed Bandits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">28.6. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">28.7. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">28.8. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">28.8.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">28.8.2. Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">28.8.3. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-intuition">28.8.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-details">28.8.3.2. Mathematical Details</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">30.8.4. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">30.8.4.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">30.8.4.2. Mathematical Details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">28.8.4. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">28.8.4.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">28.8.4.2. Mathematical Details</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">30.8.5. Thompson Sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">30.8.5.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">30.8.5.2. Mathematical Details</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">30.9. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">30.9.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">28.8.5. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">28.8.5.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">28.8.5.2. Mathematical Details</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">31. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">31.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">31.2. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration-vs-exploitation">31.3. Exploration vs. Exploitation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">31.3.1. High-Level Intuition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">31.3.2. Practical Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-example">31.3.3. Simulating the Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">31.3.4. Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-regret">31.3.5. Understanding Regret</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">31.3.6. Mathematical Formulation</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">31.4. Algorithms</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">31.4.1. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">31.4.1.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">31.4.1.2. Mathematical Details</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">31.4.2. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">31.4.2.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">31.4.2.2. Mathematical Details</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">31.4.3. Thompson Sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">31.4.3.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">31.4.3.2. Mathematical Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">28.9. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">28.9.1. Step-by-Step Implementation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">31.5. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">31.5.1. Step-by-Step Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">31.5.2. Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">31.5.3. Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">29. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">29.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">29.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration-vs-exploitation">29.3. Exploration vs. Exploitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">29.3.1. High-Level Intuition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">29.3.2. Practical Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-example">29.3.3. Simulating the Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">29.3.4. Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-regret">29.3.5. Understanding Regret</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">29.3.6. Mathematical Formulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">29.4. Algorithms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">29.4.1. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">29.4.1.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">29.4.1.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">29.4.2. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">29.4.2.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">29.4.2.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">29.4.3. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">29.4.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">29.4.3.2. Mathematical Details</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">32. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">32.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">32.2. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">32.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">32.3.1. Key Concepts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">32.3.2. Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">29.5. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">29.5.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">29.5.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">29.5.3. Conclusion</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">32.4. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">32.4.1. Step-by-Step Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">32.4.2. Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">32.4.3. Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">30. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">30.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">30.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">30.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">30.3.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">30.3.2. Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">30.4. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">30.4.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">30.4.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">30.4.3. Conclusion</a></li>
 </ul>
 </li>
 </ul>
@@ -530,7 +530,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multi-armed-bandits">
-<h1><span class="section-number">30. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">28. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
 <p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls.</p>
 <p>In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns. In many cases, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
 <ul class="simple">
@@ -727,24 +727,24 @@ Regret is the difference between the total reward we would have gotten by always
 </li>
 </ol>
 <section id="code-example-exploitation">
-<h2><span class="section-number">30.1. </span>Code Example: Exploitation<a class="headerlink" href="#code-example-exploitation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.1. </span>Code Example: Exploitation<a class="headerlink" href="#code-example-exploitation" title="Link to this heading">#</a></h2>
 <p>Let’s simulate pulling the machines for an additional 90 rounds, primarily exploiting the machine with the highest average reward so far.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </section>
 <section id="explanation">
-<h2><span class="section-number">30.2. </span>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.2. </span>Explanation<a class="headerlink" href="#explanation" title="Link to this heading">#</a></h2>
 </section>
 <section id="plotting-the-results">
-<h2><span class="section-number">30.3. </span>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.3. </span>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Link to this heading">#</a></h2>
 <p>Visualize the cumulative rewards over time to see the effect of exploration and exploitation.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </section>
 <section id="summary">
-<h2><span class="section-number">30.4. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.4. </span>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Exploration</strong>: Trying out different machines to gather information about their payout probabilities.</p></li>
 <li><p><strong>Reward</strong>: The payout received from each pull of the machine, determined by comparing a random number to the machine’s true probability.</p></li>
@@ -906,14 +906,14 @@ Regret is the difference between the total reward we would have gotten by always
 <hr class="docutils" />
 </section>
 <section id="id1">
-<h2><span class="section-number">30.5. </span>Multi-Armed Bandits<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.5. </span>Multi-Armed Bandits<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 </section>
 <section id="introduction">
-<h2><span class="section-number">30.6. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.6. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls. In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns.</p>
 </section>
 <section id="relevance-in-electricity-markets">
-<h2><span class="section-number">30.7. </span>Relevance in Electricity Markets<a class="headerlink" href="#relevance-in-electricity-markets" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.7. </span>Relevance in Electricity Markets<a class="headerlink" href="#relevance-in-electricity-markets" title="Link to this heading">#</a></h2>
 <p>In electricity markets, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
 <ul class="simple">
 <li><p><strong>Dynamic Pricing</strong>: Adjusting prices based on consumer behavior to maximize revenue.</p></li>
@@ -922,7 +922,7 @@ Regret is the difference between the total reward we would have gotten by always
 </ul>
 </section>
 <section id="mathematical-formulation">
-<h2><span class="section-number">30.8. </span>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.8. </span>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h2>
 <p>The MAB problem can be formalized as follows:</p>
 <ul class="simple">
 <li><p><strong>Arms</strong>: Let <span class="math notranslate nohighlight">\(K\)</span> be the number of arms (choices or actions) available.</p></li>
@@ -930,7 +930,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Objective</strong>: The objective is to maximize the cumulative reward over <span class="math notranslate nohighlight">\(T\)</span> rounds, (\sum_{t=1}^{T} r_k(t)$.</p></li>
 </ul>
 <section id="key-concepts">
-<h3><span class="section-number">30.8.1. </span>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">28.8.1. </span>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Exploration vs. Exploitation</strong>:</p>
 <ul class="simple">
@@ -947,17 +947,17 @@ Regret is the difference between the total reward we would have gotten by always
 </ol>
 </section>
 <section id="algorithms">
-<h3><span class="section-number">30.8.2. </span>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">28.8.2. </span>Algorithms<a class="headerlink" href="#algorithms" title="Link to this heading">#</a></h3>
 <p>Several popular algorithms have been proposed to solve MAB problems, including:</p>
 </section>
 <section id="epsilon-greedy">
-<h3><span class="section-number">30.8.3. </span>Epsilon-Greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">28.8.3. </span>Epsilon-Greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
 <section id="high-level-intuition">
-<h4><span class="section-number">30.8.3.1. </span>High-Level Intuition<a class="headerlink" href="#high-level-intuition" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">28.8.3.1. </span>High-Level Intuition<a class="headerlink" href="#high-level-intuition" title="Link to this heading">#</a></h4>
 <p>Epsilon-Greedy is a simple yet effective algorithm that balances exploration and exploitation. The basic idea is to explore a random arm with a small probability (epsilon) and exploit the best-known arm with the remaining probability.</p>
 </section>
 <section id="mathematical-details">
-<h4><span class="section-number">30.8.3.2. </span>Mathematical Details<a class="headerlink" href="#mathematical-details" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">28.8.3.2. </span>Mathematical Details<a class="headerlink" href="#mathematical-details" title="Link to this heading">#</a></h4>
 <ul>
 <li><p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -970,7 +970,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>Let <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span> be the estimated mean reward of arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
 <li><p>Update rule for the estimate:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-bda80b5e-d8d7-496e-bbaf-38014039ed21">
-<span class="eqno">(30.1)<a class="headerlink" href="#equation-bda80b5e-d8d7-496e-bbaf-38014039ed21" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-bda80b5e-d8d7-496e-bbaf-38014039ed21" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
     \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(r_k(t)\)</span> is the observed reward and <span class="math notranslate nohighlight">\(n_k(t)\)</span> is the number of times arm <span class="math notranslate nohighlight">\(k\)</span> has been selected up to time <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -981,13 +981,13 @@ Regret is the difference between the total reward we would have gotten by always
 </section>
 </section>
 <section id="upper-confidence-bound-ucb">
-<h3><span class="section-number">30.8.4. </span>Upper Confidence Bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">28.8.4. </span>Upper Confidence Bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
 <section id="id2">
-<h4><span class="section-number">30.8.4.1. </span>High-Level Intuition<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">28.8.4.1. </span>High-Level Intuition<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
 <p>The UCB algorithm selects arms based on the principle of optimism in the face of uncertainty. It balances exploration and exploitation by choosing the arm with the highest upper confidence bound, which accounts for both the estimated reward and the uncertainty in the estimate.</p>
 </section>
 <section id="id3">
-<h4><span class="section-number">30.8.4.2. </span>Mathematical Details<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">28.8.4.2. </span>Mathematical Details<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <ul>
 <li><p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -998,7 +998,7 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-c2454e2b-ce8e-464c-9baa-fd122b9ea21a">
-<span class="eqno">(30.2)<a class="headerlink" href="#equation-c2454e2b-ce8e-464c-9baa-fd122b9ea21a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(28.2)<a class="headerlink" href="#equation-c2454e2b-ce8e-464c-9baa-fd122b9ea21a" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
     \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span> is the estimated mean reward, <span class="math notranslate nohighlight">\(n_k(t)\)</span> is the number of times arm <span class="math notranslate nohighlight">\(k\)</span> has been selected, and <span class="math notranslate nohighlight">\(c\)</span> is a confidence parameter.</p>
@@ -1009,13 +1009,13 @@ Regret is the difference between the total reward we would have gotten by always
 </section>
 </section>
 <section id="thompson-sampling">
-<h3><span class="section-number">30.8.5. </span>Thompson Sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">28.8.5. </span>Thompson Sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
 <section id="id4">
-<h4><span class="section-number">30.8.5.1. </span>High-Level Intuition<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">28.8.5.1. </span>High-Level Intuition<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>Thompson Sampling is a Bayesian approach that balances exploration and exploitation by sampling from the posterior distribution of the reward probabilities for each arm. It chooses the arm with the highest sampled value, which inherently balances the trade-off.</p>
 </section>
 <section id="id5">
-<h4><span class="section-number">30.8.5.2. </span>Mathematical Details<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">28.8.5.2. </span>Mathematical Details<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <ul>
 <li><p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -1027,18 +1027,18 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>Assume a Beta distribution for the reward probabilities:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-59608968-bc12-4491-b0dd-2dbe64c4bd44">
-<span class="eqno">(30.3)<a class="headerlink" href="#equation-59608968-bc12-4491-b0dd-2dbe64c4bd44" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(28.3)<a class="headerlink" href="#equation-59608968-bc12-4491-b0dd-2dbe64c4bd44" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \theta_k \sim \text{Beta}(\alpha_k, \beta_k)
     \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha_k\)</span> and <span class="math notranslate nohighlight">\(\beta_k\)</span> are the parameters of the Beta distribution.</p>
 </li>
 <li><p>Update the parameters based on observed rewards:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-c17984f2-5f3c-44c5-969d-d1b628f6b8c0">
-<span class="eqno">(30.4)<a class="headerlink" href="#equation-c17984f2-5f3c-44c5-969d-d1b628f6b8c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(28.4)<a class="headerlink" href="#equation-c17984f2-5f3c-44c5-969d-d1b628f6b8c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \alpha_k = \alpha_k + r_k(t)
     \end{equation}\]</div>
 <div class="amsmath math notranslate nohighlight" id="equation-693d241f-2a9e-46ad-815e-14f005080c52">
-<span class="eqno">(30.5)<a class="headerlink" href="#equation-693d241f-2a9e-46ad-815e-14f005080c52" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(28.5)<a class="headerlink" href="#equation-693d241f-2a9e-46ad-815e-14f005080c52" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \beta_k = \beta_k + 1 - r_k(t)
     \end{equation}\]</div>
 </li>
@@ -1049,10 +1049,10 @@ Regret is the difference between the total reward we would have gotten by always
 </section>
 </section>
 <section id="example-in-python">
-<h2><span class="section-number">30.9. </span>Example in Python<a class="headerlink" href="#example-in-python" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">28.9. </span>Example in Python<a class="headerlink" href="#example-in-python" title="Link to this heading">#</a></h2>
 <p>Let’s implement a simple multi-armed bandit problem using the Epsilon-Greedy, UCB, Thompson Sampling, and Random strategies.</p>
 <section id="step-by-step-implementation">
-<h3><span class="section-number">30.9.1. </span>Step-by-Step Implementation<a class="headerlink" href="#step-by-step-implementation" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">28.9.1. </span>Step-by-Step Implementation<a class="headerlink" href="#step-by-step-implementation" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Define the Environment</strong>:</p>
 <ul class="simple">
@@ -1167,13 +1167,13 @@ Regret is the difference between the total reward we would have gotten by always
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="id6">
-<h1><span class="section-number">31. </span>Multi-Armed Bandits<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">29. </span>Multi-Armed Bandits<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
 <section id="id7">
-<h2><span class="section-number">31.1. </span>Introduction<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">29.1. </span>Introduction<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls. In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns.</p>
 </section>
 <section id="id8">
-<h2><span class="section-number">31.2. </span>Relevance in Electricity Markets<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">29.2. </span>Relevance in Electricity Markets<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>In electricity markets, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
 <ul class="simple">
 <li><p><strong>Dynamic Pricing</strong>: Adjusting prices based on consumer behavior to maximize revenue.</p></li>
@@ -1182,9 +1182,9 @@ Regret is the difference between the total reward we would have gotten by always
 </ul>
 </section>
 <section id="exploration-vs-exploitation">
-<h2><span class="section-number">31.3. </span>Exploration vs. Exploitation<a class="headerlink" href="#exploration-vs-exploitation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">29.3. </span>Exploration vs. Exploitation<a class="headerlink" href="#exploration-vs-exploitation" title="Link to this heading">#</a></h2>
 <section id="id9">
-<h3><span class="section-number">31.3.1. </span>High-Level Intuition<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.3.1. </span>High-Level Intuition<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>Exploration vs. exploitation is the core trade-off in multi-armed bandit problems:</p>
 <ul class="simple">
 <li><p><strong>Exploration</strong>: Trying out different arms (choices or actions) to gather more information about their rewards.</p></li>
@@ -1192,11 +1192,11 @@ Regret is the difference between the total reward we would have gotten by always
 </ul>
 </section>
 <section id="practical-example">
-<h3><span class="section-number">31.3.2. </span>Practical Example<a class="headerlink" href="#practical-example" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.3.2. </span>Practical Example<a class="headerlink" href="#practical-example" title="Link to this heading">#</a></h3>
 <p>Let’s illustrate this with a simple example involving three slot machines (arms), each with a different but unknown probability of payout (reward). Initially, we don’t know which machine is the best, so we need to explore by trying out each machine. Over time, as we gather more information, we start to exploit by choosing the machine that seems to give the highest reward based on our observations.</p>
 </section>
 <section id="simulating-the-example">
-<h3><span class="section-number">31.3.3. </span>Simulating the Example<a class="headerlink" href="#simulating-the-example" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.3.3. </span>Simulating the Example<a class="headerlink" href="#simulating-the-example" title="Link to this heading">#</a></h3>
 <p>We’ll simulate a scenario with three arms, each with a different probability of payout. We’ll track how often we choose each arm and the cumulative reward over time.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1259,7 +1259,7 @@ Regret is the difference between the total reward we would have gotten by always
 </div>
 </section>
 <section id="analysis">
-<h3><span class="section-number">31.3.4. </span>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.3.4. </span>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Cumulative Rewards</strong>:</p>
 <ul class="simple">
@@ -1274,11 +1274,11 @@ Regret is the difference between the total reward we would have gotten by always
 </ol>
 </section>
 <section id="understanding-regret">
-<h3><span class="section-number">31.3.5. </span>Understanding Regret<a class="headerlink" href="#understanding-regret" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.3.5. </span>Understanding Regret<a class="headerlink" href="#understanding-regret" title="Link to this heading">#</a></h3>
 <p><strong>Regret</strong> is the difference between the reward obtained by always choosing the best arm and the reward obtained by the algorithm. In practical terms, regret measures the opportunity cost of not always exploiting the best option due to exploration. Minimizing regret over time is a key objective in MAB problems.</p>
 </section>
 <section id="id10">
-<h3><span class="section-number">31.3.6. </span>Mathematical Formulation<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.3.6. </span>Mathematical Formulation<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <p>The MAB problem can be formalized as follows:</p>
 <ul class="simple">
 <li><p><strong>Arms</strong>: Let ( K ) be the number of arms (choices or actions) available.</p></li>
@@ -1288,16 +1288,16 @@ Regret is the difference between the total reward we would have gotten by always
 </section>
 </section>
 <section id="id11">
-<h2><span class="section-number">31.4. </span>Algorithms<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">29.4. </span>Algorithms<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>Several popular algorithms have been proposed to solve MAB problems, including:</p>
 <section id="id12">
-<h3><span class="section-number">31.4.1. </span>Epsilon-Greedy<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.4.1. </span>Epsilon-Greedy<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <section id="id13">
-<h4><span class="section-number">31.4.1.1. </span>High-Level Intuition<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">29.4.1.1. </span>High-Level Intuition<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
 <p>Epsilon-Greedy is a simple yet effective algorithm that balances exploration and exploitation. The basic idea is to explore a random arm with a small probability (epsilon) and exploit the best-known arm with the remaining probability.</p>
 </section>
 <section id="id14">
-<h4><span class="section-number">31.4.1.2. </span>Mathematical Details<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">29.4.1.2. </span>Mathematical Details<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Mechanism</strong>:</p>
 <ul>
@@ -1319,13 +1319,13 @@ where ( r_k(t) ) is the observed reward and ( n_k(t) ) is the number of times ar
 </section>
 </section>
 <section id="id15">
-<h3><span class="section-number">31.4.2. </span>Upper Confidence Bound (UCB)<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.4.2. </span>Upper Confidence Bound (UCB)<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <section id="id16">
-<h4><span class="section-number">31.4.2.1. </span>High-Level Intuition<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">29.4.2.1. </span>High-Level Intuition<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
 <p>The UCB algorithm selects arms based on the principle of optimism in the face of uncertainty. It balances exploration and exploitation by choosing the arm with the highest upper confidence bound, which accounts for both the estimated reward and the uncertainty in the estimate.</p>
 </section>
 <section id="id17">
-<h4><span class="section-number">31.4.2.2. </span>Mathematical Details<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">29.4.2.2. </span>Mathematical Details<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Mechanism</strong>:</p>
 <ul>
@@ -1345,13 +1345,13 @@ where ( \hat{\mu}_k(t) ) is the estimated mean reward, ( n_k(t) ) is the number 
 </section>
 </section>
 <section id="id18">
-<h3><span class="section-number">31.4.3. </span>Thompson Sampling<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.4.3. </span>Thompson Sampling<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <section id="id19">
-<h4><span class="section-number">31.4.3.1. </span>High-Level Intuition<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">29.4.3.1. </span>High-Level Intuition<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
 <p>Thompson Sampling is a Bayesian approach that balances exploration and exploitation by sampling from the posterior distribution of the reward probabilities for each arm. It chooses the arm with the highest sampled value, which inherently balances the trade-off.</p>
 </section>
 <section id="id20">
-<h4><span class="section-number">31.4.3.2. </span>Mathematical Details<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">29.4.3.2. </span>Mathematical Details<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Mechanism</strong>:</p>
 <ul>
@@ -1380,10 +1380,10 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </section>
 </section>
 <section id="id21">
-<h2><span class="section-number">31.5. </span>Example in Python<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">29.5. </span>Example in Python<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
 <p>Let’s implement a simple multi-armed bandit problem using the Epsilon-Greedy, UCB, Thompson Sampling, and Random strategies.</p>
 <section id="id22">
-<h3><span class="section-number">31.5.1. </span>Step-by-Step Implementation<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.5.1. </span>Step-by-Step Implementation<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Define the Environment</strong>:</p>
 <ul class="simple">
@@ -1496,7 +1496,7 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </div>
 </section>
 <section id="id23">
-<h3><span class="section-number">31.5.2. </span>Explanation<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.5.2. </span>Explanation<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Environment Setup</strong>:</p>
 <ul class="simple">
@@ -1520,7 +1520,7 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </ol>
 </section>
 <section id="conclusion">
-<h3><span class="section-number">31.5.3. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">29.5.3. </span>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
 <p>Multi-armed bandit algorithms are powerful tools for making sequential decisions under uncertainty. By balancing exploration and exploitation, these algorithms can optimize decisions in various contexts, including dynamic pricing, demand response, and marketing campaigns in electricity markets. This tutorial demonstrated the basic principles and implementation of Epsilon-Greedy, UCB, and Thompson Sampling algorithms, providing a foundation for more advanced techniques and applications.</p>
 <hr class="docutils" />
 <p>This comprehensive tutorial introduces the key concepts and algorithms for solving MAB problems, using practical examples and visualizations to aid understanding.</p>
@@ -1628,13 +1628,13 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="id24">
-<h1><span class="section-number">32. </span>Multi-Armed Bandits<a class="headerlink" href="#id24" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">30. </span>Multi-Armed Bandits<a class="headerlink" href="#id24" title="Link to this heading">#</a></h1>
 <section id="id25">
-<h2><span class="section-number">32.1. </span>Introduction<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">30.1. </span>Introduction<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
 <p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls. In the context of electricity markets, multi-armed bandit algorithms can be used for various purposes, such as optimizing dynamic pricing strategies, demand response programs, and marketing campaigns.</p>
 </section>
 <section id="id26">
-<h2><span class="section-number">32.2. </span>Relevance in Electricity Markets<a class="headerlink" href="#id26" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">30.2. </span>Relevance in Electricity Markets<a class="headerlink" href="#id26" title="Link to this heading">#</a></h2>
 <p>In electricity markets, decisions need to be made in real-time under uncertainty. Multi-armed bandit algorithms provide a powerful framework for optimizing these decisions by learning from past actions and balancing the trade-off between exploring new strategies and exploiting known profitable ones. For instance, they can help in:</p>
 <ul class="simple">
 <li><p><strong>Dynamic Pricing</strong>: Adjusting prices based on consumer behavior to maximize revenue.</p></li>
@@ -1643,7 +1643,7 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </ul>
 </section>
 <section id="id27">
-<h2><span class="section-number">32.3. </span>Mathematical Formulation<a class="headerlink" href="#id27" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">30.3. </span>Mathematical Formulation<a class="headerlink" href="#id27" title="Link to this heading">#</a></h2>
 <p>The MAB problem can be formalized as follows:</p>
 <ul class="simple">
 <li><p><strong>Arms</strong>: Let <span class="math notranslate nohighlight">\(K\)</span> be the number of arms (choices or actions) available.</p></li>
@@ -1651,7 +1651,7 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 <li><p><strong>Objective</strong>: The objective is to maximize the cumulative reward over <span class="math notranslate nohighlight">\(T\)</span> rounds, (\sum_{t=1}^{T} r_k(t)$.</p></li>
 </ul>
 <section id="id28">
-<h3><span class="section-number">32.3.1. </span>Key Concepts<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">30.3.1. </span>Key Concepts<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Exploration vs. Exploitation</strong>:</p>
 <ul class="simple">
@@ -1668,7 +1668,7 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </ol>
 </section>
 <section id="id29">
-<h3><span class="section-number">32.3.2. </span>Algorithms<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">30.3.2. </span>Algorithms<a class="headerlink" href="#id29" title="Link to this heading">#</a></h3>
 <p>Several algorithms can solve MAB problems, including:</p>
 <ul class="simple">
 <li><p><strong>Epsilon-Greedy</strong>: With probability <span class="math notranslate nohighlight">\(\epsilon\)</span>, choose a random arm (exploration), and with probability <span class="math notranslate nohighlight">\(1 - \epsilon\)</span>, choose the arm with the highest estimated reward (exploitation).</p></li>
@@ -1678,10 +1678,10 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </section>
 </section>
 <section id="id30">
-<h2><span class="section-number">32.4. </span>Example in Python<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">30.4. </span>Example in Python<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
 <p>Let’s implement a simple multi-armed bandit problem using the Epsilon-Greedy algorithm.</p>
 <section id="id31">
-<h3><span class="section-number">32.4.1. </span>Step-by-Step Implementation<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">30.4.1. </span>Step-by-Step Implementation<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Define the Environment</strong>:</p>
 <ul class="simple">
@@ -1758,7 +1758,7 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </div>
 </section>
 <section id="id32">
-<h3><span class="section-number">32.4.2. </span>Explanation<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">30.4.2. </span>Explanation<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Environment Setup</strong>:</p>
 <ul class="simple">
@@ -1781,7 +1781,7 @@ where ( \alpha_k ) and ( \beta_k ) are the parameters of the Beta distribution.<
 </ol>
 </section>
 <section id="id33">
-<h3><span class="section-number">32.4.3. </span>Conclusion<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">30.4.3. </span>Conclusion<a class="headerlink" href="#id33" title="Link to this heading">#</a></h3>
 <p>Multi-armed bandit algorithms are powerful tools for making sequential decisions under uncertainty. By balancing exploration and exploitation, these algorithms can optimize decisions in various contexts, including dynamic pricing, demand response, and marketing campaigns in electricity markets. This tutorial demonstrated the basic principles and implementation of the Epsilon-Greedy algorithm, providing a foundation for more advanced techniques and applications.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1959,20 +1959,20 @@ Priors (Beta): [726.  41. 122.]
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="active_learning.html"
+       href="AB_testing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">29. </span>Active Learning</p>
+        <p class="prev-next-title"><span class="section-number">27. </span>A/B Testing</p>
       </div>
     </a>
     <a class="right-next"
-       href="../bibliography.html"
+       href="design_of_experiments.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">References</p>
+        <p class="prev-next-title"><span class="section-number">31. </span>Design of Experiments</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1992,90 +1992,90 @@ Priors (Beta): [726.  41. 122.]
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">30. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-exploitation">30.1. Code Example: Exploitation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">30.2. Explanation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">30.3. Plotting the Results</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">30.4. Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">30.5. Multi-Armed Bandits</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">30.6. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">30.7. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">30.8. Mathematical Formulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">30.8.1. Key Concepts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">30.8.2. Algorithms</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">30.8.3. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-intuition">30.8.3.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-details">30.8.3.2. Mathematical Details</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">28. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-exploitation">28.1. Code Example: Exploitation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanation">28.2. Explanation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-results">28.3. Plotting the Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">28.4. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">28.5. Multi-Armed Bandits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">28.6. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-in-electricity-markets">28.7. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">28.8. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">28.8.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">28.8.2. Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">28.8.3. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#high-level-intuition">28.8.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-details">28.8.3.2. Mathematical Details</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">30.8.4. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">30.8.4.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">30.8.4.2. Mathematical Details</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">28.8.4. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">28.8.4.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">28.8.4.2. Mathematical Details</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">30.8.5. Thompson Sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">30.8.5.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">30.8.5.2. Mathematical Details</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">30.9. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">30.9.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">28.8.5. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">28.8.5.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">28.8.5.2. Mathematical Details</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">31. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">31.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">31.2. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration-vs-exploitation">31.3. Exploration vs. Exploitation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">31.3.1. High-Level Intuition</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">31.3.2. Practical Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-example">31.3.3. Simulating the Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">31.3.4. Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-regret">31.3.5. Understanding Regret</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">31.3.6. Mathematical Formulation</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">31.4. Algorithms</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">31.4.1. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">31.4.1.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">31.4.1.2. Mathematical Details</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">31.4.2. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">31.4.2.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">31.4.2.2. Mathematical Details</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">31.4.3. Thompson Sampling</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">31.4.3.1. High-Level Intuition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">31.4.3.2. Mathematical Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-in-python">28.9. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">28.9.1. Step-by-Step Implementation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">31.5. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">31.5.1. Step-by-Step Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">31.5.2. Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">31.5.3. Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">29. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">29.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">29.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploration-vs-exploitation">29.3. Exploration vs. Exploitation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">29.3.1. High-Level Intuition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">29.3.2. Practical Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-the-example">29.3.3. Simulating the Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">29.3.4. Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-regret">29.3.5. Understanding Regret</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">29.3.6. Mathematical Formulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">29.4. Algorithms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">29.4.1. Epsilon-Greedy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">29.4.1.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">29.4.1.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">29.4.2. Upper Confidence Bound (UCB)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">29.4.2.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">29.4.2.2. Mathematical Details</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">29.4.3. Thompson Sampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">29.4.3.1. High-Level Intuition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">29.4.3.2. Mathematical Details</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">32. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">32.1. Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">32.2. Relevance in Electricity Markets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">32.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">32.3.1. Key Concepts</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">32.3.2. Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">29.5. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">29.5.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">29.5.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">29.5.3. Conclusion</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">32.4. Example in Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">32.4.1. Step-by-Step Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">32.4.2. Explanation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">32.4.3. Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">30. Multi-Armed Bandits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">30.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">30.2. Relevance in Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">30.3. Mathematical Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">30.3.1. Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">30.3.2. Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">30.4. Example in Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">30.4.1. Step-by-Step Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">30.4.2. Explanation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">30.4.3. Conclusion</a></li>
 </ul>
 </li>
 </ul>

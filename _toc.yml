@@ -61,9 +61,9 @@ parts:
   chapters:
   - file: notebooks/preface_designs
   - file: notebooks/AB_testing
+  - file: notebooks/bandits
   - file: notebooks/design_of_experiments
   - file: notebooks/active_learning
-  - file: notebooks/bandits
 
 - caption: Other
   numbered: false 
