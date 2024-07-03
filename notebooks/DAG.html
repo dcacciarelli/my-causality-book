@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/DAG';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -192,7 +194,7 @@
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
@@ -482,6 +484,7 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/3b1bb164373ae4dc103ce67c67e3d1bcac4061fa8d1cbc5d7447b70a30f2b0d3.svg" src="../_images/3b1bb164373ae4dc103ce67c67e3d1bcac4061fa8d1cbc5d7447b70a30f2b0d3.svg" /></div>
 </div>
+<p><strong>Understanding the DAG</strong></p>
 <p>A DAG is used to visually represent the causal relationships between the key variables in the analysis. The key variables are represented as nodes, and the arrows represent the direction of influence. By examining the graph, we can understand how changes in one variable may impact others, forming a network of dependencies that govern market dynamics. In the example above, we have:</p>
 <ol class="arabic simple">
 <li><p><strong>Temperature → electricity load</strong>: as temperature increases or decreases, it directly affects the electricity load. With warmer temperatures, the demand for electricity increases due to air conditioning usage. Similarly, colder temperatures can increase electricity demand for heating purposes.</p></li>
@@ -489,6 +492,117 @@ document.write(`
 <li><p><strong>Renewable energy production → electricity price</strong>: the amount of renewable energy produced affects electricity prices. When renewable energy production is high, it can lead to lower electricity prices due to the abundance of cheaper energy sources. Conversely, low renewable energy production can increase reliance on more expensive, non-renewable energy sources, driving up prices.</p></li>
 <li><p><strong>Electricity load → electricity price</strong>: the demand for electricity (load) influences electricity prices. High electricity demand usually leads to higher prices because the supply must meet the increased load, often requiring more expensive or less efficient energy sources. Lower demand can result in lower prices due to decreased strain on the electricity grid and reliance on cheaper energy sources.</p></li>
 </ol>
+<p><strong>Additional Concepts in DAGs</strong></p>
+<p><strong>d-separation</strong>
+In addition to understanding direct causal relationships, it is also important to understand how to determine if variables are conditionally independent given other variables. This concept is known as <strong>d-separation</strong>, and it represents a criterion for deciding whether a set of nodes is independent of another set of nodes given a third set. It is a crucial concept in understanding the flow of information and causation in DAGs.</p>
+<p>For example, in the context of our electricity market DAG:</p>
+<ul class="simple">
+<li><p><strong>Temperature</strong> is d-separated from <strong>electricity price</strong> given <strong>electricity load</strong>. This means that if we know the electricity load, knowing the temperature provides no additional information about the electricity price.</p></li>
+<li><p><strong>Renewable energy production</strong> and <strong>electricity load</strong> are not d-separated, indicating a direct causal relationship without any conditional independence given other variables.</p></li>
+</ul>
+<p>By understanding d-separation, we can better interpret the dependencies and independencies in our DAG, leading to more accurate causal inferences.</p>
+<p><strong>Local Markov assumption</strong></p>
+<p>The Local Markov ssumption states that a node in a DAG is conditionally independent of its non-descendants given its parents. This assumption allows for the decomposition of the joint probability distribution of all variables in the DAG into simpler conditional distributions. For example, in our DAG, <strong>electricity price</strong> is conditionally independent of <strong>temperature</strong> given <strong>renewable energy production</strong> and <strong>electricity load</strong>. This implies that once we know the values of <strong>renewable energy production</strong> and <strong>electricity load</strong>, additional information about <strong>temperature</strong> does not change our understanding of <strong>electricity price</strong>.</p>
+<p><strong>Factorization</strong></p>
+<p>Factorization refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the Local Markov Assumption. The joint distribution <span class="math notranslate nohighlight">\( P(T, L, R, P) \)</span> can be factorized as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c82f03cc-41e3-411e-85dd-44784698c1b5">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-c82f03cc-41e3-411e-85dd-44784698c1b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
+\end{equation}\]</div>
+<p>This factorization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
+<p><strong>Minimality assumption</strong></p>
+<p>The Minimality Assumption asserts that the DAG representing the causal structure is minimal, meaning that removing any edge would violate the Markov condition for the observed data. It ensures that the model encodes only necessary dependency relationships. It means that the DAG includes only those edges that represent necessary causal relationships. Removing any edge would lead to a loss of information about the dependencies among variables, ensuring that the DAG is the simplest model that adequately represents the data.</p>
+<p><strong>Markov equivalence class</strong></p>
+<p>A Markov equivalence class contains all DAGS that encode the same conditional independencies. This means that within a Markov equivalence class, multiple DAGs can represent the same set of conditional independence relationships among variables. These DAGs are considered equivalent because they imply the same probabilistic dependencies, even if their structures differ.</p>
+<p>Consider the following three DAGs involving three variables <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span>:</p>
+<p><strong>Graph 1:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/803a9004cf93df70c1097b94d1d1c3b3a41437ef1af49a75ce633b7759081eaf.svg" src="../_images/803a9004cf93df70c1097b94d1d1c3b3a41437ef1af49a75ce633b7759081eaf.svg" /></div>
+</div>
+<p><strong>Graph 2:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b8af17a872cfeac9bdd7579bd0ec1b481ddc803a807c8f9e7be2d6ce5ed84efd.svg" src="../_images/b8af17a872cfeac9bdd7579bd0ec1b481ddc803a807c8f9e7be2d6ce5ed84efd.svg" /></div>
+</div>
+<p><strong>Graph 3:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/67b518df04b7beeca4b023819156cf29d0ad070d8ca8707599773ca811921c68.svg" src="../_images/67b518df04b7beeca4b023819156cf29d0ad070d8ca8707599773ca811921c68.svg" /></div>
+</div>
+<p>Each of these DAGs represents the same conditional independence relationships: <span class="math notranslate nohighlight">\(X \perp Z | Y\)</span>, indicating that once we know <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> are independent.</p>
+<p>A completed partially directed acyclic graph (CPDAG), also known as an Essential Graph (EG), is a graphical representation that captures all DAGs within a Markov equivalence class. The CPDAG contains both directed and undirected edges:</p>
+<ul class="simple">
+<li><p><strong>Directed edges</strong> represent causal relationships that are common to all DAGs in the equivalence class.</p></li>
+<li><p><strong>Undirected edges</strong> represent relationships where the directionality is ambiguous among the DAGs in the equivalence class.</p></li>
+</ul>
+<p>The CPDAG can be constructed by:</p>
+<ol class="arabic simple">
+<li><p>Identifying all DAGs that belong to the same Markov equivalence class.</p></li>
+<li><p>Retaining directed edges that are common to all these DAGs.</p></li>
+<li><p>Converting edges with uncertain directionality into undirected edges.</p></li>
+</ol>
+<p>Let’s consider a CPDAG for the equivalence class of the three DAGs shown above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>  <span class="c1"># undirected edge</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9818659f51b8db394e2bec086682c764471ff62e1c44ad36ce1f03fd321671e2.svg" src="../_images/9818659f51b8db394e2bec086682c764471ff62e1c44ad36ce1f03fd321671e2.svg" /></div>
+</div>
+<p>In this CPDAG:</p>
+<ul class="simple">
+<li><p>The edges <span class="math notranslate nohighlight">\(X \to Y\)</span> and <span class="math notranslate nohighlight">\(Z \to Y\)</span> are directed because all DAGs in the equivalence class have these directions.</p></li>
+<li><p>The edge <span class="math notranslate nohighlight">\(X - Z\)</span> is undirected, indicating that the direction between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> is ambiguous within the equivalence class.</p></li>
+</ul>
+<p>The CPDAG or EG provides a compact and comprehensive representation of the causal structure, capturing all possible DAGs that explain the observed data:</p>
+<ul class="simple">
+<li><p><strong>Identification of causal relationships</strong>: directed edges in the CPDAG indicate robust causal relationships that hold across all DAGs in the equivalence class.</p></li>
+<li><p><strong>Ambiguity in directionality</strong>: undirected edges highlight areas where additional data or assumptions are needed to resolve the direction of causality.</p></li>
+<li><p><strong>Simplified analysis</strong>: analysing a CPDAG instead of multiple individual DAGs simplifies the process of understanding the underlying causal structure.</p></li>
+</ul>
 </section>
 
     <script type="text/x-thebe-config">
