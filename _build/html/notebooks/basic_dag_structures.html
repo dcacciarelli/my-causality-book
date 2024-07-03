@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/basic_dag_structures';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Glossary: Key Definitions and Terminology" href="glossary.html" />
-    <link rel="prev" title="7. What is a Causal Graph" href="DAG.html" />
+    <link rel="next" title="9. Definitions and Terminology" href="glossary.html" />
+    <link rel="prev" title="7. Causal Representations" href="DAG.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -178,23 +178,23 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Statistics and Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
@@ -219,16 +219,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">30. Multi-Armed Bandits</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">28. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -467,8 +466,8 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93560cc8-fb84-4a1f-9a6f-8292f3332703">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-93560cc8-fb84-4a1f-9a6f-8292f3332703" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8494d9b7-4446-446f-bed4-e4c27fc9b266">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-8494d9b7-4446-446f-bed4-e4c27fc9b266" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -496,8 +495,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3059b3dd-7238-4498-af20-35fc9bcc5f67">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-3059b3dd-7238-4498-af20-35fc9bcc5f67" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-10c620c2-cb8c-42a2-bd12-a535b8c9829b">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-10c620c2-cb8c-42a2-bd12-a535b8c9829b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -639,8 +638,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4e5d059a-8df4-4456-9f79-813d16b3519c">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-4e5d059a-8df4-4456-9f79-813d16b3519c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b6778539-8032-4527-b868-e3be9361f128">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-b6778539-8032-4527-b868-e3be9361f128" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
@@ -800,7 +799,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>What is a Causal Graph</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Causal Representations</p>
       </div>
     </a>
     <a class="right-next"
@@ -808,7 +807,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Glossary: Key Definitions and Terminology</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Definitions and Terminology</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
