@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/review_ML';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -425,23 +427,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-concepts">3.1. 3.1 Fundamental Concepts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-vs-unsupervised-learning">3.1.1. 3.1.1 Supervised vs. Unsupervised Learning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">3.1.2. 3.1.2 Overfitting and Underfitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-vs-unsupervised-learning">3.1. Supervised learning vs. unsupervised learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">3.2. Overfitting and underfitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting">3.2.1. Underfitting</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods-for-regression">3.2. 3.2 Tree-Based Methods for Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees-for-regression">3.2.1. 3.2.1 Decision Trees for Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forests-for-regression">3.2.2. 3.2.2 Random Forests for Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting-machines-for-regression">3.2.3. 3.2.3 Gradient Boosting Machines for Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods">3.3. Tree-based methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">3.3.1. Decision trees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forests">3.3.2. Random Forests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">3.3.3. XGBoost</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-of-tree-based-methods-for-regression">3.3. 3.3 Extensions of Tree-Based Methods for Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">3.3.1. 3.3.1 Feature Importance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-imbalanced-data-in-regression">3.3.2. 3.3.2 Handling Imbalanced Data in Regression</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">3.4. 3.4 Summary</a></li>
 </ul>
             </nav>
         </div>
@@ -455,35 +451,123 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="machine-learning">
 <h1><span class="section-number">3. </span>Machine Learning<a class="headerlink" href="#machine-learning" title="Link to this heading">#</a></h1>
-<p>Machine learning (ML) is a subset of artificial intelligence (AI) that focuses on developing algorithms that allow computers to learn from and make predictions based on data. This chapter provides an overview of the main concepts in machine learning, including key theoretical aspects, and focuses on supervised and unsupervised learning, overfitting, underfitting, and the bias-variance tradeoff. We will also delve into tree-based methods and their extensions, specifically for regression tasks.</p>
-<section id="fundamental-concepts">
-<h2><span class="section-number">3.1. </span>3.1 Fundamental Concepts<a class="headerlink" href="#fundamental-concepts" title="Link to this heading">#</a></h2>
-<section id="supervised-vs-unsupervised-learning">
-<h3><span class="section-number">3.1.1. </span>3.1.1 Supervised vs. Unsupervised Learning<a class="headerlink" href="#supervised-vs-unsupervised-learning" title="Link to this heading">#</a></h3>
-<p><strong>Supervised Learning</strong>: In supervised learning, the algorithm is trained on a labeled dataset, meaning that each training example is paired with an output label. The goal is to learn a mapping from inputs to outputs. Common tasks in supervised learning include:</p>
+<p>This chapter provides a very quick overview of the main concepts in machine learning, mostly to refresh some of the concepts or models that will be used throughout this book.</p>
+<section id="supervised-learning-vs-unsupervised-learning">
+<h2><span class="section-number">3.1. </span>Supervised learning vs. unsupervised learning<a class="headerlink" href="#supervised-learning-vs-unsupervised-learning" title="Link to this heading">#</a></h2>
+<p>In supervised learning, the model is trained on a labeled dataset, meaning that each training example is composed by input features (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>) and labels (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>). The goal is to learn the function relating the labels to the input features. Common tasks in supervised learning include:</p>
 <ul class="simple">
-<li><p><strong>Regression</strong>: Predicting a continuous value. Example: Predicting house prices based on features like size, location, and age.</p></li>
-<li><p><strong>Classification</strong>: Predicting a discrete label. Example: Identifying whether an email is spam or not based on its content.</p></li>
+<li><p><strong>Regression</strong>: predicting a continuous value. Example: Predicting house prices based on features like size, location, and age.</p></li>
+<li><p><strong>Classification</strong>: predicting a discrete label. Example: Identifying whether an email is spam or not based on its content.</p></li>
 </ul>
-<p><strong>Unsupervised Learning</strong>: In unsupervised learning, the algorithm is given data without explicit instructions on what to do with it. The goal is to infer the natural structure present within a set of data points. Common tasks in unsupervised learning include:</p>
+<p>In unsupervised learning, the model is usually trained on unlabeled examples (only the features <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>). The goal can be to infer the latent structure present within a set of data points. Common tasks in unsupervised learning include:</p>
 <ul class="simple">
-<li><p><strong>Clustering</strong>: Grouping similar data points together. Example: Customer segmentation based on purchasing behavior.</p></li>
-<li><p><strong>Dimensionality Reduction</strong>: Reducing the number of features while retaining the most important information. Example: Principal Component Analysis (PCA) for visualizing high-dimensional data.</p></li>
+<li><p><strong>Clustering</strong>: grouping similar data points together. Example: Customer segmentation based on purchasing behavior.</p></li>
+<li><p><strong>Dimensionality Reduction</strong>: reducing the number of features while retaining the most important information. Example: Principal Component Analysis (PCA) for visualizing high-dimensional data.</p></li>
 </ul>
-</section>
-<section id="overfitting-and-underfitting">
-<h3><span class="section-number">3.1.2. </span>3.1.2 Overfitting and Underfitting<a class="headerlink" href="#overfitting-and-underfitting" title="Link to this heading">#</a></h3>
-<p><strong>Overfitting</strong>: Overfitting occurs when a model learns the details and noise in the training data to the extent that it negatively impacts the performance of the model on new data. This usually happens when the model is too complex relative to the amount of training data. An overfitted model performs well on training data but poorly on validation or test data.</p>
-<p><strong>Underfitting</strong>: Underfitting occurs when a model is too simple to capture the underlying structure of the data. This results in poor performance on both the training data and new data. An underfitted model fails to capture the important patterns in the data.</p>
-<p><strong>Bias-Variance Tradeoff</strong>: The bias-variance tradeoff is a key concept in understanding model performance. Bias refers to the error introduced by approximating a real-world problem, which may be complex, by a simpler model. Variance refers to the model’s sensitivity to fluctuations in the training set. A model with high bias pays little attention to the training data and oversimplifies the model (underfitting), while a model with high variance pays too much attention to the training data, including noise (overfitting). The goal is to find a balance where both bias and variance are minimized.</p>
-<p><strong>Example of Overfitting and Underfitting</strong>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="c1"># Generate synthetic data for regression (supervised learning)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_reg</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_reg</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">X_reg</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Train a linear regression model</span>
+<span class="n">lin_reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lin_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_reg</span><span class="p">,</span> <span class="n">y_reg</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">lin_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_reg</span><span class="p">)</span>
+
+<span class="c1"># Generate synthetic data for clustering (unsupervised learning)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Define true cluster centers</span>
+<span class="n">true_centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="c1"># Assign data points to clusters</span>
+<span class="n">y_cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X_cluster</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">true_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Train a KMeans clustering model</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_cluster</span><span class="p">)</span>
+<span class="n">y_kmeans</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cluster</span><span class="p">)</span>
+
+<span class="c1"># Plot regression results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_reg</span><span class="p">,</span> <span class="n">y_reg</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data points&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_reg</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regression line&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Supervised Learning: Linear Regression&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature (X)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Target (y)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Plot clustering results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_cluster</span><span class="p">[</span><span class="n">y_kmeans</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_cluster</span><span class="p">[</span><span class="n">y_kmeans</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Draw circle around each cluster</span>
+    <span class="n">cluster_center</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">cluster_points</span> <span class="o">=</span> <span class="n">X_cluster</span><span class="p">[</span><span class="n">y_kmeans</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cluster_points</span> <span class="o">-</span> <span class="n">cluster_center</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">cluster_center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">fill</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Unsupervised Learning: KMeans Clustering&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ce126958fdc8a912067ec41aaa211b08f9512636ca98000b6afa8beb2c25d5cf.png" src="../_images/ce126958fdc8a912067ec41aaa211b08f9512636ca98000b6afa8beb2c25d5cf.png" />
+</div>
+</div>
+</section>
+<section id="overfitting-and-underfitting">
+<h2><span class="section-number">3.2. </span>Overfitting and underfitting<a class="headerlink" href="#overfitting-and-underfitting" title="Link to this heading">#</a></h2>
+<p>Overfitting occurs when a model learns not only the underlying patterns in the training data but also the noise and random fluctuations. This excessive learning leads the model to perform exceptionally well on the training data, but poorly on unseen or new data, such as validation or test datasets. Overfitting is more likely to happen when the model is overly complex relative to the amount of training data it has been given. Complexity can come from having too many features, using high-degree polynomial models, or incorporating too many parameters. The characteristics of overfitting are:</p>
+<ul class="simple">
+<li><p><strong>High training accuracy, low test accuracy</strong>: the model fits the training data very well but generalizes poorly to new data.</p></li>
+<li><p><strong>Complex models</strong>: models with a large number of parameters or high-degree polynomials are prone to overfitting.</p></li>
+<li><p><strong>Noise fitting</strong>: the model captures noise and random variations in the training data as if they were true patterns.</p></li>
+</ul>
+<p>Mitigation strategies might include:</p>
+<ul class="simple">
+<li><p><strong>Regularization</strong>: techniques like Lasso (L1 penalty), Ridge (L2 penalty), and Elastic Net add a penalty for larger coefficients, thus discouraging overly complex models.</p></li>
+<li><p><strong>Pruning</strong>: in decision trees, pruning helps by cutting off branches that have little importance.</p></li>
+<li><p><strong>Cross-validation</strong>: using techniques like k-fold cross-validation ensures that the model performs well on different subsets of the data.</p></li>
+<li><p><strong>Simpler models</strong>: choosing simpler models with fewer parameters can reduce the risk of overfitting.</p></li>
+<li><p><strong>More data</strong>: increasing the size of the training data can help the model generalize better.</p></li>
+</ul>
+<section id="underfitting">
+<h3><span class="section-number">3.2.1. </span>Underfitting<a class="headerlink" href="#underfitting" title="Link to this heading">#</a></h3>
+<p>Underfitting occurs when a model is too simple to capture the underlying patterns and structure of the data. This simplicity can arise from using too few features, having a low-degree polynomial, or having an overly simplistic model structure. An underfitted model will perform poorly on both the training data and new data because it fails to capture the essential trends and relationships within the data. The characteristics of underfitting are:</p>
+<ul class="simple">
+<li><p><strong>Low training accuracy, low test accuracy</strong>: the model does not perform well even on the training data, indicating it has not captured the underlying patterns.</p></li>
+<li><p><strong>Simple models</strong>: models with too few parameters, low-degree polynomials, or insufficient features.</p></li>
+<li><p><strong>Bias</strong>: the model has high bias and cannot adequately represent the complexity of the data.</p></li>
+</ul>
+<p>Mitigation strategies might include:</p>
+<ul class="simple">
+<li><p><strong>Complexity</strong>: increase the complexity of the model by adding more features, using higher-degree polynomials, or more complex algorithms.</p></li>
+<li><p><strong>Feature engineering</strong>: create new features that better capture the underlying patterns in the data.</p></li>
+<li><p><strong>Model tuning</strong>: adjust hyperparameters to better fit the data.</p></li>
+<li><p><strong>Increase training</strong>: ensure the model is adequately trained by allowing more iterations or using more sophisticated training techniques.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
 
 <span class="c1"># Generate synthetic data</span>
@@ -496,7 +580,7 @@ document.write(`
 
 <span class="c1"># Function to plot model</span>
 <span class="k">def</span> <span class="nf">plot_models</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
     
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">degree</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">polynomial_features</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="n">degree</span><span class="p">)</span>
@@ -513,10 +597,10 @@ document.write(`
         <span class="n">X_plot_poly</span> <span class="o">=</span> <span class="n">polynomial_features</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_plot</span><span class="p">)</span>
         <span class="n">y_plot_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_plot_poly</span><span class="p">)</span>
         
-        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">degrees</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">degrees</span><span class="p">),</span> <span class="n">i</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training data&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test data&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">y_plot_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Model prediction&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_plot</span><span class="p">,</span> <span class="n">y_plot_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Model prediction&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Polynomial Degree: </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="se">\n</span><span class="s1">Train MSE: </span><span class="si">{</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train_pred</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, Test MSE: </span><span class="si">{</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_test_pred</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
@@ -527,215 +611,235 @@ document.write(`
 
 <span class="c1"># Plotting models</span>
 <span class="n">degrees</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
-<span class="n">plot_models</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>  <span class="c1"># Underfitting, Good fit, Overfitting</span>
+<span class="n">plot_models</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/35cbf4057a001359524bafe10813fb6f235b911cf65b2276e4aad35e7e914f8d.png" src="../_images/35cbf4057a001359524bafe10813fb6f235b911cf65b2276e4aad35e7e914f8d.png" />
+<img alt="../_images/8452279d289841aeeeb404114fb01aab1e8eb87755042a22e749b7b7cd27a5c6.png" src="../_images/8452279d289841aeeeb404114fb01aab1e8eb87755042a22e749b7b7cd27a5c6.png" />
 </div>
 </div>
+<p>The three plots above illustrate the concepts of underfitting, good fit, and overfitting using polynomial regression models of varying degrees.</p>
+<ol class="arabic simple">
+<li><p><strong>Underfitting</strong>: the first plot shows a linear regression model (polynomial degree 1). The model is too simple to capture the underlying nonlinear relationship in the data, resulting in high bias. This is evident from the high training and test mean squared error (MSE). The model fails to capture the curve in the data, leading to underfitting.</p></li>
+<li><p><strong>Good fit</strong>: the second plot represents a polynomial regression model with degree 4. This model captures the underlying pattern of the data well, striking a balance between bias and variance. The training and test MSEs are relatively low, indicating that the model generalizes well to new data. This is an example of an optimal fit where the model complexity is appropriate for the data.</p></li>
+<li><p><strong>Overfitting</strong>: the third plot shows a polynomial regression model with degree 15. The model is overly complex, capturing not only the underlying pattern but also the noise in the training data. This leads to low training MSE but significantly higher test MSE, as the model does not generalize well to new data. This high variance results in poor performance on the test set, exemplifying overfitting.</p></li>
+</ol>
+<p>These plots clearly demonstrate how model complexity affects the ability to generalize, emphasizing the importance of finding a balance to avoid both underfitting and overfitting.</p>
 </section>
 </section>
-<section id="tree-based-methods-for-regression">
-<h2><span class="section-number">3.2. </span>3.2 Tree-Based Methods for Regression<a class="headerlink" href="#tree-based-methods-for-regression" title="Link to this heading">#</a></h2>
-<p>Tree-based methods are popular in machine learning for their interpretability and flexibility. They can model complex relationships without requiring extensive data preprocessing.</p>
-<section id="decision-trees-for-regression">
-<h3><span class="section-number">3.2.1. </span>3.2.1 Decision Trees for Regression<a class="headerlink" href="#decision-trees-for-regression" title="Link to this heading">#</a></h3>
-<p><strong>Decision Trees</strong>: A decision tree is a non-parametric model that splits the data into subsets based on the value of the features, creating a tree-like structure. Each node represents a feature, each branch represents a decision rule, and each leaf represents a predicted value.</p>
-<p><strong>Algorithm</strong>: The most common algorithm for regression trees is CART (Classification and Regression Trees). The quality of a split is measured using metrics like mean squared error (MSE) or mean absolute error (MAE).</p>
-<p><strong>Advantages</strong>: Easy to interpret, require little data preprocessing, can handle both numerical and categorical data, and can model nonlinear relationships.</p>
-<p><strong>Disadvantages</strong>: Prone to overfitting, especially with deep trees, and can be unstable as small variations in the data might result in different splits.</p>
-<p><strong>Example</strong>:</p>
+<section id="tree-based-methods">
+<h2><span class="section-number">3.3. </span>Tree-based methods<a class="headerlink" href="#tree-based-methods" title="Link to this heading">#</a></h2>
+<p>So far, we mostly covered the use of linear models. Let’s now briefly introduce another powerful class of models, that will be used in the book. Tree-based methods are powerful tools for both regression and classification tasks. They involve segmenting the predictor space into a number of simple regions, and making predictions based on these regions. Decision trees are a type of tree-based method that can handle complex data structures and relationships.</p>
+<section id="decision-trees">
+<h3><span class="section-number">3.3.1. </span>Decision trees<a class="headerlink" href="#decision-trees" title="Link to this heading">#</a></h3>
+<p>The decision tree is the most simple tree-based model. It is a non-parametric model that splits the data into subsets based on the value of the features, creating a tree-like structure. A decision tree is composed of nodes and branches. Each internal node represents a test on an attribute, each branch represents the outcome of the test, and each leaf node represents a predicted value. The tree grows by splitting nodes into child nodes, based on the values of input features. The goal is to reduce the impurity at each step. The most common algorithm for regression trees is CART (Classification and Regression Trees). The quality of a split is measured using metrics like mean squared error (MSE) or mean absolute error (MAE). The key advantages of decision trees include:</p>
+<ul class="simple">
+<li><p><strong>Interpretability</strong>: decision trees are easy to interpret and visualize.</p></li>
+<li><p><strong>Non-linearity</strong>: they can capture non-linear relationships between features and the target variable.</p></li>
+<li><p><strong>Little data preprocessing</strong>: they can handle both numerical and categorical data.</p></li>
+<li><p><strong>Feature importance</strong>: trees provide insights into feature importance based on how often and effectively features are used to split the data.</p></li>
+</ul>
+<p>Let’s build and visualise a simple decision tree for a regression task using synthetic data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span><span class="p">,</span> <span class="n">plot_tree</span>
 
 <span class="c1"># Generate synthetic data</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
 
-<span class="c1"># Train decision tree regressor</span>
-<span class="n">tree_reg</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
-<span class="n">tree_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># Split data into training and test sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># Predict</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">tree_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="c1"># Fit a decision tree regressor</span>
+<span class="n">tree_reg</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">tree_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
-<span class="c1"># Plotting</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Decision Tree Prediction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Decision Tree Regression&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1"># Visualize the decision tree</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_reg</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;X&quot;</span><span class="p">],</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Decision Tree for Regression&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5e30a4034d2e04a412b15fcba0746bada17207e8ed444b2ef67458daa9c37a23.png" src="../_images/5e30a4034d2e04a412b15fcba0746bada17207e8ed444b2ef67458daa9c37a23.png" />
+<img alt="../_images/c0fceff539d6a89dfb201a33e791710bbb3c0c7ef77c13ff3ab998d268b15a5b.png" src="../_images/c0fceff539d6a89dfb201a33e791710bbb3c0c7ef77c13ff3ab998d268b15a5b.png" />
 </div>
 </div>
+<p>The decision tree plot shows how the data is split at each node based on the input feature <span class="math notranslate nohighlight">\(X\)</span>. Each internal node represents a decision based on the value of <span class="math notranslate nohighlight">\(X\)</span>, and each leaf node shows the predicted value of <span class="math notranslate nohighlight">\(y\)</span>. The tree provides a clear and interpretable way to understand how the predictions are made based on the input features.</p>
 </section>
-<section id="random-forests-for-regression">
-<h3><span class="section-number">3.2.2. </span>3.2.2 Random Forests for Regression<a class="headerlink" href="#random-forests-for-regression" title="Link to this heading">#</a></h3>
-<p><strong>Random Forests</strong>: Random forests are an ensemble method that combines multiple decision trees to improve performance. Each tree is trained on a random subset of the data and features, and the final prediction is the average of all trees’ predictions.</p>
-<p><strong>Algorithm</strong>: The random forest algorithm involves bagging (bootstrap aggregating) and feature randomness, which helps in reducing overfitting and improving generalization.</p>
-<p><strong>Advantages</strong>: Robust to overfitting, handle large datasets well, provide feature importance measures, and can model complex relationships.</p>
-<p><strong>Disadvantages</strong>: Computationally intensive and less interpretable compared to a single decision tree.</p>
-<p><strong>Example</strong>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-
-<span class="c1"># Generate synthetic data</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># Split dataset</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># Train random forest regressor</span>
-<span class="n">rf_reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">rf_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1"># Predict and evaluate</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">rf_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Plotting</span>
-<span class="n">X_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y_grid_pred</span> <span class="o">=</span> <span class="n">rf_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_grid</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_grid</span><span class="p">,</span> <span class="n">y_grid_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Random Forest Prediction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Forest Regression&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MSE: 1.1205671165564755
-</pre></div>
-</div>
-<img alt="../_images/827f9216c27b2ed16525b6c6304837e21e45d94d5b040d4c33b2e5974a8dd060.png" src="../_images/827f9216c27b2ed16525b6c6304837e21e45d94d5b040d4c33b2e5974a8dd060.png" />
-</div>
-</div>
-</section>
-<section id="gradient-boosting-machines-for-regression">
-<h3><span class="section-number">3.2.3. </span>3.2.3 Gradient Boosting Machines for Regression<a class="headerlink" href="#gradient-boosting-machines-for-regression" title="Link to this heading">#</a></h3>
-<p><strong>Gradient Boosting</strong>: Gradient boosting is an ensemble technique that builds trees sequentially, where each tree tries to correct the errors of the previous one. The models are combined by weighting them according to their performance.</p>
-<p><strong>Algorithm</strong>: The algorithm involves fitting a decision tree to the residual errors of the previous tree and updating the predictions by adding the new tree’s predictions, scaled by a learning rate.</p>
-<p><strong>Advantages</strong>: Can achieve higher accuracy than random forests, especially on structured/tabular data, and provides feature importance measures.</p>
-<p><strong>Disadvantages</strong>: Prone to overfitting if not carefully tuned and generally more complex and computationally expensive than random forests.</p>
-<p><strong>Example (XGBoost)</strong>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-
-<span class="c1"># Generate synthetic data</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_reg</span>
-
-<span class="n">ression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># Split dataset</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-
-<span class="c1"># Train XGBoost model</span>
-<span class="n">xgb_reg</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;reg:squarederror&#39;</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">xgb_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="c1"># Predict and evaluate</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">xgb_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="c1"># Plotting</span>
-<span class="n">X_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y_grid_pred</span> <span class="o">=</span> <span class="n">xgb_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_grid</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_grid</span><span class="p">,</span> <span class="n">y_grid_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;XGBoost Prediction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XGBoost Regression&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Generate synthetic data</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_reg</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">ression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Split dataset</span>
-
-<span class="ne">NameError</span>: name &#39;make_reg&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="extensions-of-tree-based-methods-for-regression">
-<h2><span class="section-number">3.3. </span>3.3 Extensions of Tree-Based Methods for Regression<a class="headerlink" href="#extensions-of-tree-based-methods-for-regression" title="Link to this heading">#</a></h2>
-<section id="feature-importance">
-<h3><span class="section-number">3.3.1. </span>3.3.1 Feature Importance<a class="headerlink" href="#feature-importance" title="Link to this heading">#</a></h3>
-<p>Tree-based methods can provide insights into which features are most important for making predictions. This is useful for understanding the model and for feature selection.</p>
-<p><strong>Example</strong>:</p>
+<section id="random-forests">
+<h3><span class="section-number">3.3.2. </span>Random Forests<a class="headerlink" href="#random-forests" title="Link to this heading">#</a></h3>
+<p>Random Forests are an ensemble learning method that combines multiple decision trees to improve the predictive performance and control overfitting. The key idea is to build a “forest” of decision trees, where each tree is trained on a random subset of the data and a random subset of features. The key concepts behind random forests are:</p>
+<ol class="arabic">
+<li><p><strong>Bootstrap aggregating (bagging)</strong>: random forests use bagging, where multiple subsets of the data are sampled with replacement to train each tree independently. Mathematically, if the original dataset has <span class="math notranslate nohighlight">\(n\)</span> samples, each tree is trained on a bootstrap sample of <span class="math notranslate nohighlight">\(n\)</span> samples, drawn with replacement.</p>
+<div class="math notranslate nohighlight">
+\[
+   \text{Bootstrap Sample} = \{ x_i \}_{i=1}^{n} \quad \text{where} \quad x_i \sim \mathcal{D}
+   \]</div>
+</li>
+<li><p><strong>Feature randomness</strong>: at each split in the decision trees, a random subset of features is considered, introducing further randomness and reducing correlation between the trees. If there are <span class="math notranslate nohighlight">\(p\)</span> features, a typical number of features considered at each split is <span class="math notranslate nohighlight">\(m = \sqrt{p}\)</span> for classification or <span class="math notranslate nohighlight">\(m = \frac{p}{3}\)</span> for regression.</p>
+<div class="math notranslate nohighlight">
+\[
+   \text{Random Subset of Features} = \{ X_j \}_{j=1}^{m} \quad \text{where} \quad m \leq p
+   \]</div>
+</li>
+<li><p><strong>Voting mechanism</strong>: for regression tasks, the final prediction is the average of the predictions from all individual trees, while for classification tasks, the majority vote is taken.</p>
+<div class="math notranslate nohighlight">
+\[
+   \text{Regression Prediction} = \frac{1}{T} \sum_{t=1}^{T} \hat{y}_t(x)
+   \]</div>
+<div class="math notranslate nohighlight">
+\[
+   \text{Classification Prediction} = \text{mode}\left(\{ \hat{y}_t(x) \}_{t=1}^{T} \right)
+   \]</div>
+</li>
+</ol>
+<p>The ensemble approach employed by random forests reduces the variance and the risk of overfitting compared to individual decision trees. Indeed, aggregating multiple trees often leads to better predictive performance. Moreover, random forests provide insights into feature importance by evaluating the average decrease in impurity over all trees.</p>
+<p>For classification, a common impurity measures are Gini impurity and entropy, which is defined for a node <span class="math notranslate nohighlight">\(t\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[
+  G(t) = 1 - \sum_{i=1}^{C} p_i^2
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(p_i\)</span> is the probability of class <span class="math notranslate nohighlight">\(i\)</span> at node <span class="math notranslate nohighlight">\(t\)</span>, and <span class="math notranslate nohighlight">\(C\)</span> is the number of classes.</p>
+<p>For regression, the impurity measure is typically the <strong>variance</strong>, which is defined for a node <span class="math notranslate nohighlight">\(t\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[
+  \sigma^2(t) = \frac{1}{N_t} \sum_{i=1}^{N_t} (y_i - \bar{y})^2
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(N_t\)</span> is the number of samples in node <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(y_i\)</span> is the target value for the <span class="math notranslate nohighlight">\(i\)</span>-th sample, and <span class="math notranslate nohighlight">\(\bar{y}\)</span> is the mean target value in node <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p><strong>Feature importance</strong> in random forests is calculated based on the mean decrease in impurity. For a feature <span class="math notranslate nohighlight">\(X_j\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Importance}(X_j) = \frac{1}{T} \sum_{t=1}^{T} \sum_{k \in \text{nodes}} \Delta I_k(X_j)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta I_k(X_j)\)</span> is the decrease in impurity at node <span class="math notranslate nohighlight">\(k\)</span> due to split on feature <span class="math notranslate nohighlight">\(X_j\)</span>, and <span class="math notranslate nohighlight">\(T\)</span> is the total number of trees in the forest.</p>
+<p>The bar plot below shows the importance scores of each feature used in a random forest model fitted to synthetic data. Each bar represents a feature, and its height indicates the relative importance of that feature in predicting the target variable. Higher bars correspond to features that are more important for the model. These features contribute more significantly to reducing the impurity of the splits in the decision trees. Understanding feature importance can provide insights into the underlying data structure and guide feature selection or engineering efforts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
 
-<span class="c1"># Train random forest regressor</span>
-<span class="n">rf_reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">rf_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="c1"># Generate synthetic data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
 
-<span class="c1"># Get feature importances</span>
-<span class="n">importances</span> <span class="o">=</span> <span class="n">rf_reg</span><span class="o">.</span><span class="n">feature_importances_</span>
-<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">importances</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Split data into training and test sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># Plot feature importances</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature Importances&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">importances</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Feature </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature&#39;</span><span class="p">)</span>
+<span class="c1"># Fit a random forest regressor</span>
+<span class="n">forest_reg</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">forest_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Extract and plot feature importance</span>
+<span class="n">importances</span> <span class="o">=</span> <span class="n">forest_reg</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">importances</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Feature Index&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Forest Feature Importance&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/010c86555d74dc1b72629f4959b0578d1feb2754437042996288cfdcdd827d3f.png" src="../_images/010c86555d74dc1b72629f4959b0578d1feb2754437042996288cfdcdd827d3f.png" />
+<img alt="../_images/d055733738b726a3ebc6878ce721d058d40b2378967b40614bfdea36ddc5aba5.png" src="../_images/d055733738b726a3ebc6878ce721d058d40b2378967b40614bfdea36ddc5aba5.png" />
 </div>
 </div>
 </section>
-<section id="handling-imbalanced-data-in-regression">
-<h3><span class="section-number">3.3.2. </span>3.3.2 Handling Imbalanced Data in Regression<a class="headerlink" href="#handling-imbalanced-data-in-regression" title="Link to this heading">#</a></h3>
-<p>While handling imbalanced data is more commonly discussed in the context of classification, it can also be relevant in regression when dealing with skewed distributions or outlier-heavy datasets. Techniques include using robust loss functions, balancing data through resampling, or using ensemble methods that are less sensitive to imbalances.</p>
+<section id="xgboost">
+<h3><span class="section-number">3.3.3. </span>XGBoost<a class="headerlink" href="#xgboost" title="Link to this heading">#</a></h3>
+<p>XGBoost (Extreme Gradient Boosting) is an advanced implementation of gradient boosting, designed for speed and performance. It builds decision trees sequentially, where each tree attempts to correct the errors of the previous trees. The key concepts of XGBoost are:</p>
+<ol class="arabic">
+<li><p><strong>Gradient boosting</strong>: the method sequentially builds trees by fitting the residual errors of the previous trees. Each tree tries to minimize a loss function by using gradient descent. The objective is to minimize the following loss function:</p>
+<div class="math notranslate nohighlight">
+\[
+   \mathcal{L} = \sum_{i=1}^{n} l(y_i, \hat{y}_i^{(t)}) + \sum_{k=1}^{t} \Omega(f_k)
+   \]</div>
+<p>where <span class="math notranslate nohighlight">\(l\)</span> is a differentiable loss function (e.g., mean squared error for regression, log loss for classification), <span class="math notranslate nohighlight">\(\hat{y}_i^{(t)}\)</span> is the prediction at the <span class="math notranslate nohighlight">\(t\)</span>-th iteration, and <span class="math notranslate nohighlight">\(\Omega\)</span> is a regularization term for the complexity of the trees <span class="math notranslate nohighlight">\(f_k\)</span>.</p>
+</li>
+<li><p><strong>Regularization</strong>: XGBoost incorporates regularization to prevent overfitting, making it more robust than traditional gradient boosting methods. The regularization term <span class="math notranslate nohighlight">\(\Omega\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+   \Omega(f) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2
+   \]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the number of leaves in the tree, <span class="math notranslate nohighlight">\(w_j\)</span> are the leaf weights, <span class="math notranslate nohighlight">\(\gamma\)</span> is a regularization parameter for the number of leaves, and <span class="math notranslate nohighlight">\(\lambda\)</span> is a regularization parameter for the leaf weights.</p>
+</li>
+<li><p><strong>Parallel processing</strong>: XGBoost supports parallel processing and efficient handling of missing values, which enhances its performance. This is achieved by using a block structure for data storage and computation, allowing multiple operations to be carried out simultaneously.</p></li>
+</ol>
+<p>XGBoost is known for its high predictive accuracy and efficiency. It can handle a variety of data types and is widely used in many industrial contexts. Moreover, it has built-in regularization parameters to control overfitting and improve generalization. Indeed, the objective function in XGBoost combines the loss function and the regularization term. For the <span class="math notranslate nohighlight">\(t\)</span>-th iteration, the objective function can be approximated using a second-order Taylor expansion:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}^{(t)} \approx \sum_{i=1}^{n} [l(y_i, \hat{y}_i^{(t-1)}) + g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)] + \Omega(f_t)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(g_i = \frac{\partial l(y_i, \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)}}\)</span> and <span class="math notranslate nohighlight">\(h_i = \frac{\partial^2 l(y_i, \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)2}}\)</span> are the first and second derivatives of the loss function, respectively.</p>
+<p>The structure score of a tree is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}_{split} = -\frac{1}{2} \left( \frac{\sum_{i \in I_L} g_i}{\sum_{i \in I_L} h_i + \lambda} + \frac{\sum_{i \in I_R} g_i}{\sum_{i \in I_R} h_i + \lambda} - \frac{\sum_{i \in I} g_i}{\sum_{i \in I} h_i + \lambda} \right) + \gamma
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(I_L\)</span> and <span class="math notranslate nohighlight">\(I_R\)</span> are the instances in the left and right child nodes, respectively, and <span class="math notranslate nohighlight">\(I\)</span> is the set of all instances in the node before the split.</p>
+<p>In the plot below, we show the training process, where the lines display the root mean squared error (RMSE) on both the training and test sets across the boosting rounds. The x-axis represents the number of boosting rounds (trees added), and the y-axis represents the RMSE.</p>
+<p>The plot helps in understanding how the model’s performance evolves during training. Ideally, both training and test RMSE should decrease initially, indicating improved model performance. If the training RMSE continues to decrease while the test RMSE starts to increase, it suggests overfitting. The evaluation plot is a crucial diagnostic tool for tuning the parameters (e.g., learning rate, max depth) to achieve a balance between underfitting and overfitting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+
+<span class="c1"># Generate synthetic data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span>
+
+<span class="c1"># Split data into training and test sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Convert the data into DMatrix format for XGBoost</span>
+<span class="n">train_dmatrix</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">DMatrix</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">test_dmatrix</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">DMatrix</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># Define the model parameters</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="s2">&quot;reg:squarederror&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;eta&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="s2">&quot;eval_metric&quot;</span><span class="p">:</span> <span class="s2">&quot;rmse&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Train the XGBoost model with evaluation sets</span>
+<span class="n">evals</span> <span class="o">=</span> <span class="p">[(</span><span class="n">train_dmatrix</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">test_dmatrix</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)]</span>
+<span class="n">num_rounds</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">evals_result</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">xg_reg</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">train_dmatrix</span><span class="p">,</span> <span class="n">num_boost_round</span><span class="o">=</span><span class="n">num_rounds</span><span class="p">,</span> <span class="n">evals</span><span class="o">=</span><span class="n">evals</span><span class="p">,</span> <span class="n">evals_result</span><span class="o">=</span><span class="n">evals_result</span><span class="p">,</span> <span class="n">verbose_eval</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Plot the evaluation results</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">evals_result</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;rmse&#39;</span><span class="p">])</span>
+<span class="n">x_axis</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">epochs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">evals_result</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="s1">&#39;rmse&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_axis</span><span class="p">,</span> <span class="n">evals_result</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">][</span><span class="s1">&#39;rmse&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Boosting Round&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;RMSE&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;XGBoost Training and Test RMSE&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/33938cfabae38c6df99c0dda23a9389612374fa7db03dba73534daa1017515ae.png" src="../_images/33938cfabae38c6df99c0dda23a9389612374fa7db03dba73534daa1017515ae.png" />
+</div>
+</div>
 </section>
-</section>
-<section id="summary">
-<h2><span class="section-number">3.4. </span>3.4 Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
-<p>Machine learning encompasses a wide array of techniques and methodologies aimed at building models that can learn from data and make predictions. Key concepts such as overfitting, underfitting, and the bias-variance tradeoff are crucial for understanding model performance. Supervised learning involves training models on labeled data, while unsupervised learning involves discovering patterns in unlabeled data. Tree-based methods, including decision trees, random forests, and gradient boosting machines, are powerful tools for regression tasks, offering flexibility and interpretability. Extensions of these methods, like feature importance and handling imbalanced data, enhance their applicability and robustness in various real-world scenarios.</p>
 </section>
 </section>
 
@@ -803,23 +907,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-concepts">3.1. 3.1 Fundamental Concepts</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-vs-unsupervised-learning">3.1.1. 3.1.1 Supervised vs. Unsupervised Learning</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">3.1.2. 3.1.2 Overfitting and Underfitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-vs-unsupervised-learning">3.1. Supervised learning vs. unsupervised learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">3.2. Overfitting and underfitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting">3.2.1. Underfitting</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods-for-regression">3.2. 3.2 Tree-Based Methods for Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees-for-regression">3.2.1. 3.2.1 Decision Trees for Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forests-for-regression">3.2.2. 3.2.2 Random Forests for Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting-machines-for-regression">3.2.3. 3.2.3 Gradient Boosting Machines for Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods">3.3. Tree-based methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">3.3.1. Decision trees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forests">3.3.2. Random Forests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">3.3.3. XGBoost</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-of-tree-based-methods-for-regression">3.3. 3.3 Extensions of Tree-Based Methods for Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-importance">3.3.1. 3.3.1 Feature Importance</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-imbalanced-data-in-regression">3.3.2. 3.3.2 Handling Imbalanced Data in Regression</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">3.4. 3.4 Summary</a></li>
 </ul>
   </nav></div>
 
