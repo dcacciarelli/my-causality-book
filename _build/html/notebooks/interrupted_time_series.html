@@ -174,7 +174,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Applied Causal Inference: Techniques and Applications in Electricity Markets
+                    Data Science for Electricity Markets: Causality, Interpretability, and Experimental Methods
                 </a>
             </li>
         </ul>
@@ -442,8 +442,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="interrupted-time-series">
 <h1><span class="section-number">20. </span>Interrupted Time Series<a class="headerlink" href="#interrupted-time-series" title="Link to this heading">#</a></h1>
 <p>Interrupted time series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e0b913f-7d8d-4312-acc7-a235e5df774b">
-<span class="eqno">(20.1)<a class="headerlink" href="#equation-3e0b913f-7d8d-4312-acc7-a235e5df774b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ac417391-cff4-4b71-953e-cd36a99a6a57">
+<span class="eqno">(20.1)<a class="headerlink" href="#equation-ac417391-cff4-4b71-953e-cd36a99a6a57" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
 \end{equation}\]</div>
 <p>where the regression coefficients are used to capture:</p>
@@ -521,7 +521,7 @@ Dep. Variable:                  price   R-squared:                       0.993
 Model:                            OLS   Adj. R-squared:                  0.993
 Method:                 Least Squares   F-statistic:                     4425.
 Date:                Sun, 07 Jul 2024   Prob (F-statistic):          9.73e-103
-Time:                        19:00:19   Log-Likelihood:                -129.67
+Time:                        19:10:46   Log-Likelihood:                -129.67
 No. Observations:                 100   AIC:                             267.3
 Df Residuals:                      96   BIC:                             277.8
 Df Model:                           3                                         
@@ -786,7 +786,7 @@ Dep. Variable:              residuals   R-squared:                       0.616
 Model:                            OLS   Adj. R-squared:                  0.613
 Method:                 Least Squares   F-statistic:                     158.3
 Date:                Sun, 07 Jul 2024   Prob (F-statistic):           1.02e-41
-Time:                        19:00:20   Log-Likelihood:                -563.84
+Time:                        19:10:47   Log-Likelihood:                -563.84
 No. Observations:                 200   AIC:                             1134.
 Df Residuals:                     197   BIC:                             1144.
 Df Model:                           2                                         

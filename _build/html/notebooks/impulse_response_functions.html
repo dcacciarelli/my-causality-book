@@ -174,7 +174,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Applied Causal Inference: Techniques and Applications in Electricity Markets
+                    Data Science for Electricity Markets: Causality, Interpretability, and Experimental Methods
                 </a>
             </li>
         </ul>
@@ -434,8 +434,8 @@ document.write(`
 <p>Conversely from PDPs and ALEs, impulse response functions (IRFs) are particularly suited for <strong>time series</strong>. They are a key tool in time series analysis, particularly in the context of <strong>vector autoregressive (VAR) models</strong>. They describe the reaction of the system (i.e., the time series) to a temporary shock in one of the variables. In the context of electricity markets, IRFs can help us understand how a shock in one factor, such as temperature or demand, impacts electricity prices over time.</p>
 <p>In electricity markets, understanding the dynamic relationships between different factors is crucial. For example, a sudden increase in temperature might lead to higher electricity demand due to air conditioning, which in turn could increase electricity prices. IRFs allow us to quantify and visualize these dynamic responses, providing insights into the temporal effects of shocks on the market.</p>
 <p>Consider a VAR(<span class="math notranslate nohighlight">\(p\)</span>) model with <span class="math notranslate nohighlight">\(k\)</span> variables. The order <span class="math notranslate nohighlight">\(p\)</span> determines the number of lagged observations included in the model, reflecting the extent to which past values influence the current value. The model is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-98ade51d-231e-45dd-830c-5c0c98c3eff0">
-<span class="eqno">(24.1)<a class="headerlink" href="#equation-98ade51d-231e-45dd-830c-5c0c98c3eff0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-321e8354-e7a8-412f-921b-ec658e1490f5">
+<span class="eqno">(24.1)<a class="headerlink" href="#equation-321e8354-e7a8-412f-921b-ec658e1490f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{y}_t = \mathbf{A}_1 \mathbf{y}_{t-1} + \mathbf{A}_2 \mathbf{y}_{t-2} + \cdots + \mathbf{A}_p \mathbf{y}_{t-p} + \mathbf{u}_t
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span> is a <span class="math notranslate nohighlight">\(k \times 1\)</span> vector of time series variables at time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A}_i\)</span> are the <span class="math notranslate nohighlight">\(k \times k\)</span> coefficient matrices, and <span class="math notranslate nohighlight">\(\mathbf{u}_t\)</span> is a <span class="math notranslate nohighlight">\(k \times 1\)</span> vector of error terms (shocks).</p>
@@ -462,8 +462,8 @@ In a VAR model, the error term (often referred to as “shock” or “innovatio
 <li><p><strong>Dynamic responses</strong>: by iterating the VAR model forward in time, the IRF shows how the initial shock to demand affects both demand and price (and potentially other variables) over multiple future time periods.</p></li>
 </ol>
 <p><strong>Practical example</strong>: consider a VAR(2) model with two variables, demand <span class="math notranslate nohighlight">\(D\)</span> and price <span class="math notranslate nohighlight">\(P\)</span>. The model equations might look like this:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf30419e-459a-44e7-b7ab-14c7e6e76ce2">
-<span class="eqno">(24.2)<a class="headerlink" href="#equation-bf30419e-459a-44e7-b7ab-14c7e6e76ce2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5d6aca01-280b-4d57-ae5e-3473f3482013">
+<span class="eqno">(24.2)<a class="headerlink" href="#equation-5d6aca01-280b-4d57-ae5e-3473f3482013" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{aligned}
     D_t &amp;= a_{10} + a_{11} D_{t-1} + a_{12} P_{t-1} + a_{13} D_{t-2} + a_{14} P_{t-2} + u_{Dt} \\
     P_t &amp;= b_{10} + b_{11} D_{t-1} + b_{12} P_{t-1} + b_{13} D_{t-2} + b_{14} P_{t-2} + u_{Pt}

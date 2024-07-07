@@ -174,7 +174,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Applied Causal Inference: Techniques and Applications in Electricity Markets
+                    Data Science for Electricity Markets: Causality, Interpretability, and Experimental Methods
                 </a>
             </li>
         </ul>
@@ -439,8 +439,8 @@ document.write(`
 <li><p><strong>Query synthesis</strong>: the algorithm generates new samples to query an oracle for their labels.</p></li>
 </ol>
 <p>Consider the case where we want to estimate the effect of a variable using a linear model of the kind:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9dcae8b-27e1-4d9d-b31b-29ad3f594d38">
-<span class="eqno">()<a class="headerlink" href="#equation-d9dcae8b-27e1-4d9d-b31b-29ad3f594d38" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b6ce142e-2123-45f6-852e-8b44c5820a1f">
+<span class="eqno">()<a class="headerlink" href="#equation-b6ce142e-2123-45f6-852e-8b44c5820a1f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = X \beta + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -451,8 +451,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, assumed to be normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
 </ul>
 <p>The goal is to estimate the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> using the observed data. The variance of the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> can be computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2054228c-0729-48b5-9602-4ece551f7e56">
-<span class="eqno">()<a class="headerlink" href="#equation-2054228c-0729-48b5-9602-4ece551f7e56" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-48e99280-d3bd-4eaf-a379-ef14a2f7f536">
+<span class="eqno">()<a class="headerlink" href="#equation-48e99280-d3bd-4eaf-a379-ef14a2f7f536" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance of the residuals, and <span class="math notranslate nohighlight">\((X^T X)^{-1}\)</span> is the inverse of the information matrix.</p>
