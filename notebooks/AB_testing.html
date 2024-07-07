@@ -174,7 +174,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Applied Causal Inference: Techniques and Applications in Electricity Markets
+                    Data Science for Electricity Markets: Causality, Interpretability, and Experimental Methods
                 </a>
             </li>
         </ul>
@@ -543,8 +543,8 @@ The enhanced marketing message significantly increases energy usage during off-p
 <section id="multiple-testing">
 <h3><span class="section-number">27.2.2. </span>Multiple testing<a class="headerlink" href="#multiple-testing" title="Link to this heading">#</a></h3>
 <p>When conducting multiple tests, the probability of making at least one type I error (false positive) increases. To address this, we use the Bonferroni correction, which adjusts the significance level to control the family-wise error rate (FWER). The adjusted significance level is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e54df814-cf5c-4dde-b2ea-6ea65085ed60">
-<span class="eqno">(27.1)<a class="headerlink" href="#equation-e54df814-cf5c-4dde-b2ea-6ea65085ed60" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-501a1be6-906d-4fd6-a5f8-2cb51abd07c2">
+<span class="eqno">(27.1)<a class="headerlink" href="#equation-501a1be6-906d-4fd6-a5f8-2cb51abd07c2" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the original significance level, and <span class="math notranslate nohighlight">\(m\)</span> is the number of tests.</p>
 <p>Let’s consider an example where a utility company is testing five different marketing campaigns to see if they significantly increase the adoption of a new energy-saving device.</p>
 <p><strong>Scenario</strong>:</p>
@@ -651,7 +651,7 @@ Dep. Variable:               response   R-squared:                       0.912
 Model:                            OLS   Adj. R-squared:                  0.912
 Method:                 Least Squares   F-statistic:                     3446.
 Date:                Sun, 07 Jul 2024   Prob (F-statistic):               0.00
-Time:                        18:59:17   Log-Likelihood:                -1409.1
+Time:                        19:09:38   Log-Likelihood:                -1409.1
 No. Observations:                1000   AIC:                             2826.
 Df Residuals:                     996   BIC:                             2846.
 Df Model:                           3                                         
@@ -706,8 +706,8 @@ Notes:
 <p><strong>Simulating treatment assignment:</strong> we randomly assign each node (customer) to either the treatment group (Z=1) or the control group (Z=0) with equal probability. This represents whether a customer receives the new marketing campaign or not.</p>
 <p><strong>Simulating the response variable:</strong> The response variable <span class="math notranslate nohighlight">\(Y\)</span> represents the outcome we are interested in measuring, such as whether a customer switched to the green energy plan. The outcome for each customer is influenced by their own treatment status <span class="math notranslate nohighlight">\(Z\)</span> and the treatment statuses of their connected neighbors, which we account for using the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The formula used for simulating the response is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-09657177-277b-452a-8cec-baf8b4e75aba">
-<span class="eqno">(27.2)<a class="headerlink" href="#equation-09657177-277b-452a-8cec-baf8b4e75aba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8dac2600-cf67-4cdb-a156-4434a2050057">
+<span class="eqno">(27.2)<a class="headerlink" href="#equation-8dac2600-cf67-4cdb-a156-4434a2050057" title="Permalink to this equation">#</a></span>\[\begin{equation}
     Y = \beta_0 + \beta_1 Z + \beta_2 (A \cdot Z) + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -777,7 +777,7 @@ Dep. Variable:                      y   R-squared:                       0.746
 Model:                            OLS   Adj. R-squared:                  0.744
 Method:                 Least Squares   F-statistic:                     290.0
 Date:                Sun, 07 Jul 2024   Prob (F-statistic):           1.98e-59
-Time:                        18:59:19   Log-Likelihood:                -276.44
+Time:                        19:09:39   Log-Likelihood:                -276.44
 No. Observations:                 200   AIC:                             558.9
 Df Residuals:                     197   BIC:                             568.8
 Df Model:                           2                                         
