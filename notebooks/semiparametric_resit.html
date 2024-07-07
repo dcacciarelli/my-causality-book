@@ -491,8 +491,8 @@ document.write(`
 <section id="additive-noise-models-anms">
 <h2><span class="section-number">12.1. </span>Additive noise models (ANMs)<a class="headerlink" href="#additive-noise-models-anms" title="Link to this heading">#</a></h2>
 <p>One of the most popular approaches to causal discovery with nonlinear models is to use additive noise models (ANMs) <span id="id1">[<a class="reference internal" href="../bibliography.html#id5" title="Jonas Peters, Joris M Mooij, Dominik Janzing, and Bernhard Schölkopf. Causal discovery with continuous additive noise models. Journal of Machine Learning Research, 2014.">PMJScholkopf14</a>]</span>. In the case of an ANM, each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70cc48cc-63dc-4bc3-912a-977971826cb6">
-<span class="eqno">(12.1)<a class="headerlink" href="#equation-70cc48cc-63dc-4bc3-912a-977971826cb6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-950b35fd-4622-42ce-bf3a-cd4f418b454d">
+<span class="eqno">(12.1)<a class="headerlink" href="#equation-950b35fd-4622-42ce-bf3a-cd4f418b454d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. We can easily see that when the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
@@ -514,8 +514,8 @@ document.write(`
 <section id="example-with-nonlinear-functions">
 <h3><span class="section-number">12.2.1. </span>Example with nonlinear functions<a class="headerlink" href="#example-with-nonlinear-functions" title="Link to this heading">#</a></h3>
 <p>Let us consider the simple example with two variables of temperature and electricity load, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bdf1594d-78e9-48b9-bb5b-6ec020fc0d43">
-<span class="eqno">(12.2)<a class="headerlink" href="#equation-bdf1594d-78e9-48b9-bb5b-6ec020fc0d43" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d6bfabb7-838e-4659-ae78-357e50ae5724">
+<span class="eqno">(12.2)<a class="headerlink" href="#equation-d6bfabb7-838e-4659-ae78-357e50ae5724" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \end{align}\]</div>
@@ -568,8 +568,8 @@ document.write(`
 <h3><span class="section-number">12.2.2. </span>Full RESIT example<a class="headerlink" href="#full-resit-example" title="Link to this heading">#</a></h3>
 <p>We now try to apply the RESIT approach to a slightly more complex example, where some of the relationships are <strong>nonlinear</strong>.</p>
 <p>Let us assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-924d8fdc-fe5d-4ab4-bb56-388d9848b564">
-<span class="eqno">(12.3)<a class="headerlink" href="#equation-924d8fdc-fe5d-4ab4-bb56-388d9848b564" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-118a6628-097c-4d72-86cc-14fd628fdac4">
+<span class="eqno">(12.3)<a class="headerlink" href="#equation-118a6628-097c-4d72-86cc-14fd628fdac4" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \text{thermal constraints} &amp;= 1.5 \times \text{electricity load} + \sin{(\text{temperature})} + e_c \\
