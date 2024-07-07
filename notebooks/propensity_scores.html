@@ -174,7 +174,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Applied Causal Inference for Electricity Markets
+                    Applied Causal Inference: Techniques and Applications in Electricity Markets
                 </a>
             </li>
         </ul>
@@ -454,14 +454,14 @@ document.write(`
 <p>Whenever the treatment and control assignment is not random, there may be demographic or personal factors that affect the outcome of the experiment. These factors are referred to as <strong>confounders</strong>. This problem is particularly prevalent in observational data (see <span id="id1">[<a class="reference internal" href="../bibliography.html#id12" title="Paul R Rosenbaum and Donald B Rubin. The central role of the propensity score in observational studies for causal effects. Biometrika, 70(1):41–55, 1983.">RR83</a>]</span>).</p>
 <p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
 <p>In mathematical terms, we can define the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span> as the probability of a unit (e.g., customer) joining the demand-response programme given a set of covariates <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b5f40a12-50f1-4297-b8c3-56a6cf311f10">
-<span class="eqno">(17.1)<a class="headerlink" href="#equation-b5f40a12-50f1-4297-b8c3-56a6cf311f10" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b61f28f0-b86d-4886-8bd6-d11066269d42">
+<span class="eqno">(17.1)<a class="headerlink" href="#equation-b61f28f0-b86d-4886-8bd6-d11066269d42" title="Permalink to this equation">#</a></span>\[\begin{equation}
    e(x) = P(T = 1 \mid X = x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is a binary indicator of treatment assignment (1 if joined the programme, 0 if not).</p>
 <p>Propensity scores are typically estimated using <strong>logistic regression</strong>, although other classification methods can be used. For example:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8236e97c-cecc-4367-9931-a352c2060b9b">
-<span class="eqno">(17.2)<a class="headerlink" href="#equation-8236e97c-cecc-4367-9931-a352c2060b9b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3aadc69d-0024-4bb4-8c47-d69009427383">
+<span class="eqno">(17.2)<a class="headerlink" href="#equation-3aadc69d-0024-4bb4-8c47-d69009427383" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
 \end{equation}\]</div>
 <p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching, such as:</p>
