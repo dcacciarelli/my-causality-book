@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,7 +180,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Statistics and Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Probability Theory and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
@@ -466,8 +466,8 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8494d9b7-4446-446f-bed4-e4c27fc9b266">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-8494d9b7-4446-446f-bed4-e4c27fc9b266" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-72a6f1ec-ca1c-4dce-9289-45e9eb821df8">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-72a6f1ec-ca1c-4dce-9289-45e9eb821df8" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -495,8 +495,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-10c620c2-cb8c-42a2-bd12-a535b8c9829b">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-10c620c2-cb8c-42a2-bd12-a535b8c9829b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-34835c18-47bd-45a9-9e05-3ef1d7686039">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-34835c18-47bd-45a9-9e05-3ef1d7686039" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -638,8 +638,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6778539-8032-4527-b868-e3be9361f128">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-b6778539-8032-4527-b868-e3be9361f128" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5798412b-df1c-4928-b333-d7256788a4cb">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-5798412b-df1c-4928-b333-d7256788a4cb" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\

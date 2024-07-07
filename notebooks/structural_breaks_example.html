@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -178,23 +178,23 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="current nav bd-sidenav">
@@ -219,16 +219,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">30. Multi-Armed Bandits</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">28. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -471,13 +470,13 @@ document.write(`
 <section id="pre-subsidy-structural-model">
 <h3><span class="section-number">14.1.1. </span>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-960c65eb-a20a-44f1-a0f3-99340b901ab5">
-<span class="eqno">(14.1)<a class="headerlink" href="#equation-960c65eb-a20a-44f1-a0f3-99340b901ab5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e4a3a9b6-93f3-4f87-ae66-3969ded0ac8b">
+<span class="eqno">(14.1)<a class="headerlink" href="#equation-e4a3a9b6-93f3-4f87-ae66-3969ded0ac8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-afdcd550-053b-4ee9-98c1-324f9337fef2">
-<span class="eqno">(14.2)<a class="headerlink" href="#equation-afdcd550-053b-4ee9-98c1-324f9337fef2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-69e134e6-2d4b-474b-a0b3-fc88f17d4411">
+<span class="eqno">(14.2)<a class="headerlink" href="#equation-69e134e6-2d4b-474b-a0b3-fc88f17d4411" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -489,13 +488,13 @@ document.write(`
 <section id="post-subsidy-structural-model">
 <h3><span class="section-number">14.1.2. </span>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>After the introduction of subsidies, the relationships change as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79e79e6a-a46c-4b58-a3dd-199d012490e2">
-<span class="eqno">(14.3)<a class="headerlink" href="#equation-79e79e6a-a46c-4b58-a3dd-199d012490e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-29c6ede8-1ce3-4a43-8fbf-cdbbb4d38679">
+<span class="eqno">(14.3)<a class="headerlink" href="#equation-29c6ede8-1ce3-4a43-8fbf-cdbbb4d38679" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-acf5f3b1-bde5-4051-893e-bc6b222ea7cb">
-<span class="eqno">(14.4)<a class="headerlink" href="#equation-acf5f3b1-bde5-4051-893e-bc6b222ea7cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8e1c49de-a98c-4dd5-b113-63e64ffb1b3e">
+<span class="eqno">(14.4)<a class="headerlink" href="#equation-8e1c49de-a98c-4dd5-b113-63e64ffb1b3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -613,7 +612,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x16e152a10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x13ef666d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" src="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" />
@@ -682,7 +681,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x17e63e890&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x16017a1d0&gt;
 </pre></div>
 </div>
 </div>

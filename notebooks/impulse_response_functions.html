@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/impulse_response_functions';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="25. Shapley Values" href="shapley.html" />
+    <link rel="next" title="25. Shapley Additive Explanations" href="shapley.html" />
     <link rel="prev" title="23. Accumulated Local Effects" href="accumulated_local_effects.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,23 +178,23 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
@@ -219,16 +219,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">30. Multi-Armed Bandits</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">28. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -435,8 +434,8 @@ document.write(`
 <p>Conversely from PDPs and ALEs, impulse response functions (IRFs) are particularly suited for <strong>time series</strong>. They are a key tool in time series analysis, particularly in the context of <strong>vector autoregressive (VAR) models</strong>. They describe the reaction of the system (i.e., the time series) to a temporary shock in one of the variables. In the context of electricity markets, IRFs can help us understand how a shock in one factor, such as temperature or demand, impacts electricity prices over time.</p>
 <p>In electricity markets, understanding the dynamic relationships between different factors is crucial. For example, a sudden increase in temperature might lead to higher electricity demand due to air conditioning, which in turn could increase electricity prices. IRFs allow us to quantify and visualize these dynamic responses, providing insights into the temporal effects of shocks on the market.</p>
 <p>Consider a VAR(<span class="math notranslate nohighlight">\(p\)</span>) model with <span class="math notranslate nohighlight">\(k\)</span> variables. The order <span class="math notranslate nohighlight">\(p\)</span> determines the number of lagged observations included in the model, reflecting the extent to which past values influence the current value. The model is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ec403f7-92c5-47fb-a6d0-53cd7608318f">
-<span class="eqno">(24.1)<a class="headerlink" href="#equation-7ec403f7-92c5-47fb-a6d0-53cd7608318f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ee60548b-9736-43d9-8f97-27f168f30dc0">
+<span class="eqno">(24.1)<a class="headerlink" href="#equation-ee60548b-9736-43d9-8f97-27f168f30dc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{y}_t = \mathbf{A}_1 \mathbf{y}_{t-1} + \mathbf{A}_2 \mathbf{y}_{t-2} + \cdots + \mathbf{A}_p \mathbf{y}_{t-p} + \mathbf{u}_t
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span> is a <span class="math notranslate nohighlight">\(k \times 1\)</span> vector of time series variables at time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A}_i\)</span> are the <span class="math notranslate nohighlight">\(k \times k\)</span> coefficient matrices, and <span class="math notranslate nohighlight">\(\mathbf{u}_t\)</span> is a <span class="math notranslate nohighlight">\(k \times 1\)</span> vector of error terms (shocks).</p>
@@ -463,8 +462,8 @@ In a VAR model, the error term (often referred to as “shock” or “innovatio
 <li><p><strong>Dynamic responses</strong>: by iterating the VAR model forward in time, the IRF shows how the initial shock to demand affects both demand and price (and potentially other variables) over multiple future time periods.</p></li>
 </ol>
 <p><strong>Practical example</strong>: consider a VAR(2) model with two variables, demand <span class="math notranslate nohighlight">\(D\)</span> and price <span class="math notranslate nohighlight">\(P\)</span>. The model equations might look like this:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49b968cf-392a-420c-8430-40256d04f9d0">
-<span class="eqno">(24.2)<a class="headerlink" href="#equation-49b968cf-392a-420c-8430-40256d04f9d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ad1f604e-b233-442e-bb66-5bdef69cea9e">
+<span class="eqno">(24.2)<a class="headerlink" href="#equation-ad1f604e-b233-442e-bb66-5bdef69cea9e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{aligned}
     D_t &amp;= a_{10} + a_{11} D_{t-1} + a_{12} P_{t-1} + a_{13} D_{t-2} + a_{14} P_{t-2} + u_{Dt} \\
     P_t &amp;= b_{10} + b_{11} D_{t-1} + b_{12} P_{t-1} + b_{13} D_{t-2} + b_{14} P_{t-2} + u_{Pt}
@@ -639,7 +638,7 @@ In a VAR model, the error term (often referred to as “shock” or “innovatio
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">25. </span>Shapley Values</p>
+        <p class="prev-next-title"><span class="section-number">25. </span>Shapley Additive Explanations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

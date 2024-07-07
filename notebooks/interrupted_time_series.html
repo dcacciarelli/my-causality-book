@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -178,23 +178,23 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Review of Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">3. Sttaistics and Probability</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">4. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">5. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
@@ -219,16 +219,15 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">28. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">29. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">30. Multi-Armed Bandits</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">28. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
@@ -443,8 +442,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="interrupted-time-series">
 <h1><span class="section-number">20. </span>Interrupted Time Series<a class="headerlink" href="#interrupted-time-series" title="Link to this heading">#</a></h1>
 <p>Interrupted time series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86f43ecd-0043-426e-83cd-4ab1ad08e595">
-<span class="eqno">(20.1)<a class="headerlink" href="#equation-86f43ecd-0043-426e-83cd-4ab1ad08e595" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa0cbc56-4fdc-4f76-a0c1-18d1fd31effc">
+<span class="eqno">(20.1)<a class="headerlink" href="#equation-fa0cbc56-4fdc-4f76-a0c1-18d1fd31effc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
 \end{equation}\]</div>
 <p>where the regression coefficients are used to capture:</p>
@@ -521,8 +520,8 @@ document.write(`
 Dep. Variable:                  price   R-squared:                       0.993
 Model:                            OLS   Adj. R-squared:                  0.993
 Method:                 Least Squares   F-statistic:                     4425.
-Date:                Mon, 01 Jul 2024   Prob (F-statistic):          9.73e-103
-Time:                        15:20:15   Log-Likelihood:                -129.67
+Date:                Sun, 07 Jul 2024   Prob (F-statistic):          9.73e-103
+Time:                        18:17:37   Log-Likelihood:                -129.67
 No. Observations:                 100   AIC:                             267.3
 Df Residuals:                      96   BIC:                             277.8
 Df Model:                           3                                         
@@ -637,7 +636,7 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06153e8ba885f1d2844e1721bc0bc164a3c367b5c241e5162eb8c89c444f46cd.png" src="../_images/06153e8ba885f1d2844e1721bc0bc164a3c367b5c241e5162eb8c89c444f46cd.png" />
+<img alt="../_images/72d0f19c01b9ac659243d73157a3350599a0279350548826a30d0a276e65037d.png" src="../_images/72d0f19c01b9ac659243d73157a3350599a0279350548826a30d0a276e65037d.png" />
 </div>
 </div>
 <p>As expected, given the change due to the new policy, the residuals before the policy (where we fitted the model) are quite low, while they are much higher after the policy was introduced.</p>
@@ -730,35 +729,35 @@ Notes:
     <tr>
       <th>2024-07-14</th>
       <td>52.067003</td>
-      <td>-9.606204</td>
+      <td>-9.606227</td>
       <td>95</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-15</th>
       <td>58.716143</td>
-      <td>-10.573304</td>
+      <td>-10.573412</td>
       <td>96</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-16</th>
       <td>67.672040</td>
-      <td>-9.758888</td>
+      <td>-9.758926</td>
       <td>97</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-17</th>
       <td>69.607488</td>
-      <td>-9.616576</td>
+      <td>-9.616665</td>
       <td>98</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-18</th>
       <td>63.095867</td>
-      <td>-11.235863</td>
+      <td>-11.235913</td>
       <td>99</td>
       <td>1</td>
     </tr>
@@ -786,8 +785,8 @@ Notes:
 Dep. Variable:              residuals   R-squared:                       0.616
 Model:                            OLS   Adj. R-squared:                  0.613
 Method:                 Least Squares   F-statistic:                     158.3
-Date:                Mon, 01 Jul 2024   Prob (F-statistic):           1.02e-41
-Time:                        15:20:16   Log-Likelihood:                -563.84
+Date:                Sun, 07 Jul 2024   Prob (F-statistic):           1.02e-41
+Time:                        18:17:37   Log-Likelihood:                -563.84
 No. Observations:                 200   AIC:                             1134.
 Df Residuals:                     197   BIC:                             1144.
 Df Model:                           2                                         
@@ -797,12 +796,12 @@ Covariance Type:            nonrobust
 -------------------------------------------------------------------------------------
 const                 0.3999      0.409      0.979      0.329      -0.406       1.206
 time_after_policy     0.0006      0.014      0.041      0.967      -0.027       0.029
-policy              -10.3130      0.908    -11.352      0.000     -12.105      -8.522
+policy              -10.3131      0.908    -11.352      0.000     -12.105      -8.522
 ==============================================================================
 Omnibus:                      353.785   Durbin-Watson:                   0.997
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):           114456.803
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           114456.613
 Skew:                           8.849   Prob(JB):                         0.00
-Kurtosis:                     118.852   Cond. No.                         130.
+Kurtosis:                     118.851   Cond. No.                         130.
 ==============================================================================
 
 Notes:
@@ -828,7 +827,7 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/54134b8b86a031ea0dc1cd8c5b765433ec150def92d419bfa7f1c8ce8426d131.png" src="../_images/54134b8b86a031ea0dc1cd8c5b765433ec150def92d419bfa7f1c8ce8426d131.png" />
+<img alt="../_images/2af4dc20361fa4447a97c276dd9faf235e5597ad21d0f8ee3f597661b12146cb.png" src="../_images/2af4dc20361fa4447a97c276dd9faf235e5597ad21d0f8ee3f597661b12146cb.png" />
 </div>
 </div>
 </section>

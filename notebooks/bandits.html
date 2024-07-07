@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,7 +180,7 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Statistics and Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Probability Theory and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
 </ul>
@@ -192,9 +192,9 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. What is a Causal Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
@@ -219,7 +219,7 @@
 <li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
 <li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="current nav bd-sidenav">
@@ -678,8 +678,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p><strong>Estimated mean reward</strong>: for each arm <span class="math notranslate nohighlight">\(k\)</span>, you keep track of the average reward it has given you until this time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span>.</p></li>
 <li><p><strong>Updating the Estimate</strong>: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8b33eb06-e00a-4375-9d2e-a0e1dcaded06">
-<span class="eqno">(28.1)<a class="headerlink" href="#equation-8b33eb06-e00a-4375-9d2e-a0e1dcaded06" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6342cc5e-76ec-49da-b263-5765bd34bbad">
+<span class="eqno">(28.1)<a class="headerlink" href="#equation-6342cc5e-76ec-49da-b263-5765bd34bbad" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}\]</div>
 </li>
@@ -707,8 +707,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>You pull the same arm again and get a reward of 8.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d19f1631-9253-4622-ad54-b0ea2186ddbc">
-<span class="eqno">(28.2)<a class="headerlink" href="#equation-d19f1631-9253-4622-ad54-b0ea2186ddbc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a8c851a0-7272-42b8-917b-dab6f06005d3">
+<span class="eqno">(28.2)<a class="headerlink" href="#equation-a8c851a0-7272-42b8-917b-dab6f06005d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}\]</div>
 </li>
@@ -720,8 +720,8 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>After pulling the arm 99 times, suppose your current estimate is 9.5.</p></li>
 <li><p>You pull the arm one more time and get a reward of 9.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-266d8168-aa42-4d3e-b855-e0a696cf77b1">
-<span class="eqno">(28.3)<a class="headerlink" href="#equation-266d8168-aa42-4d3e-b855-e0a696cf77b1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-82e146ed-ca9f-4b66-a71c-6e263fb5650b">
+<span class="eqno">(28.3)<a class="headerlink" href="#equation-82e146ed-ca9f-4b66-a71c-6e263fb5650b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}\]</div>
 </li>
@@ -770,8 +770,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul class="simple">
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-2a877e5a-d3f7-409a-a305-b6c704fa5f8e">
-<span class="eqno">(28.4)<a class="headerlink" href="#equation-2a877e5a-d3f7-409a-a305-b6c704fa5f8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6475a3ae-a812-4ef4-ac17-3e47079d2c43">
+<span class="eqno">(28.4)<a class="headerlink" href="#equation-6475a3ae-a812-4ef4-ac17-3e47079d2c43" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}\]</div>
 <p>which is composed of two terms:</p>
@@ -831,14 +831,14 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Updating the distribution</strong>: when we pull an arm <span class="math notranslate nohighlight">\(k \)</span> and observe a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span>, we update the parameters of the Beta distribution as follows:</p>
 <ul>
 <li><p>If we get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 1 \)</span>), we increase <span class="math notranslate nohighlight">\(\alpha_k\)</span> by 1, indicating one more success:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8b033fcd-94b4-4e94-931d-105275305a8c">
-<span class="eqno">(28.5)<a class="headerlink" href="#equation-8b033fcd-94b4-4e94-931d-105275305a8c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e3f23393-3e48-4914-8693-1cf9a17972f8">
+<span class="eqno">(28.5)<a class="headerlink" href="#equation-e3f23393-3e48-4914-8693-1cf9a17972f8" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}\]</div>
 </li>
 <li><p>If we do not get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 0 \)</span>), we increase <span class="math notranslate nohighlight">\(\beta_k\)</span> by 1, indicating one more failure:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26013e49-9acf-4a6b-b908-12f0baf29654">
-<span class="eqno">(28.6)<a class="headerlink" href="#equation-26013e49-9acf-4a6b-b908-12f0baf29654" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9902abe8-18da-438d-9c4e-489b3dce69a4">
+<span class="eqno">(28.6)<a class="headerlink" href="#equation-9902abe8-18da-438d-9c4e-489b3dce69a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}\]</div>
 </li>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'bibliography';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="27. Multi-Armed Bandits" href="notebooks/bandits.html" />
+    <link rel="prev" title="30. Active Learning" href="notebooks/active_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,50 +175,56 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/review_stats.html">1. Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/review_linear_models.html">2. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/review_ML.html">3. Machine Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/motivation.html">4. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/guide.html">5. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/correlation_vs_causation.html">3. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/DAG.html">4. What is a Causal Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/basic_dag_structures.html">5. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/glossary.html">6. Glossary: Key Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/DAG.html">7. Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/basic_dag_structures.html">8. Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/glossary.html">9. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_discovery.html">7. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_direct_lingam.html">8. Linear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_resit.html">9. Nonlinear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_varlingam.html">10. Time Series Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/structural_breaks_example.html">11. Structural Breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_discovery.html">10. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_direct_lingam.html">11. Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_resit.html">12. Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_varlingam.html">13. Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/structural_breaks_example.html">14. Structural Breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_inference.html">12. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/instrumental_variables.html">13. Instrumental Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/propensity_scores.html">14. Propensity Score Matching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/double_machine_learning.html">15. Double Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/diff_in_diff.html">16. Difference-in-Differences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/interrupted_time_series.html">17. Interrupted Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_inference.html">15. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/instrumental_variables.html">16. Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/propensity_scores.html">17. Propensity Score Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/double_machine_learning.html">18. Double Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/diff_in_diff.html">19. Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/interrupted_time_series.html">20. Interrupted Time Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_interpretability.html">18. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/partial_dependency_plots.html">19. Partial Dependence Plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/accumulated_local_effects.html">20. Accumulated Local Effects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/impulse_response_functions.html">21. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/shapley.html">22. Shapley Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_interpretability.html">21. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/impulse_response_functions.html">24. Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/shapley.html">25. Shapley Additive Explanations</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Data Collection</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_designs.html">23. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/design_of_experiments.html">24. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/active_learning.html">25. Active Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/AB_testing.html">26. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/bandits.html">27. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_designs.html">26. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/AB_testing.html">27. A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/bandits.html">28. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/design_of_experiments.html">29. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/active_learning.html">30. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="current nav bd-sidenav">
@@ -480,10 +486,6 @@ document.write(`
 <span class="label"><span class="fn-bracket">[</span>SHHyvarinen+06<span class="fn-bracket">]</span></span>
 <p>Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. <em>Journal of Machine Learning Research</em>, 2006.</p>
 </div>
-<div class="citation" id="id2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Shi22<span class="fn-bracket">]</span></span>
-<p>Shōhei Shimizu. <em>Statistical causal discovery: LiNGAM approach</em>. Springer, 2022.</p>
-</div>
 <div class="citation" id="id14" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>Spi01<span class="fn-bracket">]</span></span>
 <p>Peter Spirtes. An anytime algorithm for causal inference. In <em>International Workshop on Artificial Intelligence and Statistics</em>, 278–285. PMLR, 2001.</p>
@@ -527,12 +529,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="notebooks/bandits.html"
+       href="notebooks/active_learning.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">27. </span>Multi-Armed Bandits</p>
+        <p class="prev-next-title"><span class="section-number">30. </span>Active Learning</p>
       </div>
     </a>
 </div>
