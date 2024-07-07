@@ -1,6 +1,6 @@
-# Applied Causal Inference for Electricity Markets
+# Applied Causal Inference: Techniques and Applications in Electricity Markets
 
-Welcome to "Applied Causal Inference for Electricity Markets", a work-in-progress book designed to provide comprehensive tutorials on causal inference methodologies. This book explains key concepts in this rapidly growing research area and showcases potential applications within electricity markets. 
+Welcome to "Applied Causal Inference: Techniques and Applications in Electricity Markets", a work-in-progress book designed to provide comprehensive tutorials on causal inference methodologies. This book explains key concepts in this rapidly growing research area and showcases potential applications within electricity markets. 
 
 
 **Prerequisites**
