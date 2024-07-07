@@ -3,7 +3,7 @@
 
 title: Applied Causal Inference with Examples from Electricity Markets
 author: Davide Cacciarelli
-logo: logo_applied_causal_inference.png
+logo: curve_plot.png
 
 
 # Force re-execution of notebooks on each build.
