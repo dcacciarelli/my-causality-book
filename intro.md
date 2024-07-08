@@ -1,14 +1,8 @@
-<!-- Title and Subtitle -->
-<h1 align="center">Causality in Electricity Markets</h1>
-<h3 align="center">An In-Depth Exploration of Causal Inference Techniques and Their Applications in the Energy Sector</h3>
+# Causality in Electricity Markets</h1>
+### An In-Depth Exploration of Causal Inference Techniques and Their Applications in the Energy 
 
-<!-- Author Information -->
-<p align="center">
-  <strong>By <a href="https://sites.google.com/view/dcacciarelli">Davide Cacciarelli</a> and <a href="https://pierrepinson.com/">Pierre Pinson</a></strong>
-</p>
-<p align="center">
-  Imperial College London
-</p>
+By [Davide Cacciarelli](https://sites.google.com/view/dcacciarelli) and [Pierre Pinson](https://pierrepinson.com/)
 
-<!-- Cover Image -->
+Imperial College London
+
 <img src="penetration_apx.png" alt="cover photo" align="center" width="600px"/>
