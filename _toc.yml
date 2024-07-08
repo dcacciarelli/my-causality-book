@@ -56,14 +56,13 @@ parts:
       - file: notebooks/design_of_experiments
       - file: notebooks/active_learning
 
-  - caption: Conclusion
+  - chapters:
     numbered: false
-    chapters:
-      - file: conclusion
-      - file: bibliography
+    - file: conclusion
+    - file: bibliography
 
-  - caption: Appendix
-    numbered: true
+  - caption: Fundamentals
+    numbered: false
     chapters:
       - file: notebooks/review_stats
       - file: notebooks/review_linear_models
