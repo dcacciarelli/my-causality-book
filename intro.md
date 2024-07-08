@@ -1,8 +1,5 @@
-:::{figure-md} markdown-fig
-<img src="penetration_apx.png" alt="fishy" class="bg-primary mb-1" width="200px">
+<img src="penetration_apx.png" alt="fishy" class="bg-primary mb-1" width="500px">
 
-This is a caption in **Markdown**!
-:::
 
 <!-- Title and Subtitle -->
 <h1 align="center">Causality in Electricity Markets</h1>
@@ -17,9 +14,7 @@ This is a caption in **Markdown**!
 </p>
 
 <!-- University Logo -->
-<p align="center">
-  <img src="imperial_logo.png" alt="University Logo" style="width: 200px;"/>
-</p>
+<img src="imperial_logo.png" alt="fishy" class="bg-primary mb-1" width="300px">
 
 <!-- Brief Introduction -->
 <p align="center">
