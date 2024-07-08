@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -174,7 +174,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Causality in Electricity Markets
+                    <no title>
                 </a>
             </li>
         </ul>
@@ -475,13 +475,13 @@ document.write(`
 <section id="pre-subsidy-structural-model">
 <h3>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4f0be04b-76a7-41da-ab7e-b6989a52afff">
-<span class="eqno">(27)<a class="headerlink" href="#equation-4f0be04b-76a7-41da-ab7e-b6989a52afff" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2aaaeb7-f3ba-49c1-93ec-ea28d1010bf9">
+<span class="eqno">(27)<a class="headerlink" href="#equation-e2aaaeb7-f3ba-49c1-93ec-ea28d1010bf9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ff0fc8b-70da-421e-8673-5df7d0ccde01">
-<span class="eqno">(28)<a class="headerlink" href="#equation-4ff0fc8b-70da-421e-8673-5df7d0ccde01" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-25baf318-5a3d-492f-a392-57f72195a237">
+<span class="eqno">(28)<a class="headerlink" href="#equation-25baf318-5a3d-492f-a392-57f72195a237" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -493,13 +493,13 @@ document.write(`
 <section id="post-subsidy-structural-model">
 <h3>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>After the introduction of subsidies, the relationships change as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df9f7667-4448-4697-a1e7-f0ff5e658417">
-<span class="eqno">(29)<a class="headerlink" href="#equation-df9f7667-4448-4697-a1e7-f0ff5e658417" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-79c2910e-19a0-4ca4-938c-dfad93ffeeb8">
+<span class="eqno">(29)<a class="headerlink" href="#equation-79c2910e-19a0-4ca4-938c-dfad93ffeeb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d245af5f-eb81-4ddb-a55b-7215c7989eac">
-<span class="eqno">(30)<a class="headerlink" href="#equation-d245af5f-eb81-4ddb-a55b-7215c7989eac" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a3e6ca9-f048-4d36-8f19-65958504f46e">
+<span class="eqno">(30)<a class="headerlink" href="#equation-9a3e6ca9-f048-4d36-8f19-65958504f46e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -617,7 +617,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x172cae650&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x16a5f6450&gt;
 </pre></div>
 </div>
 <img alt="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" src="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" />
@@ -686,7 +686,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x173857a10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x10669d390&gt;
 </pre></div>
 </div>
 </div>
