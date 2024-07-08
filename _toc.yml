@@ -9,13 +9,6 @@ parts:
 
 - file: preface
 
-- caption: Crash course on Stats and ML
-  numbered: true
-  chapters:
-  - file: notebooks/review_stats
-  - file: notebooks/review_linear_models
-  - file: notebooks/review_ML
-
 - caption: Introduction
   numbered: true
   chapters:
@@ -71,3 +64,10 @@ parts:
   numbered: false 
   chapters:
   - file: bibliography
+
+- caption: Crash course on Stats and ML
+  numbered: true
+  chapters:
+  - file: notebooks/review_stats
+  - file: notebooks/review_linear_models
+  - file: notebooks/review_ML
