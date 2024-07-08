@@ -1,7 +1,11 @@
 # Causality in Electricity Markets
 
-<img src="penetration_apx.png" alt="Cover Image" style="width: 500px;"/>
+<p align="center">
+  <img src="images/penetration_apx.png" alt="Cover Image" width="500"/>
+</p>
 
 By [Davide Cacciarelli](https://sites.google.com/view/dcacciarelli) and [Pierre Pinson](https://pierrepinson.com/)
 
-<img src="imperial_logo.png" alt="University Logo" style="width: 200px;"/>
+<p align="center">
+  <img src="images/imperial_logo.png" alt="University Logo" width="200"/>
+</p>
