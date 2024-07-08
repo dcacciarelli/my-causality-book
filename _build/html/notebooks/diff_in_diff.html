@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>19. Difference-in-Differences &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>16. Difference-in-Differences &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/diff_in_diff';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="20. Interrupted Time Series" href="interrupted_time_series.html" />
-    <link rel="prev" title="18. Double Machine Learning" href="double_machine_learning.html" />
+    <link rel="next" title="17. Interrupted Time Series" href="interrupted_time_series.html" />
+    <link rel="prev" title="15. Double Machine Learning" href="double_machine_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -152,8 +152,8 @@
       
     
     
-    <img src="../_static/curve_plot.png" class="logo__image only-light" alt="Applied Causal Inference with Examples from Electricity Markets - Home"/>
-    <script>document.write(`<img src="../_static/curve_plot.png" class="logo__image only-dark" alt="Applied Causal Inference with Examples from Electricity Markets - Home"/>`);</script>
+    <img src="../_static/curve_plot.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
+    <script>document.write(`<img src="../_static/curve_plot.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
   
   
 </a></div>
@@ -174,64 +174,68 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Data Science for Electricity Markets: Causality, Interpretability, and Experimental Methods
+                    Causality in Electricity Markets
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Probability Theory and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">3. Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">4. Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">10. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">11. Linear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">12. Nonlinear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">13. Time Series Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">14. Structural Breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">7. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">9. Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Structural Breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">15. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">16. Instrumental Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">17. Propensity Score Matching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">18. Double Machine Learning</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Difference-in-Differences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">20. Interrupted Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">13. Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">14. Propensity Score Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">15. Double Machine Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">17. Interrupted Time Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">21. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">18. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">22. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">28. Multi-Armed Bandits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">23. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">24. A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">25. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">26. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">27. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">28. Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">29. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">30. Machine Learning</a></li>
 </ul>
 
     </div>
@@ -430,7 +434,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="difference-in-differences">
-<h1><span class="section-number">19. </span>Difference-in-Differences<a class="headerlink" href="#difference-in-differences" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">16. </span>Difference-in-Differences<a class="headerlink" href="#difference-in-differences" title="Link to this heading">#</a></h1>
 <p>Difference-in-differences (DiD) is a statistical technique used in econometrics to estimate the causal effect of a treatment on a time series. For example, it might be used to <strong>evaluate the effect of a new policy</strong> on the electricity prices, in a specific region.</p>
 <p>Let us suppose we collected some data from electricity prices over time, and we know that at a certain point in time a new policy was introduced. Let us also suppose that we observed a change in the trend, and we would like to attribute that change to the newly introduced policy. To be sure that the change in price time series is indeed due to the new policy, we would need to know the <strong>counterfactual</strong>. The counterfactual represents what would have happened to the prices had the new policy not been introduced. Then, by comparing the prices observed under the new policy with what the prices would have been without the policy, we would finally be able to say that the prices changed because of the policy. Without the counterfactual, we might not be able to accurately determine the true effect of the policy because of:</p>
 <ul class="simple">
@@ -443,15 +447,15 @@ document.write(`
 <li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a906ded7-9d99-46a3-8253-4b068cf0d835">
-<span class="eqno">(19.1)<a class="headerlink" href="#equation-a906ded7-9d99-46a3-8253-4b068cf0d835" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ae4d9c5a-53a1-4b97-a074-86c2bd45c4d7">
+<span class="eqno">(16.1)<a class="headerlink" href="#equation-ae4d9c5a-53a1-4b97-a074-86c2bd45c4d7" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da36f597-6005-4419-a7f7-f86ad3e0bed5">
-<span class="eqno">(19.2)<a class="headerlink" href="#equation-da36f597-6005-4419-a7f7-f86ad3e0bed5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-52f092c8-5975-4d71-9c52-7e720eb33b3c">
+<span class="eqno">(16.2)<a class="headerlink" href="#equation-52f092c8-5975-4d71-9c52-7e720eb33b3c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -655,8 +659,8 @@ document.write(`
 Dep. Variable:                  price   R-squared:                       0.923
 Model:                            OLS   Adj. R-squared:                  0.921
 Method:                 Least Squares   F-statistic:                     778.6
-Date:                Sun, 07 Jul 2024   Prob (F-statistic):          1.37e-108
-Time:                        19:57:03   Log-Likelihood:                -679.31
+Date:                Mon, 08 Jul 2024   Prob (F-statistic):          1.37e-108
+Time:                        12:27:29   Log-Likelihood:                -679.31
 No. Observations:                 200   AIC:                             1367.
 Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         
@@ -725,7 +729,7 @@ Notes:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">18. </span>Double Machine Learning</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Double Machine Learning</p>
       </div>
     </a>
     <a class="right-next"
@@ -733,7 +737,7 @@ Notes:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">20. </span>Interrupted Time Series</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Interrupted Time Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>28. Multi-Armed Bandits &#8212; Applied Causal Inference with Examples from Electricity Markets</title>
+    <title>25. Multi-Armed Bandits &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/bandits';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="29. Design of Experiments" href="design_of_experiments.html" />
-    <link rel="prev" title="27. A/B Testing" href="AB_testing.html" />
+    <link rel="next" title="26. Design of Experiments" href="design_of_experiments.html" />
+    <link rel="prev" title="24. A/B Testing" href="AB_testing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -152,8 +152,8 @@
       
     
     
-    <img src="../_static/curve_plot.png" class="logo__image only-light" alt="Applied Causal Inference with Examples from Electricity Markets - Home"/>
-    <script>document.write(`<img src="../_static/curve_plot.png" class="logo__image only-dark" alt="Applied Causal Inference with Examples from Electricity Markets - Home"/>`);</script>
+    <img src="../_static/curve_plot.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
+    <script>document.write(`<img src="../_static/curve_plot.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
   
   
 </a></div>
@@ -174,64 +174,68 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Data Science for Electricity Markets: Causality, Interpretability, and Experimental Methods
+                    Causality in Electricity Markets
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">1. Probability Theory and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">2. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">3. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">4. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">5. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">6. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">7. Causal Representations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">8. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">9. Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">3. Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">4. Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">5. Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">6. Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">10. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">11. Linear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">12. Nonlinear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">13. Time Series Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">14. Structural Breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">7. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">8. Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">9. Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">10. Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">11. Structural Breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">15. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">16. Instrumental Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">17. Propensity Score Matching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">18. Double Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">19. Difference-in-Differences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">20. Interrupted Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">12. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">13. Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">14. Propensity Score Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">15. Double Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">16. Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">17. Interrupted Time Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">21. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">22. Partial Dependence Plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">23. Accumulated Local Effects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">24. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">25. Shapley Additive Explanations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">18. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">19. Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">20. Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">21. Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">22. Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">26. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">27. A/B Testing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">28. Multi-Armed Bandits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">29. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">30. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">23. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">24. A/B Testing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">25. Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">26. Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">27. Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Other</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash course on Stats and ML</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">28. Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">29. Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">30. Machine Learning</a></li>
 </ul>
 
     </div>
@@ -427,13 +431,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">28.1. MAB vs. A/B testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts-and-high-level-example">28.2. Key concepts and high-level example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">28.3. Key algorithms for MAB problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">28.3.1. Epsilon-greedy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">28.3.2. Upper confidence bound (UCB)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">28.3.3. Thompson sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">28.3.4. Comparing the three algorithms with random sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">25.1. MAB vs. A/B testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts-and-high-level-example">25.2. Key concepts and high-level example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">25.3. Key algorithms for MAB problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">25.3.1. Epsilon-greedy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">25.3.2. Upper confidence bound (UCB)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">25.3.3. Thompson sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">25.3.4. Comparing the three algorithms with random sampling</a></li>
 </ul>
 </li>
 </ul>
@@ -448,7 +452,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multi-armed-bandits">
-<h1><span class="section-number">28. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">25. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
 <p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls.</p>
 <p>The MAB problem can be formalized as follows:</p>
 <ul class="simple">
@@ -464,7 +468,7 @@ document.write(`
 <li><p><strong>Marketing campaigns</strong>: you may have multiple marketing strategies to promote energy-efficient appliances. Initially, you allocate equal resources to all strategies to see which performs best. As data comes in, you shift more resources to the campaigns that show higher engagement and conversion rates, optimizing your overall marketing budget.</p></li>
 </ol>
 <section id="mab-vs-a-b-testing">
-<h2><span class="section-number">28.1. </span>MAB vs. A/B testing<a class="headerlink" href="#mab-vs-a-b-testing" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">25.1. </span>MAB vs. A/B testing<a class="headerlink" href="#mab-vs-a-b-testing" title="Link to this heading">#</a></h2>
 <p>Traditional methods for testing different options, such as A/B testing, involve splitting resources equally across different strategies (pure exploration), but this can be inefficient and costly, as it doesn’t adapt to the observed performance of the strategies. To this extent, the key <strong>limitations of A/B testing</strong> are:</p>
 <ul class="simple">
 <li><p><strong>Resource inefficiency</strong>: equally distributing resources among all strategies can waste time and opportunities on less-performing options.</p></li>
@@ -479,7 +483,7 @@ document.write(`
 </ul>
 </section>
 <section id="key-concepts-and-high-level-example">
-<h2><span class="section-number">28.2. </span>Key concepts and high-level example<a class="headerlink" href="#key-concepts-and-high-level-example" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">25.2. </span>Key concepts and high-level example<a class="headerlink" href="#key-concepts-and-high-level-example" title="Link to this heading">#</a></h2>
 <p>The two key conepts in MAB problems are:</p>
 <ol class="arabic simple">
 <li><p><strong>Exploration vs. exploitation</strong>: where <strong>exploration</strong> means trying out different arms to gather more information about their rewards, and <strong>exploitation</strong> refers to choosing the arm that is currently believed to provide the highest reward.</p></li>
@@ -664,10 +668,10 @@ Regret is the difference between the total reward we would have gotten by always
 </ol>
 </section>
 <section id="key-algorithms-for-mab-problems">
-<h2><span class="section-number">28.3. </span>Key algorithms for MAB problems<a class="headerlink" href="#key-algorithms-for-mab-problems" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">25.3. </span>Key algorithms for MAB problems<a class="headerlink" href="#key-algorithms-for-mab-problems" title="Link to this heading">#</a></h2>
 <p>In this section, we will explain three popular algorithms for solving the multi-armed bandit (MAB) problem: epsilon-greedy, upper confidence bound (UCB), and Thompson sampling. We will also compare their performance against a random strategy over multiple simulation runs.</p>
 <section id="epsilon-greedy">
-<h3><span class="section-number">28.3.1. </span>Epsilon-greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">25.3.1. </span>Epsilon-greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
 <p>The Epsilon-Greedy algorithm balances exploration and exploitation by choosing a random arm with a small probability (<span class="math notranslate nohighlight">\(\epsilon\)</span>) and the best-known arm with a large probability (1 - <span class="math notranslate nohighlight">\(\epsilon\)</span>). Think of <span class="math notranslate nohighlight">\(\epsilon\)</span> as your curiosity factor. A higher <span class="math notranslate nohighlight">\(\epsilon\)</span> means you are more curious and willing to try different options even if you know some options perform well. A lower <span class="math notranslate nohighlight">\(\epsilon\)</span> means you are more inclined to stick with what you know works best.</p>
 <p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -678,8 +682,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p><strong>Estimated mean reward</strong>: for each arm <span class="math notranslate nohighlight">\(k\)</span>, you keep track of the average reward it has given you until this time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span>.</p></li>
 <li><p><strong>Updating the Estimate</strong>: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-13ffb46c-2b9b-4997-b21a-2d86be4af710">
-<span class="eqno">(28.1)<a class="headerlink" href="#equation-13ffb46c-2b9b-4997-b21a-2d86be4af710" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9853214d-ccb1-4479-b1dc-3b92b738cd17">
+<span class="eqno">(25.1)<a class="headerlink" href="#equation-9853214d-ccb1-4479-b1dc-3b92b738cd17" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}\]</div>
 </li>
@@ -707,8 +711,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>You pull the same arm again and get a reward of 8.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4181d25f-a8ab-4343-95b0-6877cf6fbbe8">
-<span class="eqno">(28.2)<a class="headerlink" href="#equation-4181d25f-a8ab-4343-95b0-6877cf6fbbe8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cbc42f5d-361d-47a3-98f2-876c6c5ee055">
+<span class="eqno">(25.2)<a class="headerlink" href="#equation-cbc42f5d-361d-47a3-98f2-876c6c5ee055" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}\]</div>
 </li>
@@ -720,8 +724,8 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>After pulling the arm 99 times, suppose your current estimate is 9.5.</p></li>
 <li><p>You pull the arm one more time and get a reward of 9.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ff04f29-4f7d-44d1-b790-863d6d9635da">
-<span class="eqno">(28.3)<a class="headerlink" href="#equation-0ff04f29-4f7d-44d1-b790-863d6d9635da" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-78b2838d-a202-4065-931a-0f8e67b6ce41">
+<span class="eqno">(25.3)<a class="headerlink" href="#equation-78b2838d-a202-4065-931a-0f8e67b6ce41" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}\]</div>
 </li>
@@ -760,7 +764,7 @@ Regret is the difference between the total reward we would have gotten by always
 </div>
 </section>
 <section id="upper-confidence-bound-ucb">
-<h3><span class="section-number">28.3.2. </span>Upper confidence bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">25.3.2. </span>Upper confidence bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
 <p>This algorithm selects arms based on the upper confidence bounds (UCBs) of their estimated rewards. The UCB is a combination of the estimated reward and a term that accounts for the uncertainty in the estimate. The key idea is to decide which options to try out by balancing between choosing the option that seems the best based on what you know so far and exploring less-tried options to discover their potential. It does this by considering both the estimated reward of each option and the uncertainty around that estimate.</p>
 <p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -770,8 +774,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul class="simple">
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-e10b4cca-a335-4c08-b665-c7a6f9e156bb">
-<span class="eqno">(28.4)<a class="headerlink" href="#equation-e10b4cca-a335-4c08-b665-c7a6f9e156bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-178fcfdd-d3f4-4f64-85ec-b3463d9f2cad">
+<span class="eqno">(25.4)<a class="headerlink" href="#equation-178fcfdd-d3f4-4f64-85ec-b3463d9f2cad" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}\]</div>
 <p>which is composed of two terms:</p>
@@ -817,7 +821,7 @@ Regret is the difference between the total reward we would have gotten by always
 </div>
 </section>
 <section id="thompson-sampling">
-<h3><span class="section-number">28.3.3. </span>Thompson sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">25.3.3. </span>Thompson sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
 <p>Thompson sampling balances between trying out different options (exploration) and sticking with the best-known option (exploitation) by using probability distributions to model the uncertainty of each option’s rewards.</p>
 <p><strong>Mechanism</strong>:</p>
 <ol class="arabic simple">
@@ -831,14 +835,14 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Updating the distribution</strong>: when we pull an arm <span class="math notranslate nohighlight">\(k \)</span> and observe a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span>, we update the parameters of the Beta distribution as follows:</p>
 <ul>
 <li><p>If we get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 1 \)</span>), we increase <span class="math notranslate nohighlight">\(\alpha_k\)</span> by 1, indicating one more success:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d51b110a-3dfd-43cd-a32c-3a89248d9a68">
-<span class="eqno">(28.5)<a class="headerlink" href="#equation-d51b110a-3dfd-43cd-a32c-3a89248d9a68" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7e3dc23a-5d49-469e-b900-7141eafa7e23">
+<span class="eqno">(25.5)<a class="headerlink" href="#equation-7e3dc23a-5d49-469e-b900-7141eafa7e23" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}\]</div>
 </li>
 <li><p>If we do not get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 0 \)</span>), we increase <span class="math notranslate nohighlight">\(\beta_k\)</span> by 1, indicating one more failure:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7772c6c-06d1-47e5-b458-0f5602e50358">
-<span class="eqno">(28.6)<a class="headerlink" href="#equation-b7772c6c-06d1-47e5-b458-0f5602e50358" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2465f2b0-734c-42b4-8c1d-1492e6039197">
+<span class="eqno">(25.6)<a class="headerlink" href="#equation-2465f2b0-734c-42b4-8c1d-1492e6039197" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}\]</div>
 </li>
@@ -892,7 +896,7 @@ Initially, both <span class="math notranslate nohighlight">\(\alpha\)</span> and
 </div>
 </section>
 <section id="comparing-the-three-algorithms-with-random-sampling">
-<h3><span class="section-number">28.3.4. </span>Comparing the three algorithms with random sampling<a class="headerlink" href="#comparing-the-three-algorithms-with-random-sampling" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">25.3.4. </span>Comparing the three algorithms with random sampling<a class="headerlink" href="#comparing-the-three-algorithms-with-random-sampling" title="Link to this heading">#</a></h3>
 <p>Now, we can run a comprehensive example where we compare the performance of epsilon-greedy, UCB, and Thompson sampling against a random strategy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1015,7 +1019,7 @@ Initially, both <span class="math notranslate nohighlight">\(\alpha\)</span> and
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">27. </span>A/B Testing</p>
+        <p class="prev-next-title"><span class="section-number">24. </span>A/B Testing</p>
       </div>
     </a>
     <a class="right-next"
@@ -1023,7 +1027,7 @@ Initially, both <span class="math notranslate nohighlight">\(\alpha\)</span> and
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">29. </span>Design of Experiments</p>
+        <p class="prev-next-title"><span class="section-number">26. </span>Design of Experiments</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1043,13 +1047,13 @@ Initially, both <span class="math notranslate nohighlight">\(\alpha\)</span> and
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">28.1. MAB vs. A/B testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts-and-high-level-example">28.2. Key concepts and high-level example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">28.3. Key algorithms for MAB problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">28.3.1. Epsilon-greedy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">28.3.2. Upper confidence bound (UCB)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">28.3.3. Thompson sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">28.3.4. Comparing the three algorithms with random sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">25.1. MAB vs. A/B testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts-and-high-level-example">25.2. Key concepts and high-level example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">25.3. Key algorithms for MAB problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">25.3.1. Epsilon-greedy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">25.3.2. Upper confidence bound (UCB)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">25.3.3. Thompson sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">25.3.4. Comparing the three algorithms with random sampling</a></li>
 </ul>
 </li>
 </ul>
