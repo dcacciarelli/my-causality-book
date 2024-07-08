@@ -510,8 +510,8 @@ document.write(`
 <p>The Local Markov ssumption states that a node in a DAG is conditionally independent of its non-descendants given its parents. This assumption allows for the decomposition of the joint probability distribution of all variables in the DAG into simpler conditional distributions. For example, in our DAG, <strong>electricity price</strong> is conditionally independent of <strong>temperature</strong> given <strong>renewable energy production</strong> and <strong>electricity load</strong>. This implies that once we know the values of <strong>renewable energy production</strong> and <strong>electricity load</strong>, additional information about <strong>temperature</strong> does not change our understanding of <strong>electricity price</strong>.</p>
 <p><strong>Factorization</strong></p>
 <p>Factorization refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the Local Markov Assumption. The joint distribution <span class="math notranslate nohighlight">\( P(T, L, R, P) \)</span> can be factorized as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-10311eed-90a6-4e24-b225-038f17ff43c7">
-<span class="eqno">(1)<a class="headerlink" href="#equation-10311eed-90a6-4e24-b225-038f17ff43c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dfafe7dd-b07b-4b0d-801f-f6bb96dfa880">
+<span class="eqno">(1)<a class="headerlink" href="#equation-dfafe7dd-b07b-4b0d-801f-f6bb96dfa880" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factorization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>

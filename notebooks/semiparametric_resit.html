@@ -496,8 +496,8 @@ document.write(`
 <section id="additive-noise-models-anms">
 <h2>Additive noise models (ANMs)<a class="headerlink" href="#additive-noise-models-anms" title="Link to this heading">#</a></h2>
 <p>One of the most popular approaches to causal discovery with nonlinear models is to use additive noise models (ANMs) <span id="id1">[<a class="reference internal" href="../bibliography.html#id5" title="Jonas Peters, Joris M Mooij, Dominik Janzing, and Bernhard Schölkopf. Causal discovery with continuous additive noise models. Journal of Machine Learning Research, 2014.">PMJScholkopf14</a>]</span>. In the case of an ANM, each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da383929-b5bf-43e3-abe5-015ac5a27501">
-<span class="eqno">(14)<a class="headerlink" href="#equation-da383929-b5bf-43e3-abe5-015ac5a27501" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eb2f2dea-5c11-4504-90fc-9e75bb8181b2">
+<span class="eqno">(14)<a class="headerlink" href="#equation-eb2f2dea-5c11-4504-90fc-9e75bb8181b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (possibly different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. We can easily see that when the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
@@ -519,8 +519,8 @@ document.write(`
 <section id="example-with-nonlinear-functions">
 <h3>Example with nonlinear functions<a class="headerlink" href="#example-with-nonlinear-functions" title="Link to this heading">#</a></h3>
 <p>Let us consider the simple example with two variables of temperature and electricity load, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ebd1b655-8f74-4aa1-9ea7-c4b79887e23d">
-<span class="eqno">(15)<a class="headerlink" href="#equation-ebd1b655-8f74-4aa1-9ea7-c4b79887e23d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e493cc64-a015-475d-b9c2-6cde51b61a16">
+<span class="eqno">(15)<a class="headerlink" href="#equation-e493cc64-a015-475d-b9c2-6cde51b61a16" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \end{align}\]</div>
@@ -573,8 +573,8 @@ document.write(`
 <h3>Full RESIT example<a class="headerlink" href="#full-resit-example" title="Link to this heading">#</a></h3>
 <p>We now try to apply the RESIT approach to a slightly more complex example, where some of the relationships are <strong>nonlinear</strong>.</p>
 <p>Let us assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c152680e-f951-453a-a175-411767fc563e">
-<span class="eqno">(16)<a class="headerlink" href="#equation-c152680e-f951-453a-a175-411767fc563e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c1d9d6cf-bf43-4810-9a9f-869783fc1d43">
+<span class="eqno">(16)<a class="headerlink" href="#equation-c1d9d6cf-bf43-4810-9a9f-869783fc1d43" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \text{thermal constraints} &amp;= 1.5 \times \text{electricity load} + \sin{(\text{temperature})} + e_c \\
