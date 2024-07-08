@@ -1,5 +1,5 @@
 <!-- Cover Image -->
-<p align="center">
+
 <img src="penetration_apx.png" alt="fishy" class="bg-primary mb-1" width="500px">
 
 
@@ -16,9 +16,7 @@
 </p>
 
 <!-- University Logo -->
-<p align="center">
 <img src="imperial_logo.png" alt="fishy" width="300px">
-</p>
 
 <!-- Brief Introduction -->
 <p align="center">
