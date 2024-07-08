@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>14. Difference-in-Differences &#8212; Causality in Electricity Markets</title>
+    <title>Difference-in-Differences &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/diff_in_diff';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="15. Interrupted Time Series" href="interrupted_time_series.html" />
-    <link rel="prev" title="13. Double Machine Learning" href="double_machine_learning.html" />
+    <link rel="next" title="Interrupted Time Series" href="interrupted_time_series.html" />
+    <link rel="prev" title="Double Machine Learning" href="double_machine_learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -189,50 +189,50 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">2. Causal Representations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">3. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">4. Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">5. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">6. Linear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">7. Nonlinear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">8. Time Series Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">9. Structural Breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">Structural Breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">10. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">11. Instrumental Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">12. Propensity Score Matching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">13. Double Machine Learning</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Difference-in-Differences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">15. Interrupted Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">Propensity Score Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_machine_learning.html">Double Machine Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">Interrupted Time Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">16. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">17. Partial Dependence Plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">18. Accumulated Local Effects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">19. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">20. Shapley Additive Explanations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">21. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">22. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">23. Multi-Armed Bandits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">24. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">25. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash Course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
@@ -448,15 +448,15 @@ document.write(`
 <li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc53d075-0817-473f-af15-d8f92fd3d0ca">
-<span class="eqno">(39)<a class="headerlink" href="#equation-dc53d075-0817-473f-af15-d8f92fd3d0ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ffe57225-f572-47b0-8644-9af64f39eb90">
+<span class="eqno">(39)<a class="headerlink" href="#equation-ffe57225-f572-47b0-8644-9af64f39eb90" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8617ab7c-5b64-41c5-abd3-5fee8c634af1">
-<span class="eqno">(40)<a class="headerlink" href="#equation-8617ab7c-5b64-41c5-abd3-5fee8c634af1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd203892-2c05-4634-9696-ae18ded165b9">
+<span class="eqno">(40)<a class="headerlink" href="#equation-bd203892-2c05-4634-9696-ae18ded165b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -661,7 +661,7 @@ Dep. Variable:                  price   R-squared:                       0.923
 Model:                            OLS   Adj. R-squared:                  0.921
 Method:                 Least Squares   F-statistic:                     778.6
 Date:                Mon, 08 Jul 2024   Prob (F-statistic):          1.37e-108
-Time:                        12:43:27   Log-Likelihood:                -679.31
+Time:                        13:06:44   Log-Likelihood:                -679.31
 No. Observations:                 200   AIC:                             1367.
 Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         
@@ -730,7 +730,7 @@ Notes:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Double Machine Learning</p>
+        <p class="prev-next-title">Double Machine Learning</p>
       </div>
     </a>
     <a class="right-next"
@@ -738,7 +738,7 @@ Notes:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">15. </span>Interrupted Time Series</p>
+        <p class="prev-next-title">Interrupted Time Series</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

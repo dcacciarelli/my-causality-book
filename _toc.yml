@@ -67,7 +67,7 @@ parts:
       - file: conclusion
       - file: bibliography      
 
-  - caption: Fundamentals
+  - caption: Crash Course on Stats and ML
     numbered: false
     chapters:
       - file: notebooks/review_stats
