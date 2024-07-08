@@ -8,6 +8,8 @@ root: intro
 parts:
   - chapters:
     - file: preface
+    - file: notebooks/introduction_markets
+    - file: notebooks/introduction_causality
     - file: notebooks/motivation
     - file: notebooks/guide
 
@@ -58,8 +60,9 @@ parts:
 
   - chapters:
     numbered: false
-    - file: conclusion
-    - file: bibliography
+    chapters:
+      - file: conclusion
+      - file: bibliography
 
   - caption: Fundamentals
     numbered: false
