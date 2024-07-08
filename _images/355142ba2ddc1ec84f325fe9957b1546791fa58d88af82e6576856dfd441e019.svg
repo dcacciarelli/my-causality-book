@@ -35,7 +35,7 @@ generation (t)&#45;&gt;transmission capacity
 usage (t)</title>
 <path fill="none" stroke="black" d="M271.81,-222.97C258.58,-208.9 242.05,-191.32 227.64,-176"/>
 <polygon fill="black" stroke="black" points="230.33,-173.75 220.93,-168.86 225.23,-178.55 230.33,-173.75"/>
-<text text-anchor="middle" x="265.49" y="-189.67" font-family="Times,serif" font-size="14.00">&#45;0.95</text>
+<text text-anchor="middle" x="265.49" y="-189.67" font-family="Times,serif" font-size="14.00">&#45;1.05</text>
 </g>
 <!-- balancing 
 costs (t) -->
@@ -55,7 +55,7 @@ generation (t)&#45;&gt;balancing
 costs (t)</title>
 <path fill="none" stroke="black" d="M298.26,-220.57C299.97,-192.57 301.89,-148.57 300.24,-110.48 299.66,-97.18 298.55,-82.67 297.38,-69.68"/>
 <polygon fill="black" stroke="black" points="300.87,-69.4 296.45,-59.77 293.9,-70.05 300.87,-69.4"/>
-<text text-anchor="middle" x="312.24" y="-134.42" font-family="Times,serif" font-size="14.00">1.49</text>
+<text text-anchor="middle" x="312.24" y="-134.42" font-family="Times,serif" font-size="14.00">1.52</text>
 </g>
 <!-- transmission capacity 
 usage (t)&#45;&gt;balancing 
@@ -66,7 +66,7 @@ usage (t)&#45;&gt;balancing
 costs (t)</title>
 <path fill="none" stroke="black" d="M219.22,-111.1C232.47,-96.59 248.84,-78.64 262.82,-63.33"/>
 <polygon fill="black" stroke="black" points="265.13,-65.99 269.28,-56.24 259.96,-61.27 265.13,-65.99"/>
-<text text-anchor="middle" x="261.24" y="-79.18" font-family="Times,serif" font-size="14.00">1.97</text>
+<text text-anchor="middle" x="261.24" y="-79.18" font-family="Times,serif" font-size="14.00">2.00</text>
 </g>
 <!-- solar power 
 generation (t&#45;1) -->
@@ -97,7 +97,7 @@ generation (t&#45;1)&#45;&gt;balancing
 costs (t)</title>
 <path fill="none" stroke="black" d="M60.42,-220.92C50.77,-190.76 41.35,-142.79 64.24,-110.48 101.77,-57.51 177.05,-39.15 231.06,-32.92"/>
 <polygon fill="black" stroke="black" points="231.15,-36.43 240.74,-31.92 230.43,-29.46 231.15,-36.43"/>
-<text text-anchor="middle" x="76.24" y="-134.42" font-family="Times,serif" font-size="14.00">0.81</text>
+<text text-anchor="middle" x="76.24" y="-134.42" font-family="Times,serif" font-size="14.00">0.58</text>
 </g>
 <!-- transmission capacity 
 usage (t&#45;1) -->
@@ -117,7 +117,7 @@ usage (t&#45;1)&#45;&gt;solar power
 generation (t)</title>
 <path fill="none" stroke="black" d="M296.24,-331.22C296.24,-318.89 296.24,-304.2 296.24,-290.78"/>
 <polygon fill="black" stroke="black" points="299.74,-290.93 296.24,-280.93 292.74,-290.93 299.74,-290.93"/>
-<text text-anchor="middle" x="308.24" y="-300.15" font-family="Times,serif" font-size="14.00">0.09</text>
+<text text-anchor="middle" x="308.24" y="-300.15" font-family="Times,serif" font-size="14.00">0.13</text>
 </g>
 <!-- transmission capacity 
 usage (t&#45;1)&#45;&gt;transmission capacity 
@@ -139,7 +139,7 @@ usage (t&#45;1)&#45;&gt;balancing
 costs (t)</title>
 <path fill="none" stroke="black" d="M329.19,-332.86C344.16,-318.65 360.28,-299.79 368.24,-278.95 396.65,-204.58 350.33,-114.53 318.75,-65.7"/>
 <polygon fill="black" stroke="black" points="321.74,-63.87 313.3,-57.47 315.91,-67.74 321.74,-63.87"/>
-<text text-anchor="middle" x="386.24" y="-189.67" font-family="Times,serif" font-size="14.00">1.68</text>
+<text text-anchor="middle" x="386.24" y="-189.67" font-family="Times,serif" font-size="14.00">1.47</text>
 </g>
 <!-- balancing 
 costs (t&#45;1) -->
