@@ -1,7 +1,7 @@
 <!-- Cover Image -->
 
 <p align="center">
-  <img src="penetration_apx.png" alt="fishy" class="bg-primary mb-1" width="500px"/>
+  <img src="penetration_apx.png" alt="cover photo" width="500px"/>
 </p>
 
 
@@ -18,7 +18,7 @@
 </p>
 
 <!-- University Logo -->
-<img src="imperial_logo.png" alt="fishy" width="300px">
+<img src="imperial_logo.png" alt="university logo" width="300px">
 
 <!-- Brief Introduction -->
 <p align="center">
