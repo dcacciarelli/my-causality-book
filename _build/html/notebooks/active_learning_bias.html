@@ -444,8 +444,8 @@ document.write(`
 <li><p><strong>Query synthesis</strong>: the algorithm generates new samples to query an oracle for their labels.</p></li>
 </ol>
 <p>Consider the case where we want to estimate the effect of a variable using a linear model of the kind:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46f566d7-f31d-4465-a5ff-dec9c4057d43">
-<span class="eqno">()<a class="headerlink" href="#equation-46f566d7-f31d-4465-a5ff-dec9c4057d43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2c6b0006-938f-4a7c-904d-9abc52a2bdfa">
+<span class="eqno">()<a class="headerlink" href="#equation-2c6b0006-938f-4a7c-904d-9abc52a2bdfa" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = X \beta + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -456,8 +456,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, assumed to be normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
 </ul>
 <p>The goal is to estimate the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> using the observed data. The variance of the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> can be computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f348288-48ae-4525-8357-a87f8abd9cfd">
-<span class="eqno">()<a class="headerlink" href="#equation-6f348288-48ae-4525-8357-a87f8abd9cfd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-15a6d7be-1ab5-479c-92df-2be4e684a8ff">
+<span class="eqno">()<a class="headerlink" href="#equation-15a6d7be-1ab5-479c-92df-2be4e684a8ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance of the residuals, and <span class="math notranslate nohighlight">\((X^T X)^{-1}\)</span> is the inverse of the information matrix.</p>

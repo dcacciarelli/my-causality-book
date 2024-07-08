@@ -448,15 +448,15 @@ document.write(`
 <li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a48734f-42b0-40ca-8d97-f83305ccdf18">
-<span class="eqno">(39)<a class="headerlink" href="#equation-8a48734f-42b0-40ca-8d97-f83305ccdf18" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-2f24aaaf-418d-48f5-b073-43e01dfee6cb">
+<span class="eqno">(39)<a class="headerlink" href="#equation-2f24aaaf-418d-48f5-b073-43e01dfee6cb" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d93f0540-d145-4136-b3bf-e800d03a2f88">
-<span class="eqno">(40)<a class="headerlink" href="#equation-d93f0540-d145-4136-b3bf-e800d03a2f88" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-69305be9-6c68-4855-b257-b1c19b46eeff">
+<span class="eqno">(40)<a class="headerlink" href="#equation-69305be9-6c68-4855-b257-b1c19b46eeff" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -661,7 +661,7 @@ Dep. Variable:                  price   R-squared:                       0.923
 Model:                            OLS   Adj. R-squared:                  0.921
 Method:                 Least Squares   F-statistic:                     778.6
 Date:                Mon, 08 Jul 2024   Prob (F-statistic):          1.37e-108
-Time:                        13:22:18   Log-Likelihood:                -679.31
+Time:                        13:48:56   Log-Likelihood:                -679.31
 No. Observations:                 200   AIC:                             1367.
 Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         

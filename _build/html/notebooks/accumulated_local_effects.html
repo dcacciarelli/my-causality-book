@@ -445,8 +445,8 @@ document.write(`
 </ol>
 <p>The second option is the one used by ALE plots, which compute <strong>differences in predictions within small intervals</strong>, ensuring the estimates are based on realistic data points. This approach makes ALE plots more reliable when features are correlated.</p>
 <p>In practice, the ALE for the <span class="math notranslate nohighlight">\(j\)</span>th feature, <span class="math notranslate nohighlight">\(x_j\)</span>, is estimated by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a52a2127-e852-4aea-ad63-fba74d69f7db">
-<span class="eqno">(44)<a class="headerlink" href="#equation-a52a2127-e852-4aea-ad63-fba74d69f7db" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0327f0a2-94aa-421c-94a8-8ab45ba37b96">
+<span class="eqno">(44)<a class="headerlink" href="#equation-0327f0a2-94aa-421c-94a8-8ab45ba37b96" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}_{j,\text{ALE}}(x) = \sum_{k=1}^{k(x)} \frac{1}{n_j(k)} \sum_{i : x_j^{(i)} \in N_j(k)} \left( \hat{f}(z_{k,j}, x_{-j}^{(i)}) - \hat{f}(z_{k-1,j}, x_{-j}^{(i)}) \right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_j(k)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>th interval for feature <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(z_{k,j}\)</span> is the upper boundary of the <span class="math notranslate nohighlight">\(k\)</span>th interval, <span class="math notranslate nohighlight">\(x_{-j}^{(i)}\)</span> are all the other features except <span class="math notranslate nohighlight">\(x_j\)</span>, for the <span class="math notranslate nohighlight">\(i\)</span>th data point, and <span class="math notranslate nohighlight">\(n_j(k)\)</span> is the number of data points in the <span class="math notranslate nohighlight">\(k\)</span>th interval.</p>
