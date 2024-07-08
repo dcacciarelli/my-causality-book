@@ -6,4 +6,4 @@ By [**Davide Cacciarelli**](https://sites.google.com/view/dcacciarelli) and [**P
 
 **Imperial College London**
 
-<img src="penetration_apx.png" alt="cover photo" align="center" width="600px"/>
+<img src="logo.png" alt="cover photo" align="center" width="600px"/>
