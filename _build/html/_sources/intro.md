@@ -1,7 +1,8 @@
-<!-- Cover Image -->
-<p align="center">
-  <img src="penetration_apx.png" alt="Cover Image" style="width: 500px;"/>
-</p>
+:::{figure-md} markdown-fig
+<img src="penetration_apx.png" alt="fishy" class="bg-primary mb-1" width="200px">
+
+This is a caption in **Markdown**!
+:::
 
 <!-- Title and Subtitle -->
 <h1 align="center">Causality in Electricity Markets</h1>
