@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,8 +180,8 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -481,7 +481,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0690432210edac7073ff860345852863967106c3cadf3fe8f6fdab24a1a475ed.png" src="../_images/0690432210edac7073ff860345852863967106c3cadf3fe8f6fdab24a1a475ed.png" />
+<img alt="../_images/86cdef4ddf0af0a9c70f63b25837383b591fbaabd279f12e9098a75003930a14.png" src="../_images/86cdef4ddf0af0a9c70f63b25837383b591fbaabd279f12e9098a75003930a14.png" />
 </div>
 </div>
 <p>A <strong>continuous random variable</strong> can take any value within a given range. The normal distribution (or Gaussian distribution) is a common continuous distribution characterized by its bell-shaped curve. It is defined by its mean (expected value) and standard deviation (a measure of variability).</p>
@@ -510,7 +510,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7a9acec75c0a171a4d1eeeebaf17f55216cf59b1cd693f0bbafb1f74eedc5e0c.png" src="../_images/7a9acec75c0a171a4d1eeeebaf17f55216cf59b1cd693f0bbafb1f74eedc5e0c.png" />
+<img alt="../_images/bb0a1187a4f2d1aac3b10d4cba5dd84fb5de7d117e244be9ddba5cd39bb825a3.png" src="../_images/bb0a1187a4f2d1aac3b10d4cba5dd84fb5de7d117e244be9ddba5cd39bb825a3.png" />
 </div>
 </div>
 <p>A <strong>random process</strong> (or stochastic process) is a collection of random variables indexed by time or another variable, used to model systems that evolve randomly over time or space. A random process is a function that assigns a random variable to each point in a time or space domain (examples include stock market prices, weather patterns, and noise signals in electrical engineering). We can distinguish between discrete-time processes (whose indices are countable), and continuous-time processes (whose indices are an interval). We can also distinguish between stationary processes (whose statistical properties are constant over time), and nonstationary processes.</p>
@@ -533,7 +533,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4513fdc7117b750934598f16e882781c5b9dae0eba617ee30acd1c3b43a96098.png" src="../_images/4513fdc7117b750934598f16e882781c5b9dae0eba617ee30acd1c3b43a96098.png" />
+<img alt="../_images/cb03a701ff219a4562e8aab388786203def22cc32d3c26bb1f1d283bf6c97a61.png" src="../_images/cb03a701ff219a4562e8aab388786203def22cc32d3c26bb1f1d283bf6c97a61.png" />
 </div>
 </div>
 <p><strong>Statistical indepencence</strong> refers to the lack of a relationship between two or more random variables. More formally, we can distinguish between two types of statistical independence:</p>
@@ -541,8 +541,8 @@ document.write(`
 <li><p><strong>Marginal independence</strong> refers to the lack of a relationship between two random variables, without considering the effect of any other variables. Mathematically, two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are marginally independent (<span class="math notranslate nohighlight">\(X \perp Y\)</span>) if their joint probability distribution can be expressed as the product of their marginal probability
 distributions, as in</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-f56c835c-1063-4d25-8ae7-d139baf2b99d">
-<span class="eqno">(26.1)<a class="headerlink" href="#equation-f56c835c-1063-4d25-8ae7-d139baf2b99d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd4f9a6c-510a-415a-8eab-10dedca156d5">
+<span class="eqno">(26.1)<a class="headerlink" href="#equation-fd4f9a6c-510a-415a-8eab-10dedca156d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(X, Y) = P(X)P(Y)
 \end{equation}\]</div>
 <p>To illustrate this concept, let’s generate two independent random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> from a normal distribution with mean 0 and standard deviation 1. We then plot their joint distribution using a scatter plot. If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are truly independent, the scatter plot will show no discernible pattern.</p>
@@ -565,14 +565,14 @@ distributions, as in</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ed8030dba2428a59393cf7117b03a1991a29d1f7cd685acf7a009f168954f830.png" src="../_images/ed8030dba2428a59393cf7117b03a1991a29d1f7cd685acf7a009f168954f830.png" />
+<img alt="../_images/9d70b1d16a87776a7501c1d683b70153070e79441b04aa438080e8cff327fcdb.png" src="../_images/9d70b1d16a87776a7501c1d683b70153070e79441b04aa438080e8cff327fcdb.png" />
 </div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p><strong>Conditional independence</strong> refers to the lack of a relationship between two random variables, given the value of one or more other variables. Mathematically, two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are conditionally independent given a variable (<span class="math notranslate nohighlight">\(X \perp Y | Z\)</span>) if their conditional probability distribution satisfies</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-ab3c72b0-be1b-4af3-9d7a-b08de87557c6">
-<span class="eqno">(26.2)<a class="headerlink" href="#equation-ab3c72b0-be1b-4af3-9d7a-b08de87557c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2d483bbd-7c70-40eb-8749-cad90449dfb0">
+<span class="eqno">(26.2)<a class="headerlink" href="#equation-2d483bbd-7c70-40eb-8749-cad90449dfb0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(X, Y | Z) = P(X | Z)P(Y | Z)
 \end{equation}\]</div>
 <p>To illustrate this, let’s generate three random variables <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span> such that:</p>
@@ -599,7 +599,7 @@ distributions, as in</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0dac7b185a0c6e473fdc91e188adb4be1a52f3e7dda2d3d477e2aa38d61816cd.png" src="../_images/0dac7b185a0c6e473fdc91e188adb4be1a52f3e7dda2d3d477e2aa38d61816cd.png" />
+<img alt="../_images/763ba380bd36f61eb5bbcded39d1853701d8b01823309899febde69bcf2d154b.png" src="../_images/763ba380bd36f61eb5bbcded39d1853701d8b01823309899febde69bcf2d154b.png" />
 </div>
 </div>
 <p>Then, we plot <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> for different ranges of <span class="math notranslate nohighlight">\(Z\)</span>. If <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are conditionally independent given <span class="math notranslate nohighlight">\(Z\)</span>, the scatter plots for different values of <span class="math notranslate nohighlight">\(Z\)</span> should show no pattern, demonstrating that knowing <span class="math notranslate nohighlight">\(Z\)</span> removes the dependence between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>.</p>
@@ -620,120 +620,120 @@ distributions, as in</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b019ee233e40f68a54fdb5c9de7091901d47ea5067b5f9057e66f277e3e69fa9.png" src="../_images/b019ee233e40f68a54fdb5c9de7091901d47ea5067b5f9057e66f277e3e69fa9.png" />
+<img alt="../_images/f0cc11924b17740ce502ee7147764ce81ac4e9834c95204ba9a74f1bab538900.png" src="../_images/f0cc11924b17740ce502ee7147764ce81ac4e9834c95204ba9a74f1bab538900.png" />
 </div>
 </div>
 </section>
 <section id="expectation-variance-and-covariance">
 <h2><span class="section-number">26.2. </span>Expectation, variance, and covariance<a class="headerlink" href="#expectation-variance-and-covariance" title="Link to this heading">#</a></h2>
 <p>The expectation (or expected value) of a continuous random variable <span class="math notranslate nohighlight">\(X\)</span> with probability density function <span class="math notranslate nohighlight">\(p(x)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-706b0419-7b98-4653-a75a-4e3862054723">
-<span class="eqno">(26.3)<a class="headerlink" href="#equation-706b0419-7b98-4653-a75a-4e3862054723" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b24d4368-74ad-4407-8821-140e3a593a93">
+<span class="eqno">(26.3)<a class="headerlink" href="#equation-b24d4368-74ad-4407-8821-140e3a593a93" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbb{E}[X] = \int xp(x)dx
 \end{equation}\]</div>
 <p>while the expectation of a discrete random variable with probability mass function <span class="math notranslate nohighlight">\(p(x)\)</span> is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c99e00ae-1c2c-43dc-bdc0-5aa89b641a14">
-<span class="eqno">(26.4)<a class="headerlink" href="#equation-c99e00ae-1c2c-43dc-bdc0-5aa89b641a14" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-59dee0bd-f140-4861-8d4e-64dfd348632f">
+<span class="eqno">(26.4)<a class="headerlink" href="#equation-59dee0bd-f140-4861-8d4e-64dfd348632f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbb{E}[X] = \sum_{x} xp(x)
 \end{equation}\]</div>
 <p>The expectation of any function of a random variable, <span class="math notranslate nohighlight">\(f(X)\)</span>, is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8c132190-662f-468f-87ea-2e8a3379ce01">
-<span class="eqno">(26.5)<a class="headerlink" href="#equation-8c132190-662f-468f-87ea-2e8a3379ce01" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff2d5523-6b29-4ce3-9dd5-b76dd8fb0ef0">
+<span class="eqno">(26.5)<a class="headerlink" href="#equation-ff2d5523-6b29-4ce3-9dd5-b76dd8fb0ef0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbb{E}[X] = \int f(x)p(x)dx
 \end{equation}\]</div>
 <p>The deviation or fluctuation of <span class="math notranslate nohighlight">\(X\)</span> from its expected value is <span class="math notranslate nohighlight">\(X - \mathbb{E}[X]\)</span>. The variance of a random variable <span class="math notranslate nohighlight">\(X\)</span> measures the dispersion around its mean, and it is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b8c75050-e770-4da9-9349-77e4fe652c03">
-<span class="eqno">(26.6)<a class="headerlink" href="#equation-b8c75050-e770-4da9-9349-77e4fe652c03" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-036b80e6-1cd8-4e00-9d82-2a2aedfe58cf">
+<span class="eqno">(26.6)<a class="headerlink" href="#equation-036b80e6-1cd8-4e00-9d82-2a2aedfe58cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Var}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2]
 \end{equation}\]</div>
 <p>The covariance of two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> measures the degree to which two random variables change together. If the variables tend to show similar behavior (they tend to be above or below their expected values together), the covariance is positive. If one variable tends to increase when the other decreases, the covariance is negative. It is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56e78a0d-699d-4a14-83df-27d8b887f563">
-<span class="eqno">(26.7)<a class="headerlink" href="#equation-56e78a0d-699d-4a14-83df-27d8b887f563" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ea1ed7a0-1d4a-4d98-9335-eb4d26de1c13">
+<span class="eqno">(26.7)<a class="headerlink" href="#equation-ea1ed7a0-1d4a-4d98-9335-eb4d26de1c13" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Cov}[X,Y] = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])]
 \end{equation}\]</div>
 <p>Some <strong>algebraic properties</strong> of expectation, variance, and covariance will be extremely useful in manipulating and deriving statistical quantities of interest:</p>
 <ul>
 <li><p><strong>Linearity of expectations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17eb7bf4-f8cb-4183-ad90-96e22a7a628c">
-<span class="eqno">(26.8)<a class="headerlink" href="#equation-17eb7bf4-f8cb-4183-ad90-96e22a7a628c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bfd308d3-4341-4fa5-aa68-2b17eacfeb78">
+<span class="eqno">(26.8)<a class="headerlink" href="#equation-bfd308d3-4341-4fa5-aa68-2b17eacfeb78" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbb{E}[aX+bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]
     \end{equation}\]</div>
 <p>Expectation is a linear operator. The expectation of a sum of random variables is the sum of their expectations, and the expectation of a scaled random variable is the scale factor times the expectation of the variable.</p>
 </li>
 <li><p><strong>Variance identity</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95fd1b84-bed6-4442-8150-87dbe4f3490e">
-<span class="eqno">(26.9)<a class="headerlink" href="#equation-95fd1b84-bed6-4442-8150-87dbe4f3490e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ce0d42e-b47d-496e-a12c-1f7f3b657854">
+<span class="eqno">(26.9)<a class="headerlink" href="#equation-9ce0d42e-b47d-496e-a12c-1f7f3b657854" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[X] = \mathbb{E}[(X-\mathbb{E}[X])^2] = \mathbb{E}[X^2]-(\mathbb{E}[X])^2
     \end{equation}\]</div>
 <p>Expanding <span class="math notranslate nohighlight">\(\mathbb{E}[(X-\mathbb{E}[X])^2]\)</span> we get <span class="math notranslate nohighlight">\(\mathbb{E}[X^2 -2X \mathbb{E}[X] + (\mathbb{E}[X])^2]\)</span>, which is equal to <span class="math notranslate nohighlight">\(\mathbb{E}[X^2] -2\mathbb{E}[X \mathbb{E}[X]] + \mathbb{E}[(\mathbb{E}[X])^2]\)</span>. However, <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span> is a constant (because it is the expected value of a random variable, it is not random anymore), so <span class="math notranslate nohighlight">\(\mathbb{E}[\mathbb{E}[X]]\)</span> is just <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span>. So that becomes <span class="math notranslate nohighlight">\(\mathbb{E}[X^2] -2\mathbb{E}[X] \mathbb{E}[X] + (\mathbb{E}[X])^2 = \mathbb{E}[X^2] -2(\mathbb{E}[X])^2 + (\mathbb{E}[X])^2\)</span>.</p>
 </li>
 <li><p><strong>Covariance identity</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-082b1de3-d916-4c22-9c8d-eac15bdc27d9">
-<span class="eqno">(26.10)<a class="headerlink" href="#equation-082b1de3-d916-4c22-9c8d-eac15bdc27d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43ddbeb4-e4c9-4cb8-8558-da2688ac51ac">
+<span class="eqno">(26.10)<a class="headerlink" href="#equation-43ddbeb4-e4c9-4cb8-8558-da2688ac51ac" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[X,Y] = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
     \end{equation}\]</div>
 <p>Expanding the product <span class="math notranslate nohighlight">\((X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\)</span> we get <span class="math notranslate nohighlight">\(X - X\mathbb{E}[Y] - Y\mathbb{E}[X] + \mathbb{E}[X]\mathbb{E}[Y]\)</span>. Taking the expectation  we get <span class="math notranslate nohighlight">\(\mathbb{E}[XY] - \mathbb{E}[X\mathbb{E}[Y]] - \mathbb{E}[Y\mathbb{E}[X]] + \mathbb{E}[\mathbb{E}[X]\mathbb{E}[Y]]\)</span>. Because the expectation is constant, we get to <span class="math notranslate nohighlight">\(\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] - \mathbb{E}[Y]\mathbb{E}[X] + \mathbb{E}[X]\mathbb{E}[Y]\)</span>.</p>
 </li>
 <li><p><strong>Covariance is symmetric</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5c8b5077-ffc9-408e-b4dd-fa73f3d9ef07">
-<span class="eqno">(26.11)<a class="headerlink" href="#equation-5c8b5077-ffc9-408e-b4dd-fa73f3d9ef07" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-97dd138e-c421-49db-bcee-e1adb6b31076">
+<span class="eqno">(26.11)<a class="headerlink" href="#equation-97dd138e-c421-49db-bcee-e1adb6b31076" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[X,Y] = \operatorname{Cov}[Y,X]
     \end{equation}\]</div>
 <p>The direction of comparison does not matter for covariance, whether you measure how <span class="math notranslate nohighlight">\(X\)</span> varies with <span class="math notranslate nohighlight">\(Y\)</span> or <span class="math notranslate nohighlight">\(Y\)</span> with <span class="math notranslate nohighlight">\(X\)</span>, the result is the same.</p>
 </li>
 <li><p><strong>Variance is covariance with itself</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-84ed741b-f3b7-411a-960b-380459acc6e1">
-<span class="eqno">(26.12)<a class="headerlink" href="#equation-84ed741b-f3b7-411a-960b-380459acc6e1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cbc1baf3-d3db-46df-9cd0-b069f9c33757">
+<span class="eqno">(26.12)<a class="headerlink" href="#equation-cbc1baf3-d3db-46df-9cd0-b069f9c33757" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[X,X] = \operatorname{Var}[X]
     \end{equation}\]</div>
 <p>Covariance measures how two variables vary together, and variance is a special case where these two variables are the same.</p>
 </li>
 <li><p><strong>Variance is not linear</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1aef37d4-c242-44c0-84c6-9a10e8b36f58">
-<span class="eqno">(26.13)<a class="headerlink" href="#equation-1aef37d4-c242-44c0-84c6-9a10e8b36f58" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f611aa21-72de-402f-b60b-68fc7ed3faa0">
+<span class="eqno">(26.13)<a class="headerlink" href="#equation-f611aa21-72de-402f-b60b-68fc7ed3faa0" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[aX + b] = a^2\operatorname{Var}[X]
     \end{equation}\]</div>
 <p>The square in the variance formula leads to a squared scale factor when a random variable is scaled. The addition of a constant <span class="math notranslate nohighlight">\(b\)</span> does not affect variance, as variance measures dispersion around the mean, which is unaffected by constant shifts. To show why <span class="math notranslate nohighlight">\(a\)</span> becomes <span class="math notranslate nohighlight">\(a^2\)</span>, we have <span class="math notranslate nohighlight">\(\operatorname{Var}[aX] = \mathbb{E}[(aX-\mathbb{E}(aX)^2]\)</span>, which is equal to <span class="math notranslate nohighlight">\(\mathbb{E}[a^2(X-\mathbb{E}(X)^2] = a^2\mathbb{E}[(X-\mathbb{E}(X)^2]\)</span>.</p>
 </li>
 <li><p><strong>Covariance is not linear</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9967054a-cfea-4f1e-b898-755909390dc6">
-<span class="eqno">(26.14)<a class="headerlink" href="#equation-9967054a-cfea-4f1e-b898-755909390dc6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2f27b5dc-1f45-447b-bab4-c146cd0eb670">
+<span class="eqno">(26.14)<a class="headerlink" href="#equation-2f27b5dc-1f45-447b-bab4-c146cd0eb670" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Cov}[aX + b,Y] = a\operatorname{Cov}[X,Y]
     \end{equation}\]</div>
 <p>Scaling one variable in a covariance relationship scales the covariance itself but does not affect the relationship’s direction or absence (signified by zero covariance). The addition of a constant does not affect covariance, as it does not change how one variable varies with another.</p>
 </li>
 <li><p><strong>Variance of a sum</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6053487b-d137-4b14-afdd-8f84f4fef6b8">
-<span class="eqno">(26.15)<a class="headerlink" href="#equation-6053487b-d137-4b14-afdd-8f84f4fef6b8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c8be7027-5d12-410b-9c7e-8963525cd76e">
+<span class="eqno">(26.15)<a class="headerlink" href="#equation-c8be7027-5d12-410b-9c7e-8963525cd76e" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[X+Y] = \operatorname{Var}[X] + \operatorname{Var}[Y] + 2\operatorname{Cov}[X,Y]
     \end{equation}\]</div>
 <p>The variance of a sum includes the individual variances and an additional term to account for how the variables co-vary. This comes from expanding <span class="math notranslate nohighlight">\(\mathbb{E}[(X + Y - \mathbb{E}[X+Y])^2]\)</span> and using the linearity of expectations.</p>
 </li>
 <li><p><strong>Variance of a large sum</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7cb83ded-a3a1-4754-828c-7f94853b4d43">
-<span class="eqno">(26.16)<a class="headerlink" href="#equation-7cb83ded-a3a1-4754-828c-7f94853b4d43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-efb71dbe-1a22-453b-9565-f780883328f5">
+<span class="eqno">(26.16)<a class="headerlink" href="#equation-efb71dbe-1a22-453b-9565-f780883328f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}\left[ \sum_{i=1}^{n}X_i \right] = \sum_{i=1}^{n}\sum_{j=1}^{n}\operatorname{Cov}[X_i,X_j] = \sum_{i=1}^{n}\operatorname{Var}[X_i] + 2\sum_{i=1}^{n-1}\sum_{j&gt;i}\operatorname{Cov}[X_i,X_j]
     \end{equation}\]</div>
 <p>The variance of a sum of multiple random variables includes both their individual variances and the covariance terms for every pair.</p>
 </li>
 <li><p><strong>Law of total expectations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22a76559-19e9-42d4-8d7d-9cddf6bbd012">
-<span class="eqno">(26.17)<a class="headerlink" href="#equation-22a76559-19e9-42d4-8d7d-9cddf6bbd012" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d52d4673-d938-42be-a1ee-bc2bb3527db5">
+<span class="eqno">(26.17)<a class="headerlink" href="#equation-d52d4673-d938-42be-a1ee-bc2bb3527db5" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X|Y]]
     \end{equation}\]</div>
 <p>Suppose we have two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. We want to express the expectation of <span class="math notranslate nohighlight">\(X\)</span> (a marginal expectation) in terms of its conditional expectation given <span class="math notranslate nohighlight">\(Y\)</span>. his law states that the overall expectation of <span class="math notranslate nohighlight">\(X\)</span> can be found by taking the expectation of the conditional expectation of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y\)</span>. In practice, what we are doing is splitting the entire probability space into parts based on the values of <span class="math notranslate nohighlight">\(Y\)</span>, calculating the expected value of <span class="math notranslate nohighlight">\(X\)</span> (this is <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y]\)</span>), and then taking the expectation of these conditional expectations over the distribution of <span class="math notranslate nohighlight">\(Y\)</span>. Imagine <span class="math notranslate nohighlight">\(Y\)</span> as categorizing or segmenting the probability space into different scenarios or groups. Within each group, you calculate the average value of <span class="math notranslate nohighlight">\(X\)</span> (this gives you <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y=y]\)</span> for each <span class="math notranslate nohighlight">\(y\)</span>). Then, you average these averages over all possible groups (weighted by the probability of each group <span class="math notranslate nohighlight">\(Y=y\)</span>, leading back to the overall average of <span class="math notranslate nohighlight">\(X\)</span>. This law is particularly useful in scenarios where direct calculation of <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span> is complex but where conditional expectations <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y]\)</span> are simpler to compute.
 This is the expected value (or mean) of <span class="math notranslate nohighlight">\(X\)</span> given a particular value of <span class="math notranslate nohighlight">\(Y\)</span>. In many statistical models, especially in predictive modeling, this conditional mean can be thought of as a ``prediction’’ of  <span class="math notranslate nohighlight">\(X\)</span> based on the knowledge of <span class="math notranslate nohighlight">\(Y\)</span>. For example, if <span class="math notranslate nohighlight">\(Y\)</span> represents a set of features or conditions, then <span class="math notranslate nohighlight">\(\mathbb{E}[X|Y]\)</span> is our best guess or prediction of <span class="math notranslate nohighlight">\(X\)</span> under those conditions.</p>
 </li>
 <li><p><strong>Law of total variance</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c68fe902-5e8e-4f65-9b49-c0f0fdb98e2e">
-<span class="eqno">(26.18)<a class="headerlink" href="#equation-c68fe902-5e8e-4f65-9b49-c0f0fdb98e2e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-296d3160-70e6-475a-a580-2c6b1e6b9bf6">
+<span class="eqno">(26.18)<a class="headerlink" href="#equation-296d3160-70e6-475a-a580-2c6b1e6b9bf6" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \operatorname{Var}[X] = \operatorname{Var}[\mathbb{E}[X|Y]] + \mathbb{E}[\operatorname{Var}[X|Y]]
     \end{equation}\]</div>
 <p>This law decomposes the total variance into two parts. The first part can be thought of as between-group variability and measures how much the conditional means vary as <span class="math notranslate nohighlight">\(Y\)</span> changes. The second term is the within-group variability and represents the average of the variances within each group defined by <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 </li>
 <li><p><strong>Independence implies zero covariance</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fcd5518a-3d07-496f-9253-28109681f309">
-<span class="eqno">(26.19)<a class="headerlink" href="#equation-fcd5518a-3d07-496f-9253-28109681f309" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ef4c485d-7af5-43a2-8562-70e9fecc1f86">
+<span class="eqno">(26.19)<a class="headerlink" href="#equation-ef4c485d-7af5-43a2-8562-70e9fecc1f86" title="Permalink to this equation">#</a></span>\[\begin{equation}
         X \perp Y \rightarrow \operatorname{Cov}[X,Y] = 0
     \end{equation}\]</div>
 <p>Independence between two variables means the occurrence of one does not affect the probability distribution of the other. This lack of influence translates mathematically to zero covariance. However, the converse is not necessarily true as zero covariance does not capture nonlinear dependencies.</p>
@@ -743,8 +743,8 @@ This is the expected value (or mean) of <span class="math notranslate nohighligh
 <section id="convergence">
 <h2><span class="section-number">26.3. </span>Convergence<a class="headerlink" href="#convergence" title="Link to this heading">#</a></h2>
 <p>The <strong>law of large numbers (LLN)</strong> states that, for a sequence of independent and identically distributed (i.i.d.) random variables <span class="math notranslate nohighlight">\(X_1, X_2 \ldots, X_n\)</span> each with expected value <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span>, the sample mean converges to the expected value as <span class="math notranslate nohighlight">\(n\)</span> approaches infinity</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3861dfce-16bc-427a-89e0-ac545e7ae0b0">
-<span class="eqno">(26.20)<a class="headerlink" href="#equation-3861dfce-16bc-427a-89e0-ac545e7ae0b0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-283a4061-1482-45db-a8ad-99e368366f16">
+<span class="eqno">(26.20)<a class="headerlink" href="#equation-283a4061-1482-45db-a8ad-99e368366f16" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \frac{1}{n}\sum_{i=1}^{n}X_i \rightarrow \mathbb{E}[X] \quad \text{ as } n \rightarrow \infty
 \end{equation}\]</div>
 <p>The <strong>i.i.d. assumption</strong> is a fundamental concept in probability theory and statistics, with significant implications. Independence implies that the occurrence of one event or the value of one variable does not influence the occurrence of another. In the context of random variables, <span class="math notranslate nohighlight">\(X_1, X_2 \ldots, X_n\)</span> being independent means the outcome of <span class="math notranslate nohighlight">\(X_i\)</span> provides no information about the outcome of <span class="math notranslate nohighlight">\(X_j\)</span>, <span class="math notranslate nohighlight">\(i\neq j\)</span>. Identically distributed means that each of the random variables has the same probability distribution. They do not need to take on the same value, but the rules governing their behavior (i.e., the likelihood of each outcome) are identical. In the context of supervised learning, the i.i.d. assumption assumes that the training and test data are independently drawn from the same underlying probability distribution. This enables the use of statistical tools and techniques, such as maximum likelihood estimation and hypothesis testing, which are based on the assumption of independent and identically distributed data. In real-world data, this assumption is often violated as data may be dependent and non-identically distributed due to distribution shifts across geography or time, sampling practices, or the presence of confounding variables and selection bias.</p>
@@ -776,13 +776,13 @@ This is the expected value (or mean) of <span class="math notranslate nohighligh
 </div>
 </div>
 <p>The <strong>central limit theorem (CLT)</strong> states that if <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> are i.i.d. random variables with an expected value <span class="math notranslate nohighlight">\(\mathbb{E}[X]\)</span> and a finite variance <span class="math notranslate nohighlight">\(\operatorname{Var}[X]\)</span>, the distribution of the sample mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a4b5aa8d-da39-4042-8676-591a7804be2d">
-<span class="eqno">(26.21)<a class="headerlink" href="#equation-a4b5aa8d-da39-4042-8676-591a7804be2d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0745c83b-a28e-4c50-aa42-2b557d527160">
+<span class="eqno">(26.21)<a class="headerlink" href="#equation-0745c83b-a28e-4c50-aa42-2b557d527160" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
 \end{equation}\]</div>
 <p>approaches a normal distribution as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>. Specifically, the standardized form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af8e653a-f543-4b70-8709-198022e240f0">
-<span class="eqno">(26.22)<a class="headerlink" href="#equation-af8e653a-f543-4b70-8709-198022e240f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cfd3a862-243a-47db-bf7c-8bff15b1d973">
+<span class="eqno">(26.22)<a class="headerlink" href="#equation-cfd3a862-243a-47db-bf7c-8bff15b1d973" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \frac{\bar{X}_n - \mathbb{E}[X]}{\sqrt{\operatorname{Var}[X]/n}}
 \end{equation}\]</div>
 <p>approaches the standard normal distribution <span class="math notranslate nohighlight">\(N(0, 1)\)</span>.</p>
@@ -864,35 +864,35 @@ Variance: 0.12043348413823464
 <h3><span class="section-number">26.4.1. </span>Main Probability Distributions<a class="headerlink" href="#main-probability-distributions" title="Link to this heading">#</a></h3>
 <p><strong>Normal Distribution</strong></p>
 <p>The normal distribution, also known as the Gaussian distribution, is central in statistics due to its symmetric, bell-shaped curve. It is characterized by its mean <span class="math notranslate nohighlight">\( \mu \)</span> and standard deviation <span class="math notranslate nohighlight">\( \sigma \)</span>, with the probability density function (PDF) given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ef13bd6-c2c6-4816-bb30-bc187a53d2c4">
-<span class="eqno">(26.23)<a class="headerlink" href="#equation-7ef13bd6-c2c6-4816-bb30-bc187a53d2c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f544de3-43c1-483c-b8c9-6b972c929063">
+<span class="eqno">(26.23)<a class="headerlink" href="#equation-7f544de3-43c1-483c-b8c9-6b972c929063" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \end{equation}\]</div>
 <p>The significance of the normal distribution arises from the Central Limit Theorem (CLT), which states that sums of independent random variables converge to a normal distribution, regardless of the original distribution of these variables, making it applicable in a wide array of scenarios. This property underscores the normal distribution’s role in approximating the behavior of various real-world random processes.</p>
 <p><strong>Chi-Squared Distribution</strong></p>
 <p>The chi-squared distribution is another key distribution in statistics, especially in hypothesis testing and confidence interval estimation. It arises as the sum of the squares of independent standard normal variables. Specifically, if <span class="math notranslate nohighlight">\( Z_1, Z_2, ..., Z_k \)</span> are independent standard normal random variables, then <span class="math notranslate nohighlight">\( \sum_{i=1}^{k} Z_i^2 \)</span> follows a chi-squared distribution with <span class="math notranslate nohighlight">\( k \)</span> degrees of freedom. Its PDF for <span class="math notranslate nohighlight">\( x &gt; 0 \)</span> and <span class="math notranslate nohighlight">\( k \)</span> degrees of freedom is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-723e7abe-07ca-4a30-b9ed-f9b594993b7d">
-<span class="eqno">(26.24)<a class="headerlink" href="#equation-723e7abe-07ca-4a30-b9ed-f9b594993b7d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-618456f8-5d94-4307-b8b4-7f312bfb4df2">
+<span class="eqno">(26.24)<a class="headerlink" href="#equation-618456f8-5d94-4307-b8b4-7f312bfb4df2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x;k) = \frac{x^{k/2-1}e^{-x/2}}{2^{k/2}\Gamma(k/2)}
 \end{equation}\]</div>
 <p>This distribution is asymmetric and skewed to the right, with its shape and spread depending on the degrees of freedom <span class="math notranslate nohighlight">\( k \)</span>. It is primarily used in the chi-squared test for independence and goodness of fit, and in estimating variances of normal distributions.</p>
 <p><strong>F-Distribution</strong></p>
 <p>The F-distribution is crucial in the context of variance analysis and hypothesis testing. It is the ratio of two scaled chi-squared distributions: if <span class="math notranslate nohighlight">\( U \)</span> follows a chi-squared distribution with <span class="math notranslate nohighlight">\( d_1 \)</span> degrees of freedom and <span class="math notranslate nohighlight">\( V \)</span> follows an independent chi-squared distribution with <span class="math notranslate nohighlight">\( d_2 \)</span> degrees of freedom, then the ratio <span class="math notranslate nohighlight">\( \frac{U/d_1}{V/d_2} \)</span> follows an F-distribution. Its PDF is described by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ed8ad077-c803-4ded-9b34-1aa04f5d34ee">
-<span class="eqno">(26.25)<a class="headerlink" href="#equation-ed8ad077-c803-4ded-9b34-1aa04f5d34ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7f4904ac-3489-4804-b26d-1b83969ddb61">
+<span class="eqno">(26.25)<a class="headerlink" href="#equation-7f4904ac-3489-4804-b26d-1b83969ddb61" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x; d_1, d_2) = \frac{\sqrt{\frac{(d_1x)^{d_1}d_2^{d_2}}{(d_1x+d_2)^{d_1+d_2}}}}{x\text{B}\left(\frac{d_1}{2},\frac{d_2}{2}\right)}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( d_1 \)</span> and <span class="math notranslate nohighlight">\( d_2 \)</span> are the degrees of freedom. The distribution is non-symmetric, bounded at the left by 0, and its shape varies with the degrees of freedom. It is particularly useful in comparing variances between two samples, as in ANOVA and regression analysis.</p>
 <p><strong>Student’s t-Distribution</strong></p>
 <p>The Student’s t-distribution arises when estimating the mean of a normally distributed population in situations where the sample size is small and the population standard deviation is unknown. It is defined by the PDF</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ead5854-9e93-49bd-a10a-b0f1b8bfc117">
-<span class="eqno">(26.26)<a class="headerlink" href="#equation-8ead5854-9e93-49bd-a10a-b0f1b8bfc117" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-017d07e7-d259-4358-8901-333ea7dc9854">
+<span class="eqno">(26.26)<a class="headerlink" href="#equation-017d07e7-d259-4358-8901-333ea7dc9854" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(t) = \frac{\Gamma\left(\frac{\nu + 1}{2}\right)}{\sqrt{\nu\pi}\Gamma\left(\frac{\nu}{2}\right)}\left(1+\frac{t^2}{\nu}\right)^{-\frac{\nu+1}{2}}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( \nu \)</span> denotes degrees of freedom. The t-distribution resembles the normal distribution but has heavier tails, meaning it is more prone to producing values that fall far from its mean. This property makes it particularly useful in hypothesis testing and constructing confidence intervals when the sample size is small. As the sample size increases, the t-distribution approaches the normal distribution, illustrating the connection between them.</p>
 <p>The Student’s t-distribution is particularly useful when dealing with small sample sizes or when the population variance is unknown. It is defined as the distribution of the ratio of a standard normal random variable <span class="math notranslate nohighlight">\(Z\)</span> (with mean 0 and variance 1) and the square root of a chi-square random variable <span class="math notranslate nohighlight">\(X\)</span> divided by its degrees of freedom <span class="math notranslate nohighlight">\(v\)</span>, i.e.,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29837358-ef6b-470a-af1e-197b4932f4d8">
-<span class="eqno">(26.27)<a class="headerlink" href="#equation-29837358-ef6b-470a-af1e-197b4932f4d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c075c7ff-732a-482d-96cb-0ff7704e543c">
+<span class="eqno">(26.27)<a class="headerlink" href="#equation-c075c7ff-732a-482d-96cb-0ff7704e543c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 T = \frac{Z}{\sqrt{X/v}}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Z\)</span> follows a standard normal distribution and <span class="math notranslate nohighlight">\(X\)</span> follows a chi-square distribution with <span class="math notranslate nohighlight">\(v\)</span> degrees of freedom. The resulting <span class="math notranslate nohighlight">\(T\)</span> follows a Student’s t-distribution with <span class="math notranslate nohighlight">\(v\)</span> degrees of freedom.</p>
@@ -901,15 +901,15 @@ T = \frac{Z}{\sqrt{X/v}}
 <p>The relationship between the normal distribution, the chi-square distribution, and the t-distribution highlights the importance of understanding how distributions can be related and transformed into each other, providing a powerful framework for statistical inference.</p>
 <p><strong>Exponential Distribution</strong></p>
 <p>The exponential distribution models the time between events in processes with a constant rate of occurrence and is pivotal in reliability analysis and queuing theory. Its memoryless property implies that the probability of an event occurring in the next instant is independent of how much time has already elapsed. The PDF is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1c6d19cb-2ffe-4f06-bcc0-8ce4c59530c6">
-<span class="eqno">(26.28)<a class="headerlink" href="#equation-1c6d19cb-2ffe-4f06-bcc0-8ce4c59530c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d3355777-b89c-4b4d-b1e6-5b2d9995dc63">
+<span class="eqno">(26.28)<a class="headerlink" href="#equation-d3355777-b89c-4b4d-b1e6-5b2d9995dc63" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x;\lambda) = \lambda e^{-\lambda x}
 \end{equation}\]</div>
 <p>for <span class="math notranslate nohighlight">\( x \geq 0 \)</span>. This distribution describes the time until an event like failure or arrival occurs and is widely used in survival analysis and reliability engineering.</p>
 <p><strong>Binomial Distribution</strong></p>
 <p>The binomial distribution is fundamental in modeling binary outcomes and represents the number of successes in a fixed number of independent Bernoulli trials. The PDF is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-71c0f1c8-eb17-41f4-a17b-d1fd9cdd0b44">
-<span class="eqno">(26.29)<a class="headerlink" href="#equation-71c0f1c8-eb17-41f4-a17b-d1fd9cdd0b44" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7da461b2-a070-4f46-805c-43640ec21d89">
+<span class="eqno">(26.29)<a class="headerlink" href="#equation-7da461b2-a070-4f46-805c-43640ec21d89" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(k;n,p) = \binom{n}{k}p^k(1-p)^{n-k}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\( k \)</span> is the number of successes, <span class="math notranslate nohighlight">\( n \)</span> the number of trials, and <span class="math notranslate nohighlight">\( p \)</span> the probability of success. The shape of the binomial distribution can be symmetric or skewed depending on the values of <span class="math notranslate nohighlight">\( n \)</span> and <span class="math notranslate nohighlight">\( p \)</span>. It is extensively used in scenarios like quality control, survey analysis, and clinical trials, providing a model for situations where outcomes are binary and probabilistically independent.</p>
@@ -1229,10 +1229,10 @@ P(\theta | X) = \frac{P(X | \theta)P(\theta)}{P(X)}
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/e78004dcf0d59724742cd03ad7f6074f6c2ac80218b63064c7b645628911eb84.png" src="../_images/e78004dcf0d59724742cd03ad7f6074f6c2ac80218b63064c7b645628911eb84.png" />
-<img alt="../_images/c05b65e7fd1d37c99b94b9616744984411c3e00e3aac75995b9e642e1bbc50f4.png" src="../_images/c05b65e7fd1d37c99b94b9616744984411c3e00e3aac75995b9e642e1bbc50f4.png" />
+<img alt="../_images/378a498ee71b62794adffa1593d0ea7464130669b61186856f9e094ba2dbcd5c.png" src="../_images/378a498ee71b62794adffa1593d0ea7464130669b61186856f9e094ba2dbcd5c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        mean     sd  hdi_3%  hdi_97%  mcse_mean  mcse_sd  ess_bulk  ess_tail  \
-mu     5.038  0.063   4.927    5.161      0.001    0.001    3847.0    2946.0   
-sigma  1.960  0.044   1.878    2.039      0.001    0.001    3825.0    2944.0   
+mu     5.037  0.064   4.914    5.159      0.001    0.001    3463.0    2830.0   
+sigma  1.960  0.043   1.879    2.040      0.001    0.000    3843.0    3138.0   
 
        r_hat  
 mu       1.0  

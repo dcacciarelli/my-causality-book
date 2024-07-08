@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,8 +180,8 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -459,13 +459,13 @@ document.write(`
 <section id="varlingam-model">
 <h2><span class="section-number">8.1. </span>VARLiNGAM model<a class="headerlink" href="#varlingam-model" title="Link to this heading">#</a></h2>
 <p>Assume that at each time step <span class="math notranslate nohighlight">\(t\)</span> we observe a vector <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> with <span class="math notranslate nohighlight">\(p\)</span> variables</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5026324d-7a40-4403-a8ea-29d3922a54e6">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-5026324d-7a40-4403-a8ea-29d3922a54e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-126b6b5e-f9bd-4376-8bae-d1863a06b24f">
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-126b6b5e-f9bd-4376-8bae-d1863a06b24f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
 \end{equation}\]</div>
 <p>Then, we use the following structural causal model, which considers both the instantaneous (<span class="math notranslate nohighlight">\(\tau = 0\)</span>) and lagged (<span class="math notranslate nohighlight">\(\tau \geq 1\)</span>) causal effects</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a03b9553-d7bf-4424-9857-81f72cf49501">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-a03b9553-d7bf-4424-9857-81f72cf49501" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-115f610a-ecb4-44f1-9542-cfa30acf693b">
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-115f610a-ecb4-44f1-9542-cfa30acf693b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
 \end{equation}\]</div>
 <p>where:</p>
@@ -481,8 +481,8 @@ document.write(`
 <li><p><strong>Balancing costs</strong> (<span class="math notranslate nohighlight">\(x_3(t)\)</span>): costs incurred to ensure grid stability and balance the electricity supply with demand at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
 </ul>
 <p>At time <span class="math notranslate nohighlight">\(t\)</span>, we will observe the vector given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d02d2c2e-aeac-4bb0-a395-42a354baca97">
-<span class="eqno">(8.3)<a class="headerlink" href="#equation-d02d2c2e-aeac-4bb0-a395-42a354baca97" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a356eebf-81f1-49c3-9686-dbaebf90992c">
+<span class="eqno">(8.3)<a class="headerlink" href="#equation-a356eebf-81f1-49c3-9686-dbaebf90992c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t)=\left[\begin{array}{c} 
     \text{solar generation}(t) \\
     \text{transmission capacity usage}(t) \\
@@ -490,13 +490,13 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>and we can then model the time series data with the following relationships</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38427a28-56dd-4d2c-9c51-35d1d1d03002">
-<span class="eqno">(8.4)<a class="headerlink" href="#equation-38427a28-56dd-4d2c-9c51-35d1d1d03002" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6abedb68-d4c2-4176-8030-1a3c63fbc162">
+<span class="eqno">(8.4)<a class="headerlink" href="#equation-6abedb68-d4c2-4176-8030-1a3c63fbc162" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x}(t) = \mathbf{B}_0 \mathbf{x}(t) + \mathbf{B}_1 \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> is the matrix of the <strong>contemporaneous effects</strong>, given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-545b686a-1817-44ee-b678-6b4a3ae5435d">
-<span class="eqno">(8.5)<a class="headerlink" href="#equation-545b686a-1817-44ee-b678-6b4a3ae5435d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-29024b5b-534b-418e-ae91-91a1a6f598fc">
+<span class="eqno">(8.5)<a class="headerlink" href="#equation-29024b5b-534b-418e-ae91-91a1a6f598fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{ccc}
     0 &amp; 0 &amp; 0 \\
     -1.0 &amp; 0 &amp; 0 \\
@@ -505,8 +505,8 @@ document.write(`
 \end{equation}\]</div>
 <p>implying that current solar generation negatively affects the transmission capacity usage due to intermittency issues. Increased solar output at the same time increases the need for grid balancing due to the variable nature of solar power, which can affect grid stability.</p>
 <p>Instead, <span class="math notranslate nohighlight">\(\mathbf{B}_1\)</span> is the matrix of the <strong>lagged effects</strong>, given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-26768189-e647-4ed2-836e-419676e635c5">
-<span class="eqno">(8.6)<a class="headerlink" href="#equation-26768189-e647-4ed2-836e-419676e635c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-68fa98f7-f33c-4ed6-8d3c-4770361a7d1f">
+<span class="eqno">(8.6)<a class="headerlink" href="#equation-68fa98f7-f33c-4ed6-8d3c-4770361a7d1f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{ccc}
     0 &amp; 0 &amp; 0 \\
     0.0 &amp; 0 &amp; 0 \\
@@ -521,29 +521,29 @@ document.write(`
 <p>One possible estimation method is to combine a traditional least-squares estimation of an autoregressive (AR) model with the LiNGAM estimation. The key intuition is that the model shown in the introduction is essentially <strong>a LiNGAM model for the residuals of the predictions made by a traditional VAR model</strong> that only considers the lagged effects and not the contemporaneous ones (where <span class="math notranslate nohighlight">\(\tau &gt;0\)</span>). The estimation method is based on three steps:</p>
 <ol class="arabic">
 <li><p>Obtain a least-squares estimate <span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> of the AR model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca7c8177-8a88-4e97-8517-eedb3e40520b">
-<span class="eqno">(8.7)<a class="headerlink" href="#equation-ca7c8177-8a88-4e97-8517-eedb3e40520b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-970f64e0-43f6-4773-8437-f78862c3c648">
+<span class="eqno">(8.7)<a class="headerlink" href="#equation-970f64e0-43f6-4773-8437-f78862c3c648" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
     \end{equation}\]</div>
 <p><span class="math notranslate nohighlight">\(\widehat{\mathbf{M}}_{\tau}\)</span> can be thought of as a matrix of the preliminary guesses for the lagged effects.</p>
 </li>
 <li><p>Compute the residuals of the AR model, which are an estimate of the true errors <span class="math notranslate nohighlight">\(\mathbf{n}(t)\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-f6bf9db3-a4df-4d40-81c1-85023bf7c0ec">
-<span class="eqno">(8.8)<a class="headerlink" href="#equation-f6bf9db3-a4df-4d40-81c1-85023bf7c0ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b2ea27d6-ec6c-4c2a-bbc2-a4a7bedfe4ec">
+<span class="eqno">(8.8)<a class="headerlink" href="#equation-b2ea27d6-ec6c-4c2a-bbc2-a4a7bedfe4ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
     \end{equation}\]</div>
 <p>These residuals are the differences between the actual observed data and the predictions from the AR model. They should contain the influences not captured by the past values (potentially the instantaneous effects we are interested in).</p>
 </li>
 <li><p>Perform a LiNGAM analysis on the residuals, which returns an <strong>estimate of the coefficient matrix for the instantaneous causal effects</strong> <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-d7bbeaeb-6b7c-44fd-acb2-de210b5a7e3e">
-<span class="eqno">(8.9)<a class="headerlink" href="#equation-d7bbeaeb-6b7c-44fd-acb2-de210b5a7e3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-38985bcf-d34c-47d8-a6d7-f5c06cccede8">
+<span class="eqno">(8.9)<a class="headerlink" href="#equation-38985bcf-d34c-47d8-a6d7-f5c06cccede8" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
     \end{equation}\]</div>
 <p>The idea is that if there are instantaneous effects, they would show up in the residuals of the AR model, because the AR model did not account for them.</p>
 </li>
 <li><p>Once <span class="math notranslate nohighlight">\(\mathbf{B}_0\)</span> has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the <strong>estimates of the coefficient matrices for the lagged causal effects</strong>, <span class="math notranslate nohighlight">\(\mathbf{B}_{\tau}\)</span> for <span class="math notranslate nohighlight">\(\tau &gt;0\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-3cb7f125-87e3-45b4-9622-e84ce17a2021">
-<span class="eqno">(8.10)<a class="headerlink" href="#equation-3cb7f125-87e3-45b4-9622-e84ce17a2021" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ac56735e-5fda-4372-ac24-931e411d2ef5">
+<span class="eqno">(8.10)<a class="headerlink" href="#equation-ac56735e-5fda-4372-ac24-931e411d2ef5" title="Permalink to this equation">#</a></span>\[\begin{equation}
         \widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}_0) \widehat{\mathbf{M}}_{\tau}
     \end{equation}\]</div>
 </li>
@@ -669,10 +669,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x16844cad0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x168353010&gt;
 </pre></div>
 </div>
-<img alt="../_images/64b535618343701bd500dffaaed1f043594696091a18164d49b4a60c0980b4e3.png" src="../_images/64b535618343701bd500dffaaed1f043594696091a18164d49b4a60c0980b4e3.png" />
+<img alt="../_images/1e3b95f6b05b7ad4c4a0f2990489a8e29445d7abfd794a3bbf48a034b20cade6.png" src="../_images/1e3b95f6b05b7ad4c4a0f2990489a8e29445d7abfd794a3bbf48a034b20cade6.png" />
 </div>
 </div>
 <section id="estimating-contemporaneous-effects">
@@ -705,10 +705,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x168479b10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1693fb990&gt;
 </pre></div>
 </div>
-<img alt="../_images/09324ecc2fc0955c79dd0b70a49cfdad8f4730fd83cab77a4696bc1ebecfa088.png" src="../_images/09324ecc2fc0955c79dd0b70a49cfdad8f4730fd83cab77a4696bc1ebecfa088.png" />
+<img alt="../_images/9957261e7065ce0026f419d7b5316a63a5e7be750c705386f641be0bcfd02992.png" src="../_images/9957261e7065ce0026f419d7b5316a63a5e7be750c705386f641be0bcfd02992.png" />
 </div>
 </div>
 <p>Now, we can simply apply LiNGAM (as we did in the initial chapter) to the extracted residuals.</p>
@@ -721,7 +721,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ab74dbc7edfbc0ecb9be90c8cfed186b233b74e78da9293639d2c68dbe9434ac.svg" src="../_images/ab74dbc7edfbc0ecb9be90c8cfed186b233b74e78da9293639d2c68dbe9434ac.svg" /></div>
+<img alt="../_images/cdaf01a8474370e4c063070ee43206a2169d4bbee91a1c611acb03e45afcd5ff.svg" src="../_images/cdaf01a8474370e4c063070ee43206a2169d4bbee91a1c611acb03e45afcd5ff.svg" /></div>
 </div>
 <p>We can see how we got extremely close to the true contemporaneous effects.</p>
 </section>
@@ -737,7 +737,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2534d4911723ff48317a3e8e351b92b23f43df25fc9955b37b78875b5b3cb99d.svg" src="../_images/2534d4911723ff48317a3e8e351b92b23f43df25fc9955b37b78875b5b3cb99d.svg" /></div>
+<img alt="../_images/5d7d81e123544260b671054e141bbb10d824567689306ac290ec4100e37e202d.svg" src="../_images/5d7d81e123544260b671054e141bbb10d824567689306ac290ec4100e37e202d.svg" /></div>
 </div>
 <p>Unfortunately, this time the causal graph is not precisely equal to the true one for the lagged effects. However, the largest lagged effects (transmission capacity and solar generation on balancing costs) have been properly identified, with the correct magnitude and sign.</p>
 </section>
@@ -752,7 +752,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8227c091abb22bf14da4fbf9acbc0bd67b32e2bd826de17ffa31ce2a09998f11.svg" src="../_images/8227c091abb22bf14da4fbf9acbc0bd67b32e2bd826de17ffa31ce2a09998f11.svg" /></div>
+<img alt="../_images/717d90ab5342c6a9d7826f5531b1e9e63b82a07de644129559d2789ae8bf1313.svg" src="../_images/717d90ab5342c6a9d7826f5531b1e9e63b82a07de644129559d2789ae8bf1313.svg" /></div>
 </div>
 </section>
 </section>
