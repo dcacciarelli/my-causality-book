@@ -152,8 +152,8 @@
       
     
     
-    <img src="../_static/curve_plot.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
-    <script>document.write(`<img src="../_static/curve_plot.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
+    <img src="../_static/penetration_apx_clean.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
+    <script>document.write(`<img src="../_static/penetration_apx_clean.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
   
   
 </a></div>
@@ -454,14 +454,14 @@ document.write(`
 <h1>Double Machine Learning<a class="headerlink" href="#double-machine-learning" title="Link to this heading">#</a></h1>
 <p>We have already seen that we can use Propensity Score Matching (PSM) to adjust for confounders when estimating treatment effects. In high-dimensional settings or when using machine learning model, things can get more complicated. For these circumstances, Chernozhukov et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id9" title="Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, and James Robins. Double/debiased machine learning for treatment and structural parameters. The Econometrics Journal, 21(1):C1–C68, 2018.">CCD+18</a>]</span> proposed the Double Machine Learning (DML) is a framework, to estimate causal effects when many confounding variables are present. It combines machine learning techniques with econometric methods to control for these confounders and obtain unbiased estimates of treatment effects. For example, let’s assume we are interested in unveiling the effect of wind power (WP) production or solar power (SP) production on electricity prices. In this case, WP and SP production would be our <strong>treatment variables</strong>, while the electricity price would be our <strong>response</strong>. We know that these factors have an effect in reducing prices due to their low marginal costs. However, we also know that there are many other factors affecting electricity prices (e.g., demand, gas prices, macroeconomic trends). These are the <strong>confounders</strong>. We can also assume that some these confounders have an effect both on our treatment and our response variable. For example, the season we are in or the specific hour of the day will certainly affect the generation of SP, but will also have an effect on the demand (hence, the prices) because of the well-known daily and season consumption profiles. Ignoring the effect of these confounders might lead to biased estimates.</p>
 <p>With DML, we are trying to isolate the effect of the treatment variables on the response. This framework assumes that the response <span class="math notranslate nohighlight">\(y\)</span> (e.g., the prices) is a function of the treatment <span class="math notranslate nohighlight">\(w\)</span> and other confounding variables <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96d5f697-9bc9-4e17-b4ba-c74f35906a89">
-<span class="eqno">(33)<a class="headerlink" href="#equation-96d5f697-9bc9-4e17-b4ba-c74f35906a89" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-574cfa6b-31b8-4997-b1ef-d20424414a3c">
+<span class="eqno">(33)<a class="headerlink" href="#equation-574cfa6b-31b8-4997-b1ef-d20424414a3c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>
 <p>Similarly, since we assumed that the treatment is also affected by other confounding variables, we have that <span class="math notranslate nohighlight">\(w\)</span> can be modeled as a function of <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-73c3fe28-6a63-46a0-91fb-cfbd7debe28c">
-<span class="eqno">(34)<a class="headerlink" href="#equation-73c3fe28-6a63-46a0-91fb-cfbd7debe28c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8bf5c9d0-687c-4d94-85f4-1d1c9fe06395">
+<span class="eqno">(34)<a class="headerlink" href="#equation-8bf5c9d0-687c-4d94-85f4-1d1c9fe06395" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\nu\)</span> is the error term.</p>
@@ -475,12 +475,12 @@ document.write(`
 <h2>The Partially Linear Case<a class="headerlink" href="#the-partially-linear-case" title="Link to this heading">#</a></h2>
 <p>For simplicity, we now consider a partially linear case where the relationship between the outcome <span class="math notranslate nohighlight">\(y\)</span> and the treatment <span class="math notranslate nohighlight">\(w\)</span> can be expressed linearly, while allowing for a potentially complex, nonlinear relationship between the confounders <span class="math notranslate nohighlight">\(x\)</span> and both the treatment and outcome.</p>
 <p>In this case, the model is specified as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d0f056d-ccee-4e0f-b754-18ceb45638a5">
-<span class="eqno">(35)<a class="headerlink" href="#equation-6d0f056d-ccee-4e0f-b754-18ceb45638a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eea56410-3f12-41c5-919d-fa93cca31aa4">
+<span class="eqno">(35)<a class="headerlink" href="#equation-eea56410-3f12-41c5-919d-fa93cca31aa4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta w + g(x) + \epsilon
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-e244e119-b95c-489f-84b2-86186dff8814">
-<span class="eqno">(36)<a class="headerlink" href="#equation-e244e119-b95c-489f-84b2-86186dff8814" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3519003d-9af2-4f12-ad68-b501c400c98e">
+<span class="eqno">(36)<a class="headerlink" href="#equation-3519003d-9af2-4f12-ad68-b501c400c98e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>Here:</p>
@@ -502,8 +502,8 @@ document.write(`
 <ul>
 <li><p>Use the models trained on <span class="math notranslate nohighlight">\(K-1\)</span> folds to predict the held-out fold <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 <li><p>Compute the residuals for the treatment and outcome models:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b791136f-9eee-498b-a1ce-5d82be63f545">
-<span class="eqno">(37)<a class="headerlink" href="#equation-b791136f-9eee-498b-a1ce-5d82be63f545" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ec27bdc5-1d23-42a1-ab22-c777471ec902">
+<span class="eqno">(37)<a class="headerlink" href="#equation-ec27bdc5-1d23-42a1-ab22-c777471ec902" title="Permalink to this equation">#</a></span>\[\begin{equation}
             \hat{V}_W = W - \hat{W}, \quad \hat{V}_Y = Y - \hat{Y}
         \end{equation}\]</div>
 </li>
@@ -524,8 +524,8 @@ document.write(`
 <section id="electricity-example">
 <h2>Electricity example<a class="headerlink" href="#electricity-example" title="Link to this heading">#</a></h2>
 <p>Let’s now consider a practical case where we want to estimate the effect of day-ahead wind power and solar power forecasts on spot prices. We know that the forecasts available before gate closure <span id="id2">[<a class="reference internal" href="../bibliography.html#id11" title="Tryggvi Jónsson, Pierre Pinson, and Henrik Madsen. On the market impact of wind energy forecasts. Energy Economics, 32(2):313–320, 2010.">JonssonPM10</a>]</span> are crucial to determine the equilibrium price. Because of the merit-order effect, the low marginal costs of renewable energy sources acts like a shifter in reducing the equilibrium price. We now assume to be in a simplified setting where we want to quantify this effect. We consider a simple <strong>causal graph</strong> where the spot prices are linearly affected by the forecasted WP and SP production levels, and nonlinearly affected by other endogenous factors and market conditions. In particular, we assume to be in the following <strong>partially linear case</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8133949e-a8b2-4b3c-ae94-16cd0197b2b5">
-<span class="eqno">(38)<a class="headerlink" href="#equation-8133949e-a8b2-4b3c-ae94-16cd0197b2b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fdbd78d4-3d8c-4351-9592-1337c267811f">
+<span class="eqno">(38)<a class="headerlink" href="#equation-fdbd78d4-3d8c-4351-9592-1337c267811f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{spot price} = -0.3 * \text{WP} - 0,3 * \text{SP} + f_L(\text{load}) + f_G(\text{gas}) + f_C(\text{coal}) + f_{CO2} (\text{carbon pricing}) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_L, \ldots, f_{CO2}\)</span> are arbitrary nonlinear functions, and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>

@@ -152,8 +152,8 @@
       
     
     
-    <img src="../_static/curve_plot.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
-    <script>document.write(`<img src="../_static/curve_plot.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
+    <img src="../_static/penetration_apx_clean.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
+    <script>document.write(`<img src="../_static/penetration_apx_clean.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
   
   
 </a></div>
@@ -683,8 +683,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p><strong>Estimated mean reward</strong>: for each arm <span class="math notranslate nohighlight">\(k\)</span>, you keep track of the average reward it has given you until this time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span>.</p></li>
 <li><p><strong>Updating the Estimate</strong>: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-892eaebb-5bcc-42dc-b247-eee5f8baf30c">
-<span class="eqno">(53)<a class="headerlink" href="#equation-892eaebb-5bcc-42dc-b247-eee5f8baf30c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1baf6289-1646-440a-a6ae-eae26c09a944">
+<span class="eqno">(53)<a class="headerlink" href="#equation-1baf6289-1646-440a-a6ae-eae26c09a944" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}\]</div>
 </li>
@@ -712,8 +712,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>You pull the same arm again and get a reward of 8.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9c2b83c7-5f84-407f-bc89-bb326edc5363">
-<span class="eqno">(54)<a class="headerlink" href="#equation-9c2b83c7-5f84-407f-bc89-bb326edc5363" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-624e4167-4113-47d7-bcd5-38d842f0b7e5">
+<span class="eqno">(54)<a class="headerlink" href="#equation-624e4167-4113-47d7-bcd5-38d842f0b7e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}\]</div>
 </li>
@@ -725,8 +725,8 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>After pulling the arm 99 times, suppose your current estimate is 9.5.</p></li>
 <li><p>You pull the arm one more time and get a reward of 9.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1ec631ee-0e5c-42f2-8550-92561c7a6334">
-<span class="eqno">(55)<a class="headerlink" href="#equation-1ec631ee-0e5c-42f2-8550-92561c7a6334" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-093e5a45-271e-42f3-b852-a1cbcd4953fd">
+<span class="eqno">(55)<a class="headerlink" href="#equation-093e5a45-271e-42f3-b852-a1cbcd4953fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}\]</div>
 </li>
@@ -775,8 +775,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul class="simple">
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-a8ad2dd7-3754-4620-a2ef-74e6560355a5">
-<span class="eqno">(56)<a class="headerlink" href="#equation-a8ad2dd7-3754-4620-a2ef-74e6560355a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b1536c66-1078-48bc-bd3c-c2aa6666edc7">
+<span class="eqno">(56)<a class="headerlink" href="#equation-b1536c66-1078-48bc-bd3c-c2aa6666edc7" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}\]</div>
 <p>which is composed of two terms:</p>
@@ -836,14 +836,14 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Updating the distribution</strong>: when we pull an arm <span class="math notranslate nohighlight">\(k \)</span> and observe a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span>, we update the parameters of the Beta distribution as follows:</p>
 <ul>
 <li><p>If we get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 1 \)</span>), we increase <span class="math notranslate nohighlight">\(\alpha_k\)</span> by 1, indicating one more success:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a6585ad-a6b6-47c2-87a4-b4b90fe12f6e">
-<span class="eqno">(57)<a class="headerlink" href="#equation-9a6585ad-a6b6-47c2-87a4-b4b90fe12f6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c7e0d4ec-e46f-4e2b-9577-b8be644a7d15">
+<span class="eqno">(57)<a class="headerlink" href="#equation-c7e0d4ec-e46f-4e2b-9577-b8be644a7d15" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}\]</div>
 </li>
 <li><p>If we do not get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 0 \)</span>), we increase <span class="math notranslate nohighlight">\(\beta_k\)</span> by 1, indicating one more failure:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06bfac69-a29a-4637-8cda-8fd56f45c71b">
-<span class="eqno">(58)<a class="headerlink" href="#equation-06bfac69-a29a-4637-8cda-8fd56f45c71b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bcfb16bd-0dff-437e-b717-e362fb6a80ff">
+<span class="eqno">(58)<a class="headerlink" href="#equation-bcfb16bd-0dff-437e-b717-e362fb6a80ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}\]</div>
 </li>
