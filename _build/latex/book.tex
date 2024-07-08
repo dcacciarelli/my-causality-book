@@ -256,7 +256,7 @@ A \sphinxstylestrong{random variable} is a fundamental concept in probability an
 \begin{sphinxVerbatimOutput}
 
 \begin{sphinxuseclass}{cell_output}
-\noindent\sphinxincludegraphics{{473824e3ebc6a1fd78bed35d20c9081c43637d9c03a42a9e1a1271f466f2ae5a}.png}
+\noindent\sphinxincludegraphics{{2d9e598977f549fdea74c0c6f2e1b8b6610e994db7e154bb50101d7ef8ef34fe}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -293,7 +293,7 @@ A \sphinxstylestrong{continuous random variable} can take any value within a giv
 \begin{sphinxVerbatimOutput}
 
 \begin{sphinxuseclass}{cell_output}
-\noindent\sphinxincludegraphics{{ea659595f4c8c7e34cdf139ac15fa2ca8f7aba7f9ae0174d9a72fe0a93f1440d}.png}
+\noindent\sphinxincludegraphics{{2bac1dea54e03875ce6f85f62e0f1255ac9fd2daac48840be3ea80ae5bebfca4}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -326,7 +326,7 @@ A random walk is a simple example of a discrete\sphinxhyphen{}time random proces
 \begin{sphinxVerbatimOutput}
 
 \begin{sphinxuseclass}{cell_output}
-\noindent\sphinxincludegraphics{{416a7cedcc526ce2c6d8b5a6d731bf4b480ee677c4b176c7ec83ba194b9cdf63}.png}
+\noindent\sphinxincludegraphics{{01ee47991735359fdcb86570efcb60ae21b59931060e9b0d5da24744d308915d}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -341,7 +341,7 @@ A random walk is a simple example of a discrete\sphinxhyphen{}time random proces
 distributions, as in
 
 \end{enumerate}
-\label{equation:notebooks/review_stats:89e7ea3d-e4be-4d91-acbd-b29aa5e8c640}\begin{equation}
+\label{equation:notebooks/review_stats:5159b559-3e14-4f61-9323-632dff8435c0}\begin{equation}
     P(X, Y) = P(X)P(Y)
 \end{equation}
 \sphinxAtStartPar
@@ -370,7 +370,7 @@ To illustrate this concept, let’s generate two independent random variables \(
 \begin{sphinxVerbatimOutput}
 
 \begin{sphinxuseclass}{cell_output}
-\noindent\sphinxincludegraphics{{ebed95ae1ef18122b8a0b8e87113bbb8e6d99ce26f58b53d71a87483bbf08605}.png}
+\noindent\sphinxincludegraphics{{43d71b4ab87f6cf6304ed9031827b8e1a90a2480687eb14ce870de18efec146a}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -382,7 +382,7 @@ To illustrate this concept, let’s generate two independent random variables \(
 \sphinxstylestrong{Conditional independence} refers to the lack of a relationship between two random variables, given the value of one or more other variables. Mathematically, two random variables \(X\) and \(Y\) are conditionally independent given a variable (\(X \perp Y | Z\)) if their conditional probability distribution satisfies
 
 \end{enumerate}
-\label{equation:notebooks/review_stats:6667aae2-07a3-4efa-b046-8f22959f23a2}\begin{equation}
+\label{equation:notebooks/review_stats:df51f613-117b-4523-b229-52230c48f249}\begin{equation}
     P(X, Y | Z) = P(X | Z)P(Y | Z)
 \end{equation}
 \sphinxAtStartPar
@@ -425,7 +425,7 @@ We first plot the scatter plot of \(X\) and \(Y\) without considering \(Z\), whi
 \begin{sphinxVerbatimOutput}
 
 \begin{sphinxuseclass}{cell_output}
-\noindent\sphinxincludegraphics{{ca5a58f3017161055dff1eb83d55f904ec1c04c2dbe667e31f6af72accbe099f}.png}
+\noindent\sphinxincludegraphics{{d504594dcc5cf7ede2362af68ef9faead7a7689e7a426c74df0575f6c4f6b164}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -454,7 +454,7 @@ Then, we plot \(X\) and \(Y\) for different ranges of \(Z\). If \(X\) and \(Y\) 
 \begin{sphinxVerbatimOutput}
 
 \begin{sphinxuseclass}{cell_output}
-\noindent\sphinxincludegraphics{{6690af5c95620c8d8a836e4b08d4441b6bdc9aba58865b9b71dd4dec11113eff}.png}
+\noindent\sphinxincludegraphics{{57c28d714c1d0618e3a28d9cadf3daabb929f2b699f3b3695457441aa6a80a24}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -464,27 +464,27 @@ Then, we plot \(X\) and \(Y\) for different ranges of \(Z\). If \(X\) and \(Y\) 
 \label{\detokenize{notebooks/review_stats:expectation-variance-and-covariance}}
 \sphinxAtStartPar
 The expectation (or expected value) of a continuous random variable \(X\) with probability density function \(p(x)\) is
-\label{equation:notebooks/review_stats:2c141f97-f155-43a4-9b49-0af19049808c}\begin{equation}
+\label{equation:notebooks/review_stats:536dea96-38ee-4458-9774-3906956fa9a6}\begin{equation}
     \mathbb{E}[X] = \int xp(x)dx
 \end{equation}
 \sphinxAtStartPar
 while the expectation of a discrete random variable with probability mass function \(p(x)\) is
-\label{equation:notebooks/review_stats:c1a1788c-d405-4f93-b0c1-c1c34836266c}\begin{equation}
+\label{equation:notebooks/review_stats:78f6f471-8c0c-4aa1-86fb-72f8c5cdb237}\begin{equation}
     \mathbb{E}[X] = \sum_{x} xp(x)
 \end{equation}
 \sphinxAtStartPar
 The expectation of any function of a random variable, \(f(X)\), is given by
-\label{equation:notebooks/review_stats:738b6ec0-a1c6-4711-ab1d-1c15949e6e43}\begin{equation}
+\label{equation:notebooks/review_stats:b279c6f3-7a12-4048-85ad-a0725fdc6228}\begin{equation}
     \mathbb{E}[X] = \int f(x)p(x)dx
 \end{equation}
 \sphinxAtStartPar
 The deviation or fluctuation of \(X\) from its expected value is \(X - \mathbb{E}[X]\). The variance of a random variable \(X\) measures the dispersion around its mean, and it is given by
-\label{equation:notebooks/review_stats:977d5ab2-550b-436b-a61b-f3d2c091bca3}\begin{equation}
+\label{equation:notebooks/review_stats:6621a3fb-2da6-4144-bee7-0adec455edb9}\begin{equation}
     \operatorname{Var}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2]
 \end{equation}
 \sphinxAtStartPar
 The covariance of two random variables \(X\) and \(Y\) measures the degree to which two random variables change together. If the variables tend to show similar behavior (they tend to be above or below their expected values together), the covariance is positive. If one variable tends to increase when the other decreases, the covariance is negative. It is given by
-\label{equation:notebooks/review_stats:b99e717f-56eb-4812-b9dc-4721ef3d04f9}\begin{equation}
+\label{equation:notebooks/review_stats:e0ac2a1c-b9c6-4830-bb44-b3ee9f983d0d}\begin{equation}
     \operatorname{Cov}[X,Y] = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])]
 \end{equation}
 \sphinxAtStartPar
@@ -493,7 +493,7 @@ Some \sphinxstylestrong{algebraic properties} of expectation, variance, and cova
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Linearity of expectations}:
-\label{equation:notebooks/review_stats:8fe4bca9-b253-4d73-849a-14cb47a06cf3}\begin{equation}
+\label{equation:notebooks/review_stats:5a90e822-b7ea-4471-988c-983f0ee5245b}\begin{equation}
         \mathbb{E}[aX+bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]
     \end{equation}
 \sphinxAtStartPar
@@ -502,7 +502,7 @@ Expectation is a linear operator. The expectation of a sum of random variables i
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Variance identity}:
-\label{equation:notebooks/review_stats:ee2ebad7-e82d-40cf-9ae8-41c0d7b3cbab}\begin{equation}
+\label{equation:notebooks/review_stats:376a91af-bbb2-487e-8d4b-69acb8583799}\begin{equation}
         \operatorname{Var}[X] = \mathbb{E}[(X-\mathbb{E}[X])^2] = \mathbb{E}[X^2]-(\mathbb{E}[X])^2
     \end{equation}
 \sphinxAtStartPar
@@ -511,7 +511,7 @@ Expanding \(\mathbb{E}[(X-\mathbb{E}[X])^2]\) we get \(\mathbb{E}[X^2 -2X \mathb
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Covariance identity}:
-\label{equation:notebooks/review_stats:e8172b3c-7140-448e-9480-21ffff2a670f}\begin{equation}
+\label{equation:notebooks/review_stats:396a12c0-5a22-49a3-add6-2dbd601e457c}\begin{equation}
         \operatorname{Cov}[X,Y] = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
     \end{equation}
 \sphinxAtStartPar
@@ -520,7 +520,7 @@ Expanding the product \((X - \mathbb{E}[X])(Y - \mathbb{E}[Y])\) we get \(X - X\
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Covariance is symmetric}:
-\label{equation:notebooks/review_stats:be8a3c3e-419b-4641-9224-4c9d78abd9b9}\begin{equation}
+\label{equation:notebooks/review_stats:84b9f4d7-0710-425c-a69b-5e25c74c17bd}\begin{equation}
         \operatorname{Cov}[X,Y] = \operatorname{Cov}[Y,X]
     \end{equation}
 \sphinxAtStartPar
@@ -529,7 +529,7 @@ The direction of comparison does not matter for covariance, whether you measure 
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Variance is covariance with itself}:
-\label{equation:notebooks/review_stats:9e126b23-1dc3-493b-a045-d9f48f476ac8}\begin{equation}
+\label{equation:notebooks/review_stats:782927ef-425d-47a4-aa98-0e3684d0a7a9}\begin{equation}
         \operatorname{Cov}[X,X] = \operatorname{Var}[X]
     \end{equation}
 \sphinxAtStartPar
@@ -538,7 +538,7 @@ Covariance measures how two variables vary together, and variance is a special c
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Variance is not linear}:
-\label{equation:notebooks/review_stats:11f3b112-bd2b-445e-b6f9-0d79baa40d9e}\begin{equation}
+\label{equation:notebooks/review_stats:04337fa2-926c-4349-b582-05244fb0ead4}\begin{equation}
         \operatorname{Var}[aX + b] = a^2\operatorname{Var}[X]
     \end{equation}
 \sphinxAtStartPar
@@ -547,7 +547,7 @@ The square in the variance formula leads to a squared scale factor when a random
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Covariance is not linear}:
-\label{equation:notebooks/review_stats:8261d268-1c8f-4719-a34b-22d4dcd94beb}\begin{equation}
+\label{equation:notebooks/review_stats:5247602d-ff84-4c49-8f92-66a98e39ad94}\begin{equation}
         \operatorname{Cov}[aX + b,Y] = a\operatorname{Cov}[X,Y]
     \end{equation}
 \sphinxAtStartPar
@@ -556,7 +556,7 @@ Scaling one variable in a covariance relationship scales the covariance itself b
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Variance of a sum}:
-\label{equation:notebooks/review_stats:c1014da1-d738-45f0-beb1-87c42e2eb0c3}\begin{equation}
+\label{equation:notebooks/review_stats:a95ac912-9c91-47c9-8b81-6ad85e7c950f}\begin{equation}
         \operatorname{Var}[X+Y] = \operatorname{Var}[X] + \operatorname{Var}[Y] + 2\operatorname{Cov}[X,Y]
     \end{equation}
 \sphinxAtStartPar
@@ -565,7 +565,7 @@ The variance of a sum includes the individual variances and an additional term t
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Variance of a large sum}:
-\label{equation:notebooks/review_stats:5acf4256-2f97-4c11-a07c-0f8eaf9a46b2}\begin{equation}
+\label{equation:notebooks/review_stats:1b9f969a-56e5-46ee-9774-ade78ecb12d9}\begin{equation}
         \operatorname{Var}\left[ \sum_{i=1}^{n}X_i \right] = \sum_{i=1}^{n}\sum_{j=1}^{n}\operatorname{Cov}[X_i,X_j] = \sum_{i=1}^{n}\operatorname{Var}[X_i] + 2\sum_{i=1}^{n-1}\sum_{j>i}\operatorname{Cov}[X_i,X_j]
     \end{equation}
 \sphinxAtStartPar
@@ -574,7 +574,7 @@ The variance of a sum of multiple random variables includes both their individua
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Law of total expectations}:
-\label{equation:notebooks/review_stats:d0ecd719-f44d-4e4b-b4b2-bafa44a1ba9a}\begin{equation}
+\label{equation:notebooks/review_stats:c1d2dc97-9f00-4828-a648-604e0ebe21f6}\begin{equation}
         \mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X|Y]]
     \end{equation}
 \sphinxAtStartPar
@@ -584,7 +584,7 @@ This is the expected value (or mean) of \(X\) given a particular value of \(Y\).
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Law of total variance}:
-\label{equation:notebooks/review_stats:aaade233-953b-400f-8cb4-bae64107d9f3}\begin{equation}
+\label{equation:notebooks/review_stats:9ecb3200-9016-4ad5-9a68-122a8ffe6bda}\begin{equation}
         \operatorname{Var}[X] = \operatorname{Var}[\mathbb{E}[X|Y]] + \mathbb{E}[\operatorname{Var}[X|Y]]
     \end{equation}
 \sphinxAtStartPar
@@ -593,7 +593,7 @@ This law decomposes the total variance into two parts. The first part can be tho
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Independence implies zero covariance}:
-\label{equation:notebooks/review_stats:7e6a6a65-406a-41d5-a241-65256706d3ba}\begin{equation}
+\label{equation:notebooks/review_stats:4b798526-a684-4e7e-a8f7-8dc9eac114ec}\begin{equation}
         X \perp Y \rightarrow \operatorname{Cov}[X,Y] = 0
     \end{equation}
 \sphinxAtStartPar
@@ -606,7 +606,7 @@ Independence between two variables means the occurrence of one does not affect t
 \label{\detokenize{notebooks/review_stats:convergence}}
 \sphinxAtStartPar
 The \sphinxstylestrong{law of large numbers (LLN)} states that, for a sequence of independent and identically distributed (i.i.d.) random variables \(X_1, X_2 \ldots, X_n\) each with expected value \(\mathbb{E}[X]\), the sample mean converges to the expected value as \(n\) approaches infinity
-\label{equation:notebooks/review_stats:a641572a-2eef-483f-90df-5594df0af343}\begin{equation}
+\label{equation:notebooks/review_stats:922ad980-dd85-4c12-816e-f2f7ea9daf27}\begin{equation}
     \frac{1}{n}\sum_{i=1}^{n}X_i \rightarrow \mathbb{E}[X] \quad \text{ as } n \rightarrow \infty
 \end{equation}
 \sphinxAtStartPar
@@ -649,12 +649,12 @@ To illustrate the LLN, we can generate a sequence of independent and identically
 \end{sphinxuseclass}
 \sphinxAtStartPar
 The \sphinxstylestrong{central limit theorem (CLT)} states that if \(X_1, X_2, \ldots, X_n\) are i.i.d. random variables with an expected value \(\mathbb{E}[X]\) and a finite variance \(\operatorname{Var}[X]\), the distribution of the sample mean
-\label{equation:notebooks/review_stats:bc7d4747-fb59-462c-a1d8-cd185f5168b1}\begin{equation}
+\label{equation:notebooks/review_stats:ef126ba7-0f58-47c5-ab06-510cafbb5366}\begin{equation}
     \bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
 \end{equation}
 \sphinxAtStartPar
 approaches a normal distribution as \(n \rightarrow \infty\). Specifically, the standardized form
-\label{equation:notebooks/review_stats:7bfc7aa1-acc6-4465-83b7-15d04aa89a17}\begin{equation}
+\label{equation:notebooks/review_stats:c187ee10-2c6a-49a0-9369-ca6514d8e7c7}\begin{equation}
     \frac{\bar{X}_n - \mathbb{E}[X]}{\sqrt{\operatorname{Var}[X]/n}}
 \end{equation}
 \sphinxAtStartPar
@@ -786,7 +786,7 @@ The histogram of the sample means provides a visual representation of the estima
 
 \sphinxAtStartPar
 The normal distribution, also known as the Gaussian distribution, is central in statistics due to its symmetric, bell\sphinxhyphen{}shaped curve. It is characterized by its mean \( \mu \) and standard deviation \( \sigma \), with the probability density function (PDF) given by
-\label{equation:notebooks/review_stats:b255b387-7999-4c74-92b3-0627317853bc}\begin{equation}
+\label{equation:notebooks/review_stats:9bdcbd73-245c-4430-80cc-91ca272c1998}\begin{equation}
     f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 \end{equation}
 \sphinxAtStartPar
@@ -797,7 +797,7 @@ The significance of the normal distribution arises from the Central Limit Theore
 
 \sphinxAtStartPar
 The chi\sphinxhyphen{}squared distribution is another key distribution in statistics, especially in hypothesis testing and confidence interval estimation. It arises as the sum of the squares of independent standard normal variables. Specifically, if \( Z_1, Z_2, ..., Z_k \) are independent standard normal random variables, then \( \sum_{i=1}^{k} Z_i^2 \) follows a chi\sphinxhyphen{}squared distribution with \( k \) degrees of freedom. Its PDF for \( x > 0 \) and \( k \) degrees of freedom is
-\label{equation:notebooks/review_stats:602dbc64-5cab-4f97-b9b8-3f9706a9de62}\begin{equation}
+\label{equation:notebooks/review_stats:f26ced40-fa26-4d49-8273-14ad86f266c4}\begin{equation}
     f(x;k) = \frac{x^{k/2-1}e^{-x/2}}{2^{k/2}\Gamma(k/2)}
 \end{equation}
 \sphinxAtStartPar
@@ -808,7 +808,7 @@ This distribution is asymmetric and skewed to the right, with its shape and spre
 
 \sphinxAtStartPar
 The F\sphinxhyphen{}distribution is crucial in the context of variance analysis and hypothesis testing. It is the ratio of two scaled chi\sphinxhyphen{}squared distributions: if \( U \) follows a chi\sphinxhyphen{}squared distribution with \( d_1 \) degrees of freedom and \( V \) follows an independent chi\sphinxhyphen{}squared distribution with \( d_2 \) degrees of freedom, then the ratio \( \frac{U/d_1}{V/d_2} \) follows an F\sphinxhyphen{}distribution. Its PDF is described by
-\label{equation:notebooks/review_stats:b59831eb-c986-4e28-94c0-b9e6cb4998fa}\begin{equation}
+\label{equation:notebooks/review_stats:1a40c85a-1bef-4105-b018-cdc7ad2d334d}\begin{equation}
     f(x; d_1, d_2) = \frac{\sqrt{\frac{(d_1x)^{d_1}d_2^{d_2}}{(d_1x+d_2)^{d_1+d_2}}}}{x\text{B}\left(\frac{d_1}{2},\frac{d_2}{2}\right)}
 \end{equation}
 \sphinxAtStartPar
@@ -819,7 +819,7 @@ where \( d_1 \) and \( d_2 \) are the degrees of freedom. The distribution is no
 
 \sphinxAtStartPar
 The Student’s t\sphinxhyphen{}distribution arises when estimating the mean of a normally distributed population in situations where the sample size is small and the population standard deviation is unknown. It is defined by the PDF
-\label{equation:notebooks/review_stats:165db52b-ca33-474a-9ee6-624f82ba4e77}\begin{equation}
+\label{equation:notebooks/review_stats:aaac5c98-7e7f-4290-85fb-705e5843c017}\begin{equation}
     f(t) = \frac{\Gamma\left(\frac{\nu + 1}{2}\right)}{\sqrt{\nu\pi}\Gamma\left(\frac{\nu}{2}\right)}\left(1+\frac{t^2}{\nu}\right)^{-\frac{\nu+1}{2}}
 \end{equation}
 \sphinxAtStartPar
@@ -827,7 +827,7 @@ where \( \nu \) denotes degrees of freedom. The t\sphinxhyphen{}distribution res
 
 \sphinxAtStartPar
 The Student’s t\sphinxhyphen{}distribution is particularly useful when dealing with small sample sizes or when the population variance is unknown. It is defined as the distribution of the ratio of a standard normal random variable \(Z\) (with mean 0 and variance 1) and the square root of a chi\sphinxhyphen{}square random variable \(X\) divided by its degrees of freedom \(v\), i.e.,
-\label{equation:notebooks/review_stats:f88fd2e1-a2e6-459f-8ad5-ab88207a8396}\begin{equation}
+\label{equation:notebooks/review_stats:aae76b01-1393-4fb6-827d-727e16bba752}\begin{equation}
 T = \frac{Z}{\sqrt{X/v}}
 \end{equation}
 \sphinxAtStartPar
@@ -847,7 +847,7 @@ The relationship between the normal distribution, the chi\sphinxhyphen{}square d
 
 \sphinxAtStartPar
 The exponential distribution models the time between events in processes with a constant rate of occurrence and is pivotal in reliability analysis and queuing theory. Its memoryless property implies that the probability of an event occurring in the next instant is independent of how much time has already elapsed. The PDF is
-\label{equation:notebooks/review_stats:c1c6e0e5-6c36-4ab8-bf8a-f76f8fab97de}\begin{equation}
+\label{equation:notebooks/review_stats:38a98be5-4265-429c-b406-9731ad99fe89}\begin{equation}
     f(x;\lambda) = \lambda e^{-\lambda x}
 \end{equation}
 \sphinxAtStartPar
@@ -858,7 +858,7 @@ for \( x \geq 0 \). This distribution describes the time until an event like fai
 
 \sphinxAtStartPar
 The binomial distribution is fundamental in modeling binary outcomes and represents the number of successes in a fixed number of independent Bernoulli trials. The PDF is
-\label{equation:notebooks/review_stats:65b2ddf1-5d3f-4bf3-9831-2a06568fab30}\begin{equation}
+\label{equation:notebooks/review_stats:d7fe7a4d-0a6b-4b6c-b962-7115b5358350}\begin{equation}
     f(k;n,p) = \binom{n}{k}p^k(1-p)^{n-k}
 \end{equation}
 \sphinxAtStartPar
@@ -1350,12 +1350,12 @@ Let’s use a simple example to illustrate Bayesian inference. We will use MCMC 
 \begin{sphinxuseclass}{cell_output}
 \noindent\sphinxincludegraphics{{e78004dcf0d59724742cd03ad7f6074f6c2ac80218b63064c7b645628911eb84}.png}
 
-\noindent\sphinxincludegraphics{{5a8b4895a2084fcc385020a3f632cd9bfa9018423e660228d62ae63aee994e7e}.png}
+\noindent\sphinxincludegraphics{{05448d1d3fa6009c328c16a33ae9b0e3c83c4e5ba1d32f539cb8a05c675d0ec9}.png}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
         mean     sd  hdi\PYGZus{}3\PYGZpc{}  hdi\PYGZus{}97\PYGZpc{}  mcse\PYGZus{}mean  mcse\PYGZus{}sd  ess\PYGZus{}bulk  ess\PYGZus{}tail  \PYGZbs{}
-mu     5.038  0.063   4.923    5.158      0.001    0.001    4255.0    2864.0   
-sigma  1.961  0.045   1.879    2.044      0.001    0.001    3477.0    2738.0   
+mu     5.039  0.061   4.921     5.15      0.001    0.001    4330.0    2970.0   
+sigma  1.960  0.043   1.883     2.04      0.001    0.000    4506.0    3119.0   
 
        r\PYGZus{}hat  
 mu       1.0  
@@ -1422,22 +1422,22 @@ Bayesian learning provides a powerful framework for updating beliefs about param
 \label{\detokenize{notebooks/review_linear_models:motivating-linear-approximations}}
 \sphinxAtStartPar
 Linear models are extremely useful becase they can be used to approximate complex relationships with easy and interpretable models. When employing linear models to learn a function \(f\) relating \(Y\) to \(X\), we do not need to necessarily assume that the relationship between \(X\) and \(Y\) is linear. We are just looking for the best linear approximation to the true relationship, whatever that might be. Taylor’s theorem gives reasons to believe that a linear model is a sensible approximation even for more complex functions, at least locally. Indeed, if the true regression function \(f(x)\) is a smooth function, given a specific value \(x_0\), we can expand the function as
-\label{equation:notebooks/review_linear_models:017d5635-bcc6-4545-a156-8b2a81f57e98}\begin{equation}
+\label{equation:notebooks/review_linear_models:24ffb3a7-feb1-49bf-9343-be83200fbed0}\begin{equation}
     f(x) = f(x_0) + \frac{f'(x_0)}{1!}(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \cdots
 \end{equation}
 \sphinxAtStartPar
 This expansion breaks down the function into an infinite sum of terms based on the function’s derivatives at \(x_0\). The approximation starts with the function’s value at \(x_0\), then adds adjustments based on how the function changes (its derivatives) as you move away from \(x_0\). For \(x\) close enough to \(x_0\), we can get away with truncating the series at first order, as in
-\label{equation:notebooks/review_linear_models:c6b384a2-1656-42ec-8f39-40926fbc2e80}\begin{equation}
+\label{equation:notebooks/review_linear_models:2ee166c6-a639-4240-a4d4-f31be33cdf01}\begin{equation}
     f(x) \approx f(x_0) + f'(x_0)(x-x_0)
 \end{equation}
 \sphinxAtStartPar
 When you truncate the Taylor series after the first derivative term, we are essentially creating a linear model. This model approximates the function \(f(x)\) using a straight line that tangentially matches the function’s slope at \(x_0\). This approach is valid as long as the higher\sphinxhyphen{}order terms (like the quadratic term and beyond) are negligible, which usually means \(x\) is close enough to \(x_0\). Thus, while a  linear approximation may work well locally (near \(x_0\)), extending this approximation globally (over a wide range of \(x\) values) may not always be accurate unless the function is nearly linear over that range. The key to a successful linear approximation lies in determining how “close” \(x\) must be to \(x_0\) for the higher\sphinxhyphen{}order terms to be negligible. For a linear approximation to be valid, we want the influence of this term (and all higher\sphinxhyphen{}order terms) to be small compared to the first derivative term. We formalize this by imposing that the linear term dominates over the quadratic
-\label{equation:notebooks/review_linear_models:03ddbcb1-073d-4dca-8219-7462e42dc78e}\begin{equation}
+\label{equation:notebooks/review_linear_models:c18e3fdf-3681-4d13-a4f7-ba355bba6685}\begin{equation}
     |x-x_0|f'(x_0) \gg \frac{f''(x_0)}{2}
 \end{equation}
 \sphinxAtStartPar
 which is true if
-\label{equation:notebooks/review_linear_models:11b74c00-2531-4ac4-a9b3-000d0ea71f16}\begin{equation}
+\label{equation:notebooks/review_linear_models:e194c9b9-2a5c-4dbd-b314-f413bb066fa6}\begin{equation}
     2\frac{f'(x_0)}{f''(x_0)} \gg |x-x_0|
 \end{equation}
 \sphinxAtStartPar
@@ -1530,12 +1530,12 @@ The resulting plot shows how different linear functions can locally approximate 
 \label{\detokenize{notebooks/review_linear_models:linear-regression-framework}}
 \sphinxAtStartPar
 A linear regression model is a model used to analyze the relationship between a dependent variable (response) and one or more independent variables (predictors or covariates). In the case of one predictor, the linear regression model is referred to as a simple linear regression model, and it is given by
-\label{equation:notebooks/review_linear_models:d228f2f6-6ffa-437c-b4d1-a9f0b487492f}\begin{equation}
+\label{equation:notebooks/review_linear_models:db8af7eb-6cc7-4fae-884b-181f764346c6}\begin{equation}
     y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 \end{equation}
 \sphinxAtStartPar
 where \(y_i\) is the \(i\)th observation of the response variable, \(x\) is the \(i\)th observation of the predictor, \(\beta_0\) is the intercept (the value of \(y\) when \(x\) is zero), \(\beta_1\) is the regression coefficient (the expected change in \(y\) per unit change in \(x\)), and \(\epsilon\) represents the error term, accounting for the variability in \(y\) that cannot be explained by the linear relationship with \(x\). In most of the cases, we will assume \(\epsilon\) to be normally distributed around zero with finite variance, \(\epsilon \sim \mathcal{N}(0, \sigma^2)\). In the case of \(p\) predictors and \(n\) observations, the model is referred to as a multiple linear regression model, and we can express it in matrix notation, as in
-\label{equation:notebooks/review_linear_models:8eeb73e4-0282-4687-ac3e-64b74ce35e96}\begin{equation}
+\label{equation:notebooks/review_linear_models:e6b7bf0f-8411-4194-9d0d-d26e870972a0}\begin{equation}
     \mathbf{y}=\mathbf{X} \boldsymbol{\beta}+\boldsymbol{\epsilon}
 \end{equation}
 \sphinxAtStartPar
@@ -1592,12 +1592,12 @@ Linear regression models are based on several \sphinxstylestrong{key assumptions
 \label{\detokenize{notebooks/review_linear_models:ordinary-least-squares}}
 \sphinxAtStartPar
 In regression analysis, the most common method to estimate the unknown model parameters \(\mathbf{\beta}\) is ordinary least squares (OLS). The OLS method seeks to find the coefficients that minimize the sum of squares of the errors, \(\epsilon_i\). Recall that a key assumption in linear regression models is that \(\{\epsilon_i\}\) are uncorrelated random variables. We aim to find the vector of least squares estimators \(\boldsymbol{{beta}}\) that minimizes
-\label{equation:notebooks/review_linear_models:2e9eb108-bd0a-4cd3-8587-de8ab2c6d2d3}\begin{equation}
+\label{equation:notebooks/review_linear_models:1d88f306-3c3f-4c90-80af-87be1a73fc0d}\begin{equation}
     \mathcal{L} = \sum_{i=1}^{n} \epsilon_i^2 = \boldsymbol{\epsilon}^\top\boldsymbol{\epsilon} 
 \end{equation}
 \sphinxAtStartPar
 Because \(\mathbf{y}=\mathbf{X} \boldsymbol{\beta}+\boldsymbol{\epsilon}\), we can express \(\boldsymbol{\epsilon} = \mathbf{y} - \mathbf{X} \boldsymbol{\beta}\). So, we have
-\label{equation:notebooks/review_linear_models:269594c2-e0bc-49a3-b887-e1a1b991e20d}\begin{align}
+\label{equation:notebooks/review_linear_models:f4f3088e-073a-4e03-ba60-d0936f95c3e1}\begin{align}
     \mathcal{L} 
     &= (\mathbf{y} - \mathbf{X} \boldsymbol{\beta})^\top (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) \\
     &= (\mathbf{y}^\top - \boldsymbol{\beta}^\top\mathbf{X}^\top) (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) \\
@@ -1609,22 +1609,22 @@ Note that \(\mathbf{y}^\top \mathbf{X} \boldsymbol{\beta}\) is a scalar, because
 
 \sphinxAtStartPar
 Now, we need to get the derivative of \(\mathcal{L}\) with respect to the parameter vector \(\boldsymbol{\beta}\) and set it to zero. This way we will find the estimated coefficients \(\mathbf{b}\).
-\label{equation:notebooks/review_linear_models:8398278a-f3b6-4a26-aa48-24a58bea45a7}\begin{equation}
+\label{equation:notebooks/review_linear_models:38e08a55-83db-4dbe-b54a-0eeea3da6c05}\begin{equation}
     \frac{\partial \mathcal{L}}{\partial \boldsymbol{\beta}} \Bigr|_{\widehat{\boldsymbol{\beta}}} = - 2 \mathbf{X}^\top \mathbf{y} + 2 \mathbf{X}^\top \mathbf{X}\widehat{\boldsymbol{\beta}} = \mathbf{0}
 \end{equation}
 \sphinxAtStartPar
 which simplifies to
-\label{equation:notebooks/review_linear_models:a53a778f-989b-4617-90a7-6422c71b6b33}\begin{equation}
+\label{equation:notebooks/review_linear_models:20fb9d6d-3fce-4e26-b623-3fdbbe5e090d}\begin{equation}
     \mathbf{X}^\top \mathbf{X}\widehat{\boldsymbol{\beta}} = \mathbf{X}^\top \mathbf{y}
 \end{equation}
 \sphinxAtStartPar
 Multiplying both sides by the inverse of \(\mathbf{X}^\top \mathbf{X}\) we get the OLS estimate
-\label{equation:notebooks/review_linear_models:acab5d34-7107-4f0a-998f-a86741466ff5}\begin{equation}
+\label{equation:notebooks/review_linear_models:84789344-7ad5-44d6-8ec6-e9cb79d43e4d}\begin{equation}
     \widehat{\boldsymbol{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}
 \end{equation}
 \sphinxAtStartPar
 The matrix \(\mathbf{X}^\top \mathbf{X}\) is sometimes referred to as the Gram matrix or the moment matrix, because it contains the ``second moments’’ (i.e., variances and covariances) of the independent variables. The diagonal elements are the sums of squares of each predictor, and the off\sphinxhyphen{}diagonal elements represent the sums of cross\sphinxhyphen{}products (or covariances) between different predictors. The fitted regression model is then given by
-\label{equation:notebooks/review_linear_models:87e5c540-052d-44d6-8091-fcbbabb72ee5}\begin{equation}
+\label{equation:notebooks/review_linear_models:d5c379cc-8bd9-4490-ac95-e98a59a86695}\begin{equation}
     \widehat{\mathbf{y}} = \mathbf{X} \widehat{\boldsymbol{\beta}} = \mathbf{X}(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y} = \mathbf{H}\mathbf{y}
 \end{equation}
 \sphinxAtStartPar
@@ -1638,7 +1638,7 @@ Because we know that \(\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \sigma
 
 \sphinxAtStartPar
 Assuming the model is correct, we can first evaluate the bias of the OLS estimator by looking at the expected value of \(\widehat{\boldsymbol{\beta}}\), which is given by
-\label{equation:notebooks/review_linear_models:cca28c15-a732-4074-b98a-bc84c08e4d90}\begin{align}
+\label{equation:notebooks/review_linear_models:773b49cd-6617-4dbe-9a3e-0d650730843c}\begin{align}
     \mathbb{E}[\widehat{\boldsymbol{\beta}}] &= \mathbb{E}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}] \\
     &= \mathbb{E}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top (\mathbf{X} \boldsymbol{\beta}+\boldsymbol{\epsilon})] \\
     &= \mathbb{E}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{X} \boldsymbol{\beta}+(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top\boldsymbol{\epsilon})] \\
@@ -1650,23 +1650,23 @@ Thus, \(\widehat{\boldsymbol{\beta}}\) is an unbiased estimator of \(\boldsymbol
 
 \sphinxAtStartPar
 The variance property of \(\widehat{\boldsymbol{\beta}}\) is expressed by the covariance matrix
-\label{equation:notebooks/review_linear_models:96d49594-c3b1-466e-94d4-8818dc3da9dd}\begin{equation}
+\label{equation:notebooks/review_linear_models:e1cd6d4a-c31e-4a8c-9de6-bc7c05996999}\begin{equation}
     \operatorname{Cov}[\widehat{\boldsymbol{\beta}}] = \mathbb{E}[(\widehat{\boldsymbol{\beta}}-\mathbb{E}[\widehat{\boldsymbol{\beta}}])(\widehat{\boldsymbol{\beta}}-\mathbb{E}[\widehat{\boldsymbol{\beta}}])^\top]
 \end{equation}
 \sphinxAtStartPar
 which is a \(p \times p\) symmetric matrix whose \(j\)th diagonal element is the variance of \(\widehat{\boldsymbol{\beta}}_j\) and whose (\(ij\))th off\sphinxhyphen{}diagonal element is the covariance between \(\widehat{\beta}_i\) and \(\widehat{\beta}_j\). The
 covariance matrix of \(\widehat{\boldsymbol{\beta}}\) is found by applying a variance operator to \(\widehat{\boldsymbol{\beta}}\)
-\label{equation:notebooks/review_linear_models:a26692f8-6bea-412d-9ead-4351b685b0d4}\begin{equation}
+\label{equation:notebooks/review_linear_models:a3766f41-6d47-4c2e-9b0f-17f4a69f0186}\begin{equation}
     \operatorname{Cov}[\widehat{\boldsymbol{\beta}}] = \operatorname{Var}[\widehat{\boldsymbol{\beta}}] = \operatorname{Var}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}]
 \end{equation}
 \sphinxAtStartPar
 Now let us remind that, in general, if a vector \(\mathbf{v}\) has covariance matrix \(\mathbf{C}\) we have that
-\label{equation:notebooks/review_linear_models:b195f9fe-95ae-4c1e-aa4d-5a90e9bd3a36}\begin{equation}
+\label{equation:notebooks/review_linear_models:08b39149-54b3-4e26-8013-d496ec9c72b4}\begin{equation}
     \operatorname{Cov}[\mathbf{A}\mathbf{v}] = \mathbf{A} \mathbf{C} \mathbf{A}^\top
 \end{equation}
 \sphinxAtStartPar
 where \(\mathbf{A}\) is a linear transformation. Thus, knowing that \(\mathbf{y}\) has a covariance equal to \(\sigma^2\mathbf{I}_n\), we get that
-\label{equation:notebooks/review_linear_models:81e83adc-8d8a-4e27-b3f0-399016095ca9}\begin{align}
+\label{equation:notebooks/review_linear_models:b9551eee-227e-4a9d-804b-140b04b5db50}\begin{align}
     \operatorname{Var}[\widehat{\boldsymbol{\beta}}] &= \operatorname{Var}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}]\\ &= (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top(\sigma^2\mathbf{I}_n)((\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top)^\top \\
     &= \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{I}_n((\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top)^\top \\
     &= \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{X}(\mathbf{X}^\top \mathbf{X})^{-1} \\
@@ -1674,7 +1674,7 @@ where \(\mathbf{A}\) is a linear transformation. Thus, knowing that \(\mathbf{y}
 \end{align}
 \sphinxAtStartPar
 Thus, we have that our estimator is normally distributed around the true parameter vector as
-\label{equation:notebooks/review_linear_models:ec085e71-650f-44dd-9c2f-4331b5887ed3}\begin{equation}
+\label{equation:notebooks/review_linear_models:d505b700-0679-498e-b9e4-e9250d22b0b3}\begin{equation}
     \widehat{\boldsymbol{\beta}}|\mathbf{X} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})
 \end{equation}
 
@@ -2012,7 +2012,7 @@ Dep. Variable:                      y   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.859
 Method:                 Least Squares   F\PYGZhy{}statistic:                     1013.
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):               0.00
-Time:                        19:11:20   Log\PYGZhy{}Likelihood:                \PYGZhy{}1415.6
+Time:                        20:04:07   Log\PYGZhy{}Likelihood:                \PYGZhy{}1415.6
 No. Observations:                1000   AIC:                             2845.
 Df Residuals:                     993   BIC:                             2879.
 Df Model:                           6                                         
@@ -2134,23 +2134,23 @@ The \sphinxstylestrong{diagnostic tests} part include tests that check for vario
 \label{\detokenize{notebooks/review_linear_models:test-for-overall-significance-of-the-model}}
 \sphinxAtStartPar
 The test for significance of regression is a test to determine if there is a linear relationship between the response variable \(y\) and a subset of the regressor variables \(x_1, x_2,\ldots, x_p\). The appropriate hypotheses are
-\label{equation:notebooks/review_linear_models:9f491bea-24f0-446e-a048-bde41d70fd77}\begin{align}
+\label{equation:notebooks/review_linear_models:93594e7c-4d20-4d0a-8c71-a44d8a719f68}\begin{align}
     H_0 &: \beta_1 = \beta_2 = \ldots = \beta_p = 0 \\
     H_1 &: \beta_j \neq 0 \quad \text{for at least one } j
 \end{align}
 \sphinxAtStartPar
 This test procedure is called an analysis of variance (ANOVA) because it is based on a decomposition of the total variability in the response variable \(y\). The total variability in the response variable is measured by the total sum of squares (\(\operatorname{SS}_T\)), calculated as
-\label{equation:notebooks/review_linear_models:85b5b1a7-a9c1-4de4-8f1c-01c59c49e319}\begin{equation}
+\label{equation:notebooks/review_linear_models:79857081-b214-4bbc-a0d1-79f639318661}\begin{equation}
     \operatorname{SS}_T = \sum_{i=1}^{n} (y_i - \bar{y})^2
 \end{equation}
 \sphinxAtStartPar
 which is used as a measure of overall variability in the data. Intuitively, this is reasonable because if we were to divide \(\operatorname{SS}_T\) by the appropriate number of degrees of freedom, we would have the sample variance of the \(y\)s. This \(\operatorname{SS}_T\)  is partitioned into
-\label{equation:notebooks/review_linear_models:e5959e6a-56ca-48ea-8d7e-e9f1ad80afcd}\begin{equation}
+\label{equation:notebooks/review_linear_models:5c7c1b43-a89c-4f84-8cad-25d8dcf68f3e}\begin{equation}
     \operatorname{SS}_T = \operatorname{SS}_M + \operatorname{SS}_E
 \end{equation}
 \sphinxAtStartPar
 where \(\operatorname{SS}_M\) is the sum of squares due to the regression model(\(\operatorname{SS}_M\)), measuring the explained variation in \( y \), calculated as \( \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2 \); and \(\operatorname{SS}_E\) is the sum of squares due to error (\(\operatorname{SS}_E\)), measuring the unexplained variation in \( y \), calculated as \( \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \). \(\operatorname{SS}_M\) measures the explained variability in the dependent variable due to the independent variables in the regression model. Under the null hypothesis (which typically states that all regression coefficients except the intercept are zero), \(\operatorname{SS}_M\) captures variability that is purely due to chance. To reject the null hypotheses and say that a significant part of the variability is explained by the model (thus justifying the existence of at least one coefficient), we would like \(\operatorname{SS}_M\) to be significantly larger than \(\operatorname{SS}_R\). More formally, we use the test statistic is given by
-\label{equation:notebooks/review_linear_models:2584ea19-d2c0-4c4c-8f90-ba1f2cb6c0e1}\begin{equation}
+\label{equation:notebooks/review_linear_models:0e555596-f4a0-44b7-8573-66a5023e54a7}\begin{equation}
     F_0 = \frac{\operatorname{SS}_M/p}{\operatorname{SS}_E/(n-p-1)} = \frac{\operatorname{MS}_M}{\operatorname{MS}_E}
 \end{equation}
 \sphinxAtStartPar
@@ -2161,28 +2161,28 @@ Since the residuals are assumed to be normally distributed, \(\operatorname{SS}_
 \label{\detokenize{notebooks/review_linear_models:tests-on-individual-coefficients}}
 \sphinxAtStartPar
 Adding a variable to the regression model always causes the sum of squares for the regression model (\(\operatorname{SS}_M\)) to increase and the error sum of squares to decrease. The hypotheses for testing the significance of any individual regression coefficient \(\beta_j\) are
-\label{equation:notebooks/review_linear_models:c8eec338-9134-407f-9495-b51510c24640}\begin{align}
+\label{equation:notebooks/review_linear_models:87701551-ec29-4e44-9802-7dcf6cd76f51}\begin{align}
     H_0 &: \beta_j = 0 \\
     H_1 &: \beta_j \neq 0
 \end{align}
 \sphinxAtStartPar
 If \(H_0\) is not rejected, then this indicates that \(x_j\) can be deleted from the model. However, note that this is truly a partial or marginal test, because the regression coefficients depend on all the other regressor variables \(x_i\), with \(i \neq j\), that are in the model. Because we know that
-\label{equation:notebooks/review_linear_models:1b7760bb-d554-4681-a73d-3ecc656764cc}\begin{equation}
+\label{equation:notebooks/review_linear_models:7d719296-2c00-4b6b-8010-fd72fa7a59d5}\begin{equation}
     \widehat{\boldsymbol{\beta}} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})
 \end{equation}
 \sphinxAtStartPar
 For the \(i\)th coefficient, we do have that
-\label{equation:notebooks/review_linear_models:66eb9c09-db97-4480-8067-b8654aebe4e6}\begin{equation}
+\label{equation:notebooks/review_linear_models:4d7e9f64-ccba-4402-8d9d-775cd9169d55}\begin{equation}
     \widehat{\beta}_i \sim \mathcal{N}(\beta_i, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii})
 \end{equation}
 \sphinxAtStartPar
 where \(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii}\) is the diagonal element of the covariance matrix \(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\) corresponding to \(b_j\). The test statistic is given by
-\label{equation:notebooks/review_linear_models:21ee71ba-42fc-49f1-8798-3112ec4345d4}\begin{equation}
+\label{equation:notebooks/review_linear_models:cf3c5081-9050-4179-b853-ce0184765d01}\begin{equation}
     t_0 = \frac{\widehat{\beta}_i}{\sqrt{\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii}}}
 \end{equation}
 \sphinxAtStartPar
 The denominator \(\sqrt{\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii}}\) is also called standard error of the regression coefficients \(\widehat{\beta}_i\), so we can also write it as
-\label{equation:notebooks/review_linear_models:abd2131a-ec68-4a3d-8fa3-1818a543fa2f}\begin{equation}
+\label{equation:notebooks/review_linear_models:9dedf244-6da7-475f-9501-05b0c997ea84}\begin{equation}
     t_0 = \frac{\widehat{\beta}_i}{\text{se}(\widehat{\beta}_i)}
 \end{equation}
 \sphinxAtStartPar
@@ -2196,22 +2196,22 @@ A confidence interval, from the frequentist standpoint, is an interval estimate 
 
 \sphinxAtStartPar
 So far, we have demonstrated that \(\widehat{\boldsymbol{\beta}} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})\). This also implied that the marginal distribution for any regression coefficient is \(\widehat{\beta}_j \sim \mathcal{N}(\beta_j, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj})\). Then, we can say that
-\label{equation:notebooks/review_linear_models:4be623b2-cf62-42fa-9459-6b11989c66c5}\begin{equation}
+\label{equation:notebooks/review_linear_models:da9641d0-53d9-4e72-b1d4-058bf3e84cff}\begin{equation}
     \frac{\widehat{\beta}_j - \beta_j}{\sqrt{\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}}} \sim \mathcal{N}(0, 1) 
 \end{equation}
 \sphinxAtStartPar
 Since we do not know \(\sigma^2\), we used its estimate \(\widehat{\sigma}^2\) obtained through the \(\operatorname{MS}_E\), which has a \(\chi^2\) distribution with \(n-p\) degrees of freedom. Thus, we have
-\label{equation:notebooks/review_linear_models:a7cdf482-9cf9-42be-9fbe-911f764ccc93}\begin{equation}
+\label{equation:notebooks/review_linear_models:e7999e1b-3db5-4fdf-8ec6-f5f68b75cd75}\begin{equation}
     \frac{\widehat{\beta}_j - \beta_j}{\sqrt{\widehat{\sigma}^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}}} \sim t_{n-p}
 \end{equation}
 \sphinxAtStartPar
 We can then define a 100\((1-\alpha)\%\) confidence interval for the regression coefficient \(\beta_j\), \(j = 0,1,\ldots, p\), as
-\label{equation:notebooks/review_linear_models:39530e26-f6e2-4dff-b2a4-ee3e69cc7e28}\begin{equation}
+\label{equation:notebooks/review_linear_models:3afbf104-e236-4d98-acfe-6e691b300768}\begin{equation}
     \widehat{\beta}_j - t_{\alpha/2, n-p} \sqrt{\hat{\sigma}^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}} \leq \beta_j \leq \widehat{\beta}_j + t_{\alpha/2, n-p} \sqrt{\hat{\sigma}^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}}
 \end{equation}
 \sphinxAtStartPar
 where \(t_{\alpha/2, n-p}\) is the critical value from the t\sphinxhyphen{}distribution for \(\alpha/2\) and \(n-p\) degrees of freedom. This can also be written in terms of the standard error of the estimated coefficient \(b_j\) as
-\label{equation:notebooks/review_linear_models:59d4cbea-239b-40af-bc08-648eb6980d11}\begin{equation}
+\label{equation:notebooks/review_linear_models:5c349b45-596e-44e5-8a0f-bb066e839867}\begin{equation}
     \widehat{\beta}_j - t_{\alpha/2, n-p} \text{se}(\widehat{\beta}_j) \leq \beta_j \leq \widehat{\beta}_j + t_{\alpha/2, n-p} \text{se}(\widehat{\beta}_j)
 \end{equation}
 
@@ -2219,38 +2219,38 @@ where \(t_{\alpha/2, n-p}\) is the critical value from the t\sphinxhyphen{}distr
 \label{\detokenize{notebooks/review_linear_models:confidence-interval-on-the-mean-response-and-prediction-variance}}
 \sphinxAtStartPar
 We can define a confidence interval on the mean response at a particular point \(\mathbf{x}_0\). The fitted value at this particular point is
-\label{equation:notebooks/review_linear_models:636e07a9-6892-433a-ba10-1772dc8846fd}\begin{equation}
+\label{equation:notebooks/review_linear_models:9967d5f5-c275-481d-b184-45602be87cce}\begin{equation}
     \widehat{y}_0 = \mathbf{x}_0^\top \widehat{\boldsymbol{\beta}}
 \end{equation}
 \sphinxAtStartPar
 Because we have \(\mathbf{y} \sim \mathcal{N}(\mathbf{X} \boldsymbol{\beta}, \sigma^2\mathbf{I}_n)\), suggesting how \(\mathbb{E}[y|\mathbf{X}] = \mathbf{X} \boldsymbol{\beta}\), we also have that \(\mathbb{E}[y|\mathbf{x}_0] = \mathbf{x}_0^\top \boldsymbol{\beta}\). Then, we have
-\label{equation:notebooks/review_linear_models:2e8cf960-fb19-4746-bb0b-1566c3a876ec}\begin{equation}
+\label{equation:notebooks/review_linear_models:ea90d614-6138-4a29-a261-4f93e8b855fb}\begin{equation}
      \mathbb{E}[\widehat{y}_0] = \mathbb{E}[\mathbf{x}_0^\top \widehat{\boldsymbol{\beta}}] = \mathbf{x}_0^\top \boldsymbol{\beta}
 \end{equation}
 \sphinxAtStartPar
 because \(\mathbb{E}[\widehat{\boldsymbol{\beta}}] = \boldsymbol{\beta}\). Thus, \(\widehat{y}_0\) is an unbiased estimator of \(\mathbb{E}[y|\mathbf{x}_0]\). Since \(\widehat{y}_0\) is a linear combination of \(\widehat{\boldsymbol{\beta}}\), which has a variance of \(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\), the variance of \(\widehat{y}_0\) is given by
-\label{equation:notebooks/review_linear_models:657e1ca5-2df5-4d01-8a0f-7b61df49b4c9}\begin{equation}
+\label{equation:notebooks/review_linear_models:007dc1ed-f502-4a57-87a6-9f91d8a5b33c}\begin{equation}
     \operatorname{Var}[\widehat{y}_0] = \operatorname{Var}\left[\mathbf{x}_0^\top \widehat{\boldsymbol{\beta}}\right] = \mathbf{x}_0^\top(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})\mathbf{x}_0 = \sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}
 \sphinxAtStartPar
 Then, we can define the 100(1\sphinxhyphen{}\(\alpha\))\% confidence interval on the mean response at point \(\mathbf{x}_0\) as
-\label{equation:notebooks/review_linear_models:033c56ee-348a-478b-abce-7a268daac609}\begin{equation}
+\label{equation:notebooks/review_linear_models:6976022d-1cf1-4d00-a1f2-7ace64e05861}\begin{equation}
     \widehat{y}_0 - t_{\alpha/2, n-p} \sqrt{\sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0} \leq \mathbb{E}[y|\mathbf{x}_0] \leq \widehat{y}_0 + t_{\alpha/2, n-p} \sqrt{\sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0}
 \end{equation}
 \sphinxAtStartPar
 In general, we can define the \sphinxstylestrong{prediction variance (PV)} of the fitted value at location \(\mathbf{x}_0\) as
-\label{equation:notebooks/review_linear_models:d058c34a-e80f-415f-9ac4-38b5413bf5b8}\begin{equation}
+\label{equation:notebooks/review_linear_models:f4d76769-0ae4-4ebb-ab7e-f90510e94c6c}\begin{equation}
     \operatorname{PV} = \operatorname{Var}[\widehat{y}_0] = \sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}
 \sphinxAtStartPar
 Then, the \sphinxstylestrong{unscaled prediction variance (UPV)} is given by
-\label{equation:notebooks/review_linear_models:15761646-905a-4c51-846b-da527f21ceda}\begin{equation}
+\label{equation:notebooks/review_linear_models:be3c724f-190e-42e5-b98d-008fc879eca8}\begin{equation}
     \operatorname{UPV} = \frac{\operatorname{Var}[\widehat{y}_0]}{\sigma^2} = \mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}
 \sphinxAtStartPar
 The main benefit of the UPV is that it can be used during the design selection phase. The division
 by \(\sigma^2\) means that \textbackslash{}underline\{UPV is a function of only the design matrix\} and does not require data to have been collected. UPV provides a way to quantify the precision of the predictions made by a regression model at specific points. It tells us how much the predicted value at a certain point \(\mathbf{x}_0\) is expected to vary, due to the variability in the estimated regression coefficients, but without considering the inherent variability of the response itself. The key intuition is that since \(\widehat{\boldsymbol{\beta}}\) carries variance, any prediction made using these estimates also inherits variance (i.e., uncertainty propagation?). UPV connects parameter estimation to prediction variance by translating the uncertainty in the model’s coefficients into the uncertainty of the model’s predictions. If we have already collected data, we can try to estimate \(\sigma^2\) using the \(\operatorname{MS}_E\). Then, we can define the \sphinxstylestrong{estimated prediction variance (EPV)} as
-\label{equation:notebooks/review_linear_models:065195b0-0ee1-4057-91a2-f0c50905ab49}\begin{equation}
+\label{equation:notebooks/review_linear_models:ae223a63-3cbc-4773-9fdb-f79183cf18d5}\begin{equation}
     \operatorname{EPV} = \widehat{\sigma}^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}
 
@@ -2264,7 +2264,7 @@ Regularization techniques are fundamental to the field of machine learning and s
 \label{\detokenize{notebooks/review_linear_models:lasso-regression-l1-penalty}}
 \sphinxAtStartPar
 The least absolute shrinkage and selection operator (lasso) regression introduces a penalty term equal to the absolute value of the magnitude of coefficients to the loss function. The objective function of Lasso regression is given by:
-\label{equation:notebooks/review_linear_models:34a7514f-ca18-43ab-8ad8-2a47678c6fd0}\begin{equation}
+\label{equation:notebooks/review_linear_models:c5b4a90f-3442-49e0-87e5-7e490841430d}\begin{equation}
     \text{minimize} \; \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - x_i^\top \beta)^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\},
 \end{equation}
 \sphinxAtStartPar
@@ -2292,7 +2292,7 @@ Can result in models that are easier to interpret due to fewer predictors.
 \label{\detokenize{notebooks/review_linear_models:ridge-regression-l2-penalty}}
 \sphinxAtStartPar
 Ridge regression adds a penalty equal to the square of the magnitude of coefficients to the loss function. The formulation of Ridge regression is as follows:
-\label{equation:notebooks/review_linear_models:46c95f90-50b4-46d8-b3e9-d33ace00e2b1}\begin{equation}
+\label{equation:notebooks/review_linear_models:dc9ed3d5-67e0-4d79-be97-24c19be995bc}\begin{equation}
     \text{minimize} \; \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - x_i^\top \beta)^2 + \lambda \sum_{j=1}^{p} \beta_j^2 \right\},
 \end{equation}
 \sphinxAtStartPar
@@ -2320,7 +2320,7 @@ Helps to stabilize the coefficient estimates and improve model generalization.
 \label{\detokenize{notebooks/review_linear_models:elastic-net-combination-of-l1-and-l2-penalties}}
 \sphinxAtStartPar
 Elastic Net combines the penalties of Lasso and Ridge, incorporating both the L1 and L2 penalty terms. The objective function for Elastic Net is:
-\label{equation:notebooks/review_linear_models:a7fd1cec-4394-4023-b497-8c84a52bebd4}\begin{equation}
+\label{equation:notebooks/review_linear_models:f0cc399b-f0cc-42c4-a226-fede01193e54}\begin{equation}
     \text{minimize} \; \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - x_i^\top \beta)^2 + \lambda_1 \sum_{j=1}^{p} |\beta_j| + \frac{\lambda_2}{2} \sum_{j=1}^{p} \beta_j^2 \right\},
 \end{equation}
 \sphinxAtStartPar
@@ -3180,7 +3180,7 @@ In the causal graph below, \sphinxstylestrong{temperature} is depicted as a pare
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x1049d8d90\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x104ae7a10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3391,7 +3391,7 @@ To better understand DAGs, let’s consider a simple example with the following 
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x105b03190\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x104280190\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3458,7 +3458,7 @@ The Local Markov ssumption states that a node in a DAG is conditionally independ
 
 \sphinxAtStartPar
 Factorization refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the Local Markov Assumption. The joint distribution \( P(T, L, R, P) \) can be factorized as:
-\label{equation:notebooks/DAG:afd2b644-8efb-420d-a7f0-0712fb60babb}\begin{equation}
+\label{equation:notebooks/DAG:48ed9ad3-423c-4fe8-bf44-d3913a37cce1}\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}
 \sphinxAtStartPar
@@ -3500,7 +3500,7 @@ Consider the following three DAGs involving three variables \(X\), \(Y\), and \(
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x105b59c90\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x106159310\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3527,7 +3527,7 @@ Consider the following three DAGs involving three variables \(X\), \(Y\), and \(
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x105b5ab90\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x10615a210\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3554,7 +3554,7 @@ Consider the following three DAGs involving three variables \(X\), \(Y\), and \(
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x105b5b210\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x106159610\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3616,7 +3616,7 @@ Let’s consider a CPDAG for the equivalence class of the three DAGs shown above
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x105b5a210\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x10615bad0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3687,7 +3687,7 @@ A chain occurs when one variable causally affects a second, which in turn affect
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x169615390\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13d5cfe10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3695,7 +3695,7 @@ A chain occurs when one variable causally affects a second, which in turn affect
 \end{sphinxuseclass}
 \sphinxAtStartPar
 This causal graph represents the following \sphinxstylestrong{structural causal model (SCM)}:
-\label{equation:notebooks/basic_dag_structures:acb49524-1909-4f3c-9842-cf64291aa07e}\begin{align}
+\label{equation:notebooks/basic_dag_structures:93a9bb60-6472-4ac6-ae4e-64fb18ce8788}\begin{align}
 \text{weather fluctuations} &= e_w \\
 \text{wind forecast errors} &= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -3733,7 +3733,7 @@ Another example, related to the balancing costs in the electricity markets, migh
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x1683f81d0\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13e88fb10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3741,7 +3741,7 @@ Another example, related to the balancing costs in the electricity markets, migh
 \end{sphinxuseclass}
 \sphinxAtStartPar
 This causal graph represents the following \sphinxstylestrong{SCM}:
-\label{equation:notebooks/basic_dag_structures:e5df486c-39cd-4224-8f9f-ae244fe62967}\begin{align}
+\label{equation:notebooks/basic_dag_structures:f1320b09-4076-4855-8799-45289c5ce843}\begin{align}
 \text{weather fluctuations} &= e_w \\
 \text{wind forecast errors} &= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &= 0.7 \times \text{heating demand} + e_h \\
@@ -3859,7 +3859,7 @@ An immorality happens when two variables independently cause a third variable, b
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x106b9a110\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x105a58e10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -3867,7 +3867,7 @@ An immorality happens when two variables independently cause a third variable, b
 \end{sphinxuseclass}
 \sphinxAtStartPar
 This causal graph represents the following \sphinxstylestrong{SCM}:
-\label{equation:notebooks/basic_dag_structures:613d3df7-8730-4fd8-ae78-37ef04626241}\begin{align}
+\label{equation:notebooks/basic_dag_structures:b9e65048-a2cf-458b-af95-f6964295b086}\begin{align}
 \text{forecast errors} &= e_f \\
 \text{outages} &= e_o \\
 \text{balancing costs} &= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
@@ -4262,7 +4262,7 @@ If we are willing to make assumptions about the \sphinxstylestrong{functional fo
 \label{\detokenize{notebooks/semiparametric_direct_lingam:the-lingam-model}}
 \sphinxAtStartPar
 The LiNGAM model for \(p\) observed variables \(x_1, x_2, \ldots, x_p\) is given by
-\label{equation:notebooks/semiparametric_direct_lingam:e036b46b-4032-450a-bbae-cc54a1b2203e}\begin{equation}
+\label{equation:notebooks/semiparametric_direct_lingam:f740aa7b-4b2e-450e-a7e3-c50a0a9f612e}\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}
 \sphinxAtStartPar
@@ -4270,7 +4270,7 @@ where each observed variable \(x_i\) is a linear sum of their parent variables \
 
 \sphinxAtStartPar
 In matrix notation, the model is given by
-\label{equation:notebooks/semiparametric_direct_lingam:746bc263-43ad-4207-a077-5ac9068c60ed}\begin{equation}
+\label{equation:notebooks/semiparametric_direct_lingam:de8fd3e6-85d3-4386-92f4-c648b95fb05c}\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}
 \sphinxAtStartPar
@@ -4298,7 +4298,7 @@ Let us consider a simple \sphinxstylestrong{example} with three variables. To ea
 \label{\detokenize{notebooks/semiparametric_direct_lingam:strucural-equations}}
 \sphinxAtStartPar
 If we know the coefficients of those causal relations, the \sphinxstylestrong{SCM} can be written as
-\label{equation:notebooks/semiparametric_direct_lingam:126fed39-c044-49c2-a274-2bc04916624a}\begin{align}
+\label{equation:notebooks/semiparametric_direct_lingam:5a0bfdb7-8781-49ec-8250-32214a73fc9b}\begin{align}
 \text{wind forecast errors} &= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &= 1.2 \times \text{wind forecast errors} + e_b \\
 \text{weather fluctuations} &= e_w \\
@@ -4308,7 +4308,7 @@ If we know the coefficients of those causal relations, the \sphinxstylestrong{SC
 \label{\detokenize{notebooks/semiparametric_direct_lingam:matrix-notation}}
 \sphinxAtStartPar
 Then, in matrix notation, this model is given by
-\label{equation:notebooks/semiparametric_direct_lingam:cd586ba3-5dad-4e47-8ec3-e62962648996}\begin{equation}
+\label{equation:notebooks/semiparametric_direct_lingam:c6f68fd3-f304-4629-9201-6e560fb369e3}\begin{equation}
     \left[\begin{array}{c} 
     \text{wind forecast errors} \\
     \text{balancing costs} \\
@@ -4337,14 +4337,14 @@ Then, in matrix notation, this model is given by
 \label{\detokenize{notebooks/semiparametric_direct_lingam:causal-ordering}}
 \sphinxAtStartPar
 Typically, we \sphinxstylestrong{order} the the structural equations according to the \sphinxstylestrong{true causal order}, so that the matrix \(\mathbf{B}\) is permuted to be a \sphinxstylestrong{lower triangular matrix} (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as
-\label{equation:notebooks/semiparametric_direct_lingam:06a4ef55-3daf-478e-a8af-86a722343790}\begin{align}
+\label{equation:notebooks/semiparametric_direct_lingam:6a42fbde-d0b8-4e6b-8a5f-9e7fb970a3b6}\begin{align}
 \text{weather fluctuations} &= e_w \\
 \text{wind forecast errors} &= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &= 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}
 \sphinxAtStartPar
 that, in matrix notation, becomes
-\label{equation:notebooks/semiparametric_direct_lingam:1b6162f0-885e-4e42-937e-4806b04e2a2e}\begin{equation}
+\label{equation:notebooks/semiparametric_direct_lingam:ba94c789-f191-4bfb-b494-f598a484b0bf}\begin{equation}
     \left[\begin{array}{c} 
     \text{weather fluctuations} \\
     \text{wind forecast errors} \\
@@ -4370,7 +4370,7 @@ that, in matrix notation, becomes
 \end{equation}
 \sphinxAtStartPar
 Now, we can rewrite the LiNGAM model as
-\label{equation:notebooks/semiparametric_direct_lingam:23341fb4-fd30-436f-bad4-09c099f2362f}\begin{equation}
+\label{equation:notebooks/semiparametric_direct_lingam:d85e3b17-aa01-42a3-99dc-a310f95de75c}\begin{equation}
     x_i = \sum_{j:k(j)<k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}
 \sphinxAtStartPar
@@ -4397,7 +4397,7 @@ where \(k(\cdot)\) represents the causal ordering, meaning that each variable \(
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x13f5f7850\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13d439f10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -4420,7 +4420,7 @@ The key intuition is that, with non\sphinxhyphen{}Gaussian errors, the \sphinxst
 \label{\detokenize{notebooks/semiparametric_direct_lingam:example-with-gaussian-errors}}
 \sphinxAtStartPar
 Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables:
-\label{equation:notebooks/semiparametric_direct_lingam:38fff02b-b747-4918-ba8a-abd9e5493a3b}\begin{align}
+\label{equation:notebooks/semiparametric_direct_lingam:c3cd9c81-e4ab-4553-8f3c-2fdc0fc84142}\begin{align}
 \text{weather fluctuations} &= e_w \\
 \text{wind forecast errors} &= 1.5 \times \text{weather flucturations} + e_f \\
 \end{align}
@@ -4484,7 +4484,7 @@ We will show that, in this case, by analysing the residuals we cannot understand
 Text(0, 0.5, \PYGZsq{}Residuals\PYGZsq{})
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{1b2e2d532fc3a177d88d74f68c28c1af9404464f4bdee44156a5bd0e0ff4b35c}.png}
+\noindent\sphinxincludegraphics{{a6d522878677fbf29b52d14991528eaf7d3b97749a537f506ebf65d1d0d2c9fb}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -4547,7 +4547,7 @@ Now, by simply assuming the errors are uniformly distributed, we can wee how it 
 Text(0, 0.5, \PYGZsq{}Residuals\PYGZsq{})
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{b65437f398683396a19ec60b0902d7ba88e7b4ca77ceb4238393806bbf877cd9}.png}
+\noindent\sphinxincludegraphics{{ca05e58b8a772b8d544901bfa4f0ce438977b367e67f2f6ab9a3c9b0eaa71c7b}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -4570,7 +4570,7 @@ Now, we try a full estimation example, where we have a slightly more complex cau
 
 \sphinxAtStartPar
 Assume the following \sphinxstylestrong{structural equations}:
-\label{equation:notebooks/semiparametric_direct_lingam:25bf803c-e49a-4fc0-8c0d-091a4ac1fb4b}\begin{align}
+\label{equation:notebooks/semiparametric_direct_lingam:d63f0132-cf75-40dd-87f3-25544823f208}\begin{align}
 \text{weather fluctuations} &= e_w \\
 \text{outages} &= e_o \\
 \text{heating demand} &= 0.3 \times \text{weather flucturations} + e_h \\
@@ -4606,7 +4606,7 @@ Then, the true \sphinxstylestrong{causal graph} is given by
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x145059b90\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x16a0c0d10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -4661,7 +4661,7 @@ Now, we fit the \sphinxstylestrong{DirectLiNGAM} model and plot the estimated ca
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x1451afc50\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x16a01a4d0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -4730,7 +4730,7 @@ It turns out that \sphinxstylestrong{the presence of nonlinearities is beneficia
 \label{\detokenize{notebooks/semiparametric_resit:additive-noise-models-anms}}
 \sphinxAtStartPar
 One of the most popular approaches to causal discovery with nonlinear models is to use additive noise models (ANMs) {[}\hyperlink{cite.bibliography:id5}{PMJScholkopf14}{]}. In the case of an ANM, each observed variable \(x_i\) is obtained as a function of its parent variables, plus independent additive noise
-\label{equation:notebooks/semiparametric_resit:70cc48cc-63dc-4bc3-912a-977971826cb6}\begin{equation}
+\label{equation:notebooks/semiparametric_resit:ceacec73-7400-4569-aac1-674ff50414f3}\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}
 \sphinxAtStartPar
@@ -4777,7 +4777,7 @@ Test in a similar way if the \sphinxstylestrong{reverse model} \(x = g(y) + e\) 
 \label{\detokenize{notebooks/semiparametric_resit:example-with-nonlinear-functions}}
 \sphinxAtStartPar
 Let us consider the simple example with two variables of temperature and electricity load, where
-\label{equation:notebooks/semiparametric_resit:bdf1594d-78e9-48b9-bb5b-6ec020fc0d43}\begin{align}
+\label{equation:notebooks/semiparametric_resit:515fe1ea-a060-42ac-9aeb-7118c06eaadc}\begin{align}
 \text{temperature} &= e_t \\
 \text{electricity load} &= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \end{align}
@@ -4841,7 +4841,7 @@ We now try to apply the RESIT approach to a slightly more complex example, where
 
 \sphinxAtStartPar
 Let us assume the following \sphinxstylestrong{structural equations}:
-\label{equation:notebooks/semiparametric_resit:924d8fdc-fe5d-4ab4-bb56-388d9848b564}\begin{align}
+\label{equation:notebooks/semiparametric_resit:896c9a3b-0c5a-47f8-9e5a-33cdc1f5b250}\begin{align}
 \text{temperature} &= e_t \\
 \text{electricity load} &= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \text{thermal constraints} &= 1.5 \times \text{electricity load} + \sin{(\text{temperature})} + e_c \\
@@ -4874,7 +4874,7 @@ The \sphinxstylestrong{causal graph} is then given by
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x16a91ad50\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x166403ad0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -4934,7 +4934,7 @@ The interesting part is that we can \sphinxstylestrong{use any nonlinear regress
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x171ed6850\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x165e931d0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5020,12 +5020,12 @@ To capture both the immediate and delayed interactions among multiple time\sphin
 \label{\detokenize{notebooks/semiparametric_varlingam:varlingam-model}}
 \sphinxAtStartPar
 Assume that at each time step \(t\) we observe a vector \(\mathbf{x}(t)\) with \(p\) variables
-\label{equation:notebooks/semiparametric_varlingam:c9908b3f-cd3b-4f36-a94c-11cfe9e4344e}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:c0184fd4-7e3b-4931-ab4d-3dafa027f391}\begin{equation}
     \mathbf{x}(t) = [\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots, \mathbf{x}_p(t)]^\top
 \end{equation}
 \sphinxAtStartPar
 Then, we use the following structural causal model, which considers both the instantaneous (\(\tau = 0\)) and lagged (\(\tau \geq 1\)) causal effects
-\label{equation:notebooks/semiparametric_varlingam:24719788-aaf4-4956-8c3b-e686bfcbf259}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:fee978b4-81a9-4225-9b30-9318781ee4d2}\begin{equation}
     \mathbf{x}(t) = \sum_{\tau=0}^{k}\mathbf{B}_{\tau}\mathbf{x}(t-\tau)+\mathbf{e}(t)
 \end{equation}
 \sphinxAtStartPar
@@ -5063,7 +5063,7 @@ For example, if we consider the following variables:
 
 \sphinxAtStartPar
 At time \(t\), we will observe the vector given by
-\label{equation:notebooks/semiparametric_varlingam:ed1a2c8b-659e-4f9b-9ccb-809e4c2f8d08}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:144648e0-42cf-4e8f-8a43-6d4c42effb8c}\begin{equation}
     \mathbf{x}(t)=\left[\begin{array}{c} 
     \text{solar generation}(t) \\
     \text{transmission capacity usage}(t) \\
@@ -5072,12 +5072,12 @@ At time \(t\), we will observe the vector given by
 \end{equation}
 \sphinxAtStartPar
 and we can then model the time series data with the following relationships
-\label{equation:notebooks/semiparametric_varlingam:bb1e90ee-ca0b-4a06-9ac9-e8deb27ffded}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:6e12e92d-9743-4093-8c3b-120692ffd1b2}\begin{equation}
         \mathbf{x}(t) = \mathbf{B}_0 \mathbf{x}(t) + \mathbf{B}_1 \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}
 \sphinxAtStartPar
 where \(\mathbf{B}_0\) is the matrix of the \sphinxstylestrong{contemporaneous effects}, given by
-\label{equation:notebooks/semiparametric_varlingam:8a657789-0286-4a16-b0d9-6a5d9e4e7d81}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:e69862f7-7bc2-4600-babb-e85b5e5a0bbf}\begin{equation}
     \left[\begin{array}{ccc}
     0 & 0 & 0 \\
     -1.0 & 0 & 0 \\
@@ -5089,7 +5089,7 @@ implying that current solar generation negatively affects the transmission capac
 
 \sphinxAtStartPar
 Instead, \(\mathbf{B}_1\) is the matrix of the \sphinxstylestrong{lagged effects}, given by
-\label{equation:notebooks/semiparametric_varlingam:b1e9dc81-2761-4fb3-b15f-794d695508e2}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:e9d726a9-7a35-407f-adb8-169da67c3bfc}\begin{equation}
     \left[\begin{array}{ccc}
     0 & 0 & 0 \\
     0.0 & 0 & 0 \\
@@ -5112,7 +5112,7 @@ One possible estimation method is to combine a traditional least\sphinxhyphen{}s
 \item {} 
 \sphinxAtStartPar
 Obtain a least\sphinxhyphen{}squares estimate \(\widehat{\mathbf{M}}_{\tau}\) of the AR model given by
-\label{equation:notebooks/semiparametric_varlingam:1d2f2338-c442-42b3-bb7b-1c7c6a1d0485}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:280f3727-b0ed-4984-9aa6-8abdbad0f7ba}\begin{equation}
         \mathbf{x}(t) = \sum_{\tau=1}^{k}\mathbf{M}_{\tau}\mathbf{x}(t-\tau)+\mathbf{n}(t)
     \end{equation}
 \sphinxAtStartPar
@@ -5121,7 +5121,7 @@ Obtain a least\sphinxhyphen{}squares estimate \(\widehat{\mathbf{M}}_{\tau}\) of
 \item {} 
 \sphinxAtStartPar
 Compute the residuals of the AR model, which are an estimate of the true errors \(\mathbf{n}(t)\)
-\label{equation:notebooks/semiparametric_varlingam:150262ef-fd1a-4687-9458-dca8cd933e05}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:10e0442e-e2ab-4958-aaaf-508f2665cafa}\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{x}(t) - \sum_{\tau=1}^{k}\widehat{\mathbf{M}}_{\tau}\mathbf{x}(t-\tau)
     \end{equation}
 \sphinxAtStartPar
@@ -5130,7 +5130,7 @@ These residuals are the differences between the actual observed data and the pre
 \item {} 
 \sphinxAtStartPar
 Perform a LiNGAM analysis on the residuals, which returns an \sphinxstylestrong{estimate of the coefficient matrix for the instantaneous causal effects} \(\mathbf{B}_0\)
-\label{equation:notebooks/semiparametric_varlingam:aa633dc7-e75b-40e3-991c-5ee0cac7f7a8}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:52907178-e656-44ac-b165-dc4493d7f8d7}\begin{equation}
         \widehat{\mathbf{n}}(t) = \mathbf{B}_0 \widehat{\mathbf{n}}(t) + \mathbf{e}(t)
     \end{equation}
 \sphinxAtStartPar
@@ -5139,7 +5139,7 @@ The idea is that if there are instantaneous effects, they would show up in the r
 \item {} 
 \sphinxAtStartPar
 Once \(\mathbf{B}_0\) has been estimated, the next step is to disentangle the lagged causal effects from the total observed effects captured in the AR model. So, we compute the \sphinxstylestrong{estimates of the coefficient matrices for the lagged causal effects}, \(\mathbf{B}_{\tau}\) for \(\tau >0\)
-\label{equation:notebooks/semiparametric_varlingam:1ce0140c-5b53-4204-8e64-2c97891741ab}\begin{equation}
+\label{equation:notebooks/semiparametric_varlingam:e5ad311c-024c-4c46-9a16-1c8225b2f2bf}\begin{equation}
         \widehat{\mathbf{B}_{\tau}} = (\mathbf{I} - \widehat{\mathbf{B}}_0) \widehat{\mathbf{M}}_{\tau}
     \end{equation}
 \end{enumerate}
@@ -5208,7 +5208,7 @@ As we can see, at time \(t\) balancing costs are influenced by the current usage
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x148849610\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13caa5390\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5233,7 +5233,7 @@ Given the time\sphinxhyphen{}dependent nature of the data, balancing costs at ti
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x13d1aaf10\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13e718c10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5259,7 +5259,7 @@ We can now see the complete causal structure of the data\sphinxhyphen{}generatin
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x148289610\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13ddaa3d0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5320,10 +5320,10 @@ We can now plot the generated time series
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}matplotlib.legend.Legend at 0x13d8a7850\PYGZgt{}
+\PYGZlt{}matplotlib.legend.Legend at 0x13f5d4890\PYGZgt{}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{f981074c552af62dfbc9913ca43b06e177fe6d0bd0bb9383b7efc6b1697fc07d}.png}
+\noindent\sphinxincludegraphics{{f5c9e6e9de08b638ce9eedee9d71d1feaa555781fafa184d9917315b01482e23}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -5382,10 +5382,10 @@ let’s plot the residuals
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}matplotlib.legend.Legend at 0x13fa83610\PYGZgt{}
+\PYGZlt{}matplotlib.legend.Legend at 0x13feb9610\PYGZgt{}
 \end{sphinxVerbatim}
 
-\noindent\sphinxincludegraphics{{acfdbb01874de9bd4aa0be4eb4a7e365f192f2f385c531a23c8203e09ba4fe77}.png}
+\noindent\sphinxincludegraphics{{10957ba0113010189830e960061864c11cdcd20eb8686d56341295c0f57f5f54}.png}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
 
@@ -5407,7 +5407,7 @@ Now, we can simply apply LiNGAM (as we did in the initial chapter) to the extrac
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x14b76f550\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13e132c50\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5436,7 +5436,7 @@ We can now estimate the matrix of lagged effects, \(B_1\). The process (included
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x13fa5e890\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13fec5290\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5464,7 +5464,7 @@ We can now create the complete causal structure by simply stacking the two coeff
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x14b7455d0\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x13caf83d0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5519,12 +5519,12 @@ Let’s consider a scenario in the electricity market where three variables are 
 \label{\detokenize{notebooks/structural_breaks_example:pre-subsidy-structural-model}}
 \sphinxAtStartPar
 Before the introduction of subsidies, the causal relationships might be modeled as follows:
-\label{equation:notebooks/structural_breaks_example:fe867875-980c-424d-b9e3-17a609e7be74}\begin{equation}
+\label{equation:notebooks/structural_breaks_example:2322be56-efd4-4e06-a657-603cccab77ee}\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}
 \sphinxAtStartPar
 where \(\mathbf{B}_{\text{pre}}\) is:
-\label{equation:notebooks/structural_breaks_example:ce686e98-6181-404f-877d-94ab381d9e0e}\begin{equation}
+\label{equation:notebooks/structural_breaks_example:1b30f57f-3a43-4be3-b2e9-5e1b5715e0aa}\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 & 0 & 0 \\
@@ -5537,12 +5537,12 @@ where \(\mathbf{B}_{\text{pre}}\) is:
 \label{\detokenize{notebooks/structural_breaks_example:post-subsidy-structural-model}}
 \sphinxAtStartPar
 After the introduction of subsidies, the relationships change as follows:
-\label{equation:notebooks/structural_breaks_example:97dfa300-52b3-491a-aa16-2f58b66b8ffc}\begin{equation}
+\label{equation:notebooks/structural_breaks_example:8e6c6d81-dfc7-411f-8baf-6296a534195c}\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}
 \sphinxAtStartPar
 where \(\mathbf{B}_{\text{post}}\) is:
-\label{equation:notebooks/structural_breaks_example:d8af92e9-fb96-4a6f-9422-2f4b90e0bc30}\begin{equation}
+\label{equation:notebooks/structural_breaks_example:b37faabf-88de-40bb-b83a-76469ecf5887}\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 & 0 & 0 \\
@@ -5577,7 +5577,7 @@ In \sphinxstylestrong{regime 1} the causal graph is represnted by
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x171a9f2d0\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x1615d51d0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5602,7 +5602,7 @@ Instead, in \sphinxstylestrong{regime 2} we have
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x169516a50\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x162fba090\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5705,7 +5705,7 @@ Let’s now plot the data to see what is happening
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}matplotlib.legend.Legend at 0x173d1a210\PYGZgt{}
+\PYGZlt{}matplotlib.legend.Legend at 0x163dbdf50\PYGZgt{}
 \end{sphinxVerbatim}
 
 \noindent\sphinxincludegraphics{{0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0}.png}
@@ -5762,7 +5762,7 @@ As we did before, we fit a VAR model, compute the residuals, and apply LiNGAM to
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x1696f9f10\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x108df9fd0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5807,7 +5807,7 @@ We now show the ideal situation, where we assume we were able to \sphinxstylestr
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}lingam.direct\PYGZus{}lingam.DirectLiNGAM at 0x1738aebd0\PYGZgt{}
+\PYGZlt{}lingam.direct\PYGZus{}lingam.DirectLiNGAM at 0x164221890\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5828,7 +5828,7 @@ For the first regime, we now have
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x173da3b50\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x163dbc190\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -5849,7 +5849,7 @@ and for the second regime
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x173d8d890\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x164210e10\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -6028,7 +6028,7 @@ Here is a representation of a case where a candidate IV (wind speed forecast) ca
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x107c77190\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x1043bc9d0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -6084,7 +6084,7 @@ If we want to visualize this effect, this corresponds to removing the edge from 
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x107cce3d0\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x104411cd0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -6168,7 +6168,7 @@ Dep. Variable:      ElectricityPrices   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.925
 Method:                 Least Squares   F\PYGZhy{}statistic:                 1.225e+04
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):               0.00
-Time:                        19:10:43   Log\PYGZhy{}Likelihood:                \PYGZhy{}2886.7
+Time:                        20:03:36   Log\PYGZhy{}Likelihood:                \PYGZhy{}2886.7
 No. Observations:                1000   AIC:                             5777.
 Df Residuals:                     998   BIC:                             5787.
 Df Model:                           1                                         
@@ -6226,7 +6226,7 @@ Dep. Variable:      ElectricityPrices   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.508
 Method:                 Least Squares   F\PYGZhy{}statistic:                     1034.
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):          3.21e\PYGZhy{}156
-Time:                        19:10:44   Log\PYGZhy{}Likelihood:                \PYGZhy{}3824.2
+Time:                        20:03:36   Log\PYGZhy{}Likelihood:                \PYGZhy{}3824.2
 No. Observations:                1000   AIC:                             7652.
 Df Residuals:                     998   BIC:                             7662.
 Df Model:                           1                                         
@@ -6311,7 +6311,7 @@ Whenever the treatment and control assignment is not random, there may be demogr
 
 \sphinxAtStartPar
 In mathematical terms, we can define the propensity score \(e(x)\) as the probability of a unit (e.g., customer) joining the demand\sphinxhyphen{}response programme given a set of covariates \(x\):
-\label{equation:notebooks/propensity_scores:526a72b1-7586-428a-9372-76ab6efaac9c}\begin{equation}
+\label{equation:notebooks/propensity_scores:c1b8aad9-7041-4d0b-92b3-7f08272f028f}\begin{equation}
    e(x) = P(T = 1 \mid X = x)
 \end{equation}
 \sphinxAtStartPar
@@ -6319,7 +6319,7 @@ where \(T\) is a binary indicator of treatment assignment (1 if joined the progr
 
 \sphinxAtStartPar
 Propensity scores are typically estimated using \sphinxstylestrong{logistic regression}, although other classification methods can be used. For example:
-\label{equation:notebooks/propensity_scores:2a8a5535-239a-4f10-8b1d-dd46d4999c92}\begin{equation}
+\label{equation:notebooks/propensity_scores:e558f102-86e8-4fcb-8321-d93057379522}\begin{equation}
    \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
 \end{equation}
 \sphinxAtStartPar
@@ -6681,7 +6681,7 @@ We have already seen that we can use Propensity Score Matching (PSM) to adjust f
 
 \sphinxAtStartPar
 With DML, we are trying to isolate the effect of the treatment variables on the response. This framework assumes that the response \(y\) (e.g., the prices) is a function of the treatment \(w\) and other confounding variables \(x\):
-\label{equation:notebooks/double_machine_learning:7c01253e-1579-4ecb-b075-5e6ef60a5dd5}\begin{equation}
+\label{equation:notebooks/double_machine_learning:f9f5439d-c29f-4466-a3a0-b6f8690f98fe}\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}
 \sphinxAtStartPar
@@ -6689,7 +6689,7 @@ where \(g\) is an arbitrary function (linear or nonlinear) and \(\epsilon\) is t
 
 \sphinxAtStartPar
 Similarly, since we assumed that the treatment is also affected by other confounding variables, we have that \(w\) can be modeled as a function of \(x\):
-\label{equation:notebooks/double_machine_learning:5af1f767-39ea-4da4-a91e-f388babc1dcc}\begin{equation}
+\label{equation:notebooks/double_machine_learning:c7a56adf-8908-4329-86aa-004b9b760e44}\begin{equation}
     w = m(x) + \nu
 \end{equation}
 \sphinxAtStartPar
@@ -6720,9 +6720,9 @@ For simplicity, we now consider a partially linear case where the relationship b
 
 \sphinxAtStartPar
 In this case, the model is specified as follows:
-\label{equation:notebooks/double_machine_learning:1d36afac-24df-4f1e-839c-d0d6749c1426}\begin{equation}
+\label{equation:notebooks/double_machine_learning:196be743-8ba3-41ed-b8ab-5bea14826743}\begin{equation}
     y = \beta w + g(x) + \epsilon
-\end{equation}\label{equation:notebooks/double_machine_learning:fa2d4195-8c89-4613-b65c-3fa346b2e4e3}\begin{equation}
+\end{equation}\label{equation:notebooks/double_machine_learning:dba9e88b-7d47-438a-a44e-c8a963be6b3a}\begin{equation}
     w = m(x) + \nu
 \end{equation}
 \sphinxAtStartPar
@@ -6775,7 +6775,7 @@ Use the models trained on \(K-1\) folds to predict the held\sphinxhyphen{}out fo
 \item {} 
 \sphinxAtStartPar
 Compute the residuals for the treatment and outcome models:
-\label{equation:notebooks/double_machine_learning:4c0cfa5b-0da1-4f47-b579-2a88d71f0e39}\begin{equation}
+\label{equation:notebooks/double_machine_learning:fca39a0f-9423-43d3-9b91-034e8a1ea1ee}\begin{equation}
             \hat{V}_W = W - \hat{W}, \quad \hat{V}_Y = Y - \hat{Y}
         \end{equation}
 \end{itemize}
@@ -6808,7 +6808,7 @@ This algorithm ensures that the estimation of the treatment effect is orthogonal
 \label{\detokenize{notebooks/double_machine_learning:electricity-example}}
 \sphinxAtStartPar
 Let’s now consider a practical case where we want to estimate the effect of day\sphinxhyphen{}ahead wind power and solar power forecasts on spot prices. We know that the forecasts available before gate closure {[}\hyperlink{cite.bibliography:id11}{JonssonPM10}{]} are crucial to determine the equilibrium price. Because of the merit\sphinxhyphen{}order effect, the low marginal costs of renewable energy sources acts like a shifter in reducing the equilibrium price. We now assume to be in a simplified setting where we want to quantify this effect. We consider a simple \sphinxstylestrong{causal graph} where the spot prices are linearly affected by the forecasted WP and SP production levels, and nonlinearly affected by other endogenous factors and market conditions. In particular, we assume to be in the following \sphinxstylestrong{partially linear case}:
-\label{equation:notebooks/double_machine_learning:0cc2acbd-09fa-42ea-b723-7009768a1e2e}\begin{equation}
+\label{equation:notebooks/double_machine_learning:c5cfa9b1-f919-4c92-b9ae-96014e5281c1}\begin{equation}
     \text{spot price} = -0.3 * \text{WP} - 0,3 * \text{SP} + f_L(\text{load}) + f_G(\text{gas}) + f_C(\text{coal}) + f_{CO2} (\text{carbon pricing}) + \epsilon
 \end{equation}
 \sphinxAtStartPar
@@ -6868,7 +6868,7 @@ Our goal is to estimate the coefficients \sphinxhyphen{}0.3 as accurately as pos
 
 \begin{sphinxuseclass}{cell_output}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYGZlt{}graphviz.graphs.Digraph at 0x10845a290\PYGZgt{}
+\PYGZlt{}graphviz.graphs.Digraph at 0x107d7f6d0\PYGZgt{}
 \end{sphinxVerbatim}
 
 \end{sphinxuseclass}\end{sphinxVerbatimOutput}
@@ -7206,7 +7206,7 @@ The \sphinxstylestrong{control group} might refer to another region, where the n
 
 \sphinxAtStartPar
 While doing so, DiD relies a crucial assumption known as the \sphinxstylestrong{parallel trends assumption}. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:
-\label{equation:notebooks/diff_in_diff:b817c93b-a6ca-4431-863f-ed85c5aed464}\begin{align}
+\label{equation:notebooks/diff_in_diff:d8fec21f-b8c2-406b-9892-14b5a7009946}\begin{align}
     \text{DiD} = &(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     & - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}
@@ -7215,7 +7215,7 @@ In other words, we are checking if there is a \sphinxstylestrong{difference betw
 
 \sphinxAtStartPar
 In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:
-\label{equation:notebooks/diff_in_diff:3e46b6fd-8c3f-42a8-9a45-f8f648474c16}\begin{equation}
+\label{equation:notebooks/diff_in_diff:5ceb6bc7-6841-408a-96ad-773eb408b3c6}\begin{equation}
     y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}
 \sphinxAtStartPar
@@ -7377,7 +7377,7 @@ Dep. Variable:                  price   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.921
 Method:                 Least Squares   F\PYGZhy{}statistic:                     778.6
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):          1.37e\PYGZhy{}108
-Time:                        19:10:07   Log\PYGZhy{}Likelihood:                \PYGZhy{}679.31
+Time:                        20:03:16   Log\PYGZhy{}Likelihood:                \PYGZhy{}679.31
 No. Observations:                 200   AIC:                             1367.
 Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         
@@ -7426,7 +7426,7 @@ Any changes over time that would affect both groups equally (coefficient “peri
 \label{\detokenize{notebooks/interrupted_time_series:interrupted-time-series}}\label{\detokenize{notebooks/interrupted_time_series::doc}}
 \sphinxAtStartPar
 Interrupted time series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time. Unlike DiD, ITS \sphinxstylestrong{does not require a control group} as it assumes that the data\sphinxhyphen{}generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the \sphinxstyleemphasis{discontinuity} based on a specific variable, the \sphinxstylestrong{discontinuity occurs over time}. Then, we can model the time series of interest using a \sphinxstylestrong{segmented regression} approach as in:
-\label{equation:notebooks/interrupted_time_series:ac417391-cff4-4b71-953e-cd36a99a6a57}\begin{equation}
+\label{equation:notebooks/interrupted_time_series:7c8054a2-de22-4f70-8931-930f9a1d1040}\begin{equation}
     y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
 \end{equation}
 \sphinxAtStartPar
@@ -7533,7 +7533,7 @@ Dep. Variable:                  price   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.993
 Method:                 Least Squares   F\PYGZhy{}statistic:                     4425.
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):          9.73e\PYGZhy{}103
-Time:                        19:10:46   Log\PYGZhy{}Likelihood:                \PYGZhy{}129.67
+Time:                        20:03:38   Log\PYGZhy{}Likelihood:                \PYGZhy{}129.67
 No. Observations:                 100   AIC:                             267.3
 Df Residuals:                      96   BIC:                             277.8
 Df Model:                           3                                         
@@ -7760,7 +7760,7 @@ Dep. Variable:              residuals   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.613
 Method:                 Least Squares   F\PYGZhy{}statistic:                     158.3
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):           1.02e\PYGZhy{}41
-Time:                        19:10:47   Log\PYGZhy{}Likelihood:                \PYGZhy{}563.84
+Time:                        20:03:39   Log\PYGZhy{}Likelihood:                \PYGZhy{}563.84
 No. Observations:                 200   AIC:                             1134.
 Df Residuals:                     197   BIC:                             1144.
 Df Model:                           2                                         
@@ -7976,7 +7976,7 @@ Using the \sphinxstylestrong{semi\sphinxhyphen{}parametric causal discovery meth
 
 \sphinxAtStartPar
 Imagine we fitted a model \(\hat{f}\) that predicts the electricity price using the remaining three features as input variables. Let \(h\) represent the hour variable. The partial dependence function \(\hat{f}(h)\) is defined as:
-\label{equation:notebooks/partial_dependency_plots:3d646515-c4ec-4e5f-842c-6af149da6743}\begin{equation}
+\label{equation:notebooks/partial_dependency_plots:e238aacc-ef47-405d-8998-115e776e742b}\begin{equation}
     \hat{f}(h) = \mathbb{E}_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}
 \sphinxAtStartPar
@@ -8005,7 +8005,7 @@ The \sphinxstylestrong{partial dependence function} shows how the model’s pred
 
 \sphinxAtStartPar
 In practice, we estimate \(\hat{f}(h)\) using the average prediction over the dataset:
-\label{equation:notebooks/partial_dependency_plots:d698923b-2c73-4c81-a2aa-a7b9012653a6}\begin{equation}
+\label{equation:notebooks/partial_dependency_plots:1cf90cae-b49b-41e2-928d-090bf48f8f2a}\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}
 \sphinxAtStartPar
@@ -8300,7 +8300,7 @@ The second option is the one used by ALE plots, which compute \sphinxstylestrong
 
 \sphinxAtStartPar
 In practice, the ALE for the \(j\)th feature, \(x_j\), is estimated by:
-\label{equation:notebooks/accumulated_local_effects:e7d7e1b2-4ab9-46e2-bc18-7b38e07e274b}\begin{equation}
+\label{equation:notebooks/accumulated_local_effects:464fca3f-7db6-4fd2-8969-8d14ad161264}\begin{equation}
     \hat{f}_{j,\text{ALE}}(x) = \sum_{k=1}^{k(x)} \frac{1}{n_j(k)} \sum_{i : x_j^{(i)} \in N_j(k)} \left( \hat{f}(z_{k,j}, x_{-j}^{(i)}) - \hat{f}(z_{k-1,j}, x_{-j}^{(i)}) \right)
 \end{equation}
 \sphinxAtStartPar
@@ -8603,7 +8603,7 @@ In electricity markets, understanding the dynamic relationships between differen
 
 \sphinxAtStartPar
 Consider a VAR(\(p\)) model with \(k\) variables. The order \(p\) determines the number of lagged observations included in the model, reflecting the extent to which past values influence the current value. The model is given by:
-\label{equation:notebooks/impulse_response_functions:321e8354-e7a8-412f-921b-ec658e1490f5}\begin{equation}
+\label{equation:notebooks/impulse_response_functions:bb50840e-a535-474b-8a6a-f951b5884994}\begin{equation}
     \mathbf{y}_t = \mathbf{A}_1 \mathbf{y}_{t-1} + \mathbf{A}_2 \mathbf{y}_{t-2} + \cdots + \mathbf{A}_p \mathbf{y}_{t-p} + \mathbf{u}_t
 \end{equation}
 \sphinxAtStartPar
@@ -8675,7 +8675,7 @@ Here’s how it works step\sphinxhyphen{}by\sphinxhyphen{}step:
 
 \sphinxAtStartPar
 \sphinxstylestrong{Practical example}: consider a VAR(2) model with two variables, demand \(D\) and price \(P\). The model equations might look like this:
-\label{equation:notebooks/impulse_response_functions:5d6aca01-280b-4d57-ae5e-3473f3482013}\begin{equation}
+\label{equation:notebooks/impulse_response_functions:0126da93-52ad-486a-b759-6eab4820b185}\begin{equation}
 \begin{aligned}
     D_t &= a_{10} + a_{11} D_{t-1} + a_{12} P_{t-1} + a_{13} D_{t-2} + a_{14} P_{t-2} + u_{Dt} \\
     P_t &= b_{10} + b_{11} D_{t-1} + b_{12} P_{t-1} + b_{13} D_{t-2} + b_{14} P_{t-2} + u_{Pt}
@@ -8811,7 +8811,7 @@ Shapley additive explanations (SHAP) is a method to explain individual predictio
 
 \sphinxAtStartPar
 In cooperative game theory, the Shapley value is used to distribute the total gains to players based on their contributions. For a set of features \(N\) and a prediction function \(f\), the Shapley value \(\phi_i\) for feature \(i\) is defined as:
-\label{equation:notebooks/shapley:ec9e77c7-5231-4a3f-89b8-64ec425c799b}\begin{equation} 
+\label{equation:notebooks/shapley:34755356-4427-425c-9181-048463f75dcc}\begin{equation} 
     \phi_i(f) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N| - |S| - 1)!}{|N|!} \left[ f(S \cup \{i\}) - f(S) \right]
 \end{equation}
 \sphinxAtStartPar
@@ -8902,8 +8902,8 @@ For \{B, C\}: \(f(\{A, B, C\}) - f(\{B, C\})\)
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Weight Each Contribution}: the weight for each marginal contribution is
-\label{equation:notebooks/shapley:be7d0560-a291-4615-913d-20d293daef41}\begin{equation}
-       $\frac{|S|!(|N| - |S| - 1)!}{|N|!}
+\label{equation:notebooks/shapley:f51c4a7b-f721-45b8-866f-a39fe635de1f}\begin{equation}
+       \frac{|S|!(|N| - |S| - 1)!}{|N|!}
    \end{equation}
 \sphinxAtStartPar
 It ensures that the contribution of each feature is averaged fairly across all possible combinations of features:
@@ -8926,7 +8926,7 @@ It ensures that the contribution of each feature is averaged fairly across all p
 
 \sphinxAtStartPar
 Let’s compute the Shapley value for plant \(A\):
-\label{equation:notebooks/shapley:ab7d7ab1-1ffa-4efc-8044-034940b45bce}\begin{equation} \phi_A(f) = \sum_{S \subseteq N \setminus \{A\}} \frac{|S|!(|N| - |S| - 1)!}{|N|!} \left[ f(S \cup \{A\}) - f(S) \right] \end{equation}
+\label{equation:notebooks/shapley:0fc28e42-90d7-44a4-ac89-9afd617c420c}\begin{equation} \phi_A(f) = \sum_{S \subseteq N \setminus \{A\}} \frac{|S|!(|N| - |S| - 1)!}{|N|!} \left[ f(S \cup \{A\}) - f(S) \right] \end{equation}
 \sphinxAtStartPar
 Where:
 \begin{itemize}
@@ -9020,7 +9020,7 @@ Weight: \(\frac{2!(3-2-1)!}{3!} = \frac{2 \cdot 1}{6} = \frac{1}{3}\)
 
 \sphinxAtStartPar
 Once we have the weights for the possible subsets (or coalitions), we can \sphinxstylestrong{sum up the contributions}:
-\label{equation:notebooks/shapley:8da8daaa-5418-4bd5-b9fb-8da3019ea58b}\begin{equation}
+\label{equation:notebooks/shapley:cd9bcae5-689f-404d-9c2a-e1bca5075bb6}\begin{equation}
     \phi_A(f) = \frac{1}{3} \left[ f(\{A\}) - f(\{\}) \right] + \frac{1}{6} \left[ f(\{A, B\}) - f(\{B\}) \right] + \frac{1}{6} \left[ f(\{A, C\}) - f(\{C\}) \right] + \frac{1}{3} \left[ f(\{A, B, C\}) - f(\{B, C\}) \right]
 \end{equation}
 \sphinxAtStartPar
@@ -9520,7 +9520,7 @@ After running the power analysis with these parameters, the output tells us the 
 \label{\detokenize{notebooks/AB_testing:multiple-testing}}
 \sphinxAtStartPar
 When conducting multiple tests, the probability of making at least one type I error (false positive) increases. To address this, we use the Bonferroni correction, which adjusts the significance level to control the family\sphinxhyphen{}wise error rate (FWER). The adjusted significance level is given by:
-\label{equation:notebooks/AB_testing:501a1be6-906d-4fd6-a5f8-2cb51abd07c2}\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}
+\label{equation:notebooks/AB_testing:67cfda44-160e-4722-b524-ef21aef6652e}\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}
 \sphinxAtStartPar
 where \(\alpha\) is the original significance level, and \(m\) is the number of tests.
 
@@ -9680,7 +9680,7 @@ Dep. Variable:               response   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.912
 Method:                 Least Squares   F\PYGZhy{}statistic:                     3446.
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):               0.00
-Time:                        19:09:38   Log\PYGZhy{}Likelihood:                \PYGZhy{}1409.1
+Time:                        20:02:47   Log\PYGZhy{}Likelihood:                \PYGZhy{}1409.1
 No. Observations:                1000   AIC:                             2826.
 Df Residuals:                     996   BIC:                             2846.
 Df Model:                           3                                         
@@ -9785,7 +9785,7 @@ Consider a scenario where an electricity company wants to test a new marketing c
 
 \sphinxAtStartPar
 The formula used for simulating the response is:
-\label{equation:notebooks/AB_testing:8dac2600-cf67-4cdb-a156-4434a2050057}\begin{equation}
+\label{equation:notebooks/AB_testing:a8c6f112-ad76-43b3-bad7-57234ea18864}\begin{equation}
     Y = \beta_0 + \beta_1 Z + \beta_2 (A \cdot Z) + \epsilon
 \end{equation}
 \sphinxAtStartPar
@@ -9895,7 +9895,7 @@ Dep. Variable:                      y   R\PYGZhy{}squared:                      
 Model:                            OLS   Adj. R\PYGZhy{}squared:                  0.744
 Method:                 Least Squares   F\PYGZhy{}statistic:                     290.0
 Date:                Sun, 07 Jul 2024   Prob (F\PYGZhy{}statistic):           1.98e\PYGZhy{}59
-Time:                        19:09:39   Log\PYGZhy{}Likelihood:                \PYGZhy{}276.44
+Time:                        20:02:48   Log\PYGZhy{}Likelihood:                \PYGZhy{}276.44
 No. Observations:                 200   AIC:                             558.9
 Df Residuals:                     197   BIC:                             568.8
 Df Model:                           2                                         
@@ -10372,7 +10372,7 @@ The Epsilon\sphinxhyphen{}Greedy algorithm balances exploration and exploitation
 \item {} 
 \sphinxAtStartPar
 \sphinxstylestrong{Updating the Estimate}: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:
-\label{equation:notebooks/bandits:eb34614a-62aa-4147-8d74-871a6320c8d9}\begin{equation}
+\label{equation:notebooks/bandits:2a039fd2-76af-4b35-b710-9f5892fecde3}\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}
 \end{itemize}
@@ -10434,7 +10434,7 @@ You pull the same arm again and get a reward of 8.
 \item {} 
 \sphinxAtStartPar
 You update your estimate:
-\label{equation:notebooks/bandits:62642f5d-53d2-41ce-a081-d2ac74177f27}\begin{equation}
+\label{equation:notebooks/bandits:fb25c845-b6e8-4194-a87e-8df786110312}\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}
 \item {} 
@@ -10458,7 +10458,7 @@ You pull the arm one more time and get a reward of 9.
 \item {} 
 \sphinxAtStartPar
 You update your estimate:
-\label{equation:notebooks/bandits:f0b9cba0-db7e-41c0-af91-fe8d64c63438}\begin{equation}
+\label{equation:notebooks/bandits:fcba31e6-4698-43ed-b8f0-aeaac1352d60}\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}
 \item {} 
@@ -10528,7 +10528,7 @@ At each time step \(t\), select the arm \(k\) that maximizes the upper confidenc
 The upper confidence bound for arm \(k\) at time \(t\) is given by:
 
 \end{itemize}
-\label{equation:notebooks/bandits:ac8d4640-b0b4-40a8-8264-df1534ff15c6}\begin{equation}
+\label{equation:notebooks/bandits:240f5572-92a7-4b89-a31e-d60803e7e362}\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}
 \sphinxAtStartPar
@@ -10643,13 +10643,13 @@ Thompson sampling balances between trying out different options (exploration) an
 \item {} 
 \sphinxAtStartPar
 If we get a reward (\(r_k(t) = 1 \)), we increase \(\alpha_k\) by 1, indicating one more success:
-\label{equation:notebooks/bandits:5cdfea3a-72e7-4981-89c0-9f19f6d5b9c4}\begin{equation}
+\label{equation:notebooks/bandits:d847a3ee-f0bf-4cea-8b3b-aa58dece94f0}\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}
 \item {} 
 \sphinxAtStartPar
 If we do not get a reward (\(r_k(t) = 0 \)), we increase \(\beta_k\) by 1, indicating one more failure:
-\label{equation:notebooks/bandits:38110a04-bee8-432a-94b0-09468fc4c802}\begin{equation}
+\label{equation:notebooks/bandits:dc70e450-5b5f-41ec-8553-4b2c9aa3f379}\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}
 \end{itemize}
@@ -11507,7 +11507,7 @@ Active learning involves iteratively selecting the most informative data points 
 
 \sphinxAtStartPar
 Consider the case where we want to estimate the effect of a variable using a linear model of the kind:
-\label{equation:notebooks/active_learning:e82d94a7-0794-4157-a65f-47efe639775d}\begin{equation}
+\label{equation:notebooks/active_learning:e9d5b7b3-354f-41bb-8c73-1f320711467f}\begin{equation}
     y = X \beta + \epsilon
 \end{equation}
 \sphinxAtStartPar
@@ -11533,7 +11533,7 @@ where:
 
 \sphinxAtStartPar
 The goal is to estimate the coefficients \(\beta\) using the observed data. The variance of the coefficients \(\beta\) can be computed as:
-\label{equation:notebooks/active_learning:eb593e10-a2aa-49bf-a79b-f48b7470338f}\begin{equation}
+\label{equation:notebooks/active_learning:60f4f344-97a7-4408-9181-bc187ac5a941}\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}
 \sphinxAtStartPar

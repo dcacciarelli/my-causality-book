@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.7)  7 JUL 2024 19:46
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.7)  7 JUL 2024 20:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1347,6 +1347,18 @@ File: psdextra.def 2024-01-20 v7.01h Hyperref: Additions to PDF string support
 
 Writing index file book.idx
 (./book.aux)
+Runaway argument?
+{\contentsline {section}{\numberline {20.1}Fitting an ITS on the resi\ETC.
+! File ended while scanning use of \@writefile.
+<inserted text> 
+                \par 
+l.97 \begin{document}
+                     
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
 \openout1 = `book.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 97.
@@ -1369,7 +1381,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
 LaTeX Font Info:    ... okay on input line 97.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 97.
 LaTeX Font Info:    ... okay on input line 97.
-
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
@@ -1412,11 +1423,34 @@ your preamble.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 97.
+(./book.out)
+Runaway argument?
+{Data\0 
+! File ended while scanning use of \@@BOOKMARK.
+<inserted text> 
+                \par 
+l.97 \begin{document}
+                     
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+(./book.out)
+Runaway argument?
+{Data\0 
+! File ended while scanning use of \@@BOOKMARK.
+<inserted text> 
+                \par 
+l.97 \begin{document}
+                     
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
 \@outlinefile=\write6
 \openout6 = `book.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/FreeSerif(0)/m/n on input line 97.
@@ -1667,11 +1701,11 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 
 ]
-No file book.toc.
+(./book.toc)
 \tf@toc=\write7
 \openout7 = `book.toc'.
 
-[1
+ [1
 
 ] [2
 
@@ -1693,31 +1727,31 @@ ndefined on input line 218.
 
 ] [4]
 Chapter 1.
-File: 473824e3ebc6a1fd78bed35d20c9081c43637d9c03a42a9e1a1271f466f2ae5a.png Grap
+File: 2d9e598977f549fdea74c0c6f2e1b8b6610e994db7e154bb50101d7ef8ef34fe.png Grap
 hic file (type bmp)
-<473824e3ebc6a1fd78bed35d20c9081c43637d9c03a42a9e1a1271f466f2ae5a.png>
+<2d9e598977f549fdea74c0c6f2e1b8b6610e994db7e154bb50101d7ef8ef34fe.png>
 [5
 
 ]
-File: ea659595f4c8c7e34cdf139ac15fa2ca8f7aba7f9ae0174d9a72fe0a93f1440d.png Grap
+File: 2bac1dea54e03875ce6f85f62e0f1255ac9fd2daac48840be3ea80ae5bebfca4.png Grap
 hic file (type bmp)
-<ea659595f4c8c7e34cdf139ac15fa2ca8f7aba7f9ae0174d9a72fe0a93f1440d.png>
+<2bac1dea54e03875ce6f85f62e0f1255ac9fd2daac48840be3ea80ae5bebfca4.png>
  [6]
-File: 416a7cedcc526ce2c6d8b5a6d731bf4b480ee677c4b176c7ec83ba194b9cdf63.png Grap
+File: 01ee47991735359fdcb86570efcb60ae21b59931060e9b0d5da24744d308915d.png Grap
 hic file (type bmp)
-<416a7cedcc526ce2c6d8b5a6d731bf4b480ee677c4b176c7ec83ba194b9cdf63.png>
+<01ee47991735359fdcb86570efcb60ae21b59931060e9b0d5da24744d308915d.png>
  [7]
-File: ebed95ae1ef18122b8a0b8e87113bbb8e6d99ce26f58b53d71a87483bbf08605.png Grap
+File: 43d71b4ab87f6cf6304ed9031827b8e1a90a2480687eb14ce870de18efec146a.png Grap
 hic file (type bmp)
-<ebed95ae1ef18122b8a0b8e87113bbb8e6d99ce26f58b53d71a87483bbf08605.png>
+<43d71b4ab87f6cf6304ed9031827b8e1a90a2480687eb14ce870de18efec146a.png>
  [8]
-File: ca5a58f3017161055dff1eb83d55f904ec1c04c2dbe667e31f6af72accbe099f.png Grap
+File: d504594dcc5cf7ede2362af68ef9faead7a7689e7a426c74df0575f6c4f6b164.png Grap
 hic file (type bmp)
-<ca5a58f3017161055dff1eb83d55f904ec1c04c2dbe667e31f6af72accbe099f.png>
+<d504594dcc5cf7ede2362af68ef9faead7a7689e7a426c74df0575f6c4f6b164.png>
  [9]
-File: 6690af5c95620c8d8a836e4b08d4441b6bdc9aba58865b9b71dd4dec11113eff.png Grap
+File: 57c28d714c1d0618e3a28d9cadf3daabb929f2b699f3b3695457441aa6a80a24.png Grap
 hic file (type bmp)
-<6690af5c95620c8d8a836e4b08d4441b6bdc9aba58865b9b71dd4dec11113eff.png>
+<57c28d714c1d0618e3a28d9cadf3daabb929f2b699f3b3695457441aa6a80a24.png>
  [10] [11] [12] [13]
 File: cbe81718c45ca5836d9420e9005d081b9bfabab3968d74812d1c8a709b43e5ee.png Grap
 hic file (type bmp)
@@ -1747,9 +1781,9 @@ hic file (type bmp)
 File: e78004dcf0d59724742cd03ad7f6074f6c2ac80218b63064c7b645628911eb84.png Grap
 hic file (type bmp)
 <e78004dcf0d59724742cd03ad7f6074f6c2ac80218b63064c7b645628911eb84.png>
-File: 5a8b4895a2084fcc385020a3f632cd9bfa9018423e660228d62ae63aee994e7e.png Grap
+File: 05448d1d3fa6009c328c16a33ae9b0e3c83c4e5ba1d32f539cb8a05c675d0ec9.png Grap
 hic file (type bmp)
-<5a8b4895a2084fcc385020a3f632cd9bfa9018423e660228d62ae63aee994e7e.png>
+<05448d1d3fa6009c328c16a33ae9b0e3c83c4e5ba1d32f539cb8a05c675d0ec9.png>
  [29] [30]
 Chapter 2.
 [31
@@ -1896,13 +1930,13 @@ Chapter 11.
 [91
 
 ] [92] [93]
-File: 1b2e2d532fc3a177d88d74f68c28c1af9404464f4bdee44156a5bd0e0ff4b35c.png Grap
+File: a6d522878677fbf29b52d14991528eaf7d3b97749a537f506ebf65d1d0d2c9fb.png Grap
 hic file (type bmp)
-<1b2e2d532fc3a177d88d74f68c28c1af9404464f4bdee44156a5bd0e0ff4b35c.png>
+<a6d522878677fbf29b52d14991528eaf7d3b97749a537f506ebf65d1d0d2c9fb.png>
  [94]
-File: b65437f398683396a19ec60b0902d7ba88e7b4ca77ceb4238393806bbf877cd9.png Grap
+File: ca05e58b8a772b8d544901bfa4f0ce438977b367e67f2f6ab9a3c9b0eaa71c7b.png Grap
 hic file (type bmp)
-<b65437f398683396a19ec60b0902d7ba88e7b4ca77ceb4238393806bbf877cd9.png>
+<ca05e58b8a772b8d544901bfa4f0ce438977b367e67f2f6ab9a3c9b0eaa71c7b.png>
  [95] [96] [97] [98
 
 ]
@@ -1919,13 +1953,13 @@ Chapter 13.
 [105
 
 ] [106] [107]
-File: f981074c552af62dfbc9913ca43b06e177fe6d0bd0bb9383b7efc6b1697fc07d.png Grap
+File: f5c9e6e9de08b638ce9eedee9d71d1feaa555781fafa184d9917315b01482e23.png Grap
 hic file (type bmp)
-<f981074c552af62dfbc9913ca43b06e177fe6d0bd0bb9383b7efc6b1697fc07d.png>
+<f5c9e6e9de08b638ce9eedee9d71d1feaa555781fafa184d9917315b01482e23.png>
  [108]
-File: acfdbb01874de9bd4aa0be4eb4a7e365f192f2f385c531a23c8203e09ba4fe77.png Grap
+File: 10957ba0113010189830e960061864c11cdcd20eb8686d56341295c0f57f5f54.png Grap
 hic file (type bmp)
-<acfdbb01874de9bd4aa0be4eb4a7e365f192f2f385c531a23c8203e09ba4fe77.png>
+<10957ba0113010189830e960061864c11cdcd20eb8686d56341295c0f57f5f54.png>
  [109] [110] [111] [112
 
 ]
@@ -2090,4 +2124,166 @@ hic file (type bmp)
 ]
 Chapter 23.
 [171] [172]
-File: 0457745a5244de64760823c3cdbee2a48f01546e1b8ca891da74aa244b7c1eb6.png Gr
+File: 0457745a5244de64760823c3cdbee2a48f01546e1b8ca891da74aa244b7c1eb6.png Grap
+hic file (type bmp)
+<0457745a5244de64760823c3cdbee2a48f01546e1b8ca891da74aa244b7c1eb6.png>
+ [173]
+Overfull \vbox (1.50082pt too high) detected at line 8536
+ []
+
+[174] [175]
+File: 3f1ba0a3324bc5cb0cb48fb4b626f95cc703f7f0e85e0de5c02d4807a2728fc4.png Grap
+hic file (type bmp)
+<3f1ba0a3324bc5cb0cb48fb4b626f95cc703f7f0e85e0de5c02d4807a2728fc4.png>
+ [176]
+Chapter 24.
+[177
+
+] [178]
+File: 4b64f1d82791e972b6c48d0e99250b0c089c75a919db9e0755c3b703a0b48ba4.png Grap
+hic file (type bmp)
+<4b64f1d82791e972b6c48d0e99250b0c089c75a919db9e0755c3b703a0b48ba4.png>
+ [179] [180]
+Chapter 25.
+[181
+
+] [182]
+Overfull \hbox (4.13437pt too wide) detected at line 9025
+[][][][][][][][] [] [] [] [] [] [] [] [] [] [] [] []
+ []
+
+[183] [184]
+File: 49cdf2bf341b2183462e4af9eb9f2e3d78b7cd2ade136a99e1604c6b72fafc6a.png Grap
+hic file (type bmp)
+<49cdf2bf341b2183462e4af9eb9f2e3d78b7cd2ade136a99e1604c6b72fafc6a.png>
+File: 7f7c3e4daeb5c19eb41fd68333ae66b2aed862dc3ee8c240ffb535a17317b6df.png Grap
+hic file (type bmp)
+<7f7c3e4daeb5c19eb41fd68333ae66b2aed862dc3ee8c240ffb535a17317b6df.png>
+File: 7c01924bbdd0c336acc123b3c461c66ac8438c4a5ab85a55dcee6acd80224202.png Grap
+hic file (type bmp)
+<7c01924bbdd0c336acc123b3c461c66ac8438c4a5ab85a55dcee6acd80224202.png>
+ [185]
+File: 7bba15c23528beb3bbdebf45f11902e196da09934401d0e75155469f726c60bd.png Grap
+hic file (type bmp)
+<7bba15c23528beb3bbdebf45f11902e196da09934401d0e75155469f726c60bd.png>
+ [186]
+File: 192c5294c756ded7347572f49657ce855a3b593b5307a3868c742caa1c2c6bef.png Grap
+hic file (type bmp)
+<192c5294c756ded7347572f49657ce855a3b593b5307a3868c742caa1c2c6bef.png>
+ [187] [188] [189
+
+] [190]
+Chapter 26.
+[191
+
+] [192
+
+]
+Chapter 27.
+[193] [194] [195] [196] [197]
+File: 4dff86fe7059baa7563ae0a1a8f5f6d231185499cebc00b757b307dea6337937.png Grap
+hic file (type bmp)
+<4dff86fe7059baa7563ae0a1a8f5f6d231185499cebc00b757b307dea6337937.png>
+ [198] [199]
+File: 02afdca8b6093be64e40425e9d571b4ff0a65ff7455d51fa3c1998315a3f029d.png Grap
+hic file (type bmp)
+<02afdca8b6093be64e40425e9d571b4ff0a65ff7455d51fa3c1998315a3f029d.png>
+ [200] [201] [202]
+Chapter 28.
+[203
+
+] [204] [205] [206]
+File: e39fd570dc5a8b85da05d3fd80c48a1489edb91b9853c70fea7d436b76dff296.png Grap
+hic file (type bmp)
+<e39fd570dc5a8b85da05d3fd80c48a1489edb91b9853c70fea7d436b76dff296.png>
+ [207] [208] [209] [210] [211] [212]
+File: c151f6ec889a3236b5975f1fef17aa0241136ee2a56669400bf1a6500764ec76.png Grap
+hic file (type bmp)
+<c151f6ec889a3236b5975f1fef17aa0241136ee2a56669400bf1a6500764ec76.png>
+ [213]
+File: 2bf49d4e478ea502c2d579867e38585edb7c08bc556cf141c8fad9527c041120.png Grap
+hic file (type bmp)
+<2bf49d4e478ea502c2d579867e38585edb7c08bc556cf141c8fad9527c041120.png>
+ [214]
+[215] [216
+
+]
+Chapter 29.
+[217] [218]
+File: f7e784e52a2c904c1b464f513b32b207ffab397905596e6438b07eb112dca708.png Grap
+hic file (type bmp)
+<f7e784e52a2c904c1b464f513b32b207ffab397905596e6438b07eb112dca708.png>
+File: 992a06447076d83762a3fc38fc13057d043b479a1aa37adba99b6afac0b5dba7.png Grap
+hic file (type bmp)
+<992a06447076d83762a3fc38fc13057d043b479a1aa37adba99b6afac0b5dba7.png>
+ [219] [220]
+File: 28a0e41480029dcd8e94e35e276265aedb8392f162a39de168c3771df57e9e2b.png Grap
+hic file (type bmp)
+<28a0e41480029dcd8e94e35e276265aedb8392f162a39de168c3771df57e9e2b.png>
+ [221] [222] [223]
+File: 74e6543d68671a54d679aeda8d9c29b1ae88ffd92b75ec010496eafff07d6fb4.png Grap
+hic file (type bmp)
+<74e6543d68671a54d679aeda8d9c29b1ae88ffd92b75ec010496eafff07d6fb4.png>
+ [224]
+Overfull \vbox (0.80244pt too high) detected at line 11448
+ []
+
+[225]
+File: fa2688114cf4e2c6ab47018d6c713a17bf37d56422f0d1655a245cdb341450e8.png Grap
+hic file (type bmp)
+<fa2688114cf4e2c6ab47018d6c713a17bf37d56422f0d1655a245cdb341450e8.png>
+ [226] [227] [228
+
+]
+Chapter 30.
+[229]
+Overfull \vbox (2.17795pt too high) detected at line 11653
+ []
+
+[230] [231]
+File: 9dd93285ea963f696041088fb80d1448a80d1373687e5cbe163acaa2ffb035a3.png Grap
+hic file (type bmp)
+<9dd93285ea963f696041088fb80d1448a80d1373687e5cbe163acaa2ffb035a3.png>
+ [232] [233] [234
+
+] [235] [236]
+Chapter 31.
+[237
+
+] [238
+
+]
+No file book.ind.
+[239
+
+] (./book.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `book.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `book.out':
+(rerunfilecheck)             Before: 8054AC105AF62C59DC0D2AFE73FFCC00;8192
+(rerunfilecheck)             After:  560B3167A3E694935931921A8A6A6A20;12414.
+ ) 
+Here is how much of TeX's memory you used:
+ 45498 strings out of 474773
+ 1100651 string characters out of 5757725
+ 2124839 words of memory out of 5000000
+ 66762 multiletter control sequences out of 15000+600000
+ 565046 words of font info for 130 fonts, out of 8000000 for 9000
+ 1349 hyphenation exceptions out of 8191
+ 99i,22n,114p,1680b,2334s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on book.pdf (243 pages).

@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Applied Causal Inference with Examples from Electricity Markets
+title: Causality in Electricity Markets
 author: Davide Cacciarelli
 logo: curve_plot.png
 
