@@ -1,7 +1,6 @@
-# Causality in Electricity Markets
+<img src="logo_thick_text.png" alt="cover photo" align="center" width="600px"/>
 
 By [**Davide Cacciarelli**](https://sites.google.com/view/dcacciarelli) and [**Pierre Pinson**](https://pierrepinson.com/)
 
 **Imperial College London**
 
-<img src="logo_thick.png" alt="cover photo" align="center" width="600px"/>
