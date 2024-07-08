@@ -7,15 +7,10 @@ root: intro
 
 parts:
 
-- caption: Preface
-  chapters:
-    - file: preface
-
-- caption: Introduction
-  numbered: true
-  chapters:
-  - file: notebooks/motivation
-  - file: notebooks/guide
+chapters:
+- file: preface
+- file: notebooks/motivation
+- file: notebooks/guide
 
 - caption: I. Basic Concepts
   numbered: true
@@ -62,12 +57,13 @@ parts:
   - file: notebooks/design_of_experiments
   - file: notebooks/active_learning
 
-- caption: Other
+- caption: Conclusion
   numbered: false 
   chapters:
-  - file: bibliography
+- file: conclusion
+- file: bibliography
 
-- caption: Crash course on Stats and ML
+- caption: Appendix
   numbered: true
   chapters:
   - file: notebooks/review_stats
