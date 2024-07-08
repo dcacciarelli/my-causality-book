@@ -1,11 +1,13 @@
 <!-- Cover Image -->
 
-<img src="penetration_apx.png" alt="fishy" class="bg-primary mb-1" width="500px">
+<p align="center">
+  <img src="penetration_apx.png" alt="fishy" class="bg-primary mb-1" width="500px"/>
+</p>
 
 
 <!-- Title and Subtitle -->
 <h1 align="center">Causality in Electricity Markets</h1>
-<h2 align="center">An In-Depth Exploration of Causal Inference Techniques and Their Applications in the Energy Sector</h2>
+<h3 align="center">An In-Depth Exploration of Causal Inference Techniques and Their Applications in the Energy Sector</h3>
 
 <!-- Author Information -->
 <p align="center">
