@@ -6,8 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Causality in Electricity Markets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Preface &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -56,9 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="index" title="Index" href="#" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'preface';</script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Motivation" href="notebooks/motivation.html" />
+    <link rel="prev" title="Causality in Electricity Markets" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -120,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -176,8 +177,8 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preface</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preface</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
@@ -304,7 +305,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpreface.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -316,6 +317,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/preface.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -368,7 +417,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1>Preface</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,13 +431,67 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section class="tex2jax_ignore mathjax_ignore" id="preface">
+<h1>Preface<a class="headerlink" href="#preface" title="Link to this heading">#</a></h1>
+<p>This work-in-progress book is designed to provide comprehensive tutorials on causal inference methodologies. This book explains key concepts in this rapidly growing research area and showcases potential applications within electricity markets.</p>
+<p><strong>Prerequisites</strong></p>
+<p>To get the most out of this book, it is recommended that readers have a basic understanding of:</p>
+<ul class="simple">
+<li><p><strong>Statistics and probability</strong>: familiarity with basic statistical concepts and probability theory.</p></li>
+<li><p><strong>Python programming</strong>: basic knowledge of Python and possibly experience with libraries such as NumPy, pandas, statsmodels, and scikit-learn.</p></li>
+<li><p><strong>Machine learning</strong>: an understanding of linear regression models, and an overview of machine learning concepts.</p></li>
+</ul>
+<p>If you feel like you need a refresher, at the beginning of this book you can find a <strong>crash course</strong> to review these essential concepts. These chapters are designed to help you brush up on the foundational knowledge required to fully engage with the material in this book. However, if you are already familiar with these concepts or prefer to go directly to the applied causal inference part, feel free to skip those chapters.</p>
+<p><strong>Learning objectives</strong></p>
+<p>By the end of this book, readers will be able to:</p>
+<ul class="simple">
+<li><p>Understand and apply causal inference techniques to analyse relationships between variables.</p></li>
+<li><p>Use directed acyclic graphs (DAGs) to represent and reason about causal structures.</p></li>
+<li><p>Implement and interpret various causal discovery algorithms.</p></li>
+<li><p>Estimate causal effects using methods like instrumental variables, double machine learning, and difference-in-differences.</p></li>
+<li><p>Interpret results from complex machine learning models.</p></li>
+<li><p>Design experiments to gather data that supports causal analysis.</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>The examples are provided in <strong>Python</strong>:</p>
+<ul class="simple">
+<li><p>Each chapter is designed to be as self-contained as possible, enabling you to focus on specific topics without needing prior chapters.</p></li>
+<li><p>Chapters can be run independently, allowing you to generate data and apply statistical methods on their own.</p></li>
+<li><p>Each chapter is available for download as a <strong>Jupyter Notebook</strong>, facilitating hands-on learning and enabling you to reproduce the results effortlessly.</p></li>
+</ul>
 </div>
+<div class="tip admonition">
+<p class="admonition-title">References</p>
+<p>This book is highly applied, aimed at providing essential intuitions and practical examples of how to apply causal inference methods to real-world problems. For additional theoretical and technical explanations, we suggest:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dl.acm.org/doi/book/10.5555/1642718">Causality: Models, Reasoning and Inference</a></p></li>
+<li><p><a class="reference external" href="https://mitpress.mit.edu/9780262037310/elements-of-causal-inference/">Elements of Causal Inference</a></p></li>
+<li><p><a class="reference external" href="https://link.springer.com/book/10.1007/978-4-431-55784-5">Statistical Causal Discovery: LiNGAM Approach</a></p></li>
+<li><p><a class="reference external" href="https://www.bradyneal.com/causal-inference-course">Introduction to Causal Inference from a Machine Learning Perspective</a></p></li>
+</ul>
+</div>
+</section>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -400,6 +503,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Causality in Electricity Markets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="notebooks/motivation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Motivation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
