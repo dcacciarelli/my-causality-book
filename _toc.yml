@@ -6,66 +6,65 @@ format: jb-book
 root: intro
 
 parts:
+  - chapters:
+    - file: preface
+    - file: notebooks/motivation
+    - file: notebooks/guide
 
-chapters:
-- file: preface
-- file: notebooks/motivation
-- file: notebooks/guide
+  - caption: I. Basic Concepts
+    numbered: true
+    chapters:
+      - file: notebooks/correlation_vs_causation
+      - file: notebooks/DAG
+      - file: notebooks/basic_dag_structures
+      - file: notebooks/glossary
 
-- caption: I. Basic Concepts
-  numbered: true
-  chapters:
-  - file: notebooks/correlation_vs_causation
-  - file: notebooks/DAG
-  - file: notebooks/basic_dag_structures
-  - file: notebooks/glossary
+  - caption: II. Causal Discovery
+    numbered: true
+    chapters:
+      - file: notebooks/preface_causal_discovery
+      - file: notebooks/semiparametric_direct_lingam
+      - file: notebooks/semiparametric_resit
+      - file: notebooks/semiparametric_varlingam
+      - file: notebooks/structural_breaks_example
 
-- caption: II. Causal Discovery
-  numbered: true
-  chapters:
-  - file: notebooks/preface_causal_discovery
-  - file: notebooks/semiparametric_direct_lingam
-  - file: notebooks/semiparametric_resit
-  - file: notebooks/semiparametric_varlingam
-  - file: notebooks/structural_breaks_example
+  - caption: III. Causal Inference
+    numbered: true 
+    chapters:
+      - file: notebooks/preface_causal_inference
+      - file: notebooks/instrumental_variables
+      - file: notebooks/propensity_scores
+      - file: notebooks/double_machine_learning
+      - file: notebooks/diff_in_diff
+      - file: notebooks/interrupted_time_series
 
-- caption: III. Causal Inference
-  numbered: true 
-  chapters:
-  - file: notebooks/preface_causal_inference
-  - file: notebooks/instrumental_variables
-  - file: notebooks/propensity_scores
-  - file: notebooks/double_machine_learning
-  - file: notebooks/diff_in_diff
-  - file: notebooks/interrupted_time_series
+  - caption: IV. Interpretability
+    numbered: true
+    chapters:
+      - file: notebooks/preface_interpretability
+      - file: notebooks/partial_dependency_plots
+      - file: notebooks/accumulated_local_effects
+      - file: notebooks/impulse_response_functions
+      - file: notebooks/shapley
 
-- caption: IV. Interpretability
-  numbered: true
-  chapters:
-  - file: notebooks/preface_interpretability
-  - file: notebooks/partial_dependency_plots
-  - file: notebooks/accumulated_local_effects
-  - file: notebooks/impulse_response_functions
-  - file: notebooks/shapley
+  - caption: V. Experiments and Data Collection
+    numbered: true
+    chapters:
+      - file: notebooks/preface_designs
+      - file: notebooks/AB_testing
+      - file: notebooks/bandits
+      - file: notebooks/design_of_experiments
+      - file: notebooks/active_learning
 
-- caption: V. Experiments and Data Collection
-  numbered: true
-  chapters:
-  - file: notebooks/preface_designs
-  - file: notebooks/AB_testing
-  - file: notebooks/bandits
-  - file: notebooks/design_of_experiments
-  - file: notebooks/active_learning
+  - caption: Conclusion
+    numbered: false
+    chapters:
+      - file: conclusion
+      - file: bibliography
 
-- caption: Conclusion
-  numbered: false 
-  chapters:
-- file: conclusion
-- file: bibliography
-
-- caption: Appendix
-  numbered: true
-  chapters:
-  - file: notebooks/review_stats
-  - file: notebooks/review_linear_models
-  - file: notebooks/review_ML
+  - caption: Appendix
+    numbered: true
+    chapters:
+      - file: notebooks/review_stats
+      - file: notebooks/review_linear_models
+      - file: notebooks/review_ML
