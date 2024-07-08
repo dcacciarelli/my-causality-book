@@ -1,8 +1,5 @@
 <!-- Cover Image -->
-
-<p align="center">
-  <img src="penetration_apx.png" alt="cover photo" width="500px"/>
-</p>
+<img src="penetration_apx.png" alt="cover photo" align="center" width="500px"/>
 
 
 <!-- Title and Subtitle -->
