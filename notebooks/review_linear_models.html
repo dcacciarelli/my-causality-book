@@ -141,7 +141,7 @@
 
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="../cover.html">
   
   
   
@@ -173,8 +173,8 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Causality in Electricity Markets</h1>
+                <a class="reference internal" href="../cover.html">
+                    Causality in Electricity Markets
                 </a>
             </li>
         </ul>
@@ -185,7 +185,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -473,23 +473,23 @@ document.write(`
 <section id="motivating-linear-approximations">
 <h2>Motivating linear approximations<a class="headerlink" href="#motivating-linear-approximations" title="Link to this heading">#</a></h2>
 <p>Linear models are extremely useful becase they can be used to approximate complex relationships with easy and interpretable models. When employing linear models to learn a function <span class="math notranslate nohighlight">\(f\)</span> relating <span class="math notranslate nohighlight">\(Y\)</span> to <span class="math notranslate nohighlight">\(X\)</span>, we do not need to necessarily assume that the relationship between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is linear. We are just looking for the best linear approximation to the true relationship, whatever that might be. Taylor’s theorem gives reasons to believe that a linear model is a sensible approximation even for more complex functions, at least locally. Indeed, if the true regression function <span class="math notranslate nohighlight">\(f(x)\)</span> is a smooth function, given a specific value <span class="math notranslate nohighlight">\(x_0\)</span>, we can expand the function as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6200e4ab-3ad9-4fac-a00f-b2b90b3ae9cf">
-<span class="eqno">(90)<a class="headerlink" href="#equation-6200e4ab-3ad9-4fac-a00f-b2b90b3ae9cf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-557a92c7-2b41-4047-86fd-c7a1bb4eb756">
+<span class="eqno">(90)<a class="headerlink" href="#equation-557a92c7-2b41-4047-86fd-c7a1bb4eb756" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x) = f(x_0) + \frac{f'(x_0)}{1!}(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \cdots
 \end{equation}\]</div>
 <p>This expansion breaks down the function into an infinite sum of terms based on the function’s derivatives at <span class="math notranslate nohighlight">\(x_0\)</span>. The approximation starts with the function’s value at <span class="math notranslate nohighlight">\(x_0\)</span>, then adds adjustments based on how the function changes (its derivatives) as you move away from <span class="math notranslate nohighlight">\(x_0\)</span>. For <span class="math notranslate nohighlight">\(x\)</span> close enough to <span class="math notranslate nohighlight">\(x_0\)</span>, we can get away with truncating the series at first order, as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b676931-7812-4b64-acbf-12012fc839bd">
-<span class="eqno">(91)<a class="headerlink" href="#equation-3b676931-7812-4b64-acbf-12012fc839bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5d1583a8-7004-4460-abc5-da2436d84dc0">
+<span class="eqno">(91)<a class="headerlink" href="#equation-5d1583a8-7004-4460-abc5-da2436d84dc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     f(x) \approx f(x_0) + f'(x_0)(x-x_0)
 \end{equation}\]</div>
 <p>When you truncate the Taylor series after the first derivative term, we are essentially creating a linear model. This model approximates the function <span class="math notranslate nohighlight">\(f(x)\)</span> using a straight line that tangentially matches the function’s slope at <span class="math notranslate nohighlight">\(x_0\)</span>. This approach is valid as long as the higher-order terms (like the quadratic term and beyond) are negligible, which usually means <span class="math notranslate nohighlight">\(x\)</span> is close enough to <span class="math notranslate nohighlight">\(x_0\)</span>. Thus, while a  linear approximation may work well locally (near <span class="math notranslate nohighlight">\(x_0\)</span>), extending this approximation globally (over a wide range of <span class="math notranslate nohighlight">\(x\)</span> values) may not always be accurate unless the function is nearly linear over that range. The key to a successful linear approximation lies in determining how “close” <span class="math notranslate nohighlight">\(x\)</span> must be to <span class="math notranslate nohighlight">\(x_0\)</span> for the higher-order terms to be negligible. For a linear approximation to be valid, we want the influence of this term (and all higher-order terms) to be small compared to the first derivative term. We formalize this by imposing that the linear term dominates over the quadratic</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2ea0b20-ade4-46b0-b8e5-30d4e8d9e8d3">
-<span class="eqno">(92)<a class="headerlink" href="#equation-f2ea0b20-ade4-46b0-b8e5-30d4e8d9e8d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aa8f4caa-4b24-40be-9981-411b7dd15d7c">
+<span class="eqno">(92)<a class="headerlink" href="#equation-aa8f4caa-4b24-40be-9981-411b7dd15d7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     |x-x_0|f'(x_0) \gg \frac{f''(x_0)}{2}
 \end{equation}\]</div>
 <p>which is true if</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05b898e7-392c-4a1d-85cf-b74cb2ff93bc">
-<span class="eqno">(93)<a class="headerlink" href="#equation-05b898e7-392c-4a1d-85cf-b74cb2ff93bc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0bb48471-870f-40e7-9c0b-0f510eeafeaf">
+<span class="eqno">(93)<a class="headerlink" href="#equation-0bb48471-870f-40e7-9c0b-0f510eeafeaf" title="Permalink to this equation">#</a></span>\[\begin{equation}
     2\frac{f'(x_0)}{f''(x_0)} \gg |x-x_0|
 \end{equation}\]</div>
 <p>This tells us that the distance between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(x_0\)</span> must be smaller than twice the ratio of the magnitude of the first derivative to the magnitude of the second derivative for the linear approximation to hold effectively. The exact bounds of “close enough” depend on the relative sizes of the first and second derivatives of the function at <span class="math notranslate nohighlight">\(x_0\)</span>, providing a rule of thumb for when a linear model is likely to be a good approximation.</p>
@@ -555,13 +555,13 @@ document.write(`
 <section id="linear-regression-framework">
 <h2>Linear regression framework<a class="headerlink" href="#linear-regression-framework" title="Link to this heading">#</a></h2>
 <p>A linear regression model is a model used to analyze the relationship between a dependent variable (response) and one or more independent variables (predictors or covariates). In the case of one predictor, the linear regression model is referred to as a simple linear regression model, and it is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-726330d4-36d8-42d3-81b0-f5e664e630ad">
-<span class="eqno">(94)<a class="headerlink" href="#equation-726330d4-36d8-42d3-81b0-f5e664e630ad" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b6b03af6-6572-4971-abe8-7184303e5afe">
+<span class="eqno">(94)<a class="headerlink" href="#equation-b6b03af6-6572-4971-abe8-7184303e5afe" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(y_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the response variable, <span class="math notranslate nohighlight">\(x\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the predictor, <span class="math notranslate nohighlight">\(\beta_0\)</span> is the intercept (the value of <span class="math notranslate nohighlight">\(y\)</span> when <span class="math notranslate nohighlight">\(x\)</span> is zero), <span class="math notranslate nohighlight">\(\beta_1\)</span> is the regression coefficient (the expected change in <span class="math notranslate nohighlight">\(y\)</span> per unit change in <span class="math notranslate nohighlight">\(x\)</span>), and <span class="math notranslate nohighlight">\(\epsilon\)</span> represents the error term, accounting for the variability in <span class="math notranslate nohighlight">\(y\)</span> that cannot be explained by the linear relationship with <span class="math notranslate nohighlight">\(x\)</span>. In most of the cases, we will assume <span class="math notranslate nohighlight">\(\epsilon\)</span> to be normally distributed around zero with finite variance, <span class="math notranslate nohighlight">\(\epsilon \sim \mathcal{N}(0, \sigma^2)\)</span>. In the case of <span class="math notranslate nohighlight">\(p\)</span> predictors and <span class="math notranslate nohighlight">\(n\)</span> observations, the model is referred to as a multiple linear regression model, and we can express it in matrix notation, as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1630aa18-4127-4e4c-b21e-ab2a85a11d11">
-<span class="eqno">(95)<a class="headerlink" href="#equation-1630aa18-4127-4e4c-b21e-ab2a85a11d11" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ac9568a6-73fb-47cf-b0b8-acf06949fdb9">
+<span class="eqno">(95)<a class="headerlink" href="#equation-ac9568a6-73fb-47cf-b0b8-acf06949fdb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{y}=\mathbf{X} \boldsymbol{\beta}+\boldsymbol{\epsilon}
 \end{equation}\]</div>
 <p>where</p>
@@ -601,13 +601,13 @@ y_n
 <section id="ordinary-least-squares">
 <h2>Ordinary least squares<a class="headerlink" href="#ordinary-least-squares" title="Link to this heading">#</a></h2>
 <p>In regression analysis, the most common method to estimate the unknown model parameters <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> is ordinary least squares (OLS). The OLS method seeks to find the coefficients that minimize the sum of squares of the errors, <span class="math notranslate nohighlight">\(\epsilon_i\)</span>. Recall that a key assumption in linear regression models is that <span class="math notranslate nohighlight">\(\{\epsilon_i\}\)</span> are uncorrelated random variables. We aim to find the vector of least squares estimators <span class="math notranslate nohighlight">\(\boldsymbol{{beta}}\)</span> that minimizes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df00863a-eb27-4d65-abc3-45c30c8e30ec">
-<span class="eqno">(96)<a class="headerlink" href="#equation-df00863a-eb27-4d65-abc3-45c30c8e30ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-caa0cede-51eb-4adb-8694-7cf45af80739">
+<span class="eqno">(96)<a class="headerlink" href="#equation-caa0cede-51eb-4adb-8694-7cf45af80739" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathcal{L} = \sum_{i=1}^{n} \epsilon_i^2 = \boldsymbol{\epsilon}^\top\boldsymbol{\epsilon} 
 \end{equation}\]</div>
 <p>Because <span class="math notranslate nohighlight">\(\mathbf{y}=\mathbf{X} \boldsymbol{\beta}+\boldsymbol{\epsilon}\)</span>, we can express <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon} = \mathbf{y} - \mathbf{X} \boldsymbol{\beta}\)</span>. So, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5a08aa01-26d3-4fac-bc3a-572606f7e14b">
-<span class="eqno">(97)<a class="headerlink" href="#equation-5a08aa01-26d3-4fac-bc3a-572606f7e14b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4dd86601-ae96-47f7-a653-eba81e6a4135">
+<span class="eqno">(97)<a class="headerlink" href="#equation-4dd86601-ae96-47f7-a653-eba81e6a4135" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathcal{L} 
     &amp;= (\mathbf{y} - \mathbf{X} \boldsymbol{\beta})^\top (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) \\
     &amp;= (\mathbf{y}^\top - \boldsymbol{\beta}^\top\mathbf{X}^\top) (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) \\
@@ -616,23 +616,23 @@ y_n
 \end{align}\]</div>
 <p>Note that <span class="math notranslate nohighlight">\(\mathbf{y}^\top \mathbf{X} \boldsymbol{\beta}\)</span> is a scalar, because we have <span class="math notranslate nohighlight">\((1 \times n) \times (n \times p) \times (p \times 1)\)</span>, resulting in a <span class="math notranslate nohighlight">\(1 \times 1\)</span> matrix, which is a scalar. Similarly, <span class="math notranslate nohighlight">\(\boldsymbol{\beta}^\top\mathbf{X}^\top \mathbf{y}\)</span>, having dimensions <span class="math notranslate nohighlight">\((1 \times p) \times (p \times n) \times (n \times 1)\)</span>, also results in a <span class="math notranslate nohighlight">\(1 \times 1\)</span> matrix, or scalar. Moreover, due to the properties of transposition and the commutative property of scalar multiplication, these two expressions are not only scalars but also represent the same scalar value. Transposing a scalar does not affect its value, thus we have <span class="math notranslate nohighlight">\((\mathbf{y}^\top \mathbf{X} \boldsymbol{\beta})^\top=\boldsymbol{\beta}^\top\mathbf{X}^\top \mathbf{y}\)</span>. Remind that, in matrix multiplication, if we transpose the product of two matrices, we reverse the order of multiplication and transpose each matrix: <span class="math notranslate nohighlight">\((\mathbf{A}\mathbf{B})^\top=\mathbf{B}^\top \mathbf{A}^\top\)</span>.</p>
 <p>Now, we need to get the derivative of <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> with respect to the parameter vector <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> and set it to zero. This way we will find the estimated coefficients <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-07b33854-dfd0-4163-a844-768598dd9b5e">
-<span class="eqno">(98)<a class="headerlink" href="#equation-07b33854-dfd0-4163-a844-768598dd9b5e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5a0766dd-3406-49ba-8d68-d22b3626d89e">
+<span class="eqno">(98)<a class="headerlink" href="#equation-5a0766dd-3406-49ba-8d68-d22b3626d89e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \frac{\partial \mathcal{L}}{\partial \boldsymbol{\beta}} \Bigr|_{\widehat{\boldsymbol{\beta}}} = - 2 \mathbf{X}^\top \mathbf{y} + 2 \mathbf{X}^\top \mathbf{X}\widehat{\boldsymbol{\beta}} = \mathbf{0}
 \end{equation}\]</div>
 <p>which simplifies to</p>
-<div class="amsmath math notranslate nohighlight" id="equation-755d189e-ac55-4bf2-8712-4e9f4d0bc79c">
-<span class="eqno">(99)<a class="headerlink" href="#equation-755d189e-ac55-4bf2-8712-4e9f4d0bc79c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-082bffdf-9d8a-42f5-beae-999d1d7467ca">
+<span class="eqno">(99)<a class="headerlink" href="#equation-082bffdf-9d8a-42f5-beae-999d1d7467ca" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{X}^\top \mathbf{X}\widehat{\boldsymbol{\beta}} = \mathbf{X}^\top \mathbf{y}
 \end{equation}\]</div>
 <p>Multiplying both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{X}^\top \mathbf{X}\)</span> we get the OLS estimate</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49e90a60-6e87-4bd1-96ed-d32ca3f812be">
-<span class="eqno">(100)<a class="headerlink" href="#equation-49e90a60-6e87-4bd1-96ed-d32ca3f812be" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e88cb37d-97f9-40a1-891a-9a3e86571061">
+<span class="eqno">(100)<a class="headerlink" href="#equation-e88cb37d-97f9-40a1-891a-9a3e86571061" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{\boldsymbol{\beta}} = (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}
 \end{equation}\]</div>
 <p>The matrix <span class="math notranslate nohighlight">\(\mathbf{X}^\top \mathbf{X}\)</span> is sometimes referred to as the Gram matrix or the moment matrix, because it contains the ``second moments’’ (i.e., variances and covariances) of the independent variables. The diagonal elements are the sums of squares of each predictor, and the off-diagonal elements represent the sums of cross-products (or covariances) between different predictors. The fitted regression model is then given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd5b4cb2-7fa3-4e73-be56-e950ec16641e">
-<span class="eqno">(101)<a class="headerlink" href="#equation-cd5b4cb2-7fa3-4e73-be56-e950ec16641e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e9aa6c3a-6f7a-43a5-becb-342939fd5d4e">
+<span class="eqno">(101)<a class="headerlink" href="#equation-e9aa6c3a-6f7a-43a5-becb-342939fd5d4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{\mathbf{y}} = \mathbf{X} \widehat{\boldsymbol{\beta}} = \mathbf{X}(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y} = \mathbf{H}\mathbf{y}
 \end{equation}\]</div>
 <p>where the matrix <span class="math notranslate nohighlight">\(\mathbf{H}\)</span> is referred to as the hat matrix or influence matrix. We can see how the fitted values at the data points used to estimate the model are linear combinations of the observed responses, with weights given by the hat matrix. Geometrically, this means that we find the fitted values by taking the vector of observed responses <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> and projecting it onto a certain plane, which is entirely defined by the values in <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. If we repeat our experiment (e.g., survey, observation) many times at the same locations <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>, we get different responses <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> every time. But <span class="math notranslate nohighlight">\(\mathbf{H}\)</span> does not change. The properties of the fitted values are thus largely determined by the properties of <span class="math notranslate nohighlight">\(\mathbf{H}\)</span>.</p>
@@ -641,8 +641,8 @@ y_n
 <h2>Expected value and variance of the least square estimators<a class="headerlink" href="#expected-value-and-variance-of-the-least-square-estimators" title="Link to this heading">#</a></h2>
 <p>Because we know that <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \sigma^2\mathbf{I}_n)\)</span>, we can say that <span class="math notranslate nohighlight">\(\mathbf{y} \sim \mathcal{N}(\mathbf{X} \boldsymbol{\beta}, \sigma^2\mathbf{I}_n)\)</span>. Since <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> follows a multivariate normal distribution, any linear combination of <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> is also multivariate normally distributed, including <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>. The expectation of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is <span class="math notranslate nohighlight">\(\mathbf{X} \boldsymbol{\beta}\)</span> because <span class="math notranslate nohighlight">\(\boldsymbol{\epsilon}\)</span> has expectation zero. Similarly, since <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span> is a linear transformation of <span class="math notranslate nohighlight">\(\mathbf{y}\)</span>, it is also normally distributed.</p>
 <p>Assuming the model is correct, we can first evaluate the bias of the OLS estimator by looking at the expected value of <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span>, which is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c7c49c4-f4d3-4e63-908d-48b43868626a">
-<span class="eqno">(102)<a class="headerlink" href="#equation-0c7c49c4-f4d3-4e63-908d-48b43868626a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5578d0b6-5d45-4558-8b12-080e023d6e9f">
+<span class="eqno">(102)<a class="headerlink" href="#equation-5578d0b6-5d45-4558-8b12-080e023d6e9f" title="Permalink to this equation">#</a></span>\[\begin{align}
     \mathbb{E}[\widehat{\boldsymbol{\beta}}] &amp;= \mathbb{E}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}] \\
     &amp;= \mathbb{E}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top (\mathbf{X} \boldsymbol{\beta}+\boldsymbol{\epsilon})] \\
     &amp;= \mathbb{E}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{X} \boldsymbol{\beta}+(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top\boldsymbol{\epsilon})] \\
@@ -651,32 +651,32 @@ y_n
 \end{align}\]</div>
 <p>Thus, <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span> is an unbiased estimator of <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> if the model is correct. In the derivation of the expected value we used that <span class="math notranslate nohighlight">\(\mathbb{E}[\boldsymbol{\epsilon}]=\mathbf{0}\)</span> and that <span class="math notranslate nohighlight">\((\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{X}=\mathbf{I}\)</span>, and of course the expected value of the constant <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> is <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> itself.</p>
 <p>The variance property of <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span> is expressed by the covariance matrix</p>
-<div class="amsmath math notranslate nohighlight" id="equation-748834bb-2f5f-434f-9458-023d8675dfc8">
-<span class="eqno">(103)<a class="headerlink" href="#equation-748834bb-2f5f-434f-9458-023d8675dfc8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1391930c-0540-486d-96e8-514f29dedf59">
+<span class="eqno">(103)<a class="headerlink" href="#equation-1391930c-0540-486d-96e8-514f29dedf59" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Cov}[\widehat{\boldsymbol{\beta}}] = \mathbb{E}[(\widehat{\boldsymbol{\beta}}-\mathbb{E}[\widehat{\boldsymbol{\beta}}])(\widehat{\boldsymbol{\beta}}-\mathbb{E}[\widehat{\boldsymbol{\beta}}])^\top]
 \end{equation}\]</div>
 <p>which is a <span class="math notranslate nohighlight">\(p \times p\)</span> symmetric matrix whose <span class="math notranslate nohighlight">\(j\)</span>th diagonal element is the variance of <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}_j\)</span> and whose (<span class="math notranslate nohighlight">\(ij\)</span>)th off-diagonal element is the covariance between <span class="math notranslate nohighlight">\(\widehat{\beta}_i\)</span> and <span class="math notranslate nohighlight">\(\widehat{\beta}_j\)</span>. The
 covariance matrix of <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span> is found by applying a variance operator to <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e3c618e-233b-4c05-b486-523000e9b820">
-<span class="eqno">(104)<a class="headerlink" href="#equation-9e3c618e-233b-4c05-b486-523000e9b820" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cf2aef39-4164-445e-90b0-ff14bac772be">
+<span class="eqno">(104)<a class="headerlink" href="#equation-cf2aef39-4164-445e-90b0-ff14bac772be" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Cov}[\widehat{\boldsymbol{\beta}}] = \operatorname{Var}[\widehat{\boldsymbol{\beta}}] = \operatorname{Var}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}]
 \end{equation}\]</div>
 <p>Now let us remind that, in general, if a vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> has covariance matrix <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> we have that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9cde7dbe-1f7a-415f-baac-4cb30c172c8c">
-<span class="eqno">(105)<a class="headerlink" href="#equation-9cde7dbe-1f7a-415f-baac-4cb30c172c8c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a86e412c-4310-4f1e-aa58-54b9af9f0fd6">
+<span class="eqno">(105)<a class="headerlink" href="#equation-a86e412c-4310-4f1e-aa58-54b9af9f0fd6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Cov}[\mathbf{A}\mathbf{v}] = \mathbf{A} \mathbf{C} \mathbf{A}^\top
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a linear transformation. Thus, knowing that <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> has a covariance equal to <span class="math notranslate nohighlight">\(\sigma^2\mathbf{I}_n\)</span>, we get that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-091a38ce-4c66-484c-82eb-61b33e4e8e4c">
-<span class="eqno">(106)<a class="headerlink" href="#equation-091a38ce-4c66-484c-82eb-61b33e4e8e4c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3947be6b-9dde-4cec-9302-f4ebb18e7fcc">
+<span class="eqno">(106)<a class="headerlink" href="#equation-3947be6b-9dde-4cec-9302-f4ebb18e7fcc" title="Permalink to this equation">#</a></span>\[\begin{align}
     \operatorname{Var}[\widehat{\boldsymbol{\beta}}] &amp;= \operatorname{Var}[(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}]\\ &amp;= (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top(\sigma^2\mathbf{I}_n)((\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top)^\top \\
     &amp;= \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{I}_n((\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top)^\top \\
     &amp;= \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{X}(\mathbf{X}^\top \mathbf{X})^{-1} \\
     &amp;= \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}
 \end{align}\]</div>
 <p>Thus, we have that our estimator is normally distributed around the true parameter vector as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dac1c85c-e4d4-4be2-afc2-8db6cdd79ec2">
-<span class="eqno">(107)<a class="headerlink" href="#equation-dac1c85c-e4d4-4be2-afc2-8db6cdd79ec2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-83aead7b-558b-4e87-a082-d5e79d5f8d45">
+<span class="eqno">(107)<a class="headerlink" href="#equation-83aead7b-558b-4e87-a082-d5e79d5f8d45" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{\boldsymbol{\beta}}|\mathbf{X} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})
 \end{equation}\]</div>
 <section id="first-order-model-example">
@@ -909,7 +909,7 @@ Dep. Variable:                      y   R-squared:                       0.860
 Model:                            OLS   Adj. R-squared:                  0.859
 Method:                 Least Squares   F-statistic:                     1013.
 Date:                Mon, 08 Jul 2024   Prob (F-statistic):               0.00
-Time:                        15:12:52   Log-Likelihood:                -1415.6
+Time:                        15:23:17   Log-Likelihood:                -1415.6
 No. Observations:                1000   AIC:                             2845.
 Df Residuals:                     993   BIC:                             2879.
 Df Model:                           6                                         
@@ -971,24 +971,24 @@ Notes:
 <section id="test-for-overall-significance-of-the-model">
 <h4>Test for overall significance of the model<a class="headerlink" href="#test-for-overall-significance-of-the-model" title="Link to this heading">#</a></h4>
 <p>The test for significance of regression is a test to determine if there is a linear relationship between the response variable <span class="math notranslate nohighlight">\(y\)</span> and a subset of the regressor variables <span class="math notranslate nohighlight">\(x_1, x_2,\ldots, x_p\)</span>. The appropriate hypotheses are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cfd31567-b5b1-415a-9194-e7e724e0a1d6">
-<span class="eqno">(108)<a class="headerlink" href="#equation-cfd31567-b5b1-415a-9194-e7e724e0a1d6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3b354695-f03a-4a60-bc85-f9ec29444b9b">
+<span class="eqno">(108)<a class="headerlink" href="#equation-3b354695-f03a-4a60-bc85-f9ec29444b9b" title="Permalink to this equation">#</a></span>\[\begin{align}
     H_0 &amp;: \beta_1 = \beta_2 = \ldots = \beta_p = 0 \\
     H_1 &amp;: \beta_j \neq 0 \quad \text{for at least one } j
 \end{align}\]</div>
 <p>This test procedure is called an analysis of variance (ANOVA) because it is based on a decomposition of the total variability in the response variable <span class="math notranslate nohighlight">\(y\)</span>. The total variability in the response variable is measured by the total sum of squares (<span class="math notranslate nohighlight">\(\operatorname{SS}_T\)</span>), calculated as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cecfafea-6db9-4be6-8558-fa719854a264">
-<span class="eqno">(109)<a class="headerlink" href="#equation-cecfafea-6db9-4be6-8558-fa719854a264" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-28207c11-d6ee-49a7-afbb-d84e8618ba13">
+<span class="eqno">(109)<a class="headerlink" href="#equation-28207c11-d6ee-49a7-afbb-d84e8618ba13" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{SS}_T = \sum_{i=1}^{n} (y_i - \bar{y})^2
 \end{equation}\]</div>
 <p>which is used as a measure of overall variability in the data. Intuitively, this is reasonable because if we were to divide <span class="math notranslate nohighlight">\(\operatorname{SS}_T\)</span> by the appropriate number of degrees of freedom, we would have the sample variance of the <span class="math notranslate nohighlight">\(y\)</span>s. This <span class="math notranslate nohighlight">\(\operatorname{SS}_T\)</span>  is partitioned into</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f608ab66-23dc-400c-aabc-123f815690b3">
-<span class="eqno">(110)<a class="headerlink" href="#equation-f608ab66-23dc-400c-aabc-123f815690b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4ecac33b-4ad5-4569-b070-841edf99ef1f">
+<span class="eqno">(110)<a class="headerlink" href="#equation-4ecac33b-4ad5-4569-b070-841edf99ef1f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{SS}_T = \operatorname{SS}_M + \operatorname{SS}_E
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\operatorname{SS}_M\)</span> is the sum of squares due to the regression model(<span class="math notranslate nohighlight">\(\operatorname{SS}_M\)</span>), measuring the explained variation in <span class="math notranslate nohighlight">\( y \)</span>, calculated as <span class="math notranslate nohighlight">\( \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2 \)</span>; and <span class="math notranslate nohighlight">\(\operatorname{SS}_E\)</span> is the sum of squares due to error (<span class="math notranslate nohighlight">\(\operatorname{SS}_E\)</span>), measuring the unexplained variation in <span class="math notranslate nohighlight">\( y \)</span>, calculated as <span class="math notranslate nohighlight">\( \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \)</span>. <span class="math notranslate nohighlight">\(\operatorname{SS}_M\)</span> measures the explained variability in the dependent variable due to the independent variables in the regression model. Under the null hypothesis (which typically states that all regression coefficients except the intercept are zero), <span class="math notranslate nohighlight">\(\operatorname{SS}_M\)</span> captures variability that is purely due to chance. To reject the null hypotheses and say that a significant part of the variability is explained by the model (thus justifying the existence of at least one coefficient), we would like <span class="math notranslate nohighlight">\(\operatorname{SS}_M\)</span> to be significantly larger than <span class="math notranslate nohighlight">\(\operatorname{SS}_R\)</span>. More formally, we use the test statistic is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02ed5e88-a6fd-450e-af0f-bd42d06145af">
-<span class="eqno">(111)<a class="headerlink" href="#equation-02ed5e88-a6fd-450e-af0f-bd42d06145af" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0ff435cd-7832-4a87-9515-400ab2e4fd78">
+<span class="eqno">(111)<a class="headerlink" href="#equation-0ff435cd-7832-4a87-9515-400ab2e4fd78" title="Permalink to this equation">#</a></span>\[\begin{equation}
     F_0 = \frac{\operatorname{SS}_M/p}{\operatorname{SS}_E/(n-p-1)} = \frac{\operatorname{MS}_M}{\operatorname{MS}_E}
 \end{equation}\]</div>
 <p>Since the residuals are assumed to be normally distributed, <span class="math notranslate nohighlight">\(\operatorname{SS}_M\)</span> and <span class="math notranslate nohighlight">\(\operatorname{SS}_E\)</span> follow a chi-squared distribution, and their ratio follows an F-distribution. This is why the critical value for the test is given <span class="math notranslate nohighlight">\(F_{\alpha, p, n-p-1}\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> is the confidence level. We reject the null hypothesis <span class="math notranslate nohighlight">\(H_0\)</span> if <span class="math notranslate nohighlight">\(F_0 &gt; F_{\alpha, p, n-p-1}\)</span>. \textbf{ANOVA one factor at the time:} If we have five factors (A, B, C, D, E) and we want to find which factors are significant for a given significance level <span class="math notranslate nohighlight">\(\alpha\)</span>, we compare <span class="math notranslate nohighlight">\(MS_i/MS_E\)</span> for <span class="math notranslate nohighlight">\(i=A, \ldots, E\)</span> where the <span class="math notranslate nohighlight">\(MS_E\)</span> is usually the pure error that comes from replications (or the whole error?).</p>
@@ -996,29 +996,29 @@ Notes:
 <section id="tests-on-individual-coefficients">
 <h4>Tests on individual coefficients<a class="headerlink" href="#tests-on-individual-coefficients" title="Link to this heading">#</a></h4>
 <p>Adding a variable to the regression model always causes the sum of squares for the regression model (<span class="math notranslate nohighlight">\(\operatorname{SS}_M\)</span>) to increase and the error sum of squares to decrease. The hypotheses for testing the significance of any individual regression coefficient <span class="math notranslate nohighlight">\(\beta_j\)</span> are</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd7d061c-87a1-41e3-9761-89c0a8ab2e45">
-<span class="eqno">(112)<a class="headerlink" href="#equation-bd7d061c-87a1-41e3-9761-89c0a8ab2e45" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e8effcc0-d872-471f-8e43-ffc39087fd75">
+<span class="eqno">(112)<a class="headerlink" href="#equation-e8effcc0-d872-471f-8e43-ffc39087fd75" title="Permalink to this equation">#</a></span>\[\begin{align}
     H_0 &amp;: \beta_j = 0 \\
     H_1 &amp;: \beta_j \neq 0
 \end{align}\]</div>
 <p>If <span class="math notranslate nohighlight">\(H_0\)</span> is not rejected, then this indicates that <span class="math notranslate nohighlight">\(x_j\)</span> can be deleted from the model. However, note that this is truly a partial or marginal test, because the regression coefficients depend on all the other regressor variables <span class="math notranslate nohighlight">\(x_i\)</span>, with <span class="math notranslate nohighlight">\(i \neq j\)</span>, that are in the model. Because we know that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0588fab3-f738-4407-85b8-c8f835505926">
-<span class="eqno">(113)<a class="headerlink" href="#equation-0588fab3-f738-4407-85b8-c8f835505926" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0e89b047-42b7-49bc-b390-423cdffa668b">
+<span class="eqno">(113)<a class="headerlink" href="#equation-0e89b047-42b7-49bc-b390-423cdffa668b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{\boldsymbol{\beta}} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})
 \end{equation}\]</div>
 <p>For the <span class="math notranslate nohighlight">\(i\)</span>th coefficient, we do have that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7a5d0a42-ee95-46f1-9117-df11498aef47">
-<span class="eqno">(114)<a class="headerlink" href="#equation-7a5d0a42-ee95-46f1-9117-df11498aef47" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c79413e8-47d1-482e-813d-aebe45a7ed32">
+<span class="eqno">(114)<a class="headerlink" href="#equation-c79413e8-47d1-482e-813d-aebe45a7ed32" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{\beta}_i \sim \mathcal{N}(\beta_i, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii})
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii}\)</span> is the diagonal element of the covariance matrix <span class="math notranslate nohighlight">\(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\)</span> corresponding to <span class="math notranslate nohighlight">\(b_j\)</span>. The test statistic is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e6c82ffb-a0c7-4d50-85ea-3a1fe440da2c">
-<span class="eqno">(115)<a class="headerlink" href="#equation-e6c82ffb-a0c7-4d50-85ea-3a1fe440da2c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1836d501-636c-4a33-993b-3c96b113afef">
+<span class="eqno">(115)<a class="headerlink" href="#equation-1836d501-636c-4a33-993b-3c96b113afef" title="Permalink to this equation">#</a></span>\[\begin{equation}
     t_0 = \frac{\widehat{\beta}_i}{\sqrt{\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii}}}
 \end{equation}\]</div>
 <p>The denominator <span class="math notranslate nohighlight">\(\sqrt{\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{ii}}\)</span> is also called standard error of the regression coefficients <span class="math notranslate nohighlight">\(\widehat{\beta}_i\)</span>, so we can also write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4c893fbf-4d86-47df-bdad-60e73c87c12e">
-<span class="eqno">(116)<a class="headerlink" href="#equation-4c893fbf-4d86-47df-bdad-60e73c87c12e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c67913e-6bd4-4874-b22e-b9c12ad5dc2c">
+<span class="eqno">(116)<a class="headerlink" href="#equation-0c67913e-6bd4-4874-b22e-b9c12ad5dc2c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     t_0 = \frac{\widehat{\beta}_i}{\text{se}(\widehat{\beta}_i)}
 \end{equation}\]</div>
 <p>The distribution is a Student’s t distribution because the coefficients itself is normally distributed, while the estimated variance has a Chi-square distribution. So the ratio between a normal and the squared root of a Chi-square follows a t distribution.</p>
@@ -1027,62 +1027,62 @@ Notes:
 <h4>Confidence intervals on individual regression coefficients<a class="headerlink" href="#confidence-intervals-on-individual-regression-coefficients" title="Link to this heading">#</a></h4>
 <p>A confidence interval, from the frequentist standpoint, is an interval estimate of a parameter <span class="math notranslate nohighlight">\(\beta_j\)</span> that, if the same data collection and analysis procedure were repeated many times, would contain the true parameter value a certain percentage (e.g., 95%) of the time <span class="math notranslate nohighlight">\(\beta_j\)</span>. This is because in frequentist statistics, parameters are considered fixed but unknown quantities. The data are random, which means the calculated confidence interval varies from sample to sample. Saying a 95% confidence interval for a parameter is <span class="math notranslate nohighlight">\([a, b]\)</span> means that if we were to repeat the study many times, 95% of such calculated intervals would contain the true parameter value. It does not mean there is a 95% probability that the true parameter lies within that specific interval for the observed data. Conversely, Bayesian methods treat parameters as random variables and provide a probability distribution (the posterior distribution) that quantifies uncertainty about parameter values given the observed data. The uncertainty about a parameter is directly quantified by its posterior distribution. A 95% credible interval from Bayesian analysis means there is a 95% probability that the parameter lies within this interval, given the data and the prior information. Frequentist confidence intervals do not allow for probabilistic statements about the parameter being within the interval for a given dataset. In contrast, Bayesian credible intervals provide a probability that the parameter lies within the interval, given the data and prior.</p>
 <p>So far, we have demonstrated that <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}} \sim \mathcal{N}(\boldsymbol{\beta}, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})\)</span>. This also implied that the marginal distribution for any regression coefficient is <span class="math notranslate nohighlight">\(\widehat{\beta}_j \sim \mathcal{N}(\beta_j, \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj})\)</span>. Then, we can say that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-709a8c47-2d89-4237-aa32-65b176b2991c">
-<span class="eqno">(117)<a class="headerlink" href="#equation-709a8c47-2d89-4237-aa32-65b176b2991c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ea8ea63-8b46-40fe-ae35-5351f240b46b">
+<span class="eqno">(117)<a class="headerlink" href="#equation-7ea8ea63-8b46-40fe-ae35-5351f240b46b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \frac{\widehat{\beta}_j - \beta_j}{\sqrt{\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}}} \sim \mathcal{N}(0, 1) 
 \end{equation}\]</div>
 <p>Since we do not know <span class="math notranslate nohighlight">\(\sigma^2\)</span>, we used its estimate <span class="math notranslate nohighlight">\(\widehat{\sigma}^2\)</span> obtained through the <span class="math notranslate nohighlight">\(\operatorname{MS}_E\)</span>, which has a <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution with <span class="math notranslate nohighlight">\(n-p\)</span> degrees of freedom. Thus, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-405cda9e-c973-4248-9a8d-9ef2a4843d99">
-<span class="eqno">(118)<a class="headerlink" href="#equation-405cda9e-c973-4248-9a8d-9ef2a4843d99" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3d9fd8b5-5196-425a-aa2f-4237fc2419c0">
+<span class="eqno">(118)<a class="headerlink" href="#equation-3d9fd8b5-5196-425a-aa2f-4237fc2419c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \frac{\widehat{\beta}_j - \beta_j}{\sqrt{\widehat{\sigma}^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}}} \sim t_{n-p}
 \end{equation}\]</div>
 <p>We can then define a 100<span class="math notranslate nohighlight">\((1-\alpha)\%\)</span> confidence interval for the regression coefficient <span class="math notranslate nohighlight">\(\beta_j\)</span>, <span class="math notranslate nohighlight">\(j = 0,1,\ldots, p\)</span>, as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c093cf44-f2e2-4f16-912e-13a8454489e6">
-<span class="eqno">(119)<a class="headerlink" href="#equation-c093cf44-f2e2-4f16-912e-13a8454489e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47b7b973-df12-49e5-991a-f71fa0e23b51">
+<span class="eqno">(119)<a class="headerlink" href="#equation-47b7b973-df12-49e5-991a-f71fa0e23b51" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{\beta}_j - t_{\alpha/2, n-p} \sqrt{\hat{\sigma}^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}} \leq \beta_j \leq \widehat{\beta}_j + t_{\alpha/2, n-p} \sqrt{\hat{\sigma}^2 (\mathbf{X}^\top \mathbf{X})^{-1}_{jj}}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(t_{\alpha/2, n-p}\)</span> is the critical value from the t-distribution for <span class="math notranslate nohighlight">\(\alpha/2\)</span> and <span class="math notranslate nohighlight">\(n-p\)</span> degrees of freedom. This can also be written in terms of the standard error of the estimated coefficient <span class="math notranslate nohighlight">\(b_j\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0bc7a9a5-1508-43b2-97ad-0e490e1f71b4">
-<span class="eqno">(120)<a class="headerlink" href="#equation-0bc7a9a5-1508-43b2-97ad-0e490e1f71b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43482207-5c55-47be-820b-cb5449423e93">
+<span class="eqno">(120)<a class="headerlink" href="#equation-43482207-5c55-47be-820b-cb5449423e93" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{\beta}_j - t_{\alpha/2, n-p} \text{se}(\widehat{\beta}_j) \leq \beta_j \leq \widehat{\beta}_j + t_{\alpha/2, n-p} \text{se}(\widehat{\beta}_j)
 \end{equation}\]</div>
 </section>
 <section id="confidence-interval-on-the-mean-response-and-prediction-variance">
 <h4>Confidence interval on the mean response and prediction variance<a class="headerlink" href="#confidence-interval-on-the-mean-response-and-prediction-variance" title="Link to this heading">#</a></h4>
 <p>We can define a confidence interval on the mean response at a particular point <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span>. The fitted value at this particular point is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-66d7056b-3172-4e88-afd8-f9838624e264">
-<span class="eqno">(121)<a class="headerlink" href="#equation-66d7056b-3172-4e88-afd8-f9838624e264" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d5ad4f59-5ccd-4714-9713-27663e40efb4">
+<span class="eqno">(121)<a class="headerlink" href="#equation-d5ad4f59-5ccd-4714-9713-27663e40efb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{y}_0 = \mathbf{x}_0^\top \widehat{\boldsymbol{\beta}}
 \end{equation}\]</div>
 <p>Because we have <span class="math notranslate nohighlight">\(\mathbf{y} \sim \mathcal{N}(\mathbf{X} \boldsymbol{\beta}, \sigma^2\mathbf{I}_n)\)</span>, suggesting how <span class="math notranslate nohighlight">\(\mathbb{E}[y|\mathbf{X}] = \mathbf{X} \boldsymbol{\beta}\)</span>, we also have that <span class="math notranslate nohighlight">\(\mathbb{E}[y|\mathbf{x}_0] = \mathbf{x}_0^\top \boldsymbol{\beta}\)</span>. Then, we have</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cda6f177-1b68-4003-b32a-540af82f1e43">
-<span class="eqno">(122)<a class="headerlink" href="#equation-cda6f177-1b68-4003-b32a-540af82f1e43" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-00324d03-d038-4e14-95ce-39ba4449b73e">
+<span class="eqno">(122)<a class="headerlink" href="#equation-00324d03-d038-4e14-95ce-39ba4449b73e" title="Permalink to this equation">#</a></span>\[\begin{equation}
      \mathbb{E}[\widehat{y}_0] = \mathbb{E}[\mathbf{x}_0^\top \widehat{\boldsymbol{\beta}}] = \mathbf{x}_0^\top \boldsymbol{\beta}
 \end{equation}\]</div>
 <p>because <span class="math notranslate nohighlight">\(\mathbb{E}[\widehat{\boldsymbol{\beta}}] = \boldsymbol{\beta}\)</span>. Thus, <span class="math notranslate nohighlight">\(\widehat{y}_0\)</span> is an unbiased estimator of <span class="math notranslate nohighlight">\(\mathbb{E}[y|\mathbf{x}_0]\)</span>. Since <span class="math notranslate nohighlight">\(\widehat{y}_0\)</span> is a linear combination of <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span>, which has a variance of <span class="math notranslate nohighlight">\(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}\)</span>, the variance of <span class="math notranslate nohighlight">\(\widehat{y}_0\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8bcbe06c-700c-4cbb-ba57-f16934be5720">
-<span class="eqno">(123)<a class="headerlink" href="#equation-8bcbe06c-700c-4cbb-ba57-f16934be5720" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3d9bba20-baae-4b0b-8c5a-6ab161a17673">
+<span class="eqno">(123)<a class="headerlink" href="#equation-3d9bba20-baae-4b0b-8c5a-6ab161a17673" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{Var}[\widehat{y}_0] = \operatorname{Var}\left[\mathbf{x}_0^\top \widehat{\boldsymbol{\beta}}\right] = \mathbf{x}_0^\top(\sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1})\mathbf{x}_0 = \sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}\]</div>
 <p>Then, we can define the 100(1-<span class="math notranslate nohighlight">\(\alpha\)</span>)% confidence interval on the mean response at point <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6a2be4c2-aec6-4ac0-989c-44b03aac2beb">
-<span class="eqno">(124)<a class="headerlink" href="#equation-6a2be4c2-aec6-4ac0-989c-44b03aac2beb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bc5109f1-4e31-4859-9d63-71506c372854">
+<span class="eqno">(124)<a class="headerlink" href="#equation-bc5109f1-4e31-4859-9d63-71506c372854" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \widehat{y}_0 - t_{\alpha/2, n-p} \sqrt{\sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0} \leq \mathbb{E}[y|\mathbf{x}_0] \leq \widehat{y}_0 + t_{\alpha/2, n-p} \sqrt{\sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0}
 \end{equation}\]</div>
 <p>In general, we can define the <strong>prediction variance (PV)</strong> of the fitted value at location <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ba5ff02-48bb-4caf-9033-c2737063ddbf">
-<span class="eqno">(125)<a class="headerlink" href="#equation-0ba5ff02-48bb-4caf-9033-c2737063ddbf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-626f8a38-8e44-4149-b9f1-cbb46490a184">
+<span class="eqno">(125)<a class="headerlink" href="#equation-626f8a38-8e44-4149-b9f1-cbb46490a184" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{PV} = \operatorname{Var}[\widehat{y}_0] = \sigma^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}\]</div>
 <p>Then, the <strong>unscaled prediction variance (UPV)</strong> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42bbc79f-7aee-48bf-b933-f4fd1fdd38fc">
-<span class="eqno">(126)<a class="headerlink" href="#equation-42bbc79f-7aee-48bf-b933-f4fd1fdd38fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e8a2491c-a5f2-43b9-bcad-a26377c15bab">
+<span class="eqno">(126)<a class="headerlink" href="#equation-e8a2491c-a5f2-43b9-bcad-a26377c15bab" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{UPV} = \frac{\operatorname{Var}[\widehat{y}_0]}{\sigma^2} = \mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}\]</div>
 <p>The main benefit of the UPV is that it can be used during the design selection phase. The division
 by <span class="math notranslate nohighlight">\(\sigma^2\)</span> means that \underline{UPV is a function of only the design matrix} and does not require data to have been collected. UPV provides a way to quantify the precision of the predictions made by a regression model at specific points. It tells us how much the predicted value at a certain point <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> is expected to vary, due to the variability in the estimated regression coefficients, but without considering the inherent variability of the response itself. The key intuition is that since <span class="math notranslate nohighlight">\(\widehat{\boldsymbol{\beta}}\)</span> carries variance, any prediction made using these estimates also inherits variance (i.e., uncertainty propagation?). UPV connects parameter estimation to prediction variance by translating the uncertainty in the model’s coefficients into the uncertainty of the model’s predictions. If we have already collected data, we can try to estimate <span class="math notranslate nohighlight">\(\sigma^2\)</span> using the <span class="math notranslate nohighlight">\(\operatorname{MS}_E\)</span>. Then, we can define the <strong>estimated prediction variance (EPV)</strong> as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7bf36b72-b824-481d-8828-c48442a450fd">
-<span class="eqno">(127)<a class="headerlink" href="#equation-7bf36b72-b824-481d-8828-c48442a450fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06ffc7c2-773f-4035-a262-0e6e8f1e1365">
+<span class="eqno">(127)<a class="headerlink" href="#equation-06ffc7c2-773f-4035-a262-0e6e8f1e1365" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \operatorname{EPV} = \widehat{\sigma}^2\mathbf{x}_0^\top(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{x}_0
 \end{equation}\]</div>
 </section>
@@ -1094,8 +1094,8 @@ by <span class="math notranslate nohighlight">\(\sigma^2\)</span> means that \un
 <section id="lasso-regression-l1-penalty">
 <h3>Lasso Regression (L1 Penalty)<a class="headerlink" href="#lasso-regression-l1-penalty" title="Link to this heading">#</a></h3>
 <p>The least absolute shrinkage and selection operator (lasso) regression introduces a penalty term equal to the absolute value of the magnitude of coefficients to the loss function. The objective function of Lasso regression is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e797bf5f-ca66-4815-9773-24fa0d655c0c">
-<span class="eqno">(128)<a class="headerlink" href="#equation-e797bf5f-ca66-4815-9773-24fa0d655c0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f8e555ed-0987-41b2-9940-c4246cf87e79">
+<span class="eqno">(128)<a class="headerlink" href="#equation-f8e555ed-0987-41b2-9940-c4246cf87e79" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{minimize} \; \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - x_i^\top \beta)^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is a regularization parameter that controls the strength of the penalty.</p>
@@ -1109,8 +1109,8 @@ by <span class="math notranslate nohighlight">\(\sigma^2\)</span> means that \un
 <section id="ridge-regression-l2-penalty">
 <h3>Ridge Regression (L2 Penalty)<a class="headerlink" href="#ridge-regression-l2-penalty" title="Link to this heading">#</a></h3>
 <p>Ridge regression adds a penalty equal to the square of the magnitude of coefficients to the loss function. The formulation of Ridge regression is as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c034561-cbf3-469e-9e13-41bbb565b8f9">
-<span class="eqno">(129)<a class="headerlink" href="#equation-6c034561-cbf3-469e-9e13-41bbb565b8f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cde416ad-1aad-4689-b982-b681643950bf">
+<span class="eqno">(129)<a class="headerlink" href="#equation-cde416ad-1aad-4689-b982-b681643950bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{minimize} \; \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - x_i^\top \beta)^2 + \lambda \sum_{j=1}^{p} \beta_j^2 \right\},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the regularization parameter.</p>
@@ -1124,8 +1124,8 @@ by <span class="math notranslate nohighlight">\(\sigma^2\)</span> means that \un
 <section id="elastic-net-combination-of-l1-and-l2-penalties">
 <h3>Elastic Net (combination of L1 and L2 penalties)<a class="headerlink" href="#elastic-net-combination-of-l1-and-l2-penalties" title="Link to this heading">#</a></h3>
 <p>Elastic Net combines the penalties of Lasso and Ridge, incorporating both the L1 and L2 penalty terms. The objective function for Elastic Net is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5062d5d2-b11f-44ab-941e-cca59b4a0d61">
-<span class="eqno">(130)<a class="headerlink" href="#equation-5062d5d2-b11f-44ab-941e-cca59b4a0d61" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-098a32ff-ec4d-409c-b775-e48f62a07c21">
+<span class="eqno">(130)<a class="headerlink" href="#equation-098a32ff-ec4d-409c-b775-e48f62a07c21" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{minimize} \; \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - x_i^\top \beta)^2 + \lambda_1 \sum_{j=1}^{p} |\beta_j| + \frac{\lambda_2}{2} \sum_{j=1}^{p} \beta_j^2 \right\},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda_1\)</span> and <span class="math notranslate nohighlight">\(\lambda_2\)</span> are parameters that control the strength of the L1 and L2 penalties, respectively.</p>
