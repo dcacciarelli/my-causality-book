@@ -407,7 +407,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -423,6 +425,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -435,7 +446,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="preface">
 <h1>Preface<a class="headerlink" href="#preface" title="Link to this heading">#</a></h1>
 <p>This work-in-progress book is designed to provide comprehensive tutorials on causal inference methodologies. This book explains key concepts in this rapidly growing research area and showcases potential applications within electricity markets.</p>
-<p><strong>Prerequisites</strong></p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h2>
 <p>To get the most out of this book, it is recommended that readers have a basic understanding of:</p>
 <ul class="simple">
 <li><p><strong>Statistics and probability</strong>: familiarity with basic statistical concepts and probability theory.</p></li>
@@ -443,7 +455,9 @@ document.write(`
 <li><p><strong>Machine learning</strong>: an understanding of linear regression models, and an overview of machine learning concepts.</p></li>
 </ul>
 <p>If you feel like you need a refresher, in the Appendix of this book you can find a <strong>crash course</strong> to review these essential concepts. These chapters are designed to help you brush up on the foundational knowledge required to fully engage with the material in this book. However, if you are already familiar with these concepts or prefer to go directly to the applied causal inference part, feel free to skip those chapters.</p>
-<p><strong>Learning objectives</strong></p>
+</section>
+<section id="learning-objectives">
+<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
 <p>By the end of this book, readers will be able to:</p>
 <ul class="simple">
 <li><p>Understand and apply causal inference techniques to analyse relationships between variables.</p></li>
@@ -472,6 +486,7 @@ document.write(`
 <li><p><a class="reference external" href="https://www.bradyneal.com/causal-inference-course">Introduction to Causal Inference from a Machine Learning Perspective</a></p></li>
 </ul>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -529,7 +544,21 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
