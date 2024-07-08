@@ -4,4 +4,4 @@ By [**Davide Cacciarelli**](https://sites.google.com/view/dcacciarelli) and [**P
 
 **Imperial College London**
 
-<img src="logo_thick.png" alt="cover photo" align="center" width="600px"/>
+<img src="logo.png" alt="cover photo" align="center" width="600px"/>
