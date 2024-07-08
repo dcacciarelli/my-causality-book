@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,7 +180,11 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -228,11 +232,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">26. Probability Theory and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">27. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">28. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">Machine Learning</a></li>
 </ul>
 
     </div>
@@ -431,7 +435,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="accumulated-local-effects">
-<h1><span class="section-number">18. </span>Accumulated Local Effects<a class="headerlink" href="#accumulated-local-effects" title="Link to this heading">#</a></h1>
+<h1>Accumulated Local Effects<a class="headerlink" href="#accumulated-local-effects" title="Link to this heading">#</a></h1>
 <p>Just like PDPs, accumulated local effects (ALE) plots are designed to investigate the impact of varying the levels of one feature on the predicted response. The main benefit of ALE plots is that they are deemed most effective in the presence of <strong>correlated variables</strong>.</p>
 <p><strong>Issues with PDPs</strong>: when features in a dataset are correlated, PDPs can be misleading. Since PDPs average predictions over the marginal distribution of the features, and do not consider the correlation patterns, they can sometimes result in <strong>unrealistic data points</strong>. For instance, if we predict electricity prices based on temperature, time of day, and day of the week, PDPs might consider unlikely combinations, such as high electricity prices at 3 AM on weekdays.</p>
 <p>There are two potential solutions to this issue:</p>
@@ -442,7 +446,7 @@ document.write(`
 <p>The second option is the one used by ALE plots, which compute <strong>differences in predictions within small intervals</strong>, ensuring the estimates are based on realistic data points. This approach makes ALE plots more reliable when features are correlated.</p>
 <p>In practice, the ALE for the <span class="math notranslate nohighlight">\(j\)</span>th feature, <span class="math notranslate nohighlight">\(x_j\)</span>, is estimated by:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-d93b7938-3bbf-4a94-9faf-59f468e6f863">
-<span class="eqno">(18.1)<a class="headerlink" href="#equation-d93b7938-3bbf-4a94-9faf-59f468e6f863" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(44)<a class="headerlink" href="#equation-d93b7938-3bbf-4a94-9faf-59f468e6f863" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}_{j,\text{ALE}}(x) = \sum_{k=1}^{k(x)} \frac{1}{n_j(k)} \sum_{i : x_j^{(i)} \in N_j(k)} \left( \hat{f}(z_{k,j}, x_{-j}^{(i)}) - \hat{f}(z_{k-1,j}, x_{-j}^{(i)}) \right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_j(k)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>th interval for feature <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(z_{k,j}\)</span> is the upper boundary of the <span class="math notranslate nohighlight">\(k\)</span>th interval, <span class="math notranslate nohighlight">\(x_{-j}^{(i)}\)</span> are all the other features except <span class="math notranslate nohighlight">\(x_j\)</span>, for the <span class="math notranslate nohighlight">\(i\)</span>th data point, and <span class="math notranslate nohighlight">\(n_j(k)\)</span> is the number of data points in the <span class="math notranslate nohighlight">\(k\)</span>th interval.</p>

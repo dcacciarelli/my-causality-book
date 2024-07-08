@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,7 +180,11 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -228,11 +232,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">26. Probability Theory and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">27. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">28. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">Machine Learning</a></li>
 </ul>
 
     </div>
@@ -448,7 +452,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="propensity-score-matching">
-<h1><span class="section-number">12. </span>Propensity Score Matching<a class="headerlink" href="#propensity-score-matching" title="Link to this heading">#</a></h1>
+<h1>Propensity Score Matching<a class="headerlink" href="#propensity-score-matching" title="Link to this heading">#</a></h1>
 <p>In many cases, we are interested in assessing the effectiveness of a campaign or other types of treatments. For example, let’s assume we are interested in evaluating the impact of a <strong>demand-response programme</strong> on the electricity consumption of a set of households. Suppose that households can join the demand-response programme by filling out a specific form. For those who join, the programme offers reduced pricing during off-peak hours. Our goal is to assess the effectiveness of this programme by comparing the electricity consumption of people who joined the programme (our <strong>treatment group</strong>) to those who did not (our <strong>control group</strong>).</p>
 <p>In an ideal scenario, if we were able to conduct a completely randomised experiment, we would have a balanced and diverse set of customers in both groups. In such a situation, if the possibility of joining the programme was as random as flipping a coin, any significant differences in consumption patterns between the two groups could be attributed to the special pricing offered by the programme.</p>
 <p>However, in real life, things are more complicated. Because people are not randomly assigned to the two groups, there may be characteristics of the people who voluntarily joined the programme that are the true causes of changes in consumption. For example, if a majority of the people who agreed to join the programme are retired, it is likely that they will use electricity during off-peak hours due to their lifestyle and not solely because of the reduced pricing. This is an example of <strong>selection bias</strong>.</p>
@@ -456,13 +460,13 @@ document.write(`
 <p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
 <p>In mathematical terms, we can define the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span> as the probability of a unit (e.g., customer) joining the demand-response programme given a set of covariates <span class="math notranslate nohighlight">\(x\)</span>:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-cb660842-0331-4445-bd30-14d816170da1">
-<span class="eqno">(12.1)<a class="headerlink" href="#equation-cb660842-0331-4445-bd30-14d816170da1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(31)<a class="headerlink" href="#equation-cb660842-0331-4445-bd30-14d816170da1" title="Permalink to this equation">#</a></span>\[\begin{equation}
    e(x) = P(T = 1 \mid X = x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is a binary indicator of treatment assignment (1 if joined the programme, 0 if not).</p>
 <p>Propensity scores are typically estimated using <strong>logistic regression</strong>, although other classification methods can be used. For example:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-d68ff9d2-6e21-407c-9d82-e1d53893926a">
-<span class="eqno">(12.2)<a class="headerlink" href="#equation-d68ff9d2-6e21-407c-9d82-e1d53893926a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(32)<a class="headerlink" href="#equation-d68ff9d2-6e21-407c-9d82-e1d53893926a" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
 \end{equation}\]</div>
 <p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching, such as:</p>
@@ -473,10 +477,10 @@ document.write(`
 <li><p><strong>Kernel matching</strong>: Weights all control units according to their distance from the treated unit’s propensity score.</p></li>
 </ol>
 <section id="example">
-<h2><span class="section-number">12.1. </span>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
 <p>Let’s walk through an example using Python to illustrate how to implement propensity score matching, estimate the treatment effect, and visualize the results.</p>
 <section id="data-generation">
-<h3><span class="section-number">12.1.1. </span>Data generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h3>
+<h3>Data generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h3>
 <p>We will use a synthetic dataset to simulate our scenario. Suppose our dataset includes the following columns:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">joined_program</span></code>: A binary indicator (1 if joined the program, 0 if not).</p></li>
@@ -594,7 +598,7 @@ document.write(`
 </div>
 </section>
 <section id="propensity-scores-estimation">
-<h3><span class="section-number">12.1.2. </span>Propensity scores estimation<a class="headerlink" href="#propensity-scores-estimation" title="Link to this heading">#</a></h3>
+<h3>Propensity scores estimation<a class="headerlink" href="#propensity-scores-estimation" title="Link to this heading">#</a></h3>
 <p>In this step, we use logistic regression to estimate the propensity scores, which represent the probability of joining the programme given the covariates (age, income, and household size).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -712,7 +716,7 @@ document.write(`
 <p>Before matching, it is common to see differences in the distributions, especially if certain covariates strongly influence whether households join the program. The initial (pre-matching) plot might show that the treated group has higher propensity scores on average, indicating that those who joined the program had characteristics that made them more likely to join. This bias is what matching aims to adjust for by finding control units with similar propensity scores.</p>
 </section>
 <section id="nearest-neighbor-matching">
-<h3><span class="section-number">12.1.3. </span>Nearest-neighbor matching<a class="headerlink" href="#nearest-neighbor-matching" title="Link to this heading">#</a></h3>
+<h3>Nearest-neighbor matching<a class="headerlink" href="#nearest-neighbor-matching" title="Link to this heading">#</a></h3>
 <p>We separate the treated (joined the program) and control (did not join the program) groups. Using the nearest-neighbor matching technique, we match each treated unit with the control unit that has the closest propensity score. The goal here is to match each treated unit (household that joined the programme) with one or more control units (households that did not join the programme) that have similar propensity scores. Here’s a detailed explanation of how we can do it:</p>
 <ul class="simple">
 <li><p>We separate the treated and control groups based on whether they joined the program or not.</p></li>
@@ -759,7 +763,7 @@ document.write(`
 <p>As we see here, after matching, we ideally want the distributions to overlap substantially, indicating that the treated and control groups are similar with respect to the covariates used to estimate the propensity scores.</p>
 </section>
 <section id="treatment-effect-estimation">
-<h3><span class="section-number">12.1.4. </span>Treatment effect estimation<a class="headerlink" href="#treatment-effect-estimation" title="Link to this heading">#</a></h3>
+<h3>Treatment effect estimation<a class="headerlink" href="#treatment-effect-estimation" title="Link to this heading">#</a></h3>
 <p>We calculate the Average Treatment Effect on the Treated (ATT) by comparing the average electricity consumption of the treated group to that of the matched control group.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -776,7 +780,7 @@ document.write(`
 </div>
 </section>
 <section id="visualising-results">
-<h3><span class="section-number">12.1.5. </span>Visualising results<a class="headerlink" href="#visualising-results" title="Link to this heading">#</a></h3>
+<h3>Visualising results<a class="headerlink" href="#visualising-results" title="Link to this heading">#</a></h3>
 <p>We can create some visualisations to compare the distributions of propensity scores and electricity consumption before and after matching.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

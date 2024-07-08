@@ -8,13 +8,16 @@ root: intro
 parts:
   - chapters:
     - file: preface
-    - file: notebooks/introduction_markets
-    - file: notebooks/introduction_causality
-    - file: notebooks/motivation
-    - file: notebooks/guide
+
+  - caption: Introduction
+    numbered: false
+    chapters:
+      - file: notebooks/introduction_markets
+      - file: notebooks/introduction_causality
+      - file: notebooks/guide
 
   - caption: I. Basic Concepts
-    numbered: true
+    numbered: false
     chapters:
       - file: notebooks/correlation_vs_causation
       - file: notebooks/DAG
@@ -22,7 +25,7 @@ parts:
       - file: notebooks/glossary
 
   - caption: II. Causal Discovery
-    numbered: true
+    numbered: false
     chapters:
       - file: notebooks/preface_causal_discovery
       - file: notebooks/semiparametric_direct_lingam
@@ -31,7 +34,7 @@ parts:
       - file: notebooks/structural_breaks_example
 
   - caption: III. Causal Inference
-    numbered: true 
+    numbered: false 
     chapters:
       - file: notebooks/preface_causal_inference
       - file: notebooks/instrumental_variables
@@ -41,7 +44,7 @@ parts:
       - file: notebooks/interrupted_time_series
 
   - caption: IV. Interpretability
-    numbered: true
+    numbered: false
     chapters:
       - file: notebooks/preface_interpretability
       - file: notebooks/partial_dependency_plots
@@ -50,7 +53,7 @@ parts:
       - file: notebooks/shapley
 
   - caption: V. Experiments and Data Collection
-    numbered: true
+    numbered: false
     chapters:
       - file: notebooks/preface_designs
       - file: notebooks/AB_testing
@@ -58,11 +61,11 @@ parts:
       - file: notebooks/design_of_experiments
       - file: notebooks/active_learning
 
-  - chapters:
+  - caption: Conclusion
     numbered: false
     chapters:
       - file: conclusion
-      - file: bibliography
+      - file: bibliography      
 
   - caption: Fundamentals
     numbered: false
