@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,7 +180,11 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -228,11 +232,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">26. Probability Theory and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">27. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">28. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">Machine Learning</a></li>
 </ul>
 
     </div>
@@ -449,7 +453,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multi-armed-bandits">
-<h1><span class="section-number">23. </span>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
+<h1>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
 <p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls.</p>
 <p>The MAB problem can be formalized as follows:</p>
 <ul class="simple">
@@ -465,7 +469,7 @@ document.write(`
 <li><p><strong>Marketing campaigns</strong>: you may have multiple marketing strategies to promote energy-efficient appliances. Initially, you allocate equal resources to all strategies to see which performs best. As data comes in, you shift more resources to the campaigns that show higher engagement and conversion rates, optimizing your overall marketing budget.</p></li>
 </ol>
 <section id="mab-vs-a-b-testing">
-<h2><span class="section-number">23.1. </span>MAB vs. A/B testing<a class="headerlink" href="#mab-vs-a-b-testing" title="Link to this heading">#</a></h2>
+<h2>MAB vs. A/B testing<a class="headerlink" href="#mab-vs-a-b-testing" title="Link to this heading">#</a></h2>
 <p>Traditional methods for testing different options, such as A/B testing, involve splitting resources equally across different strategies (pure exploration), but this can be inefficient and costly, as it doesn’t adapt to the observed performance of the strategies. To this extent, the key <strong>limitations of A/B testing</strong> are:</p>
 <ul class="simple">
 <li><p><strong>Resource inefficiency</strong>: equally distributing resources among all strategies can waste time and opportunities on less-performing options.</p></li>
@@ -480,7 +484,7 @@ document.write(`
 </ul>
 </section>
 <section id="key-concepts-and-high-level-example">
-<h2><span class="section-number">23.2. </span>Key concepts and high-level example<a class="headerlink" href="#key-concepts-and-high-level-example" title="Link to this heading">#</a></h2>
+<h2>Key concepts and high-level example<a class="headerlink" href="#key-concepts-and-high-level-example" title="Link to this heading">#</a></h2>
 <p>The two key conepts in MAB problems are:</p>
 <ol class="arabic simple">
 <li><p><strong>Exploration vs. exploitation</strong>: where <strong>exploration</strong> means trying out different arms to gather more information about their rewards, and <strong>exploitation</strong> refers to choosing the arm that is currently believed to provide the highest reward.</p></li>
@@ -665,10 +669,10 @@ Regret is the difference between the total reward we would have gotten by always
 </ol>
 </section>
 <section id="key-algorithms-for-mab-problems">
-<h2><span class="section-number">23.3. </span>Key algorithms for MAB problems<a class="headerlink" href="#key-algorithms-for-mab-problems" title="Link to this heading">#</a></h2>
+<h2>Key algorithms for MAB problems<a class="headerlink" href="#key-algorithms-for-mab-problems" title="Link to this heading">#</a></h2>
 <p>In this section, we will explain three popular algorithms for solving the multi-armed bandit (MAB) problem: epsilon-greedy, upper confidence bound (UCB), and Thompson sampling. We will also compare their performance against a random strategy over multiple simulation runs.</p>
 <section id="epsilon-greedy">
-<h3><span class="section-number">23.3.1. </span>Epsilon-greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
+<h3>Epsilon-greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
 <p>The Epsilon-Greedy algorithm balances exploration and exploitation by choosing a random arm with a small probability (<span class="math notranslate nohighlight">\(\epsilon\)</span>) and the best-known arm with a large probability (1 - <span class="math notranslate nohighlight">\(\epsilon\)</span>). Think of <span class="math notranslate nohighlight">\(\epsilon\)</span> as your curiosity factor. A higher <span class="math notranslate nohighlight">\(\epsilon\)</span> means you are more curious and willing to try different options even if you know some options perform well. A lower <span class="math notranslate nohighlight">\(\epsilon\)</span> means you are more inclined to stick with what you know works best.</p>
 <p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -680,7 +684,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Estimated mean reward</strong>: for each arm <span class="math notranslate nohighlight">\(k\)</span>, you keep track of the average reward it has given you until this time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span>.</p></li>
 <li><p><strong>Updating the Estimate</strong>: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-93f812b5-9d07-4ab5-8166-895ffa504eb6">
-<span class="eqno">(23.1)<a class="headerlink" href="#equation-93f812b5-9d07-4ab5-8166-895ffa504eb6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(53)<a class="headerlink" href="#equation-93f812b5-9d07-4ab5-8166-895ffa504eb6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}\]</div>
 </li>
@@ -709,7 +713,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>You pull the same arm again and get a reward of 8.</p></li>
 <li><p>You update your estimate:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-3eeffa08-b581-47b1-911d-c11f24b54e51">
-<span class="eqno">(23.2)<a class="headerlink" href="#equation-3eeffa08-b581-47b1-911d-c11f24b54e51" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(54)<a class="headerlink" href="#equation-3eeffa08-b581-47b1-911d-c11f24b54e51" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}\]</div>
 </li>
@@ -722,7 +726,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>You pull the arm one more time and get a reward of 9.</p></li>
 <li><p>You update your estimate:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-f37bed3b-b6c4-43e2-88ce-c298f12ad5d8">
-<span class="eqno">(23.3)<a class="headerlink" href="#equation-f37bed3b-b6c4-43e2-88ce-c298f12ad5d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(55)<a class="headerlink" href="#equation-f37bed3b-b6c4-43e2-88ce-c298f12ad5d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}\]</div>
 </li>
@@ -761,7 +765,7 @@ Regret is the difference between the total reward we would have gotten by always
 </div>
 </section>
 <section id="upper-confidence-bound-ucb">
-<h3><span class="section-number">23.3.2. </span>Upper confidence bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
+<h3>Upper confidence bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
 <p>This algorithm selects arms based on the upper confidence bounds (UCBs) of their estimated rewards. The UCB is a combination of the estimated reward and a term that accounts for the uncertainty in the estimate. The key idea is to decide which options to try out by balancing between choosing the option that seems the best based on what you know so far and exploring less-tried options to discover their potential. It does this by considering both the estimated reward of each option and the uncertainty around that estimate.</p>
 <p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -772,7 +776,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight" id="equation-a1ece084-5db0-4561-b87a-65c6308ae0e6">
-<span class="eqno">(23.4)<a class="headerlink" href="#equation-a1ece084-5db0-4561-b87a-65c6308ae0e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(56)<a class="headerlink" href="#equation-a1ece084-5db0-4561-b87a-65c6308ae0e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}\]</div>
 <p>which is composed of two terms:</p>
@@ -818,7 +822,7 @@ Regret is the difference between the total reward we would have gotten by always
 </div>
 </section>
 <section id="thompson-sampling">
-<h3><span class="section-number">23.3.3. </span>Thompson sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
+<h3>Thompson sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
 <p>Thompson sampling balances between trying out different options (exploration) and sticking with the best-known option (exploitation) by using probability distributions to model the uncertainty of each option’s rewards.</p>
 <p><strong>Mechanism</strong>:</p>
 <ol class="arabic simple">
@@ -833,13 +837,13 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>If we get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 1 \)</span>), we increase <span class="math notranslate nohighlight">\(\alpha_k\)</span> by 1, indicating one more success:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0925f662-25ce-4ade-8fa2-b955bec7823b">
-<span class="eqno">(23.5)<a class="headerlink" href="#equation-0925f662-25ce-4ade-8fa2-b955bec7823b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(57)<a class="headerlink" href="#equation-0925f662-25ce-4ade-8fa2-b955bec7823b" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}\]</div>
 </li>
 <li><p>If we do not get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 0 \)</span>), we increase <span class="math notranslate nohighlight">\(\beta_k\)</span> by 1, indicating one more failure:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-6830f63a-592b-4c97-b25e-7eaf1f8cba3e">
-<span class="eqno">(23.6)<a class="headerlink" href="#equation-6830f63a-592b-4c97-b25e-7eaf1f8cba3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(58)<a class="headerlink" href="#equation-6830f63a-592b-4c97-b25e-7eaf1f8cba3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}\]</div>
 </li>
@@ -893,7 +897,7 @@ Initially, both <span class="math notranslate nohighlight">\(\alpha\)</span> and
 </div>
 </section>
 <section id="comparing-the-three-algorithms-with-random-sampling">
-<h3><span class="section-number">23.3.4. </span>Comparing the three algorithms with random sampling<a class="headerlink" href="#comparing-the-three-algorithms-with-random-sampling" title="Link to this heading">#</a></h3>
+<h3>Comparing the three algorithms with random sampling<a class="headerlink" href="#comparing-the-three-algorithms-with-random-sampling" title="Link to this heading">#</a></h3>
 <p>Now, we can run a comprehensive example where we compare the performance of epsilon-greedy, UCB, and Thompson sampling against a random strategy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

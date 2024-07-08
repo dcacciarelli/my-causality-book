@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,7 +180,11 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -228,11 +232,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="review_stats.html">26. Probability Theory and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">27. Linear Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="review_ML.html">28. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="review_ML.html">Machine Learning</a></li>
 </ul>
 
     </div>
@@ -452,7 +456,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="structural-breaks">
-<h1><span class="section-number">9. </span>Structural Breaks<a class="headerlink" href="#structural-breaks" title="Link to this heading">#</a></h1>
+<h1>Structural Breaks<a class="headerlink" href="#structural-breaks" title="Link to this heading">#</a></h1>
 <p>Another challenges related to time series analysis and causal inference, besides the presence of lagged effects, is the possibility of the system to be in <strong>multiple states or regimes</strong>. This is a problem well known to economists, since financial data often exhibits distinct behaviour depending on the specific state of the system (e.g., growth or recession).</p>
 <p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id8" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
 <ul class="simple">
@@ -466,18 +470,18 @@ document.write(`
 <li><p>Advances in <strong>battery technology</strong> might introduce new variables.</p></li>
 </ul>
 <section id="scenario-with-two-regimes">
-<h2><span class="section-number">9.1. </span>Scenario with two regimes<a class="headerlink" href="#scenario-with-two-regimes" title="Link to this heading">#</a></h2>
+<h2>Scenario with two regimes<a class="headerlink" href="#scenario-with-two-regimes" title="Link to this heading">#</a></h2>
 <p>Let’s consider a scenario in the electricity market where three variables are impacted by a significant <strong>policy change</strong>, such as the introduction of a new subsidy for renewable energy. This policy change affects the relationships among these variables, illustrating how concept drift can occur in response to external changes.</p>
 <section id="pre-subsidy-structural-model">
-<h3><span class="section-number">9.1.1. </span>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
+<h3>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-be6cf592-e1b6-4add-83ae-e7a5dc3a5089">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-be6cf592-e1b6-4add-83ae-e7a5dc3a5089" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(27)<a class="headerlink" href="#equation-be6cf592-e1b6-4add-83ae-e7a5dc3a5089" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-bc7c35c3-aa7c-4376-9b2f-64f5120249d2">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-bc7c35c3-aa7c-4376-9b2f-64f5120249d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(28)<a class="headerlink" href="#equation-bc7c35c3-aa7c-4376-9b2f-64f5120249d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -487,15 +491,15 @@ document.write(`
 \end{equation}\]</div>
 </section>
 <section id="post-subsidy-structural-model">
-<h3><span class="section-number">9.1.2. </span>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
+<h3>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>After the introduction of subsidies, the relationships change as follows:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-d49fe8a2-6a23-4118-97ff-563a94abb7f4">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-d49fe8a2-6a23-4118-97ff-563a94abb7f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(29)<a class="headerlink" href="#equation-d49fe8a2-6a23-4118-97ff-563a94abb7f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-920f23bb-ecd9-496d-9ae1-6a8ae26f7b8f">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-920f23bb-ecd9-496d-9ae1-6a8ae26f7b8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(30)<a class="headerlink" href="#equation-920f23bb-ecd9-496d-9ae1-6a8ae26f7b8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -506,7 +510,7 @@ document.write(`
 <p>This change in coefficients represents a concept drift, where the underlying data-generating process has altered due to external policy intervention. The challenge in causal inference here is to accurately detect and adapt to these changes, ensuring that models remain valid over time despite the evolving relationships. Failure to account for such drifts can lead to inaccurate predictions and misguided policy or business decisions.</p>
 </section>
 <section id="contemporaneous-effects">
-<h3><span class="section-number">9.1.3. </span>Contemporaneous effects<a class="headerlink" href="#contemporaneous-effects" title="Link to this heading">#</a></h3>
+<h3>Contemporaneous effects<a class="headerlink" href="#contemporaneous-effects" title="Link to this heading">#</a></h3>
 <p>In <strong>regime 1</strong> the causal graph is represnted by</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -540,7 +544,7 @@ document.write(`
 <p>(You might have now recognised this as a simple <strong>fork</strong>)</p>
 </section>
 <section id="lagged-effects">
-<h3><span class="section-number">9.1.4. </span>Lagged effects<a class="headerlink" href="#lagged-effects" title="Link to this heading">#</a></h3>
+<h3>Lagged effects<a class="headerlink" href="#lagged-effects" title="Link to this heading">#</a></h3>
 <p>To slightly render the causal discovery problem more difficult, we also introduced some autocorrelation, just like in the <strong>VARLiNGAM</strong> example we saw in the previous chapter.</p>
 <p>This simply means we now also have two <span class="math notranslate nohighlight">\(\mathbf{B}_1\)</span> matrices, one for each regime.</p>
 <div class="cell docutils container">
@@ -623,14 +627,14 @@ document.write(`
 </section>
 </section>
 <section id="estimation">
-<h2><span class="section-number">9.2. </span>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
+<h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>To show the difficulty of doing causal discovery using data collected from drifting data streams, we will show what happens in two cases:</p>
 <ol class="arabic simple">
 <li><p>We fit just one model to the whole dataset.</p></li>
 <li><p>We fit two separate models, one for each regime.</p></li>
 </ol>
 <section id="fitting-one-model-to-all-the-data">
-<h3><span class="section-number">9.2.1. </span>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h3>
+<h3>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h3>
 <p>As we did before, we fit a VAR model, compute the residuals, and apply LiNGAM to its residuals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -655,7 +659,7 @@ document.write(`
 <p>We can see how we got a <strong>wrong estimation</strong>. The causal structure is like the first regime, but the coefficients are wrong.</p>
 </section>
 <section id="fitting-two-separate-models">
-<h3><span class="section-number">9.2.2. </span>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h3>
+<h3>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h3>
 <p>We now show the ideal situation, where we assume we were able to <strong>discern the two regimes</strong> and fit distinct models.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
