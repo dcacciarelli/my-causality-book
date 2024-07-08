@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -444,8 +444,8 @@ document.write(`
 <li><p><strong>Query synthesis</strong>: the algorithm generates new samples to query an oracle for their labels.</p></li>
 </ol>
 <p>Consider the case where we want to estimate the effect of a variable using a linear model of the kind:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29fc9a38-c6ff-44d7-8349-10c0f1b51a51">
-<span class="eqno">(59)<a class="headerlink" href="#equation-29fc9a38-c6ff-44d7-8349-10c0f1b51a51" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cbe5a116-e134-4bc2-b9ed-019686dae5b0">
+<span class="eqno">(59)<a class="headerlink" href="#equation-cbe5a116-e134-4bc2-b9ed-019686dae5b0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = X \beta + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -456,8 +456,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, assumed to be normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
 </ul>
 <p>The goal is to estimate the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> using the observed data. The variance of the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> can be computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4b617142-62bf-4437-b537-d34cee93b454">
-<span class="eqno">(60)<a class="headerlink" href="#equation-4b617142-62bf-4437-b537-d34cee93b454" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cb65cffa-c8c9-4c6f-9b41-ade43907885c">
+<span class="eqno">(60)<a class="headerlink" href="#equation-cb65cffa-c8c9-4c6f-9b41-ade43907885c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance of the residuals, and <span class="math notranslate nohighlight">\((X^T X)^{-1}\)</span> is the inverse of the information matrix.</p>
