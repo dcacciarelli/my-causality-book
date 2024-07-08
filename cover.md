@@ -1,4 +1,4 @@
-# Home Page
+<!-- # Home Page -->
 
 <img src="logo_thick_text.png" alt="cover photo" align="center" width="600px"/>
 
