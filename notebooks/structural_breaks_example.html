@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -180,8 +180,8 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">1. Motivation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">2. What to expect from each chapter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">What to expect from each chapter</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
@@ -471,13 +471,13 @@ document.write(`
 <section id="pre-subsidy-structural-model">
 <h3><span class="section-number">9.1.1. </span>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d1119ebb-d478-4816-8e43-5c7f5dcfde4d">
-<span class="eqno">(9.1)<a class="headerlink" href="#equation-d1119ebb-d478-4816-8e43-5c7f5dcfde4d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-be6cf592-e1b6-4add-83ae-e7a5dc3a5089">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-be6cf592-e1b6-4add-83ae-e7a5dc3a5089" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db42fad9-3d6e-4498-97b7-96c01207241b">
-<span class="eqno">(9.2)<a class="headerlink" href="#equation-db42fad9-3d6e-4498-97b7-96c01207241b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bc7c35c3-aa7c-4376-9b2f-64f5120249d2">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-bc7c35c3-aa7c-4376-9b2f-64f5120249d2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -489,13 +489,13 @@ document.write(`
 <section id="post-subsidy-structural-model">
 <h3><span class="section-number">9.1.2. </span>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>After the introduction of subsidies, the relationships change as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65c981fe-38e4-4933-97a0-fcdc7009e120">
-<span class="eqno">(9.3)<a class="headerlink" href="#equation-65c981fe-38e4-4933-97a0-fcdc7009e120" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d49fe8a2-6a23-4118-97ff-563a94abb7f4">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-d49fe8a2-6a23-4118-97ff-563a94abb7f4" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49812d9a-2344-49ad-ba13-07157c96978d">
-<span class="eqno">(9.4)<a class="headerlink" href="#equation-49812d9a-2344-49ad-ba13-07157c96978d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-920f23bb-ecd9-496d-9ae1-6a8ae26f7b8f">
+<span class="eqno">(9.4)<a class="headerlink" href="#equation-920f23bb-ecd9-496d-9ae1-6a8ae26f7b8f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -613,7 +613,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1463da050&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1433eb7d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" src="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" />
@@ -682,7 +682,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x16881f510&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x144fd5810&gt;
 </pre></div>
 </div>
 </div>
