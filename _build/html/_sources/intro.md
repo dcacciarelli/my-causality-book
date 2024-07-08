@@ -14,9 +14,4 @@
 </p>
 
 <!-- University Logo -->
-<img src="imperial_logo.png" alt="fishy" class="bg-primary mb-1" width="300px">
-
-<!-- Brief Introduction -->
-<p align="center">
-  <em>Welcome to "Causality in Electricity Markets." This book provides a comprehensive tutorial on causal inference methodologies, explaining key concepts and showcasing potential applications within the electricity market sector. Whether you are a researcher, student, or professional, this book aims to equip you with the knowledge and tools to analyze and understand causal relationships in energy systems.</em>
-</p>
+<img src="imperial_logo.png" alt="fishy" width="300px">
