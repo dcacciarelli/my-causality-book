@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>13. Double Machine Learning &#8212; Causality in Electricity Markets</title>
+    <title>Double Machine Learning &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/double_machine_learning';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="14. Difference-in-Differences" href="diff_in_diff.html" />
-    <link rel="prev" title="12. Propensity Score Matching" href="propensity_scores.html" />
+    <link rel="next" title="Difference-in-Differences" href="diff_in_diff.html" />
+    <link rel="prev" title="Propensity Score Matching" href="propensity_scores.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -189,50 +189,50 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">1. Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">2. Causal Representations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">3. Basic Causal Structures</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">4. Definitions and Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">5. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">6. Linear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">7. Nonlinear Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">8. Time Series Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">9. Structural Breaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_discovery.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_direct_lingam.html">Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_resit.html">Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semiparametric_varlingam.html">Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structural_breaks_example.html">Structural Breaks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">10. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">11. Instrumental Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">12. Propensity Score Matching</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Double Machine Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">14. Difference-in-Differences</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">15. Interrupted Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_causal_inference.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instrumental_variables.html">Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propensity_scores.html">Propensity Score Matching</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Double Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diff_in_diff.html">Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interrupted_time_series.html">Interrupted Time Series</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">16. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">17. Partial Dependence Plots</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">18. Accumulated Local Effects</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">19. Impulse Response Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="shapley.html">20. Shapley Additive Explanations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_interpretability.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partial_dependency_plots.html">Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accumulated_local_effects.html">Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impulse_response_functions.html">Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shapley.html">Shapley Additive Explanations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">21. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">22. A/B Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bandits.html">23. Multi-Armed Bandits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">24. Design of Experiments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="active_learning.html">25. Active Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preface_designs.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AB_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bandits.html">Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design_of_experiments.html">Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active_learning.html">Active Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash Course on Stats and ML</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
@@ -432,11 +432,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-partially-linear-case">13.1. The Partially Linear Case</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#electricity-example">13.2. Electricity example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-causal-graph">13.2.1. The causal graph</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-generating-process">13.2.2. The data-generating process</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dml-algorithms">13.2.3. The DML algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-partially-linear-case">The Partially Linear Case</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#electricity-example">Electricity example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-causal-graph">The causal graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-generating-process">The data-generating process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dml-algorithms">The DML algorithms</a></li>
 </ul>
 </li>
 </ul>
@@ -454,14 +454,14 @@ document.write(`
 <h1>Double Machine Learning<a class="headerlink" href="#double-machine-learning" title="Link to this heading">#</a></h1>
 <p>We have already seen that we can use Propensity Score Matching (PSM) to adjust for confounders when estimating treatment effects. In high-dimensional settings or when using machine learning model, things can get more complicated. For these circumstances, Chernozhukov et al. <span id="id1">[<a class="reference internal" href="../bibliography.html#id9" title="Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, and James Robins. Double/debiased machine learning for treatment and structural parameters. The Econometrics Journal, 21(1):C1–C68, 2018.">CCD+18</a>]</span> proposed the Double Machine Learning (DML) is a framework, to estimate causal effects when many confounding variables are present. It combines machine learning techniques with econometric methods to control for these confounders and obtain unbiased estimates of treatment effects. For example, let’s assume we are interested in unveiling the effect of wind power (WP) production or solar power (SP) production on electricity prices. In this case, WP and SP production would be our <strong>treatment variables</strong>, while the electricity price would be our <strong>response</strong>. We know that these factors have an effect in reducing prices due to their low marginal costs. However, we also know that there are many other factors affecting electricity prices (e.g., demand, gas prices, macroeconomic trends). These are the <strong>confounders</strong>. We can also assume that some these confounders have an effect both on our treatment and our response variable. For example, the season we are in or the specific hour of the day will certainly affect the generation of SP, but will also have an effect on the demand (hence, the prices) because of the well-known daily and season consumption profiles. Ignoring the effect of these confounders might lead to biased estimates.</p>
 <p>With DML, we are trying to isolate the effect of the treatment variables on the response. This framework assumes that the response <span class="math notranslate nohighlight">\(y\)</span> (e.g., the prices) is a function of the treatment <span class="math notranslate nohighlight">\(w\)</span> and other confounding variables <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c2a0e092-b29c-4cc0-a29a-266244a63886">
-<span class="eqno">(33)<a class="headerlink" href="#equation-c2a0e092-b29c-4cc0-a29a-266244a63886" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-96d5f697-9bc9-4e17-b4ba-c74f35906a89">
+<span class="eqno">(33)<a class="headerlink" href="#equation-96d5f697-9bc9-4e17-b4ba-c74f35906a89" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = g(w, x) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>
 <p>Similarly, since we assumed that the treatment is also affected by other confounding variables, we have that <span class="math notranslate nohighlight">\(w\)</span> can be modeled as a function of <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d19acceb-8963-4844-8b5d-e8385872d941">
-<span class="eqno">(34)<a class="headerlink" href="#equation-d19acceb-8963-4844-8b5d-e8385872d941" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-73c3fe28-6a63-46a0-91fb-cfbd7debe28c">
+<span class="eqno">(34)<a class="headerlink" href="#equation-73c3fe28-6a63-46a0-91fb-cfbd7debe28c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(m\)</span> is an arbitrary function (linear or nonlinear) and <span class="math notranslate nohighlight">\(\nu\)</span> is the error term.</p>
@@ -475,12 +475,12 @@ document.write(`
 <h2>The Partially Linear Case<a class="headerlink" href="#the-partially-linear-case" title="Link to this heading">#</a></h2>
 <p>For simplicity, we now consider a partially linear case where the relationship between the outcome <span class="math notranslate nohighlight">\(y\)</span> and the treatment <span class="math notranslate nohighlight">\(w\)</span> can be expressed linearly, while allowing for a potentially complex, nonlinear relationship between the confounders <span class="math notranslate nohighlight">\(x\)</span> and both the treatment and outcome.</p>
 <p>In this case, the model is specified as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76f4e0fc-6c1a-4000-b27e-4b90c5cc3c66">
-<span class="eqno">(35)<a class="headerlink" href="#equation-76f4e0fc-6c1a-4000-b27e-4b90c5cc3c66" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d0f056d-ccee-4e0f-b754-18ceb45638a5">
+<span class="eqno">(35)<a class="headerlink" href="#equation-6d0f056d-ccee-4e0f-b754-18ceb45638a5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta w + g(x) + \epsilon
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-69cc0457-898d-4943-b18a-9f5a71acc1b6">
-<span class="eqno">(36)<a class="headerlink" href="#equation-69cc0457-898d-4943-b18a-9f5a71acc1b6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e244e119-b95c-489f-84b2-86186dff8814">
+<span class="eqno">(36)<a class="headerlink" href="#equation-e244e119-b95c-489f-84b2-86186dff8814" title="Permalink to this equation">#</a></span>\[\begin{equation}
     w = m(x) + \nu
 \end{equation}\]</div>
 <p>Here:</p>
@@ -502,8 +502,8 @@ document.write(`
 <ul>
 <li><p>Use the models trained on <span class="math notranslate nohighlight">\(K-1\)</span> folds to predict the held-out fold <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 <li><p>Compute the residuals for the treatment and outcome models:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bfda0ca2-f95d-4c40-9eb3-60f99d82356c">
-<span class="eqno">(37)<a class="headerlink" href="#equation-bfda0ca2-f95d-4c40-9eb3-60f99d82356c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b791136f-9eee-498b-a1ce-5d82be63f545">
+<span class="eqno">(37)<a class="headerlink" href="#equation-b791136f-9eee-498b-a1ce-5d82be63f545" title="Permalink to this equation">#</a></span>\[\begin{equation}
             \hat{V}_W = W - \hat{W}, \quad \hat{V}_Y = Y - \hat{Y}
         \end{equation}\]</div>
 </li>
@@ -524,8 +524,8 @@ document.write(`
 <section id="electricity-example">
 <h2>Electricity example<a class="headerlink" href="#electricity-example" title="Link to this heading">#</a></h2>
 <p>Let’s now consider a practical case where we want to estimate the effect of day-ahead wind power and solar power forecasts on spot prices. We know that the forecasts available before gate closure <span id="id2">[<a class="reference internal" href="../bibliography.html#id11" title="Tryggvi Jónsson, Pierre Pinson, and Henrik Madsen. On the market impact of wind energy forecasts. Energy Economics, 32(2):313–320, 2010.">JonssonPM10</a>]</span> are crucial to determine the equilibrium price. Because of the merit-order effect, the low marginal costs of renewable energy sources acts like a shifter in reducing the equilibrium price. We now assume to be in a simplified setting where we want to quantify this effect. We consider a simple <strong>causal graph</strong> where the spot prices are linearly affected by the forecasted WP and SP production levels, and nonlinearly affected by other endogenous factors and market conditions. In particular, we assume to be in the following <strong>partially linear case</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-99f14983-7795-46cd-aa64-e9abaee12721">
-<span class="eqno">(38)<a class="headerlink" href="#equation-99f14983-7795-46cd-aa64-e9abaee12721" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8133949e-a8b2-4b3c-ae94-16cd0197b2b5">
+<span class="eqno">(38)<a class="headerlink" href="#equation-8133949e-a8b2-4b3c-ae94-16cd0197b2b5" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{spot price} = -0.3 * \text{WP} - 0,3 * \text{SP} + f_L(\text{load}) + f_G(\text{gas}) + f_C(\text{coal}) + f_{CO2} (\text{carbon pricing}) + \epsilon
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_L, \ldots, f_{CO2}\)</span> are arbitrary nonlinear functions, and <span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term.</p>
@@ -863,7 +863,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">12. </span>Propensity Score Matching</p>
+        <p class="prev-next-title">Propensity Score Matching</p>
       </div>
     </a>
     <a class="right-next"
@@ -871,7 +871,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Difference-in-Differences</p>
+        <p class="prev-next-title">Difference-in-Differences</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -891,11 +891,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-partially-linear-case">13.1. The Partially Linear Case</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#electricity-example">13.2. Electricity example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-causal-graph">13.2.1. The causal graph</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-generating-process">13.2.2. The data-generating process</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dml-algorithms">13.2.3. The DML algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-partially-linear-case">The Partially Linear Case</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#electricity-example">Electricity example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-causal-graph">The causal graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-data-generating-process">The data-generating process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dml-algorithms">The DML algorithms</a></li>
 </ul>
 </li>
 </ul>
