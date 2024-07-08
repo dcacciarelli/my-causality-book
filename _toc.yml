@@ -3,7 +3,7 @@
 
 format: jb-book
 
-root: cover
+root: index
 
 parts:
   - chapters:
