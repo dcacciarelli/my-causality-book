@@ -474,7 +474,9 @@ document.write(`
 <li><p><strong>Acyclic</strong>: there are no cycles; you cannot start at one vertex, follow a sequence of directed edges, and return to the starting vertex.</p></li>
 <li><p><strong>Topological ordering</strong>: the nodes of a DAG can be ordered in such a way that for every directed edge <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, node <span class="math notranslate nohighlight">\(X\)</span> comes before node <span class="math notranslate nohighlight">\(Y\)</span> in the ordering.</p></li>
 </ol>
-<p>A DAG is a graph that is directed and has no cycles, meaning there is no way to start at one node and follow a consistent direction that leads back to the starting node. In a DAG, every parent is a direct cause of all its children.</p>
+<blockquote>
+<div><p>A DAG is a graph that is directed and has no cycles, meaning there is no way to start at one node and follow a consistent direction that leads back to the starting node. In a DAG, every parent is a direct cause of all its children.</p>
+</div></blockquote>
 </section>
 <section id="an-example">
 <h2>An Example<a class="headerlink" href="#an-example" title="Link to this heading">#</a></h2>
@@ -541,8 +543,8 @@ document.write(`
 <section id="factorisation">
 <h3>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">#</a></h3>
 <p>Factorisation refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the local Markov assumption. The joint distribution <span class="math notranslate nohighlight">\(P(T, L, R, P)\)</span> can be factorised as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-50468b11-586e-43ee-af2a-caadfba5aae4">
-<span class="eqno">(1)<a class="headerlink" href="#equation-50468b11-586e-43ee-af2a-caadfba5aae4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4be77844-639a-4a9f-9074-2729d1f47326">
+<span class="eqno">(1)<a class="headerlink" href="#equation-4be77844-639a-4a9f-9074-2729d1f47326" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factosization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
