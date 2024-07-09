@@ -432,9 +432,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chains">Chains</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">Forks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities">Immoralities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-basic-causal-structures">Importance of Basic Causal Structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-dags">Basic DAGs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chains">Chains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">Forks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities-or-v-structures">Immoralities (or V Structures)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-guidance-for-regression-modelling">Practical Guidance for Regression Modelling</a></li>
 </ul>
             </nav>
         </div>
@@ -448,12 +453,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="basic-causal-structures">
 <h1>Basic Causal Structures<a class="headerlink" href="#basic-causal-structures" title="Link to this heading">#</a></h1>
-<p>Understanding basic causal structures is crucial in causal inference because they possess <strong>unique properties</strong> that aid in the discovery of causal graphs from observational data. Additionally, recognizing these structures is essential for correctly specifying <strong>regression models</strong> in statistical analysis. Misidentifying or incorrectly including variables based on these structures can lead to erroneous conclusions and model estimates.</p>
+<p>Understanding basic causal structures is crucial in causal inference because they possess unique properties that aid in the discovery of causal graphs from observational data. Additionally, recognising these structures is essential for correctly specifying regression models in statistical analysis. Indeed, incorrectly including variables in the regression models can lead to erroneous conclusions and model estimates.</p>
+<section id="importance-of-basic-causal-structures">
+<h2>Importance of Basic Causal Structures<a class="headerlink" href="#importance-of-basic-causal-structures" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>**Caual</p></li>
+<li><p>In <strong>causal discovery</strong>, basic causal structures help in discerning the underlying causal graph from observational data. These structures have unique properties that enable algorithms to translate conditional independencies into DAG structures. By understanding these properties, researchers can use methods like the PC algorithm and FCI algorithm to uncover the true causal relationships among variables <span id="id1">[<a class="reference internal" href="../bibliography.html#id8" title="Peter Spirtes, Clark Glymour, and Richard Scheines. Causation, prediction, and search. MIT press, 2001.">SGS01</a>]</span>.</p></li>
+<li><p>In <strong>causal inference</strong>, recognizing these structures is essential for specifying regression models correctly to avoid spurious relationships. Understanding which variables to include or exclude based on their causal roles ensures that the models provide valid and unbiased estimates. This knowledge helps in identifying confounders, mediators, and colliders, guiding the appropriate handling of these variables in statistical analysis <span id="id2">[<a class="reference internal" href="../bibliography.html#id22" title="Miguel A Hernan and James M Robins. Causal Inference: What If. Chapman &amp; Hall/CRC, 2020.">HR20</a>]</span>.</p></li>
 </ul>
+</section>
+<section id="basic-dags">
+<h2>Basic DAGs<a class="headerlink" href="#basic-dags" title="Link to this heading">#</a></h2>
 <section id="chains">
-<h2>Chains<a class="headerlink" href="#chains" title="Link to this heading">#</a></h2>
+<h3>Chains<a class="headerlink" href="#chains" title="Link to this heading">#</a></h3>
 <p>A chain occurs when one variable causally affects a second, which in turn affects a third. This linear sequence shows the <strong>transmission of causality</strong> through an intermediary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -474,17 +485,24 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-028f07b2-3b3d-4441-997b-484caf8e9b0a">
-<span class="eqno">(2)<a class="headerlink" href="#equation-028f07b2-3b3d-4441-997b-484caf8e9b0a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-de6a70fd-4b4f-447e-ad97-ecc3e95efc44">
+<span class="eqno">(2)<a class="headerlink" href="#equation-de6a70fd-4b4f-447e-ad97-ecc3e95efc44" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}\]</div>
 <p>where the <strong>coefficients</strong> 1.5 and 1.2 represent the strenghts of the causal connections.</p>
-<p>In this case, the <strong>causal association flows</strong> from the weather forecast to the balancing costs, and is (fully) <strong>mediated</strong> by the wind forecast errors.</p>
+<p>In this case, the <strong>causal association flows</strong> from the weather forecast to the balancing costs, and is (fully) <strong>mediated</strong> by the wind forecast errors. So, weather fluctuations influences wind forecast errors, which in turn influence a balancing costs.</p>
+<blockquote>
+<div><p>For a generic chain structure given by <span class="math notranslate nohighlight">\(A \rightarrow B \rightarrow C\)</span>, we have that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(B\)</span> is an intermediate variable between <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are conditionally independent given <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+</ul>
+</div></blockquote>
 </section>
 <section id="forks">
-<h2>Forks<a class="headerlink" href="#forks" title="Link to this heading">#</a></h2>
+<h3>Forks<a class="headerlink" href="#forks" title="Link to this heading">#</a></h3>
 <p>A fork occurs when a single variable causally influences two other variables, making it a common cause to both. This structure typically indicates that the two downstream variables are <strong>correlated due to a shared source</strong> but do not causally influence each other. This coincides with the exmaple we saw in the previous chapter, where the common cause (temperature) gave the impression that electricity load and ice cream sales were correlated.</p>
 <p>Another example, related to the balancing costs in the electricity markets, might be the effect of weather fluctuations on wind forecast errors and on electricity load due to increase heating (or cooling) demand.</p>
 <div class="cell docutils container">
@@ -503,8 +521,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4c23901d-5cab-421a-b4b1-3a053372c939">
-<span class="eqno">(3)<a class="headerlink" href="#equation-4c23901d-5cab-421a-b4b1-3a053372c939" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-97e0ab76-07b4-4694-ba47-2565ff5b9a50">
+<span class="eqno">(3)<a class="headerlink" href="#equation-97e0ab76-07b4-4694-ba47-2565ff5b9a50" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -626,9 +644,16 @@ document.write(`
 </div>
 </div>
 <p>We can see that, despites <strong>not being causally related</strong>, wind forecast errors and heating demand appears to be <strong>positively correlated</strong>. This is because they have a <strong>common cause</strong>, represented by the weather fluctuations.</p>
+<blockquote>
+<div><p>For a generic fork <span class="math notranslate nohighlight">\(A \leftarrow B \rightarrow C\)</span>, we have that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(B\)</span> is a common cause of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are dependent, but they become conditionally independent given <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+</ul>
+</div></blockquote>
 </section>
-<section id="immoralities">
-<h2>Immoralities<a class="headerlink" href="#immoralities" title="Link to this heading">#</a></h2>
+<section id="immoralities-or-v-structures">
+<h3>Immoralities (or V Structures)<a class="headerlink" href="#immoralities-or-v-structures" title="Link to this heading">#</a></h3>
 <p>An immorality happens when two variables independently cause a third variable, but there is no causal connection between the two independent variables. Conditioning on the common effect (<strong>collider</strong>) can introduce a <strong>spurious association</strong> between these independent variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -646,8 +671,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f721b8d7-6178-4e62-ac5b-2e7662b503ca">
-<span class="eqno">(4)<a class="headerlink" href="#equation-f721b8d7-6178-4e62-ac5b-2e7662b503ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0bacfc4e-6a93-4355-878f-157e7dfca241">
+<span class="eqno">(4)<a class="headerlink" href="#equation-0bacfc4e-6a93-4355-878f-157e7dfca241" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
@@ -765,9 +790,30 @@ document.write(`
 <img alt="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" src="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" />
 </div>
 </div>
-<p>We can observe how conditioning on a collider introduces spurious correlations in the data. Outages and forecast errors are <strong>not causally related</strong> but, when conditioning on the balancing costs, they <strong>appear to be correlated</strong>.</p>
-<p>This underscores the importance of being cautious when attempting to draw causal conclusions from observational data.</p>
-<p><strong>In practice</strong>, this means that merely including the collider as a predictor in a <strong>regression model</strong> can lead to misleading results, where the estimated coefficients deviate significantly from the true causal effects. This potential misstep highlights the necessity of carefully selecting variables for inclusion in regression models, especially when the goal is to uncover causal relationships rather than mere associations.</p>
+<p>We can observe how conditioning on a collider introduces spurious correlations in the data. Outages and forecast errors are <strong>not causally related</strong> but, when conditioning on the balancing costs, they <strong>appear to be correlated</strong>. This underscores the importance of being cautious when attempting to draw causal conclusions from observational data. In practice, this means that including the collider as a predictor in a <strong>regression model</strong> can lead to misleading results, where the estimated coefficients deviate significantly from the true causal effects. This potential misstep highlights the necessity of carefully selecting variables for inclusion in regression models, especially when the goal is to uncover causal relationships rather than mere associations.</p>
+<blockquote>
+<div><p>For a generic immorality <span class="math notranslate nohighlight">\(A \rightarrow B \leftarrow C\)</span>, we have that:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(B\)</span> is a collider.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are marginally independent but become dependent when conditioning on <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="practical-guidance-for-regression-modelling">
+<h2>Practical Guidance for Regression Modelling<a class="headerlink" href="#practical-guidance-for-regression-modelling" title="Link to this heading">#</a></h2>
+<p>In causal inference, understanding these basic structures is essential to avoid spurious correlations and incorrect model specifications. Specifically, they guide the selection of predictors in regression modeling to ensure valid and unbiased estimates. Including or excluding variables based on their causal relationships can significantly impact the validity of regression models. For example:</p>
+<ul class="simple">
+<li><p><strong>Including colliders</strong>: conditioning on a collider can introduce spurious associations between its causes, leading to biased estimates.</p></li>
+<li><p><strong>Omitting mediators</strong>: excluding a mediator can lead to underestimation of the direct effect of the predictor on the outcome.</p></li>
+</ul>
+<p>When specifying regression models, it is crucial to:</p>
+<ul class="simple">
+<li><p><strong>Include confounders</strong>: variables that influence both the predictor and the outcome should be included to control for their confounding effect.</p></li>
+<li><p><strong>Exclude colliders</strong>: avoid conditioning on colliders to prevent introducing spurious correlations.</p></li>
+<li><p><strong>Consider Mmdiators</strong>: decide based on the research question whether to include mediators to understand direct versus indirect effects.</p></li>
+</ul>
+<p>Properly accounting for these structures helps to clarify the causal pathways and ensures that the estimates reflect the true causal relationships.</p>
 </section>
 </section>
 
@@ -835,9 +881,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chains">Chains</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">Forks</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities">Immoralities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-basic-causal-structures">Importance of Basic Causal Structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-dags">Basic DAGs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chains">Chains</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forks">Forks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#immoralities-or-v-structures">Immoralities (or V Structures)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-guidance-for-regression-modelling">Practical Guidance for Regression Modelling</a></li>
 </ul>
   </nav></div>
 
