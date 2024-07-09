@@ -13,7 +13,7 @@ To get the most out of this book, it is recommended that readers have a basic un
 If you feel like you need a refresher, in the Appendix of this book you can find a **crash course** to review these essential concepts. These chapters are designed to help you brush up on the foundational knowledge required to fully engage with the material in this book. However, if you are already familiar with these concepts or prefer to go directly to the applied causal inference part, feel free to skip those chapters.
 
 
-## Learning objectives
+## Learning Objectives
 
 By the end of this book, readers will be able to:
 - Understand and apply causal inference techniques to analyse relationships between variables.

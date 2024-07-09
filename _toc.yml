@@ -12,8 +12,8 @@ parts:
   - caption: Introduction
     numbered: false
     chapters:
-      - file: notebooks/introduction_markets
-      - file: notebooks/introduction_causality
+      - file: notebooks/intro_electricity_markets
+      - file: notebooks/intro_causality
       - file: notebooks/guide
 
   - caption: I. Basic Concepts
@@ -64,7 +64,7 @@ parts:
   - caption: Conclusion
     numbered: false
     chapters:
-      - file: conclusion
+      - file: notebooks/conclusion
       - file: bibliography      
 
   - caption: Appendix
