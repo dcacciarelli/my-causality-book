@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/DAG';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Basic Causal Structures" href="basic_dag_structures.html" />
+    <link rel="next" title="Structural Causal Models" href="scm.html" />
     <link rel="prev" title="Correlation vs. Causation" href="correlation_vs_causation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -191,6 +191,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scm.html">Structural Causal Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -543,8 +544,8 @@ document.write(`
 <section id="factorisation">
 <h3>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">#</a></h3>
 <p>Factorisation refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the local Markov assumption. The joint distribution <span class="math notranslate nohighlight">\(P(T, L, R, P)\)</span> can be factorised as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3fb485b-4b33-4936-872e-0fc86b904764">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c3fb485b-4b33-4936-872e-0fc86b904764" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c4f4df60-f36d-434f-8ee3-735400929f0c">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c4f4df60-f36d-434f-8ee3-735400929f0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factosization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
@@ -686,11 +687,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="basic_dag_structures.html"
+       href="scm.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic Causal Structures</p>
+        <p class="prev-next-title">Structural Causal Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -191,6 +191,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scm.html">Structural Causal Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -444,8 +445,8 @@ document.write(`
 <li><p><strong>Query synthesis</strong>: the algorithm generates new samples to query an oracle for their labels.</p></li>
 </ol>
 <p>Consider the case where we want to estimate the effect of a variable using a linear model of the kind:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-589cc024-7b1b-493a-9c74-9581970a5523">
-<span class="eqno">()<a class="headerlink" href="#equation-589cc024-7b1b-493a-9c74-9581970a5523" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-61cd8d52-866c-43ca-994e-68625bccdd3e">
+<span class="eqno">()<a class="headerlink" href="#equation-61cd8d52-866c-43ca-994e-68625bccdd3e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = X \beta + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -456,8 +457,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, assumed to be normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
 </ul>
 <p>The goal is to estimate the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> using the observed data. The variance of the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> can be computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee69defd-05c4-4b4e-b7ec-8e72ad669901">
-<span class="eqno">()<a class="headerlink" href="#equation-ee69defd-05c4-4b4e-b7ec-8e72ad669901" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e86c1480-33a9-4ad4-9ddc-023b4bd2746e">
+<span class="eqno">()<a class="headerlink" href="#equation-e86c1480-33a9-4ad4-9ddc-023b4bd2746e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance of the residuals, and <span class="math notranslate nohighlight">\((X^T X)^{-1}\)</span> is the inverse of the information matrix.</p>
