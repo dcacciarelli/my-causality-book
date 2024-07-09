@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Causal Representations &#8212; Causality in Electricity Markets</title>
+    <title>Causal Representation &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -190,7 +190,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Representations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Representation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -422,7 +422,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Causal Representations</h1>
+    <h1>Causal Representation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -432,11 +432,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dags">DAGs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-separation">d-separation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-markov-assumption">Local Markov assumption</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimality-assumption">Minimality assumption</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-equivalence-class">Markov equivalence class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example">An Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-separation">d-separation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-markov-assumption">Local Markov Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorisation">Factorisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimality-assumption">Minimality Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-equivalence-class">Markov Equivalence Class</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">An Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -448,15 +456,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="causal-representations">
-<h1>Causal Representations<a class="headerlink" href="#causal-representations" title="Link to this heading">#</a></h1>
-<section id="dags">
-<h2>DAGs<a class="headerlink" href="#dags" title="Link to this heading">#</a></h2>
-<p>Directed acyclic graphs (DAGs) are essential tools for understanding causal relationships between variables. They are widely used in statistics, machine learning, and causal inference.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="causal-representation">
+<h1>Causal Representation<a class="headerlink" href="#causal-representation" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p><strong>Directed acyclic graphs (DAGs)</strong> are the main tool used to depict and reason about causal relationships between variables. They are widely used in statistics, machine learning, and causal inference.</p>
 <p>The <strong>key elements</strong> of a DAG are:</p>
 <ol class="arabic simple">
-<li><p><strong>Node</strong>: represents a variable or an event in the graph.</p></li>
-<li><p><strong>Edge</strong>: a directed arrow indicating a causal influence from one node (variable) to another.</p></li>
+<li><p><strong>Nodes</strong>: represent variables or events in the graph.</p></li>
+<li><p><strong>Edges</strong>: directed arrows indicating a causal influence from one node (variable) to another.</p></li>
 <li><p><strong>Parent node</strong>: a node that has outgoing edges to one or more child nodes.</p></li>
 <li><p><strong>Child node</strong>: a node that has incoming edges from one or more parent nodes.</p></li>
 </ol>
@@ -464,18 +472,18 @@ document.write(`
 <ol class="arabic simple">
 <li><p><strong>Directed</strong>: each edge in the graph has a direction, from one vertex to another.</p></li>
 <li><p><strong>Acyclic</strong>: there are no cycles; you cannot start at one vertex, follow a sequence of directed edges, and return to the starting vertex.</p></li>
-<li><p><strong>Topological ordering</strong>: the nodes of a DAG can be ordered in such a way that for every directed edge u → v, node u comes before node v in the ordering.</p></li>
+<li><p><strong>Topological ordering</strong>: the nodes of a DAG can be ordered in such a way that for every directed edge <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, node <span class="math notranslate nohighlight">\(X\)</span> comes before node <span class="math notranslate nohighlight">\(Y\)</span> in the ordering.</p></li>
 </ol>
-<p>A DAG is a graph that is directed and has no cycles, meaning there is no way to start at one node and follow a consistent direction that leads back to the starting node.</p>
-<blockquote>
-<div><p>In a DAG, every parent is a direct cause of all its children.</p>
-</div></blockquote>
+<p>A DAG is a graph that is directed and has no cycles, meaning there is no way to start at one node and follow a consistent direction that leads back to the starting node. In a DAG, every parent is a direct cause of all its children.</p>
+</section>
+<section id="an-example">
+<h2>An Example<a class="headerlink" href="#an-example" title="Link to this heading">#</a></h2>
 <p>To better understand DAGs, let’s consider a simple example with the following variables:</p>
 <ol class="arabic simple">
-<li><p><strong>Temperature</strong></p></li>
-<li><p><strong>Electricity load</strong></p></li>
-<li><p><strong>Renewable energy production</strong></p></li>
-<li><p><strong>Electricity price</strong></p></li>
+<li><p>Temperature (°C)</p></li>
+<li><p>Electricity load (MW)</p></li>
+<li><p>Renewable energy production (MW)</p></li>
+<li><p>Electricity price (GBP)</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -505,8 +513,7 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/3b1bb164373ae4dc103ce67c67e3d1bcac4061fa8d1cbc5d7447b70a30f2b0d3.svg" src="../_images/3b1bb164373ae4dc103ce67c67e3d1bcac4061fa8d1cbc5d7447b70a30f2b0d3.svg" /></div>
 </div>
-<p><strong>Understanding the DAG</strong></p>
-<p>A DAG is used to visually represent the causal relationships between the key variables in the analysis. The key variables are represented as nodes, and the arrows represent the direction of influence. By examining the graph, we can understand how changes in one variable may impact others, forming a network of dependencies that govern market dynamics. In the example above, we have:</p>
+<p>By examining the DAG, we can understand how changes in one variable may impact others, forming a network of dependencies that govern market dynamics. In the example above, we have:</p>
 <ol class="arabic simple">
 <li><p><strong>Temperature → electricity load</strong>: as temperature increases or decreases, it directly affects the electricity load. With warmer temperatures, the demand for electricity increases due to air conditioning usage. Similarly, colder temperatures can increase electricity demand for heating purposes.</p></li>
 <li><p><strong>Temperature → renewable energy production</strong>: temperature can affect the efficiency and output of renewable energy sources. For example, solar panels may produce more energy on sunny, warm days but less on extremely hot days when efficiency drops. Wind patterns, affected by temperature changes, can also impact wind energy production.</p></li>
@@ -514,8 +521,11 @@ document.write(`
 <li><p><strong>Electricity load → electricity price</strong>: the demand for electricity (load) influences electricity prices. High electricity demand usually leads to higher prices because the supply must meet the increased load, often requiring more expensive or less efficient energy sources. Lower demand can result in lower prices due to decreased strain on the electricity grid and reliance on cheaper energy sources.</p></li>
 </ol>
 </section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h2>
+<p>To effectively use DAGs for causal inference, it is essential to understand several fundamental concepts. These concepts provide the theoretical foundation for identifying and interpreting causal relationships, ensuring that the DAGs accurately represent the dependencies and independencies within the data.</p>
 <section id="d-separation">
-<h2>d-separation<a class="headerlink" href="#d-separation" title="Link to this heading">#</a></h2>
+<h3>d-separation<a class="headerlink" href="#d-separation" title="Link to this heading">#</a></h3>
 <p>In addition to understanding direct causal relationships, it is also important to understand how to determine if variables are conditionally independent given other variables. This concept is known as <strong>d-separation</strong>, and it represents a criterion for deciding whether a set of nodes is independent of another set of nodes given a third set. It is a crucial concept in understanding the flow of information and causation in DAGs.</p>
 <p>For example, in the context of our electricity market DAG:</p>
 <ul class="simple">
@@ -525,23 +535,27 @@ document.write(`
 <p>By understanding d-separation, we can better interpret the dependencies and independencies in our DAG, leading to more accurate causal inferences.</p>
 </section>
 <section id="local-markov-assumption">
-<h2>Local Markov assumption<a class="headerlink" href="#local-markov-assumption" title="Link to this heading">#</a></h2>
-<p>The Local Markov ssumption states that a node in a DAG is conditionally independent of its non-descendants given its parents. This assumption allows for the decomposition of the joint probability distribution of all variables in the DAG into simpler conditional distributions. For example, in our DAG, <strong>electricity price</strong> is conditionally independent of <strong>temperature</strong> given <strong>renewable energy production</strong> and <strong>electricity load</strong>. This implies that once we know the values of <strong>renewable energy production</strong> and <strong>electricity load</strong>, additional information about <strong>temperature</strong> does not change our understanding of <strong>electricity price</strong>.</p>
-<p>## Factorization</p>
-<p>Factorization refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the Local Markov Assumption. The joint distribution <span class="math notranslate nohighlight">\( P(T, L, R, P) \)</span> can be factorized as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-36da4c7b-d625-4965-8f6a-5478baa3fb3b">
-<span class="eqno">(1)<a class="headerlink" href="#equation-36da4c7b-d625-4965-8f6a-5478baa3fb3b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<h3>Local Markov Assumption<a class="headerlink" href="#local-markov-assumption" title="Link to this heading">#</a></h3>
+<p>The local Markov assumption states that a node in a DAG is conditionally independent of its non-descendants given its parents. This assumption allows for the decomposition of the joint probability distribution of all variables in the DAG into simpler conditional distributions. For example, in our DAG, <strong>electricity price</strong> is conditionally independent of <strong>temperature</strong> given <strong>renewable energy production</strong> and <strong>electricity load</strong>. This implies that once we know the values of <strong>renewable energy production</strong> and <strong>electricity load</strong>, additional information about <strong>temperature</strong> does not change our understanding of <strong>electricity price</strong>.</p>
+</section>
+<section id="factorisation">
+<h3>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">#</a></h3>
+<p>Factorisation refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the local Markov assumption. The joint distribution <span class="math notranslate nohighlight">\(P(T, L, R, P)\)</span> can be factorised as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ee9da228-4e83-4f60-a167-f28c95a5a0f1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ee9da228-4e83-4f60-a167-f28c95a5a0f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
-<p>This factorization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
+<p>This factosization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
 </section>
 <section id="minimality-assumption">
-<h2>Minimality assumption<a class="headerlink" href="#minimality-assumption" title="Link to this heading">#</a></h2>
-<p>The Minimality Assumption asserts that the DAG representing the causal structure is minimal, meaning that removing any edge would violate the Markov condition for the observed data. It ensures that the model encodes only necessary dependency relationships. It means that the DAG includes only those edges that represent necessary causal relationships. Removing any edge would lead to a loss of information about the dependencies among variables, ensuring that the DAG is the simplest model that adequately represents the data.</p>
+<h3>Minimality Assumption<a class="headerlink" href="#minimality-assumption" title="Link to this heading">#</a></h3>
+<p>The minimality assumption asserts that the DAG representing the causal structure is minimal, meaning that removing any edge would violate the Markov condition for the observed data. It ensures that the model encodes only necessary dependency relationships. It means that the DAG includes only those edges that represent necessary causal relationships. Removing any edge would lead to a loss of information about the dependencies among variables, ensuring that the DAG is the simplest model that adequately represents the data.</p>
 </section>
 <section id="markov-equivalence-class">
-<h2>Markov equivalence class<a class="headerlink" href="#markov-equivalence-class" title="Link to this heading">#</a></h2>
-<p>A Markov equivalence class contains all DAGS that encode the same conditional independencies. This means that within a Markov equivalence class, multiple DAGs can represent the same set of conditional independence relationships among variables. These DAGs are considered equivalent because they imply the same probabilistic dependencies, even if their structures differ.</p>
+<h3>Markov Equivalence Class<a class="headerlink" href="#markov-equivalence-class" title="Link to this heading">#</a></h3>
+<p>A Markov equivalence class contains all DAGs that encode the same conditional independencies. This means that within a Markov equivalence class, multiple DAGs can represent the same set of conditional independence relationships among variables. These DAGs are considered equivalent because they imply the same probabilistic dependencies, even if their structures differ.</p>
+<section id="id1">
+<h4>An Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <p>Consider the following three DAGs involving three variables <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span>:</p>
 <p><strong>Graph 1:</strong></p>
 <div class="cell docutils container">
@@ -592,7 +606,7 @@ document.write(`
 <img alt="../_images/67b518df04b7beeca4b023819156cf29d0ad070d8ca8707599773ca811921c68.svg" src="../_images/67b518df04b7beeca4b023819156cf29d0ad070d8ca8707599773ca811921c68.svg" /></div>
 </div>
 <p>Each of these DAGs represents the same conditional independence relationships: <span class="math notranslate nohighlight">\(X \perp Z | Y\)</span>, indicating that once we know <span class="math notranslate nohighlight">\(Y\)</span>, <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> are independent.</p>
-<p>A completed partially directed acyclic graph (CPDAG), also known as an Essential Graph (EG), is a graphical representation that captures all DAGs within a Markov equivalence class. The CPDAG contains both directed and undirected edges:</p>
+<p>A <strong>completed partially directed acyclic graph (CPDAG)</strong>, also known as an Essential Graph (EG), is a graphical representation that captures all DAGs within a Markov equivalence class. The CPDAG contains both directed and undirected edges:</p>
 <ul class="simple">
 <li><p><strong>Directed edges</strong> represent causal relationships that are common to all DAGs in the equivalence class.</p></li>
 <li><p><strong>Undirected edges</strong> represent relationships where the directionality is ambiguous among the DAGs in the equivalence class.</p></li>
@@ -603,7 +617,7 @@ document.write(`
 <li><p>Retaining directed edges that are common to all these DAGs.</p></li>
 <li><p>Converting edges with uncertain directionality into undirected edges.</p></li>
 </ol>
-<p>Let’s consider a CPDAG for the equivalence class of the three DAGs shown above:</p>
+<p>For the three DAGs shown above, the <strong>CPDAG</strong> would be given by:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
@@ -625,12 +639,8 @@ document.write(`
 <li><p>The edges <span class="math notranslate nohighlight">\(X \to Y\)</span> and <span class="math notranslate nohighlight">\(Z \to Y\)</span> are directed because all DAGs in the equivalence class have these directions.</p></li>
 <li><p>The edge <span class="math notranslate nohighlight">\(X - Z\)</span> is undirected, indicating that the direction between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> is ambiguous within the equivalence class.</p></li>
 </ul>
-<p>The CPDAG or EG provides a compact and comprehensive representation of the causal structure, capturing all possible DAGs that explain the observed data:</p>
-<ul class="simple">
-<li><p><strong>Identification of causal relationships</strong>: directed edges in the CPDAG indicate robust causal relationships that hold across all DAGs in the equivalence class.</p></li>
-<li><p><strong>Ambiguity in directionality</strong>: undirected edges highlight areas where additional data or assumptions are needed to resolve the direction of causality.</p></li>
-<li><p><strong>Simplified analysis</strong>: analysing a CPDAG instead of multiple individual DAGs simplifies the process of understanding the underlying causal structure.</p></li>
-</ul>
+</section>
+</section>
 </section>
 </section>
 
@@ -698,11 +708,19 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dags">DAGs</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-separation">d-separation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-markov-assumption">Local Markov assumption</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimality-assumption">Minimality assumption</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-equivalence-class">Markov equivalence class</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example">An Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-separation">d-separation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-markov-assumption">Local Markov Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#factorisation">Factorisation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimality-assumption">Minimality Assumption</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markov-equivalence-class">Markov Equivalence Class</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">An Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
