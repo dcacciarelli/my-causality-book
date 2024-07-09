@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/correlation_vs_causation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Causal Representations" href="DAG.html" />
+    <link rel="next" title="Causal Representation" href="DAG.html" />
     <link rel="prev" title="Guide" href="guide.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -190,7 +190,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Correlation vs. Causation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -409,7 +409,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -425,6 +427,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-cause">What is a Cause</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-vs-observational-data">Experimental vs. Observational Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-motivating-example">A Motivating Example</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -436,14 +448,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="correlation-vs-causation">
 <h1>Correlation vs. Causation<a class="headerlink" href="#correlation-vs-causation" title="Link to this heading">#</a></h1>
+<section id="what-is-a-cause">
+<h2>What is a Cause<a class="headerlink" href="#what-is-a-cause" title="Link to this heading">#</a></h2>
+<p>In the context of data analysis and research, a <strong>cause</strong> refers to an event or a variable that directly influences another event or variable. If a change in <span class="math notranslate nohighlight">\(X\)</span> (the cause) results in a change in <span class="math notranslate nohighlight">\(Y\)</span> (the effect), then <span class="math notranslate nohighlight">\(X\)</span> is said to cause <span class="math notranslate nohighlight">\(Y\)</span>. This relationship is often depicted as <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, signifying that <span class="math notranslate nohighlight">\(X\)</span> is a causal factor for <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+</section>
+<section id="experimental-vs-observational-data">
+<h2>Experimental vs. Observational Data<a class="headerlink" href="#experimental-vs-observational-data" title="Link to this heading">#</a></h2>
 <p>When addressing real-world engineering or business challenges, a fundamental goal is to comprehend the underlying mechanisms governing a system and the <strong>key drivers</strong> affecting its performance. This understanding often stems from conducting experiments, which are foundational to scientific research. For example, if we aim to determine the effect of a new solar panel design on energy conversion efficiency, systematic experimentation might be the initial approach. Through controlled manipulation and observation, <strong>experimental data</strong> helps us establish clear cause-and-effect relationships.</p>
-<blockquote>
-<div><p>In the context of data analysis and research, a <strong>cause</strong> refers to an event or a variable that directly influences another event or variable. If a change in <span class="math notranslate nohighlight">\(X\)</span> (the cause) results in a change in <span class="math notranslate nohighlight">\(Y\)</span> (the effect), then <span class="math notranslate nohighlight">\(X\)</span> is said to cause <span class="math notranslate nohighlight">\(Y\)</span>. This relationship is often depicted as <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, signifying that <span class="math notranslate nohighlight">\(X\)</span> is a causal factor for <span class="math notranslate nohighlight">\(Y\)</span>.</p>
-</div></blockquote>
 <p>In many real-world settings, such as economics or public policy, performing experiments can be impractical, expensive, or unethical. Consequently, researchers and analysts often rely on <strong>observational data</strong>, which is collected without any direct manipulation of variables. Working with observational data introduces complexities, particularly in distinguishing between mere correlations and actual causal relationships. Observational data can reveal patterns and associations, but without the ability to control for all influencing factors, these correlations might lead to misleading conclusions about causality.</p>
-<p><strong>Causal inference</strong> bridges this gap. It is a branch of statistics focused on determining cause-and-effect relationships from data where no explicit experimentation has been conducted. Unlike mere correlation analysis, which only measures how variables move together, causal inference aims to uncover whether and how one variable influences another. This distinction is vital for informed decision-making across various domains, including economics, healthcare, and energy markets. The phrase “correlation does not imply causation” is frequently cited in statistical analysis to caution against prematurely concluding that one variable causes another simply because they are associated. Despite this, it is surprising how often business decisions are made based on perceived associations highlighted by correlation metrics alone.</p>
+<p><strong>Causal inference</strong> bridges this gap. Causal inference is a branch of statistics focused on determining cause-and-effect relationships from data where no explicit experimentation has been conducted. Unlike mere correlation analysis, which only measures how variables move together, causal inference aims to uncover whether and how one variable influences another. This distinction is vital for informed decision-making across various domains, including economics, healthcare, and energy markets. The phrase “correlation does not imply causation” is frequently cited in statistical analysis to caution against prematurely concluding that one variable causes another simply because they are associated. Despite this, it is surprising how often business decisions are made based on perceived associations highlighted by correlation metrics alone.</p>
 <p>In the electricity market, understanding causal relationships is crucial. It enables stakeholders to predict the effects of policy changes, modify pricing strategies, and assess the impact of technological advancements on demand and supply dynamics. Causal inference provides the tools to make predictions about the consequences of potential actions, thereby supporting more strategic and effective decision-making.</p>
-<p><strong>A Motivating Example</strong></p>
+</section>
+<section id="a-motivating-example">
+<h2>A Motivating Example<a class="headerlink" href="#a-motivating-example" title="Link to this heading">#</a></h2>
 <p>To illustrate the dichotomy between correlation and causation, consider a simple example involving three variables:</p>
 <ol class="arabic simple">
 <li><p>Temperature (°C)</p></li>
@@ -604,6 +621,7 @@ document.write(`
 </div>
 <p>By examining these plots, we might find ourselves tempted to conclude a correlation between electricity load and ice cream sales, especially in a more complex scenario where the causal structure is not known to us. This observation highlights a common challenge in data analysis: distinguishing between mere correlation and actual causation without prior knowledge of the underlying causal mechanisms.</p>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -649,7 +667,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Causal Representations</p>
+        <p class="prev-next-title">Causal Representation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -660,7 +678,22 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-cause">What is a Cause</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-vs-observational-data">Experimental vs. Observational Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-motivating-example">A Motivating Example</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
