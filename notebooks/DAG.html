@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Causal Representation &#8212; Causality in Electricity Markets</title>
+    <title>Causal Representations &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -190,7 +190,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Representation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causal Representations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -422,7 +422,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Causal Representation</h1>
+    <h1>Causal Representations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -456,8 +456,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="causal-representation">
-<h1>Causal Representation<a class="headerlink" href="#causal-representation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="causal-representations">
+<h1>Causal Representations<a class="headerlink" href="#causal-representations" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p><strong>Directed acyclic graphs (DAGs)</strong> are the main tool used to depict and reason about causal relationships between variables. They are widely used in statistics, machine learning, and causal inference.</p>
@@ -541,8 +541,8 @@ document.write(`
 <section id="factorisation">
 <h3>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">#</a></h3>
 <p>Factorisation refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the local Markov assumption. The joint distribution <span class="math notranslate nohighlight">\(P(T, L, R, P)\)</span> can be factorised as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee9da228-4e83-4f60-a167-f28c95a5a0f1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ee9da228-4e83-4f60-a167-f28c95a5a0f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c3fd999d-7ffd-4b58-846a-f00ca7df5b44">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c3fd999d-7ffd-4b58-846a-f00ca7df5b44" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factosization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
