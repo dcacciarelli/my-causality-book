@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -191,6 +191,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scm.html">Structural Causal Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -449,14 +450,14 @@ document.write(`
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-ae67dfab-aec8-4c5b-8a3d-da26f3ab6050">
-<span class="eqno">(39)<a class="headerlink" href="#equation-ae67dfab-aec8-4c5b-8a3d-da26f3ab6050" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(40)<a class="headerlink" href="#equation-ae67dfab-aec8-4c5b-8a3d-da26f3ab6050" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4d85aeed-6e6d-443c-9b34-70b1721c796d">
-<span class="eqno">(40)<a class="headerlink" href="#equation-4d85aeed-6e6d-443c-9b34-70b1721c796d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(41)<a class="headerlink" href="#equation-4d85aeed-6e6d-443c-9b34-70b1721c796d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>

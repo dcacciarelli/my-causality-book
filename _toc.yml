@@ -21,6 +21,7 @@ parts:
     chapters:
       - file: notebooks/correlation_vs_causation
       - file: notebooks/DAG
+      - file: notebooks/scm
       - file: notebooks/basic_dag_structures
       - file: notebooks/glossary
 

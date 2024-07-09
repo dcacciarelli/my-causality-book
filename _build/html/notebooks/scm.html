@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Correlation vs. Causation &#8212; Causality in Electricity Markets</title>
+    <title>Structural Causal Models &#8212; Causality in Electricity Markets</title>
   
   
   
@@ -59,11 +59,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/correlation_vs_causation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/scm';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Causal Representations" href="DAG.html" />
-    <link rel="prev" title="Guide" href="guide.html" />
+    <link rel="next" title="Basic Causal Structures" href="basic_dag_structures.html" />
+    <link rel="prev" title="Causal Representations" href="DAG.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -189,9 +189,9 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scm.html">Structural Causal Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Structural Causal Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -309,7 +309,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/correlation_vs_causation.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/scm.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -339,7 +339,7 @@
       
       
       
-      <li><a href="../_sources/notebooks/correlation_vs_causation.ipynb" target="_blank"
+      <li><a href="../_sources/notebooks/scm.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -423,7 +423,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Correlation vs. Causation</h1>
+    <h1>Structural Causal Models</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -433,9 +433,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-cause">What is a Cause</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-vs-observational-data">Experimental vs. Observational Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-motivating-example">A Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-scms">Components of SCMs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-dag-to-scm">From DAG to SCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drawing-a-simple-dag">Step 1: Drawing a Simple DAG</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-adding-the-weights">Step 2: Adding the Weights</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-writing-the-scm">Step 3: Writing the SCM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-the-opposite-from-scm-to-dag">Doing the Opposite: from SCM to DAG</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -447,32 +455,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="correlation-vs-causation">
-<h1>Correlation vs. Causation<a class="headerlink" href="#correlation-vs-causation" title="Link to this heading">#</a></h1>
-<section id="what-is-a-cause">
-<h2>What is a Cause<a class="headerlink" href="#what-is-a-cause" title="Link to this heading">#</a></h2>
-<p>In the context of data analysis and research, a <strong>cause</strong> refers to an event or a variable that directly influences another event or variable. If a change in <span class="math notranslate nohighlight">\(X\)</span> (the cause) results in a change in <span class="math notranslate nohighlight">\(Y\)</span> (the effect), then <span class="math notranslate nohighlight">\(X\)</span> is said to cause <span class="math notranslate nohighlight">\(Y\)</span>. This relationship is often depicted as <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, signifying that <span class="math notranslate nohighlight">\(X\)</span> is a causal factor for <span class="math notranslate nohighlight">\(Y\)</span>.</p>
-</section>
-<section id="experimental-vs-observational-data">
-<h2>Experimental vs. Observational Data<a class="headerlink" href="#experimental-vs-observational-data" title="Link to this heading">#</a></h2>
-<p>When addressing real-world engineering or business challenges, a fundamental goal is to comprehend the underlying mechanisms governing a system and the <strong>key drivers</strong> affecting its performance. This understanding often stems from conducting experiments, which are foundational to scientific research. For example, if we aim to determine the effect of a new solar panel design on energy conversion efficiency, systematic experimentation might be the initial approach. Through controlled manipulation and observation, <strong>experimental data</strong> helps us establish clear cause-and-effect relationships.</p>
-<p>In many real-world settings, such as economics or public policy, performing experiments can be impractical, expensive, or unethical. Consequently, researchers and analysts often rely on <strong>observational data</strong>, which is collected without any direct manipulation of variables. Working with observational data introduces complexities, particularly in distinguishing between mere correlations and actual causal relationships. Observational data can reveal patterns and associations, but without the ability to control for all influencing factors, these correlations might lead to misleading conclusions about causality.</p>
-<p><strong>Causal inference</strong> bridges this gap. Causal inference is a branch of statistics focused on determining cause-and-effect relationships from data where no explicit experimentation has been conducted. Unlike mere correlation analysis, which only measures how variables move together, causal inference aims to uncover whether and how one variable influences another. This distinction is vital for informed decision-making across various domains, including economics, healthcare, and energy markets. The phrase “correlation does not imply causation” is frequently cited in statistical analysis to caution against prematurely concluding that one variable causes another simply because they are associated. Despite this, it is surprising how often business decisions are made based on perceived associations highlighted by correlation metrics alone.</p>
-<p>In the electricity market, understanding causal relationships is crucial. It enables stakeholders to predict the effects of policy changes, modify pricing strategies, and assess the impact of technological advancements on demand and supply dynamics. Causal inference provides the tools to make predictions about the consequences of potential actions, thereby supporting more strategic and effective decision-making.</p>
-</section>
-<section id="a-motivating-example">
-<h2>A Motivating Example<a class="headerlink" href="#a-motivating-example" title="Link to this heading">#</a></h2>
-<p>To illustrate the dichotomy between correlation and causation, consider a simple example involving three variables:</p>
-<ol class="arabic simple">
-<li><p>Temperature (°C)</p></li>
-<li><p>Electricity load (MW)</p></li>
-<li><p>Ice cream sales (GBP)</p></li>
-</ol>
-<p>To better understand the relationships among these variables, we utilise a <strong>causal graph</strong> to depict the data-generating process. For now, do not worry too much about the specifics of causal graphs and the data-generating process, as these concepts will be described in detail in the upcoming chapters. Just consider that this graph helps us visualize and understand how fluctuations in temperature <strong>drive changes</strong> in both electricity consumption and ice cream sales.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="structural-causal-models">
+<h1>Structural Causal Models<a class="headerlink" href="#structural-causal-models" title="Link to this heading">#</a></h1>
+<p>Structural causal models (SCMs) are a powerful extension of directed acyclic graphs (DAGs), providing a more detailed and quantitative framework for understanding causal relationships. While DAGs visually represent causal dependencies, SCMs use mathematical equations to specify how variables influence each other, capturing both direct and indirect effects. This allows us to precisely descibe data-generating processes and underlying relationships among variables.</p>
+<section id="components-of-scms">
+<h2>Components of SCMs<a class="headerlink" href="#components-of-scms" title="Link to this heading">#</a></h2>
+<p>SCMs are defined by a set of <strong>structural equations</strong>, where each endogenous variable is expressed as a function of its direct causes (parents) and an error term. These equations quantify the causal relationships depicted in a DAG. Within SCMs and DAGs, we can distinguish between endogenous and exogenous variables:</p>
 <ul class="simple">
-<li><p>The relationship between temperature and electricity load often exhibits a U-shaped pattern. During extremely cold weather, the demand for electricity increases due to heating needs. Conversely, during extremely hot weather, electricity load rises because of the increased use of air conditioning. This U-shape reflects the higher energy consumption at both temperature extremes.</p></li>
-<li><p>Temperature also has a direct impact on ice cream sales. Generally, higher temperatures lead to increased ice cream consumption as people look for ways to cool down. Thus, we can observe that as the temperature rises, so do ice cream sales.</p></li>
+<li><p><strong>Endogenous variables</strong> are variables whose values are determined within the model. These are the nodes in the DAG.</p></li>
+<li><p><strong>Exogenous Variables</strong> are variables that affect the endogenous variables but are not influenced by them. These are typically represented as error terms in the structural equations.</p></li>
 </ul>
+<p>The <strong>error terms</strong> capture the influence of unobserved factors on each endogenous variable. They represent all other influences not explicitly included in the model.</p>
+</section>
+<section id="from-dag-to-scm">
+<h2>From DAG to SCM<a class="headerlink" href="#from-dag-to-scm" title="Link to this heading">#</a></h2>
+<p>DAGs and SCMs are closely related:</p>
+<ul class="simple">
+<li><p><strong>From DAG to SCM:</strong> each directed edge in a DAG corresponds to a term in a structural equation. The absence of an edge implies no direct causal effect.</p></li>
+<li><p><strong>From SCM to DAG:</strong> structural equations can be translated into a DAG by drawing an edge from each parent variable to its child variable as specified by the equations.</p></li>
+</ul>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>Let’s now see in practice how we can translate a DAG into a SCM, that will give us the structural equations we can use to generate data following the causal structure represented by the DAG.</p>
+<section id="step-1-drawing-a-simple-dag">
+<h4>Step 1: Drawing a Simple DAG<a class="headerlink" href="#step-1-drawing-a-simple-dag" title="Link to this heading">#</a></h4>
+<p>Let’s start by creating a simple DAG represenitng the effect of weather fluctuations on wind forecast errors and balancing costs. In electricity markets, balancing costs are the expenses incurred to maintain the balance between electricity supply and demand. Balancing is crucial for the stability of the electricity grid. Balancing costs arise when there is a need to match the electricity supply with the actual demand in real time. If the wind forecast is inaccurate, the grid operator may need to use more expensive and less efficient sources of electricity to make up for the shortfall or to reduce excess supply. This incurs additional costs.</p>
+<p>We expect the following relationship between these three variables:</p>
+<ul class="simple">
+<li><p><strong>Weather conditions</strong> are exogenous variables, which are driven by external factors such as climate patterns, geographical location, and seasonal changes.</p></li>
+<li><p><strong>Weather fluctuations directly influence wind forecast errors</strong>. For example, unexpected weather changes can lead to larger errors in predicting wind energy production.</p></li>
+<li><p><strong>Wind forecast errors directly influence balancing costs</strong>. Larger forecast errors typically result in higher balancing costs due to the need for additional adjustments in electricity supply.</p></li>
+</ul>
+<p>These relationships translate into the following DAG.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
@@ -482,13 +496,13 @@ document.write(`
 <span class="n">dot</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Digraph</span><span class="p">()</span>
 
 <span class="c1"># Add nodes</span>
-<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature&#39;</span><span class="p">)</span>
-<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;Electricity</span><span class="se">\n</span><span class="s1">load&#39;</span><span class="p">)</span>
-<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;Ice cream</span><span class="se">\n</span><span class="s1">sales&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;weather </span><span class="se">\n</span><span class="s1">fluctuations&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;wind forecast </span><span class="se">\n</span><span class="s1">errors&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;balancing </span><span class="se">\n</span><span class="s1">costs&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add edges</span>
-<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">)</span>
-<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">dot</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span>
 
 <span class="c1"># Display the graph in the notebook</span>
 <span class="n">display</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
@@ -496,128 +510,70 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/30a2b48bdfe63703ffff3a46e19df8ccb5211a5ce717fc089d1e8e61e493f2bd.svg" src="../_images/30a2b48bdfe63703ffff3a46e19df8ccb5211a5ce717fc089d1e8e61e493f2bd.svg" /></div>
+<img alt="../_images/80656c8eb05b7c60ec89e70da995ada74301f5aa89f90973db806c436cde43d2.svg" src="../_images/80656c8eb05b7c60ec89e70da995ada74301f5aa89f90973db806c436cde43d2.svg" /></div>
 </div>
-<p>We will now generate some data using the causal structure above. Then, we will assume that we are unaware of this true causal structure and need to perform exploratory analysis to uncover potential correlations among the observations.</p>
-<p>In this scenario, our goal is to explore the data, look for correlations, and attempt to infer possible causal relationships without prior knowledge of the underlying causal mechanisms. This approach mimics real-world situations where data scientists and researchers often work with complex datasets without a clear understanding of the dynamics that govern the relationships between variables.</p>
-<p>Through statistical methods and visual analysis, we will examine the interactions between temperature, electricity load, and ice cream sales, exploring how these variables may be related and considering the implications of our findings.</p>
-<p>First, let’s generate some data according to the DAG shown above.</p>
+</section>
+<section id="step-2-adding-the-weights">
+<h4>Step 2: Adding the Weights<a class="headerlink" href="#step-2-adding-the-weights" title="Link to this heading">#</a></h4>
+<p>The next step to derive the SCM from the DAG is to know the coefficients represint the weights of the edges in the DAG. We will now assume these weights are known.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span>
 
-<span class="c1"># Setting a random seed for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># Matrix of coefficients (weights)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>
 
-<span class="c1"># Generating synthetic data</span>
-<span class="n">n</span> <span class="o">=</span> <span class="mi">100000</span>
-<span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># average temperature in Celsius</span>
-<span class="n">electricity_load</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperatures</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">70</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># Quadratic relationship for U-shape</span>
-<span class="n">ice_cream_sales</span> <span class="o">=</span> <span class="mi">5</span><span class="o">*</span> <span class="n">temperatures</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>  <span class="c1"># also influenced by temperature</span>
-
-<span class="c1"># Creating a DataFrame</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Temperature&#39;</span><span class="p">:</span> <span class="n">temperatures</span><span class="p">,</span> <span class="s1">&#39;Electricity Load&#39;</span><span class="p">:</span> <span class="n">electricity_load</span><span class="p">,</span> <span class="s1">&#39;Ice Cream Sales&#39;</span><span class="p">:</span> <span class="n">ice_cream_sales</span><span class="p">})</span>
-
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># Plotting causal graph</span>
+<span class="n">make_dot</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;weather </span><span class="se">\n</span><span class="s2">fluctuations&quot;</span><span class="p">,</span> <span class="s2">&quot;wind forecast </span><span class="se">\n</span><span class="s2">errors&quot;</span><span class="p">,</span> <span class="s2">&quot;balancing </span><span class="se">\n</span><span class="s2">costs&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Temperature</th>
-      <th>Electricity Load</th>
-      <th>Ice Cream Sales</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>22.483571</td>
-      <td>76.386598</td>
-      <td>143.654668</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>19.308678</td>
-      <td>64.318811</td>
-      <td>94.658826</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>23.238443</td>
-      <td>74.974688</td>
-      <td>89.601501</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>27.615149</td>
-      <td>78.501907</td>
-      <td>110.302984</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>18.829233</td>
-      <td>68.637125</td>
-      <td>87.293150</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
-<p>Now, let’s plot the pairwise correlation plots to explore the dependencies.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting up the plots</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-<span class="c1"># Temperature vs Electricity Load with hexbin plot</span>
-<span class="n">hb1</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Electricity Load&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Temperature vs Electricity Load&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Electricity Load (MW)&#39;</span><span class="p">)</span>
-
-<span class="c1"># Temperature vs Ice Cream Sales with hexbin plot</span>
-<span class="n">hb2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Ice Cream Sales&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Temperature vs Ice Cream Sales&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (°C)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ice Cream Sales (GBP)&#39;</span><span class="p">)</span>
-
-<span class="c1"># Electricity Load vs Ice Cream Sales with hexbin plot</span>
-<span class="n">hb3</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Electricity Load&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Ice Cream Sales&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Electricity Load vs Ice Cream Sales&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Electricity Load (MW)&#39;</span><span class="p">)</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Ice Cream Sales (GBP)&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/8e1a86021a1604d04066d84f4b3d5fefd2264bbe00bafcdc25bee828a7d975d7.png" src="../_images/8e1a86021a1604d04066d84f4b3d5fefd2264bbe00bafcdc25bee828a7d975d7.png" />
-</div>
-</div>
-<p>By examining these plots, we might find ourselves tempted to conclude a correlation between electricity load and ice cream sales, especially in a more complex scenario where the causal structure is not known to us. This observation highlights a common challenge in data analysis: distinguishing between mere correlation and actual causation without prior knowledge of the underlying causal mechanisms.</p>
+<p>The matrix <code class="docutils literal notranslate"><span class="pre">m</span></code> used in the plot is sometimes referred to as the <strong>adjacency matrix</strong>, and it contains the weights of the edges in a DAG. It is a <span class="math notranslate nohighlight">\(p \times p\)</span> matrix where <span class="math notranslate nohighlight">\(p\)</span> is the number of variables (nodes) in the DAG. In this context, <span class="math notranslate nohighlight">\(p = 3\)</span>, representing the variables: weather fluctuations, wind forecast errors, and balancing costs.</p>
+<p>The element at position <span class="math notranslate nohighlight">\((i, j)\)</span> represents the weight of the edge from node <span class="math notranslate nohighlight">\(i\)</span> to node <span class="math notranslate nohighlight">\(j\)</span>:</p>
+<ul class="simple">
+<li><p>A value of 0 indicates <strong>no direct causal connection</strong>.</p></li>
+<li><p>A non-zero value indicates a <strong>direct causal connection</strong>, with the value representing the strength or magnitude of the causal effect.</p></li>
+</ul>
+<p>In our example:</p>
+<ul class="simple">
+<li><p>The element <span class="math notranslate nohighlight">\(m_{21} = 1.5\)</span> means that weather fluctuations (node 1) have a causal effect on wind forecast errors (node 2) with a weight of 1.5.</p></li>
+<li><p>The element <span class="math notranslate nohighlight">\(m_{32} = 1.2\)</span> means that wind forecast errors (node 2) have a causal effect on balancing costs (node 3) with a weight of 1.2.</p></li>
+<li><p>All other elements being 0 indicate no direct causal connections between those nodes.</p></li>
+</ul>
+</section>
+<section id="step-3-writing-the-scm">
+<h4>Step 3: Writing the SCM<a class="headerlink" href="#step-3-writing-the-scm" title="Link to this heading">#</a></h4>
+<p>Knowing the weights, we can write the following Structural Causal Model (SCM):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3fde7e5f-22c9-41d8-9086-6d00c26ce825">
+<span class="eqno">(2)<a class="headerlink" href="#equation-3fde7e5f-22c9-41d8-9086-6d00c26ce825" title="Permalink to this equation">#</a></span>\[\begin{align}
+    \text{weather fluctuations} &amp;= e_w \\
+    \text{wind forecast errors} &amp;= 1.5 \times \text{weather fluctuations} + e_f \\
+    \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b
+\end{align}\]</div>
+<p>Here, we can see the concepts we introduced before:</p>
+<ul class="simple">
+<li><p><strong>Weather fluctuations</strong> are exogenous variables represented by <span class="math notranslate nohighlight">\(e_w\)</span>, driven by external factors and not influenced by other variables within the model.</p></li>
+<li><p><strong>Wind forecast errors</strong> are influenced by weather fluctuations and have an additional noise term <span class="math notranslate nohighlight">\(e_f\)</span>, capturing the variability not explained by weather alone.</p></li>
+<li><p><strong>Balancing costs</strong> are influenced by wind forecast errors and have an additional noise term <span class="math notranslate nohighlight">\(e_b\)</span>, capturing the variability not explained by forecast errors alone.</p></li>
+</ul>
+<p>These equations (the <strong>structural equations</strong>) reflect the causal relationships and the strengths of these effects as specified by the weights in the adjacency matrix.</p>
+</section>
+<section id="doing-the-opposite-from-scm-to-dag">
+<h4>Doing the Opposite: from SCM to DAG<a class="headerlink" href="#doing-the-opposite-from-scm-to-dag" title="Link to this heading">#</a></h4>
+<p>If we are only given the SCM, using these concepts, we can also draw the DAG from the SCM to visually represent the causal structure and the dependencies among the variables. The main concepts to remember are:</p>
+<ul class="simple">
+<li><p>We can identify the nodes as the variables in the model and the edges as the non-zero coefficients in the structural equations.</p></li>
+<li><p>Each non-zero coefficient indicates a direct causal influence of one variable on another, and the magnitude of the coefficient represents the strength of this influence.</p></li>
+</ul>
+<p>By mapping these relationships, we can construct the DAG, which provides a clear and intuitive visualization of the causal pathways and interactions within the system.</p>
+</section>
+</section>
 </section>
 </section>
 
@@ -652,20 +608,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="guide.html"
+       href="DAG.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Guide</p>
+        <p class="prev-next-title">Causal Representations</p>
       </div>
     </a>
     <a class="right-next"
-       href="DAG.html"
+       href="basic_dag_structures.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Causal Representations</p>
+        <p class="prev-next-title">Basic Causal Structures</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -685,9 +641,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-cause">What is a Cause</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experimental-vs-observational-data">Experimental vs. Observational Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-motivating-example">A Motivating Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-scms">Components of SCMs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-dag-to-scm">From DAG to SCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drawing-a-simple-dag">Step 1: Drawing a Simple DAG</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-adding-the-weights">Step 2: Adding the Weights</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-writing-the-scm">Step 3: Writing the SCM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#doing-the-opposite-from-scm-to-dag">Doing the Opposite: from SCM to DAG</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
