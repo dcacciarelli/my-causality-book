@@ -232,7 +232,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash Course on Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
@@ -461,14 +461,14 @@ document.write(`
 <section id="the-lingam-model">
 <h2>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-094bc50b-7aea-4850-beec-e5949678c1e2">
-<span class="eqno">(5)<a class="headerlink" href="#equation-094bc50b-7aea-4850-beec-e5949678c1e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-795d18f4-92a9-4fbe-8769-fd6cfed306d0">
+<span class="eqno">(5)<a class="headerlink" href="#equation-795d18f4-92a9-4fbe-8769-fd6cfed306d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8bba66b-37e5-4b68-855e-7407afa89bee">
-<span class="eqno">(6)<a class="headerlink" href="#equation-a8bba66b-37e5-4b68-855e-7407afa89bee" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd04b396-148f-4d38-8ba3-a72d49b86541">
+<span class="eqno">(6)<a class="headerlink" href="#equation-bd04b396-148f-4d38-8ba3-a72d49b86541" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -481,8 +481,8 @@ document.write(`
 <section id="strucural-equations">
 <h3>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
 <p>If we know the coefficients of those causal relations, the <strong>SCM</strong> can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f5b20156-8d8c-4843-884b-faf4fa3531dd">
-<span class="eqno">(7)<a class="headerlink" href="#equation-f5b20156-8d8c-4843-884b-faf4fa3531dd" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d1fdca2b-fa2b-45eb-a7c7-ec820ab91f4d">
+<span class="eqno">(7)<a class="headerlink" href="#equation-d1fdca2b-fa2b-45eb-a7c7-ec820ab91f4d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \text{weather fluctuations} &amp;= e_w \\
@@ -491,8 +491,8 @@ document.write(`
 <section id="matrix-notation">
 <h3>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
 <p>Then, in matrix notation, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3f08a83-3e53-45a8-8b17-c2b79f93b748">
-<span class="eqno">(8)<a class="headerlink" href="#equation-f3f08a83-3e53-45a8-8b17-c2b79f93b748" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-389d9927-9acd-45ed-bc92-c47a783ddeff">
+<span class="eqno">(8)<a class="headerlink" href="#equation-389d9927-9acd-45ed-bc92-c47a783ddeff" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind forecast errors} \\
     \text{balancing costs} \\
@@ -520,15 +520,15 @@ document.write(`
 <section id="causal-ordering">
 <h3>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5de88d48-6a31-4cc5-94e2-4a7556ecf6bc">
-<span class="eqno">(9)<a class="headerlink" href="#equation-5de88d48-6a31-4cc5-94e2-4a7556ecf6bc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aa37cc7a-3121-48fe-a240-32d8161d7b0c">
+<span class="eqno">(9)<a class="headerlink" href="#equation-aa37cc7a-3121-48fe-a240-32d8161d7b0c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12acc385-1289-4079-8d77-b0266ef1ff2b">
-<span class="eqno">(10)<a class="headerlink" href="#equation-12acc385-1289-4079-8d77-b0266ef1ff2b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a3d4fc5-b56b-4222-a336-543aa07f9cfa">
+<span class="eqno">(10)<a class="headerlink" href="#equation-6a3d4fc5-b56b-4222-a336-543aa07f9cfa" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{weather fluctuations} \\
     \text{wind forecast errors} \\
@@ -553,8 +553,8 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ee3edc0-1fc2-458b-9f2b-0c08e8bef8c5">
-<span class="eqno">(11)<a class="headerlink" href="#equation-4ee3edc0-1fc2-458b-9f2b-0c08e8bef8c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4916a313-2350-440e-8b35-6f02b9967500">
+<span class="eqno">(11)<a class="headerlink" href="#equation-4916a313-2350-440e-8b35-6f02b9967500" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -586,8 +586,8 @@ document.write(`
 <section id="example-with-gaussian-errors">
 <h3>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18b7836e-03f2-452b-8dc9-d23298eea2b0">
-<span class="eqno">(12)<a class="headerlink" href="#equation-18b7836e-03f2-452b-8dc9-d23298eea2b0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c530a3b0-4a2f-4232-bbac-4b3ae364309b">
+<span class="eqno">(12)<a class="headerlink" href="#equation-c530a3b0-4a2f-4232-bbac-4b3ae364309b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \end{align}\]</div>
@@ -642,7 +642,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
 </pre></div>
 </div>
-<img alt="../_images/1296c5b9cd470ff48e158c79a21d119d3acead1320635520ce6f0f129de5308a.png" src="../_images/1296c5b9cd470ff48e158c79a21d119d3acead1320635520ce6f0f129de5308a.png" />
+<img alt="../_images/b79a8b092ad3dfa160e4b5c7247d6d2babff2f41f40461e5e2a5a70723cef71a.png" src="../_images/b79a8b092ad3dfa160e4b5c7247d6d2babff2f41f40461e5e2a5a70723cef71a.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
@@ -694,7 +694,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
 </pre></div>
 </div>
-<img alt="../_images/600b0ccd1e0f8bc4deaf658dd698ce5ab54d25c2be8db0f24447662aa830b9b4.png" src="../_images/600b0ccd1e0f8bc4deaf658dd698ce5ab54d25c2be8db0f24447662aa830b9b4.png" />
+<img alt="../_images/88cf94bcdd303c60cb1a5235c0c37aeb9475614b12ab52f5c77bb3623728e9f2.png" src="../_images/88cf94bcdd303c60cb1a5235c0c37aeb9475614b12ab52f5c77bb3623728e9f2.png" />
 </div>
 </div>
 </section>
@@ -706,8 +706,8 @@ document.write(`
 <li><p><strong>heating demand</strong>: a variable affected by changes in the weather, which affects the balancing costs.</p></li>
 </ul>
 <p>Assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e0a2c4d-41b1-49d0-acd2-856b106e83ea">
-<span class="eqno">(13)<a class="headerlink" href="#equation-5e0a2c4d-41b1-49d0-acd2-856b106e83ea" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a744a719-ca16-4892-b404-7fac0f82b0e0">
+<span class="eqno">(13)<a class="headerlink" href="#equation-a744a719-ca16-4892-b404-7fac0f82b0e0" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{outages} &amp;= e_o \\
 \text{heating demand} &amp;= 0.3 \times \text{weather flucturations} + e_h \\
@@ -870,7 +870,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By Davide Cacciarelli
+By Davide Cacciarelli, Pierre Pinson
 </p>
 
   </div>

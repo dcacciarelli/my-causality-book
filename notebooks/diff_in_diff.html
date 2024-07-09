@@ -232,7 +232,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crash Course on Stats and ML</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="review_stats.html">Probability Theory and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="review_linear_models.html">Linear Regression</a></li>
@@ -448,15 +448,15 @@ document.write(`
 <li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c40a0778-61eb-4e68-92e4-78b0d61b78ae">
-<span class="eqno">(39)<a class="headerlink" href="#equation-c40a0778-61eb-4e68-92e4-78b0d61b78ae" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-262f3c93-11b1-4bc4-9d31-206f26198a4f">
+<span class="eqno">(39)<a class="headerlink" href="#equation-262f3c93-11b1-4bc4-9d31-206f26198a4f" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ef64b1c-1f6a-4a34-b7ac-c26fb784e8d7">
-<span class="eqno">(40)<a class="headerlink" href="#equation-2ef64b1c-1f6a-4a34-b7ac-c26fb784e8d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-39e43278-8abe-4ab3-9eac-b85ecc3621cb">
+<span class="eqno">(40)<a class="headerlink" href="#equation-39e43278-8abe-4ab3-9eac-b85ecc3621cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -660,8 +660,8 @@ document.write(`
 Dep. Variable:                  price   R-squared:                       0.923
 Model:                            OLS   Adj. R-squared:                  0.921
 Method:                 Least Squares   F-statistic:                     778.6
-Date:                Mon, 08 Jul 2024   Prob (F-statistic):          1.37e-108
-Time:                        16:58:50   Log-Likelihood:                -679.31
+Date:                Tue, 09 Jul 2024   Prob (F-statistic):          1.37e-108
+Time:                        11:09:03   Log-Likelihood:                -679.31
 No. Observations:                 200   AIC:                             1367.
 Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         
@@ -760,7 +760,7 @@ Notes:
   <div class="footer-item">
     
 <p class="component-author">
-By Davide Cacciarelli
+By Davide Cacciarelli, Pierre Pinson
 </p>
 
   </div>
