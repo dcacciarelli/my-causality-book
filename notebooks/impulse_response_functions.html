@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -191,6 +191,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scm.html">Structural Causal Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -440,7 +441,7 @@ document.write(`
 <p>In electricity markets, understanding the dynamic relationships between different factors is crucial. For example, a sudden increase in temperature might lead to higher electricity demand due to air conditioning, which in turn could increase electricity prices. IRFs allow us to quantify and visualize these dynamic responses, providing insights into the temporal effects of shocks on the market.</p>
 <p>Consider a VAR(<span class="math notranslate nohighlight">\(p\)</span>) model with <span class="math notranslate nohighlight">\(k\)</span> variables. The order <span class="math notranslate nohighlight">\(p\)</span> determines the number of lagged observations included in the model, reflecting the extent to which past values influence the current value. The model is given by:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-d600c483-9110-47e4-82ca-54e5a522ad0e">
-<span class="eqno">(45)<a class="headerlink" href="#equation-d600c483-9110-47e4-82ca-54e5a522ad0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(46)<a class="headerlink" href="#equation-d600c483-9110-47e4-82ca-54e5a522ad0e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{y}_t = \mathbf{A}_1 \mathbf{y}_{t-1} + \mathbf{A}_2 \mathbf{y}_{t-2} + \cdots + \mathbf{A}_p \mathbf{y}_{t-p} + \mathbf{u}_t
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{y}_t\)</span> is a <span class="math notranslate nohighlight">\(k \times 1\)</span> vector of time series variables at time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A}_i\)</span> are the <span class="math notranslate nohighlight">\(k \times k\)</span> coefficient matrices, and <span class="math notranslate nohighlight">\(\mathbf{u}_t\)</span> is a <span class="math notranslate nohighlight">\(k \times 1\)</span> vector of error terms (shocks).</p>
@@ -468,7 +469,7 @@ In a VAR model, the error term (often referred to as “shock” or “innovatio
 </ol>
 <p><strong>Practical example</strong>: consider a VAR(2) model with two variables, demand <span class="math notranslate nohighlight">\(D\)</span> and price <span class="math notranslate nohighlight">\(P\)</span>. The model equations might look like this:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0c24fc00-c6af-4366-9639-32dc2639c7bd">
-<span class="eqno">(46)<a class="headerlink" href="#equation-0c24fc00-c6af-4366-9639-32dc2639c7bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(47)<a class="headerlink" href="#equation-0c24fc00-c6af-4366-9639-32dc2639c7bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{aligned}
     D_t &amp;= a_{10} + a_{11} D_{t-1} + a_{12} P_{t-1} + a_{13} D_{t-2} + a_{14} P_{t-2} + u_{Dt} \\
     P_t &amp;= b_{10} + b_{11} D_{t-1} + b_{12} P_{t-1} + b_{13} D_{t-2} + b_{14} P_{t-2} + u_{Pt}

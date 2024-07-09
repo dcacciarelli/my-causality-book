@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -191,6 +191,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="correlation_vs_causation.html">Correlation vs. Causation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scm.html">Structural Causal Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_dag_structures.html">Basic Causal Structures</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Definitions and Terminology</a></li>
 </ul>
@@ -457,18 +458,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-models">
 <h1>Linear Models<a class="headerlink" href="#linear-models" title="Link to this heading">#</a></h1>
-<p>If we are willing to make assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>, we can go beyond the Markov equivalence class and identify the complete causal structure of the data-generating process. In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id17" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>.</p>
+<p>If we are willing to make assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>, we can go beyond the Markov equivalence class and identify the complete causal structure of the data-generating process. In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id21" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>.</p>
 <section id="the-lingam-model">
 <h2>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-68dfed25-1371-4d6c-8e19-8e80b9831915">
-<span class="eqno">(5)<a class="headerlink" href="#equation-68dfed25-1371-4d6c-8e19-8e80b9831915" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(6)<a class="headerlink" href="#equation-68dfed25-1371-4d6c-8e19-8e80b9831915" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-ca8e779c-6308-4def-915a-01faa2b8c2cb">
-<span class="eqno">(6)<a class="headerlink" href="#equation-ca8e779c-6308-4def-915a-01faa2b8c2cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(7)<a class="headerlink" href="#equation-ca8e779c-6308-4def-915a-01faa2b8c2cb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -482,7 +483,7 @@ document.write(`
 <h3>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
 <p>If we know the coefficients of those causal relations, the <strong>SCM</strong> can be written as</p>
 <div class="amsmath math notranslate nohighlight" id="equation-b1704bbb-536d-4ed3-92cc-1b23ac8cbb26">
-<span class="eqno">(7)<a class="headerlink" href="#equation-b1704bbb-536d-4ed3-92cc-1b23ac8cbb26" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(8)<a class="headerlink" href="#equation-b1704bbb-536d-4ed3-92cc-1b23ac8cbb26" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \text{weather fluctuations} &amp;= e_w \\
@@ -492,7 +493,7 @@ document.write(`
 <h3>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
 <p>Then, in matrix notation, this model is given by</p>
 <div class="amsmath math notranslate nohighlight" id="equation-4cd0e492-c729-4c2e-9b50-74c50b445b29">
-<span class="eqno">(8)<a class="headerlink" href="#equation-4cd0e492-c729-4c2e-9b50-74c50b445b29" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(9)<a class="headerlink" href="#equation-4cd0e492-c729-4c2e-9b50-74c50b445b29" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind forecast errors} \\
     \text{balancing costs} \\
@@ -521,14 +522,14 @@ document.write(`
 <h3>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
 <div class="amsmath math notranslate nohighlight" id="equation-3334230e-eac1-4109-8078-53ac8e2dc0c5">
-<span class="eqno">(9)<a class="headerlink" href="#equation-3334230e-eac1-4109-8078-53ac8e2dc0c5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(10)<a class="headerlink" href="#equation-3334230e-eac1-4109-8078-53ac8e2dc0c5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
 <div class="amsmath math notranslate nohighlight" id="equation-542639f1-1d14-4bdb-afa6-91de3a886c5d">
-<span class="eqno">(10)<a class="headerlink" href="#equation-542639f1-1d14-4bdb-afa6-91de3a886c5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(11)<a class="headerlink" href="#equation-542639f1-1d14-4bdb-afa6-91de3a886c5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{weather fluctuations} \\
     \text{wind forecast errors} \\
@@ -554,7 +555,7 @@ document.write(`
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
 <div class="amsmath math notranslate nohighlight" id="equation-7c63587d-8ae8-411d-8246-e2e0ee5d5a76">
-<span class="eqno">(11)<a class="headerlink" href="#equation-7c63587d-8ae8-411d-8246-e2e0ee5d5a76" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(12)<a class="headerlink" href="#equation-7c63587d-8ae8-411d-8246-e2e0ee5d5a76" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -587,7 +588,7 @@ document.write(`
 <h3>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-78f77b7c-5a53-4868-a2b3-751764b2c516">
-<span class="eqno">(12)<a class="headerlink" href="#equation-78f77b7c-5a53-4868-a2b3-751764b2c516" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(13)<a class="headerlink" href="#equation-78f77b7c-5a53-4868-a2b3-751764b2c516" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \end{align}\]</div>
@@ -707,7 +708,7 @@ document.write(`
 </ul>
 <p>Assume the following <strong>structural equations</strong>:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-c8f45115-2d12-4cf0-9505-6b1c420de5d9">
-<span class="eqno">(13)<a class="headerlink" href="#equation-c8f45115-2d12-4cf0-9505-6b1c420de5d9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<span class="eqno">(14)<a class="headerlink" href="#equation-c8f45115-2d12-4cf0-9505-6b1c420de5d9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{outages} &amp;= e_o \\
 \text{heating demand} &amp;= 0.3 \times \text{weather flucturations} + e_h \\
