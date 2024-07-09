@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -549,8 +549,8 @@ The enhanced marketing message significantly increases energy usage during off-p
 <section id="multiple-testing">
 <h3>Multiple testing<a class="headerlink" href="#multiple-testing" title="Link to this heading">#</a></h3>
 <p>When conducting multiple tests, the probability of making at least one type I error (false positive) increases. To address this, we use the Bonferroni correction, which adjusts the significance level to control the family-wise error rate (FWER). The adjusted significance level is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aded44fe-6aa8-4a50-a44d-b6b87badaf72">
-<span class="eqno">(52)<a class="headerlink" href="#equation-aded44fe-6aa8-4a50-a44d-b6b87badaf72" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ca1b62e4-79a2-48f1-bda6-5ea0c7d4c786">
+<span class="eqno">(52)<a class="headerlink" href="#equation-ca1b62e4-79a2-48f1-bda6-5ea0c7d4c786" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the original significance level, and <span class="math notranslate nohighlight">\(m\)</span> is the number of tests.</p>
 <p>Let’s consider an example where a utility company is testing five different marketing campaigns to see if they significantly increase the adoption of a new energy-saving device.</p>
 <p><strong>Scenario</strong>:</p>
@@ -657,7 +657,7 @@ Dep. Variable:               response   R-squared:                       0.912
 Model:                            OLS   Adj. R-squared:                  0.912
 Method:                 Least Squares   F-statistic:                     3446.
 Date:                Tue, 09 Jul 2024   Prob (F-statistic):               0.00
-Time:                        13:42:52   Log-Likelihood:                -1409.1
+Time:                        22:22:44   Log-Likelihood:                -1409.1
 No. Observations:                1000   AIC:                             2826.
 Df Residuals:                     996   BIC:                             2846.
 Df Model:                           3                                         
@@ -712,8 +712,8 @@ Notes:
 <p><strong>Simulating treatment assignment:</strong> we randomly assign each node (customer) to either the treatment group (Z=1) or the control group (Z=0) with equal probability. This represents whether a customer receives the new marketing campaign or not.</p>
 <p><strong>Simulating the response variable:</strong> The response variable <span class="math notranslate nohighlight">\(Y\)</span> represents the outcome we are interested in measuring, such as whether a customer switched to the green energy plan. The outcome for each customer is influenced by their own treatment status <span class="math notranslate nohighlight">\(Z\)</span> and the treatment statuses of their connected neighbors, which we account for using the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The formula used for simulating the response is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d38735a-8020-462b-a579-012e4df32335">
-<span class="eqno">(53)<a class="headerlink" href="#equation-7d38735a-8020-462b-a579-012e4df32335" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a8f96bde-23fd-4751-8642-1efe5075af4e">
+<span class="eqno">(53)<a class="headerlink" href="#equation-a8f96bde-23fd-4751-8642-1efe5075af4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     Y = \beta_0 + \beta_1 Z + \beta_2 (A \cdot Z) + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -783,7 +783,7 @@ Dep. Variable:                      y   R-squared:                       0.746
 Model:                            OLS   Adj. R-squared:                  0.744
 Method:                 Least Squares   F-statistic:                     290.0
 Date:                Tue, 09 Jul 2024   Prob (F-statistic):           1.98e-59
-Time:                        13:42:53   Log-Likelihood:                -276.44
+Time:                        22:22:44   Log-Likelihood:                -276.44
 No. Observations:                 200   AIC:                             558.9
 Df Residuals:                     197   BIC:                             568.8
 Df Model:                           2                                         
