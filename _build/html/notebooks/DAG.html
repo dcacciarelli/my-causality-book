@@ -152,8 +152,8 @@
       
     
     
-    <img src="../_static/logo_thick.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
-    <script>document.write(`<img src="../_static/logo_thick.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
+    <img src="../_static/logo_thick_v2.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
+    <script>document.write(`<img src="../_static/logo_thick_v2.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
   
   
 </a></div>
@@ -529,8 +529,8 @@ document.write(`
 <p>The Local Markov ssumption states that a node in a DAG is conditionally independent of its non-descendants given its parents. This assumption allows for the decomposition of the joint probability distribution of all variables in the DAG into simpler conditional distributions. For example, in our DAG, <strong>electricity price</strong> is conditionally independent of <strong>temperature</strong> given <strong>renewable energy production</strong> and <strong>electricity load</strong>. This implies that once we know the values of <strong>renewable energy production</strong> and <strong>electricity load</strong>, additional information about <strong>temperature</strong> does not change our understanding of <strong>electricity price</strong>.</p>
 <p>## Factorization</p>
 <p>Factorization refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the Local Markov Assumption. The joint distribution <span class="math notranslate nohighlight">\( P(T, L, R, P) \)</span> can be factorized as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3fc773f0-726a-440e-9203-7631dff06716">
-<span class="eqno">(1)<a class="headerlink" href="#equation-3fc773f0-726a-440e-9203-7631dff06716" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-36da4c7b-d625-4965-8f6a-5478baa3fb3b">
+<span class="eqno">(1)<a class="headerlink" href="#equation-36da4c7b-d625-4965-8f6a-5478baa3fb3b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factorization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
