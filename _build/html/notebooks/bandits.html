@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -183,8 +183,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_electricity_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -229,7 +229,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
@@ -683,8 +683,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p><strong>Estimated mean reward</strong>: for each arm <span class="math notranslate nohighlight">\(k\)</span>, you keep track of the average reward it has given you until this time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span>.</p></li>
 <li><p><strong>Updating the Estimate</strong>: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bd65152f-a87b-4296-ac30-9d080c8271db">
-<span class="eqno">(53)<a class="headerlink" href="#equation-bd65152f-a87b-4296-ac30-9d080c8271db" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cd16d1ec-3d60-4507-b8dc-8f84dd31c1f6">
+<span class="eqno">(53)<a class="headerlink" href="#equation-cd16d1ec-3d60-4507-b8dc-8f84dd31c1f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}\]</div>
 </li>
@@ -712,8 +712,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>You pull the same arm again and get a reward of 8.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-04ac53e2-9f24-474a-91b1-6f5297636713">
-<span class="eqno">(54)<a class="headerlink" href="#equation-04ac53e2-9f24-474a-91b1-6f5297636713" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-efe315d2-6dcc-4cc3-bb3b-b0f7299ea162">
+<span class="eqno">(54)<a class="headerlink" href="#equation-efe315d2-6dcc-4cc3-bb3b-b0f7299ea162" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}\]</div>
 </li>
@@ -725,8 +725,8 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>After pulling the arm 99 times, suppose your current estimate is 9.5.</p></li>
 <li><p>You pull the arm one more time and get a reward of 9.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96cb64b3-f503-4255-9d34-2c83d59e730e">
-<span class="eqno">(55)<a class="headerlink" href="#equation-96cb64b3-f503-4255-9d34-2c83d59e730e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-49416502-5397-4efb-9143-3642b2fa779c">
+<span class="eqno">(55)<a class="headerlink" href="#equation-49416502-5397-4efb-9143-3642b2fa779c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}\]</div>
 </li>
@@ -775,8 +775,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul class="simple">
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-e2bf7ef6-05d5-4259-8443-1d4aa3e869dc">
-<span class="eqno">(56)<a class="headerlink" href="#equation-e2bf7ef6-05d5-4259-8443-1d4aa3e869dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53267c56-f22a-462f-be19-34303a5a0034">
+<span class="eqno">(56)<a class="headerlink" href="#equation-53267c56-f22a-462f-be19-34303a5a0034" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}\]</div>
 <p>which is composed of two terms:</p>
@@ -836,14 +836,14 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Updating the distribution</strong>: when we pull an arm <span class="math notranslate nohighlight">\(k \)</span> and observe a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span>, we update the parameters of the Beta distribution as follows:</p>
 <ul>
 <li><p>If we get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 1 \)</span>), we increase <span class="math notranslate nohighlight">\(\alpha_k\)</span> by 1, indicating one more success:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-69a262b5-8b9a-4a9b-abd0-45d4a729d746">
-<span class="eqno">(57)<a class="headerlink" href="#equation-69a262b5-8b9a-4a9b-abd0-45d4a729d746" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ad1ce1fe-e266-4733-9d13-bc333c823c4e">
+<span class="eqno">(57)<a class="headerlink" href="#equation-ad1ce1fe-e266-4733-9d13-bc333c823c4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}\]</div>
 </li>
 <li><p>If we do not get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 0 \)</span>), we increase <span class="math notranslate nohighlight">\(\beta_k\)</span> by 1, indicating one more failure:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c05c4108-6781-4eae-9e01-0748c8fd8a88">
-<span class="eqno">(58)<a class="headerlink" href="#equation-c05c4108-6781-4eae-9e01-0748c8fd8a88" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-964fbd9e-a603-4e1f-88db-05f5bbd52c85">
+<span class="eqno">(58)<a class="headerlink" href="#equation-964fbd9e-a603-4e1f-88db-05f5bbd52c85" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}\]</div>
 </li>

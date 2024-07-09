@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -183,8 +183,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_electricity_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -229,7 +229,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
@@ -529,8 +529,8 @@ document.write(`
 <p>The Local Markov ssumption states that a node in a DAG is conditionally independent of its non-descendants given its parents. This assumption allows for the decomposition of the joint probability distribution of all variables in the DAG into simpler conditional distributions. For example, in our DAG, <strong>electricity price</strong> is conditionally independent of <strong>temperature</strong> given <strong>renewable energy production</strong> and <strong>electricity load</strong>. This implies that once we know the values of <strong>renewable energy production</strong> and <strong>electricity load</strong>, additional information about <strong>temperature</strong> does not change our understanding of <strong>electricity price</strong>.</p>
 <p>## Factorization</p>
 <p>Factorization refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the Local Markov Assumption. The joint distribution <span class="math notranslate nohighlight">\( P(T, L, R, P) \)</span> can be factorized as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eb64bfaa-3871-4d5b-bf65-942220e8b217">
-<span class="eqno">(1)<a class="headerlink" href="#equation-eb64bfaa-3871-4d5b-bf65-942220e8b217" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3fc773f0-726a-440e-9203-7631dff06716">
+<span class="eqno">(1)<a class="headerlink" href="#equation-3fc773f0-726a-440e-9203-7631dff06716" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factorization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>

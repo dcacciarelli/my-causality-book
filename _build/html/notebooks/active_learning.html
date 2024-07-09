@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/active_learning';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Conclusion" href="../conclusion.html" />
+    <link rel="next" title="Summary" href="conclusion.html" />
     <link rel="prev" title="Design of Experiments" href="design_of_experiments.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -183,8 +183,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_electricity_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -229,7 +229,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
@@ -444,8 +444,8 @@ document.write(`
 <li><p><strong>Query synthesis</strong>: the algorithm generates new samples to query an oracle for their labels.</p></li>
 </ol>
 <p>Consider the case where we want to estimate the effect of a variable using a linear model of the kind:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d45dceed-4903-495d-8c63-853b25042e7c">
-<span class="eqno">(59)<a class="headerlink" href="#equation-d45dceed-4903-495d-8c63-853b25042e7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b68a52e0-dc2f-46e6-a501-72de43f4f9a2">
+<span class="eqno">(59)<a class="headerlink" href="#equation-b68a52e0-dc2f-46e6-a501-72de43f4f9a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = X \beta + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -456,8 +456,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, assumed to be normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
 </ul>
 <p>The goal is to estimate the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> using the observed data. The variance of the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> can be computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dca345df-72ec-4a36-ae66-aa9b1761c1d9">
-<span class="eqno">(60)<a class="headerlink" href="#equation-dca345df-72ec-4a36-ae66-aa9b1761c1d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12c58185-13c0-4077-883e-4b5bc91419cc">
+<span class="eqno">(60)<a class="headerlink" href="#equation-12c58185-13c0-4077-883e-4b5bc91419cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance of the residuals, and <span class="math notranslate nohighlight">\((X^T X)^{-1}\)</span> is the inverse of the information matrix.</p>
@@ -669,11 +669,11 @@ In active learning, we can use the prediction variance to identify the most info
       </div>
     </a>
     <a class="right-next"
-       href="../conclusion.html"
+       href="conclusion.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Conclusion</p>
+        <p class="prev-next-title">Summary</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
