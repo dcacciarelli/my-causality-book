@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -183,8 +183,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_electricity_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -229,7 +229,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
@@ -548,8 +548,8 @@ The enhanced marketing message significantly increases energy usage during off-p
 <section id="multiple-testing">
 <h3>Multiple testing<a class="headerlink" href="#multiple-testing" title="Link to this heading">#</a></h3>
 <p>When conducting multiple tests, the probability of making at least one type I error (false positive) increases. To address this, we use the Bonferroni correction, which adjusts the significance level to control the family-wise error rate (FWER). The adjusted significance level is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3382fc0-3f5e-45e7-bc9b-b346ddbb08e5">
-<span class="eqno">(51)<a class="headerlink" href="#equation-d3382fc0-3f5e-45e7-bc9b-b346ddbb08e5" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-a412ea64-3983-4967-bcd8-acf2d9da335e">
+<span class="eqno">(51)<a class="headerlink" href="#equation-a412ea64-3983-4967-bcd8-acf2d9da335e" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the original significance level, and <span class="math notranslate nohighlight">\(m\)</span> is the number of tests.</p>
 <p>Let’s consider an example where a utility company is testing five different marketing campaigns to see if they significantly increase the adoption of a new energy-saving device.</p>
 <p><strong>Scenario</strong>:</p>
@@ -656,7 +656,7 @@ Dep. Variable:               response   R-squared:                       0.912
 Model:                            OLS   Adj. R-squared:                  0.912
 Method:                 Least Squares   F-statistic:                     3446.
 Date:                Tue, 09 Jul 2024   Prob (F-statistic):               0.00
-Time:                        11:08:22   Log-Likelihood:                -1409.1
+Time:                        13:29:24   Log-Likelihood:                -1409.1
 No. Observations:                1000   AIC:                             2826.
 Df Residuals:                     996   BIC:                             2846.
 Df Model:                           3                                         
@@ -692,7 +692,7 @@ Notes:
 </section>
 <section id="network-effects">
 <h3>Network effects<a class="headerlink" href="#network-effects" title="Link to this heading">#</a></h3>
-<p>Traditional A/B testing methods, relying on the stable unit treatment value assumption (SUTVA), assume that each individual’s response to a treatment is independent of others. However, in many real-world scenarios, especially in social networks and interconnected systems, this assumption does not hold. Users’ behaviors and outcomes can be influenced by their peers, leading to network effects. Network A/B testing is an advanced technique that takes into account the influence of social connections and interactions when evaluating the effectiveness of treatments or interventions <span id="id1">[<a class="reference internal" href="../bibliography.html#id19" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span>.</p>
+<p>Traditional A/B testing methods, relying on the stable unit treatment value assumption (SUTVA), assume that each individual’s response to a treatment is independent of others. However, in many real-world scenarios, especially in social networks and interconnected systems, this assumption does not hold. Users’ behaviors and outcomes can be influenced by their peers, leading to network effects. Network A/B testing is an advanced technique that takes into account the influence of social connections and interactions when evaluating the effectiveness of treatments or interventions <span id="id1">[<a class="reference internal" href="../bibliography.html#id31" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span>.</p>
 <p><strong>Relevance of network A/B testing:</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Capturing spillover effects</strong>: in social networks, the effect of a treatment on one individual can spill over to their connected peers. For instance, in marketing campaigns, a customer’s decision to adopt a new product might influence their friends to do the same.</p></li>
@@ -711,8 +711,8 @@ Notes:
 <p><strong>Simulating treatment assignment:</strong> we randomly assign each node (customer) to either the treatment group (Z=1) or the control group (Z=0) with equal probability. This represents whether a customer receives the new marketing campaign or not.</p>
 <p><strong>Simulating the response variable:</strong> The response variable <span class="math notranslate nohighlight">\(Y\)</span> represents the outcome we are interested in measuring, such as whether a customer switched to the green energy plan. The outcome for each customer is influenced by their own treatment status <span class="math notranslate nohighlight">\(Z\)</span> and the treatment statuses of their connected neighbors, which we account for using the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The formula used for simulating the response is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06be0b6b-bcdd-44a3-a2c8-0b7fede9810d">
-<span class="eqno">(52)<a class="headerlink" href="#equation-06be0b6b-bcdd-44a3-a2c8-0b7fede9810d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4b0bf467-7bcf-4250-a278-94592b32520f">
+<span class="eqno">(52)<a class="headerlink" href="#equation-4b0bf467-7bcf-4250-a278-94592b32520f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     Y = \beta_0 + \beta_1 Z + \beta_2 (A \cdot Z) + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -782,7 +782,7 @@ Dep. Variable:                      y   R-squared:                       0.746
 Model:                            OLS   Adj. R-squared:                  0.744
 Method:                 Least Squares   F-statistic:                     290.0
 Date:                Tue, 09 Jul 2024   Prob (F-statistic):           1.98e-59
-Time:                        11:08:24   Log-Likelihood:                -276.44
+Time:                        13:29:26   Log-Likelihood:                -276.44
 No. Observations:                 200   AIC:                             558.9
 Df Residuals:                     197   BIC:                             568.8
 Df Model:                           2                                         

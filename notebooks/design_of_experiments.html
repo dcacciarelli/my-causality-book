@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -183,8 +183,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_electricity_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -229,7 +229,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
@@ -456,7 +456,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="design-of-experiments">
 <h1>Design of Experiments<a class="headerlink" href="#design-of-experiments" title="Link to this heading">#</a></h1>
-<p>Design of experiments (DoE) is a systematic approach to planning, conducting, analysing, and interpreting controlled experiments <span id="id1">[<a class="reference internal" href="../bibliography.html#id16" title="Douglas C Montgomery. Design and analysis of experiments. John wiley &amp; sons, 2017.">Mon17</a>]</span>. It aims to ensure that the results are valid, reliable, and can be used to draw causal conclusions. DoE is essential in various fields, including engineering, medicine, agriculture, and computer science.</p>
+<p>Design of experiments (DoE) is a systematic approach to planning, conducting, analysing, and interpreting controlled experiments <span id="id1">[<a class="reference internal" href="../bibliography.html#id28" title="Douglas C Montgomery. Design and analysis of experiments. John wiley &amp; sons, 2017.">Mon17</a>]</span>. It aims to ensure that the results are valid, reliable, and can be used to draw causal conclusions. DoE is essential in various fields, including engineering, medicine, agriculture, and computer science.</p>
 <p>The <strong>key concepts</strong> of DoE include:</p>
 <ul class="simple">
 <li><p><strong>Randomisation</strong>: Randomly assigning subjects to different treatment groups to eliminate bias.</p></li>
@@ -737,11 +737,11 @@ document.write(`
 <li><p><strong>Optimisation</strong>: by examining the response surface plot, we can identify the optimal settings for cleaning frequency and tilt angle to maximise the solar power plant’s output.</p></li>
 <li><p><strong>Balanced design</strong>: the inclusion of centre and axial points ensures that the design is balanced and provides sufficient information to detect curvature in the response surface.</p></li>
 </ul>
-<p>This is a simple example of response surface methodology (RSM) <span id="id2">[<a class="reference internal" href="../bibliography.html#id17" title="Raymond H Myers, Douglas C Montgomery, and Christine M Anderson-Cook. Response surface methodology: process and product optimization using designed experiments. John Wiley &amp; Sons, 2016.">MMAC16</a>]</span>, which is a collection of statistical and mathematical techniques useful for developing, improving, and optimizing processes . It uses quantitative data from appropriate experiments to determine regression models and identify the optimal conditions. The goal is to optimize this response by finding the best settings of the input variables.</p>
+<p>This is a simple example of response surface methodology (RSM) <span id="id2">[<a class="reference internal" href="../bibliography.html#id29" title="Raymond H Myers, Douglas C Montgomery, and Christine M Anderson-Cook. Response surface methodology: process and product optimization using designed experiments. John Wiley &amp; Sons, 2016.">MMAC16</a>]</span>, which is a collection of statistical and mathematical techniques useful for developing, improving, and optimizing processes . It uses quantitative data from appropriate experiments to determine regression models and identify the optimal conditions. The goal is to optimize this response by finding the best settings of the input variables.</p>
 </section>
 <section id="space-filling-designs">
 <h3>Space-filling designs<a class="headerlink" href="#space-filling-designs" title="Link to this heading">#</a></h3>
-<p>Space-filling designs aim to cover the experimental space uniformly. This is particularly important for <strong>computer experiments</strong> <span id="id3">[<a class="reference internal" href="../bibliography.html#id18" title="Thomas J Santner, Brian J Williams, William I Notz, and Brain J Williams. The design and analysis of computer experiments. Volume 1. Springer, 2003.">SWNW03</a>]</span> where the objective is to explore the entire input space efficiently. Unlike physical experiments where replication helps estimate variability and improve reliability, computer experiments often use deterministic simulators, making replication less useful. Instead, the focus is on spreading out the points as much as possible to gain comprehensive insights across the entire input space.</p>
+<p>Space-filling designs aim to cover the experimental space uniformly. This is particularly important for <strong>computer experiments</strong> <span id="id3">[<a class="reference internal" href="../bibliography.html#id30" title="Thomas J Santner, Brian J Williams, William I Notz, and Brain J Williams. The design and analysis of computer experiments. Volume 1. Springer, 2003.">SWNW03</a>]</span> where the objective is to explore the entire input space efficiently. Unlike physical experiments where replication helps estimate variability and improve reliability, computer experiments often use deterministic simulators, making replication less useful. Instead, the focus is on spreading out the points as much as possible to gain comprehensive insights across the entire input space.</p>
 <section id="sobol-sequences">
 <h4>Sobol sequences<a class="headerlink" href="#sobol-sequences" title="Link to this heading">#</a></h4>
 <p>One example of designs for computer experiments are Sobol sequences. Sobol sequences are a type of low-discrepancy sequence used to generate space-filling designs. They provide a quasi-random sequence that covers the input space uniformly. Sobol sequences are particularly useful in high-dimensional spaces and are known for their good uniformity properties, making them ideal for numerical integration and simulation tasks.</p>

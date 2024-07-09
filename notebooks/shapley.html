@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -183,8 +183,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduction_markets.html">Electricity Markets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction_causality.html">Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_electricity_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_causality.html">Causality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">Guide</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
@@ -229,7 +229,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conclusion.html">Conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Summary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
@@ -452,8 +452,8 @@ document.write(`
 <h2>Shapley values<a class="headerlink" href="#shapley-values" title="Link to this heading">#</a></h2>
 <p>Shapley additive explanations (SHAP) is a method to explain individual predictions of machine learning models by attributing the output of a model to its input features. It is based on cooperative game theory and provides a way to fairly distribute the “payout” (prediction) among the “players” (features).</p>
 <p>In cooperative game theory, the Shapley value is used to distribute the total gains to players based on their contributions. For a set of features <span class="math notranslate nohighlight">\(N\)</span> and a prediction function <span class="math notranslate nohighlight">\(f\)</span>, the Shapley value <span class="math notranslate nohighlight">\(\phi_i\)</span> for feature <span class="math notranslate nohighlight">\(i\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-287dda7f-6ccc-4af3-9ec4-9ccc187db212">
-<span class="eqno">(47)<a class="headerlink" href="#equation-287dda7f-6ccc-4af3-9ec4-9ccc187db212" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-ce08eb4a-0675-45af-b9e2-45bbce6eec87">
+<span class="eqno">(47)<a class="headerlink" href="#equation-ce08eb4a-0675-45af-b9e2-45bbce6eec87" title="Permalink to this equation">#</a></span>\[\begin{equation} 
     \phi_i(f) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(|N| - |S| - 1)!}{|N|!} \left[ f(S \cup \{i\}) - f(S) \right]
 \end{equation}\]</div>
 <p>where:</p>
@@ -486,8 +486,8 @@ document.write(`
 </ul>
 </li>
 <li><p><strong>Weight Each Contribution</strong>: the weight for each marginal contribution is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2b8008a-f1b4-4e50-88ab-fa1fb14c0336">
-<span class="eqno">(48)<a class="headerlink" href="#equation-f2b8008a-f1b4-4e50-88ab-fa1fb14c0336" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdd662c4-b83d-4b56-966e-292ffeef29e6">
+<span class="eqno">(48)<a class="headerlink" href="#equation-cdd662c4-b83d-4b56-966e-292ffeef29e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
        \frac{|S|!(|N| - |S| - 1)!}{|N|!}
    \end{equation}\]</div>
 <p>It ensures that the contribution of each feature is averaged fairly across all possible combinations of features:</p>
@@ -499,8 +499,8 @@ document.write(`
 </li>
 </ol>
 <p>Let’s compute the Shapley value for plant <span class="math notranslate nohighlight">\(A\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a645abcc-27b3-4b1d-8bf8-d967b0533bfb">
-<span class="eqno">(49)<a class="headerlink" href="#equation-a645abcc-27b3-4b1d-8bf8-d967b0533bfb" title="Permalink to this equation">#</a></span>\[\begin{equation} \phi_A(f) = \sum_{S \subseteq N \setminus \{A\}} \frac{|S|!(|N| - |S| - 1)!}{|N|!} \left[ f(S \cup \{A\}) - f(S) \right] \end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-3f3be7c9-4a53-4f01-a7d6-8e18ce3d001e">
+<span class="eqno">(49)<a class="headerlink" href="#equation-3f3be7c9-4a53-4f01-a7d6-8e18ce3d001e" title="Permalink to this equation">#</a></span>\[\begin{equation} \phi_A(f) = \sum_{S \subseteq N \setminus \{A\}} \frac{|S|!(|N| - |S| - 1)!}{|N|!} \left[ f(S \cup \{A\}) - f(S) \right] \end{equation}\]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(|N| = 3\)</span> (total number of power plants)</p></li>
@@ -538,8 +538,8 @@ document.write(`
 </li>
 </ol>
 <p>Once we have the weights for the possible subsets (or coalitions), we can <strong>sum up the contributions</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15369f6a-9722-429a-85f6-272fea237a9e">
-<span class="eqno">(50)<a class="headerlink" href="#equation-15369f6a-9722-429a-85f6-272fea237a9e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3bd96f96-fe27-4ea3-8d64-f3ed26e79d4e">
+<span class="eqno">(50)<a class="headerlink" href="#equation-3bd96f96-fe27-4ea3-8d64-f3ed26e79d4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \phi_A(f) = \frac{1}{3} \left[ f(\{A\}) - f(\{\}) \right] + \frac{1}{6} \left[ f(\{A, B\}) - f(\{B\}) \right] + \frac{1}{6} \left[ f(\{A, C\}) - f(\{C\}) \right] + \frac{1}{3} \left[ f(\{A, B, C\}) - f(\{B, C\}) \right]
 \end{equation}\]</div>
 <p>The Shapley value <span class="math notranslate nohighlight">\(\phi_A(f)\)</span> represents the fair share of revenue that power plant <span class="math notranslate nohighlight">\(A\)</span> should receive based on its contribution to the total revenue generated, considering all possible combinations of power plants. By applying this process, we can similarly calculate the Shapley values for power plants <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span>, ensuring that each plant receives a fair share of the revenue based on its contribution to the overall electricity generation.</p>
