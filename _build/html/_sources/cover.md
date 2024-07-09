@@ -4,5 +4,5 @@
 
 By [**Davide Cacciarelli**](https://sites.google.com/view/dcacciarelli) and [**Pierre Pinson**](https://pierrepinson.com/)
 
-<img src="jpeg" alt="university logo" align="left" width="100px"/> **Imperial College London**
+<img src="icl.png" alt="university logo" align="left" width="100px"/> **Imperial College London**
 
