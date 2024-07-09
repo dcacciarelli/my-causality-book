@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -449,6 +449,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="basic-causal-structures">
 <h1>Basic Causal Structures<a class="headerlink" href="#basic-causal-structures" title="Link to this heading">#</a></h1>
 <p>Understanding basic causal structures is crucial in causal inference because they possess <strong>unique properties</strong> that aid in the discovery of causal graphs from observational data. Additionally, recognizing these structures is essential for correctly specifying <strong>regression models</strong> in statistical analysis. Misidentifying or incorrectly including variables based on these structures can lead to erroneous conclusions and model estimates.</p>
+<ul class="simple">
+<li><p>**Caual</p></li>
+</ul>
 <section id="chains">
 <h2>Chains<a class="headerlink" href="#chains" title="Link to this heading">#</a></h2>
 <p>A chain occurs when one variable causally affects a second, which in turn affects a third. This linear sequence shows the <strong>transmission of causality</strong> through an intermediary.</p>
@@ -471,8 +474,8 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d5fd141-6f9c-404e-badc-a950fd3e79f3">
-<span class="eqno">(2)<a class="headerlink" href="#equation-5d5fd141-6f9c-404e-badc-a950fd3e79f3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-028f07b2-3b3d-4441-997b-484caf8e9b0a">
+<span class="eqno">(2)<a class="headerlink" href="#equation-028f07b2-3b3d-4441-997b-484caf8e9b0a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -500,8 +503,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3ed8efbb-5586-42b7-95ff-7cf7bd476052">
-<span class="eqno">(3)<a class="headerlink" href="#equation-3ed8efbb-5586-42b7-95ff-7cf7bd476052" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4c23901d-5cab-421a-b4b1-3a053372c939">
+<span class="eqno">(3)<a class="headerlink" href="#equation-4c23901d-5cab-421a-b4b1-3a053372c939" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -643,8 +646,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dc375c79-fa9a-462a-a736-b551340479d1">
-<span class="eqno">(4)<a class="headerlink" href="#equation-dc375c79-fa9a-462a-a736-b551340479d1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f721b8d7-6178-4e62-ac5b-2e7662b503ca">
+<span class="eqno">(4)<a class="headerlink" href="#equation-f721b8d7-6178-4e62-ac5b-2e7662b503ca" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
