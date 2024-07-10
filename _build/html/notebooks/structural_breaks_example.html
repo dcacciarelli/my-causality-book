@@ -433,16 +433,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-with-two-regimes">Scenario with two regimes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-subsidy-structural-model">Pre-subsidy structural model:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-subsidy-structural-model">Post-subsidy structural model:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contemporaneous-effects">Contemporaneous effects</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">Lagged effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-with-two-regimes">Scenario with Two Regimes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regime-1-pre-subsidy">Regime 1: Pre-Subsidy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regime-2-post-subsidy">Regime 2: Post-Subsidy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">Lagged Effects</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">Fitting one model to all the data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">Fitting two separate models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model">Fitting One Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-models">Fitting Two Models</a></li>
 </ul>
 </li>
 </ul>
@@ -471,18 +470,18 @@ document.write(`
 <li><p>Advances in <strong>battery technology</strong> might introduce new variables.</p></li>
 </ul>
 <section id="scenario-with-two-regimes">
-<h2>Scenario with two regimes<a class="headerlink" href="#scenario-with-two-regimes" title="Link to this heading">#</a></h2>
+<h2>Scenario with Two Regimes<a class="headerlink" href="#scenario-with-two-regimes" title="Link to this heading">#</a></h2>
 <p>Let’s consider a scenario in the electricity market where three variables are impacted by a significant <strong>policy change</strong>, such as the introduction of a new subsidy for renewable energy. This policy change affects the relationships among these variables, illustrating how concept drift can occur in response to external changes.</p>
-<section id="pre-subsidy-structural-model">
-<h3>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
+<section id="regime-1-pre-subsidy">
+<h3>Regime 1: Pre-Subsidy<a class="headerlink" href="#regime-1-pre-subsidy" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42dc5119-c1a0-4cf2-84f0-80f0c86e1c33">
-<span class="eqno">(34)<a class="headerlink" href="#equation-42dc5119-c1a0-4cf2-84f0-80f0c86e1c33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6215d6ec-025e-44fc-bc8b-8e786ea3d8fd">
+<span class="eqno">(34)<a class="headerlink" href="#equation-6215d6ec-025e-44fc-bc8b-8e786ea3d8fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a00ef27-6615-4c20-bfff-bbdd6c7ca5f1">
-<span class="eqno">(35)<a class="headerlink" href="#equation-9a00ef27-6615-4c20-bfff-bbdd6c7ca5f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1344d750-2b9e-4a07-95f8-18822f4e32fc">
+<span class="eqno">(35)<a class="headerlink" href="#equation-1344d750-2b9e-4a07-95f8-18822f4e32fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -490,29 +489,7 @@ document.write(`
     -1 &amp; 0.05 &amp; 0
     \end{bmatrix}
 \end{equation}\]</div>
-</section>
-<section id="post-subsidy-structural-model">
-<h3>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
-<p>After the introduction of subsidies, the relationships change as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a89bbd3-c8d5-4ccf-a85c-c2f24e68567c">
-<span class="eqno">(36)<a class="headerlink" href="#equation-8a89bbd3-c8d5-4ccf-a85c-c2f24e68567c" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
-\end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-490cf76f-b24b-455e-aaff-c25f747ee9dc">
-<span class="eqno">(37)<a class="headerlink" href="#equation-490cf76f-b24b-455e-aaff-c25f747ee9dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
-    \mathbf{B}_{\text{post}} = 
-    \begin{bmatrix}
-    0 &amp; 0 &amp; 0 \\
-    -1 &amp; 0 &amp; 0 \\
-    5 &amp; 0 &amp; 0
-    \end{bmatrix}
-\end{equation}\]</div>
-<p>This change in coefficients represents a concept drift, where the underlying data-generating process has altered due to external policy intervention. The challenge in causal inference here is to accurately detect and adapt to these changes, ensuring that models remain valid over time despite the evolving relationships. Failure to account for such drifts can lead to inaccurate predictions and misguided policy or business decisions.</p>
-</section>
-<section id="contemporaneous-effects">
-<h3>Contemporaneous effects<a class="headerlink" href="#contemporaneous-effects" title="Link to this heading">#</a></h3>
-<p>In <strong>regime 1</strong> the causal graph is represnted by</p>
+<p>The contemporaneous effects of regime 1 are represented by the following DAG:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lingam.utils</span> <span class="kn">import</span> <span class="n">make_dot</span>
@@ -528,7 +505,26 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/c323df720d448796939868178ea103cfff08fb695e264cab9e0fb7fb3334d671.svg" src="../_images/c323df720d448796939868178ea103cfff08fb695e264cab9e0fb7fb3334d671.svg" /></div>
 </div>
-<p>Instead, in <strong>regime 2</strong> we have</p>
+</section>
+<section id="regime-2-post-subsidy">
+<h3>Regime 2: Post-Subsidy<a class="headerlink" href="#regime-2-post-subsidy" title="Link to this heading">#</a></h3>
+<p>After the introduction of subsidies, the relationships change as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-feba45fb-fc46-4923-9863-7fe1a68f1863">
+<span class="eqno">(36)<a class="headerlink" href="#equation-feba45fb-fc46-4923-9863-7fe1a68f1863" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-037a3270-53e6-4260-9c49-70676bda83ed">
+<span class="eqno">(37)<a class="headerlink" href="#equation-037a3270-53e6-4260-9c49-70676bda83ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \mathbf{B}_{\text{post}} = 
+    \begin{bmatrix}
+    0 &amp; 0 &amp; 0 \\
+    -1 &amp; 0 &amp; 0 \\
+    5 &amp; 0 &amp; 0
+    \end{bmatrix}
+\end{equation}\]</div>
+<p>This change in coefficients represents a concept drift, where the underlying data-generating process has altered due to external policy intervention. The challenge in causal inference here is to accurately detect and adapt to these changes, ensuring that models remain valid over time despite the evolving relationships. Failure to account for such drifts can lead to inaccurate predictions and misguided policy or business decisions.</p>
+<p>The contemporaneous effects of regime 2 are represented by the following DAG:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B0_regime2</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
@@ -545,7 +541,7 @@ document.write(`
 <p>(You might have now recognised this as a simple <strong>fork</strong>)</p>
 </section>
 <section id="lagged-effects">
-<h3>Lagged effects<a class="headerlink" href="#lagged-effects" title="Link to this heading">#</a></h3>
+<h3>Lagged Effects<a class="headerlink" href="#lagged-effects" title="Link to this heading">#</a></h3>
 <p>To slightly render the causal discovery problem more difficult, we also introduced some autocorrelation, just like in the <strong>VARLiNGAM</strong> example we saw in the previous chapter.</p>
 <p>This simply means we now also have two <span class="math notranslate nohighlight">\(\mathbf{B}_1\)</span> matrices, one for each regime.</p>
 <div class="cell docutils container">
@@ -618,7 +614,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1427cf450&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x13e15d590&gt;
 </pre></div>
 </div>
 <img alt="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" src="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" />
@@ -634,8 +630,8 @@ document.write(`
 <li><p>We fit just one model to the whole dataset.</p></li>
 <li><p>We fit two separate models, one for each regime.</p></li>
 </ol>
-<section id="fitting-one-model-to-all-the-data">
-<h3>Fitting one model to all the data<a class="headerlink" href="#fitting-one-model-to-all-the-data" title="Link to this heading">#</a></h3>
+<section id="fitting-one-model">
+<h3>Fitting One Model<a class="headerlink" href="#fitting-one-model" title="Link to this heading">#</a></h3>
 <p>As we did before, we fit a VAR model, compute the residuals, and apply LiNGAM to its residuals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -659,8 +655,8 @@ document.write(`
 </div>
 <p>We can see how we got a <strong>wrong estimation</strong>. The causal structure is like the first regime, but the coefficients are wrong.</p>
 </section>
-<section id="fitting-two-separate-models">
-<h3>Fitting two separate models<a class="headerlink" href="#fitting-two-separate-models" title="Link to this heading">#</a></h3>
+<section id="fitting-two-models">
+<h3>Fitting Two Models<a class="headerlink" href="#fitting-two-models" title="Link to this heading">#</a></h3>
 <p>We now show the ideal situation, where we assume we were able to <strong>discern the two regimes</strong> and fit distinct models.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -687,7 +683,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x14200f010&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x13f736a10&gt;
 </pre></div>
 </div>
 </div>
@@ -781,16 +777,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-with-two-regimes">Scenario with two regimes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-subsidy-structural-model">Pre-subsidy structural model:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-subsidy-structural-model">Post-subsidy structural model:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contemporaneous-effects">Contemporaneous effects</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">Lagged effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scenario-with-two-regimes">Scenario with Two Regimes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regime-1-pre-subsidy">Regime 1: Pre-Subsidy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regime-2-post-subsidy">Regime 2: Post-Subsidy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lagged-effects">Lagged Effects</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model-to-all-the-data">Fitting one model to all the data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-separate-models">Fitting two separate models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-one-model">Fitting One Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-two-models">Fitting Two Models</a></li>
 </ul>
 </li>
 </ul>
