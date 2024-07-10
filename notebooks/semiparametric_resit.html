@@ -454,8 +454,8 @@ document.write(`
 <h2>Why Nonlinearities are Helpful<a class="headerlink" href="#why-nonlinearities-are-helpful" title="Link to this heading">#</a></h2>
 <p>In many scenarios, assuming a linear relationship between observed variables may not accurately reflect the true dynamics of the system. For instance, consider the relationship between temperature and electricity load. This relationship is characteristically nonlinear, exhibiting increased electricity consumption at both colder and warmer temperatures, with consumption dipping during mild temperature days.</p>
 <p>Let’s now generate some data to approximate the well-known U-shape relationship between temperature and load. The SCM of the data-generating process is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf467b17-7ec5-43b4-9f97-9012b29e0dfc">
-<span class="eqno">(21)<a class="headerlink" href="#equation-bf467b17-7ec5-43b4-9f97-9012b29e0dfc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c11167f7-cc9d-48fb-9a3c-1dc4e4057604">
+<span class="eqno">(21)<a class="headerlink" href="#equation-c11167f7-cc9d-48fb-9a3c-1dc4e4057604" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \end{align}\]</div>
@@ -545,8 +545,8 @@ document.write(`
 <section id="additive-noise-models-and-resit">
 <h2>Additive Noise Models and RESIT<a class="headerlink" href="#additive-noise-models-and-resit" title="Link to this heading">#</a></h2>
 <p>Let’s now show how this intuition comes in handy during our causal discovery quest. One of the most popular approaches to causal discovery with nonlinear models is to use additive noise models (ANMs) <span id="id1">[<a class="reference internal" href="../bibliography.html#id36" title="Jonas Peters, Joris M Mooij, Dominik Janzing, and Bernhard Schölkopf. Causal discovery with continuous additive noise models. Journal of Machine Learning Research, 2014.">PMJScholkopf14</a>]</span>. In the case of an ANM, each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is obtained as a function of its parent variables, plus independent additive noise</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1511459a-47a1-4d69-8a6b-7b9218c3d7c0">
-<span class="eqno">(22)<a class="headerlink" href="#equation-1511459a-47a1-4d69-8a6b-7b9218c3d7c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7da300ac-262a-4755-80e0-9f19e8637d78">
+<span class="eqno">(22)<a class="headerlink" href="#equation-7da300ac-262a-4755-80e0-9f19e8637d78" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = f_i(\mathbf{x}_{\text{pa}(i)})+ e_i
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(f_i\)</span> is an arbitrary function (potentially different for each <span class="math notranslate nohighlight">\(i\)</span>), and the noise variables <span class="math notranslate nohighlight">\(e_i\)</span> are jointly independent and with arbitrary probability densities <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span>. We can easily see that when the functions <span class="math notranslate nohighlight">\(f_i\)</span> are linear and the <span class="math notranslate nohighlight">\(p_{e_i}(e_i)\)</span> are non-Gaussian, we are in the standard LiNGAM settings.</p>
@@ -567,8 +567,8 @@ document.write(`
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
 <p>We now try to apply the RESIT approach to a slightly more complex example, where some of the relationships are <strong>nonlinear</strong>.</p>
 <p>Let us assume the following SCM:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d933e152-d2c3-41bd-9049-29ad06022a83">
-<span class="eqno">(23)<a class="headerlink" href="#equation-d933e152-d2c3-41bd-9049-29ad06022a83" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b6b3725f-d3fe-4422-b1e8-b32cc7712114">
+<span class="eqno">(23)<a class="headerlink" href="#equation-b6b3725f-d3fe-4422-b1e8-b32cc7712114" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{temperature} &amp;= e_t \\
 \text{electricity load} &amp;= 0.2 \times (\text{temperature}-20)^2 + 70 + e_l \\
 \text{thermal constraints} &amp;= 1.5 \times \text{electricity load} + \sin{(\text{temperature})} + e_c \\

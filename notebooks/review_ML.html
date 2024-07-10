@@ -432,13 +432,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-vs-unsupervised-learning">Supervised learning vs. unsupervised learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">Overfitting and underfitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-vs-unsupervised-learning">Supervised Learning vs. Unsupervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">Overfitting and Underfitting</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting">Underfitting</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods">Tree-based methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">Decision trees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods">Tree-based Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">Decision Trees</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forests">Random Forests</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
 </ul>
@@ -458,7 +458,7 @@ document.write(`
 <h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Link to this heading">#</a></h1>
 <p>This chapter provides a very quick overview of the main concepts in machine learning, mostly to refresh some of the concepts or models that will be used throughout this book.</p>
 <section id="supervised-learning-vs-unsupervised-learning">
-<h2>Supervised learning vs. unsupervised learning<a class="headerlink" href="#supervised-learning-vs-unsupervised-learning" title="Link to this heading">#</a></h2>
+<h2>Supervised Learning vs. Unsupervised Learning<a class="headerlink" href="#supervised-learning-vs-unsupervised-learning" title="Link to this heading">#</a></h2>
 <p>In supervised learning, the model is trained on a labeled dataset, meaning that each training example is composed by input features (<span class="math notranslate nohighlight">\(\mathbf{X}\)</span>) and labels (<span class="math notranslate nohighlight">\(\mathbf{y}\)</span>). The goal is to learn the function relating the labels to the input features. Common tasks in supervised learning include:</p>
 <ul class="simple">
 <li><p><strong>Regression</strong>: predicting a continuous value. Example: Predicting house prices based on features like size, location, and age.</p></li>
@@ -539,7 +539,7 @@ document.write(`
 </div>
 </section>
 <section id="overfitting-and-underfitting">
-<h2>Overfitting and underfitting<a class="headerlink" href="#overfitting-and-underfitting" title="Link to this heading">#</a></h2>
+<h2>Overfitting and Underfitting<a class="headerlink" href="#overfitting-and-underfitting" title="Link to this heading">#</a></h2>
 <p>Overfitting occurs when a model learns not only the underlying patterns in the training data but also the noise and random fluctuations. This excessive learning leads the model to perform exceptionally well on the training data, but poorly on unseen or new data, such as validation or test datasets. Overfitting is more likely to happen when the model is overly complex relative to the amount of training data it has been given. Complexity can come from having too many features, using high-degree polynomial models, or incorporating too many parameters. The characteristics of overfitting are:</p>
 <ul class="simple">
 <li><p><strong>High training accuracy, low test accuracy</strong>: the model fits the training data very well but generalizes poorly to new data.</p></li>
@@ -634,10 +634,10 @@ document.write(`
 </section>
 </section>
 <section id="tree-based-methods">
-<h2>Tree-based methods<a class="headerlink" href="#tree-based-methods" title="Link to this heading">#</a></h2>
+<h2>Tree-based Methods<a class="headerlink" href="#tree-based-methods" title="Link to this heading">#</a></h2>
 <p>So far, we mostly covered the use of linear models. Let’s now briefly introduce another powerful class of models, that will be used in the book. Tree-based methods are powerful tools for both regression and classification tasks. They involve segmenting the predictor space into a number of simple regions, and making predictions based on these regions. Decision trees are a type of tree-based method that can handle complex data structures and relationships.</p>
 <section id="decision-trees">
-<h3>Decision trees<a class="headerlink" href="#decision-trees" title="Link to this heading">#</a></h3>
+<h3>Decision Trees<a class="headerlink" href="#decision-trees" title="Link to this heading">#</a></h3>
 <p>The decision tree is the most simple tree-based model. It is a non-parametric model that splits the data into subsets based on the value of the features, creating a tree-like structure. A decision tree is composed of nodes and branches. Each internal node represents a test on an attribute, each branch represents the outcome of the test, and each leaf node represents a predicted value. The tree grows by splitting nodes into child nodes, based on the values of input features. The goal is to reduce the impurity at each step. The most common algorithm for regression trees is CART (Classification and Regression Trees). The quality of a split is measured using metrics like mean squared error (MSE) or mean absolute error (MAE). The key advantages of decision trees include:</p>
 <ul class="simple">
 <li><p><strong>Interpretability</strong>: decision trees are easy to interpret and visualize.</p></li>
@@ -903,13 +903,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-vs-unsupervised-learning">Supervised learning vs. unsupervised learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">Overfitting and underfitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-vs-unsupervised-learning">Supervised Learning vs. Unsupervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">Overfitting and Underfitting</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting">Underfitting</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods">Tree-based methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">Decision trees</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-based-methods">Tree-based Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">Decision Trees</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forests">Random Forests</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#xgboost">XGBoost</a></li>
 </ul>
