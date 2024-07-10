@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -408,7 +408,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -424,6 +426,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-key-sections">Recap of Key Sections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-for-electricity-markets">Relevance for Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -435,6 +447,31 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="summary">
 <h1>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h1>
+<p>The journey through this book, “Causality in Electricity Markets”, has taken us from fundamental concepts to advanced methodologies, all centred around the theme of causality. Some of them directly focusing on causality (e.g., causal discovery and causal inference parts), some of them offering byproducts or prerequisites of causality (e.g., interpretability and data collection parts). Here, we encapsulate the key insights and practical applications discussed, highlighting their significance in understanding and optimising electricity markets.</p>
+<section id="recap-of-key-sections">
+<h2>Recap of Key Sections<a class="headerlink" href="#recap-of-key-sections" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Basic Concepts</strong>: the foundation was laid by differentiating correlation from causation and introducing structural causal models and directed acyclic graphs. These tools are essential for visualising and reasoning about causal relationships.</p></li>
+<li><p><strong>Causal Discovery</strong>: this section explored methods for identifying causal relationships from data, encompassing both linear and nonlinear models, time series models, and handling structural breaks. We primarly focused on LiNGAM and its extensions, describing in detail semi-parametric approaches to causal discovery.</p></li>
+<li><p><strong>Causal Inference</strong>: here, we focused on estimating the effects of identified causal relationships using methods such as instrumental variables, propensity score matching, double machine learning, difference-in-differences, and interrupted time series. These techniques enable precise quantification of causal impacts, crucial for making informed decisions.</p></li>
+<li><p><strong>Interpretability</strong>: the interpretability of machine learning models was introduced by presenting popoular methods like partial dependence plots, accumulated local effects, impulse response functions, and Shapley values. These tools enhance transparency and trust, allowing stakeholders to understand the decision-making processes of complex models.</p></li>
+<li><p><strong>Experiments and Data Collection</strong>: effective experimental design, including A/B testing, multi-armed bandits, and active learning, was covered. These methodologies ensure the collection of high-quality data that supports robust causal analysis, enabling more accurate and actionable insights.</p></li>
+</ol>
+</section>
+<section id="relevance-for-electricity-markets">
+<h2>Relevance for Electricity Markets<a class="headerlink" href="#relevance-for-electricity-markets" title="Link to this heading">#</a></h2>
+<p>Understanding causality is very important in electricity markets, where the dynamics are complex and multifaceted. By applying the discussed methodologies, practitioners can:</p>
+<ul class="simple">
+<li><p>Identify and mitigate factors causing inefficiencies, leading to more reliable and cost-effective electricity distribution.</p></li>
+<li><p>Use causal insights to make informed policy and operational decisions, improving market stability and performance.</p></li>
+<li><p>Develop more interpretable predictive models that account for causal relationships, enhancing the reliability of demand and supply forecasts.</p></li>
+<li><p>Implement effective experiments and tests for causal analysis, such as demand response programs and other policy interventions.</p></li>
+</ul>
+</section>
+<section id="final-thoughts">
+<h2>Final Thoughts<a class="headerlink" href="#final-thoughts" title="Link to this heading">#</a></h2>
+<p>“Causality in Electricity Markets” provides a comprehensive, yet practical, guide to understanding and applying causal inference techniques in the energy sector. By mastering these concepts and tools, readers can better navigate the complexities of modern electricity markets, driving innovation, efficiency, and sustainability through the use of robust data-driven approaches.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -492,7 +529,22 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-of-key-sections">Recap of Key Sections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-for-electricity-markets">Relevance for Electricity Markets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
