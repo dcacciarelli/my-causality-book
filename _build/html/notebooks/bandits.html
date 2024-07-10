@@ -433,13 +433,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">MAB vs. A/B testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts-and-high-level-example">Key concepts and high-level example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">Key algorithms for MAB problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">Epsilon-greedy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">Upper confidence bound (UCB)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">Thompson sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">Comparing the three algorithms with random sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">MAB vs. A/B Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-illustration">Step-by-Step Illustration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-initial-exploration">Step 1: Initial Exploration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-compute-average-rewards">Step 2: Compute Average Rewards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">Key Algorithms for MAB Problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">Epsilon-Greedy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">Upper Confidence Bound (UCB)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">Thompson Sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">Comparing the Three Algorithms with Random Sampling</a></li>
 </ul>
 </li>
 </ul>
@@ -455,7 +462,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multi-armed-bandits">
 <h1>Multi-Armed Bandits<a class="headerlink" href="#multi-armed-bandits" title="Link to this heading">#</a></h1>
-<p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls.</p>
+<p>Multi-armed bandit (MAB) problems are a class of sequential decision-making problems that model the trade-off between exploration and exploitation <span id="id1">[<a class="reference internal" href="../bibliography.html#id19" title="Aleksandrs Slivkins and others. Introduction to multi-armed bandits. Foundations and Trends® in Machine Learning, 12(1-2):1–286, 2019.">S+19</a>]</span>. The name comes from the metaphor of a gambler facing multiple slot machines (one-armed bandits), each with a different probability of payout. The gambler’s objective is to maximize their total reward over a series of pulls.</p>
 <p>The MAB problem can be formalized as follows:</p>
 <ul class="simple">
 <li><p><strong>Arms</strong>: let <span class="math notranslate nohighlight">\(K\)</span> be the number of arms (choices or actions) available.</p></li>
@@ -470,7 +477,7 @@ document.write(`
 <li><p><strong>Marketing campaigns</strong>: you may have multiple marketing strategies to promote energy-efficient appliances. Initially, you allocate equal resources to all strategies to see which performs best. As data comes in, you shift more resources to the campaigns that show higher engagement and conversion rates, optimizing your overall marketing budget.</p></li>
 </ol>
 <section id="mab-vs-a-b-testing">
-<h2>MAB vs. A/B testing<a class="headerlink" href="#mab-vs-a-b-testing" title="Link to this heading">#</a></h2>
+<h2>MAB vs. A/B Testing<a class="headerlink" href="#mab-vs-a-b-testing" title="Link to this heading">#</a></h2>
 <p>Traditional methods for testing different options, such as A/B testing, involve splitting resources equally across different strategies (pure exploration), but this can be inefficient and costly, as it doesn’t adapt to the observed performance of the strategies. To this extent, the key <strong>limitations of A/B testing</strong> are:</p>
 <ul class="simple">
 <li><p><strong>Resource inefficiency</strong>: equally distributing resources among all strategies can waste time and opportunities on less-performing options.</p></li>
@@ -484,17 +491,17 @@ document.write(`
 <li><p><strong>Contextual personalization</strong>: advanced MAB variants like contextual bandits tailor strategies to different market segments, enhancing personalization and engagement.</p></li>
 </ul>
 </section>
-<section id="key-concepts-and-high-level-example">
-<h2>Key concepts and high-level example<a class="headerlink" href="#key-concepts-and-high-level-example" title="Link to this heading">#</a></h2>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h2>
 <p>The two key conepts in MAB problems are:</p>
 <ol class="arabic simple">
 <li><p><strong>Exploration vs. exploitation</strong>: where <strong>exploration</strong> means trying out different arms to gather more information about their rewards, and <strong>exploitation</strong> refers to choosing the arm that is currently believed to provide the highest reward.</p></li>
 <li><p><strong>Regret</strong>: the difference between the reward obtained by the optimal arm and the reward obtained by the algorithm. The goal is to minimize regret over time.</p></li>
 </ol>
 <p>Let’s break down the MAB problem step by step, focusing on the concepts of exploration, reward, and how they are computed.</p>
-<p><strong>Step-by-step illustration</strong></p>
-<p><strong>Setup</strong></p>
-<p>Imagine you have three slot machines (arms) in a casino, each with an unknown probability of payout (reward). Initially, you do not know which machine is the best, so you need to <strong>explore</strong> by trying out each machine. Over time, as you gather more information, you start to get an idea about the different machines and can <strong>exploit</strong> the available information by choosing the machine that seems to give the highest reward based on your observations.</p>
+<section id="step-by-step-illustration">
+<h3>Step-by-Step Illustration<a class="headerlink" href="#step-by-step-illustration" title="Link to this heading">#</a></h3>
+<p><strong>Setup</strong>: imagine you have three slot machines (arms) in a casino, each with an unknown probability of payout (reward). Initially, you do not know which machine is the best, so you need to <strong>explore</strong> by trying out each machine. Over time, as you gather more information, you start to get an idea about the different machines and can <strong>exploit</strong> the available information by choosing the machine that seems to give the highest reward based on your observations.</p>
 <p><strong>True reward probabilities</strong>:</p>
 <ul class="simple">
 <li><p>Slot Machine 1: 0.3</p></li>
@@ -502,7 +509,8 @@ document.write(`
 <li><p>Slot Machine 3: 0.7</p></li>
 </ul>
 <p>These probabilities are unknown to you. Your goal is to find out which machine has the highest probability of giving a payout by trying them out.</p>
-<p><strong>Step 1: initial exploration</strong></p>
+<section id="step-1-initial-exploration">
+<h4>Step 1: Initial Exploration<a class="headerlink" href="#step-1-initial-exploration" title="Link to this heading">#</a></h4>
 <p>To start, you need to try each machine a few times to get an idea of their payouts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -540,7 +548,9 @@ Rewards for Machine 3: [1, 1, 1, 1, 1, 0, 1, 1, 1, 1]
 </div>
 </div>
 </div>
-<p><strong>Step 2: compute average rewards</strong></p>
+</section>
+<section id="step-2-compute-average-rewards">
+<h4>Step 2: Compute Average Rewards<a class="headerlink" href="#step-2-compute-average-rewards" title="Link to this heading">#</a></h4>
 <p>After the initial exploration, compute the average reward for each machine to get an estimate of their payout probabilities.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -562,7 +572,7 @@ Average reward for Machine 3: 0.90
 </div>
 </div>
 <p>The mean of the rewards obtained from the initial pulls for each machine. This gives an estimate of the payout probability for each machine.</p>
-<p><strong>Step 3: exploitation</strong></p>
+<p>#### Step 3: Exploitation</p>
 <p>Based on the average rewards, you start choosing the machine that seems to give the highest reward more often.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -603,7 +613,7 @@ Final average reward for Machine 3: 0.71
 </div>
 </div>
 <p>At each step, we define as <strong>best machine</strong> the machine with the highest average reward so far, and we continue pulling the best machine and update the average rewards based on the new observations.</p>
-<p><strong>Step $: regret calculation</strong></p>
+<p>#### Step 4: Regret Calculation</p>
 <p>Regret is a measure of how much worse our algorithm performs compared to if we had always chosen the best possible machine (the one with the highest true mean reward). If we knew in advance which machine had the highest probability of giving us a prize, we would always choose that machine. However, since we do not know this in advance, we have to try out all the machines to gather information. While we are trying out all the machines (exploring), we might choose the less optimal machines sometimes, which gives us less reward compared to the best machine.
 Regret is the difference between the total reward we would have gotten by always choosing the best machine and the total reward we actually got by following our algorithm.</p>
 <p>We have:</p>
@@ -669,11 +679,13 @@ Regret is the difference between the total reward we would have gotten by always
 </li>
 </ol>
 </section>
+</section>
+</section>
 <section id="key-algorithms-for-mab-problems">
-<h2>Key algorithms for MAB problems<a class="headerlink" href="#key-algorithms-for-mab-problems" title="Link to this heading">#</a></h2>
+<h2>Key Algorithms for MAB Problems<a class="headerlink" href="#key-algorithms-for-mab-problems" title="Link to this heading">#</a></h2>
 <p>In this section, we will explain three popular algorithms for solving the multi-armed bandit (MAB) problem: epsilon-greedy, upper confidence bound (UCB), and Thompson sampling. We will also compare their performance against a random strategy over multiple simulation runs.</p>
 <section id="epsilon-greedy">
-<h3>Epsilon-greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
+<h3>Epsilon-Greedy<a class="headerlink" href="#epsilon-greedy" title="Link to this heading">#</a></h3>
 <p>The Epsilon-Greedy algorithm balances exploration and exploitation by choosing a random arm with a small probability (<span class="math notranslate nohighlight">\(\epsilon\)</span>) and the best-known arm with a large probability (1 - <span class="math notranslate nohighlight">\(\epsilon\)</span>). Think of <span class="math notranslate nohighlight">\(\epsilon\)</span> as your curiosity factor. A higher <span class="math notranslate nohighlight">\(\epsilon\)</span> means you are more curious and willing to try different options even if you know some options perform well. A lower <span class="math notranslate nohighlight">\(\epsilon\)</span> means you are more inclined to stick with what you know works best.</p>
 <p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -684,8 +696,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p><strong>Estimated mean reward</strong>: for each arm <span class="math notranslate nohighlight">\(k\)</span>, you keep track of the average reward it has given you until this time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span>.</p></li>
 <li><p><strong>Updating the Estimate</strong>: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88576ade-4caa-409f-9990-dfc8fb6497e9">
-<span class="eqno">(60)<a class="headerlink" href="#equation-88576ade-4caa-409f-9990-dfc8fb6497e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-10d317d7-ed25-4eba-b88d-5955d040ab64">
+<span class="eqno">(60)<a class="headerlink" href="#equation-10d317d7-ed25-4eba-b88d-5955d040ab64" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}\]</div>
 </li>
@@ -713,8 +725,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>You pull the same arm again and get a reward of 8.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-421c6830-c1ba-4ce7-b48f-4efed33e6964">
-<span class="eqno">(61)<a class="headerlink" href="#equation-421c6830-c1ba-4ce7-b48f-4efed33e6964" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dd5471d5-cf95-47c3-a902-2642f5a24ae3">
+<span class="eqno">(61)<a class="headerlink" href="#equation-dd5471d5-cf95-47c3-a902-2642f5a24ae3" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}\]</div>
 </li>
@@ -726,8 +738,8 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>After pulling the arm 99 times, suppose your current estimate is 9.5.</p></li>
 <li><p>You pull the arm one more time and get a reward of 9.</p></li>
 <li><p>You update your estimate:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c59ff87-bbf8-46a9-907c-65c2c18a21bb">
-<span class="eqno">(62)<a class="headerlink" href="#equation-0c59ff87-bbf8-46a9-907c-65c2c18a21bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e4044869-bb4a-4e2e-926a-8e079815ebf6">
+<span class="eqno">(62)<a class="headerlink" href="#equation-e4044869-bb4a-4e2e-926a-8e079815ebf6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}\]</div>
 </li>
@@ -766,7 +778,7 @@ Regret is the difference between the total reward we would have gotten by always
 </div>
 </section>
 <section id="upper-confidence-bound-ucb">
-<h3>Upper confidence bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
+<h3>Upper Confidence Bound (UCB)<a class="headerlink" href="#upper-confidence-bound-ucb" title="Link to this heading">#</a></h3>
 <p>This algorithm selects arms based on the upper confidence bounds (UCBs) of their estimated rewards. The UCB is a combination of the estimated reward and a term that accounts for the uncertainty in the estimate. The key idea is to decide which options to try out by balancing between choosing the option that seems the best based on what you know so far and exploring less-tried options to discover their potential. It does this by considering both the estimated reward of each option and the uncertainty around that estimate.</p>
 <p><strong>Mechanism</strong>:</p>
 <ul class="simple">
@@ -776,8 +788,8 @@ Regret is the difference between the total reward we would have gotten by always
 <ul class="simple">
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-bbe63b8c-966b-4039-af23-11452462dfc0">
-<span class="eqno">(63)<a class="headerlink" href="#equation-bbe63b8c-966b-4039-af23-11452462dfc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3ee10000-e8cc-4eb7-885f-2763fc0c39f9">
+<span class="eqno">(63)<a class="headerlink" href="#equation-3ee10000-e8cc-4eb7-885f-2763fc0c39f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}\]</div>
 <p>which is composed of two terms:</p>
@@ -823,7 +835,7 @@ Regret is the difference between the total reward we would have gotten by always
 </div>
 </section>
 <section id="thompson-sampling">
-<h3>Thompson sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
+<h3>Thompson Sampling<a class="headerlink" href="#thompson-sampling" title="Link to this heading">#</a></h3>
 <p>Thompson sampling balances between trying out different options (exploration) and sticking with the best-known option (exploitation) by using probability distributions to model the uncertainty of each option’s rewards.</p>
 <p><strong>Mechanism</strong>:</p>
 <ol class="arabic simple">
@@ -837,14 +849,14 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Updating the distribution</strong>: when we pull an arm <span class="math notranslate nohighlight">\(k \)</span> and observe a reward <span class="math notranslate nohighlight">\(r_k(t)\)</span>, we update the parameters of the Beta distribution as follows:</p>
 <ul>
 <li><p>If we get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 1 \)</span>), we increase <span class="math notranslate nohighlight">\(\alpha_k\)</span> by 1, indicating one more success:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e4ec919e-c8cd-4bf2-98c0-d3333a1fd387">
-<span class="eqno">(64)<a class="headerlink" href="#equation-e4ec919e-c8cd-4bf2-98c0-d3333a1fd387" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-50026ca2-f986-470e-8846-cf47996394fe">
+<span class="eqno">(64)<a class="headerlink" href="#equation-50026ca2-f986-470e-8846-cf47996394fe" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}\]</div>
 </li>
 <li><p>If we do not get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 0 \)</span>), we increase <span class="math notranslate nohighlight">\(\beta_k\)</span> by 1, indicating one more failure:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3bf3cdc-12ed-4bdf-8046-45c2539d5890">
-<span class="eqno">(65)<a class="headerlink" href="#equation-b3bf3cdc-12ed-4bdf-8046-45c2539d5890" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b01f4854-5e52-4592-b4ac-c5fc957ff0ba">
+<span class="eqno">(65)<a class="headerlink" href="#equation-b01f4854-5e52-4592-b4ac-c5fc957ff0ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}\]</div>
 </li>
@@ -898,7 +910,7 @@ Initially, both <span class="math notranslate nohighlight">\(\alpha\)</span> and
 </div>
 </section>
 <section id="comparing-the-three-algorithms-with-random-sampling">
-<h3>Comparing the three algorithms with random sampling<a class="headerlink" href="#comparing-the-three-algorithms-with-random-sampling" title="Link to this heading">#</a></h3>
+<h3>Comparing the Three Algorithms with Random Sampling<a class="headerlink" href="#comparing-the-three-algorithms-with-random-sampling" title="Link to this heading">#</a></h3>
 <p>Now, we can run a comprehensive example where we compare the performance of epsilon-greedy, UCB, and Thompson sampling against a random strategy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1049,13 +1061,20 @@ Initially, both <span class="math notranslate nohighlight">\(\alpha\)</span> and
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">MAB vs. A/B testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts-and-high-level-example">Key concepts and high-level example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">Key algorithms for MAB problems</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">Epsilon-greedy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">Upper confidence bound (UCB)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">Thompson sampling</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">Comparing the three algorithms with random sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mab-vs-a-b-testing">MAB vs. A/B Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-illustration">Step-by-Step Illustration</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-initial-exploration">Step 1: Initial Exploration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-compute-average-rewards">Step 2: Compute Average Rewards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-algorithms-for-mab-problems">Key Algorithms for MAB Problems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#epsilon-greedy">Epsilon-Greedy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound-ucb">Upper Confidence Bound (UCB)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thompson-sampling">Thompson Sampling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-three-algorithms-with-random-sampling">Comparing the Three Algorithms with Random Sampling</a></li>
 </ul>
 </li>
 </ul>

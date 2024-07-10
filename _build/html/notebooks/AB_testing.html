@@ -433,12 +433,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A simple example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">Statistical considerations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis">Power analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-testing">Multiple testing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-treatment-effects">Heterogeneous treatment effects</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effects">Network effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A Simple Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-procedure">Step-by-Step Procedure</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">Statistical Considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis">Power Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-parameters">Key Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-testing">Multiple Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Step-by-Step Procedure</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-treatment-effects">Heterogeneous Treatment Effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effects">Network Effects</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step-by-Step Procedure</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -456,14 +468,15 @@ document.write(`
 <h1>A/B Testing<a class="headerlink" href="#a-b-testing" title="Link to this heading">#</a></h1>
 <p>A/B testing is one of the most commonly employed experimental framework. It is a powerful method for comparing two versions of a variable to determine which one performs better in terms of a given metric. This technique is widely used in various fields, including marketing, product development, and website optimization, to make data-driven decisions. In this tutorial, we’ll explore the basics of A/B testing, illustrate a simple example, and delve into more advanced topics, such as network effects and complex statistical considerations.</p>
 <section id="a-simple-example">
-<h2>A simple example<a class="headerlink" href="#a-simple-example" title="Link to this heading">#</a></h2>
+<h2>A Simple Example<a class="headerlink" href="#a-simple-example" title="Link to this heading">#</a></h2>
 <p>Consider a scenario where we want to compare the effectiveness of two different marketing campaigns aimed at encouraging customers to use more energy during off-peak hours. We’ll define two groups:</p>
 <ul class="simple">
 <li><p><strong>Group A (control group)</strong>: receives the standard marketing message.</p></li>
 <li><p><strong>Group B (treatment group)</strong>: receives a new, enhanced marketing message.</p></li>
 </ul>
 <p>The goal is to determine which marketing message results in higher usage of energy during off-peak hours.</p>
-<p><strong>Step-by-step procedure:</strong></p>
+<section id="step-by-step-procedure">
+<h3>Step-by-Step Procedure<a class="headerlink" href="#step-by-step-procedure" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Random assignment</strong>: randomly assign customers to either Group A or Group B to ensure that each group is representative of the overall population.</p></li>
 <li><p><strong>Implementation</strong>: send the standard marketing message to Group A, and the enhanced marketing message to Group B.</p></li>
@@ -504,8 +517,9 @@ The enhanced marketing message significantly increases energy usage during off-p
 </div>
 </div>
 </section>
+</section>
 <section id="statistical-considerations">
-<h2>Statistical considerations<a class="headerlink" href="#statistical-considerations" title="Link to this heading">#</a></h2>
+<h2>Statistical Considerations<a class="headerlink" href="#statistical-considerations" title="Link to this heading">#</a></h2>
 <p>A/B testing involves several statistical concepts that needs to be taken into account to ensure valid and reliable results. These includes:</p>
 <ol class="arabic simple">
 <li><p><strong>Power analysis</strong>: to determine the sample size needed to detect a significant effect.</p></li>
@@ -514,9 +528,10 @@ The enhanced marketing message significantly increases energy usage during off-p
 <li><p><strong>Network effects</strong>: to eestimate treatment effects in networks where there is interference between users or consumers.</p></li>
 </ol>
 <section id="power-analysis">
-<h3>Power analysis<a class="headerlink" href="#power-analysis" title="Link to this heading">#</a></h3>
+<h3>Power Analysis<a class="headerlink" href="#power-analysis" title="Link to this heading">#</a></h3>
 <p>Here we demonstrate how to determine the minimum number of participants needed in each group of an A/B test to ensure reliable results. This process, called power analysis, helps us calculate the sample size required to detect a meaningful difference between two groups with a high probability. Power analysis is a technique used to figure out the smallest sample size that can reliably detect an effect in an experiment. It balances the need to find real differences with the desire to avoid wasting resources on excessively large samples. Essentially, it helps ensure that our A/B test is both effective and efficient.</p>
-<p><strong>Key parameters:</strong></p>
+<section id="key-parameters">
+<h4>Key Parameters<a class="headerlink" href="#key-parameters" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>Effect size</strong>: this measures the expected difference between the groups. It is a standardized value that reflects how large an effect we expect the treatment to have. A common way to select the effect size is to use previous research or pilot studies to estimate the likely impact. In our example, we chose an effect size of 0.5, indicating a moderate difference that we want to detect. The effect size is a measure of the magnitude of the difference between two groups. It is not just the raw difference between the means of the two groups, but rather a standardised measure that accounts for the variability within the data. This allows for a more meaningful comparison across different contexts and studies.</p></li>
 <li><p><strong>Significance level (alpha)</strong>: this is the threshold for determining statistical significance, often set at 0.05. It represents the probability of rejecting the null hypothesis (concluding there is an effect) when it is actually true (a false positive). We selected an alpha of 0.05, which is standard in many fields, meaning we are willing to accept a 5% chance of a false positive.</p></li>
@@ -546,11 +561,12 @@ The enhanced marketing message significantly increases energy usage during off-p
 </div>
 <p>After running the power analysis with these parameters, the output tells us the required sample size per group. For instance, if the result is 63, it means we need at least 63 participants in both the treatment and control groups. This ensures that our A/B test has enough power to detect a moderate effect with an 80% chance, while keeping the probability of a false positive at 5%. This helps in making sure our experiment is well-designed and our conclusions are reliable.</p>
 </section>
+</section>
 <section id="multiple-testing">
-<h3>Multiple testing<a class="headerlink" href="#multiple-testing" title="Link to this heading">#</a></h3>
+<h3>Multiple Testing<a class="headerlink" href="#multiple-testing" title="Link to this heading">#</a></h3>
 <p>When conducting multiple tests, the probability of making at least one type I error (false positive) increases. To address this, we use the Bonferroni correction, which adjusts the significance level to control the family-wise error rate (FWER). The adjusted significance level is given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca1b62e4-79a2-48f1-bda6-5ea0c7d4c786">
-<span class="eqno">(58)<a class="headerlink" href="#equation-ca1b62e4-79a2-48f1-bda6-5ea0c7d4c786" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-36e9cca5-5698-4038-9b35-874144264d36">
+<span class="eqno">(58)<a class="headerlink" href="#equation-36e9cca5-5698-4038-9b35-874144264d36" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the original significance level, and <span class="math notranslate nohighlight">\(m\)</span> is the number of tests.</p>
 <p>Let’s consider an example where a utility company is testing five different marketing campaigns to see if they significantly increase the adoption of a new energy-saving device.</p>
 <p><strong>Scenario</strong>:</p>
@@ -559,7 +575,8 @@ The enhanced marketing message significantly increases energy usage during off-p
 <li><p>The null hypothesis for each test is that the campaign has no effect on adoption rates.</p></li>
 <li><p>The significance level for the tests is initially set at 0.05.</p></li>
 </ul>
-<p><strong>Step-by-step procedure:</strong></p>
+<section id="id1">
+<h4>Step-by-Step Procedure<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p><strong>Set parameters</strong>: original significance level ((\alpha)) and number of tests.</p></li>
 <li><p><strong>Simulate p-values</strong>: generate p-values from the five tests. In a realistic scenario, these p-values would come from actual data analysis.</p></li>
@@ -610,8 +627,9 @@ Test 5: Original p-value = 0.03, Corrected p-value = 0.15, Reject null hypothesi
 </div>
 <p>This correction ensures that we control the family-wise error rate, reducing the risk of false positives when conducting multiple tests. Here we used fictional p-values: <code class="docutils literal notranslate"><span class="pre">[0.02,</span> <span class="pre">0.04,</span> <span class="pre">0.20,</span> <span class="pre">0.01,</span> <span class="pre">0.03]</span></code>. In practice, these would be obtained from statistical tests on actual experimental data.</p>
 </section>
+</section>
 <section id="heterogeneous-treatment-effects">
-<h3>Heterogeneous treatment effects<a class="headerlink" href="#heterogeneous-treatment-effects" title="Link to this heading">#</a></h3>
+<h3>Heterogeneous Treatment Effects<a class="headerlink" href="#heterogeneous-treatment-effects" title="Link to this heading">#</a></h3>
 <p>Heterogeneous treatment effects occur when the effect of a treatment varies across different subgroups of the population. Identifying these differences is crucial for understanding how different groups respond to the treatment and for making targeted decisions.</p>
 <p>Suppose an electricity company is testing a new marketing campaign to encourage customers to switch to a green energy plan. The company wants to understand if the campaign’s effectiveness varies by customer age. Let’s simulate this case with a simple example, where:</p>
 <ul class="simple">
@@ -656,8 +674,8 @@ Test 5: Original p-value = 0.03, Corrected p-value = 0.15, Reject null hypothesi
 Dep. Variable:               response   R-squared:                       0.912
 Model:                            OLS   Adj. R-squared:                  0.912
 Method:                 Least Squares   F-statistic:                     3446.
-Date:                Tue, 09 Jul 2024   Prob (F-statistic):               0.00
-Time:                        22:22:44   Log-Likelihood:                -1409.1
+Date:                Wed, 10 Jul 2024   Prob (F-statistic):               0.00
+Time:                        16:28:58   Log-Likelihood:                -1409.1
 No. Observations:                1000   AIC:                             2826.
 Df Residuals:                     996   BIC:                             2846.
 Df Model:                           3                                         
@@ -692,8 +710,8 @@ Notes:
 <p>This example demonstrates how to estimate heterogeneous treatment effects in an A/B testing context. By including interaction terms in the regression model, we can identify how the treatment effect varies across different subgroups, providing valuable insights for tailoring strategies to specific segments. This approach helps maximize the effectiveness of interventions by understanding and leveraging the heterogeneity in treatment effects.</p>
 </section>
 <section id="network-effects">
-<h3>Network effects<a class="headerlink" href="#network-effects" title="Link to this heading">#</a></h3>
-<p>Traditional A/B testing methods, relying on the stable unit treatment value assumption (SUTVA), assume that each individual’s response to a treatment is independent of others. However, in many real-world scenarios, especially in social networks and interconnected systems, this assumption does not hold. Users’ behaviors and outcomes can be influenced by their peers, leading to network effects. Network A/B testing is an advanced technique that takes into account the influence of social connections and interactions when evaluating the effectiveness of treatments or interventions <span id="id1">[<a class="reference internal" href="../bibliography.html#id37" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span>.</p>
+<h3>Network Effects<a class="headerlink" href="#network-effects" title="Link to this heading">#</a></h3>
+<p>Traditional A/B testing methods, relying on the stable unit treatment value assumption (SUTVA), assume that each individual’s response to a treatment is independent of others. However, in many real-world scenarios, especially in social networks and interconnected systems, this assumption does not hold. Users’ behaviors and outcomes can be influenced by their peers, leading to network effects. Network A/B testing is an advanced technique that takes into account the influence of social connections and interactions when evaluating the effectiveness of treatments or interventions <span id="id2">[]</span>.</p>
 <p><strong>Relevance of network A/B testing:</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Capturing spillover effects</strong>: in social networks, the effect of a treatment on one individual can spill over to their connected peers. For instance, in marketing campaigns, a customer’s decision to adopt a new product might influence their friends to do the same.</p></li>
@@ -707,13 +725,14 @@ Notes:
 </ul>
 <p>To estimate these effects, we use a model that includes both the treatment status of the individual and the treatment status of their neighbors.</p>
 <p>Consider a scenario where an electricity company wants to test a new marketing campaign to encourage customers to switch to a green energy plan. The company knows that customers are likely to influence each other’s decisions through social interactions. Therefore, they want to account for these network effects in their A/B testing. We will simulate a network of customers, randomly assign them to treatment or control groups, and then estimate the treatment effects considering the influence of their connected peers.</p>
-<p><strong>Step-by-step procedure:</strong></p>
+<section id="id3">
+<h4>Step-by-Step Procedure<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <p><strong>Generating the network:</strong> we use an Erdős-Rényi model to create a random network. In this model, each pair of nodes (customers) has a fixed probability of being connected.</p>
 <p><strong>Simulating treatment assignment:</strong> we randomly assign each node (customer) to either the treatment group (Z=1) or the control group (Z=0) with equal probability. This represents whether a customer receives the new marketing campaign or not.</p>
 <p><strong>Simulating the response variable:</strong> The response variable <span class="math notranslate nohighlight">\(Y\)</span> represents the outcome we are interested in measuring, such as whether a customer switched to the green energy plan. The outcome for each customer is influenced by their own treatment status <span class="math notranslate nohighlight">\(Z\)</span> and the treatment statuses of their connected neighbors, which we account for using the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The formula used for simulating the response is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8f96bde-23fd-4751-8642-1efe5075af4e">
-<span class="eqno">(59)<a class="headerlink" href="#equation-a8f96bde-23fd-4751-8642-1efe5075af4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b9b87259-f11b-4012-a09c-e0270b1d9a31">
+<span class="eqno">(59)<a class="headerlink" href="#equation-b9b87259-f11b-4012-a09c-e0270b1d9a31" title="Permalink to this equation">#</a></span>\[\begin{equation}
     Y = \beta_0 + \beta_1 Z + \beta_2 (A \cdot Z) + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -782,8 +801,8 @@ Notes:
 Dep. Variable:                      y   R-squared:                       0.746
 Model:                            OLS   Adj. R-squared:                  0.744
 Method:                 Least Squares   F-statistic:                     290.0
-Date:                Tue, 09 Jul 2024   Prob (F-statistic):           1.98e-59
-Time:                        22:22:44   Log-Likelihood:                -276.44
+Date:                Wed, 10 Jul 2024   Prob (F-statistic):           1.98e-59
+Time:                        16:29:00   Log-Likelihood:                -276.44
 No. Observations:                 200   AIC:                             558.9
 Df Residuals:                     197   BIC:                             568.8
 Df Model:                           2                                         
@@ -824,6 +843,7 @@ The estimated Average Treatment Effect (ATE) considering network effects is extr
 </div>
 </div>
 <p>By simulating the response variable to include both direct and network effects, and then using regression analysis to estimate these effects, we can accurately measure the influence of treatments in interconnected systems. This approach helps account for the spillover effects that are common in social networks and other interconnected environments.</p>
+</section>
 </section>
 </section>
 </section>
@@ -892,12 +912,24 @@ The estimated Average Treatment Effect (ATE) considering network effects is extr
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A simple example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">Statistical considerations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis">Power analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-testing">Multiple testing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-treatment-effects">Heterogeneous treatment effects</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effects">Network effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-simple-example">A Simple Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-procedure">Step-by-Step Procedure</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-considerations">Statistical Considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-analysis">Power Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-parameters">Key Parameters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-testing">Multiple Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Step-by-Step Procedure</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneous-treatment-effects">Heterogeneous Treatment Effects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#network-effects">Network Effects</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Step-by-Step Procedure</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
