@@ -22,4 +22,4 @@ areas of interest include active learning, design of experiments, and statistica
 
 <br>
 
-**Contact Information:** For inquiries, please contact [d.cacciarelli@imperial.ac.uk](mailto:d.cacciarelli@imperial.ac.uk).
+**Contact Information:** for inquiries, please contact [d.cacciarelli@imperial.ac.uk](mailto:d.cacciarelli@imperial.ac.uk).
