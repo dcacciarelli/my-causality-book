@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -448,7 +448,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="active-learning">
 <h1>Active Learning<a class="headerlink" href="#active-learning" title="Link to this heading">#</a></h1>
-<p>Active learning is a machine learning technique that aims to select the most informative data points for training a model <span id="id1">[<a class="reference internal" href="../bibliography.html#id16">Set09</a>]</span>. In the context of causal inference, active learning can be particularly useful for efficiently estimating parameters when data collection is limited or expensive. By selectively choosing the most informative samples, we can improve the estimation accuracy of causal effects with fewer data points.</p>
+<p>Active learning is a machine learning technique that aims to select the most informative data points for training a model <span id="id1">[<a class="reference internal" href="../bibliography.html#id16" title="Burr Settles. Active learning literature survey. Technical Report, 2009.">Set09</a>]</span>. In the context of causal inference, active learning can be particularly useful for efficiently estimating parameters when data collection is limited or expensive. By selectively choosing the most informative samples, we can improve the estimation accuracy of causal effects with fewer data points.</p>
 <section id="active-learning-scenarions">
 <h2>Active Learning Scenarions<a class="headerlink" href="#active-learning-scenarions" title="Link to this heading">#</a></h2>
 <p>Active learning involves iteratively selecting the most informative data points to be labeled and added to the training set. The main scenarios of active learning include:</p>
@@ -458,8 +458,8 @@ document.write(`
 <li><p><strong>Query synthesis</strong>: the algorithm generates new samples to query an oracle for their labels.</p></li>
 </ol>
 <p>Consider the case where we want to estimate the effect of a variable using a linear model of the kind:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-51b0e0fe-25bb-447e-91a1-33ca241bdb11">
-<span class="eqno">(66)<a class="headerlink" href="#equation-51b0e0fe-25bb-447e-91a1-33ca241bdb11" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-41219090-c6c7-4787-ba0c-f07917f99b7f">
+<span class="eqno">(66)<a class="headerlink" href="#equation-41219090-c6c7-4787-ba0c-f07917f99b7f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = X \beta + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -470,8 +470,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> is the error term, assumed to be normally distributed with mean zero and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p></li>
 </ul>
 <p>The goal is to estimate the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> using the observed data. The variance of the coefficients <span class="math notranslate nohighlight">\(\beta\)</span> can be computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9362bde-b7ee-4302-8b3c-bb9304e207f6">
-<span class="eqno">(67)<a class="headerlink" href="#equation-c9362bde-b7ee-4302-8b3c-bb9304e207f6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fffb053f-4310-4562-a4be-30922c0cc226">
+<span class="eqno">(67)<a class="headerlink" href="#equation-fffb053f-4310-4562-a4be-30922c0cc226" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \text{Var}(\beta) = \sigma^2 (X^T X)^{-1}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance of the residuals, and <span class="math notranslate nohighlight">\((X^T X)^{-1}\)</span> is the inverse of the information matrix.</p>

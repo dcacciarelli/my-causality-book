@@ -2,7 +2,7 @@
 
 <br>
 
-A comprehensive guide to understanding and applying causal inference techniques in electricity markets, designed for researchers, practitioners, and students.
+A comprehensive guide to understanding and applying causal inference techniques in electricity markets, designed for practitioners, students, and researchers.
 
 Published: July 2024
 

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -447,7 +447,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="difference-in-differences">
 <h1>Difference-in-Differences<a class="headerlink" href="#difference-in-differences" title="Link to this heading">#</a></h1>
-<p>Difference-in-differences (DiD) is a statistical technique used in econometrics to estimate the causal effect of a treatment on a time series <span id="id1">[<a class="reference internal" href="../bibliography.html#id18" title="Stephen G Donald and Kevin Lang. Inference with difference-in-differences and other panel data. The review of Economics and Statistics, 89(2):221–233, 2007.">DL07</a>]</span>. For example, it might be used to <strong>evaluate the effect of a new policy</strong> on the electricity prices, in a specific region.</p>
+<p>Difference-in-differences (DiD) is a statistical technique used in econometrics to estimate the causal effect of a treatment on a time series <span id="id1">[<a class="reference internal" href="../bibliography.html#id23" title="Stephen G Donald and Kevin Lang. Inference with difference-in-differences and other panel data. The review of Economics and Statistics, 89(2):221–233, 2007.">DL07</a>]</span>. For example, it might be used to <strong>evaluate the effect of a new policy</strong> on the electricity prices, in a specific region.</p>
 <p>Let us suppose we collected some data from electricity prices over time, and we know that at a certain point in time a new policy was introduced. Let us also suppose that we observed a change in the trend, and we would like to attribute that change to the newly introduced policy. To be sure that the change in price time series is indeed due to the new policy, we would need to know the <strong>counterfactual</strong>. The counterfactual represents what would have happened to the prices had the new policy not been introduced. Then, by comparing the prices observed under the new policy with what the prices would have been without the policy, we would finally be able to say that the prices changed because of the policy. Without the counterfactual, we might not be able to accurately determine the true effect of the policy because of:</p>
 <ul class="simple">
 <li><p>Other influencing factors: in the real world, multiple factors can influence electricity prices simultaneously. These could include changes in fuel prices, demand fluctuations, economic conditions, and other regulatory changes. Without a counterfactual, it is difficult to isolate the impact of the specific policy from these other variables.</p></li>
@@ -459,15 +459,15 @@ document.write(`
 <li><p>The <strong>control group</strong> might refer to another region, where the new policy was not introduced.</p></li>
 </ul>
 <p>While doing so, DiD relies a crucial assumption known as the <strong>parallel trends assumption</strong>. This assumption asserts that the treatment and control groups would have followed the same trajectory over time in the absence of the treatment. Using the parallel trends assumption, we can use the change of the prices of the control group as a counterfactual for the treatment group in the absence of the treatment. n simple terms, DiD means that we are looking at:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21404d38-0a25-44ab-ad23-92d5eba1becf">
-<span class="eqno">(46)<a class="headerlink" href="#equation-21404d38-0a25-44ab-ad23-92d5eba1becf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-aeaa234e-e340-4a65-bd37-ad5bb4fe9b2b">
+<span class="eqno">(46)<a class="headerlink" href="#equation-aeaa234e-e340-4a65-bd37-ad5bb4fe9b2b" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{DiD} = &amp;(\text{price in treatment group before policy} - \text{price in treatment group after policy}) \\
     &amp; - (\text{price in control group before policy} - \text{price in control group after policy})
 \end{align}\]</div>
 <p>In other words, we are checking if there is a <strong>difference between the two individual differences</strong>. The first difference measures the change in prices for the treatment group before and after the policy, while the second difference measures the change in prices for the control group before and after the policy. By subtracting these two differences, we can isolate the effect of the policy from other factors that might influence electricity prices over time.</p>
 <p>In practice, a common approach to DiD is to specify a linear regression model for the outcome of interest (in this case the price) as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-827d6063-f7b5-442f-87be-7a4c9f0f47eb">
-<span class="eqno">(47)<a class="headerlink" href="#equation-827d6063-f7b5-442f-87be-7a4c9f0f47eb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3725d84e-5628-4c80-87d1-a7676c5321be">
+<span class="eqno">(47)<a class="headerlink" href="#equation-3725d84e-5628-4c80-87d1-a7676c5321be" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{group} + \beta_2 \, \text{period} + \beta_3 \, (\text{group} \times \text{period}) + \varepsilon
 \end{equation}\]</div>
 <p>where:</p>
@@ -674,7 +674,7 @@ Dep. Variable:                  price   R-squared:                       0.923
 Model:                            OLS   Adj. R-squared:                  0.921
 Method:                 Least Squares   F-statistic:                     778.6
 Date:                Wed, 10 Jul 2024   Prob (F-statistic):          1.37e-108
-Time:                        15:59:25   Log-Likelihood:                -679.31
+Time:                        16:50:49   Log-Likelihood:                -679.31
 No. Observations:                 200   AIC:                             1367.
 Df Residuals:                     196   BIC:                             1380.
 Df Model:                           3                                         

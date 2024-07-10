@@ -466,19 +466,19 @@ document.write(`
 <h1>Linear models (LiNGAM)<a class="headerlink" href="#linear-models-lingam" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>If we are willing to make assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>, we can go beyond the Markov equivalence class and identify the complete causal structure of the data-generating process. In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id21" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>.</p>
+<p>If we are willing to make assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>, we can go beyond the Markov equivalence class and identify the complete causal structure of the data-generating process. In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id34" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>.</p>
 </section>
 <section id="the-lingam-model">
 <h2>The LiNGAM model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b3a6870a-ecb6-4aa9-b543-1a05bacb8617">
-<span class="eqno">()<a class="headerlink" href="#equation-b3a6870a-ecb6-4aa9-b543-1a05bacb8617" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1379b353-2356-4610-90f8-b05e31346f25">
+<span class="eqno">()<a class="headerlink" href="#equation-1379b353-2356-4610-90f8-b05e31346f25" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ab0973f-8056-4739-b637-98a5380076cc">
-<span class="eqno">()<a class="headerlink" href="#equation-7ab0973f-8056-4739-b637-98a5380076cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e94d54ce-5b93-436a-93df-48e99c3cf671">
+<span class="eqno">()<a class="headerlink" href="#equation-e94d54ce-5b93-436a-93df-48e99c3cf671" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -491,8 +491,8 @@ document.write(`
 <section id="strucural-equations">
 <h3>Strucural equations<a class="headerlink" href="#strucural-equations" title="Link to this heading">#</a></h3>
 <p>If we know the coefficients of those causal relations, the SCM can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c937212f-3a6e-45ca-ad8f-58b00346fff7">
-<span class="eqno">()<a class="headerlink" href="#equation-c937212f-3a6e-45ca-ad8f-58b00346fff7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f40daa2c-0536-4367-966b-a734dcd4b91d">
+<span class="eqno">()<a class="headerlink" href="#equation-f40daa2c-0536-4367-966b-a734dcd4b91d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \text{wind generation} &amp;= e_w \\
@@ -501,8 +501,8 @@ document.write(`
 <section id="matrix-notation">
 <h3>Matrix notation<a class="headerlink" href="#matrix-notation" title="Link to this heading">#</a></h3>
 <p>Then, in matrix notation, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-21f5a2f1-1c7f-4e42-889a-332660d6cc15">
-<span class="eqno">()<a class="headerlink" href="#equation-21f5a2f1-1c7f-4e42-889a-332660d6cc15" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fc5e7273-74e7-48b1-be32-90ae6d6db7d9">
+<span class="eqno">()<a class="headerlink" href="#equation-fc5e7273-74e7-48b1-be32-90ae6d6db7d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{electricity prices} \\
     \text{carbon emissions} \\
@@ -530,15 +530,15 @@ document.write(`
 <section id="causal-ordering">
 <h3>Causal ordering<a class="headerlink" href="#causal-ordering" title="Link to this heading">#</a></h3>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30479e6f-02af-4aec-b616-f2b11e184916">
-<span class="eqno">()<a class="headerlink" href="#equation-30479e6f-02af-4aec-b616-f2b11e184916" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-76d6f190-787a-4c0e-ab48-cd6e49d673fa">
+<span class="eqno">()<a class="headerlink" href="#equation-76d6f190-787a-4c0e-ab48-cd6e49d673fa" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \text{carbon emissions} &amp;= -1.5 \times \text{Electricity Prices} + e_c \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f1ffdff2-9a09-4767-a446-679f934317f3">
-<span class="eqno">()<a class="headerlink" href="#equation-f1ffdff2-9a09-4767-a446-679f934317f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-65989637-0fca-480e-8812-7badf5709fc0">
+<span class="eqno">()<a class="headerlink" href="#equation-65989637-0fca-480e-8812-7badf5709fc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind generation} \\
     \text{electricity prices} \\
@@ -563,8 +563,8 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95816ce1-7ad5-49d6-8c4b-e78be8532691">
-<span class="eqno">()<a class="headerlink" href="#equation-95816ce1-7ad5-49d6-8c4b-e78be8532691" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b9bb1136-b7fb-44af-b54f-cca86b969f7b">
+<span class="eqno">()<a class="headerlink" href="#equation-b9bb1136-b7fb-44af-b54f-cca86b969f7b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -598,8 +598,8 @@ document.write(`
 <section id="example-with-gaussian-errors">
 <h4>Example with Gaussian errors<a class="headerlink" href="#example-with-gaussian-errors" title="Link to this heading">#</a></h4>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9c890bf0-dd3a-455f-86f0-0b5c3a309b43">
-<span class="eqno">()<a class="headerlink" href="#equation-9c890bf0-dd3a-455f-86f0-0b5c3a309b43" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-df3228b0-1467-488b-978f-be5677559eb5">
+<span class="eqno">()<a class="headerlink" href="#equation-df3228b0-1467-488b-978f-be5677559eb5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind generation} &amp;= e_w \\
 \text{electricity prices} &amp;= -1 \times \text{wind generation} + e_p \\
 \end{align}\]</div>
@@ -654,7 +654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6b48cadc9e85a6704267c4c8b60f6901623114b1d3e71bd85f667732c1adada2.png" src="../_images/6b48cadc9e85a6704267c4c8b60f6901623114b1d3e71bd85f667732c1adada2.png" />
+<img alt="../_images/285116684a80ad0d5ccb7dff1cf10b2f1656e1214db628e3f570c2cee05bad71.png" src="../_images/285116684a80ad0d5ccb7dff1cf10b2f1656e1214db628e3f570c2cee05bad71.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
@@ -706,7 +706,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1cfda27f66cf677484a9d3df858397f62a798a198b3c0698809c6adbf7c368be.png" src="../_images/1cfda27f66cf677484a9d3df858397f62a798a198b3c0698809c6adbf7c368be.png" />
+<img alt="../_images/1333e395c6d030cd8f413bc253747e2da6d043814e8cc4c892317fea0adb9b16.png" src="../_images/1333e395c6d030cd8f413bc253747e2da6d043814e8cc4c892317fea0adb9b16.png" />
 </div>
 </div>
 </section>
@@ -714,19 +714,19 @@ document.write(`
 <section id="ica-based-lingam">
 <h3>ICA-based LiNGAM<a class="headerlink" href="#ica-based-lingam" title="Link to this heading">#</a></h3>
 <p>ICA is a computational method, developed in the field of signal processing, to separate a multivariate signal into additive subcomponents assuming that these subcomponents are non-Gaussian signals and statistically independent from each other. Consider a simple ICA model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e998a18-7423-46f7-ac90-e75717f51cf9">
-<span class="eqno">()<a class="headerlink" href="#equation-1e998a18-7423-46f7-ac90-e75717f51cf9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-cc0c8a18-74fc-49ed-a0d1-3e603adb8f5b">
+<span class="eqno">()<a class="headerlink" href="#equation-cc0c8a18-74fc-49ed-a0d1-3e603adb8f5b" title="Permalink to this equation">#</a></span>\[\begin{align}
     x_1 &amp;= a_{11}s_1 + a_{12}s_2 \\
     x_2 &amp;= a_{21}s_1 + a_{22}s_2
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the observed variables, and <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are continuous hidden variables. Assuming that <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In matrix form, we can write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3e31384-3d38-4dd6-b826-b8de4e663e2b">
-<span class="eqno">()<a class="headerlink" href="#equation-d3e31384-3d38-4dd6-b826-b8de4e663e2b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6bda73dc-d5ca-4a23-877b-728651bac010">
+<span class="eqno">()<a class="headerlink" href="#equation-6bda73dc-d5ca-4a23-877b-728651bac010" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{A}\mathbf{s}
 \end{equation}\]</div>
 <p>In our example, it would mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f58c54b5-cda5-490b-96fc-79af68b2ac92">
-<span class="eqno">()<a class="headerlink" href="#equation-f58c54b5-cda5-490b-96fc-79af68b2ac92" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0b86f2f5-2130-48d3-9a67-e104a04d30ee">
+<span class="eqno">()<a class="headerlink" href="#equation-0b86f2f5-2130-48d3-9a67-e104a04d30ee" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     x_1 \\ x_2
     \end{array}\right]
@@ -833,18 +833,18 @@ document.write(`
 <section id="id3">
 <h3>ICA-based LiNGAM<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e0109908-8249-4c81-8f25-8d74eeb5dff9">
-<span class="eqno">()<a class="headerlink" href="#equation-e0109908-8249-4c81-8f25-8d74eeb5dff9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-128f87a5-03d8-4b5c-ab12-52e66d5065a9">
+<span class="eqno">()<a class="headerlink" href="#equation-128f87a5-03d8-4b5c-ab12-52e66d5065a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>. We can solve the equation <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}\)</span> for the vector of observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f31d02f-7b34-4aef-9146-4b18a1011e93">
-<span class="eqno">()<a class="headerlink" href="#equation-7f31d02f-7b34-4aef-9146-4b18a1011e93" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-034fe0ce-399f-4b3f-b776-13dd065c3c78">
+<span class="eqno">()<a class="headerlink" href="#equation-034fe0ce-399f-4b3f-b776-13dd065c3c78" title="Permalink to this equation">#</a></span>\[\begin{equation}
     (\mathbf{I}- \mathbf{B})\mathbf{x} = \mathbf{e}
 \end{equation}\]</div>
 <p>Then, if we left-multiply both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{I}- \mathbf{B}\)</span>, we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-67a30f53-85a2-4386-9d78-f3a42c17e497">
-<span class="eqno">()<a class="headerlink" href="#equation-67a30f53-85a2-4386-9d78-f3a42c17e497" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-36588a01-c473-494e-a13f-787943b8fd00">
+<span class="eqno">()<a class="headerlink" href="#equation-36588a01-c473-494e-a13f-787943b8fd00" title="Permalink to this equation">#</a></span>\[\begin{align}
     (\mathbf{I}- \mathbf{B})^{-1}(\mathbf{I}- \mathbf{B})\mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= \mathbf{A}\mathbf{e} \label{eq:lingam-ica}
