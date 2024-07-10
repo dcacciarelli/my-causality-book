@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -685,7 +685,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p><strong>Estimated mean reward</strong>: for each arm <span class="math notranslate nohighlight">\(k\)</span>, you keep track of the average reward it has given you until this time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(\hat{\mu}_k(t)\)</span>.</p></li>
 <li><p><strong>Updating the Estimate</strong>: every time you pull an arm and get a reward, you update the average reward for that arm using the formula:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-88576ade-4caa-409f-9990-dfc8fb6497e9">
-<span class="eqno">(54)<a class="headerlink" href="#equation-88576ade-4caa-409f-9990-dfc8fb6497e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(60)<a class="headerlink" href="#equation-88576ade-4caa-409f-9990-dfc8fb6497e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(t+1) = \hat{\mu}_k(t) + \frac{r_k(t) - \hat{\mu}_k(t)}{n_k(t)}
   \end{equation}\]</div>
 </li>
@@ -714,7 +714,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>You pull the same arm again and get a reward of 8.</p></li>
 <li><p>You update your estimate:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-421c6830-c1ba-4ce7-b48f-4efed33e6964">
-<span class="eqno">(55)<a class="headerlink" href="#equation-421c6830-c1ba-4ce7-b48f-4efed33e6964" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(61)<a class="headerlink" href="#equation-421c6830-c1ba-4ce7-b48f-4efed33e6964" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(2) = 10 + \frac{8 - 10}{2} = 9
     \end{equation}\]</div>
 </li>
@@ -727,7 +727,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>You pull the arm one more time and get a reward of 9.</p></li>
 <li><p>You update your estimate:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-0c59ff87-bbf8-46a9-907c-65c2c18a21bb">
-<span class="eqno">(56)<a class="headerlink" href="#equation-0c59ff87-bbf8-46a9-907c-65c2c18a21bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(62)<a class="headerlink" href="#equation-0c59ff87-bbf8-46a9-907c-65c2c18a21bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{\mu}_k(100) = 9.5 + \frac{9 - 9.5}{100} = 9.495
     \end{equation}\]</div>
 </li>
@@ -777,7 +777,7 @@ Regret is the difference between the total reward we would have gotten by always
 <li><p>The upper confidence bound for arm <span class="math notranslate nohighlight">\(k\)</span> at time <span class="math notranslate nohighlight">\(t\)</span> is given by:</p></li>
 </ul>
 <div class="amsmath math notranslate nohighlight" id="equation-bbe63b8c-966b-4039-af23-11452462dfc0">
-<span class="eqno">(57)<a class="headerlink" href="#equation-bbe63b8c-966b-4039-af23-11452462dfc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(63)<a class="headerlink" href="#equation-bbe63b8c-966b-4039-af23-11452462dfc0" title="Permalink to this equation">#</a></span>\[\begin{equation}
     UCB_k(t) = \hat{\mu}_k(t) + c \sqrt{\frac{\ln t}{n_k(t)}}
 \end{equation}\]</div>
 <p>which is composed of two terms:</p>
@@ -838,13 +838,13 @@ Regret is the difference between the total reward we would have gotten by always
 <ul>
 <li><p>If we get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 1 \)</span>), we increase <span class="math notranslate nohighlight">\(\alpha_k\)</span> by 1, indicating one more success:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-e4ec919e-c8cd-4bf2-98c0-d3333a1fd387">
-<span class="eqno">(58)<a class="headerlink" href="#equation-e4ec919e-c8cd-4bf2-98c0-d3333a1fd387" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(64)<a class="headerlink" href="#equation-e4ec919e-c8cd-4bf2-98c0-d3333a1fd387" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \alpha_k = \alpha_k + r_k(t)
      \end{equation}\]</div>
 </li>
 <li><p>If we do not get a reward (<span class="math notranslate nohighlight">\(r_k(t) = 0 \)</span>), we increase <span class="math notranslate nohighlight">\(\beta_k\)</span> by 1, indicating one more failure:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-b3bf3cdc-12ed-4bdf-8046-45c2539d5890">
-<span class="eqno">(59)<a class="headerlink" href="#equation-b3bf3cdc-12ed-4bdf-8046-45c2539d5890" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(65)<a class="headerlink" href="#equation-b3bf3cdc-12ed-4bdf-8046-45c2539d5890" title="Permalink to this equation">#</a></span>\[\begin{equation}
          \beta_k = \beta_k + 1 - r_k(t)
      \end{equation}\]</div>
 </li>

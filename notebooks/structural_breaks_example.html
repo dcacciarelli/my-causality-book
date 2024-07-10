@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -459,7 +459,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="structural-breaks">
 <h1>Structural Breaks<a class="headerlink" href="#structural-breaks" title="Link to this heading">#</a></h1>
 <p>Another challenges related to time series analysis and causal inference, besides the presence of lagged effects, is the possibility of the system to be in <strong>multiple states or regimes</strong>. This is a problem well known to economists, since financial data often exhibits distinct behaviour depending on the specific state of the system (e.g., growth or recession).</p>
-<p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id26" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
+<p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id27" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
 <ul class="simple">
 <li><p><strong>Short</strong>, when there is a shortage of energy.</p></li>
 <li><p><strong>Long</strong>, when there is an excess of energy.</p></li>
@@ -477,12 +477,12 @@ document.write(`
 <h3>Pre-subsidy structural model:<a class="headerlink" href="#pre-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-42dc5119-c1a0-4cf2-84f0-80f0c86e1c33">
-<span class="eqno">(28)<a class="headerlink" href="#equation-42dc5119-c1a0-4cf2-84f0-80f0c86e1c33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(34)<a class="headerlink" href="#equation-42dc5119-c1a0-4cf2-84f0-80f0c86e1c33" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-9a00ef27-6615-4c20-bfff-bbdd6c7ca5f1">
-<span class="eqno">(29)<a class="headerlink" href="#equation-9a00ef27-6615-4c20-bfff-bbdd6c7ca5f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(35)<a class="headerlink" href="#equation-9a00ef27-6615-4c20-bfff-bbdd6c7ca5f1" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -495,12 +495,12 @@ document.write(`
 <h3>Post-subsidy structural model:<a class="headerlink" href="#post-subsidy-structural-model" title="Link to this heading">#</a></h3>
 <p>After the introduction of subsidies, the relationships change as follows:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-8a89bbd3-c8d5-4ccf-a85c-c2f24e68567c">
-<span class="eqno">(30)<a class="headerlink" href="#equation-8a89bbd3-c8d5-4ccf-a85c-c2f24e68567c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(36)<a class="headerlink" href="#equation-8a89bbd3-c8d5-4ccf-a85c-c2f24e68567c" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-490cf76f-b24b-455e-aaff-c25f747ee9dc">
-<span class="eqno">(31)<a class="headerlink" href="#equation-490cf76f-b24b-455e-aaff-c25f747ee9dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(37)<a class="headerlink" href="#equation-490cf76f-b24b-455e-aaff-c25f747ee9dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\

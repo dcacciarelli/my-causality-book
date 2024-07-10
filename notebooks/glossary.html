@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -454,12 +454,12 @@ document.write(`
 <li><p><strong>Causal graph</strong>: a visual representation of causal relationships among a set of variables, often depicted as a directed acyclic graph (DAG).</p></li>
 <li><p><strong>Collider</strong>: a variable that is influenced by two or more other variables in a causal graph, potentially introducing bias when conditioned upon.</p></li>
 <li><p><strong>Confounder</strong>: a variable that influences both the treatment and the outcome, potentially biasing the estimated effect of the treatment.</p></li>
-<li><p><strong>Directed acyclic graph (DAG)</strong>: a graphical representation of causal relationships between variables. Each node represents a variable, and each directed edge represents a causal effect from one variable to another. The graph is acyclic, meaning it does not contain any cycles.</p></li>
+<li><p><strong>Directed acyclic graph</strong>: a graphical representation of causal relationships between variables. Each node represents a variable, and each directed edge represents a causal effect from one variable to another. The graph is acyclic, meaning it does not contain any cycles.</p></li>
 <li><p><strong>D-separation</strong>: a criterion used to determine conditional independence between two sets of nodes in a directed acyclic graph (DAG), given a third set of nodes. It helps identify whether paths between nodes are blocked by a conditioning set.</p></li>
-<li><p><strong>Instrumental variable (IV)</strong>: a variable that is used to estimate causal relationships when controlled experiments are not feasible. The IV affects the treatment but has no direct effect on the outcome except through the treatment.</p></li>
+<li><p><strong>Instrumental variable</strong>: a variable that is used to estimate causal relationships when controlled experiments are not feasible. The IV affects the treatment but has no direct effect on the outcome except through the treatment.</p></li>
 <li><p><strong>Local Markov assumption</strong>: states that a node in a DAG is conditionally independent of its non-descendants given its parents. This assumption allows for the decomposition of the joint probability distribution of all variables in the DAG into simpler conditional distributions.</p></li>
 <li><p><strong>Mediator</strong>: a variable that lies on the causal path between the treatment and the outcome, helping to explain the mechanism through which the treatment affects the outcome.</p></li>
-<li><p><strong>Minimality assumption</strong>: Asserts that the DAG representing the causal structure is minimal, meaning that removing any edge would violate the Markov condition for the observed data. It ensures that the model encodes only necessary dependency relationships.</p></li>
+<li><p><strong>Minimality assumption</strong>: asserts that the DAG representing the causal structure is minimal, meaning that removing any edge would violate the Markov condition for the observed data. It ensures that the model encodes only necessary dependency relationships.</p></li>
 </ul>
 </section>
 <section id="experimental-design-and-analysis">
@@ -472,7 +472,7 @@ document.write(`
 <li><p><strong>Ignorability/exchangeability assumption</strong>: sssumes that the way individuals are assigned to treatments can be ignored, allowing for the assumption of random assignment in observational studies. This is crucial for identifying causal effects.</p></li>
 <li><p><strong>Placebo effect</strong>: a phenomenon where subjects experience a perceived or actual improvement in their condition despite receiving a non-active treatment, due to their expectations of the treatment’s efficacy.</p></li>
 <li><p><strong>Randomisation</strong>: the process of assigning subjects to treatment and control groups by chance, reducing bias and ensuring that the groups are comparable.</p></li>
-<li><p><strong>Regression discontinuity design (RDD)</strong>: a quasi-experimental design that exploits a cutoff or threshold to assign treatments in order to estimate causal effects.</p></li>
+<li><p><strong>Regression discontinuity design</strong>: a quasi-experimental design that exploits a cutoff or threshold to assign treatments in order to estimate causal effects.</p></li>
 <li><p><strong>Selection bias</strong>: a bias that occurs when the subjects included in a study are not representative of the population intended to be analysed, leading to incorrect conclusions.</p></li>
 <li><p><strong>Synthetic control method</strong>: a method for estimating causal effects by comparing treated units to a weighted combination of untreated units that best approximates the characteristics of the treated units.</p></li>
 </ul>
@@ -480,9 +480,9 @@ document.write(`
 <section id="effects-and-estimates">
 <h2>Effects and Estimates<a class="headerlink" href="#effects-and-estimates" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Average treatment effect (ATE)</strong>: the difference in the average outcomes between the treatment group and the control group. It measures the overall impact of the treatment on the population.</p></li>
+<li><p><strong>Average treatment effect</strong>: the difference in the average outcomes between the treatment group and the control group. It measures the overall impact of the treatment on the population.</p></li>
 <li><p><strong>Causal effect</strong>: the change in an outcome directly attributable to a change in a treatment or exposure.</p></li>
-<li><p><strong>Conditional average treatment effect (CATE)</strong>: the average treatment effect for a specific subset of the population, defined by certain characteristics or conditions. It provides a more granular understanding of how the treatment effect varies across different groups within the population.</p></li>
+<li><p><strong>Conditional average treatment effect</strong>: the average treatment effect for a specific subset of the population, defined by certain characteristics or conditions. It provides a more granular understanding of how the treatment effect varies across different groups within the population.</p></li>
 <li><p><strong>Confounding bias</strong>: a bias that occurs when the treatment effect is mixed with the effect of a confounder, leading to an incorrect estimation of the causal effect.</p></li>
 <li><p><strong>Endogeneity</strong>: a situation in which an explanatory variable is correlated with the error term in a regression model, leading to biased and inconsistent parameter estimates.</p></li>
 <li><p><strong>Exogeneity</strong>: a condition where an explanatory variable is not correlated with the error term, ensuring unbiased and consistent parameter estimates.</p></li>

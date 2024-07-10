@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -459,7 +459,7 @@ document.write(`
 <h2>Importance of Basic Causal Structures<a class="headerlink" href="#importance-of-basic-causal-structures" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>In <strong>causal discovery</strong>, basic causal structures help in discerning the underlying causal graph from observational data. These structures have unique properties that enable algorithms to translate conditional independencies into DAG structures. By understanding these properties, researchers can use methods like the PC algorithm and FCI algorithm to uncover the true causal relationships among variables <span id="id1">[<a class="reference internal" href="../bibliography.html#id8" title="Peter Spirtes, Clark Glymour, and Richard Scheines. Causation, prediction, and search. MIT press, 2001.">SGS01</a>]</span>.</p></li>
-<li><p>In <strong>causal inference</strong>, recognizing these structures is essential for specifying regression models correctly to avoid spurious relationships. Understanding which variables to include or exclude based on their causal roles ensures that the models provide valid and unbiased estimates. This knowledge helps in identifying confounders, mediators, and colliders, guiding the appropriate handling of these variables in statistical analysis <span id="id2">[<a class="reference internal" href="../bibliography.html#id22" title="Miguel A Hernan and James M Robins. Causal Inference: What If. Chapman &amp; Hall/CRC, 2020.">HR20</a>]</span>.</p></li>
+<li><p>In <strong>causal inference</strong>, recognizing these structures is essential for specifying regression models correctly to avoid spurious relationships. Understanding which variables to include or exclude based on their causal roles ensures that the models provide valid and unbiased estimates. This knowledge helps in identifying confounders, mediators, and colliders, guiding the appropriate handling of these variables in statistical analysis <span id="id2">[<a class="reference internal" href="../bibliography.html#id23" title="Miguel A Hernan and James M Robins. Causal Inference: What If. Chapman &amp; Hall/CRC, 2020.">HR20</a>]</span>.</p></li>
 </ul>
 </section>
 <section id="basic-dags">
@@ -486,8 +486,8 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>As we saw in the previous chapter, this DAG represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c768295-a583-4caa-80e0-2c6bf86764d4">
-<span class="eqno">(3)<a class="headerlink" href="#equation-0c768295-a583-4caa-80e0-2c6bf86764d4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5b780422-9f68-4d74-9f71-4385c852fa4f">
+<span class="eqno">(3)<a class="headerlink" href="#equation-5b780422-9f68-4d74-9f71-4385c852fa4f" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{weather fluctuations} &amp;= e_w \\
     \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
     \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -522,8 +522,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a5040576-0679-4ff0-8933-69be9a7b0ce5">
-<span class="eqno">(4)<a class="headerlink" href="#equation-a5040576-0679-4ff0-8933-69be9a7b0ce5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ddb63de3-752f-4b7a-ad12-a33b3a406ea3">
+<span class="eqno">(4)<a class="headerlink" href="#equation-ddb63de3-752f-4b7a-ad12-a33b3a406ea3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -672,8 +672,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-28bb9658-a3a0-47cc-a4c0-bdd0a0853fa0">
-<span class="eqno">(5)<a class="headerlink" href="#equation-28bb9658-a3a0-47cc-a4c0-bdd0a0853fa0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6fbe675a-7eb0-4fae-aca1-f9d911bd44b2">
+<span class="eqno">(5)<a class="headerlink" href="#equation-6fbe675a-7eb0-4fae-aca1-f9d911bd44b2" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
@@ -803,7 +803,7 @@ document.write(`
 </section>
 <section id="practical-guidance-for-regression-modelling">
 <h2>Practical Guidance for Regression Modelling<a class="headerlink" href="#practical-guidance-for-regression-modelling" title="Link to this heading">#</a></h2>
-<p>In causal inference, understanding these basic structures is essential to avoid spurious correlations and incorrect model specifications. Specifically, they guide the selection of predictors in regression modeling to ensure valid and unbiased estimates. Including or excluding variables based on their causal relationships can significantly impact the validity of regression models. For example:</p>
+<p>In causal inference, understanding these basic structures is essential to avoid spurious correlations and incorrect model specifications. Specifically, they guide the selection of predictors in regression modelling to ensure valid and unbiased estimates. Including or excluding variables based on their causal relationships can significantly impact the validity of regression models. For example:</p>
 <ul class="simple">
 <li><p><strong>Including colliders</strong>: conditioning on a collider can introduce spurious associations between its causes, leading to biased estimates.</p></li>
 <li><p><strong>Omitting mediators</strong>: excluding a mediator can lead to underestimation of the direct effect of the predictor on the outcome.</p></li>

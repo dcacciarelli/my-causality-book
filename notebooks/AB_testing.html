@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -550,7 +550,7 @@ The enhanced marketing message significantly increases energy usage during off-p
 <h3>Multiple testing<a class="headerlink" href="#multiple-testing" title="Link to this heading">#</a></h3>
 <p>When conducting multiple tests, the probability of making at least one type I error (false positive) increases. To address this, we use the Bonferroni correction, which adjusts the significance level to control the family-wise error rate (FWER). The adjusted significance level is given by:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-ca1b62e4-79a2-48f1-bda6-5ea0c7d4c786">
-<span class="eqno">(52)<a class="headerlink" href="#equation-ca1b62e4-79a2-48f1-bda6-5ea0c7d4c786" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
+<span class="eqno">(58)<a class="headerlink" href="#equation-ca1b62e4-79a2-48f1-bda6-5ea0c7d4c786" title="Permalink to this equation">#</a></span>\[\begin{equation}\alpha_{\text{adj}} = \frac{\alpha}{m}\end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is the original significance level, and <span class="math notranslate nohighlight">\(m\)</span> is the number of tests.</p>
 <p>Let’s consider an example where a utility company is testing five different marketing campaigns to see if they significantly increase the adoption of a new energy-saving device.</p>
 <p><strong>Scenario</strong>:</p>
@@ -693,7 +693,7 @@ Notes:
 </section>
 <section id="network-effects">
 <h3>Network effects<a class="headerlink" href="#network-effects" title="Link to this heading">#</a></h3>
-<p>Traditional A/B testing methods, relying on the stable unit treatment value assumption (SUTVA), assume that each individual’s response to a treatment is independent of others. However, in many real-world scenarios, especially in social networks and interconnected systems, this assumption does not hold. Users’ behaviors and outcomes can be influenced by their peers, leading to network effects. Network A/B testing is an advanced technique that takes into account the influence of social connections and interactions when evaluating the effectiveness of treatments or interventions <span id="id1">[<a class="reference internal" href="../bibliography.html#id36" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span>.</p>
+<p>Traditional A/B testing methods, relying on the stable unit treatment value assumption (SUTVA), assume that each individual’s response to a treatment is independent of others. However, in many real-world scenarios, especially in social networks and interconnected systems, this assumption does not hold. Users’ behaviors and outcomes can be influenced by their peers, leading to network effects. Network A/B testing is an advanced technique that takes into account the influence of social connections and interactions when evaluating the effectiveness of treatments or interventions <span id="id1">[<a class="reference internal" href="../bibliography.html#id37" title="Huan Gui, Ya Xu, Anmol Bhasin, and Jiawei Han. Network a/b testing: from sampling to estimation. In Proceedings of the 24th International Conference on World Wide Web, 399–409. 2015.">GXBH15</a>]</span>.</p>
 <p><strong>Relevance of network A/B testing:</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Capturing spillover effects</strong>: in social networks, the effect of a treatment on one individual can spill over to their connected peers. For instance, in marketing campaigns, a customer’s decision to adopt a new product might influence their friends to do the same.</p></li>
@@ -713,7 +713,7 @@ Notes:
 <p><strong>Simulating the response variable:</strong> The response variable <span class="math notranslate nohighlight">\(Y\)</span> represents the outcome we are interested in measuring, such as whether a customer switched to the green energy plan. The outcome for each customer is influenced by their own treatment status <span class="math notranslate nohighlight">\(Z\)</span> and the treatment statuses of their connected neighbors, which we account for using the adjacency matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The formula used for simulating the response is:</p>
 <div class="amsmath math notranslate nohighlight" id="equation-a8f96bde-23fd-4751-8642-1efe5075af4e">
-<span class="eqno">(53)<a class="headerlink" href="#equation-a8f96bde-23fd-4751-8642-1efe5075af4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<span class="eqno">(59)<a class="headerlink" href="#equation-a8f96bde-23fd-4751-8642-1efe5075af4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     Y = \beta_0 + \beta_1 Z + \beta_2 (A \cdot Z) + \epsilon
 \end{equation}\]</div>
 <p>where:</p>
