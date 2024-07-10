@@ -410,7 +410,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -426,6 +428,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pdp-for-one-feature">PDP for One Feature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pdp-for-two-features">PDP for Two Features</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -543,9 +556,11 @@ document.write(`
 </div></div></div>
 </div>
 <p>Using the <strong>semi-parametric causal discovery methods</strong> we discussed in the previous chapters, we might now be able to discover the true causal structure of the data-generating process. However, we will still not be able to see the <strong>specific shape of the relationship</strong> between a feature (or a set of features) and the predicted outcome. Now, we assume we already have some knowledge on the true causal structure, and want to use some approaches to further characterise the dependency patterns.</p>
+<section id="estimation">
+<h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>Imagine we fitted a model <span class="math notranslate nohighlight">\(\hat{f}\)</span> that predicts the electricity price using the remaining three features as input variables. Let <span class="math notranslate nohighlight">\(h\)</span> represent the hour variable. The partial dependence function <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5839b3cb-785e-4ab3-9a16-1ae060d4127f">
-<span class="eqno">(49)<a class="headerlink" href="#equation-5839b3cb-785e-4ab3-9a16-1ae060d4127f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f82a79c5-1ba9-45f8-af9e-1110ed94959f">
+<span class="eqno">(49)<a class="headerlink" href="#equation-f82a79c5-1ba9-45f8-af9e-1110ed94959f" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) = \mathbb{E}_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}\]</div>
 <p>where:</p>
@@ -557,8 +572,8 @@ document.write(`
 </ul>
 <p>The <strong>partial dependence function</strong> shows how the model’s prediction changes when <span class="math notranslate nohighlight">\(h\)</span> changes, keeping the other features constant. Taking the expected value of the model’s prediction over the distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> effectively averages out the effects of all other features. Indeed, the The integral indicates that we are integrating (or averaging) the model’s predictions over the probability distribution of the features in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This integration helps in isolating the effect of <span class="math notranslate nohighlight">\(h\)</span> on the predicted outcome.</p>
 <p>In practice, we estimate <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> using the average prediction over the dataset:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d55a998-4752-47f4-8fdb-e5808709553b">
-<span class="eqno">(50)<a class="headerlink" href="#equation-3d55a998-4752-47f4-8fdb-e5808709553b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ebc900b-9552-499a-a725-1ee9c65d6c41">
+<span class="eqno">(50)<a class="headerlink" href="#equation-2ebc900b-9552-499a-a725-1ee9c65d6c41" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of instances in the dataset, and <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the covariates. This sum basically calculates the average prediction of the model when <span class="math notranslate nohighlight">\(h\)</span> is fixed at a specific value, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> iterates through all the observed values in the dataset. Here is what we would do in practice:</p>
@@ -584,6 +599,15 @@ document.write(`
 </div>
 </div>
 </div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">calculate_pdp</span></code> computes the PDP values for a specified feature in a dataset using a given machine learning model. PDPs help in understanding the relationship between a feature and the predicted outcome by showing how the predictions change as the feature values are varied, while keeping all other features constant.</p>
+<p>The main steps of the algorithm are:</p>
+<ol class="arabic simple">
+<li><p><strong>Initialisation and iteration over feature values:</strong> Initialise an empty list to store the PDP values and iterate over each value in the specified range of feature values.</p></li>
+<li><p><strong>Modify feature values:</strong> for each value in the feature’s range, create a temporary copy of the dataset and set the feature’s value in the temporary dataset to the current value from the iteration.</p></li>
+<li><p><strong>Predict outcomes:</strong> use the machine learning model to make predictions based on the modified dataset.</p></li>
+<li><p><strong>Compute and store PDP values:</strong> calculate the mean of the predictions for the modified dataset and append this mean prediction to the list of PDP values.</p></li>
+<li><p><strong>Return PDP values:</strong> after iterating over all feature values, return the list of PDP values.</p></li>
+</ol>
 <p>Let’s now apply it to a random forest regression model fitted to the data we generated before:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,6 +639,9 @@ document.write(`
 <img alt="../_images/07ef68f969bea0382fd45d45ba1796f9fa0277993aeb9e4918674715711ec9fe.png" src="../_images/07ef68f969bea0382fd45d45ba1796f9fa0277993aeb9e4918674715711ec9fe.png" />
 </div>
 </div>
+</section>
+<section id="bootstrapping">
+<h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h2>
 <p>We can see how the PDP shows the pattern we expected, as the time of the day affects the price through the peak morning and evening hours. Now, we can apply the function we implemented to the remaining features too. To obtain more reliable estimates, we can <strong>repeat the procedure many times</strong>, and plot the mean dependence lines, along with some <strong>Bootstrap confidence intervals</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -669,6 +696,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="pdp-for-one-feature">
+<h2>PDP for One Feature<a class="headerlink" href="#pdp-for-one-feature" title="Link to this heading">#</a></h2>
 <p>Let’s now plot the result!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -707,6 +737,9 @@ document.write(`
 <img alt="../_images/164f9f12eb914a81607f3fe25e35d129d2c906b6006eb78e1d2f70964cf43a41.png" src="../_images/164f9f12eb914a81607f3fe25e35d129d2c906b6006eb78e1d2f70964cf43a41.png" />
 </div>
 </div>
+</section>
+<section id="pdp-for-two-features">
+<h2>PDP for Two Features<a class="headerlink" href="#pdp-for-two-features" title="Link to this heading">#</a></h2>
 <p>Finally, we can also fix the level of <strong>two variables</strong>, and average over the remaining ones, to see the combined effect on the predicted response. In this case, we can see the results in the form of <strong>contour plots</strong>. Here is a simple extension of the previous function, to compute PDP for two variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,6 +798,7 @@ document.write(`
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -821,7 +855,23 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pdp-for-one-feature">PDP for One Feature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pdp-for-two-features">PDP for Two Features</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
