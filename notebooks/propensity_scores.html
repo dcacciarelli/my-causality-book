@@ -434,11 +434,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">Data generation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">Propensity scores estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">Nearest-neighbor matching</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">Treatment effect estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">Visualising results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">Propensity Scores Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">Nearest-Neighbor Matching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">Treatment Effect Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -457,20 +456,20 @@ document.write(`
 <p>In many cases, we are interested in assessing the effectiveness of a campaign or other types of treatments. For example, let’s assume we are interested in evaluating the impact of a <strong>demand-response programme</strong> on the electricity consumption of a set of households. Suppose that households can join the demand-response programme by filling out a specific form. For those who join, the programme offers reduced pricing during off-peak hours. Our goal is to assess the effectiveness of this programme by comparing the electricity consumption of people who joined the programme (our <strong>treatment group</strong>) to those who did not (our <strong>control group</strong>).</p>
 <p>In an ideal scenario, if we were able to conduct a completely randomised experiment, we would have a balanced and diverse set of customers in both groups. In such a situation, if the possibility of joining the programme was as random as flipping a coin, any significant differences in consumption patterns between the two groups could be attributed to the special pricing offered by the programme.</p>
 <p>However, in real life, things are more complicated. Because people are not randomly assigned to the two groups, there may be characteristics of the people who voluntarily joined the programme that are the true causes of changes in consumption. For example, if a majority of the people who agreed to join the programme are retired, it is likely that they will use electricity during off-peak hours due to their lifestyle and not solely because of the reduced pricing. This is an example of <strong>selection bias</strong>.</p>
-<p>Whenever the treatment and control assignment is not random, there may be demographic or personal factors that affect the outcome of the experiment. These factors are referred to as <strong>confounders</strong>. This problem is particularly prevalent in observational data (see <span id="id1">[<a class="reference internal" href="../bibliography.html#id31" title="Paul R Rosenbaum and Donald B Rubin. The central role of the propensity score in observational studies for causal effects. Biometrika, 70(1):41–55, 1983.">RR83</a>]</span>).</p>
-<p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
+<p>Whenever the treatment and control assignment is not random, there may be demographic or personal factors that affect the outcome of the experiment. These factors are referred to as <strong>confounders</strong>. This problem is particularly prevalent in observational data (see <span id="id1">[]</span>).</p>
+<p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment <span id="id2">[<a class="reference internal" href="../bibliography.html#id21" title="Marco Caliendo and Sabine Kopeinig. Some practical guidance for the implementation of propensity score matching. Journal of economic surveys, 22(1):31–72, 2008.">CK08</a>]</span>. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
 <p>In mathematical terms, we can define the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span> as the probability of a unit (e.g., customer) joining the demand-response programme given a set of covariates <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e06e09a8-ecc5-4a2c-acc2-db2ae4d62416">
-<span class="eqno">(38)<a class="headerlink" href="#equation-e06e09a8-ecc5-4a2c-acc2-db2ae4d62416" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4185bed6-00ce-4f66-8c45-17e2a2cf9f23">
+<span class="eqno">(38)<a class="headerlink" href="#equation-4185bed6-00ce-4f66-8c45-17e2a2cf9f23" title="Permalink to this equation">#</a></span>\[\begin{equation}
    e(x) = P(T = 1 \mid X = x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is a binary indicator of treatment assignment (1 if joined the programme, 0 if not).</p>
 <p>Propensity scores are typically estimated using <strong>logistic regression</strong>, although other classification methods can be used. For example:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4064d199-0bb2-4318-ac4f-692c445d9a9f">
-<span class="eqno">(39)<a class="headerlink" href="#equation-4064d199-0bb2-4318-ac4f-692c445d9a9f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8fc82158-f827-40b1-8810-2e94e851f08b">
+<span class="eqno">(39)<a class="headerlink" href="#equation-8fc82158-f827-40b1-8810-2e94e851f08b" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
 \end{equation}\]</div>
-<p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching, such as:</p>
+<p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching <span id="id3">[<a class="reference internal" href="../bibliography.html#id20" title="Peter C Austin. A comparison of 12 algorithms for matching on the propensity score. Statistics in medicine, 33(6):1057–1069, 2014.">Aus14</a>]</span>, such as:</p>
 <ol class="arabic simple">
 <li><p><strong>Nearest-neighbor matching</strong>: each treated unit is matched with the control unit that has the closest propensity score.</p></li>
 <li><p><strong>Caliper matching</strong>: similar to nearest-neighbor matching but with a tolerance level (caliper) for how close the propensity scores must be.</p></li>
@@ -480,8 +479,6 @@ document.write(`
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
 <p>Let’s walk through an example using Python to illustrate how to implement propensity score matching, estimate the treatment effect, and visualize the results.</p>
-<section id="data-generation">
-<h3>Data generation<a class="headerlink" href="#data-generation" title="Link to this heading">#</a></h3>
 <p>We will use a synthetic dataset to simulate our scenario. Suppose our dataset includes the following columns:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">joined_program</span></code>: A binary indicator (1 if joined the program, 0 if not).</p></li>
@@ -597,9 +594,8 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-</section>
 <section id="propensity-scores-estimation">
-<h3>Propensity scores estimation<a class="headerlink" href="#propensity-scores-estimation" title="Link to this heading">#</a></h3>
+<h3>Propensity Scores Estimation<a class="headerlink" href="#propensity-scores-estimation" title="Link to this heading">#</a></h3>
 <p>In this step, we use logistic regression to estimate the propensity scores, which represent the probability of joining the programme given the covariates (age, income, and household size).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -717,7 +713,7 @@ document.write(`
 <p>Before matching, it is common to see differences in the distributions, especially if certain covariates strongly influence whether households join the program. The initial (pre-matching) plot might show that the treated group has higher propensity scores on average, indicating that those who joined the program had characteristics that made them more likely to join. This bias is what matching aims to adjust for by finding control units with similar propensity scores.</p>
 </section>
 <section id="nearest-neighbor-matching">
-<h3>Nearest-neighbor matching<a class="headerlink" href="#nearest-neighbor-matching" title="Link to this heading">#</a></h3>
+<h3>Nearest-Neighbor Matching<a class="headerlink" href="#nearest-neighbor-matching" title="Link to this heading">#</a></h3>
 <p>We separate the treated (joined the program) and control (did not join the program) groups. Using the nearest-neighbor matching technique, we match each treated unit with the control unit that has the closest propensity score. The goal here is to match each treated unit (household that joined the programme) with one or more control units (households that did not join the programme) that have similar propensity scores. Here’s a detailed explanation of how we can do it:</p>
 <ul class="simple">
 <li><p>We separate the treated and control groups based on whether they joined the program or not.</p></li>
@@ -764,7 +760,7 @@ document.write(`
 <p>As we see here, after matching, we ideally want the distributions to overlap substantially, indicating that the treated and control groups are similar with respect to the covariates used to estimate the propensity scores.</p>
 </section>
 <section id="treatment-effect-estimation">
-<h3>Treatment effect estimation<a class="headerlink" href="#treatment-effect-estimation" title="Link to this heading">#</a></h3>
+<h3>Treatment Effect Estimation<a class="headerlink" href="#treatment-effect-estimation" title="Link to this heading">#</a></h3>
 <p>We calculate the Average Treatment Effect on the Treated (ATT) by comparing the average electricity consumption of the treated group to that of the matched control group.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,8 +776,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="visualising-results">
-<h3>Visualising results<a class="headerlink" href="#visualising-results" title="Link to this heading">#</a></h3>
+<section id="results">
+<h3>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h3>
 <p>We can create some visualisations to compare the distributions of propensity scores and electricity consumption before and after matching.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -891,11 +887,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-generation">Data generation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">Propensity scores estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">Nearest-neighbor matching</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">Treatment effect estimation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualising-results">Visualising results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propensity-scores-estimation">Propensity Scores Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-matching">Nearest-Neighbor Matching</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#treatment-effect-estimation">Treatment Effect Estimation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
 </ul>

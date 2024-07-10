@@ -433,7 +433,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">Fitting an ITS on the residuals of a time series models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-the-data">Preprocessing the Data</a></li>
 </ul>
             </nav>
         </div>
@@ -447,9 +448,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="interrupted-time-series">
 <h1>Interrupted Time Series<a class="headerlink" href="#interrupted-time-series" title="Link to this heading">#</a></h1>
-<p>Interrupted time series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9ca0d67a-6c69-41cf-a3dc-1583351b8ecb">
-<span class="eqno">(48)<a class="headerlink" href="#equation-9ca0d67a-6c69-41cf-a3dc-1583351b8ecb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>Interrupted time series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time <span id="id1">[<a class="reference internal" href="../bibliography.html#id17" title="James Lopez Bernal, Steven Cummins, and Antonio Gasparrini. Interrupted time series regression for the evaluation of public health interventions: a tutorial. International journal of epidemiology, 46(1):348–355, 2017.">BCG17</a>]</span>. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5b948ad8-9bd2-4011-92d3-bd602ab34155">
+<span class="eqno">(48)<a class="headerlink" href="#equation-5b948ad8-9bd2-4011-92d3-bd602ab34155" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
 \end{equation}\]</div>
 <p>where the regression coefficients are used to capture:</p>
@@ -459,7 +460,9 @@ document.write(`
 <li><p>The change in level at the introduction of the new policy (<span class="math notranslate nohighlight">\(\beta_2\)</span>). It should be noted that “period” is a dummy variable (0 or 1) that indicates whether the observation is from the period before the policy implementation (0) or after (1).</p></li>
 <li><p>The change in slope after the introduction of the new policy (<span class="math notranslate nohighlight">\(\beta_3\)</span>).</p></li>
 </ul>
-<p>Let’s now try to generate some data to try and apply this methodology in a practical <strong>example</strong>.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>Let’s now try to generate some data to try and apply this methodology in a practical example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -526,8 +529,8 @@ document.write(`
 Dep. Variable:                  price   R-squared:                       0.993
 Model:                            OLS   Adj. R-squared:                  0.993
 Method:                 Least Squares   F-statistic:                     4425.
-Date:                Tue, 09 Jul 2024   Prob (F-statistic):          9.73e-103
-Time:                        22:23:37   Log-Likelihood:                -129.67
+Date:                Wed, 10 Jul 2024   Prob (F-statistic):          9.73e-103
+Time:                        15:59:49   Log-Likelihood:                -129.67
 No. Observations:                 100   AIC:                             267.3
 Df Residuals:                      96   BIC:                             277.8
 Df Model:                           3                                         
@@ -559,8 +562,9 @@ Notes:
 <li><p>There was an immediate reduction of 9.3 units (fairly close to 10) in the price level after the policy (<span class="math notranslate nohighlight">\(\beta_2\)</span> = period).</p></li>
 <li><p>The trend (slope) of prices did not significantly change after the policy (<span class="math notranslate nohighlight">\(\beta_3\)</span> = time_after_policy).</p></li>
 </ul>
-<section id="fitting-an-its-on-the-residuals-of-a-time-series-models">
-<h2>Fitting an ITS on the residuals of a time series models<a class="headerlink" href="#fitting-an-its-on-the-residuals-of-a-time-series-models" title="Link to this heading">#</a></h2>
+</section>
+<section id="preprocessing-the-data">
+<h2>Preprocessing the Data<a class="headerlink" href="#preprocessing-the-data" title="Link to this heading">#</a></h2>
 <p>Many real-world data might be characterised by high autocorrelation or more complex dynamics. In that case, it might be useful to firts fit a model and then examine the behaviour of the residuals to estimate the effect of the policy. For example, using a time series model (e.g., SARIMA) followed by ITS analysis on the residuals might have several advantages, such as:</p>
 <ul class="simple">
 <li><p>Handling autocorrelation and seasonality: time series data often exhibit autocorrelation and seasonality, where current values are correlated with past values. Ignoring this aspect can lead to incorrect inferences and underestimated standard errors. By fitting a SARIMA model, we explicitly account for this, leading to more accurate residuals that reflect the underlying stochastic process.</p></li>
@@ -791,8 +795,8 @@ Notes:
 Dep. Variable:              residuals   R-squared:                       0.616
 Model:                            OLS   Adj. R-squared:                  0.613
 Method:                 Least Squares   F-statistic:                     158.3
-Date:                Tue, 09 Jul 2024   Prob (F-statistic):           1.02e-41
-Time:                        22:23:38   Log-Likelihood:                -563.84
+Date:                Wed, 10 Jul 2024   Prob (F-statistic):           1.02e-41
+Time:                        15:59:50   Log-Likelihood:                -563.84
 No. Observations:                 200   AIC:                             1134.
 Df Residuals:                     197   BIC:                             1144.
 Df Model:                           2                                         
@@ -903,7 +907,8 @@ Notes:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-an-its-on-the-residuals-of-a-time-series-models">Fitting an ITS on the residuals of a time series models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-the-data">Preprocessing the Data</a></li>
 </ul>
   </nav></div>
 

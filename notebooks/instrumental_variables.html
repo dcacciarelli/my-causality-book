@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -432,9 +432,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endogeneity">Endogeneity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-2sls">Two-stage least squares (2SLS)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-confounders">Ignoring confounders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-2sls">Two-Stage Least Squares (2SLS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-confounders">Ignoring Confounders</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sls">2SLS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-estimation-results">Comparing Estimation Results</a></li>
 </ul>
 </li>
 </ul>
@@ -450,7 +452,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="instrumental-variables">
 <h1>Instrumental Variables<a class="headerlink" href="#instrumental-variables" title="Link to this heading">#</a></h1>
-<p>Instrumental variables (IV) refer to a method used in econometrics to estimate causal relationships when controlled experiments are not feasible and an explanatory variable is correlated with the error term, leading to <strong>endogeneity issues</strong>. Saying that a variable is correlated with the error term means that the variable and the error term share some common influence or that the variable captures some part of the variability in the dependent variable that should be attributed to the error term. When we say a variable is correlated with the error term, it means that both the variable and the error term are influenced by some common external factors. In other words, the variable captures some variability in the outcome that should be attributed to these external influences, which introduces bias in our estimates. This happens because the variable not only shows its direct effect on the outcome but also the effect of those omitted external factors.</p>
+<p>Instrumental variables (IV) refer to a method used in econometrics to estimate causal relationships when controlled experiments are not feasible and an explanatory variable is correlated with the error term, leading to <strong>endogeneity issues</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id16" title="Joshua D Angrist, Guido W Imbens, and Donald B Rubin. Identification of causal effects using instrumental variables. Journal of the American statistical Association, 91(434):444–455, 1996.">AIR96</a>]</span>. Saying that a variable is correlated with the error term means that the variable and the error term share some common influence or that the variable captures some part of the variability in the dependent variable that should be attributed to the error term. When we say a variable is correlated with the error term, it means that both the variable and the error term are influenced by some common external factors. In other words, the variable captures some variability in the outcome that should be attributed to these external influences, which introduces bias in our estimates. This happens because the variable not only shows its direct effect on the outcome but also the effect of those omitted external factors.</p>
 <section id="endogeneity">
 <h2>Endogeneity<a class="headerlink" href="#endogeneity" title="Link to this heading">#</a></h2>
 <p>Endogeneity can occur due to:</p>
@@ -496,8 +498,8 @@ document.write(`
 </div>
 </section>
 <section id="two-stage-least-squares-2sls">
-<h2>Two-stage least squares (2SLS)<a class="headerlink" href="#two-stage-least-squares-2sls" title="Link to this heading">#</a></h2>
-<p>Two-stage least squares (2SLS) is an econometric approach used to address endogeneity using IVs. It is performed in two steps:</p>
+<h2>Two-Stage Least Squares (2SLS)<a class="headerlink" href="#two-stage-least-squares-2sls" title="Link to this heading">#</a></h2>
+<p>Two-stage least squares (2SLS) is an econometric approach used to address endogeneity using IVs <span id="id2">[<a class="reference internal" href="../bibliography.html#id22" title="Joshua D Angrist and Guido W Imbens. Two-stage least squares estimation of average causal effects in models with variable treatment intensity. Journal of the American statistical Association, 90(430):431–442, 1995.">AI95</a>]</span>. It is performed in two steps:</p>
 <ol class="arabic simple">
 <li><p>Regress the endogenous explanatory variable on the IV to obtain predicted values.</p></li>
 <li><p>Regress the dependent variable on the predicted values obtained from the first stage.</p></li>
@@ -528,6 +530,9 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/e52d29a30cd5a4ee7d6156742800cdeca802240eeac07b84e71f38af3f7532c1.svg" src="../_images/e52d29a30cd5a4ee7d6156742800cdeca802240eeac07b84e71f38af3f7532c1.svg" /></div>
 </div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
 <p>Let’s now generate some data to show how this works in practice. Since the confounders are, by definition, <strong>unobserved</strong>, we assume to only have at our disposal the wind speed forecast, the wind power production, and the electricity prices.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,7 +623,7 @@ document.write(`
 </div></div></div>
 </div>
 <section id="ignoring-confounders">
-<h3>Ignoring confounders<a class="headerlink" href="#ignoring-confounders" title="Link to this heading">#</a></h3>
+<h3>Ignoring Confounders<a class="headerlink" href="#ignoring-confounders" title="Link to this heading">#</a></h3>
 <p>If we simply ignore the problem of having unobserved confounders, we might be tempted to simply fit a model on the available data. Let’s try that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -637,8 +642,8 @@ document.write(`
 Dep. Variable:      ElectricityPrices   R-squared:                       0.925
 Model:                            OLS   Adj. R-squared:                  0.925
 Method:                 Least Squares   F-statistic:                 1.225e+04
-Date:                Tue, 09 Jul 2024   Prob (F-statistic):               0.00
-Time:                        22:23:35   Log-Likelihood:                -2886.7
+Date:                Wed, 10 Jul 2024   Prob (F-statistic):               0.00
+Time:                        15:59:46   Log-Likelihood:                -2886.7
 No. Observations:                1000   AIC:                             5777.
 Df Residuals:                     998   BIC:                             5787.
 Df Model:                           1                                         
@@ -687,8 +692,8 @@ Notes:
 Dep. Variable:      ElectricityPrices   R-squared:                       0.509
 Model:                            OLS   Adj. R-squared:                  0.508
 Method:                 Least Squares   F-statistic:                     1034.
-Date:                Tue, 09 Jul 2024   Prob (F-statistic):          3.21e-156
-Time:                        22:23:35   Log-Likelihood:                -3824.2
+Date:                Wed, 10 Jul 2024   Prob (F-statistic):          3.21e-156
+Time:                        15:59:46   Log-Likelihood:                -3824.2
 No. Observations:                1000   AIC:                             7652.
 Df Residuals:                     998   BIC:                             7662.
 Df Model:                           1                                         
@@ -711,6 +716,9 @@ Notes:
 </div>
 </div>
 </div>
+</section>
+<section id="comparing-estimation-results">
+<h3>Comparing Estimation Results<a class="headerlink" href="#comparing-estimation-results" title="Link to this heading">#</a></h3>
 <p>Let’s now <strong>compare the results</strong> obtained with the naive approach, ignoring the presence of confounders, and the 2SLS modelling.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -809,9 +817,11 @@ Notes:
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#endogeneity">Endogeneity</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-2sls">Two-stage least squares (2SLS)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-confounders">Ignoring confounders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-stage-least-squares-2sls">Two-Stage Least Squares (2SLS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ignoring-confounders">Ignoring Confounders</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sls">2SLS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-estimation-results">Comparing Estimation Results</a></li>
 </ul>
 </li>
 </ul>
