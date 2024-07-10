@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -459,18 +459,18 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linear-models">
 <h1>Linear Models<a class="headerlink" href="#linear-models" title="Link to this heading">#</a></h1>
-<p>In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id22" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>. We will show that we are able to retrieve the full causal structure of the data-generating process, if we are willing to make some relatively mild assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>.</p>
+<p>In this first chapter of semi-parametric models, we introduce the <strong>linear non-Gaussian acyclic model (LiNGAM)</strong> <span id="id1">[<a class="reference internal" href="../bibliography.html#id34" title="Shohei Shimizu, Patrik O Hoyer, Aapo Hyvärinen, Antti Kerminen, and Michael Jordan. A linear non-gaussian acyclic model for causal discovery. Journal of Machine Learning Research, 2006.">SHHyvarinen+06</a>]</span>. We will show that we are able to retrieve the full causal structure of the data-generating process, if we are willing to make some relatively mild assumptions about the <strong>functional form</strong> of the structural causal model or the <strong>distribution of the errors</strong>.</p>
 <section id="the-lingam-model">
 <h2>The LiNGAM Model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1880f811-094c-4051-a598-003dddf15c6e">
-<span class="eqno">(6)<a class="headerlink" href="#equation-1880f811-094c-4051-a598-003dddf15c6e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd64fd5a-268d-4cf7-abe2-4cd86fb89f15">
+<span class="eqno">(6)<a class="headerlink" href="#equation-bd64fd5a-268d-4cf7-abe2-4cd86fb89f15" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8a4c7b36-18b2-4d19-af35-eb0c311f2bd4">
-<span class="eqno">(7)<a class="headerlink" href="#equation-8a4c7b36-18b2-4d19-af35-eb0c311f2bd4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9b68ce68-92f9-434c-ae6d-6c23c5da7543">
+<span class="eqno">(7)<a class="headerlink" href="#equation-9b68ce68-92f9-434c-ae6d-6c23c5da7543" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -500,15 +500,15 @@ document.write(`
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>From this DAG, the <strong>SCM</strong> can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cf275682-c91b-4caa-a69a-cee247fb0300">
-<span class="eqno">(8)<a class="headerlink" href="#equation-cf275682-c91b-4caa-a69a-cee247fb0300" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6d304f22-ed99-4630-ad15-dc90f71af9f9">
+<span class="eqno">(8)<a class="headerlink" href="#equation-6d304f22-ed99-4630-ad15-dc90f71af9f9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \text{weather fluctuations} &amp;= e_w \\
 \end{align}\]</div>
 <p>Then, in <strong>matrix notation</strong>, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8bcee2ba-9940-44fd-83cc-8dd9c214709f">
-<span class="eqno">(9)<a class="headerlink" href="#equation-8bcee2ba-9940-44fd-83cc-8dd9c214709f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0ef9fdae-ab28-49a0-bf50-764edcfd58e7">
+<span class="eqno">(9)<a class="headerlink" href="#equation-0ef9fdae-ab28-49a0-bf50-764edcfd58e7" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind forecast errors} \\
     \text{balancing costs} \\
@@ -533,15 +533,15 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-89838e10-2aa1-4eb7-bc50-de98a1a483a3">
-<span class="eqno">(10)<a class="headerlink" href="#equation-89838e10-2aa1-4eb7-bc50-de98a1a483a3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-20f18aa1-6a5b-479c-8332-912b4ea0b43c">
+<span class="eqno">(10)<a class="headerlink" href="#equation-20f18aa1-6a5b-479c-8332-912b4ea0b43c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eac6894c-d634-49eb-8b28-9b16425fdce2">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eac6894c-d634-49eb-8b28-9b16425fdce2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8169c2d-9bd7-4765-8540-f8aa77835b45">
+<span class="eqno">(11)<a class="headerlink" href="#equation-d8169c2d-9bd7-4765-8540-f8aa77835b45" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{weather fluctuations} \\
     \text{wind forecast errors} \\
@@ -566,8 +566,8 @@ document.write(`
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-87f19d49-46a1-408d-a9ac-07f16972c02c">
-<span class="eqno">(12)<a class="headerlink" href="#equation-87f19d49-46a1-408d-a9ac-07f16972c02c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3ec7d14b-2cef-46d8-8655-8d7f938d98ce">
+<span class="eqno">(12)<a class="headerlink" href="#equation-3ec7d14b-2cef-46d8-8655-8d7f938d98ce" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -580,8 +580,8 @@ document.write(`
 <section id="exploring-the-residuals-with-gaussian-errors">
 <h3>Exploring the Residuals with Gaussian errors<a class="headerlink" href="#exploring-the-residuals-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-24949416-6bc3-4ba3-bfc9-4882841a4d36">
-<span class="eqno">(13)<a class="headerlink" href="#equation-24949416-6bc3-4ba3-bfc9-4882841a4d36" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9feeee05-07e6-40b8-8f21-cd74f9a8fdd5">
+<span class="eqno">(13)<a class="headerlink" href="#equation-9feeee05-07e6-40b8-8f21-cd74f9a8fdd5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \end{align}\]</div>
@@ -636,7 +636,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
 </pre></div>
 </div>
-<img alt="../_images/5af4fb582779d784f16913ab78470fa0753aed878c5ed0852bb8330bb4f5d3a6.png" src="../_images/5af4fb582779d784f16913ab78470fa0753aed878c5ed0852bb8330bb4f5d3a6.png" />
+<img alt="../_images/5eae18eafa5b585e7f0930a988b008e0ed8633cd940b85c5fba9b108b4f77f84.png" src="../_images/5eae18eafa5b585e7f0930a988b008e0ed8633cd940b85c5fba9b108b4f77f84.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
@@ -688,7 +688,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
 </pre></div>
 </div>
-<img alt="../_images/3b1829811d5f419fec84882b5391625e73fe983bc2b6fd5d5312fa4b072dc854.png" src="../_images/3b1829811d5f419fec84882b5391625e73fe983bc2b6fd5d5312fa4b072dc854.png" />
+<img alt="../_images/ce5e8e04fc9b9bd1701ea9c942afffdb9ea40ad186f0c6e5b6c5bc28c29fe129.png" src="../_images/ce5e8e04fc9b9bd1701ea9c942afffdb9ea40ad186f0c6e5b6c5bc28c29fe129.png" />
 </div>
 </div>
 </section>
@@ -700,8 +700,8 @@ document.write(`
 <li><p><strong>heating demand</strong>: a variable affected by changes in the weather, which affects the balancing costs.</p></li>
 </ul>
 <p>Assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-241d5db0-4bee-4079-95cd-c98079e7c2d2">
-<span class="eqno">(14)<a class="headerlink" href="#equation-241d5db0-4bee-4079-95cd-c98079e7c2d2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-af116ec4-5fae-4c0a-83c1-9614a3478ebe">
+<span class="eqno">(14)<a class="headerlink" href="#equation-af116ec4-5fae-4c0a-83c1-9614a3478ebe" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{outages} &amp;= e_o \\
 \text{heating demand} &amp;= 0.3 \times \text{weather flucturations} + e_h \\
@@ -755,7 +755,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Now, we fit the <strong>DirectLiNGAM</strong> model and plot the estimated causal structure. We will use the implementation offered in the original LiNGAM package <span id="id2">[<a class="reference internal" href="../bibliography.html#id17" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
+<p>Now, we fit the <strong>DirectLiNGAM</strong> model and plot the estimated causal structure. We will use the implementation offered in the original LiNGAM package <span id="id2">[<a class="reference internal" href="../bibliography.html#id29" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lingam</span>
@@ -777,19 +777,19 @@ document.write(`
 <section id="introduction-to-ica">
 <h3>Introduction to ICA<a class="headerlink" href="#introduction-to-ica" title="Link to this heading">#</a></h3>
 <p>ICA is a computational method, developed in the field of signal processing, to separate a multivariate signal into additive subcomponents assuming that these subcomponents are non-Gaussian signals and statistically independent from each other <span id="id3">[<a class="reference internal" href="../bibliography.html#id13" title="Aapo Hyvärinen and Erkki Oja. Independent component analysis: algorithms and applications. Neural networks, 13(4-5):411–430, 2000.">HyvarinenO00</a>]</span>. Consider a simple ICA model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ab5326e0-366f-4816-9f82-d104413b9ce4">
-<span class="eqno">(15)<a class="headerlink" href="#equation-ab5326e0-366f-4816-9f82-d104413b9ce4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ca5fd542-4184-484e-b690-bbc9053f9c17">
+<span class="eqno">(15)<a class="headerlink" href="#equation-ca5fd542-4184-484e-b690-bbc9053f9c17" title="Permalink to this equation">#</a></span>\[\begin{align}
     x_1 &amp;= a_{11}s_1 + a_{12}s_2 \\
     x_2 &amp;= a_{21}s_1 + a_{22}s_2
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the observed variables, and <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are continuous hidden variables. Assuming that <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In matrix form, we can write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f034da2c-5c07-4ca0-a259-328d674b33f0">
-<span class="eqno">(16)<a class="headerlink" href="#equation-f034da2c-5c07-4ca0-a259-328d674b33f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e1a04c3-0a09-462e-b8d8-c313ba2bdda2">
+<span class="eqno">(16)<a class="headerlink" href="#equation-3e1a04c3-0a09-462e-b8d8-c313ba2bdda2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{A}\mathbf{s}
 \end{equation}\]</div>
 <p>In our example, it would mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-edacb0f8-ce5c-4730-b1a5-d6e4de6c1757">
-<span class="eqno">(17)<a class="headerlink" href="#equation-edacb0f8-ce5c-4730-b1a5-d6e4de6c1757" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-97901155-5de7-44b7-9d1c-43266c24bab3">
+<span class="eqno">(17)<a class="headerlink" href="#equation-97901155-5de7-44b7-9d1c-43266c24bab3" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     x_1 \\ x_2
     \end{array}\right]
@@ -875,18 +875,18 @@ document.write(`
 <section id="ica-based-lingam">
 <h3>ICA-based LiNGAM<a class="headerlink" href="#ica-based-lingam" title="Link to this heading">#</a></h3>
 <p>Going back to the LiNGAM model, we had:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d8a6f365-b4b4-4a76-8159-131f9e1e0106">
-<span class="eqno">(18)<a class="headerlink" href="#equation-d8a6f365-b4b4-4a76-8159-131f9e1e0106" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-01b34f43-65e1-48e6-ad2a-005eece0cf09">
+<span class="eqno">(18)<a class="headerlink" href="#equation-01b34f43-65e1-48e6-ad2a-005eece0cf09" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>. We can solve the equation <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}\)</span> for the vector of observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d160c0a-fd13-4999-9776-81d0b2e91113">
-<span class="eqno">(19)<a class="headerlink" href="#equation-2d160c0a-fd13-4999-9776-81d0b2e91113" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6cce736f-b014-414c-81c4-2dabc92b2ced">
+<span class="eqno">(19)<a class="headerlink" href="#equation-6cce736f-b014-414c-81c4-2dabc92b2ced" title="Permalink to this equation">#</a></span>\[\begin{equation}
     (\mathbf{I}- \mathbf{B})\mathbf{x} = \mathbf{e}
 \end{equation}\]</div>
 <p>Then, if we left-multiply both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{I}- \mathbf{B}\)</span>, we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9bcd8f2e-3546-464c-9b6c-4f7a49edd9c8">
-<span class="eqno">(20)<a class="headerlink" href="#equation-9bcd8f2e-3546-464c-9b6c-4f7a49edd9c8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d9821211-f8e6-4060-8e1b-c9bf89555c83">
+<span class="eqno">(20)<a class="headerlink" href="#equation-d9821211-f8e6-4060-8e1b-c9bf89555c83" title="Permalink to this equation">#</a></span>\[\begin{align}
     (\mathbf{I}- \mathbf{B})^{-1}(\mathbf{I}- \mathbf{B})\mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= \mathbf{A}\mathbf{e}
@@ -895,7 +895,7 @@ document.write(`
 </section>
 <section id="id4">
 <h3>Example<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>Now, we can see that using ICA we can estimate the causal model, in the same way we did for the Direct estimation method, using the LiNGAM package <span id="id5">[<a class="reference internal" href="../bibliography.html#id17" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
+<p>Now, we can see that using ICA we can estimate the causal model, in the same way we did for the Direct estimation method, using the LiNGAM package <span id="id5">[<a class="reference internal" href="../bibliography.html#id29" title="Takashi Ikeuchi, Mayumi Ide, Yan Zeng, Takashi Nicholas Maeda, and Shohei Shimizu. Python package for causal discovery based on lingam. Journal of Machine Learning Research, 24(14):1–8, 2023.">IIZ+23</a>]</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ICA-based LiNGAM</span>

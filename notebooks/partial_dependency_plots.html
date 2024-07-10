@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -559,8 +559,8 @@ document.write(`
 <section id="estimation">
 <h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>Imagine we fitted a model <span class="math notranslate nohighlight">\(\hat{f}\)</span> that predicts the electricity price using the remaining three features as input variables. Let <span class="math notranslate nohighlight">\(h\)</span> represent the hour variable. The partial dependence function <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f82a79c5-1ba9-45f8-af9e-1110ed94959f">
-<span class="eqno">(49)<a class="headerlink" href="#equation-f82a79c5-1ba9-45f8-af9e-1110ed94959f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8f7e10d3-fc9c-4678-88d2-c90980e044ff">
+<span class="eqno">(49)<a class="headerlink" href="#equation-8f7e10d3-fc9c-4678-88d2-c90980e044ff" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) = \mathbb{E}_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}\]</div>
 <p>where:</p>
@@ -572,8 +572,8 @@ document.write(`
 </ul>
 <p>The <strong>partial dependence function</strong> shows how the model’s prediction changes when <span class="math notranslate nohighlight">\(h\)</span> changes, keeping the other features constant. Taking the expected value of the model’s prediction over the distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> effectively averages out the effects of all other features. Indeed, the The integral indicates that we are integrating (or averaging) the model’s predictions over the probability distribution of the features in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This integration helps in isolating the effect of <span class="math notranslate nohighlight">\(h\)</span> on the predicted outcome.</p>
 <p>In practice, we estimate <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> using the average prediction over the dataset:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ebc900b-9552-499a-a725-1ee9c65d6c41">
-<span class="eqno">(50)<a class="headerlink" href="#equation-2ebc900b-9552-499a-a725-1ee9c65d6c41" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-12c19437-95e3-44ab-9f39-b54ce63b976e">
+<span class="eqno">(50)<a class="headerlink" href="#equation-12c19437-95e3-44ab-9f39-b54ce63b976e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of instances in the dataset, and <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the covariates. This sum basically calculates the average prediction of the model when <span class="math notranslate nohighlight">\(h\)</span> is fixed at a specific value, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> iterates through all the observed values in the dataset. Here is what we would do in practice:</p>

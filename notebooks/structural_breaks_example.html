@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -458,7 +458,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="structural-breaks">
 <h1>Structural Breaks<a class="headerlink" href="#structural-breaks" title="Link to this heading">#</a></h1>
 <p>Another challenges related to time series analysis and causal inference, besides the presence of lagged effects, is the possibility of the system to be in <strong>multiple states or regimes</strong>. This is a problem well known to economists, since financial data often exhibits distinct behaviour depending on the specific state of the system (e.g., growth or recession).</p>
-<p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id27" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
+<p>In electricity markets, we can also witness something similar. In particular, in the <strong>balancing market</strong>, the system is constantly switching between two states <span id="id1">[<a class="reference internal" href="../bibliography.html#id39" title="Derek W Bunn, John N Inekwe, and David MacGeehan. Analysis of the fundamental predictability of prices in the british balancing market. IEEE Transactions on Power Systems, 36(2):1309–1316, 2020.">BIM20</a>]</span>.:</p>
 <ul class="simple">
 <li><p><strong>Short</strong>, when there is a shortage of energy.</p></li>
 <li><p><strong>Long</strong>, when there is an excess of energy.</p></li>
@@ -475,13 +475,13 @@ document.write(`
 <section id="regime-1-pre-subsidy">
 <h3>Regime 1: Pre-Subsidy<a class="headerlink" href="#regime-1-pre-subsidy" title="Link to this heading">#</a></h3>
 <p>Before the introduction of subsidies, the causal relationships might be modeled as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6215d6ec-025e-44fc-bc8b-8e786ea3d8fd">
-<span class="eqno">(34)<a class="headerlink" href="#equation-6215d6ec-025e-44fc-bc8b-8e786ea3d8fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ddee687b-8bf0-4096-85fb-dd437bb312b3">
+<span class="eqno">(34)<a class="headerlink" href="#equation-ddee687b-8bf0-4096-85fb-dd437bb312b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x}(t) = \mathbf{B}_{\text{pre}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{pre}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1344d750-2b9e-4a07-95f8-18822f4e32fc">
-<span class="eqno">(35)<a class="headerlink" href="#equation-1344d750-2b9e-4a07-95f8-18822f4e32fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ced9dc7-f748-4434-9f63-f8534c76aaee">
+<span class="eqno">(35)<a class="headerlink" href="#equation-2ced9dc7-f748-4434-9f63-f8534c76aaee" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{pre}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -509,13 +509,13 @@ document.write(`
 <section id="regime-2-post-subsidy">
 <h3>Regime 2: Post-Subsidy<a class="headerlink" href="#regime-2-post-subsidy" title="Link to this heading">#</a></h3>
 <p>After the introduction of subsidies, the relationships change as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-feba45fb-fc46-4923-9863-7fe1a68f1863">
-<span class="eqno">(36)<a class="headerlink" href="#equation-feba45fb-fc46-4923-9863-7fe1a68f1863" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-478ff6a0-4b1b-4c87-ab3e-eda1ceabe636">
+<span class="eqno">(36)<a class="headerlink" href="#equation-478ff6a0-4b1b-4c87-ab3e-eda1ceabe636" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{x}(t) = \mathbf{B}_{\text{post}} \mathbf{x}(t-1) + \mathbf{e}(t)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{B}_{\text{post}}\)</span> is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-037a3270-53e6-4260-9c49-70676bda83ed">
-<span class="eqno">(37)<a class="headerlink" href="#equation-037a3270-53e6-4260-9c49-70676bda83ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5a68b860-a38b-45b4-abb9-f86b4e38a2c4">
+<span class="eqno">(37)<a class="headerlink" href="#equation-5a68b860-a38b-45b4-abb9-f86b4e38a2c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{B}_{\text{post}} = 
     \begin{bmatrix}
     0 &amp; 0 &amp; 0 \\
@@ -614,7 +614,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x13e15d590&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x13c4dae50&gt;
 </pre></div>
 </div>
 <img alt="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" src="../_images/0c7e634f1e8a8b2fa8688bc1ff02c9cb07302a44c9996b453b1ef0e32f540ec0.png" />
@@ -683,7 +683,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x13f736a10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;lingam.direct_lingam.DirectLiNGAM at 0x13c522d50&gt;
 </pre></div>
 </div>
 </div>

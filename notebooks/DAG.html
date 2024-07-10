@@ -461,7 +461,7 @@ document.write(`
 <h1>Causal Representations<a class="headerlink" href="#causal-representations" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p><strong>Directed acyclic graphs (DAGs)</strong> are essential tools used to depict and reason about causal relationships between variables. They are widely used in statistics, machine learning, and causal inference to model complex dependencies and to facilitate understanding and analysis of causality <span id="id1">[<a class="reference internal" href="../bibliography.html#id5" title="Judea Pearl. Causality: Models, Reasoning, and Inference. Cambridge University Press, 2000.">Pea00</a>]</span>, <span id="id2">[<a class="reference internal" href="../bibliography.html#id17" title="Daphne Koller and Nir Friedman. Probabilistic Graphical Models: Principles and Techniques. MIT Press, 2009.">KF09</a>]</span>.</p>
+<p><strong>Directed acyclic graphs (DAGs)</strong> are essential tools used to depict and reason about causal relationships between variables. They are widely used in statistics, machine learning, and causal inference to model complex dependencies and to facilitate understanding and analysis of causality <span id="id1">[<a class="reference internal" href="../bibliography.html#id5" title="Judea Pearl. Causality: Models, Reasoning, and Inference. Cambridge University Press, 2000.">Pea00</a>]</span>, <span id="id2">[<a class="reference internal" href="../bibliography.html#id30" title="Daphne Koller and Nir Friedman. Probabilistic Graphical Models: Principles and Techniques. MIT Press, 2009.">KF09</a>]</span>.</p>
 <p>The <strong>key elements</strong> of a DAG are:</p>
 <ol class="arabic simple">
 <li><p><strong>Nodes</strong>: represent variables or events in the graph.</p></li>
@@ -526,7 +526,7 @@ document.write(`
 </section>
 <section id="key-concepts">
 <h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Link to this heading">#</a></h2>
-<p>To effectively use DAGs for causal inference, it is essential to understand several fundamental concepts. These concepts provide the theoretical foundation for identifying and interpreting causal relationships, ensuring that the DAGs accurately represent the dependencies and independencies within the data <span id="id3">[<a class="reference internal" href="../bibliography.html#id18" title="Steffen L Lauritzen. Graphical Models. Oxford University Press, 1996.">Lau96</a>]</span>.</p>
+<p>To effectively use DAGs for causal inference, it is essential to understand several fundamental concepts. These concepts provide the theoretical foundation for identifying and interpreting causal relationships, ensuring that the DAGs accurately represent the dependencies and independencies within the data <span id="id3">[<a class="reference internal" href="../bibliography.html#id31" title="Steffen L Lauritzen. Graphical Models. Oxford University Press, 1996.">Lau96</a>]</span>.</p>
 <section id="d-separation">
 <h3>d-separation<a class="headerlink" href="#d-separation" title="Link to this heading">#</a></h3>
 <p>In addition to understanding direct causal relationships, it is also important to understand how to determine if variables are conditionally independent given other variables. This concept is known as <strong>d-separation</strong>, and it represents a criterion for deciding whether a set of nodes is independent of another set of nodes given a third set. It is a crucial concept in understanding the flow of information and causation in DAGs.</p>
@@ -544,8 +544,8 @@ document.write(`
 <section id="factorisation">
 <h3>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">#</a></h3>
 <p>Factorisation refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the local Markov assumption. The joint distribution <span class="math notranslate nohighlight">\(P(T, L, R, P)\)</span> can be factorised as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c4f4df60-f36d-434f-8ee3-735400929f0c">
-<span class="eqno">(1)<a class="headerlink" href="#equation-c4f4df60-f36d-434f-8ee3-735400929f0c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b341341e-395a-4342-98ef-c0a6d5449b10">
+<span class="eqno">(1)<a class="headerlink" href="#equation-b341341e-395a-4342-98ef-c0a6d5449b10" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factosization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
@@ -556,7 +556,7 @@ document.write(`
 </section>
 <section id="markov-equivalence-class">
 <h3>Markov Equivalence Class<a class="headerlink" href="#markov-equivalence-class" title="Link to this heading">#</a></h3>
-<p>A Markov equivalence class contains all DAGs that encode the same conditional independencies. This means that within a Markov equivalence class, multiple DAGs can represent the same set of conditional independence relationships among variables. These DAGs are considered equivalent because they imply the same probabilistic dependencies, even if their structures differ <span id="id4">[<a class="reference internal" href="../bibliography.html#id19" title="David Maxwell Chickering. Optimal structure identification with greedy search. Journal of Machine Learning Research, 3:507–554, 2002.">Chi02</a>]</span>.</p>
+<p>A Markov equivalence class contains all DAGs that encode the same conditional independencies. This means that within a Markov equivalence class, multiple DAGs can represent the same set of conditional independence relationships among variables. These DAGs are considered equivalent because they imply the same probabilistic dependencies, even if their structures differ <span id="id4">[<a class="reference internal" href="../bibliography.html#id32" title="David Maxwell Chickering. Optimal structure identification with greedy search. Journal of Machine Learning Research, 3:507–554, 2002.">Chi02</a>]</span>.</p>
 <section id="id5">
 <h4>An Example<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p>Consider the following three DAGs involving three variables <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(Y\)</span>, and <span class="math notranslate nohighlight">\(Z\)</span>:</p>
