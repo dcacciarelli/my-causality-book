@@ -410,7 +410,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -426,6 +428,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ale-plots">ALE Plots</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -445,9 +457,11 @@ document.write(`
 <li><p><strong>Averaging over differences in predictions</strong>, instead of averaging directly the predictions.</p></li>
 </ol>
 <p>The second option is the one used by ALE plots, which compute <strong>differences in predictions within small intervals</strong>, ensuring the estimates are based on realistic data points. This approach makes ALE plots more reliable when features are correlated.</p>
+<section id="estimation">
+<h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>In practice, the ALE for the <span class="math notranslate nohighlight">\(j\)</span>th feature, <span class="math notranslate nohighlight">\(x_j\)</span>, is estimated by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7044f480-77ae-4d1f-afdf-7befaa35326c">
-<span class="eqno">(51)<a class="headerlink" href="#equation-7044f480-77ae-4d1f-afdf-7befaa35326c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8f205bc-2212-4485-968c-48e04a528d5d">
+<span class="eqno">(51)<a class="headerlink" href="#equation-d8f205bc-2212-4485-968c-48e04a528d5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}_{j,\text{ALE}}(x) = \sum_{k=1}^{k(x)} \frac{1}{n_j(k)} \sum_{i : x_j^{(i)} \in N_j(k)} \left( \hat{f}(z_{k,j}, x_{-j}^{(i)}) - \hat{f}(z_{k-1,j}, x_{-j}^{(i)}) \right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_j(k)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>th interval for feature <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(z_{k,j}\)</span> is the upper boundary of the <span class="math notranslate nohighlight">\(k\)</span>th interval, <span class="math notranslate nohighlight">\(x_{-j}^{(i)}\)</span> are all the other features except <span class="math notranslate nohighlight">\(x_j\)</span>, for the <span class="math notranslate nohighlight">\(i\)</span>th data point, and <span class="math notranslate nohighlight">\(n_j(k)\)</span> is the number of data points in the <span class="math notranslate nohighlight">\(k\)</span>th interval.</p>
@@ -494,6 +508,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>The provided function <code class="docutils literal notranslate"><span class="pre">calculate_ale</span> <span class="pre">computes</span></code> the ALE values for a specified feature using a given machine learning model. While PDPs show the average effect of a feature on the predicted outcome by setting the feature to specific values across the entire dataset and averaging the model’s predictions, ALE plots focus on the localised impact of a feature by examining changes in predictions within small intervals of the feature’s range. This means that ALE accounts for interactions between features by focusing on local changes, making it less sensitive to the assumption of feature independence that PDP relies on. Consequently, ALE provides a more nuanced view of how small changes in the feature’s value influence the model’s predictions, reflecting local dependencies and interactions, whereas PDP offers a global, averaged view that may obscure these local variations and interactions. Thus, ALE is particularly useful in datasets with correlated features where the assumption of feature independence in PDP may lead to misleading interpretations.</p>
 <p>Let’s now generate some data to show how they work in practice. For simplicity, we will use the same example sued to show PDPs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -636,6 +651,9 @@ document.write(`
 <img alt="../_images/0457745a5244de64760823c3cdbee2a48f01546e1b8ca891da74aa244b7c1eb6.png" src="../_images/0457745a5244de64760823c3cdbee2a48f01546e1b8ca891da74aa244b7c1eb6.png" />
 </div>
 </div>
+</section>
+<section id="bootstrapping">
+<h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Link to this heading">#</a></h2>
 <p>As we did for the PDPs, we can run the procedure multiple times for each feature to construct <strong>Bootstrap confidence intervals</strong> for the estimated ALE plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -685,6 +703,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="ale-plots">
+<h2>ALE Plots<a class="headerlink" href="#ale-plots" title="Link to this heading">#</a></h2>
 <p>Let’s plot the results</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -727,6 +748,7 @@ document.write(`
 </div>
 </div>
 <p>As we can see, the effects of Hour and Temperature variables have been properly identified. To try and see the potential benefits ovet PDPs, we could generated correlated data and see if ALE plots offer improvements,</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -784,7 +806,22 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation">Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ale-plots">ALE Plots</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
