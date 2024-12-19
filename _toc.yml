@@ -12,7 +12,7 @@ parts:
   - caption: Introduction
     numbered: false
     chapters:
-      - file: notebooks/intro_electricity_markets
+      - file: electricity_markets
       - file: notebooks/intro_causality
       - file: notebooks/guide
 
