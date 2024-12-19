@@ -20,7 +20,7 @@ By the end of this book, readers will be able to:
 - Utilise _directed acyclic graphs (DAGs)_ to represent causal structures and reason about their implications for statistical modelling.
 - Implement and interpret _causal discovery_ algorithms, understanding their assumptions, strengths, and limitations.
 - Estimate _causal effects_ using advanced techniques, such as instrumental variables, double machine learning, and difference-in-differences.
-- _Interpret_ complex machine learning models and identify the key influences of each feature.
+- _Interpret_ the outputs of complex machine learning models and identify the key influences of each feature.
 - Design and conduct _experiments_ to generate data suitable for rigorous causal analysis.
 
 
