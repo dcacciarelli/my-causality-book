@@ -1,0 +1,44 @@
+# Causality 
+
+Causality is a fundamental concept in understanding the relationships between variables in complex systems. In recent decades, the development of causal inference has undergone significant transformations, moving from foundational theories to advanced computational methods that leverage modern machine learning techniques. This chapter provides a historical perspective on causality, reviews key developments, and highlights the advantages of contemporary methods in today’s data-rich environments.
+
+<br>
+
+<img src="electricity_market.png" alt="electricity market" align="center" width="800px"/>
+
+<br>
+
+
+## A Historical Perspective
+
+The study of causality can be traced back to philosophical debates, but it gained a more formal and mathematical foundation in the 20th century thanks to the significant contributions of early statisticians. For example, Fisher played a pivotal role in establishing foundational concepts in this field. Fisher's development of randomised experiments provided a robust framework for inferring causal relationships from data. His work emphasised the importance of randomisation in eliminating biases, thereby allowing researchers to draw more reliable conclusions about causality​ {cite}`fisher1935design`. Other notable statisticians, including Neyman and Pearson, also made significant contributions to the development of causal inference methods. Neyman's potential outcomes framework, often combined with Fisher's randomisation, laid the groundwork for modern causal inference techniques {cite}`neyman1923`. Pearson's work on hypothesis testing further refined the tools available for establishing causal relationships {cite}`pearson1933`. Building on this foundation, subsequent advancements were made by numerous scholars. See {cite}`pearl2018book` or {cite}`pearl2022causal` for a more detailed history of the field.
+
+<br>
+
+In the field of econometrics, one of the pivotal figures in the modern understanding of causality was Granger. In the 1960s, Granger introduced the concept of Granger causality, which provided a statistical method for determining whether one time series could predict another {cite}`granger1969investigating`. Granger causality is based on the idea that if a variable $X$ Granger-causes $Y$, then past values of $X$ contain information that helps predict $Y$ beyond what is contained in past values of $Y$ alone. This method laid the groundwork for econometric analysis and time-series forecasting. However, despite the importance of this method, further research and advancements in the field were necessary.
+
+## Evolution of Causal Methods
+
+Over the decades, the limitations of early causal methods like Granger causality spurred the development of more sophisticated techniques. These advancements aimed to address non-linear relationships, high-dimensional data, and the need for more robust causal inference frameworks. Key developments include:
+
+1. **Potential outcomes framework**: developed by Rubin, this framework focuses on estimating causal effects through randomised experiments and observational studies. The potential outcomes approach is widely used in fields such as epidemiology and economics {cite}`rubin1974estimating`.
+
+2. **Structural equation modelling (SEM)**: SEM extends beyond simple causality tests by modelling complex relationships between multiple variables using a set of equations. This method allows for the inclusion of latent variables and provides a comprehensive framework for understanding causal pathways {cite}`bollen1989structural`.
+
+3. **Graphical models and Bayesian networks**: pioneered by Pearl, graphical models use directed acyclic graphs (DAGs) to represent causal relationships between variables. Pearl's work, particularly his book "Causality: Models, Reasoning, and Inference" {cite}`pearl2000causality`, revolutionised the field by introducing formal methods to derive causal relationships from observational data.
+
+4. **Causal discovery algorithms**: techniques such as the PC algorithm, fast causal inference (FCI), and Greedy equivalence search (GES) have been developed to uncover causal structures from observational data. These algorithms are particularly useful for handling large and complex datasets {cite}`spirtes2001causation`.
+
+
+## Modern Causal Methods and Machine Learning
+
+The integration of machine learning with causal inference represents a significant leap forward. Modern causal methods leverage the predictive power of machine learning models while incorporating causal reasoning to provide deeper insights. Some of the key advantages of these modern methods include:
+
+- **Handling high-dimensional data**: machine learning models can process large and complex datasets, making it feasible to uncover causal relationships in high-dimensional settings.
+- **Non-linear relationships**: advanced methods such as causal forests and deep learning-based causal models can capture non-linear interactions between variables, providing more accurate causal inference.
+- **Scalability and efficiency**: modern computational tools and algorithms enable the efficient analysis of vast amounts of data, making it possible to apply causal methods at scale.
+
+
+## Conclusion
+
+The evolution of causal methods has significantly advanced our ability to understand and interpret complex systems. From the early days of foundational theories and Granger causality, the field has significantly evolved. The integration of modern causal methods with machine learning represents a pivotal advancement, allowing researchers and practitioners to leverage the strengths of both fields {cite}`yoon2018ganite`. This combination enhances our capacity to manage and analyse large datasets, uncover intricate causal relationships, and apply these insights to real-world scenarios. The benefits of these modern methods are manifold, including improved decision-making, more robust and reliable predictive models, tailored interventions, and adaptive systems that can respond to dynamic environments. In today's data-rich world, the ability to accurately infer causality is more critical than ever. By understanding and applying the principles of causality, we can better navigate the complexities of modern systems like electricity markets, leading to more trustworthy and robust insights.
