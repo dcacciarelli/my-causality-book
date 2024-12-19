@@ -563,8 +563,8 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <section id="estimation">
 <h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>Imagine we fitted a model <span class="math notranslate nohighlight">\(\hat{f}\)</span> that predicts the electricity price using the remaining three features as input variables. Let <span class="math notranslate nohighlight">\(h\)</span> represent the hour variable. The partial dependence function <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5ccf769-7a76-4c19-9981-ce7eb62be01a">
-<span class="eqno">(51)<a class="headerlink" href="#equation-c5ccf769-7a76-4c19-9981-ce7eb62be01a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d3eafc2-0af5-4438-8093-779850385c71">
+<span class="eqno">(51)<a class="headerlink" href="#equation-6d3eafc2-0af5-4438-8093-779850385c71" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) = \mathbb{E}_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}\]</div>
 <p>where:</p>
@@ -576,8 +576,8 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </ul>
 <p>The <strong>partial dependence function</strong> shows how the model’s prediction changes when <span class="math notranslate nohighlight">\(h\)</span> changes, keeping the other features constant. Taking the expected value of the model’s prediction over the distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> effectively averages out the effects of all other features. Indeed, the The integral indicates that we are integrating (or averaging) the model’s predictions over the probability distribution of the features in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This integration helps in isolating the effect of <span class="math notranslate nohighlight">\(h\)</span> on the predicted outcome.</p>
 <p>In practice, we estimate <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> using the average prediction over the dataset:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-373c0ab7-cb87-4f4f-9051-d29c6b619937">
-<span class="eqno">(52)<a class="headerlink" href="#equation-373c0ab7-cb87-4f4f-9051-d29c6b619937" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eef78218-48fb-41ff-a28e-d77278501ee4">
+<span class="eqno">(52)<a class="headerlink" href="#equation-eef78218-48fb-41ff-a28e-d77278501ee4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of instances in the dataset, and <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the covariates. This sum basically calculates the average prediction of the model when <span class="math notranslate nohighlight">\(h\)</span> is fixed at a specific value, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> iterates through all the observed values in the dataset. Here is what we would do in practice:</p>
