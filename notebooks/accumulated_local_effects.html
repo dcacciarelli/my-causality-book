@@ -460,8 +460,8 @@ document.write(`
 <section id="estimation">
 <h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>In practice, the ALE for the <span class="math notranslate nohighlight">\(j\)</span>th feature, <span class="math notranslate nohighlight">\(x_j\)</span>, is estimated by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd522022-1c1b-4451-8990-5485dd0201d0">
-<span class="eqno">(53)<a class="headerlink" href="#equation-cd522022-1c1b-4451-8990-5485dd0201d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7a421164-859a-4454-ba37-4ee3ab1453c6">
+<span class="eqno">(53)<a class="headerlink" href="#equation-7a421164-859a-4454-ba37-4ee3ab1453c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}_{j,\text{ALE}}(x) = \sum_{k=1}^{k(x)} \frac{1}{n_j(k)} \sum_{i : x_j^{(i)} \in N_j(k)} \left( \hat{f}(z_{k,j}, x_{-j}^{(i)}) - \hat{f}(z_{k-1,j}, x_{-j}^{(i)}) \right)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_j(k)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>th interval for feature <span class="math notranslate nohighlight">\(x_j\)</span>, <span class="math notranslate nohighlight">\(z_{k,j}\)</span> is the upper boundary of the <span class="math notranslate nohighlight">\(k\)</span>th interval, <span class="math notranslate nohighlight">\(x_{-j}^{(i)}\)</span> are all the other features except <span class="math notranslate nohighlight">\(x_j\)</span>, for the <span class="math notranslate nohighlight">\(i\)</span>th data point, and <span class="math notranslate nohighlight">\(n_j(k)\)</span> is the number of data points in the <span class="math notranslate nohighlight">\(k\)</span>th interval.</p>
