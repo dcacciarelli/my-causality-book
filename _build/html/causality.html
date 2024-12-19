@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Causality &#8212; Causality in Electricity Markets</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'causality';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Guide" href="notebooks/guide.html" />
+    <link rel="prev" title="Electricity Markets" href="electricity_markets.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_thick_v2.png" class="logo__image only-light" alt="Causality in Electricity Markets - Home"/>
+    <script>document.write(`<img src="_static/logo_thick_v2.png" class="logo__image only-dark" alt="Causality in Electricity Markets - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Causality in Electricity Markets
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="electricity_markets.html">Electricity Markets</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Causality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/guide.html">Guide</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Basic Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/correlation_vs_causation.html">Correlation vs. Causation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/DAG.html">Causal Representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/scm.html">Structural Causal Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/basic_dag_structures.html">Basic Causal Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/glossary.html">Definitions and Terminology</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Causal Discovery</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_discovery.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_direct_lingam.html">Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_resit.html">Nonlinear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/semiparametric_varlingam.html">Time Series Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/structural_breaks_example.html">Structural Breaks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Causal Inference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_causal_inference.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/instrumental_variables.html">Instrumental Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/propensity_scores.html">Propensity Score Matching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/double_machine_learning.html">Double Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/diff_in_diff.html">Difference-in-Differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/interrupted_time_series.html">Interrupted Time Series</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Interpretability</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_interpretability.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/partial_dependency_plots.html">Partial Dependence Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/accumulated_local_effects.html">Accumulated Local Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/impulse_response_functions.html">Impulse Response Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/shapley.html">Shapley Additive Explanations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Experiments and Data Collection</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/preface_designs.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/AB_testing.html">A/B Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/bandits.html">Multi-Armed Bandits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/design_of_experiments.html">Design of Experiments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/active_learning.html">Active Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Conclusion</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/conclusion.html">Summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notebooks/review_stats.html">Probability Theory and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/review_linear_models.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/review_ML.html">Machine Learning</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcausality.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/causality.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Causality</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-historical-perspective">A Historical Perspective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-of-causal-methods">Evolution of Causal Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-causal-methods-and-machine-learning">Modern Causal Methods and Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="causality">
+<h1>Causality<a class="headerlink" href="#causality" title="Link to this heading">#</a></h1>
+<p>Causality is a fundamental concept in understanding the relationships between variables in complex systems. In recent decades, the development of causal inference has undergone significant transformations, moving from foundational theories to advanced computational methods that leverage modern machine learning techniques. This chapter provides a historical perspective on causality, reviews key developments, and highlights the advantages of contemporary methods in today’s data-rich environments.</p>
+<br>
+<a class="reference internal image-reference" href="_images/electricity_market.png"><img alt="electricity market" class="align-center" src="_images/electricity_market.png" style="width: 800px;" /></a>
+<br>
+<section id="a-historical-perspective">
+<h2>A Historical Perspective<a class="headerlink" href="#a-historical-perspective" title="Link to this heading">#</a></h2>
+<p>The study of causality can be traced back to philosophical debates, but it gained a more formal and mathematical foundation in the 20th century thanks to the significant contributions of early statisticians. For example, Fisher played a pivotal role in establishing foundational concepts in this field. Fisher’s development of randomised experiments provided a robust framework for inferring causal relationships from data. His work emphasised the importance of randomisation in eliminating biases, thereby allowing researchers to draw more reliable conclusions about causality​ <span id="id1">[<a class="reference internal" href="bibliography.html#id9" title="Ronald A Fisher. The design of experiments. Oliver And Boyd; Edinburgh, 1935.">Fis35</a>]</span>. Other notable statisticians, including Neyman and Pearson, also made significant contributions to the development of causal inference methods. Neyman’s potential outcomes framework, often combined with Fisher’s randomisation, laid the groundwork for modern causal inference techniques <span id="id2">[<a class="reference internal" href="bibliography.html#id12" title="Jerzy Neyman. On the application of probability theory to agricultural experiments. essay on principles. Statistical Science, 5(4):465–472, 1990. Translated and edited by DM Dabrowska and TP Speed.">Ney90</a>]</span>. Pearson’s work on hypothesis testing further refined the tools available for establishing causal relationships <span id="id3">[<a class="reference internal" href="bibliography.html#id14" title="Egon S Pearson. On the use and interpretation of certain test criteria for purposes of statistical inference. Biometrika, 20(1/2):175–240, 1933.">Pea33</a>]</span>. Building on this foundation, subsequent advancements were made by numerous scholars. See <span id="id4">[<a class="reference internal" href="bibliography.html#id10" title="Judea Pearl and Dana Mackenzie. The Book of Why: The New Science of Cause and Effect. Basic Books, 2018.">PM18</a>]</span> or <span id="id5">[<a class="reference internal" href="bibliography.html#id11" title="Judea Pearl. Causal inference: history, perspectives, adventures, and unification (an interview with judea pearl). Observational Studies, 8(2):23–36, 2022.">Pea22</a>]</span> for a more detailed history of the field.</p>
+<br>
+<p>In the field of econometrics, one of the pivotal figures in the modern understanding of causality was Granger. In the 1960s, Granger introduced the concept of Granger causality, which provided a statistical method for determining whether one time series could predict another <span id="id6">[<a class="reference internal" href="bibliography.html#id6" title="Clive W. J. Granger. Investigating causal relations by econometric models and cross-spectral methods. Econometrica, 37(3):424–438, 1969.">Gra69</a>]</span>. Granger causality is based on the idea that if a variable <span class="math notranslate nohighlight">\(X\)</span> Granger-causes <span class="math notranslate nohighlight">\(Y\)</span>, then past values of <span class="math notranslate nohighlight">\(X\)</span> contain information that helps predict <span class="math notranslate nohighlight">\(Y\)</span> beyond what is contained in past values of <span class="math notranslate nohighlight">\(Y\)</span> alone. This method laid the groundwork for econometric analysis and time-series forecasting. However, despite the importance of this method, further research and advancements in the field were necessary.</p>
+</section>
+<section id="evolution-of-causal-methods">
+<h2>Evolution of Causal Methods<a class="headerlink" href="#evolution-of-causal-methods" title="Link to this heading">#</a></h2>
+<p>Over the decades, the limitations of early causal methods like Granger causality spurred the development of more sophisticated techniques. These advancements aimed to address non-linear relationships, high-dimensional data, and the need for more robust causal inference frameworks. Key developments include:</p>
+<ol class="arabic simple">
+<li><p><strong>Potential outcomes framework</strong>: developed by Rubin, this framework focuses on estimating causal effects through randomised experiments and observational studies. The potential outcomes approach is widely used in fields such as epidemiology and economics <span id="id7">[<a class="reference internal" href="bibliography.html#id4" title="Donald B Rubin. Estimating causal effects of treatments in randomized and nonrandomized studies. Journal of educational Psychology, 66(5):688, 1974.">Rub74</a>]</span>.</p></li>
+<li><p><strong>Structural equation modelling (SEM)</strong>: SEM extends beyond simple causality tests by modelling complex relationships between multiple variables using a set of equations. This method allows for the inclusion of latent variables and provides a comprehensive framework for understanding causal pathways <span id="id8">[<a class="reference internal" href="bibliography.html#id7" title="Kenneth A. Bollen. Structural Equations with Latent Variables. John Wiley &amp; Sons, 1989.">Bol89</a>]</span>.</p></li>
+<li><p><strong>Graphical models and Bayesian networks</strong>: pioneered by Pearl, graphical models use directed acyclic graphs (DAGs) to represent causal relationships between variables. Pearl’s work, particularly his book “Causality: Models, Reasoning, and Inference” <span id="id9">[<a class="reference internal" href="bibliography.html#id5" title="Judea Pearl. Causality: Models, Reasoning, and Inference. Cambridge University Press, 2000.">Pea00</a>]</span>, revolutionised the field by introducing formal methods to derive causal relationships from observational data.</p></li>
+<li><p><strong>Causal discovery algorithms</strong>: techniques such as the PC algorithm, fast causal inference (FCI), and Greedy equivalence search (GES) have been developed to uncover causal structures from observational data. These algorithms are particularly useful for handling large and complex datasets <span id="id10">[<a class="reference internal" href="bibliography.html#id8" title="Peter Spirtes, Clark Glymour, and Richard Scheines. Causation, prediction, and search. MIT press, 2001.">SGS01</a>]</span>.</p></li>
+</ol>
+</section>
+<section id="modern-causal-methods-and-machine-learning">
+<h2>Modern Causal Methods and Machine Learning<a class="headerlink" href="#modern-causal-methods-and-machine-learning" title="Link to this heading">#</a></h2>
+<p>The integration of machine learning with causal inference represents a significant leap forward. Modern causal methods leverage the predictive power of machine learning models while incorporating causal reasoning to provide deeper insights. Some of the key advantages of these modern methods include:</p>
+<ul class="simple">
+<li><p><strong>Handling high-dimensional data</strong>: machine learning models can process large and complex datasets, making it feasible to uncover causal relationships in high-dimensional settings.</p></li>
+<li><p><strong>Non-linear relationships</strong>: advanced methods such as causal forests and deep learning-based causal models can capture non-linear interactions between variables, providing more accurate causal inference.</p></li>
+<li><p><strong>Scalability and efficiency</strong>: modern computational tools and algorithms enable the efficient analysis of vast amounts of data, making it possible to apply causal methods at scale.</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>The evolution of causal methods has significantly advanced our ability to understand and interpret complex systems. From the early days of foundational theories and Granger causality, the field has significantly evolved. The integration of modern causal methods with machine learning represents a pivotal advancement, allowing researchers and practitioners to leverage the strengths of both fields <span id="id11">[<a class="reference internal" href="bibliography.html#id15" title="Jinsung Yoon, James Jordon, and Mihaela Van Der Schaar. Ganite: estimation of individualized treatment effects using generative adversarial nets. In International conference on learning representations. 2018.">YJVDS18</a>]</span>. This combination enhances our capacity to manage and analyse large datasets, uncover intricate causal relationships, and apply these insights to real-world scenarios. The benefits of these modern methods are manifold, including improved decision-making, more robust and reliable predictive models, tailored interventions, and adaptive systems that can respond to dynamic environments. In today’s data-rich world, the ability to accurately infer causality is more critical than ever. By understanding and applying the principles of causality, we can better navigate the complexities of modern systems like electricity markets, leading to more trustworthy and robust insights.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="electricity_markets.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Electricity Markets</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="notebooks/guide.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-historical-perspective">A Historical Perspective</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evolution-of-causal-methods">Evolution of Causal Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-causal-methods-and-machine-learning">Modern Causal Methods and Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Davide Cacciarelli, Pierre Pinson
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

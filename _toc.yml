@@ -13,7 +13,7 @@ parts:
     numbered: false
     chapters:
       - file: electricity_markets
-      - file: notebooks/intro_causality
+      - file: causality
       - file: notebooks/guide
 
   - caption: I. Basic Concepts
