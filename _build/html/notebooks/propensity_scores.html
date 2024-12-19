@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -459,14 +459,14 @@ document.write(`
 <p>Whenever the treatment and control assignment is not random, there may be demographic or personal factors that affect the outcome of the experiment. These factors are referred to as <strong>confounders</strong>. This problem is particularly prevalent in observational data (see <span id="id1">[]</span>).</p>
 <p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment <span id="id2">[<a class="reference internal" href="../bibliography.html#id26" title="Marco Caliendo and Sabine Kopeinig. Some practical guidance for the implementation of propensity score matching. Journal of economic surveys, 22(1):31–72, 2008.">CK08</a>]</span>. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
 <p>In mathematical terms, we can define the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span> as the probability of a unit (e.g., customer) joining the demand-response programme given a set of covariates <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b5dfa87a-ba37-4180-a99c-9de4c7d56337">
-<span class="eqno">(38)<a class="headerlink" href="#equation-b5dfa87a-ba37-4180-a99c-9de4c7d56337" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d6464cf-545f-4a94-b70d-7f909a3a8606">
+<span class="eqno">(38)<a class="headerlink" href="#equation-9d6464cf-545f-4a94-b70d-7f909a3a8606" title="Permalink to this equation">#</a></span>\[\begin{equation}
    e(x) = P(T = 1 \mid X = x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is a binary indicator of treatment assignment (1 if joined the programme, 0 if not).</p>
 <p>Propensity scores are typically estimated using <strong>logistic regression</strong>, although other classification methods can be used. For example:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2299f67f-cea1-4bf0-a02b-b01c8cb73cd4">
-<span class="eqno">(39)<a class="headerlink" href="#equation-2299f67f-cea1-4bf0-a02b-b01c8cb73cd4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9547c6c4-b9bb-48b2-a6b1-1f8e1ba5d633">
+<span class="eqno">(39)<a class="headerlink" href="#equation-9547c6c4-b9bb-48b2-a6b1-1f8e1ba5d633" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
 \end{equation}\]</div>
 <p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching <span id="id3">[<a class="reference internal" href="../bibliography.html#id25" title="Peter C Austin. A comparison of 12 algorithms for matching on the propensity score. Statistics in medicine, 33(6):1057–1069, 2014.">Aus14</a>]</span>, such as:</p>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -463,14 +463,14 @@ document.write(`
 <section id="the-lingam-model">
 <h2>The LiNGAM Model<a class="headerlink" href="#the-lingam-model" title="Link to this heading">#</a></h2>
 <p>The LiNGAM model for <span class="math notranslate nohighlight">\(p\)</span> observed variables <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_p\)</span> is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d832573-bd84-4748-aaa4-44e38977a278">
-<span class="eqno">(6)<a class="headerlink" href="#equation-5d832573-bd84-4748-aaa4-44e38977a278" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-43dd55f6-5576-4ea2-a654-f0480cc0347b">
+<span class="eqno">(6)<a class="headerlink" href="#equation-43dd55f6-5576-4ea2-a654-f0480cc0347b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j \in \operatorname{pa}(x_i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where each observed variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of their parent variables <span class="math notranslate nohighlight">\(\operatorname{pa}(x_i)\)</span> plus some noise <span class="math notranslate nohighlight">\(e_i\)</span>. If the coefficient <span class="math notranslate nohighlight">\(b_{ij}\)</span> is zero, then there is no direct causal effect from <span class="math notranslate nohighlight">\(x_j\)</span> to <span class="math notranslate nohighlight">\(x_i\)</span>. The error variables <span class="math notranslate nohighlight">\(e_i\)</span> are <strong>independent</strong> and follow continuous <strong>non-Gaussian</strong> distributions. The independence means there are <strong>no unobserved or hidden common causes</strong>.</p>
 <p>In matrix notation, the model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b809dbe4-8283-44fb-8d6a-846afcce1e84">
-<span class="eqno">(7)<a class="headerlink" href="#equation-b809dbe4-8283-44fb-8d6a-846afcce1e84" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-961b55c0-2bc7-4bc7-a31e-e2895e0b5477">
+<span class="eqno">(7)<a class="headerlink" href="#equation-961b55c0-2bc7-4bc7-a31e-e2895e0b5477" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>.</p>
@@ -504,15 +504,15 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>From this DAG, the <strong>SCM</strong> can be written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-84c7329c-e395-420e-b3f9-75a4e5545920">
-<span class="eqno">(8)<a class="headerlink" href="#equation-84c7329c-e395-420e-b3f9-75a4e5545920" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a829da21-f403-4bfd-8b11-95bb60d71f15">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a829da21-f403-4bfd-8b11-95bb60d71f15" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \text{weather fluctuations} &amp;= e_w \\
 \end{align}\]</div>
 <p>Then, in <strong>matrix notation</strong>, this model is given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aff16dc7-1397-4f30-9ffb-7d50bc47700a">
-<span class="eqno">(9)<a class="headerlink" href="#equation-aff16dc7-1397-4f30-9ffb-7d50bc47700a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5f31588a-19e1-4d2c-99ab-9e1a1e5a1c5d">
+<span class="eqno">(9)<a class="headerlink" href="#equation-5f31588a-19e1-4d2c-99ab-9e1a1e5a1c5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{wind forecast errors} \\
     \text{balancing costs} \\
@@ -537,15 +537,15 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
     \end{array}\right]
 \end{equation}\]</div>
 <p>Typically, we <strong>order</strong> the the structural equations according to the <strong>true causal order</strong>, so that the matrix <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is permuted to be a <strong>lower triangular matrix</strong> (this property is used later on to identify the true structure), with all the diagonal elements equal to zero (strictly lower triangular). This simply means that we rewrite the structural equations as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-89bc1798-1d21-41e0-9df9-de2fc8a02b28">
-<span class="eqno">(10)<a class="headerlink" href="#equation-89bc1798-1d21-41e0-9df9-de2fc8a02b28" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b4ee62fe-dafa-44d5-8a55-a0fa4b0aea14">
+<span class="eqno">(10)<a class="headerlink" href="#equation-b4ee62fe-dafa-44d5-8a55-a0fa4b0aea14" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
 \end{align}\]</div>
 <p>that, in matrix notation, becomes</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ab99efa-80b3-403f-9aa0-772380512788">
-<span class="eqno">(11)<a class="headerlink" href="#equation-7ab99efa-80b3-403f-9aa0-772380512788" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-58987c24-5c26-4b1c-bb58-f8952ee9beeb">
+<span class="eqno">(11)<a class="headerlink" href="#equation-58987c24-5c26-4b1c-bb58-f8952ee9beeb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     \text{weather fluctuations} \\
     \text{wind forecast errors} \\
@@ -570,8 +570,8 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
     \end{array}\right]
 \end{equation}\]</div>
 <p>Now, we can rewrite the LiNGAM model as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-18678f0b-baed-4972-83fe-75fde8eee84b">
-<span class="eqno">(12)<a class="headerlink" href="#equation-18678f0b-baed-4972-83fe-75fde8eee84b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e2e9d46c-ca05-47f3-82fb-ded910ad21bb">
+<span class="eqno">(12)<a class="headerlink" href="#equation-e2e9d46c-ca05-47f3-82fb-ded910ad21bb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     x_i = \sum_{j:k(j)&lt;k(i)}b_{ij}x_j + e_i \quad (i=1, \ldots, p)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k(\cdot)\)</span> represents the causal ordering, meaning that each variable <span class="math notranslate nohighlight">\(x_i\)</span> is a linear sum of the <span class="math notranslate nohighlight">\(x_j\)</span> variables observed earlier in the causal graph (<span class="math notranslate nohighlight">\(k(j)&lt;k(i)\)</span>), plus its own error variable <span class="math notranslate nohighlight">\(e_i\)</span>. We can now plot the <strong>causal graph</strong>, using the LiNGAM library.</p>
@@ -584,8 +584,8 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <section id="exploring-the-residuals-with-gaussian-errors">
 <h3>Exploring the Residuals with Gaussian errors<a class="headerlink" href="#exploring-the-residuals-with-gaussian-errors" title="Link to this heading">#</a></h3>
 <p>Let us consider a simple example, like the one we saw above, but for simplicity we only keep two variables:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0d4ddc39-e859-4412-b020-42edb596bbfa">
-<span class="eqno">(13)<a class="headerlink" href="#equation-0d4ddc39-e859-4412-b020-42edb596bbfa" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bc4783d3-dc51-4be6-b633-93e0baddc427">
+<span class="eqno">(13)<a class="headerlink" href="#equation-bc4783d3-dc51-4be6-b633-93e0baddc427" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \end{align}\]</div>
@@ -644,7 +644,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
 </pre></div>
 </div>
-<img alt="../_images/aede8a3ee31943953c97c53059b0cdfa9c52fcdefa4649ea432a653a92b8713d.png" src="../_images/aede8a3ee31943953c97c53059b0cdfa9c52fcdefa4649ea432a653a92b8713d.png" />
+<img alt="../_images/4a82f31f4db39eb67b40613e4b586e724ae339c032f2bba704d3204ef27e17f9.png" src="../_images/4a82f31f4db39eb67b40613e4b586e724ae339c032f2bba704d3204ef27e17f9.png" />
 </div>
 </div>
 <p>Where we can see how the residuals are independent of the input variable in both the true and anti-causal directions.</p>
@@ -700,7 +700,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Residuals&#39;)
 </pre></div>
 </div>
-<img alt="../_images/2d50495b448b4141c60f04f64a9ee272318313fdb5cf2621307d14e60343bc83.png" src="../_images/2d50495b448b4141c60f04f64a9ee272318313fdb5cf2621307d14e60343bc83.png" />
+<img alt="../_images/8819be67512ebe8252478899b3b12946b6f1e4c3756270fd22f46b3e870ed2eb.png" src="../_images/8819be67512ebe8252478899b3b12946b6f1e4c3756270fd22f46b3e870ed2eb.png" />
 </div>
 </div>
 </section>
@@ -712,8 +712,8 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <li><p><strong>heating demand</strong>: a variable affected by changes in the weather, which affects the balancing costs.</p></li>
 </ul>
 <p>Assume the following <strong>structural equations</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ef292e1-f51f-4f51-9383-2b77333c1cb3">
-<span class="eqno">(14)<a class="headerlink" href="#equation-4ef292e1-f51f-4f51-9383-2b77333c1cb3" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9a330284-cc71-4f57-bfc9-4a47985a0979">
+<span class="eqno">(14)<a class="headerlink" href="#equation-9a330284-cc71-4f57-bfc9-4a47985a0979" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{outages} &amp;= e_o \\
 \text{heating demand} &amp;= 0.3 \times \text{weather flucturations} + e_h \\
@@ -885,19 +885,19 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <section id="introduction-to-ica">
 <h3>Introduction to ICA<a class="headerlink" href="#introduction-to-ica" title="Link to this heading">#</a></h3>
 <p>ICA is a computational method, developed in the field of signal processing, to separate a multivariate signal into additive subcomponents assuming that these subcomponents are non-Gaussian signals and statistically independent from each other <span id="id3">[<a class="reference internal" href="../bibliography.html#id13" title="Aapo Hyvärinen and Erkki Oja. Independent component analysis: algorithms and applications. Neural networks, 13(4-5):411–430, 2000.">HyvarinenO00</a>]</span>. Consider a simple ICA model given by</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b6bc9d43-03b4-4282-99b7-5d689bf163a2">
-<span class="eqno">(15)<a class="headerlink" href="#equation-b6bc9d43-03b4-4282-99b7-5d689bf163a2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d6cc88d3-b77d-4632-94f1-bec005651154">
+<span class="eqno">(15)<a class="headerlink" href="#equation-d6cc88d3-b77d-4632-94f1-bec005651154" title="Permalink to this equation">#</a></span>\[\begin{align}
     x_1 &amp;= a_{11}s_1 + a_{12}s_2 \\
     x_2 &amp;= a_{21}s_1 + a_{22}s_2
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> are the observed variables, and <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are continuous hidden variables. Assuming that <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> are <strong>independent</strong> and <strong>non-Gaussian</strong>, ICA attempts to recover them from the observed matrix <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>. In matrix form, we can write it as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ffc1b0e-d9ff-4009-9ac8-ff019acca494">
-<span class="eqno">(16)<a class="headerlink" href="#equation-4ffc1b0e-d9ff-4009-9ac8-ff019acca494" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e0551625-06f9-4e3d-a994-250081a58817">
+<span class="eqno">(16)<a class="headerlink" href="#equation-e0551625-06f9-4e3d-a994-250081a58817" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{A}\mathbf{s}
 \end{equation}\]</div>
 <p>In our example, it would mean</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65919bd4-7f51-41df-80bc-dd5a57fc58b2">
-<span class="eqno">(17)<a class="headerlink" href="#equation-65919bd4-7f51-41df-80bc-dd5a57fc58b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0afd73ec-5f12-4181-ae51-9c5bbf43c86b">
+<span class="eqno">(17)<a class="headerlink" href="#equation-0afd73ec-5f12-4181-ae51-9c5bbf43c86b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left[\begin{array}{c} 
     x_1 \\ x_2
     \end{array}\right]
@@ -992,18 +992,18 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <section id="ica-based-lingam">
 <h3>ICA-based LiNGAM<a class="headerlink" href="#ica-based-lingam" title="Link to this heading">#</a></h3>
 <p>Going back to the LiNGAM model, we had:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c6ccabac-705d-48de-8e0c-2ac59c3772dc">
-<span class="eqno">(18)<a class="headerlink" href="#equation-c6ccabac-705d-48de-8e0c-2ac59c3772dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-68065753-4497-491e-9366-a2b8a550fdbf">
+<span class="eqno">(18)<a class="headerlink" href="#equation-68065753-4497-491e-9366-a2b8a550fdbf" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}\)</span> are <span class="math notranslate nohighlight">\(p\)</span>-dimensional vectors, and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> is a <span class="math notranslate nohighlight">\(p\times p\)</span> matrix that contains the <span class="math notranslate nohighlight">\(b_{ij}\)</span> coefficients, with <span class="math notranslate nohighlight">\(i, j=1, \ldots, p\)</span>. We can solve the equation <span class="math notranslate nohighlight">\(\mathbf{x} = \mathbf{B}\mathbf{x} + \mathbf{e}\)</span> for the vector of observed variables <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> as in</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bf292759-f830-46d3-b90d-636b2a759c33">
-<span class="eqno">(19)<a class="headerlink" href="#equation-bf292759-f830-46d3-b90d-636b2a759c33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a821f2dd-e5a0-4bb1-be32-65d6ef9b5976">
+<span class="eqno">(19)<a class="headerlink" href="#equation-a821f2dd-e5a0-4bb1-be32-65d6ef9b5976" title="Permalink to this equation">#</a></span>\[\begin{equation}
     (\mathbf{I}- \mathbf{B})\mathbf{x} = \mathbf{e}
 \end{equation}\]</div>
 <p>Then, if we left-multiply both sides by the inverse of <span class="math notranslate nohighlight">\(\mathbf{I}- \mathbf{B}\)</span>, we get</p>
-<div class="amsmath math notranslate nohighlight" id="equation-430fd3a8-e22d-4a2c-af48-e46704e213b1">
-<span class="eqno">(20)<a class="headerlink" href="#equation-430fd3a8-e22d-4a2c-af48-e46704e213b1" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6ca26ec6-40d4-4003-ad06-47531636ad6f">
+<span class="eqno">(20)<a class="headerlink" href="#equation-6ca26ec6-40d4-4003-ad06-47531636ad6f" title="Permalink to this equation">#</a></span>\[\begin{align}
     (\mathbf{I}- \mathbf{B})^{-1}(\mathbf{I}- \mathbf{B})\mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= (\mathbf{I}- \mathbf{B})^{-1}\mathbf{e} \\
     \mathbf{x} &amp;= \mathbf{A}\mathbf{e}
