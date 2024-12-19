@@ -1,6 +1,6 @@
 # Preface
 
-This work-in-progress book is designed to provide comprehensive tutorials on causal inference methodologies. This book explains key concepts in this rapidly growing research area and showcases potential applications within electricity markets. 
+This book is designed to offer clear and comprehensive guidance on causal inference methods, introducing key concepts in this rapidly evolving field. It emphasises the importance of combining a deep understanding of data and processes to draw reliable causal conclusions. Throughout, the book demonstrates how these methodologies can be applied effectively within electricity markets, helping readers to develop practical skills for deriving meaningful insights from data.
 
 
 ## Prerequisites
