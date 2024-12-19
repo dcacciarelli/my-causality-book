@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -483,11 +483,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>As we saw in the previous chapter, this DAG represents the following <strong>structural causal model (SCM)</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d455041c-67ae-4542-9c49-2b252a9b6355">
-<span class="eqno">(3)<a class="headerlink" href="#equation-d455041c-67ae-4542-9c49-2b252a9b6355" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7ff29e97-ad21-4cb6-a36c-648604bb133c">
+<span class="eqno">(3)<a class="headerlink" href="#equation-7ff29e97-ad21-4cb6-a36c-648604bb133c" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{weather fluctuations} &amp;= e_w \\
     \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
     \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b \\
@@ -522,8 +526,8 @@ document.write(`
 <img alt="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" src="../_images/e47d463ee16eff349c4e19ad2d6021118937acb28cee771e846b764c19bfd512.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c566fc83-1e18-455b-ada8-454a8a489175">
-<span class="eqno">(4)<a class="headerlink" href="#equation-c566fc83-1e18-455b-ada8-454a8a489175" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-5c27fd9c-c51a-4c30-a507-725aca026a2f">
+<span class="eqno">(4)<a class="headerlink" href="#equation-5c27fd9c-c51a-4c30-a507-725aca026a2f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{weather fluctuations} &amp;= e_w \\
 \text{wind forecast errors} &amp;= 1.5 \times \text{weather flucturations} + e_f \\
 \text{heating demand costs} &amp;= 0.7 \times \text{heating demand} + e_h \\
@@ -641,7 +645,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0cfa9fdbd9881ebbb6918bd8f3a9063dec3b3dceb6bb63f77a6749edae311ea9.png" src="../_images/0cfa9fdbd9881ebbb6918bd8f3a9063dec3b3dceb6bb63f77a6749edae311ea9.png" />
+<img alt="../_images/6de7ce3350f9d24d7a9582d603f902ceb7cfaa7004e65422b34f133829461c2d.png" src="../_images/6de7ce3350f9d24d7a9582d603f902ceb7cfaa7004e65422b34f133829461c2d.png" />
 </div>
 </div>
 <p>We can see that, despites <strong>not being causally related</strong>, wind forecast errors and heating demand appears to be <strong>positively correlated</strong>. This is because they have a <strong>common cause</strong>, represented by the weather fluctuations.</p>
@@ -672,8 +676,8 @@ document.write(`
 <img alt="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" src="../_images/59056a2fc2e0dcac4b7aca95a29af06704d8f22d02cbe86b876211bccb9002bc.svg" /></div>
 </div>
 <p>This causal graph represents the following <strong>SCM</strong>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd0303b9-6ca4-46fa-814b-566c734b7f0e">
-<span class="eqno">(5)<a class="headerlink" href="#equation-cd0303b9-6ca4-46fa-814b-566c734b7f0e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3c86de02-984c-4286-bd5a-f3924b0c910c">
+<span class="eqno">(5)<a class="headerlink" href="#equation-3c86de02-984c-4286-bd5a-f3924b0c910c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \text{forecast errors} &amp;= e_f \\
 \text{outages} &amp;= e_o \\
 \text{balancing costs} &amp;= 2 \times \text{forecast errors} + 1.5 \times \text{outages} + e_b \\
@@ -788,7 +792,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" src="../_images/74d9cd4ed793ddefb29f8404c74bc3f4ee94af7de6fd98c22a6b5e9088699b87.png" />
+<img alt="../_images/8a36573f83acf3fb86c3b0bb701d2a9e79da09fb5ba877055b27a713beb10b1a.png" src="../_images/8a36573f83acf3fb86c3b0bb701d2a9e79da09fb5ba877055b27a713beb10b1a.png" />
 </div>
 </div>
 <p>We can observe how conditioning on a collider introduces spurious correlations in the data. Outages and forecast errors are <strong>not causally related</strong> but, when conditioning on the balancing costs, they <strong>appear to be correlated</strong>. This underscores the importance of being cautious when attempting to draw causal conclusions from observational data. In practice, this means that including the collider as a predictor in a <strong>regression model</strong> can lead to misleading results, where the estimated coefficients deviate significantly from the true causal effects. This potential misstep highlights the necessity of carefully selecting variables for inclusion in regression models, especially when the goal is to uncover causal relationships rather than mere associations.</p>
