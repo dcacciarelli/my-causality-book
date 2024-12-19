@@ -4,7 +4,7 @@ Causality is a fundamental concept in understanding the relationships between va
 
 <br>
 
-<img src="electricity_market.png" alt="electricity market" align="center" width="800px"/>
+<img src="causality.png" alt="causality" align="center" width="800px"/>
 
 <br>
 
