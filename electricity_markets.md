@@ -22,6 +22,6 @@ The electricity market ecosystem involves various key participants, each playing
 
 <br>
 
-<img src="electricity_market.png" alt="electricity market" align="center" width="400px"/>
+<img src="electricity_market.png" alt="electricity market" align="center" width="800px"/>
 
 <br>
