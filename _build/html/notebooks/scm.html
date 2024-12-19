@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -532,6 +532,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
 <img alt="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" src="../_images/516eab5ea2ac5b1328d958b2e37254521bb18ea3e8900f63d69d03fd26d996b4.svg" /></div>
 </div>
 <p>The matrix <code class="docutils literal notranslate"><span class="pre">m</span></code> used in the plot is sometimes referred to as the <strong>adjacency matrix</strong>, and it contains the weights of the edges in a DAG. It is a <span class="math notranslate nohighlight">\(p \times p\)</span> matrix where <span class="math notranslate nohighlight">\(p\)</span> is the number of variables (nodes) in the DAG. In this context, <span class="math notranslate nohighlight">\(p = 3\)</span>, representing the variables: weather fluctuations, wind forecast errors, and balancing costs.</p>
@@ -550,8 +554,8 @@ document.write(`
 <section id="step-3-writing-the-scm">
 <h4>Step 3: Writing the SCM<a class="headerlink" href="#step-3-writing-the-scm" title="Link to this heading">#</a></h4>
 <p>Knowing the weights, we can write the following Structural Causal Model (SCM):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff0d5cfe-2f10-4be0-bdb6-10d0c8805b4e">
-<span class="eqno">(2)<a class="headerlink" href="#equation-ff0d5cfe-2f10-4be0-bdb6-10d0c8805b4e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0a0f87b0-90e1-454c-9357-bfb01a367b29">
+<span class="eqno">(2)<a class="headerlink" href="#equation-0a0f87b0-90e1-454c-9357-bfb01a367b29" title="Permalink to this equation">#</a></span>\[\begin{align}
     \text{weather fluctuations} &amp;= e_w \\
     \text{wind forecast errors} &amp;= 1.5 \times \text{weather fluctuations} + e_f \\
     \text{balancing costs} &amp;= 1.2 \times \text{wind forecast errors} + e_b

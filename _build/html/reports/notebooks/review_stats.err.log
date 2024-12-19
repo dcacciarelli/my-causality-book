@@ -1,0 +1,68 @@
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/causality_lab/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/anaconda3/envs/causality_lab/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/anaconda3/envs/causality_lab/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/opt/anaconda3/envs/causality_lab/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/opt/anaconda3/envs/causality_lab/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/anaconda3/envs/causality_lab/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/anaconda3/envs/causality_lab/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pymc as pm
+import logging
+
+# Suppress pymc logging
+logger = logging.getLogger('pymc')
+logger.setLevel(logging.ERROR)
+
+# Generate some data
+np.random.seed(42)
+data = np.random.normal(loc=5, scale=2, size=1000)
+
+# Plot the data
+plt.hist(data, bins=30, density=True, alpha=0.6, color='g', edgecolor='black')
+plt.xlabel('Value')
+plt.ylabel('Density')
+plt.title('Histogram of Generated Data')
+plt.show()
+
+# Define the Bayesian model
+with pm.Model() as model:
+    # Prior for the mean (μ)
+    mu = pm.Normal('mu', mu=0, sigma=10)
+    # Prior for the standard deviation (σ)
+    sigma = pm.HalfNormal('sigma', sigma=10)
+    # Likelihood (sampling distribution) of the data
+    likelihood = pm.Normal('likelihood', mu=mu, sigma=sigma, observed=data)
+    
+    # Perform MCMC sampling
+    with model:
+        trace = pm.sample(1000, return_inferencedata=True, progressbar=False)
+
+# Plot the posterior distributions
+pm.plot_posterior(trace)
+plt.show()
+
+# Summary of the posterior distributions
+summary = pm.summary(trace)
+print(summary)
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[12], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpymc[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpm[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mlogging[39;00m
+[1;32m      4[0m [38;5;66;03m# Suppress pymc logging[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'pymc'
+

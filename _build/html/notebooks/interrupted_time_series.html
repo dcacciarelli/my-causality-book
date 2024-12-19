@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -449,8 +449,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="interrupted-time-series">
 <h1>Interrupted Time Series<a class="headerlink" href="#interrupted-time-series" title="Link to this heading">#</a></h1>
 <p>Interrupted time series (ITS) analysis is econometrics approach that allows us to evaluate the impact of an intervention or policy change that occurs at a specific point in time <span id="id1">[<a class="reference internal" href="../bibliography.html#id21" title="James Lopez Bernal, Steven Cummins, and Antonio Gasparrini. Interrupted time series regression for the evaluation of public health interventions: a tutorial. International journal of epidemiology, 46(1):348–355, 2017.">BCG17</a>]</span>. Unlike DiD, ITS <strong>does not require a control group</strong> as it assumes that the data-generating process would have continued in a similar way without the introduction of the new policy.  ITS can be seen as a special case of a regression discontinuity design (RDD). In a typical RDD, the discontinuity is observed across different units based on a cutoff point. For example, the introduction of a special tax for plants over a certain size. ITS work in a similar way but instead of having the <em>discontinuity</em> based on a specific variable, the <strong>discontinuity occurs over time</strong>. Then, we can model the time series of interest using a <strong>segmented regression</strong> approach as in:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb35211c-327c-4885-87cc-b7db5bbbc1dc">
-<span class="eqno">(50)<a class="headerlink" href="#equation-cb35211c-327c-4885-87cc-b7db5bbbc1dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b7cb61b4-094f-46de-9ff3-1294509bf5eb">
+<span class="eqno">(50)<a class="headerlink" href="#equation-b7cb61b4-094f-46de-9ff3-1294509bf5eb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     y = \beta_0 + \beta_1 \, \text{time} + \beta_2 \, \text{period} + \beta_3 \, \text{time after policy} + \varepsilon
 \end{equation}\]</div>
 <p>where the regression coefficients are used to capture:</p>
@@ -501,7 +501,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/46c973ea979627693c857c2af3b88004cb39baf6de0b5859ff587a5b446c1f53.png" src="../_images/46c973ea979627693c857c2af3b88004cb39baf6de0b5859ff587a5b446c1f53.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
+<img alt="../_images/ab3f5195bb78f4c6567dbc761517ae69ec1cb9b5e375d98e61c533463944df68.png" src="../_images/ab3f5195bb78f4c6567dbc761517ae69ec1cb9b5e375d98e61c533463944df68.png" />
 </div>
 </div>
 <p>Here, we introduced a policy at time step 50, which causes a price reduction of 10 units. Let’s now create the dummy variables and fit a segmented regression model to show if we are able to estimate the effect of the policy.</p>
@@ -524,13 +528,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            OLS Regression Results                            
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+                            OLS Regression Results                            
 ==============================================================================
 Dep. Variable:                  price   R-squared:                       0.993
 Model:                            OLS   Adj. R-squared:                  0.993
 Method:                 Least Squares   F-statistic:                     4425.
-Date:                Wed, 10 Jul 2024   Prob (F-statistic):          9.73e-103
-Time:                        17:17:24   Log-Likelihood:                -129.67
+Date:                Thu, 19 Dec 2024   Prob (F-statistic):          9.73e-103
+Time:                        11:54:10   Log-Likelihood:                -129.67
 No. Observations:                 100   AIC:                             267.3
 Df Residuals:                      96   BIC:                             277.8
 Df Model:                           3                                         
@@ -619,7 +624,7 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e0e41eef5a991e51c3b72f5e4bb6cdb4dc163d12659163edf1e8ee34cb8dfc1.png" src="../_images/8e0e41eef5a991e51c3b72f5e4bb6cdb4dc163d12659163edf1e8ee34cb8dfc1.png" />
+<img alt="../_images/7fbe9f138fe76f26ac64629066688918560f2f66f99469c0d0534a6df2612003.png" src="../_images/7fbe9f138fe76f26ac64629066688918560f2f66f99469c0d0534a6df2612003.png" />
 </div>
 </div>
 <p>Since the policy has been introduced at the 100th observation, we can fint a SARIMA model on the first 100 observations, and then perform and ITS analysis on the reisudals.</p>
@@ -646,7 +651,10 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/72d0f19c01b9ac659243d73157a3350599a0279350548826a30d0a276e65037d.png" src="../_images/72d0f19c01b9ac659243d73157a3350599a0279350548826a30d0a276e65037d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
+<img alt="../_images/7e51eacd420834b7d9d2604da2ccc1952660982fbbcaf94bc5f3efb759ce3670.png" src="../_images/7e51eacd420834b7d9d2604da2ccc1952660982fbbcaf94bc5f3efb759ce3670.png" />
 </div>
 </div>
 <p>As expected, given the change due to the new policy, the residuals before the policy (where we fitted the model) are quite low, while they are much higher after the policy was introduced.</p>
@@ -739,35 +747,35 @@ Notes:
     <tr>
       <th>2024-07-14</th>
       <td>52.067003</td>
-      <td>-9.606227</td>
+      <td>-9.606215</td>
       <td>95</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-15</th>
       <td>58.716143</td>
-      <td>-10.573412</td>
+      <td>-10.573337</td>
       <td>96</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-16</th>
       <td>67.672040</td>
-      <td>-9.758926</td>
+      <td>-9.758902</td>
       <td>97</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-17</th>
       <td>69.607488</td>
-      <td>-9.616665</td>
+      <td>-9.616603</td>
       <td>98</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2024-07-18</th>
       <td>63.095867</td>
-      <td>-11.235913</td>
+      <td>-11.235880</td>
       <td>99</td>
       <td>1</td>
     </tr>
@@ -795,8 +803,8 @@ Notes:
 Dep. Variable:              residuals   R-squared:                       0.616
 Model:                            OLS   Adj. R-squared:                  0.613
 Method:                 Least Squares   F-statistic:                     158.3
-Date:                Wed, 10 Jul 2024   Prob (F-statistic):           1.02e-41
-Time:                        17:17:25   Log-Likelihood:                -563.84
+Date:                Thu, 19 Dec 2024   Prob (F-statistic):           1.02e-41
+Time:                        11:54:11   Log-Likelihood:                -563.84
 No. Observations:                 200   AIC:                             1134.
 Df Residuals:                     197   BIC:                             1144.
 Df Model:                           2                                         
@@ -809,13 +817,13 @@ time_after_policy     0.0006      0.014      0.041      0.967      -0.027       
 policy              -10.3131      0.908    -11.352      0.000     -12.105      -8.522
 ==============================================================================
 Omnibus:                      353.785   Durbin-Watson:                   0.997
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):           114456.613
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           114456.753
 Skew:                           8.849   Prob(JB):                         0.00
-Kurtosis:                     118.851   Cond. No.                         130.
+Kurtosis:                     118.852   Cond. No.                         130.
 ==============================================================================
 
 Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
 </div>
@@ -837,7 +845,7 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2af4dc20361fa4447a97c276dd9faf235e5597ad21d0f8ee3f597661b12146cb.png" src="../_images/2af4dc20361fa4447a97c276dd9faf235e5597ad21d0f8ee3f597661b12146cb.png" />
+<img alt="../_images/8bc3177bd8a934be3d482f3bf3949496d335d4a8078001927275250a8270d9c0.png" src="../_images/8bc3177bd8a934be3d482f3bf3949496d335d4a8078001927275250a8270d9c0.png" />
 </div>
 </div>
 </section>

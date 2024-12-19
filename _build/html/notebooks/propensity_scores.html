@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -459,14 +459,14 @@ document.write(`
 <p>Whenever the treatment and control assignment is not random, there may be demographic or personal factors that affect the outcome of the experiment. These factors are referred to as <strong>confounders</strong>. This problem is particularly prevalent in observational data (see <span id="id1">[]</span>).</p>
 <p><strong>Propensity score matching (PSM)</strong> is a statistical technique used to estimate the effect of a treatment by accounting for covariates that predict receiving the treatment <span id="id2">[<a class="reference internal" href="../bibliography.html#id26" title="Marco Caliendo and Sabine Kopeinig. Some practical guidance for the implementation of propensity score matching. Journal of economic surveys, 22(1):31–72, 2008.">CK08</a>]</span>. In our case, this means we can try to estimate the effect of the demand-response programme by considering the covariates that might have influenced who joined the programme. Essentially, if we can estimate the probability of someone joining the programme based on demographic factors, we can <strong>match</strong> treated and untreated subjects with similar propensity scores. By comparing these matched groups, we can compute an adjusted difference that helps mimic a randomised experimental design, reducing selection bias and allowing for a more accurate estimation of the treatment effect.</p>
 <p>In mathematical terms, we can define the propensity score <span class="math notranslate nohighlight">\(e(x)\)</span> as the probability of a unit (e.g., customer) joining the demand-response programme given a set of covariates <span class="math notranslate nohighlight">\(x\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-75c076c8-5f73-4be1-ae29-a455650be6e3">
-<span class="eqno">(38)<a class="headerlink" href="#equation-75c076c8-5f73-4be1-ae29-a455650be6e3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5dfa87a-ba37-4180-a99c-9de4c7d56337">
+<span class="eqno">(38)<a class="headerlink" href="#equation-b5dfa87a-ba37-4180-a99c-9de4c7d56337" title="Permalink to this equation">#</a></span>\[\begin{equation}
    e(x) = P(T = 1 \mid X = x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(T\)</span> is a binary indicator of treatment assignment (1 if joined the programme, 0 if not).</p>
 <p>Propensity scores are typically estimated using <strong>logistic regression</strong>, although other classification methods can be used. For example:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d71c0d78-8bed-416c-916b-e04405b5426e">
-<span class="eqno">(39)<a class="headerlink" href="#equation-d71c0d78-8bed-416c-916b-e04405b5426e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2299f67f-cea1-4bf0-a02b-b01c8cb73cd4">
+<span class="eqno">(39)<a class="headerlink" href="#equation-2299f67f-cea1-4bf0-a02b-b01c8cb73cd4" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \hat{e}(x) = \hat{P}(T = 1 \mid X = x) = \frac{1}{1 + \exp(-(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_p x_p))}
 \end{equation}\]</div>
 <p>After estimating the propensity scores, we can proceed with the matching process. There are several ways to perform matching <span id="id3">[<a class="reference internal" href="../bibliography.html#id25" title="Peter C Austin. A comparison of 12 algorithms for matching on the propensity score. Statistics in medicine, 33(6):1057–1069, 2014.">Aus14</a>]</span>, such as:</p>
@@ -524,6 +524,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -702,7 +706,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/70ee292f4689c317c326387335cf89744dbab17339be49f7702fce6f013cdb4e.png" src="../_images/70ee292f4689c317c326387335cf89744dbab17339be49f7702fce6f013cdb4e.png" />
+<img alt="../_images/e3a6e9fe274b183dfa659a416d85afb0030ad0aa96b1dba515aeef024fead992.png" src="../_images/e3a6e9fe274b183dfa659a416d85afb0030ad0aa96b1dba515aeef024fead992.png" />
 </div>
 </div>
 <p>In this plot, the extent to which the treated and control <strong>propensity score distributions overlap</strong> is crucial:</p>
@@ -754,7 +758,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7b74fc02afddd9fb548968c2b6099171c55d21c5f7c4013c7e8163d2b469dae5.png" src="../_images/7b74fc02afddd9fb548968c2b6099171c55d21c5f7c4013c7e8163d2b469dae5.png" />
+<img alt="../_images/ed798600ab1c97befcb317fef0bd0a32af92d39fde8c15e6b3e9c0f13d37fea0.png" src="../_images/ed798600ab1c97befcb317fef0bd0a32af92d39fde8c15e6b3e9c0f13d37fea0.png" />
 </div>
 </div>
 <p>As we see here, after matching, we ideally want the distributions to overlap substantially, indicating that the treated and control groups are similar with respect to the covariates used to estimate the propensity scores.</p>
@@ -792,7 +796,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e299b57075027bf1f9f9912428307fe88f501f4a40cb2c0bf59f92fbea0d3eee.png" src="../_images/e299b57075027bf1f9f9912428307fe88f501f4a40cb2c0bf59f92fbea0d3eee.png" />
+<img alt="../_images/c2d417a193f1bd9d26d45f89a9b80fddb9a7aeafbe7cdcd16368e52ef0dfcc37.png" src="../_images/c2d417a193f1bd9d26d45f89a9b80fddb9a7aeafbe7cdcd16368e52ef0dfcc37.png" />
 </div>
 </div>
 <p>We can see how, looking at the original data, we would get the impression that people who joined the programme consume more lectricity during peak hours. The situation is much different when we look at the consumptions for the matched groups, where we see that joining the programme actually has a positive effect in reducing electricity consumption during peak hours.</p>
@@ -814,7 +818,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b7390f66687a907dc2562ca2700dea622431d21cb14e6a6c218a06990be1a56d.png" src="../_images/b7390f66687a907dc2562ca2700dea622431d21cb14e6a6c218a06990be1a56d.png" />
+<img alt="../_images/d1058c1f2722cb0f744c5da5fabeaf2ab001d81b0020a4df77402e000a8a4379.png" src="../_images/d1058c1f2722cb0f744c5da5fabeaf2ab001d81b0020a4df77402e000a8a4379.png" />
 </div>
 </div>
 <p>This example demonstrates the basic steps of performing propensity score matching and evaluating the treatment effect. By matching treated and control units with similar propensity scores, we reduce the bias due to confounding variables and can make a more accurate assessment of the treatment’s impact.</p>

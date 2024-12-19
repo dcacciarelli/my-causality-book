@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -564,6 +564,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -636,14 +640,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OLS Regression Results:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.OLS Regression Results:
+
                             OLS Regression Results                            
 ==============================================================================
 Dep. Variable:      ElectricityPrices   R-squared:                       0.925
 Model:                            OLS   Adj. R-squared:                  0.925
 Method:                 Least Squares   F-statistic:                 1.225e+04
-Date:                Wed, 10 Jul 2024   Prob (F-statistic):               0.00
-Time:                        17:17:22   Log-Likelihood:                -2886.7
+Date:                Thu, 19 Dec 2024   Prob (F-statistic):               0.00
+Time:                        11:54:07   Log-Likelihood:                -2886.7
 No. Observations:                1000   AIC:                             5777.
 Df Residuals:                     998   BIC:                             5787.
 Df Model:                           1                                         
@@ -686,14 +691,16 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2SLS Regression Results:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+
+2SLS Regression Results:
                             OLS Regression Results                            
 ==============================================================================
 Dep. Variable:      ElectricityPrices   R-squared:                       0.509
 Model:                            OLS   Adj. R-squared:                  0.508
 Method:                 Least Squares   F-statistic:                     1034.
-Date:                Wed, 10 Jul 2024   Prob (F-statistic):          3.21e-156
-Time:                        17:17:22   Log-Likelihood:                -3824.2
+Date:                Thu, 19 Dec 2024   Prob (F-statistic):          3.21e-156
+Time:                        11:54:07   Log-Likelihood:                -3824.2
 No. Observations:                1000   AIC:                             7652.
 Df Residuals:                     998   BIC:                             7662.
 Df Model:                           1                                         
@@ -712,6 +719,7 @@ Kurtosis:                       2.964   Cond. No.                         23.7
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
 </pre></div>
 </div>
 </div>
@@ -744,7 +752,7 @@ Notes:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/570bd8b176dcd75b03484874379faa241fe04de035b99aa3b1e3908f1f60b3e7.png" src="../_images/570bd8b176dcd75b03484874379faa241fe04de035b99aa3b1e3908f1f60b3e7.png" />
+<img alt="../_images/e468f251c25f2de4db379a32fdaec12b3afcd25cf24dd426ce3b60242accf133.png" src="../_images/e468f251c25f2de4db379a32fdaec12b3afcd25cf24dd426ce3b60242accf133.png" />
 </div>
 </div>
 <p>We can now see tha simply using a model on all the observed variables leads us to a <strong>biased estimate</strong>. Instead, using 2SLS we can get much closer to the real effect.</p>

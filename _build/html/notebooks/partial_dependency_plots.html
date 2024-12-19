@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -491,6 +491,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) SSE4.2) enabled only processors has been deprecated. Intel oneAPI Math Kernel Library 2025.0 will require Intel(R) Advanced Vector Extensions (Intel(R) AVX) instructions.
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -559,8 +563,8 @@ document.write(`
 <section id="estimation">
 <h2>Estimation<a class="headerlink" href="#estimation" title="Link to this heading">#</a></h2>
 <p>Imagine we fitted a model <span class="math notranslate nohighlight">\(\hat{f}\)</span> that predicts the electricity price using the remaining three features as input variables. Let <span class="math notranslate nohighlight">\(h\)</span> represent the hour variable. The partial dependence function <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> is defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-782fcfc0-ff78-41e5-bf09-4380d4168de0">
-<span class="eqno">(51)<a class="headerlink" href="#equation-782fcfc0-ff78-41e5-bf09-4380d4168de0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c49875a2-d282-4244-b27c-ce07c8a98161">
+<span class="eqno">(51)<a class="headerlink" href="#equation-c49875a2-d282-4244-b27c-ce07c8a98161" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) = \mathbb{E}_{\mathbf{x}}[\hat{f}(h, \mathbf{x})] = \int \hat{f}(h, \mathbf{x}) dP(\mathbf{x})
 \end{equation}\]</div>
 <p>where:</p>
@@ -572,8 +576,8 @@ document.write(`
 </ul>
 <p>The <strong>partial dependence function</strong> shows how the model’s prediction changes when <span class="math notranslate nohighlight">\(h\)</span> changes, keeping the other features constant. Taking the expected value of the model’s prediction over the distribution of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> effectively averages out the effects of all other features. Indeed, the The integral indicates that we are integrating (or averaging) the model’s predictions over the probability distribution of the features in <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. This integration helps in isolating the effect of <span class="math notranslate nohighlight">\(h\)</span> on the predicted outcome.</p>
 <p>In practice, we estimate <span class="math notranslate nohighlight">\(\hat{f}(h)\)</span> using the average prediction over the dataset:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c7f444d5-a236-4922-9921-23f551be7695">
-<span class="eqno">(52)<a class="headerlink" href="#equation-c7f444d5-a236-4922-9921-23f551be7695" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed34a17e-61a6-49c6-99ff-d08d2dd60726">
+<span class="eqno">(52)<a class="headerlink" href="#equation-ed34a17e-61a6-49c6-99ff-d08d2dd60726" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat{f}(h) \approx \frac{1}{n} \sum_{i=1}^n \hat{f}(h, \mathbf{x}_i)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of instances in the dataset, and <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th observation of the covariates. This sum basically calculates the average prediction of the model when <span class="math notranslate nohighlight">\(h\)</span> is fixed at a specific value, and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> iterates through all the observed values in the dataset. Here is what we would do in practice:</p>
@@ -636,7 +640,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07ef68f969bea0382fd45d45ba1796f9fa0277993aeb9e4918674715711ec9fe.png" src="../_images/07ef68f969bea0382fd45d45ba1796f9fa0277993aeb9e4918674715711ec9fe.png" />
+<img alt="../_images/b871ed8252995853efc71d6e23b84044ea40d60428310b84eb7bf3daa65dc98d.png" src="../_images/b871ed8252995853efc71d6e23b84044ea40d60428310b84eb7bf3daa65dc98d.png" />
 </div>
 </div>
 </section>
@@ -734,7 +738,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/164f9f12eb914a81607f3fe25e35d129d2c906b6006eb78e1d2f70964cf43a41.png" src="../_images/164f9f12eb914a81607f3fe25e35d129d2c906b6006eb78e1d2f70964cf43a41.png" />
+<img alt="../_images/c33a4ab2443107578bb8c1ba0f6330c2ae2d08eeab629a928d72138ad1bb3d72.png" src="../_images/c33a4ab2443107578bb8c1ba0f6330c2ae2d08eeab629a928d72138ad1bb3d72.png" />
 </div>
 </div>
 </section>
@@ -794,7 +798,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03161585e4d5cd37b60891b918eb7760b93a3b8c3785693c671fec393282149e.png" src="../_images/03161585e4d5cd37b60891b918eb7760b93a3b8c3785693c671fec393282149e.png" />
+<img alt="../_images/e42adaed7a684a0b206cba95a7d82ed2d32bdbed382a588454f844e891a37980.png" src="../_images/e42adaed7a684a0b206cba95a7d82ed2d32bdbed382a588454f844e891a37980.png" />
 </div>
 </div>
 </section>
