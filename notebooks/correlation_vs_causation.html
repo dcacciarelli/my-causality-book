@@ -460,16 +460,17 @@ document.write(`
 </section>
 <section id="a-motivating-example">
 <h2>A Motivating Example<a class="headerlink" href="#a-motivating-example" title="Link to this heading">#</a></h2>
-<p>To illustrate the dichotomy between correlation and causation, consider a simple example involving three variables:</p>
+<p>To illustrate the distinction between correlation and causation, consider a simple example involving three variables:</p>
 <ol class="arabic simple">
 <li><p>Temperature (°C)</p></li>
 <li><p>Electricity load (MW)</p></li>
 <li><p>Ice cream sales (GBP)</p></li>
 </ol>
-<p>To better understand the relationships among these variables, we utilise a <strong>causal graph</strong> to depict the data-generating process. For now, do not worry too much about the specifics of causal graphs and the data-generating process, as these concepts will be described in detail in the upcoming chapters. Just consider that this graph helps us visualize and understand how fluctuations in temperature <strong>drive changes</strong> in both electricity consumption and ice cream sales.</p>
+<p>To better understand the relationships among these variables, we can use a <strong>causal graph</strong> to represent the data-generating process. At this stage, there is no need to focus on the technical details of causal graphs, as these concepts will be explored in more depth in later chapters. For now, consider that the graph helps us visualise and understand how changes in temperature drive changes in both electricity consumption and ice cream sales.</p>
+<p>In the case of the three variables (temperature, electricity load, and ice cream sales) we observe two distinct relationships:</p>
 <ul class="simple">
-<li><p>The relationship between temperature and electricity load often exhibits a U-shaped pattern. During extremely cold weather, the demand for electricity increases due to heating needs. Conversely, during extremely hot weather, electricity load rises because of the increased use of air conditioning. This U-shape reflects the higher energy consumption at both temperature extremes.</p></li>
-<li><p>Temperature also has a direct impact on ice cream sales. Generally, higher temperatures lead to increased ice cream consumption as people look for ways to cool down. Thus, we can observe that as the temperature rises, so do ice cream sales.</p></li>
+<li><p>The relationship between temperature and electricity load often shows a U-shaped pattern. During very cold weather, electricity demand increases due to heating needs. Similarly, during very hot weather, electricity load rises because of the increased use of air conditioning. This U-shape reflects higher energy consumption at both temperature extremes.</p></li>
+<li><p>Temperature also directly affects ice cream sales. In general, as temperatures rise, people are more likely to buy ice cream to cool down. Thus, we observe that as the temperature increases, so do ice cream sales.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -496,10 +497,10 @@ document.write(`
 <div class="cell_output docutils container">
 <img alt="../_images/9485e762cc99d066e0cc9a541027d3de56c5bd7f1a5478d0f27aa67c5d710cf0.svg" src="../_images/9485e762cc99d066e0cc9a541027d3de56c5bd7f1a5478d0f27aa67c5d710cf0.svg" /></div>
 </div>
-<p>We will now generate some data using the causal structure above. Then, we will assume that we are unaware of this true causal structure and need to perform exploratory analysis to uncover potential correlations among the observations.</p>
-<p>In this scenario, our goal is to explore the data, look for correlations, and attempt to infer possible causal relationships without prior knowledge of the underlying causal mechanisms. This approach mimics real-world situations where data scientists and researchers often work with complex datasets without a clear understanding of the dynamics that govern the relationships between variables.</p>
-<p>Through statistical methods and visual analysis, we will examine the interactions between temperature, electricity load, and ice cream sales, exploring how these variables may be related and considering the implications of our findings.</p>
-<p>First, let’s generate some data according to the DAG shown above.</p>
+<p>We will now generate some data based on the causal structure presented above. For this exercise, we will assume that we do not know the true causal relationships and must rely on <strong>exploratory analysis</strong> to identify potential correlations within the data.</p>
+<p>In this scenario, our objective is to explore the data, search for correlations, and attempt to infer possible causal relationships, all without prior knowledge of the underlying mechanisms that govern the system. This mirrors real-world situations in which data scientists and researchers often work with complex datasets, where the relationships between variables are not immediately clear, and the true causes are unknown.</p>
+<p>Through the use of statistical methods and visual analysis, we will examine the interactions between temperature, electricity load, and ice cream sales. We will look for patterns in the data and consider how these variables might be connected, while also reflecting on the implications of our findings for identifying potential causal relationships.</p>
+<p>To begin, we will <strong>generate data</strong> according to the causal graph shown above, allowing us to explore these relationships systematically.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -587,7 +588,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 </table>
 </div></div></div>
 </div>
-<p>Now, let’s plot the pairwise correlation plots to explore the dependencies.</p>
+<p>Next, we will generate <strong>pairwise correlation plots</strong> to examine the relationships and dependencies between the variables. These plots will help us visually identify how the variables are related to each other and reveal any potential patterns or associations. By analysing these plots, we can begin to gain insights into the structure of the data, which will inform further exploration of possible causal links.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setting up the plots</span>
@@ -619,7 +620,7 @@ Intel MKL WARNING: Support of Intel(R) Streaming SIMD Extensions 4.2 (Intel(R) S
 <img alt="../_images/88879234af93f81d3d78f33079dee7c4fd0f9431cd54459342de2c01c338a4f7.png" src="../_images/88879234af93f81d3d78f33079dee7c4fd0f9431cd54459342de2c01c338a4f7.png" />
 </div>
 </div>
-<p>By examining these plots, we might find ourselves tempted to conclude a correlation between electricity load and ice cream sales, especially in a more complex scenario where the causal structure is not known to us. This observation highlights a common challenge in data analysis: distinguishing between mere correlation and actual causation without prior knowledge of the underlying causal mechanisms.</p>
+<p>By examining the first two subplots, we observe the true relationships: a U-shaped correlation between temperature and electricity load, and a linear correlation between temperature and ice cream sales. These patterns are consistent with the underlying causal structure, where temperature directly influences both electricity demand and ice cream consumption. However, the third subplot reveals a potential pitfall in data analysis. Here, we observe a correlation between electricity load and ice cream sales, but this relationship is actually a <strong>spurious correlation</strong>. Although the variables appear to be related, they are, in fact, unrelated and the observed pattern is merely a coincidental association due to a <strong>common underlying factor</strong>, namely temperature. This highlights a crucial issue in data analysis: the temptation to infer causality from correlation, even when the correlation is spurious. The underlying mechanisms that generate these correlations are often more complex, and without a clear understanding of the causal structure, it is easy to misinterpret such associations. This phenomenon of spurious correlations and the methods to address it will be explored in more detail in the following chapters, where we will discuss the flow of causation and association within causal graphs.</p>
 </section>
 </section>
 
