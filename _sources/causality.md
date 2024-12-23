@@ -1,6 +1,8 @@
 # Causality 
 
-Causality is a fundamental concept in understanding the relationships between variables in complex systems. In recent decades, the development of causal inference has undergone significant transformations, moving from foundational theories to advanced computational methods that leverage modern machine learning techniques. This chapter provides a historical perspective on causality, reviews key developments, and highlights the advantages of contemporary methods in today’s data-rich environments.
+Causality is a fundamental concept in understanding the relationships between variables in complex systems. In everyday life, we often think about what causes what, even when making the simplest decisions. Understanding causality is central to making informed choices, whether in science, business, or our daily activities. When one event or variable directly leads to another, we call this a **causal relationship**.
+
+The field of statistics that focuses on reasoning about causal structures and relationships in data is called **causal inference**. In recent decades, causal inference has evolved significantly, moving from foundational theories to advanced computational methods that leverage modern machine learning techniques. This chapter provides a historical perspective on causality, reviews key developments, and highlights the advantages of contemporary methods in today’s data-rich environments.
 
 <br>
 
