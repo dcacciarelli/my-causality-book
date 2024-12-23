@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -461,22 +461,22 @@ document.write(`
 <h1>Causal Representations<a class="headerlink" href="#causal-representations" title="Link to this heading">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p><strong>Directed acyclic graphs (DAGs)</strong> are essential tools used to depict and reason about causal relationships between variables. They are widely used in statistics, machine learning, and causal inference to model complex dependencies and to facilitate understanding and analysis of causality <span id="id1">[<a class="reference internal" href="../bibliography.html#id5" title="Judea Pearl. Causality: Models, Reasoning, and Inference. Cambridge University Press, 2000.">Pea00</a>]</span>, <span id="id2">[<a class="reference internal" href="../bibliography.html#id30" title="Daphne Koller and Nir Friedman. Probabilistic Graphical Models: Principles and Techniques. MIT Press, 2009.">KF09</a>]</span>.</p>
+<p><strong>Directed acyclic graphs (DAGs)</strong> are powerful tools used to visually represent and reason about causal relationships between variables. They play a central role in fields such as statistics, machine learning, and causal inference, providing a structured way to model complex dependencies and helping us understand causal mechanisms <span id="id1">[<a class="reference internal" href="../bibliography.html#id5" title="Judea Pearl. Causality: Models, Reasoning, and Inference. Cambridge University Press, 2000.">Pea00</a>]</span>, <span id="id2">[<a class="reference internal" href="../bibliography.html#id30" title="Daphne Koller and Nir Friedman. Probabilistic Graphical Models: Principles and Techniques. MIT Press, 2009.">KF09</a>]</span>.</p>
 <p>The <strong>key elements</strong> of a DAG are:</p>
 <ol class="arabic simple">
-<li><p><strong>Nodes</strong>: represent variables or events in the graph.</p></li>
-<li><p><strong>Edges</strong>: directed arrows indicating a causal influence from one node (variable) to another.</p></li>
-<li><p><strong>Parent node</strong>: a node that has outgoing edges to one or more child nodes.</p></li>
-<li><p><strong>Child node</strong>: a node that has incoming edges from one or more parent nodes.</p></li>
+<li><p><strong>Nodes</strong>: these represent the variables or events in the system being modeled. Each node corresponds to a specific quantity or concept of interest.</p></li>
+<li><p><strong>Edges</strong>: directed arrows between nodes that signify causal relationships. An edge from node <span class="math notranslate nohighlight">\(X\)</span> to node <span class="math notranslate nohighlight">\(Y\)</span> indicates that <span class="math notranslate nohighlight">\(X\)</span> has a causal influence on <span class="math notranslate nohighlight">\(Y\)</span>.</p></li>
+<li><p><strong>Parent node</strong>: a node that has one or more outgoing edges pointing to other nodes (its children).</p></li>
+<li><p><strong>Child node</strong>: a node that receives one or more incoming edges from other nodes (its parents).</p></li>
 </ol>
 <p>The <strong>key properties</strong> of a DAG are:</p>
 <ol class="arabic simple">
-<li><p><strong>Directed</strong>: each edge in the graph has a direction, from one vertex to another.</p></li>
-<li><p><strong>Acyclic</strong>: there are no cycles; you cannot start at one vertex, follow a sequence of directed edges, and return to the starting vertex.</p></li>
-<li><p><strong>Topological ordering</strong>: the nodes of a DAG can be ordered in such a way that for every directed edge <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, node <span class="math notranslate nohighlight">\(X\)</span> comes before node <span class="math notranslate nohighlight">\(Y\)</span> in the ordering.</p></li>
+<li><p><strong>Directed</strong>: each edge in the graph has a specific direction, pointing from one node to another, which reflects the direction of causality.</p></li>
+<li><p><strong>Acyclic</strong>: DAGs do not contain any cycles. This means that it is impossible to start at one node, follow a series of directed edges, and return to the original node.</p></li>
+<li><p><strong>Topological ordering</strong>: the nodes of a DAG can be ordered in such a way that for every directed edge <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span>, node <span class="math notranslate nohighlight">\(X\)</span> appears before node <span class="math notranslate nohighlight">\(Y\)</span> in the ordering. This allows us to understand the sequence of causal relationships.</p></li>
 </ol>
 <blockquote>
-<div><p>A DAG is a graph that is directed and has no cycles, meaning there is no way to start at one node and follow a consistent direction that leads back to the starting node. In a DAG, every parent is a direct cause of all its children.</p>
+<div><p>A DAG is a directed graph with no cycles, meaning there is no way to start at one node and trace a path that leads back to the same node. In such a graph, every parent node is a direct cause of its child nodes.</p>
 </div></blockquote>
 </section>
 <section id="an-example">
@@ -544,8 +544,8 @@ document.write(`
 <section id="factorisation">
 <h3>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">#</a></h3>
 <p>Factorisation refers to the decomposition of a joint probability distribution into a product of conditional distributions. This is possible under the local Markov assumption. The joint distribution <span class="math notranslate nohighlight">\(P(T, L, R, P)\)</span> can be factorised as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a8233b0f-5297-421c-b284-4f4f64155371">
-<span class="eqno">(1)<a class="headerlink" href="#equation-a8233b0f-5297-421c-b284-4f4f64155371" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a9a38cf-0572-4de0-8877-4cc8347d0cfb">
+<span class="eqno">(1)<a class="headerlink" href="#equation-2a9a38cf-0572-4de0-8877-4cc8347d0cfb" title="Permalink to this equation">#</a></span>\[\begin{equation}
     P(T, L, R, P) = P(T) \cdot P(L|T) \cdot P(R|T) \cdot P(P|R, L)
 \end{equation}\]</div>
 <p>This factosization simplifies the computation of the joint probability distribution by breaking it down into manageable parts. It allows us to understand the contribution of each variable to the overall distribution, aiding in both analysis and inference.</p>
