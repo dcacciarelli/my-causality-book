@@ -70,7 +70,6 @@ If you use this book in your research, please cite:
 @book{cacciarelli2024causality,
   author    = {Davide Cacciarelli, Pierre Pinson},
   title     = {Causality in Electricity Markets},
-  publisher = {Imperial College London Press},
   year      = {2024}
 }
 ```
