@@ -1,6 +1,6 @@
 # Causality in Electricity Markets
 
-![Book Logo](logo_thick_v2.png)
+<img src='logo_thick_v2.png' width='300'/>
 
 ## Overview
 *Causality in Electricity Markets* is a comprehensive guide to understanding and applying **causal inference techniques** in electricity markets. The book provides a structured introduction to **causal reasoning, statistical modeling, and machine learning methods** for uncovering cause-and-effect relationships in energy systems.
